@@ -1,14 +1,28 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode7.3
+osx_image: xcode8
 language: objective-c
-# cache: cocoapods
-# podfile: Example/Podfile
-# before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
+
+cache: cocoapods
+podfile: Example/Podfile
+
+env:
+  global:
+    - LANG=en_US.UTF-8
+    - LC_ALL=en_US.UTF-8
+    - XCODE_WORKSPACE=Example/EFQRCode.xcworkspace
+  matrix:
+    - SCHEME="EFQRCode-Example"
+
+before_install:
+  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - pod install --project-directory=Example
+
 script:
-- set -o pipefail && xcodebuild test -workspace Example/EFQRCode.xcworkspace -scheme EFQRCode-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
+  - set -o pipefail
+  - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Debug clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Release clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - pod lib lint --no-clean
+
+after_success:
+  - sleep 5
