@@ -1,0 +1,1 @@
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/EFQRCode.jpg)
