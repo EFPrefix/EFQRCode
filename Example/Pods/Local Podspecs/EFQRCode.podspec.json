@@ -1,0 +1,22 @@
+{
+  "name": "EFQRCode",
+  "version": "0.1.0",
+  "summary": "A short description of EFQRCode.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/EFQRCode",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "EyreFree": "eyrefree@eyrefree.org"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/EFQRCode.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "EFQRCode/Classes/**/*"
+}

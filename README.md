@@ -4,12 +4,18 @@
 [![Version](https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![License](https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
+[![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
+
+An extension for UIImage to create and scan QRCode, in Swift.
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+- XCode 8.0+
+- Swift 3.0+
 
 ## Installation
 
