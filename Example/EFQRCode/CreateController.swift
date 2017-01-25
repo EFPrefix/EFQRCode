@@ -113,7 +113,7 @@ class ShowController: UIViewController {
         )
 
         let createButton = UIButton()
-        createButton.setTitle("返回", for: .normal)
+        createButton.setTitle("Back", for: .normal)
         createButton.setTitleColor(UIColor.black, for: .normal)
         createButton.layer.borderColor = UIColor.black.cgColor
         createButton.layer.borderWidth = 1

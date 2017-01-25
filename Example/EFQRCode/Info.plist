@@ -35,8 +35,8 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>EFQRCode 需要您的同意才能打开相册</string>
+	<string>EFQRCode need to open album</string>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>EFQRCode 需要您的同意才能读取媒体资料库</string>
+	<string>EFQRCode need to open media library</string>
 </dict>
 </plist>
