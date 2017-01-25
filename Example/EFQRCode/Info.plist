@@ -33,7 +33,10 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>EFQRCode 需要您的同意才能打开相册</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>EFQRCode 需要您的同意才能读取媒体资料库</string>
 </dict>
 </plist>

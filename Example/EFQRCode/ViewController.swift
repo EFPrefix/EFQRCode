@@ -7,122 +7,110 @@
 //
 
 import UIKit
-import EFQRCode
 
-class ViewController: UIViewController, UITextViewDelegate {
-
-    var textView: UITextView!
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupViews()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func setupViews() {
-        let screenSize = UIScreen.main.bounds.size
-
-        textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 24)
-        textView.textColor = UIColor.black
-        textView.layer.borderColor = UIColor.black.cgColor
-        textView.layer.borderWidth = 1
-        textView.layer.masksToBounds = true
-        textView.delegate = self
-        textView.returnKeyType = .done
-        self.view.addSubview(textView)
-        textView.frame = CGRect(
-            x: 10, y: 30, width: screenSize.width - 20, height: screenSize.height - 96
-        )
-
-        let createButton = UIButton()
-        createButton.setTitle("生成", for: .normal)
-        createButton.setTitleColor(UIColor.black, for: .normal)
-        createButton.layer.borderColor = UIColor.black.cgColor
-        createButton.layer.borderWidth = 1
-        createButton.layer.masksToBounds = true
-        createButton.addTarget(self, action: #selector(ViewController.createCode), for: .touchDown)
-        self.view.addSubview(createButton)
-        createButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56, width: screenSize.width - 20, height: 46
-        )
-    }
-
-    func createCode() {
-        if let tryImage = UIImage(QRCodeString: textView.text ?? "", size: UIScreen.main.bounds.size.width, iconImage: UIImage(named: "eyrefree")) {
-            self.present(QRCodeController(image: tryImage), animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "提示", message: "二维码创建失败", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "确定", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-
-    // UITextViewDelegate
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        //键盘提交
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-}
-
-class QRCodeController: UIViewController {
-
-    var image: UIImage?
-
-    init(image: UIImage) {
-        super.init(nibName: nil, bundle: nil)
-
-        self.image = image
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+        self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor.white
+
         setupViews()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.navigationBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.navigationController?.navigationBar.isHidden = false
     }
 
     func setupViews() {
         let screenSize = UIScreen.main.bounds.size
 
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = self.image
-        imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.layer.masksToBounds = true
-        self.view.addSubview(imageView)
-        imageView.frame = CGRect(
-            x: 10, y: 30, width: screenSize.width - 20, height: screenSize.width - 20
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
+        titleLabel.textColor = UIColor.black
+        titleLabel.textAlignment = .center
+        titleLabel.text = "EFQRCode"
+        self.view.addSubview(titleLabel)
+        titleLabel.frame = CGRect(
+            x: 0, y: 0, width: screenSize.width, height: screenSize.height / 3.0
         )
 
-        let createButton = UIButton()
-        createButton.setTitle("返回", for: .normal)
-        createButton.setTitleColor(UIColor.black, for: .normal)
-        createButton.layer.borderColor = UIColor.black.cgColor
-        createButton.layer.borderWidth = 1
-        createButton.layer.masksToBounds = true
-        createButton.addTarget(self, action: #selector(QRCodeController.back), for: .touchDown)
-        self.view.addSubview(createButton)
-        createButton.frame = CGRect(
-            x: 10, y: imageView.frame.maxY + 10, width: screenSize.width - 20, height: 46
+        let tableView = UITableView()
+        tableView.bounces = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.alwaysBounceVertical = true
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        self.view.addSubview(tableView)
+        tableView.frame = CGRect(
+            x: 0, y: titleLabel.frame.maxY, width: screenSize.width, height: screenSize.height / 3.0
+        )
+
+        let bottomLabel = UIButton()
+        bottomLabel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        bottomLabel.setTitleColor(UIColor.black, for: .normal)
+        bottomLabel.setTitle("https://www.eyrefree.org/", for: .normal)
+        bottomLabel.addTarget(self, action: #selector(ViewController.openBlog), for: .touchDown)
+        self.view.addSubview(bottomLabel)
+        bottomLabel.frame = CGRect(
+            x: 0, y: screenSize.height - 40, width: screenSize.width, height: 20
         )
     }
-    
-    func back() {
-        self.dismiss(animated: true, completion: nil)
+
+    func openBlog() {
+        if let tryUrl = URL(string: "https://www.eyrefree.org/") {
+            UIApplication.shared.openURL(tryUrl)
+        }
+    }
+
+    // UITableViewDelegate & UITableViewDataSource
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        switch indexPath.row {
+        case 0:
+            self.navigationController?.pushViewController(ScanController(), animated: true)
+            break
+        default:
+            self.navigationController?.pushViewController(CreateController(), animated: true)
+            break
+        }
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0000001
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0000001
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.text = ["Scan QRCode from Image", "Create QRCode image"][indexPath.row]
+        return cell
     }
 }
