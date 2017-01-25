@@ -27,7 +27,71 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EFQRCode"
+pod "EFQRCode", '~> 1.0.0'
+```
+
+### Use
+
+0. Import EFQRCode module where you want to use it:
+```
+import EFQRCode
+```
+
+1. Get QR Codes from UIImage, maybe there are several codes in a image, so it will return an array:
+```
+if let testImage = UIImage(named: "test.png") {
+	let codes = testImage.toQRCodeString()
+	if codes.count > 0 {
+		print("There are \(codes.count) codes in testImage.")
+		for (index, code) in codes.enumerated() {
+       		print("The content of \(index) QR Code is: \(code).")
+        }
+	} else {
+		print("There is no QR Codes in testImage.")
+	}
+}
+```
+This can be also written as this:
+```
+if let testImage = UIImage(named: "test.png") {
+    let codes = EFQRCode.GetQRCodeString(From: testImage)
+    if codes.count > 0 {
+        print("There are \(codes.count) codes in testImage.")
+        for (index, code) in codes.enumerated() {
+            print("The content of \(index) QR Code is: \(code).")
+        }
+    } else {
+        print("There is no QR Codes in testImage.")
+    }
+}
+```
+
+2. Create QR Code image:
+```
+// QRCodeString: Content of QR Code
+// size: Width and height of image
+// inputCorrectionLevel: error-tolerant rate
+// 		L 7%
+// 		M 15%
+// 		Q 25%
+// 		H 30%
+// iconImage (Optional): icon in the middle of QR Code Image
+// iconImageSize (Optional): Width and height of icon
+```
+```
+if let tryImage = UIImage(QRCodeString: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
+    print("Create QRCode image success!")
+} else {
+    print("Create QRCode image failed!")
+}
+```
+This can be also written as this:
+```
+if let tryImage = EFQRCode.CreateQRCodeImage(With: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
+    print("Create QRCode image success!")
+} else {
+    print("Create QRCode image failed!")
+}
 ```
 
 ## Author
