@@ -33,12 +33,12 @@ pod "EFQRCode", '~> 1.0.0'
 ### Use
 
 0. Import EFQRCode module where you want to use it:
-```
+```swift
 import EFQRCode
 ```
 
 1. Get QR Codes from UIImage, maybe there are several codes in a image, so it will return an array:
-```
+```swift
 if let testImage = UIImage(named: "test.png") {
 	let codes = testImage.toQRCodeString()
 	if codes.count > 0 {
@@ -52,7 +52,7 @@ if let testImage = UIImage(named: "test.png") {
 }
 ```
 This can be also written as this:
-```
+```swift
 if let testImage = UIImage(named: "test.png") {
 	let codes = EFQRCode.GetQRCodeString(From: testImage)
 	if codes.count > 0 {
@@ -67,10 +67,10 @@ if let testImage = UIImage(named: "test.png") {
 ```
 
 2. Create QR Code image:
-```
+```swift
 // QRCodeString: Content of QR Code
-// size: Width and height of image
-// inputCorrectionLevel: error-tolerant rate
+// size (Optional): Width and height of image
+// inputCorrectionLevel (Optional): error-tolerant rate
 // 		L 7%
 // 		M 15%
 // 		Q 25%
@@ -78,7 +78,7 @@ if let testImage = UIImage(named: "test.png") {
 // iconImage (Optional): icon in the middle of QR Code Image
 // iconImageSize (Optional): Width and height of icon
 ```
-```
+```swift
 if let tryImage = UIImage(QRCodeString: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
     print("Create QRCode image success!")
 } else {
@@ -86,7 +86,7 @@ if let tryImage = UIImage(QRCodeString: "what the hell.", size: 200, inputCorrec
 }
 ```
 This can be also written as this:
-```
+```swift
 if let tryImage = EFQRCode.CreateQRCodeImage(With: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
     print("Create QRCode image success!")
 } else {
