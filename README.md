@@ -80,17 +80,17 @@ if let testImage = UIImage(named: "test.png") {
 ```
 ```swift
 if let tryImage = UIImage(QRCodeString: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
-    print("Create QRCode image success!")
+	print("Create QRCode image success!")
 } else {
-    print("Create QRCode image failed!")
+	print("Create QRCode image failed!")
 }
 ```
 This can be also written as this:
 ```swift
 if let tryImage = EFQRCode.CreateQRCodeImage(With: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
-    print("Create QRCode image success!")
+	print("Create QRCode image success!")
 } else {
-    print("Create QRCode image failed!")
+	print("Create QRCode image failed!")
 }
 ```
 
