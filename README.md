@@ -32,12 +32,12 @@ pod "EFQRCode", '~> 1.0.0'
 
 ### Use
 
-#### 0. Import EFQRCode module where you want to use it:
+#### 1. Import EFQRCode module where you want to use it:
 ```swift
 import EFQRCode
 ```
 
-#### 1. Get QR Codes from UIImage, maybe there are several codes in a image, so it will return an array:
+#### 2. Get QR Codes from UIImage, maybe there are several codes in a image, so it will return an array:
 ```swift
 if let testImage = UIImage(named: "test.png") {
 	let codes = testImage.toQRCodeString()
@@ -66,7 +66,7 @@ if let testImage = UIImage(named: "test.png") {
 }
 ```
 
-#### 2. Create QR Code image:
+#### 3. Create QR Code image:
 ```swift
 // QRCodeString: Content of QR Code
 // size (Optional): Width and height of image
