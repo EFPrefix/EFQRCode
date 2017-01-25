@@ -8,6 +8,10 @@
 
 An extension for UIImage to create and scan QRCode, in Swift.
 
+## Overview
+
+![](assets/screenshot.png)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
