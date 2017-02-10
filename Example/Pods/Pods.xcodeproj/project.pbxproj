@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1272BC5B1E3767250066792E /* UIImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272BC5A1E3767250066792E /* UIImage+EFQRCode.swift */; };
 		167086D8D4DC3342ADDCF59FD4FD5CDD /* Pods-EFQRCode_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DF7B193DAE41E27189E7E76D9CF97E72 /* Pods-EFQRCode_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F94B82B251B767726B54BE83E7BE8A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		395FB8F169C4132866643AB697C518C8 /* Pods-EFQRCode_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F102214AF42A4E8D7A5B3CC644D4B9 /* Pods-EFQRCode_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,7 +33,6 @@
 		010D2180E464593D5BFBA3995BC2AC49 /* Pods-EFQRCode_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EFQRCode_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		03BB58AB7DFDEFD59824A85336F185F3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059AA9A4DD4B45934666FFFCB396EC67 /* EFQRCode.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EFQRCode.modulemap; sourceTree = "<group>"; };
-		1272BC5A1E3767250066792E /* UIImage+EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+EFQRCode.swift"; sourceTree = "<group>"; };
 		277E37FE1B47760F9913058038DF41A8 /* Pods-EFQRCode_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EFQRCode_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2ADF4DC99F9DCAC7DF2C6114AD45015F /* Pods-EFQRCode_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EFQRCode_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2BEFC7803C3FFCB8F0922C0618712B85 /* Pods-EFQRCode_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EFQRCode_Example-resources.sh"; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				DF20A5E53AFCBBF617859E7F6829E4AD /* EFQRCode.swift */,
-				1272BC5A1E3767250066792E /* UIImage+EFQRCode.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -351,7 +348,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1272BC5B1E3767250066792E /* UIImage+EFQRCode.swift in Sources */,
 				4CA4EC29C61593FFCB5408F34B8D747B /* EFQRCode-dummy.m in Sources */,
 				45CAA07342D488996C55419616B78769 /* EFQRCode.swift in Sources */,
 			);

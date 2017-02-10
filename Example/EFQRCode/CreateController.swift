@@ -9,9 +9,12 @@
 import Foundation
 import EFQRCode
 
-class CreateController: UIViewController, UITextViewDelegate {
+class CreateController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var textView: UITextView!
+    var imagePicker: UIImagePickerController?
+
+    var watermarkImage: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,18 @@ class CreateController: UIViewController, UITextViewDelegate {
             x: 10, y: 80, width: screenSize.width - 20, height: screenSize.height - 146
         )
 
+        let chooseButton = UIButton()
+        chooseButton.setTitle("Choose watermark", for: .normal)
+        chooseButton.setTitleColor(UIColor.black, for: .normal)
+        chooseButton.layer.borderColor = UIColor.black.cgColor
+        chooseButton.layer.borderWidth = 1
+        chooseButton.layer.masksToBounds = true
+        chooseButton.addTarget(self, action: #selector(ScanController.chooseImage), for: .touchDown)
+        self.view.addSubview(chooseButton)
+        chooseButton.frame = CGRect(
+            x: 10, y: screenSize.height - 56, width: (screenSize.width - 30) / 2.0, height: 46
+        )
+
         let createButton = UIButton()
         createButton.setTitle("Create", for: .normal)
         createButton.setTitleColor(UIColor.black, for: .normal)
@@ -48,16 +63,25 @@ class CreateController: UIViewController, UITextViewDelegate {
         createButton.addTarget(self, action: #selector(CreateController.createCode), for: .touchDown)
         self.view.addSubview(createButton)
         createButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56, width: screenSize.width - 20, height: 46
+            x: 20 + chooseButton.frame.width, y: screenSize.height - 56, width: chooseButton.frame.width, height: 46
         )
     }
 
     func createCode() {
-        if let tryImage = UIImage(
-            QRCodeString: textView.text ?? "",
-            size: UIScreen.main.bounds.size.width,
-            iconImage: UIImage(named: "eyrefree")
-            ) {
+        if let tryImage = EFQRCode.createQRImage(
+            string: textView.text ?? "https://github.com/EyreFree/EFQRCode",
+            inputCorrectionLevel: .h,
+            size: UIScreen.main.bounds.size.width * 2,
+            quality: .high,
+            backColor: .white,
+            frontColor: .black,
+            icon: nil,//UIImage(named: "Swift"),
+            iconSize: nil,
+            iconColorful: false,
+            watermark: watermarkImage,
+            watermarkMode: .scaleAspectFit,
+            watermarkColorful: false
+        ) {
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
@@ -74,6 +98,31 @@ class CreateController: UIViewController, UITextViewDelegate {
             return false
         }
         return true
+    }
+
+    func chooseImage() {
+        if let tryPicker = imagePicker {
+            self.present(tryPicker, animated: true, completion: nil)
+        } else {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = false
+            imagePicker = picker
+
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+
+    //MARK:- UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+
+        self.watermarkImage = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
 }
 
