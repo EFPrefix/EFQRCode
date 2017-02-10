@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'EFQRCode'
-s.version          = '1.0.0'
+s.version          = '1.1.0'
 s.summary          = 'An extension for UIImage to create and scan QRCode.'
 
 # This description is used to generate tags and improve search results.

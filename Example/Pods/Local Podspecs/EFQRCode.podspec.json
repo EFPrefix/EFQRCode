@@ -1,9 +1,9 @@
 {
   "name": "EFQRCode",
-  "version": "0.1.0",
-  "summary": "A short description of EFQRCode.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/EFQRCode",
+  "version": "1.1.0",
+  "summary": "An extension for UIImage to create and scan QRCode.",
+  "description": "An extension for UIImage to create and scan QRCode, in Swift.",
+  "homepage": "https://github.com/EyreFree/EFQRCode",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,12 @@
     "EyreFree": "eyrefree@eyrefree.org"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/EFQRCode.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/EyreFree/EFQRCode.git",
+    "tag": "1.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "EFQRCode/Classes/**/*"
+  "requires_arc": true,
+  "source_files": "EFQRCode/Classes/*.swift"
 }
