@@ -101,7 +101,7 @@ if let tryImage = EFQRCode.createQRImage(
 ![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)  
 :---------------------:|:---------------------:|:----------------------:
 ![](assets/QRCode5.jpg)|![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)  
-![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)|![](assets/QRCode11.jpg)  
+![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)|![](assets/QRCode6.jpg)  
 
 ## Author
 
