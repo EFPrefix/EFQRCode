@@ -22,11 +22,11 @@ public enum EFInputCorrectionLevel: Int {
 
 // Quality
 public enum EFQuality: Int {
-    case min = 3;
-    case low = 27;
-    case middle = 81;
-    case high = 243;
-    case max = 729;
+    case min = 0;
+    case low = 1;
+    case middle = 2;
+    case high = 3;
+    case max = 4;
 }
 
 // Like UIViewContentMode
@@ -34,15 +34,15 @@ public enum EFWatermarkMode: Int {
     case scaleToFill = 0;
     case scaleAspectFit = 1;
     case scaleAspectFill = 2;
-    case center = 4;
-    case top = 5;
-    case bottom = 6;
-    case left = 7;
-    case right = 8;
-    case topLeft = 9;
-    case topRight = 10;
-    case bottomLeft = 11;
-    case bottomRight = 12;
+    case center = 3;
+    case top = 4;
+    case bottom = 5;
+    case left = 6;
+    case right = 7;
+    case topLeft = 8;
+    case topRight = 9;
+    case bottomLeft = 10;
+    case bottomRight = 11;
 }
 
 public struct EFIntPixel {
@@ -58,6 +58,8 @@ public struct EFIntPoint {
 }
 
 public class EFQRCode {
+
+    private static let qualityList = [3, 9, 27, 81, 243]
 
     private init() {
 
@@ -154,9 +156,10 @@ public class EFQRCode {
                     }
                 }
 
-                // //Resize & Add icon
+                // Resize & Add icon
                 if let tryResultUIImage = resultUIImage {
-                    let iconSize = iconSize ?? finalSize * 0.06
+                    let maxIconSize = finalSize * [0.26, 0.38, 0.5, 0.54][inputCorrectionLevel.rawValue]
+                    let iconSize = min(maxIconSize, iconSize ?? finalSize * 0.2)
                     resultUIImage = EFQRCode.mixImage(
                         backImage: tryResultUIImage,
                         backImageSize: CGSize(width: finalSize, height: finalSize),
@@ -237,17 +240,17 @@ public class EFQRCode {
 
     // Create Colorful QR Image
     private static func createColorfulQRImage(codes: [[Bool]], colorBack: UIColor, colorFront: UIColor, quality: EFQuality) -> UIImage? {
-        let scale = quality.rawValue //Quality
+        let scale = EFQRCode.qualityList[quality.rawValue] //Quality
         let codeSize = codes.count
         let imageSize = codeSize * scale
 
         var finalImage: UIImage?
         UIGraphicsBeginImageContext(CGSize(width: imageSize, height: imageSize))
         if let context = UIGraphicsGetCurrentContext() {
-            //back
+            // Back
             context.setFillColor(colorBack.cgColor)
             context.fill(CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
-            //point
+            // Point
             context.setFillColor(colorFront.cgColor)
             for indexY in 0 ..< codeSize {
                 for indexX in 0 ..< codeSize {
@@ -266,7 +269,7 @@ public class EFQRCode {
 
     // Create Colorful QR Image
     private static func createFinalQRImage(codes: [[Bool]], colorBack: UIColor, colorFront: UIColor, quality: EFQuality) -> UIImage? {
-        let scale = quality.rawValue //Quality
+        let scale = EFQRCode.qualityList[quality.rawValue] //Quality
         let codeSize = codes.count
         let imageSize = codeSize * scale
 
@@ -457,7 +460,7 @@ public class EFQRCode {
 
     // Grey
     private static func greyScale(image: UIImage?) -> UIImage? {
-        //http://stackoverflow.com/questions/40178846/convert-uiimage-to-grayscale-keeping-image-quality
+        // http://stackoverflow.com/questions/40178846/convert-uiimage-to-grayscale-keeping-image-quality
         if let tryImage = image {
             let context = CIContext(options: nil)
             if let currentFilter = CIFilter(name: "CIPhotoEffectNoir") {
@@ -501,7 +504,7 @@ public class EFQRCode {
     }
 
     private static func getAlignmentPatternLocations(version: Int) -> [Int]? {
-        //http://stackoverflow.com/questions/13238704/calculating-the-position-of-qr-code-alignment-patterns
+        // http://stackoverflow.com/questions/13238704/calculating-the-position-of-qr-code-alignment-patterns
         if version == 1 {
             return nil
         }
@@ -510,7 +513,7 @@ public class EFQRCode {
         let total_dist = size - 7 - 6
         let divisor = 2 * (divs - 1)
 
-        //Step must be even, for alignment patterns to agree with timing patterns
+        // Step must be even, for alignment patterns to agree with timing patterns
         let step = (total_dist + divisor / 2 + 1) / divisor * 2 // Get the rounding right
         var coords = [6]
         

@@ -37,7 +37,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
             x: 10, y: 80, width: screenSize.width - 20, height: screenSize.height - 146
         )
 
-        let chooseButton = UIButton()
+        let chooseButton = UIButton(type: .system)
         chooseButton.setTitle("Choose image", for: .normal)
         chooseButton.setTitleColor(UIColor.black, for: .normal)
         chooseButton.layer.borderColor = UIColor.black.cgColor
@@ -49,9 +49,9 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
             x: 10, y: screenSize.height - 56, width: (screenSize.width - 30) / 2.0, height: 46
         )
 
-        let scanButton = UIButton()
+        let scanButton = UIButton(type: .system)
         scanButton.setTitle("Scan", for: .normal)
-        scanButton.setTitleColor(UIColor.black, for: .normal)
+        scanButton.setTitleColor(UIColor.red, for: .normal)
         scanButton.layer.borderColor = UIColor.black.cgColor
         scanButton.layer.borderWidth = 1
         scanButton.layer.masksToBounds = true

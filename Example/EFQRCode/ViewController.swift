@@ -56,7 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             x: 0, y: titleLabel.frame.maxY, width: screenSize.width, height: screenSize.height / 3.0
         )
 
-        let bottomLabel = UIButton()
+        let bottomLabel = UIButton(type: .system)
         bottomLabel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         bottomLabel.setTitleColor(UIColor.black, for: .normal)
         bottomLabel.setTitle("https://www.eyrefree.org/", for: .normal)
