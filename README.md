@@ -105,9 +105,8 @@ if let tryImage = EFQRCode.CreateQRCodeImage(With: "what the hell.", size: 200, 
 ## Examples
 
 ![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)  
-:-------------------------:|:-------------------------:|:-------------------------:
+:---------------------:|:---------------------:|:----------------------:
 ![](assets/QRCode5.jpg)|![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)  
-:-------------------------:|:-------------------------:|:-------------------------:
 ![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)|![](assets/QRCode11.jpg)  
 
 ## Author
