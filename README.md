@@ -42,22 +42,6 @@ import EFQRCode
 
 ```swift
 if let testImage = UIImage(named: "test.png") {
-	let codes = testImage.toQRCodeString()
-	if codes.count > 0 {
-		print("There are \(codes.count) codes in testImage.")
-		for (index, code) in codes.enumerated() {
-       			print("The content of \(index) QR Code is: \(code).")
-		}
-	} else {
-		print("There is no QR Codes in testImage.")
-	}
-}
-```
-
-This can be also written as this:
-
-```swift
-if let testImage = UIImage(named: "test.png") {
 	let codes = EFQRCode.GetQRCodeString(From: testImage)
 	if codes.count > 0 {
 		print("There are \(codes.count) codes in testImage.")
@@ -73,32 +57,42 @@ if let testImage = UIImage(named: "test.png") {
 #### 3. Create QR Code image:
 
 ```swift
-// QRCodeString: Content of QR Code
-// size (Optional): Width and height of image
+// string: Content of QR Code
 // inputCorrectionLevel (Optional): error-tolerant rate
 // 		L 7%
 // 		M 15%
 // 		Q 25%
 // 		H 30%
-// iconImage (Optional): icon in the middle of QR Code Image
-// iconImageSize (Optional): Width and height of icon
+// size (Optional): Width and height of image
+// quality (Optional): Quality of QRCode
+// backColor (Optional): Background color of QRCode
+// frontColor (Optional): Front color of QRCode
+// icon (Optional): icon in the middle of QR Code Image
+// iconSize (Optional): Width and height of icon
+// iconColorful (Optional): Is icon colorful
+// watermark (Optional): Watermark background image
+// watermarkMode (Optional): Watermark background image mode, like UIViewContentMode
+// watermarkColorful (Optional): Is Watermark colorful
 ```
 
 ```swift
-if let tryImage = UIImage(QRCodeString: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
-	print("Create QRCode image success!")
+if let tryImage = EFQRCode.createQRImage(
+    string: "https://github.com/EyreFree/EFQRCode",
+    inputCorrectionLevel: .h,
+    size: nil,
+    quality: .low,
+    backColor: .white,
+    frontColor: .black,
+    icon: nil,
+    iconSize: nil,
+    iconColorful: true,
+    watermark: nil,
+    watermarkMode: .scaleAspectFill,
+    watermarkColorful: true
+    ) {
+    print("Create QRCode image success!")
 } else {
-	print("Create QRCode image failed!")
-}
-```
-
-This can be also written as this:
-
-```swift
-if let tryImage = EFQRCode.CreateQRCodeImage(With: "what the hell.", size: 200, inputCorrectionLevel: .m, iconImage: UIImage(named: "eyrefree"), iconImageSize: 10.0) {
-	print("Create QRCode image success!")
-} else {
-	print("Create QRCode image failed!")
+    print("Create QRCode image failed!")
 }
 ```
 
