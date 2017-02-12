@@ -1,0 +1,122 @@
+# EFQRCode
+
+[![CI Status](http://img.shields.io/travis/EyreFree/EFQRCode.svg?style=flat)](https://travis-ci.org/EyreFree/EFQRCode)
+[![Version](https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
+[![License](https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
+[![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
+[![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
+
+一个用 Swift 编写的用来创建和扫描二维码的库.
+
+## 概述
+
+![](assets/screenshot.png)
+
+## 示例
+
+1. 利用 `git clone` 命令下载本仓库；
+2. 利用 cd 命令切换到 Example 目录下，执行 `pod install` 命令；
+3. 随后打开 `EFQRCode.xcworkspace` 编译即可。
+
+或执行以下命令：
+```bash
+git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install; open EFQRCode.xcworkspace
+```
+
+## 环境
+
+- XCode 8.0+
+- Swift 3.0+
+
+## 导入
+
+EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
+
+
+```
+pod "EFQRCode", '~> 1.1.0'
+```
+
+### 使用
+
+#### 1. 在你需要使用的地方添加如下代码引入 EFQRCode 模块：
+
+```swift
+import EFQRCode
+```
+
+#### 2. 获取图片中所包含的二维码，同一张图片中可能包含多个二维码，所以返回值是一个字符串数组：
+
+```swift
+if let testImage = UIImage(named: "test.png") {
+	let codes = EFQRCode.GetQRCodeString(From: testImage)
+	if codes.count > 0 {
+		print("There are \(codes.count) codes in testImage.")
+		for (index, code) in codes.enumerated() {
+			print("The content of \(index) QR Code is: \(code).")
+		}
+	} else {
+		print("There is no QR Codes in testImage.")
+	}
+}
+```
+
+#### 3. 创建二维码图片:
+
+```swift
+//                          string: 二维码内容
+// inputCorrectionLevel (Optional): 容错率
+// 		                            L 7%
+// 		                            M 15%
+// 		                            Q 25%
+// 		                            H 30%
+//                 size (Optional): 二维码边长
+//              quality (Optional): 二维码质量
+//            backColor (Optional): 二维码背景色
+//           frontColor (Optional): 二维码前景色
+//                 icon (Optional): 二维码中心图标
+//             iconSize (Optional): 二维码中心图标边长
+//         iconColorful (Optional): 中心图标是否为彩色
+//            watermark (Optional): 水印图
+//        watermarkMode (Optional): 水印图模式
+//    watermarkColorful (Optional): 水印图是否为彩色
+```
+
+```swift
+if let tryImage = EFQRCode.createQRImage(
+    string: "https://github.com/EyreFree/EFQRCode",
+    inputCorrectionLevel: .h,
+    size: 750,
+    quality: .low,
+    backColor: .white,
+    frontColor: .black,
+    icon: nil,
+    iconSize: nil,
+    iconColorful: true,
+    watermark: UIImage(named: "eyrefree"),
+    watermarkMode: .scaleAspectFill,
+    watermarkColorful: false
+    ) {
+    print("Create QRCode image success!")
+} else {
+    print("Create QRCode image failed!")
+}
+```
+
+结果：
+
+<img src="assets/QRCode5.jpg" width = "20%"/>
+
+## 输出
+
+![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)|![](assets/QRCode6.jpg)  
+:---------------------:|:---------------------:|:---------------------:|:---------------------:
+![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)|![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)  
+
+## 作者
+
+EyreFree, eyrefree@eyrefree.org
+
+## 协议
+
+EFQRCode is available under the MIT license. See the LICENSE file for more info.
