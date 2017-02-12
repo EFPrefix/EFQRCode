@@ -73,12 +73,12 @@ if let testImage = UIImage(named: "test.png") {
 // 		                            M 15%
 // 		                            Q 25%
 // 		                            H 30%
-//                 size (Optional): 二维码边长
-//              quality (Optional): 二维码质量
-//            backColor (Optional): 二维码背景色
-//           frontColor (Optional): 二维码前景色
-//                 icon (Optional): 二维码中心图标
-//             iconSize (Optional): 二维码中心图标边长
+//                 size (Optional): 边长
+//              quality (Optional): 质量
+//            backColor (Optional): 背景色
+//           frontColor (Optional): 前景色
+//                 icon (Optional): 中心图标
+//             iconSize (Optional): 中心图标边长
 //         iconColorful (Optional): 中心图标是否为彩色
 //            watermark (Optional): 水印图
 //        watermarkMode (Optional): 水印图模式
