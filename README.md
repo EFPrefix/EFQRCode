@@ -114,6 +114,16 @@ Result：
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
 ![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)|![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)  
 
+## PS
+
+1. Please select a high contrast foreground and background color combinations;
+2. Want to improve the definition of QRCode image, you can improve the quality and size;
+3. Quality too high／Size too long／Content too much may cause failure;
+4. It is recommended to test the QRCode image before put it into use;
+5. You can contact me if there is any problem, both Issue and Pull request are welcome.
+
+PS of PS：I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...
+
 ## Author
 
 EyreFree, eyrefree@eyrefree.org

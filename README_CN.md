@@ -116,6 +116,16 @@ if let tryImage = EFQRCode.createQRImage(
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
 ![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)|![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)  
 
+## 备注
+
+1. 请选用对比度较高的前景色和背景色组合；
+2. 想要提高生成二维码的清晰度可以选择提高质量和二维码边长；
+3. 质量过高／边长过大／二维码内容过多可能会导致生成失败；
+4. 建议对生成的二维码进行测试后投入使用；
+5. 若有任何问题，期待得到您的反馈，Issue 和 Pull request 都是受欢迎的。
+
+备注的备注：好用的话可以给个`星星`，蟹蟹，QAQ...
+
 ## 作者
 
 EyreFree, eyrefree@eyrefree.org
