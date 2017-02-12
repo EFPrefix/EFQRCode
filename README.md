@@ -8,6 +8,8 @@
 
 A tool to create QRCode UIImage or scan QRCode from UIImage, in Swift.
 
+> [中文介绍](https://github.com/EyreFree/EFQRCode/blob/master/README_CN.md)
+
 ## Overview
 
 ![](assets/screenshot.png)

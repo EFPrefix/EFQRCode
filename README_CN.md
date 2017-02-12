@@ -8,6 +8,8 @@
 
 一个用 Swift 编写的用来创建和扫描二维码的库.
 
+> [English Introduction](https://github.com/EyreFree/EFQRCode/blob/master/README.md)
+
 ## 概述
 
 ![](assets/screenshot.png)
