@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
 
-An extension for UIImage to create and scan QRCode, in Swift.
+A tool to create QRCode UIImage or scan QRCode from UIImage, in Swift.
 
 ## Overview
 
@@ -15,6 +15,12 @@ An extension for UIImage to create and scan QRCode, in Swift.
 ## Demo
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+Or you can run the following command in terminal:
+
+```bash
+git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install; open EFQRCode.xcworkspace
+```
 
 ## Requirements
 
@@ -57,38 +63,38 @@ if let testImage = UIImage(named: "test.png") {
 #### 3. Create QR Code image:
 
 ```swift
-// string: Content of QR Code
+//                          string: Content of QR Code
 // inputCorrectionLevel (Optional): error-tolerant rate
-// 		L 7%
-// 		M 15%
-// 		Q 25%
-// 		H 30%
-// size (Optional): Width and height of image
-// quality (Optional): Quality of QRCode
-// backColor (Optional): Background color of QRCode
-// frontColor (Optional): Front color of QRCode
-// icon (Optional): icon in the middle of QR Code Image
-// iconSize (Optional): Width and height of icon
-// iconColorful (Optional): Is icon colorful
-// watermark (Optional): Watermark background image
-// watermarkMode (Optional): Watermark background image mode, like UIViewContentMode
-// watermarkColorful (Optional): Is Watermark colorful
+// 		                            L 7%
+// 		                            M 15%
+// 		                            Q 25%
+// 		                            H 30%
+//                 size (Optional): Width and height of image
+//              quality (Optional): Quality of QRCode
+//            backColor (Optional): Background color of QRCode
+//           frontColor (Optional): Front color of QRCode
+//                 icon (Optional): icon in the middle of QR Code Image
+//             iconSize (Optional): Width and height of icon
+//         iconColorful (Optional): Is icon colorful
+//            watermark (Optional): Watermark background image
+//        watermarkMode (Optional): Watermark background image mode, like UIViewContentMode
+//    watermarkColorful (Optional): Is Watermark colorful
 ```
 
 ```swift
 if let tryImage = EFQRCode.createQRImage(
     string: "https://github.com/EyreFree/EFQRCode",
     inputCorrectionLevel: .h,
-    size: nil,
+    size: 750,
     quality: .low,
     backColor: .white,
     frontColor: .black,
     icon: nil,
     iconSize: nil,
     iconColorful: true,
-    watermark: nil,
+    watermark: UIImage(named: "eyrefree"),
     watermarkMode: .scaleAspectFill,
-    watermarkColorful: true
+    watermarkColorful: false
     ) {
     print("Create QRCode image success!")
 } else {
@@ -96,12 +102,15 @@ if let tryImage = EFQRCode.createQRImage(
 }
 ```
 
+Result：
+
+<img src="assets/QRCode5.jpg" width = "20%"/>
+
 ## Examples
 
-![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)  
-:---------------------:|:---------------------:|:----------------------:
-![](assets/QRCode5.jpg)|![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)  
-![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)|![](assets/QRCode6.jpg)  
+![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)|![](assets/QRCode6.jpg)  
+:---------------------:|:---------------------:|:---------------------:|:---------------------:
+![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)|![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)  
 
 ## Author
 

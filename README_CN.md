@@ -19,6 +19,7 @@
 3. 随后打开 `EFQRCode.xcworkspace` 编译即可。
 
 或执行以下命令：
+
 ```bash
 git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install; open EFQRCode.xcworkspace
 ```
