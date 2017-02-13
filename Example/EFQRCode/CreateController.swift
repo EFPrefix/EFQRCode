@@ -267,7 +267,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             ) {
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
@@ -287,7 +287,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "InputCorrectionLevel",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -337,7 +337,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "Size",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -396,7 +396,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "Quality",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -456,7 +456,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "BackColor",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -488,7 +488,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "FrontColor",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -547,7 +547,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "Icon",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -597,7 +597,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "IconSize",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -647,7 +647,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "IconColorful",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -679,7 +679,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "Watermark",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -765,7 +765,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "WatermarkMode",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
 
         alert.addAction(
@@ -888,7 +888,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(
             title: "WatermarkColorful",
             message: nil,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
