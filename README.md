@@ -106,7 +106,7 @@ if let tryImage = EFQRCode.createQRImage(
 
 Result：
 
-<img src="assets/QRCode5.jpg" width = "20%"/>
+<img src="assets/QRCode5.jpg" width = "40%"/>
 
 ## Examples
 
