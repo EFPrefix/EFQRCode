@@ -523,19 +523,23 @@ class CreateController: UIViewController, UITextViewDelegate {
             })
         )
         alert.addAction(
-            UIAlertAction(title: "miku", style: .default, handler: {
+            UIAlertAction(title: "elebird", style: .default, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
-                    strongSelf.frontColor = UIColor(red: 57.0 / 255.0, green: 197.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0)
+                    strongSelf.frontColor = UIColor(
+                        red: 0 / 255.0, green: 139.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0
+                    )
                     strongSelf.refresh()
                 }
             })
         )
         alert.addAction(
-            UIAlertAction(title: "Pikachu", style: .default, handler: {
+            UIAlertAction(title: "miku", style: .default, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
-                    strongSelf.frontColor = UIColor(red: 255.0 / 255.0, green: 226.0 / 255.0, blue: 17.0 / 255.0, alpha: 1.0)
+                    strongSelf.frontColor = UIColor(
+                        red: 57.0 / 255.0, green: 197.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0
+                    )
                     strongSelf.refresh()
                 }
             })
@@ -586,6 +590,15 @@ class CreateController: UIViewController, UITextViewDelegate {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
                     strongSelf.icon = UIImage(named: "eyrefree")
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "elebird", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.icon = UIImage(named: "elebird")
                     strongSelf.refresh()
                 }
             })
