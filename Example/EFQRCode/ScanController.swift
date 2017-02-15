@@ -98,14 +98,38 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
+    // Grey
+    func greyScale(image: UIImage?) -> UIImage? {
+        // http://stackoverflow.com/questions/40178846/convert-uiimage-to-grayscale-keeping-image-quality
+        if let tryImage = image {
+            let context = CIContext(options: nil)
+            if let currentFilter = CIFilter(name: "CIPhotoEffectNoir") {
+                currentFilter.setValue(CIImage(image: tryImage), forKey: kCIInputImageKey)
+                if let output = currentFilter.outputImage {
+                    if let cgimg = context.createCGImage(output,from: output.extent) {
+                        let processedImage = UIImage(cgImage: cgimg)
+                        return processedImage
+                    }
+                }
+            }
+        }
+        return nil
+    }
+
     //MARK:- UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: nil)
+        if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.iamgeView.image = tryImage
+        } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.iamgeView.image = tryImage
+        } else{
+            print("Something went wrong")
+        }
 
-        self.iamgeView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        picker.dismiss(animated: true, completion: nil)
     }
 }

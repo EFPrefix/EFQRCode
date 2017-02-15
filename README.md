@@ -6,7 +6,10 @@
 [![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
 
-A tool to create QRCode UIImage or scan QRCode from UIImage, in Swift.
+A tool to create QRCode UIImage or scan QRCode from UIImage, in Swift. Based on `CIDetector` and `CIFilter` but better.
+
+- Generation: Create QRCode image with a lot of styles
+- Recognition: Recognition rate is higher than simply `CIDetector`
 
 > [中文介绍](https://github.com/EyreFree/EFQRCode/blob/master/README_CN.md)
 

@@ -70,14 +70,16 @@ public class EFQRCode {
     // Get QRCodes from image
     public static func getQRString(From image: UIImage) -> [String] {
         var result = [String]()
-        let detector = CIDetector(
-            ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh]
-        )
-        if let tryCGImage = image.cgImage {
-            if let features = detector?.features(in: CIImage(cgImage: tryCGImage)) {
-                for feature in features {
-                    if let tryString = (feature as? CIQRCodeFeature)?.messageString {
-                        result.append(tryString)
+        if let finalImage = EFQRCode.greyScale(image: image) {
+            let detector = CIDetector(
+                ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh]
+            )
+            if let tryCGImage = finalImage.cgImage {
+                if let features = detector?.features(in: CIImage(cgImage: tryCGImage)) {
+                    for feature in features {
+                        if let tryString = (feature as? CIQRCodeFeature)?.messageString {
+                            result.append(tryString)
+                        }
                     }
                 }
             }
@@ -512,7 +514,7 @@ public class EFQRCode {
         let size = EFQRCode.getSize(version: version)
         let total_dist = size - 7 - 6
         let divisor = 2 * (divs - 1)
-
+        
         // Step must be even, for alignment patterns to agree with timing patterns
         let step = (total_dist + divisor / 2 + 1) / divisor * 2 // Get the rounding right
         var coords = [6]

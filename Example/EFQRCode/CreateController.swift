@@ -30,7 +30,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
     var size: CGFloat? = UIScreen.main.bounds.size.width * 2
-    var quality = EFQuality.min
+    var quality = EFQuality.low
     var backColor = UIColor.white
     var frontColor = UIColor.black
     var icon: UIImage? = nil

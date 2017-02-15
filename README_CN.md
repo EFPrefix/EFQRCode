@@ -6,7 +6,10 @@
 [![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
 
-一个用 Swift 编写的用来创建和扫描二维码的库.
+一个用 Swift 编写的用来创建和扫描二维码的库，基于系统二维码生成与识别进行开发。
+
+- 生成：能够生成各种艺术二维码
+- 识别：识别率比 iOS 原生二维码识别率更高
 
 > [English Introduction](https://github.com/EyreFree/EFQRCode/blob/master/README.md)
 
@@ -132,4 +135,4 @@ EyreFree, eyrefree@eyrefree.org
 
 ## 协议
 
-EFQRCode is available under the MIT license. See the LICENSE file for more info.
+EFQRCode 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
