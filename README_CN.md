@@ -43,7 +43,7 @@ EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要
 pod "EFQRCode", '~> 1.1.0'
 ```
 
-### 使用
+## 使用
 
 #### 1. 在你需要使用的地方添加如下代码引入 EFQRCode 模块：
 
