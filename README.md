@@ -41,7 +41,7 @@ it, simply add the following line to your Podfile:
 pod "EFQRCode", '~> 1.1.1'
 ```
 
-### Use
+## Use
 
 #### 1. Import EFQRCode module where you want to use it:
 
