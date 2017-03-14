@@ -73,6 +73,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		123167511E77D84F00B71351 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				1272BC5E1E386F870066792E /* ScanController.swift */,
+				1272BC5C1E386F740066792E /* CreateController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		123167521E77D85600B71351 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+			);
+			name = Res;
+			sourceTree = "<group>";
+		};
 		1418F1E38B2691C6A4A9F517 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,13 +126,9 @@
 		607FACD21AFB9204008FA782 /* Example for EFQRCode */ = {
 			isa = PBXGroup;
 			children = (
+				123167521E77D85600B71351 /* Res */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				1272BC5E1E386F870066792E /* ScanController.swift */,
-				1272BC5C1E386F740066792E /* CreateController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				123167511E77D84F00B71351 /* Controller */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for EFQRCode";

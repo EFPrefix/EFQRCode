@@ -1,6 +1,6 @@
 {
   "name": "EFQRCode",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "summary": "An extension for UIImage to create and scan QRCode.",
   "description": "An extension for UIImage to create and scan QRCode, in Swift.",
   "homepage": "https://github.com/EyreFree/EFQRCode",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/EyreFree/EFQRCode.git",
-    "tag": "1.1.0"
+    "tag": "1.1.1"
   },
   "platforms": {
     "ios": "8.0"

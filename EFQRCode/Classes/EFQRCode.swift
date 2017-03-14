@@ -9,47 +9,43 @@
 import Foundation
 
 // EFInputCorrectionLevel
-// L 7%
-// M 15%
-// Q 25%
-// H 30%
 public enum EFInputCorrectionLevel: Int {
-    case l = 0;
-    case m = 1;
-    case q = 2;
-    case h = 3;
+    case l = 0;     // L 7%
+    case m = 1;     // M 15%
+    case q = 2;     // Q 25%
+    case h = 3;     // H 30%
 }
 
 // Quality
 public enum EFQuality: Int {
-    case min = 0;
-    case low = 1;
+    case min    = 0;
+    case low    = 1;
     case middle = 2;
-    case high = 3;
-    case max = 4;
+    case high   = 3;
+    case max    = 4;
 }
 
 // Like UIViewContentMode
 public enum EFWatermarkMode: Int {
-    case scaleToFill = 0;
-    case scaleAspectFit = 1;
-    case scaleAspectFill = 2;
-    case center = 3;
-    case top = 4;
-    case bottom = 5;
-    case left = 6;
-    case right = 7;
-    case topLeft = 8;
-    case topRight = 9;
-    case bottomLeft = 10;
-    case bottomRight = 11;
+    case scaleToFill        = 0;
+    case scaleAspectFit     = 1;
+    case scaleAspectFill    = 2;
+    case center             = 3;
+    case top                = 4;
+    case bottom             = 5;
+    case left               = 6;
+    case right              = 7;
+    case topLeft            = 8;
+    case topRight           = 9;
+    case bottomLeft         = 10;
+    case bottomRight        = 11;
 }
 
 public struct EFIntPixel {
-    var red: Int = 0
-    var green: Int = 0
-    var blue: Int = 0
-    var alpha: Int = 0
+    var red: UInt8 = 0
+    var green: UInt8 = 0
+    var blue: UInt8 = 0
+    var alpha: UInt8 = 0
 }
 
 public struct EFIntPoint {
@@ -66,26 +62,6 @@ public class EFQRCode {
     }
 
     // MARK:- Public
-
-    // Get QRCodes from image
-    public static func getQRString(From image: UIImage) -> [String] {
-        var result = [String]()
-        if let finalImage = EFQRCode.greyScale(image: image) {
-            let detector = CIDetector(
-                ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh]
-            )
-            if let tryCGImage = finalImage.cgImage {
-                if let features = detector?.features(in: CIImage(cgImage: tryCGImage)) {
-                    for feature in features {
-                        if let tryString = (feature as? CIQRCodeFeature)?.messageString {
-                            result.append(tryString)
-                        }
-                    }
-                }
-            }
-        }
-        return result
-    }
 
     // Create image from QRCode string (Basic)
     public static func createQRImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> UIImage? {
@@ -215,10 +191,10 @@ public class EFQRCode {
                         let pixelInfo: Int = ((Int(tryCGImage.width) * Int(indexY)) + Int(indexX)) * 4
                         pixels?[indexY].append(
                             EFIntPixel(
-                                red: Int(data[pixelInfo]),
-                                green: Int(data[pixelInfo + 1]),
-                                blue: Int(data[pixelInfo + 2]),
-                                alpha: Int(data[pixelInfo + 3])
+                                red: data[pixelInfo],
+                                green: data[pixelInfo + 1],
+                                blue: data[pixelInfo + 2],
+                                alpha: data[pixelInfo + 3]
                             )
                         )
                     }
@@ -461,7 +437,7 @@ public class EFQRCode {
     }
 
     // Grey
-    private static func greyScale(image: UIImage?) -> UIImage? {
+    fileprivate static func greyScale(image: UIImage?) -> UIImage? {
         // http://stackoverflow.com/questions/40178846/convert-uiimage-to-grayscale-keeping-image-quality
         if let tryImage = image {
             let context = CIContext(options: nil)
@@ -514,23 +490,57 @@ public class EFQRCode {
         let size = EFQRCode.getSize(version: version)
         let total_dist = size - 7 - 6
         let divisor = 2 * (divs - 1)
-        
+
         // Step must be even, for alignment patterns to agree with timing patterns
         let step = (total_dist + divisor / 2 + 1) / divisor * 2 // Get the rounding right
         var coords = [6]
-        
+
         // divs-2 down to 0, inclusive
         for i in 0...(divs - 2) {
             coords.append(size - 7 - (divs - 2 - i) * step)
         }
         return coords
     }
-    
+
     private static func getVersion(size: Int) -> Int {
         return (size - 21) / 4 + 1
     }
-    
+
     private static func getSize(version: Int) -> Int {
         return 17 + 4 * version
+    }
+}
+
+// EFQRCode+Scan
+public extension EFQRCode {
+
+    // Get QRCodes from image
+    public static func getQRString(From image: UIImage) -> [String] {
+        // 原图
+        var result = EFQRCode.scanFrom(image: image, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
+        // 灰度图
+        if result.count <= 0 {
+            return EFQRCode.scanFrom(
+                image: EFQRCode.greyScale(image: image), options: [CIDetectorAccuracy : CIDetectorAccuracyLow]
+            )
+        }
+        return result
+    }
+
+    private static func scanFrom(image: UIImage?, options: [String : Any]? = nil) -> [String] {
+        var result = [String]()
+        if let tryImage = image {
+            let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
+            if let tryCGImage = tryImage.cgImage {
+                if let features = detector?.features(in: CIImage(cgImage: tryCGImage)) {
+                    for feature in features {
+                        if let tryString = (feature as? CIQRCodeFeature)?.messageString {
+                            result.append(tryString)
+                        }
+                    }
+                }
+            }
+        }
+        return result
     }
 }

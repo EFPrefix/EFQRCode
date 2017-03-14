@@ -727,15 +727,6 @@ class CreateController: UIViewController, UITextViewDelegate {
             })
         )
         alert.addAction(
-            UIAlertAction(title: "Pikachu", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermark = UIImage(named: "Pikachu")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
             UIAlertAction(title: "Kumamon", style: .default, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
@@ -1032,29 +1023,30 @@ class CustomPhotoAlbum: NSObject {
 
     func requestAuthorizationHandler(status: PHAuthorizationStatus) {
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-            // ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
-            print("trying again to create the album")
+            // Ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
+            print("Trying again to create the album")
             self.createAlbum()
         } else {
-            print("should really prompt the user to let them know it's failed")
+            print("Should really prompt the user to let them know it's failed")
         }
     }
 
     func createAlbum() {
         PHPhotoLibrary.shared().performChanges({
-            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)   // create an asset collection with the album name
+            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)
+            // Create an asset collection with the album name
         }) { success, error in
             if success {
                 self.assetCollection = self.fetchAssetCollectionForAlbum()
             } else {
-                print("error \(error)")
+                print("Error: \(error)")
             }
         }
     }
 
     func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
         let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title = %@", CustomPhotoAlbum.albumName)
+        fetchOptions.predicate = NSPredicate(format: "Title: %@", CustomPhotoAlbum.albumName)
         let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
 
         if let _: AnyObject = collection.firstObject {
@@ -1065,9 +1057,10 @@ class CustomPhotoAlbum: NSObject {
 
     func save(image: UIImage) {
         if assetCollection == nil {
-            return                          // if there was an error upstream, skip the save
+            // If there was an error upstream, skip the save
+            return
         }
-        
+
         PHPhotoLibrary.shared().performChanges({
             let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
             let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset

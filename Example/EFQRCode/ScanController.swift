@@ -84,9 +84,9 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if codes.count > 0 {
                 title = "Success"
                 result = codes[0]
-                //for (index, code) in codes.enumerated() {
-                //    result += "\(index): \(code)\n"
-                //}
+                // for (index, code) in codes.enumerated() {
+                //     result += "\(index): \(code)\n"
+                // }
             }
             let alert = UIAlertController(title: title, message: result, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -98,25 +98,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-    // Grey
-    func greyScale(image: UIImage?) -> UIImage? {
-        // http://stackoverflow.com/questions/40178846/convert-uiimage-to-grayscale-keeping-image-quality
-        if let tryImage = image {
-            let context = CIContext(options: nil)
-            if let currentFilter = CIFilter(name: "CIPhotoEffectNoir") {
-                currentFilter.setValue(CIImage(image: tryImage), forKey: kCIInputImageKey)
-                if let output = currentFilter.outputImage {
-                    if let cgimg = context.createCGImage(output,from: output.extent) {
-                        let processedImage = UIImage(cgImage: cgimg)
-                        return processedImage
-                    }
-                }
-            }
-        }
-        return nil
-    }
-
-    //MARK:- UIImagePickerControllerDelegate
+    // MARK:- UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -129,7 +111,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else{
             print("Something went wrong")
         }
-
+        
         picker.dismiss(animated: true, completion: nil)
     }
 }

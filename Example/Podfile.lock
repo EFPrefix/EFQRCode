@@ -1,5 +1,5 @@
 PODS:
-  - EFQRCode (1.1.0)
+  - EFQRCode (1.1.1)
 
 DEPENDENCIES:
   - EFQRCode (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  EFQRCode: 3cbf8e1ca6a2264dfac8e92e83ca9400d1bd4ee6
+  EFQRCode: 8cd9f0056c203a1c5e0c8ec2230b2833ea3fd236
 
 PODFILE CHECKSUM: 52dc362e2925346ef1511ab85ec9458b91f0df4c
 

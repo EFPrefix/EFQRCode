@@ -110,7 +110,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = ["Scan QRCode from Image", "Create QRCode image"][indexPath.row]
+        cell.textLabel?.text = ["Scan from image", "Create QRCode image"][indexPath.row]
         return cell
     }
 }
