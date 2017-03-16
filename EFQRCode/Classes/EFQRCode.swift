@@ -517,7 +517,7 @@ public extension EFQRCode {
     // Get QRCodes from image
     public static func getQRString(From image: UIImage) -> [String] {
         // 原图
-        var result = EFQRCode.scanFrom(image: image, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
+        let result = EFQRCode.scanFrom(image: image, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
         // 灰度图
         if result.count <= 0 {
             return EFQRCode.scanFrom(
