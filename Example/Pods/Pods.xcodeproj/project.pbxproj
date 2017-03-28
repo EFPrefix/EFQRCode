@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12360A061E8A9C410081320F /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12360A051E8A9C410081320F /* EFQRCodeRecognizer.swift */; };
+		12360A081E8A9E1A0081320F /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12360A071E8A9E1A0081320F /* EFQRCode.swift */; };
 		167086D8D4DC3342ADDCF59FD4FD5CDD /* Pods-EFQRCode_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DF7B193DAE41E27189E7E76D9CF97E72 /* Pods-EFQRCode_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F94B82B251B767726B54BE83E7BE8A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		395FB8F169C4132866643AB697C518C8 /* Pods-EFQRCode_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F102214AF42A4E8D7A5B3CC644D4B9 /* Pods-EFQRCode_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,7 +18,7 @@
 		D4F90E48D9C6546ABC8E0325E9E87756 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		DE18AAC38FB5C23143AEB56D1D186B95 /* Pods-EFQRCode_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FB30E7B6234030CD3312BF38FF976EEB /* Pods-EFQRCode_Tests-dummy.m */; };
 		FD80B77FD930219A0CDAF21106974908 /* Pods-EFQRCode_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B647CBAFC6E3CD9544A1206E625436 /* Pods-EFQRCode_Example-dummy.m */; };
-		FE95E8B8D4487100E426BED05ED1B8A7 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19194C573A5462C79E8FA9A2380C718 /* EFQRCode.swift */; };
+		FE95E8B8D4487100E426BED05ED1B8A7 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19194C573A5462C79E8FA9A2380C718 /* EFQRCodeGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,26 +34,28 @@
 /* Begin PBXFileReference section */
 		010D2180E464593D5BFBA3995BC2AC49 /* Pods-EFQRCode_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EFQRCode_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		03BB58AB7DFDEFD59824A85336F185F3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		059AA9A4DD4B45934666FFFCB396EC67 /* EFQRCode.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EFQRCode.modulemap; sourceTree = "<group>"; };
+		059AA9A4DD4B45934666FFFCB396EC67 /* EFQRCode.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EFQRCode.modulemap; sourceTree = "<group>"; };
+		12360A051E8A9C410081320F /* EFQRCodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCodeRecognizer.swift; sourceTree = "<group>"; };
+		12360A071E8A9E1A0081320F /* EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCode.swift; sourceTree = "<group>"; };
 		277E37FE1B47760F9913058038DF41A8 /* Pods-EFQRCode_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EFQRCode_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2ADF4DC99F9DCAC7DF2C6114AD45015F /* Pods-EFQRCode_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EFQRCode_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2BEFC7803C3FFCB8F0922C0618712B85 /* Pods-EFQRCode_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EFQRCode_Example-resources.sh"; sourceTree = "<group>"; };
 		3DD1EBD466EE28B37B40603CE2232ECD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46C609E31DF48E7A946B762E668C8743 /* Pods-EFQRCode_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EFQRCode_Tests-resources.sh"; sourceTree = "<group>"; };
-		4CED333C0E0831A32D76120181B7458F /* Pods-EFQRCode_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-EFQRCode_Tests.modulemap"; sourceTree = "<group>"; };
+		4CED333C0E0831A32D76120181B7458F /* Pods-EFQRCode_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-EFQRCode_Tests.modulemap"; sourceTree = "<group>"; };
 		5158DF8EA0E2FD7799A327118966B0FF /* Pods-EFQRCode_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EFQRCode_Example-frameworks.sh"; sourceTree = "<group>"; };
 		5FDCC279C2DD4943A3C395E94FDCEB47 /* Pods-EFQRCode_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EFQRCode_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		6D6173AA3120E80F8D37D9B4492FFDF1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EFQRCode.framework; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D6173AA3120E80F8D37D9B4492FFDF1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7682FFD8D918ABE61B25AB50C720A0A3 /* EFQRCode-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EFQRCode-dummy.m"; sourceTree = "<group>"; };
 		80B647CBAFC6E3CD9544A1206E625436 /* Pods-EFQRCode_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EFQRCode_Example-dummy.m"; sourceTree = "<group>"; };
-		811A1BE8595472455FBC80456985CD63 /* Pods-EFQRCode_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-EFQRCode_Example.modulemap"; sourceTree = "<group>"; };
+		811A1BE8595472455FBC80456985CD63 /* Pods-EFQRCode_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-EFQRCode_Example.modulemap"; sourceTree = "<group>"; };
 		81D9210DABD2BDD39064BA4324FF2109 /* EFQRCode-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EFQRCode-umbrella.h"; sourceTree = "<group>"; };
 		8F1D49E90064E93D260692B97A89D15B /* Pods-EFQRCode_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EFQRCode_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B4E3F5A423DCFB12C697D0A36D4BE784 /* Pods-EFQRCode_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EFQRCode_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		B8145279D1CBE2C2AFDA08BB92B00E3F /* Pods_EFQRCode_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EFQRCode_Tests.framework; path = "Pods-EFQRCode_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8145279D1CBE2C2AFDA08BB92B00E3F /* Pods_EFQRCode_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EFQRCode_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3CFF0C8F381247DBB639182DEF5978 /* Pods-EFQRCode_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EFQRCode_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C19194C573A5462C79E8FA9A2380C718 /* EFQRCode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EFQRCode.swift; sourceTree = "<group>"; };
+		C19194C573A5462C79E8FA9A2380C718 /* EFQRCodeGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EFQRCodeGenerator.swift; sourceTree = "<group>"; };
 		CBA43130CBE5DB99857F521A7728D714 /* EFQRCode-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EFQRCode-prefix.pch"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D2C47F73CB69D83760EE7E5E2B75EFE0 /* Pods-EFQRCode_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EFQRCode_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -59,7 +63,7 @@
 		DF7B193DAE41E27189E7E76D9CF97E72 /* Pods-EFQRCode_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EFQRCode_Tests-umbrella.h"; sourceTree = "<group>"; };
 		E38B65E0150857D8599BBB7987935241 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E50B85CF7716657A858884D75DD07390 /* EFQRCode.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EFQRCode.xcconfig; sourceTree = "<group>"; };
-		EC7F103249BF7AF4A864E557AD5CC612 /* Pods_EFQRCode_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EFQRCode_Example.framework; path = "Pods-EFQRCode_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC7F103249BF7AF4A864E557AD5CC612 /* Pods_EFQRCode_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EFQRCode_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F102214AF42A4E8D7A5B3CC644D4B9 /* Pods-EFQRCode_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EFQRCode_Example-umbrella.h"; sourceTree = "<group>"; };
 		FB30E7B6234030CD3312BF38FF976EEB /* Pods-EFQRCode_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EFQRCode_Tests-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,7 +161,6 @@
 			children = (
 				FEFD4E0FFC634A16DD6C726A0B366D36 /* Classes */,
 			);
-			name = EFQRCode;
 			path = EFQRCode;
 			sourceTree = "<group>";
 		};
@@ -218,9 +221,10 @@
 		FEFD4E0FFC634A16DD6C726A0B366D36 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C19194C573A5462C79E8FA9A2380C718 /* EFQRCode.swift */,
+				12360A071E8A9E1A0081320F /* EFQRCode.swift */,
+				C19194C573A5462C79E8FA9A2380C718 /* EFQRCodeGenerator.swift */,
+				12360A051E8A9C410081320F /* EFQRCodeRecognizer.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -355,8 +359,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12360A061E8A9C410081320F /* EFQRCodeRecognizer.swift in Sources */,
 				A365FFEFDAC52203C5C1102D84EE94D3 /* EFQRCode-dummy.m in Sources */,
-				FE95E8B8D4487100E426BED05ED1B8A7 /* EFQRCode.swift in Sources */,
+				12360A081E8A9E1A0081320F /* EFQRCode.swift in Sources */,
+				FE95E8B8D4487100E426BED05ED1B8A7 /* EFQRCodeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
