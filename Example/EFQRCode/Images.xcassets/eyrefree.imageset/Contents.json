@@ -7,12 +7,10 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "eyrefree@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "eyrefree@3x.png",
       "scale" : "3x"
     }
   ],
