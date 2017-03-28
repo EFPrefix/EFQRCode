@@ -727,28 +727,10 @@ class CreateController: UIViewController, UITextViewDelegate {
             })
         )
         alert.addAction(
-            UIAlertAction(title: "Kumamon", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermark = UIImage(named: "Kumamon")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
             UIAlertAction(title: "ちゃまろ", style: .default, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
                     strongSelf.watermark = UIImage(named: "ちゃまろ")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "Teacher.Cang", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermark = UIImage(named: "Teacher.Cang")
                     strongSelf.refresh()
                 }
             })
