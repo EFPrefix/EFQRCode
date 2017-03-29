@@ -41,32 +41,33 @@ public enum EFWatermarkMode: Int {
     case bottomRight        = 11;
 }
 
-public struct EFUIntPixel {
-    var red: UInt8 = 0
-    var green: UInt8 = 0
-    var blue: UInt8 = 0
-    var alpha: UInt8 = 0
-}
-
-public struct EFIntPoint {
+struct EFIntPoint {
     var x: Int = 0
     var y: Int = 0
 }
 
 // EFQRCode+Create
 class EFQRCodeGenerator {
+
+    private(set) var image: UIImage?
+
+    // Create image from QRCode string (Basic)
+    init(content: String, inputCorrectionLevel: EFInputCorrectionLevel = .m, size: CGSize? = nil) {
+        if let tryCIImage = createQRCIImage(string: content, inputCorrectionLevel: inputCorrectionLevel) {
+            if let trySize = size {
+                if let tryResizeCIImage = tryCIImage.resize(size: trySize) {
+                    image = UIImage(ciImage: tryResizeCIImage)
+                }
+            } else {
+                image = UIImage(ciImage: tryCIImage)
+            }
+        }
+    }
+
     //
     private static let qualityList = [3, 9, 27, 81, 243]
 
     // MARK:- Public
-
-    // Create image from QRCode string (Basic)
-    public static func createQRImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> UIImage? {
-        if let tryCIImage = EFQRCodeGenerator.createQRCIImage(string: string, inputCorrectionLevel: inputCorrectionLevel) {
-            return UIImage(ciImage: tryCIImage)
-        }
-        return nil
-    }
 
     // Create image from QRCode string
     public static func createQRImage(
@@ -86,10 +87,10 @@ class EFQRCodeGenerator {
         var resultUIImage: UIImage?
 
         // Create original QRCode image
-        if let originalQRCodeCIImage = EFQRCodeGenerator.createQRCIImage(string: string, inputCorrectionLevel: inputCorrectionLevel) {
+        if let originalQRCodeCIImage = EFQRCodeGenerator(content: string).createQRCIImage(string: string, inputCorrectionLevel: inputCorrectionLevel) {
 
             // Get pixels from image
-            if let QRImagePixels = EFQRCodeGenerator.getPixels(inputImage: originalQRCodeCIImage) {
+            if let QRImagePixels = originalQRCodeCIImage.pixels() {
 
                 // Get QRCodes from image
                 let QRCodes = EFQRCodeGenerator.getCodes(pixels: QRImagePixels)
@@ -106,7 +107,7 @@ class EFQRCodeGenerator {
                     if let colorfulQRCodeWaterarkUIImage = EFQRCodeGenerator.createFinalQRImage(codes: QRCodes, colorBack: backColor, colorFront: frontColor, quality: quality) {
 
                         // Get if gray watermark image
-                        if let tryGreyImage = watermarkColorful ? tryWatermarkUIImage : EFQRCode.greyScale(image: tryWatermarkUIImage) {
+                        if let tryGreyImage = watermarkColorful ? tryWatermarkUIImage : tryWatermarkUIImage.greyScale() {
 
                             // Get if tansform watermark image
                             if let tryGreyImageAfterTrans = EFQRCodeGenerator.preWatermarkImage(image: tryGreyImage, colorBack: backColor, mode: watermarkMode, size: CGSize(width: finalSize, height: finalSize)) {
@@ -138,7 +139,7 @@ class EFQRCodeGenerator {
                     resultUIImage = EFQRCodeGenerator.mixImage(
                         backImage: tryResultUIImage,
                         backImageSize: CGSize(width: finalSize, height: finalSize),
-                        frontImage: iconColorful ? icon : EFQRCode.greyScale(image: icon),
+                        frontImage: iconColorful ? icon : icon?.greyScale(),
                         frontImageSize: CGSize(width: iconSize, height: iconSize)
                     )
                 }
@@ -151,7 +152,7 @@ class EFQRCodeGenerator {
     // MARK:- Private
 
     // Create QR CIImage
-    private static func createQRCIImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
+    private func createQRCIImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
         let stringData = string.data(using: String.Encoding.utf8)
         if let qrFilter = CIFilter(name: "CIQRCodeGenerator") {
             qrFilter.setValue(stringData, forKey: "inputMessage")
@@ -173,44 +174,6 @@ class EFQRCodeGenerator {
             }
         }
         return codes
-    }
-
-    // Get pixels from image
-    private static func getPixels(inputImage: CIImage) -> [[EFUIntPixel]]? {
-        var pixels: [[EFUIntPixel]]?
-        if let tryCGImage = EFQRCodeGenerator.convertCIImageToCGImage(inputImage: inputImage) {
-            if let pixelData = tryCGImage.dataProvider?.data {
-                let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-                pixels = [[EFUIntPixel]]()
-                for indexY in 0 ..< tryCGImage.height {
-                    pixels?.append([EFUIntPixel]())
-                    for indexX in 0 ..< tryCGImage.width {
-                        let pixelInfo: Int = ((Int(tryCGImage.width) * Int(indexY)) + Int(indexX)) * 4
-                        pixels?[indexY].append(
-                            EFUIntPixel(
-                                red: data[pixelInfo],
-                                green: data[pixelInfo + 1],
-                                blue: data[pixelInfo + 2],
-                                alpha: data[pixelInfo + 3]
-                            )
-                        )
-                    }
-                }
-                return pixels
-            }
-        }
-        return nil
-    }
-
-    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    // Convert CIImage To CGImage
-    private static func convertCIImageToCGImage(inputImage: CIImage) -> CGImage? {
-        return CIContext(options: nil).createCGImage(inputImage, from: inputImage.extent)
-    }
-
-    // Convert UIImage to CIImage
-    private static func convertUIImageToCIImage(inputImage: UIImage) -> CIImage? {
-        return CIImage(image: inputImage)
     }
 
     // Create Colorful QR Image
@@ -382,7 +345,7 @@ class EFQRCodeGenerator {
 
     // Mix
     private static func mixImage(backImage: UIImage, backImageSize: CGSize, frontImage: UIImage?, frontImageSize: CGSize? = nil) -> UIImage? {
-        if let tryBackCIImage = EFQRCodeGenerator.convertUIImageToCIImage(inputImage: backImage) {
+        if let tryBackCIImage = backImage.toCIImage() {
             let extent = tryBackCIImage.extent.integral
             let scaleX: CGFloat = backImageSize.width / extent.width
             let scaleY: CGFloat = backImageSize.height / extent.height
@@ -473,18 +436,18 @@ class EFQRCodeGenerator {
         // Step must be even, for alignment patterns to agree with timing patterns
         let step = (total_dist + divisor / 2 + 1) / divisor * 2 // Get the rounding right
         var coords = [6]
-
+        
         // divs-2 down to 0, inclusive
         for i in 0...(divs - 2) {
             coords.append(size - 7 - (divs - 2 - i) * step)
         }
         return coords
     }
-
+    
     private static func getVersion(size: Int) -> Int {
         return (size - 21) / 4 + 1
     }
-
+    
     private static func getSize(version: Int) -> Int {
         return 17 + 4 * version
     }

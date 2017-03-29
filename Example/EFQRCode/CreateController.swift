@@ -251,6 +251,14 @@ class CreateController: UIViewController, UITextViewDelegate {
             content = textView.text
         }
 
+        /*if let tryImage = EFQRCode.createQRImage(string: content, inputCorrectionLevel: inputCorrectionLevel, size: size) {
+            self.present(ShowController(image: tryImage), animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }*/
+
         if let tryImage = EFQRCode.createQRImage(
             string: content,
             inputCorrectionLevel: inputCorrectionLevel,

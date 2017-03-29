@@ -10,32 +10,14 @@ import Foundation
 
 public class EFQRCode {
 
-    // Grey
-    static func greyScale(image: UIImage?) -> UIImage? {
-        // http://stackoverflow.com/questions/40178846/convert-uiimage-to-grayscale-keeping-image-quality
-        if let tryImage = image {
-            let context = CIContext(options: nil)
-            if let currentFilter = CIFilter(name: "CIPhotoEffectNoir") {
-                currentFilter.setValue(CIImage(image: tryImage), forKey: kCIInputImageKey)
-                if let output = currentFilter.outputImage {
-                    if let cgimg = context.createCGImage(output,from: output.extent) {
-                        let processedImage = UIImage(cgImage: cgimg)
-                        return processedImage
-                    }
-                }
-            }
-        }
-        return nil
-    }
-
     // MARK:- Recognizer
-    public static func getQRString(From image: UIImage) -> [String] {
-        return EFQRCodeRecognizer(image: image).contents
+    public static func getQRString(From image: UIImage) -> [String]? {
+        return EFQRCodeRecognizer(image: image).contents()
     }
 
     // MARK:- Generator
-    public static func createQRImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> UIImage? {
-        return EFQRCodeGenerator.createQRImage(string: string, inputCorrectionLevel: inputCorrectionLevel)
+    public static func createQRImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m, size: CGSize? = nil) -> UIImage? {
+        return EFQRCodeGenerator(content: string, inputCorrectionLevel: inputCorrectionLevel, size: size).image
     }
 
     public static func createQRImage(
