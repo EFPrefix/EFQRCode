@@ -251,7 +251,11 @@ class CreateController: UIViewController, UITextViewDelegate {
             content = textView.text
         }
 
-        /*if let tryImage = EFQRCode.createQRImage(string: content, inputCorrectionLevel: inputCorrectionLevel, size: size) {
+        /*var tempSize: CGSize?
+        if size != nil {
+            tempSize = CGSize(width: size!, height: size!)
+        }
+        if let tryImage = EFQRCode.createQRImage(string: content, inputCorrectionLevel: inputCorrectionLevel, size: tempSize) {
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .actionSheet)
@@ -1036,7 +1040,7 @@ class CustomPhotoAlbum: NSObject {
 
     func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
         let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "Title: %@", CustomPhotoAlbum.albumName)
+        fetchOptions.predicate = NSPredicate(format: "title=%@", CustomPhotoAlbum.albumName)
         let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
 
         if let _: AnyObject = collection.firstObject {

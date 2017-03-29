@@ -24,7 +24,7 @@ public class EFQRCode {
         string: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .m,
         size: CGFloat? = nil,
-        quality :EFQuality = EFQuality.middle,
+        quality: EFQuality = EFQuality.middle,
         backColor: UIColor = UIColor.white,
         frontColor: UIColor = UIColor.black,
         icon: UIImage? = nil,
