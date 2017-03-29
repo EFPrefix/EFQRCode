@@ -30,7 +30,6 @@ class CreateController: UIViewController, UITextViewDelegate {
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
     var size: CGFloat? = UIScreen.main.bounds.size.width * 2
-    var quality = EFQuality.low
     var backColor = UIColor.white
     var frontColor = UIColor.black
     var icon: UIImage? = nil
@@ -94,19 +93,6 @@ class CreateController: UIViewController, UITextViewDelegate {
         self.view.addSubview(chooseSizeButton)
         chooseSizeButton.frame = CGRect(
             x: 20 + buttonWidth, y: screenSize.height - 56 * 6, width: buttonWidth, height: buttonHeight
-        )
-
-        //quality: .min,
-        chooseMinButton = UIButton(type: .system)
-        chooseMinButton.setTitle("quality: \(["min", "low", "middle", "high", "max"][quality.rawValue])", for: .normal)
-        chooseMinButton.setTitleColor(UIColor.black, for: .normal)
-        chooseMinButton.layer.borderColor = UIColor.black.cgColor
-        chooseMinButton.layer.borderWidth = 1
-        chooseMinButton.layer.masksToBounds = true
-        chooseMinButton.addTarget(self, action: #selector(CreateController.chooseQuality), for: .touchDown)
-        self.view.addSubview(chooseMinButton)
-        chooseMinButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56 * 5, width: buttonWidth, height: 46
         )
 
         //backColor: .white,
@@ -231,7 +217,6 @@ class CreateController: UIViewController, UITextViewDelegate {
     func refresh() {
         chooseInputCorrectionLevelButton.setTitle("ICLevel: \(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])", for: .normal)
         chooseSizeButton.setTitle("size: \(size)", for: .normal)
-        chooseMinButton.setTitle("quality: \(["min", "low", "middle", "high", "max"][quality.rawValue])", for: .normal)
         chooseBackColorButton.setTitle("backColor", for: .normal)
         choosefrontColorButton.setTitle("frontColor", for: .normal)
         chooseIconButton.setTitle("icon: \(icon)", for: .normal)
@@ -263,20 +248,19 @@ class CreateController: UIViewController, UITextViewDelegate {
             self.present(alert, animated: true, completion: nil)
         }*/
 
-        if let tryImage = EFQRCode.createQRImage(
-            string: content,
+        if let tryImage = EFQRCode.generate(
+            content: content,
             inputCorrectionLevel: inputCorrectionLevel,
-            size: size,
-            quality: quality,
-            backColor: backColor,
-            frontColor: frontColor,
+            size: size ?? 256,
+            backgroundColor: backColor,
+            foregroundColor: frontColor,
             icon: icon,
             iconSize: iconSize,
-            iconColorful: iconColorful,
+            isIconColorful: iconColorful,
             watermark: watermark,
             watermarkMode: watermarkMode,
-            watermarkColorful: watermarkColorful
-            ) {
+            isWatermarkColorful: watermarkColorful
+        ) {
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .actionSheet)
@@ -401,66 +385,6 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             })
         )
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    func chooseQuality() {
-        let alert = UIAlertController(
-            title: "Quality",
-            message: nil,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "min", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.quality = .min
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "low", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.quality = .low
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "middle", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.quality = .middle
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "high", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.quality = .high
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "max", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.quality = .max
-                    strongSelf.refresh()
-                }
-            })
-        )
-
         self.present(alert, animated: true, completion: nil)
     }
 

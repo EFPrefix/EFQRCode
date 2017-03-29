@@ -11,42 +11,37 @@ import Foundation
 public class EFQRCode {
 
     // MARK:- Recognizer
-    public static func getQRString(From image: UIImage) -> [String]? {
-        return EFQRCodeRecognizer(image: image).contents()
+    public static func recognize(image: UIImage) -> [String]? {
+
+        return EFQRCodeRecognizer(image: image).contents
     }
 
-    // MARK:- Generator
-    public static func createQRImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m, size: CGSize? = nil) -> UIImage? {
-        return EFQRCodeGenerator(content: string, inputCorrectionLevel: inputCorrectionLevel, size: size).image
-    }
-
-    public static func createQRImage(
-        string: String,
-        inputCorrectionLevel: EFInputCorrectionLevel = .m,
-        size: CGFloat? = nil,
-        quality: EFQuality = EFQuality.middle,
-        backColor: UIColor = UIColor.white,
-        frontColor: UIColor = UIColor.black,
+    public static func generate(
+        content: String,
+        inputCorrectionLevel: EFInputCorrectionLevel = .h,
+        size: CGFloat = 256,
+        backgroundColor: UIColor = UIColor.white,
+        foregroundColor: UIColor = UIColor.black,
         icon: UIImage? = nil,
         iconSize: CGFloat? = nil,
-        iconColorful: Bool = true,
+        isIconColorful: Bool = true,
         watermark: UIImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleToFill,
-        watermarkColorful: Bool = true
+        isWatermarkColorful: Bool = true
         ) -> UIImage? {
-        return EFQRCodeGenerator.createQRImage(
-            string: string,
+
+        return EFQRCodeGenerator(
+            content: content,
             inputCorrectionLevel: inputCorrectionLevel,
             size: size,
-            quality: quality,
-            backColor: backColor,
-            frontColor: frontColor,
+            backgroundColor: backgroundColor,
+            foregroundColor: foregroundColor,
             icon: icon,
             iconSize: iconSize,
-            iconColorful: iconColorful,
+            isIconColorful: isIconColorful,
             watermark: watermark,
             watermarkMode: watermarkMode,
-            watermarkColorful: watermarkColorful
-        )
+            isWatermarkColorful: isWatermarkColorful
+        ).image
     }
 }

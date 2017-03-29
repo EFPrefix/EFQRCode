@@ -10,21 +10,24 @@ import Foundation
 
 class EFQRCodeRecognizer {
 
-    private var image: UIImage!
+    public var image: UIImage? {
+        didSet {
+            contentArray = nil
+        }
+    }
+    var contents: [String]? {
+        get {
+            if let tryImage = image, nil == contentArray {
+                contentArray = getQRString(From: tryImage)
+            }
+            return contentArray
+        }
+    }
+
     private var contentArray: [String]?
 
     init(image: UIImage) {
         self.image = image
-    }
-
-    func contents() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString(From: image)
-        }
-        if let tryContents = contentArray {
-            return tryContents
-        }
-        return nil
     }
 
     // Get QRCodes from image

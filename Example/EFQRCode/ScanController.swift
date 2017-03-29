@@ -80,7 +80,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let tryImage = iamgeView.image {
             var title = "Error"
             var result = "Get QRCode from image failed!"
-            let codes = EFQRCode.getQRString(From: tryImage) ?? [String]()
+            let codes = EFQRCode.recognize(image: tryImage) ?? [String]()
             if codes.count > 0 {
                 title = "Success"
                 result = codes[0]

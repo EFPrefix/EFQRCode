@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct EFUIntPixel {
+struct EFUIntPixel {
     var red: UInt8 = 0
     var green: UInt8 = 0
     var blue: UInt8 = 0
