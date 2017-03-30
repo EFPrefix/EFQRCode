@@ -103,12 +103,15 @@ class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
+
+    // MARK:- Not commonly used
     public var foregroundPointOffset: CGFloat = 0 {
         didSet {
             imageQRCode = nil
         }
     }
 
+    // MARK:- Get QRCode image
     var image: UIImage? {
         get {
             if nil == imageQRCode {
@@ -151,7 +154,7 @@ class EFQRCodeGenerator {
         self.isWatermarkColorful = isWatermarkColorful
     }
 
-    func createQRCodeImage() -> UIImage? {
+    private func createQRCodeImage() -> UIImage? {
 
         var finalSize = self.size
         let finalBackgroundColor = self.backgroundColor
@@ -312,10 +315,10 @@ class EFQRCodeGenerator {
                     if true == codes[indexY][indexX] {
                         context.fill(
                             CGRect(
-                                x: CGFloat(indexX) * scale + CGFloat(foregroundPointOffset),
-                                y: CGFloat(indexY) * scale + CGFloat(foregroundPointOffset),
-                                width: scale - CGFloat(2 * foregroundPointOffset),
-                                height: scale - CGFloat(2 * foregroundPointOffset)
+                                x: CGFloat(indexX) * scale + foregroundPointOffset,
+                                y: CGFloat(indexY) * scale + foregroundPointOffset,
+                                width: scale - 2 * foregroundPointOffset,
+                                height: scale - 2 * foregroundPointOffset
                             )
                         )
                     }
@@ -398,10 +401,10 @@ class EFQRCodeGenerator {
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scale + CGFloat(foregroundPointOffset),
-                                    y: CGFloat(indexY) * scale + CGFloat(foregroundPointOffset),
-                                    width: pointWidthOri - CGFloat(2 * foregroundPointOffset),
-                                    height: pointWidthOri - CGFloat(2 * foregroundPointOffset)
+                                    x: CGFloat(indexX) * scale + foregroundPointOffset,
+                                    y: CGFloat(indexY) * scale + foregroundPointOffset,
+                                    width: pointWidthOri - 2 * foregroundPointOffset,
+                                    height: pointWidthOri - 2 * foregroundPointOffset
                                 )
                             )
                         } else {
@@ -608,7 +611,7 @@ class EFQRCodeGenerator {
     }
 
     // MARK:- Recommand magnification
-    func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> UInt? {
+    public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> UInt? {
         guard let QRCodes = generateCodes() else {
             return nil
         }
@@ -630,7 +633,7 @@ class EFQRCodeGenerator {
         return nil
     }
 
-    func maxMagnificationLessThanOrEqualTo(size: CGFloat) -> UInt? {
+    public func maxMagnificationLessThanOrEqualTo(size: CGFloat) -> UInt? {
         guard let QRCodes = generateCodes() else {
             return nil
         }
@@ -656,7 +659,7 @@ class EFQRCodeGenerator {
     }
 
     // MARK:- calculateSuitableSize
-    func minSuitableSizeGreaterThanOrEqualTo(size: CGFloat) -> CGFloat? {
+    private func minSuitableSizeGreaterThanOrEqualTo(size: CGFloat) -> CGFloat? {
         guard let QRCodes = generateCodes() else {
             return nil
         }

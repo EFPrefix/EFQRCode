@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 public class EFQRCode {
 
@@ -16,6 +16,7 @@ public class EFQRCode {
         return EFQRCodeRecognizer(image: image).contents
     }
 
+    // MARK:- Generator
     public static func generate(
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
@@ -45,5 +46,10 @@ public class EFQRCode {
             watermarkMode: watermarkMode,
             isWatermarkColorful: isWatermarkColorful
             ).image
+    }
+
+    // MARK:-
+    public static func avarageColor(image: UIImage) -> UIColor? {
+        return image.avarageColor()
     }
 }

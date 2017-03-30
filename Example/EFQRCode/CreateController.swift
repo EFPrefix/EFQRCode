@@ -40,6 +40,13 @@ class CreateController: UIViewController, UITextViewDelegate {
     var watermarkMode = EFWatermarkMode.scaleAspectFill
     var watermarkColorful = true
 
+    // Test data
+    struct colorData {
+        var color: UIColor
+        var name: String
+    }
+    var colorList = [colorData]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,6 +62,23 @@ class CreateController: UIViewController, UITextViewDelegate {
 
         let buttonHeight: CGFloat = 46
         let buttonWidth: CGFloat = (screenSize.width - 30) / 2.0
+
+        // Add test data
+        let colorNameArray = [
+            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille"
+        ]
+        let colorArray = [
+            UIColor.black, UIColor.white, UIColor.gray, UIColor.red, UIColor.blue, UIColor(
+                red: 0 / 255.0, green: 139.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0
+            ), UIColor(
+                red: 57.0 / 255.0, green: 197.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0
+            ), UIColor(
+                red: 208.0 / 255.0, green: 34.0 / 255.0, blue: 87.0 / 255.0, alpha: 1.0
+            )
+        ]
+        for (index, colorName) in colorNameArray.enumerated() {
+            colorList.append(CreateController.colorData(color: colorArray[index], name: colorName))
+        }
 
         //string: textView.text ?? "https://github.com/EyreFree/EFQRCode",
         textView = UITextView()
@@ -253,7 +277,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         if let tryImage = EFQRCode.generate(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
-            size: size ?? 256,
+            size: size,
             magnification: magnification,
             backgroundColor: backColor,
             foregroundColor: frontColor,
@@ -263,7 +287,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             watermark: watermark,
             watermarkMode: watermarkMode,
             isWatermarkColorful: watermarkColorful
-        ) {
+            ) {
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
@@ -293,42 +317,17 @@ class CreateController: UIViewController, UITextViewDelegate {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "l", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.inputCorrectionLevel = .l
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "m", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.inputCorrectionLevel = .m
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "q", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.inputCorrectionLevel = .q
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "h", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.inputCorrectionLevel = .h
-                    strongSelf.refresh()
-                }
-            })
-        )
+        for (index, level) in ["l", "m", "q", "h"].enumerated() {
+            alert.addAction(
+                UIAlertAction(title: level, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.inputCorrectionLevel = EFInputCorrectionLevel(rawValue: index)!
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -368,24 +367,17 @@ class CreateController: UIViewController, UITextViewDelegate {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "white", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.backColor = UIColor.white
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "gray", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.backColor = UIColor.gray
-                    strongSelf.refresh()
-                }
-            })
-        )
+        for color in colorList {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.backColor = color.color
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -434,55 +426,28 @@ class CreateController: UIViewController, UITextViewDelegate {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "black", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.frontColor = UIColor.black
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "red", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.frontColor = UIColor.red
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "blue", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.frontColor = UIColor.blue
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "elebird", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.frontColor = UIColor(
-                        red: 0 / 255.0, green: 139.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0
-                    )
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "miku", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.frontColor = UIColor(
-                        red: 57.0 / 255.0, green: 197.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0
-                    )
-                    strongSelf.refresh()
-                }
-            })
-        )
+        if let tryWaterMark = watermark {
+            alert.addAction(
+                UIAlertAction(title: "Average of watermark", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.frontColor = EFQRCode.avarageColor(image: tryWaterMark) ?? UIColor.clear
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
+        for color in colorList {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.frontColor = color.color
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -506,42 +471,17 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "github", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.icon = UIImage(named: "github")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "Swift", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.icon = UIImage(named: "Swift")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "eyrefree", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.icon = UIImage(named: "eyrefree")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "elebird", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.icon = UIImage(named: "elebird")
-                    strongSelf.refresh()
-                }
-            })
-        )
+        for icon in ["EyreFree", "GitHub", "LPD", "Swift"] {
+            alert.addAction(
+                UIAlertAction(title: icon, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.icon = UIImage(named: icon)
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -647,42 +587,17 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "Jobs", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermark = UIImage(named: "Jobs")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "Miku", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermark = UIImage(named: "Miku")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "ちゃまろ", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermark = UIImage(named: "ちゃまろ")
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "eyrefree", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermark = UIImage(named: "eyrefree")
-                    strongSelf.refresh()
-                }
-            })
-        )
+        for watermark in ["Beethoven", "Jobs", "Miku", "Wille"] {
+            alert.addAction(
+                UIAlertAction(title: watermark, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.watermark = UIImage(named: watermark)
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
