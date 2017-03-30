@@ -17,8 +17,8 @@ class EFQRCodeRecognizer {
     }
     var contents: [String]? {
         get {
-            if let tryImage = image, nil == contentArray {
-                contentArray = getQRString(From: tryImage)
+            if nil == contentArray {
+                contentArray = getQRString()
             }
             return contentArray
         }
@@ -31,13 +31,15 @@ class EFQRCodeRecognizer {
     }
 
     // Get QRCodes from image
-    private func getQRString(From image: UIImage) -> [String]? {
-        // 原图
-        let result = scanFrom(image: image, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
-        // 灰度图
+    private func getQRString() -> [String]? {
+
+        guard let finalImage = self.image else {
+            return nil
+        }
+        let result = scanFrom(image: finalImage, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
         if (result?.count ?? 0) <= 0 {
             return scanFrom(
-                image: image.greyScale(), options: [CIDetectorAccuracy : CIDetectorAccuracyLow]
+                image: finalImage.greyScale(), options: [CIDetectorAccuracy : CIDetectorAccuracyLow]
             )
         }
         return result

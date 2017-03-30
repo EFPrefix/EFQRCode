@@ -30,6 +30,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
     var size: CGFloat? = UIScreen.main.bounds.size.width * 2
+    var magnification: UInt? = nil
     var backColor = UIColor.white
     var frontColor = UIColor.black
     var icon: UIImage? = nil
@@ -93,6 +94,19 @@ class CreateController: UIViewController, UITextViewDelegate {
         self.view.addSubview(chooseSizeButton)
         chooseSizeButton.frame = CGRect(
             x: 20 + buttonWidth, y: screenSize.height - 56 * 6, width: buttonWidth, height: buttonHeight
+        )
+
+        //magnification: nil,
+        chooseMinButton = UIButton(type: .system)
+        chooseMinButton.setTitle("magnification: nil", for: .normal)
+        chooseMinButton.setTitleColor(UIColor.black, for: .normal)
+        chooseMinButton.layer.borderColor = UIColor.black.cgColor
+        chooseMinButton.layer.borderWidth = 1
+        chooseMinButton.layer.masksToBounds = true
+        chooseMinButton.addTarget(self, action: #selector(CreateController.chooseMagnification), for: .touchDown)
+        self.view.addSubview(chooseMinButton)
+        chooseMinButton.frame = CGRect(
+            x: 10, y: screenSize.height - 56 * 5, width: buttonWidth, height: 46
         )
 
         //backColor: .white,
@@ -217,6 +231,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     func refresh() {
         chooseInputCorrectionLevelButton.setTitle("ICLevel: \(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])", for: .normal)
         chooseSizeButton.setTitle("size: \(size)", for: .normal)
+        chooseMinButton.setTitle("magnification: \(nil == magnification ? "nil" : "\(magnification ?? 0)")", for: .normal)
         chooseBackColorButton.setTitle("backColor", for: .normal)
         choosefrontColorButton.setTitle("frontColor", for: .normal)
         chooseIconButton.setTitle("icon: \(icon)", for: .normal)
@@ -235,23 +250,11 @@ class CreateController: UIViewController, UITextViewDelegate {
         if !(nil == textView.text || textView.text == "") {
             content = textView.text
         }
-
-        /*var tempSize: CGSize?
-        if size != nil {
-            tempSize = CGSize(width: size!, height: size!)
-        }
-        if let tryImage = EFQRCode.createQRImage(string: content, inputCorrectionLevel: inputCorrectionLevel, size: tempSize) {
-            self.present(ShowController(image: tryImage), animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }*/
-
         if let tryImage = EFQRCode.generate(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
             size: size ?? 256,
+            magnification: magnification,
             backgroundColor: backColor,
             foregroundColor: frontColor,
             icon: icon,
@@ -263,7 +266,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         ) {
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
@@ -340,51 +343,17 @@ class CreateController: UIViewController, UITextViewDelegate {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "nil", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.size = nil
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "\(UIScreen.main.bounds.size.width)", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.size = UIScreen.main.bounds.size.width
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "\(UIScreen.main.bounds.size.width * 2)", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.size = UIScreen.main.bounds.size.width * 2
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "256", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.size = 256
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "1024", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.size = 1024
-                    strongSelf.refresh()
-                }
-            })
-        )
+        for width in [CGFloat(0), 1, 32, 64, 128, 256, 512, 1024, 2048] {
+            alert.addAction(
+                UIAlertAction(title: "\(width)", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.size = width
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -417,6 +386,40 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             })
         )
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func chooseMagnification() {
+        let alert = UIAlertController(
+            title: "Magnification",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "nil", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.magnification = nil
+                    strongSelf.refresh()
+                }
+            })
+        )
+        for magnification in [UInt(1), 3, 5, 7, 9, 11] {
+            alert.addAction(
+                UIAlertAction(title: "\(magnification)", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.magnification = magnification
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -864,7 +867,7 @@ class ShowController: UIViewController {
         let screenSize = UIScreen.main.bounds.size
 
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .center
         imageView.image = self.image
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = 1

@@ -28,7 +28,7 @@ class ScanController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let screenSize = UIScreen.main.bounds.size
 
         iamgeView = UIImageView()
-        iamgeView.contentMode = .scaleAspectFit
+        iamgeView.contentMode = .center
         iamgeView.layer.borderColor = UIColor.black.cgColor
         iamgeView.layer.borderWidth = 1
         iamgeView.layer.masksToBounds = true

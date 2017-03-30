@@ -20,6 +20,7 @@ public class EFQRCode {
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
         size: CGFloat = 256,
+        magnification: UInt? = nil,
         backgroundColor: UIColor = UIColor.white,
         foregroundColor: UIColor = UIColor.black,
         icon: UIImage? = nil,
@@ -34,6 +35,7 @@ public class EFQRCode {
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
             size: size,
+            magnification: magnification,
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,
             icon: icon,
@@ -42,6 +44,6 @@ public class EFQRCode {
             watermark: watermark,
             watermarkMode: watermarkMode,
             isWatermarkColorful: isWatermarkColorful
-        ).image
+            ).image
     }
 }
