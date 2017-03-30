@@ -29,7 +29,7 @@ class CreateController: UIViewController, UITextViewDelegate {
 
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
-    var size: CGFloat? = UIScreen.main.bounds.size.width * 2
+    var size: CGFloat = 256
     var magnification: UInt? = nil
     var backColor = UIColor.white
     var frontColor = UIColor.black
@@ -343,7 +343,7 @@ class CreateController: UIViewController, UITextViewDelegate {
                 (action) -> Void in
             })
         )
-        for width in [CGFloat(0), 1, 32, 64, 128, 256, 512, 1024, 2048] {
+        for width in [CGFloat(1), 32, 64, 128, 256, 512, 1024, 2048] {
             alert.addAction(
                 UIAlertAction(title: "\(width)", style: .default, handler: {
                     [weak self] (action) -> Void in
@@ -409,7 +409,7 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             })
         )
-        for magnification in [UInt(1), 3, 5, 7, 9, 11] {
+        for magnification in [UInt(1), 3, 6, 9, 12, 15, 18, 21, 23, 25, 27, 30] {
             alert.addAction(
                 UIAlertAction(title: "\(magnification)", style: .default, handler: {
                     [weak self] (action) -> Void in
@@ -867,7 +867,7 @@ class ShowController: UIViewController {
         let screenSize = UIScreen.main.bounds.size
 
         let imageView = UIImageView()
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFit
         imageView.image = self.image
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = 1

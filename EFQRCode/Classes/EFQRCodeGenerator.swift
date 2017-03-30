@@ -57,6 +57,12 @@ class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
+    // If set this, size will be ignored.
+    public var magnification: UInt? {
+        didSet {
+            imageQRCode = nil
+        }
+    }
     public var backgroundColor: UIColor = UIColor.white {
         didSet {
             imageQRCode = nil
@@ -97,8 +103,7 @@ class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
-    // If set this, size will be ignored.
-    public var magnification: UInt? {
+    public var foregroundPointOffset: CGFloat = 0 {
         didSet {
             imageQRCode = nil
         }
@@ -174,7 +179,10 @@ class EFQRCodeGenerator {
         if let tryWatermark = finalIsWatermarkColorful ? finalWatermark : finalWatermark?.greyScale() {
             // Has watermark
             finalImage = createQRUIImageTransparent(
-                codes: QRCodes, colorBack: finalBackgroundColor, colorFront: finalForegroundColor, size: finalSize
+                codes: QRCodes,
+                colorBack: finalBackgroundColor,
+                colorFront: finalForegroundColor,
+                size: minSuitableSizeGreaterThanOrEqualTo(size: finalSize) ?? finalSize
             )
 
             // Position of WatermarkImage
@@ -199,7 +207,7 @@ class EFQRCodeGenerator {
                 codes: QRCodes,
                 colorBack: finalBackgroundColor,
                 colorFront: finalForegroundColor,
-                size: finalSize
+                size: minSuitableSizeGreaterThanOrEqualTo(size: finalSize) ?? finalSize
             )
         }
 
@@ -303,7 +311,12 @@ class EFQRCodeGenerator {
                 for indexX in 0 ..< codeSize {
                     if true == codes[indexY][indexX] {
                         context.fill(
-                            CGRect(x: CGFloat(indexX) * scale, y: CGFloat(indexY) * scale, width: scale, height: scale)
+                            CGRect(
+                                x: CGFloat(indexX) * scale + CGFloat(foregroundPointOffset),
+                                y: CGFloat(indexY) * scale + CGFloat(foregroundPointOffset),
+                                width: scale - CGFloat(2 * foregroundPointOffset),
+                                height: scale - CGFloat(2 * foregroundPointOffset)
+                            )
                         )
                     }
                 }
@@ -385,8 +398,10 @@ class EFQRCodeGenerator {
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scale, y: CGFloat(indexY) * scale,
-                                    width: pointWidthOri, height: pointWidthOri
+                                    x: CGFloat(indexX) * scale + CGFloat(foregroundPointOffset),
+                                    y: CGFloat(indexY) * scale + CGFloat(foregroundPointOffset),
+                                    width: pointWidthOri - CGFloat(2 * foregroundPointOffset),
+                                    height: pointWidthOri - CGFloat(2 * foregroundPointOffset)
                                 )
                             )
                         } else {
@@ -594,15 +609,15 @@ class EFQRCodeGenerator {
 
     // MARK:- Recommand magnification
     func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> UInt? {
-        guard let tryQRImagePixels = getPixels() else {
+        guard let QRCodes = generateCodes() else {
             return nil
         }
         let finalWatermark = self.watermark
 
-        let baseMagnification = max(1, UInt(size / CGFloat(tryQRImagePixels.count)))
+        let baseMagnification = max(1, UInt(size / CGFloat(QRCodes.count)))
         for offset in [UInt(0), 1, 2, 3] {
             let tempMagnification = baseMagnification + offset
-            if CGFloat(Int(tempMagnification) * tryQRImagePixels.count) >= size {
+            if CGFloat(Int(tempMagnification) * QRCodes.count) >= size {
                 if finalWatermark == nil {
                     return tempMagnification
                 } else {
@@ -616,18 +631,18 @@ class EFQRCodeGenerator {
     }
 
     func maxMagnificationLessThanOrEqualTo(size: CGFloat) -> UInt? {
-        guard let tryQRImagePixels = getPixels() else {
+        guard let QRCodes = generateCodes() else {
             return nil
         }
         let finalWatermark = self.watermark
 
-        let baseMagnification = max(1, Int(size / CGFloat(tryQRImagePixels.count)))
+        let baseMagnification = max(1, Int(size / CGFloat(QRCodes.count)))
         for offset in [0, -1, -2, -3] {
             let tempMagnification = baseMagnification + offset
             if tempMagnification <= 0 {
                 return finalWatermark == nil ? 1 : 3
             }
-            if CGFloat(tempMagnification * tryQRImagePixels.count) <= size {
+            if CGFloat(tempMagnification * QRCodes.count) <= size {
                 if finalWatermark == nil {
                     return UInt(tempMagnification)
                 } else {
@@ -635,6 +650,22 @@ class EFQRCodeGenerator {
                         return UInt(tempMagnification)
                     }
                 }
+            }
+        }
+        return nil
+    }
+
+    // MARK:- calculateSuitableSize
+    func minSuitableSizeGreaterThanOrEqualTo(size: CGFloat) -> CGFloat? {
+        guard let QRCodes = generateCodes() else {
+            return nil
+        }
+
+        let baseSuitableSize = Int(size)
+        for offset in 0...QRCodes.count {
+            let tempSuitableSize = baseSuitableSize + offset
+            if tempSuitableSize % QRCodes.count == 0 {
+                return CGFloat(tempSuitableSize)
             }
         }
         return nil

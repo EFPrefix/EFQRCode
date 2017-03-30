@@ -1,4 +1,4 @@
-# EFQRCode
+![](assets/EFQRCode.jpg)
 
 [![CI Status](http://img.shields.io/travis/EyreFree/EFQRCode.svg?style=flat)](https://travis-ci.org/EyreFree/EFQRCode)
 [![Version](https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
 
-一个用 Swift 编写的用来创建和扫描二维码的库，基于系统二维码生成与识别进行开发。
+EFQRCode 是一个用 Swift 编写的用来创建和扫描二维码的库，它基于系统二维码生成与识别进行开发。
 
 - 生成：能够生成各种艺术二维码
 - 识别：识别率比 iOS 原生二维码识别率更高
