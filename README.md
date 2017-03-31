@@ -1,11 +1,14 @@
 ![](assets/EFQRCodeImage.jpg)
 
+<p align="center">
 [![CI Status](http://img.shields.io/travis/EyreFree/EFQRCode.svg?style=flat)](https://travis-ci.org/EyreFree/EFQRCode)
 [![Version](https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![License](https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat)](https://github.com/EyreFree/EFQRCode/blob/master/LICENSE)
 [![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
 [![Gitter](https://badges.gitter.im/EyreFree/EFQRCode.svg)](https://gitter.im/EFQRCode/Lobby)
+[![codebeat](https://codebeat.co/assets/svg/badges/A-398b39-669406e9e1b136187b91af587d4092b0160370f271f66a651f444b990c2730e9.svg)](https://codebeat.co/projects/github-com-eyrefree-efqrcode-master)
+</p>
 
 EFQRCode is a tool to create QRCode UIImage or scan QRCode from UIImage, in Swift. It is based on `CIDetector` and `CIFilter` but better.
 
