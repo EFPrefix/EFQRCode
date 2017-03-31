@@ -110,6 +110,11 @@ class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
+    public var allowTransparent: Bool = true {
+        didSet {
+            imageQRCode = nil
+        }
+    }
 
     // MARK:- Get QRCode image
     var image: UIImage? {
@@ -121,9 +126,10 @@ class EFQRCodeGenerator {
         }
     }
 
-    var QRImageCodes: [[Bool]]?
-
+    // MARK:- Cache
+    private var QRImageCodes: [[Bool]]?
     private var imageQRCode: UIImage?
+    private var minSuitableSize: CGFloat?
 
     public init(
         content: String,
@@ -178,6 +184,9 @@ class EFQRCodeGenerator {
 
         var finalImage: UIImage?
 
+        // Cache size
+        minSuitableSize = minSuitableSizeGreaterThanOrEqualTo(size: finalSize)
+
         // Watermark
         if let tryWatermark = finalIsWatermarkColorful ? finalWatermark : finalWatermark?.greyScale() {
             // Has watermark
@@ -185,7 +194,7 @@ class EFQRCodeGenerator {
                 codes: QRCodes,
                 colorBack: finalBackgroundColor,
                 colorFront: finalForegroundColor,
-                size: minSuitableSizeGreaterThanOrEqualTo(size: finalSize) ?? finalSize
+                size: minSuitableSize ?? finalSize
             )
 
             // Position of WatermarkImage
@@ -210,7 +219,7 @@ class EFQRCodeGenerator {
                 codes: QRCodes,
                 colorBack: finalBackgroundColor,
                 colorFront: finalForegroundColor,
-                size: minSuitableSizeGreaterThanOrEqualTo(size: finalSize) ?? finalSize
+                size: minSuitableSize ?? finalSize
             )
         }
 
@@ -489,8 +498,23 @@ class EFQRCodeGenerator {
         UIGraphicsBeginImageContext(size)
         if let context = UIGraphicsGetCurrentContext() {
             // Back
-            context.setFillColor(colorBack.cgColor)
-            context.fill(CGRect(origin: CGPoint.zero, size: size))
+            if allowTransparent {
+                guard let QRCodes = generateCodes() else {
+                    return nil
+                }
+                let finalBackgroundColor = self.backgroundColor
+                let finalForegroundColor = self.foregroundColor
+
+                createQRUIImage(
+                    codes: QRCodes,
+                    colorBack: finalBackgroundColor,
+                    colorFront: finalForegroundColor,
+                    size: minSuitableSize ?? size.width
+                )?.draw(in: CGRect(origin: CGPoint.zero, size: size))
+            } else {
+                context.setFillColor(colorBack.cgColor)
+                context.fill(CGRect(origin: CGPoint.zero, size: size))
+            }
         }
         // Image
         var finalSize = size
@@ -663,7 +687,7 @@ class EFQRCodeGenerator {
         guard let QRCodes = generateCodes() else {
             return nil
         }
-
+        
         let baseSuitableSize = Int(size)
         for offset in 0...QRCodes.count {
             let tempSuitableSize = baseSuitableSize + offset

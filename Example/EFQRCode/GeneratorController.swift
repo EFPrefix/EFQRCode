@@ -48,9 +48,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
 
     func setupViews() {
         let screenSize = UIScreen.main.bounds.size
-
         let buttonHeight: CGFloat = 46
-        let buttonWidth: CGFloat = (screenSize.width - 30) / 2.0
 
         // Add test data
         let colorNameArray = [
@@ -69,8 +67,9 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             colorList.append(GeneratorController.colorData(color: colorArray[index], name: colorName))
         }
 
-        //string: textView.text ?? "https://github.com/EyreFree/EFQRCode",
+        // Content
         textView = UITextView()
+        textView.text = "https://github.com/EyreFree/EFQRCode"
         textView.tintColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
         textView.font = UIFont.systemFont(ofSize: 24)
         textView.textColor = UIColor.white
@@ -86,7 +85,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             x: 10, y: 80, width: screenSize.width - 20, height: screenSize.height - 90 - (buttonHeight + 10) * 6
         )
 
-        //tableView
+        // tableView
         tableView = UITableView()
         tableView.bounces = false
         tableView.delegate = self
@@ -121,7 +120,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     }
 
     func createCode() {
-        var content = "https://github.com/EyreFree/EFQRCode"
+        var content = ""
         if !(nil == textView.text || textView.text == "") {
             content = textView.text
         }
@@ -207,31 +206,6 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         self.present(alert, animated: true, completion: nil)
     }
 
-    func chooseBackColor() {
-        let alert = UIAlertController(
-            title: "BackColor",
-            message: nil,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
-            })
-        )
-        for color in colorList {
-            alert.addAction(
-                UIAlertAction(title: color.name, style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.backColor = color.color
-                        strongSelf.refresh()
-                    }
-                })
-            )
-        }
-        self.present(alert, animated: true, completion: nil)
-    }
-
     func chooseMagnification() {
         let alert = UIAlertController(
             title: "Magnification",
@@ -258,6 +232,31 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                     [weak self] (action) -> Void in
                     if let strongSelf = self {
                         strongSelf.magnification = magnification
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func chooseBackColor() {
+        let alert = UIAlertController(
+            title: "BackColor",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        for color in colorList {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.backColor = color.color
                         strongSelf.refresh()
                     }
                 })
@@ -322,7 +321,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        for icon in ["EyreFree", "GitHub", "LPD", "Swift"] {
+        for icon in ["EyreFree", "GitHub", "LPD", "Pikachu", "Swift"] {
             alert.addAction(
                 UIAlertAction(title: icon, style: .default, handler: {
                     [weak self] (action) -> Void in
@@ -438,7 +437,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        for watermark in ["Beethoven", "Jobs", "Miku", "Wille"] {
+        for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF"] {
             alert.addAction(
                 UIAlertAction(title: watermark, style: .default, handler: {
                     [weak self] (action) -> Void in
