@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat)](https://github.com/EyreFree/EFQRCode/blob/master/LICENSE)
 [![Platform](https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://travis-ci.org/EyreFree/EFQRCode)
-[![Gitter](https://badges.gitter.im/EyreFree/EFQRCode.svg)](https://gitter.im/EyreFree/EFQRCode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/EyreFree/EFQRCode.svg)](https://gitter.im/EFQRCode/Lobby)
 
 EFQRCode 是一个用 Swift 编写的用来创建和扫描二维码的库，它基于系统二维码生成与识别进行开发。
 
