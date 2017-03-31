@@ -1,4 +1,5 @@
-![](assets/EFQRCode.jpg)
+![](assets/EFQRCodeImage.jpg)
+![](assets/EFQRCodeTitle.jpg)
 
 [![CI Status](http://img.shields.io/travis/EyreFree/EFQRCode.svg?style=flat)](https://travis-ci.org/EyreFree/EFQRCode)
 [![Version](https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat)](http://cocoapods.org/pods/EFQRCode)
