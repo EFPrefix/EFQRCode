@@ -187,7 +187,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseSize() {
@@ -212,7 +212,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseMagnification() {
@@ -246,7 +246,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseBackColor() {
@@ -271,7 +271,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseFrontColor() {
@@ -307,7 +307,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseIcon() {
@@ -341,7 +341,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseIconSize() {
@@ -391,7 +391,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseIconColorful() {
@@ -423,7 +423,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseWatermark() {
@@ -446,7 +446,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF", "test"] {
+        for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF"] {
             alert.addAction(
                 UIAlertAction(title: watermark, style: .default, handler: {
                     [weak self] (action) -> Void in
@@ -457,7 +457,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseWatermarkMode() {
@@ -580,7 +580,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseWatermarkColorful() {
@@ -612,7 +612,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        self.present(alert, animated: true, completion: nil)
+        popActionSheet(alert: alert)
     }
 
     func chooseForegroundPointOffset() {
@@ -646,6 +646,17 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
+        popActionSheet(alert: alert)
+    }
+
+    func popActionSheet(alert: UIAlertController) {
+        //阻止 iPad Crash
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRect(
+            x: self.view.bounds.size.width / 2.0,
+            y: self.view.bounds.size.height / 2.0,
+            width: 1.0, height: 1.0
+        )
         self.present(alert, animated: true, completion: nil)
     }
 
@@ -943,7 +954,9 @@ class CustomPhotoAlbum: NSObject {
             if success {
                 self.assetCollection = self.fetchAssetCollectionForAlbum()
             } else {
-                print("Error: \(error)")
+                if let tryError = error {
+                    print("Error: \(tryError)")
+                }
             }
         }
     }
