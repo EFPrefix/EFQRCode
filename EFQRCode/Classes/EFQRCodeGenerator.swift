@@ -38,7 +38,7 @@ struct EFIntPoint {
 }
 
 // EFQRCode+Create
-class EFQRCodeGenerator {
+public class EFQRCodeGenerator {
 
     public var content: String? {
         didSet {
@@ -117,7 +117,7 @@ class EFQRCodeGenerator {
     }
 
     // MARK:- Get QRCode image
-    var image: UIImage? {
+    public var image: UIImage? {
         get {
             if nil == imageQRCode {
                 imageQRCode = createQRCodeImage()

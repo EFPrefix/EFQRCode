@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EFQRCodeRecognizer {
+public class EFQRCodeRecognizer {
 
     public var image: UIImage? {
         didSet {
@@ -26,7 +26,7 @@ class EFQRCodeRecognizer {
 
     private var contentArray: [String]?
 
-    init(image: UIImage) {
+    public init(image: UIImage) {
         self.image = image
     }
 

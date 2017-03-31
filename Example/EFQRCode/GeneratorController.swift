@@ -29,6 +29,10 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     var watermarkMode = EFWatermarkMode.scaleAspectFill
     var watermarkColorful = true
 
+    // MARK:- Not commonly used
+    var foregroundPointOffset: CGFloat = 0
+    var allowTransparent: Bool = true
+
     // Test data
     struct colorData {
         var color: UIColor
@@ -124,7 +128,8 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         if !(nil == textView.text || textView.text == "") {
             content = textView.text
         }
-        if let tryImage = EFQRCode.generate(
+
+        let generator = EFQRCodeGenerator(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
             size: size,
@@ -137,7 +142,11 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             watermark: watermark,
             watermarkMode: watermarkMode,
             isWatermarkColorful: watermarkColorful
-            ) {
+        )
+        generator.foregroundPointOffset = self.foregroundPointOffset
+        generator.allowTransparent = self.allowTransparent
+
+        if let tryImage = generator.image {
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
@@ -606,6 +615,72 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         self.present(alert, animated: true, completion: nil)
     }
 
+    func chooseForegroundPointOffset() {
+        let alert = UIAlertController(
+            title: "ForegroundPointOffset",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "nil", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.magnification = nil
+                    strongSelf.refresh()
+                }
+            })
+        )
+        for foregroundPointOffset in [-0.5, -0.25, CGFloat(0), 0.25, 0.5] {
+            alert.addAction(
+                UIAlertAction(title: "\(foregroundPointOffset)", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.foregroundPointOffset = foregroundPointOffset
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func chooseAllowTransparent() {
+        let alert = UIAlertController(
+            title: "AllowTransparent",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "True", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.allowTransparent = true
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "False", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.allowTransparent = false
+                    strongSelf.refresh()
+                }
+            })
+        )
+        self.present(alert, animated: true, completion: nil)
+    }
+
     // UITableViewDelegate & UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -644,6 +719,12 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         case 10:
             chooseWatermarkColorful()
             break
+        case 11:
+            chooseForegroundPointOffset()
+            break
+        case 12:
+            chooseAllowTransparent()
+            break
         default:
             break
         }
@@ -654,7 +735,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        return 13
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -681,7 +762,9 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             "isIconColorful",
             "watermark",
             "watermarkMode",
-            "isWatermarkColorful"
+            "isWatermarkColorful",
+            "foregroundPointOffset",
+            "allowTransparent"
         ]
         let detailArray = [
             "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
@@ -694,7 +777,9 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             "\(iconColorful)",
             "", // watermark
             "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])",
-            "\(watermarkColorful)"
+            "\(watermarkColorful)",
+            "\(foregroundPointOffset)",
+            "\(allowTransparent)"
         ]
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
