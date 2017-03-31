@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
 
         self.automaticallyAdjustsScrollViewInsets = false
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
 
         setupViews()
     }
@@ -35,8 +35,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let screenSize = UIScreen.main.bounds.size
 
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
-        titleLabel.textColor = UIColor.black
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 48)
+        titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
         titleLabel.text = "EFQRCode"
         self.view.addSubview(titleLabel)
@@ -49,17 +49,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = true
+        tableView.separatorColor = UIColor.white
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
+        tableView.backgroundColor = UIColor.clear
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         self.view.addSubview(tableView)
         tableView.frame = CGRect(
-            x: 0, y: titleLabel.frame.maxY, width: screenSize.width, height: screenSize.height / 3.0
+            x: 0, y: titleLabel.frame.maxY + 32, width: screenSize.width, height: screenSize.height / 3.0
         )
 
         let bottomLabel = UIButton(type: .system)
         bottomLabel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        bottomLabel.setTitleColor(UIColor.black, for: .normal)
-        bottomLabel.setTitle("https://www.eyrefree.org/", for: .normal)
+        bottomLabel.setTitleColor(UIColor.white, for: .normal)
+        bottomLabel.setTitle("https://github.com/EyreFree/EFQRCode", for: .normal)
         bottomLabel.addTarget(self, action: #selector(ViewController.openBlog), for: .touchDown)
         self.view.addSubview(bottomLabel)
         bottomLabel.frame = CGRect(
@@ -68,7 +71,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func openBlog() {
-        if let tryUrl = URL(string: "https://www.eyrefree.org/") {
+        if let tryUrl = URL(string: "https://github.com/EyreFree/EFQRCode") {
             UIApplication.shared.openURL(tryUrl)
         }
     }
@@ -79,10 +82,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         switch indexPath.row {
         case 0:
-            self.navigationController?.pushViewController(ScanController(), animated: true)
+            self.navigationController?.pushViewController(RecognizerController(), animated: true)
             break
         default:
-            self.navigationController?.pushViewController(CreateController(), animated: true)
+            self.navigationController?.pushViewController(GeneratorController(), animated: true)
             break
         }
     }
@@ -109,8 +112,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = ["Scan from image", "Create QRCode image"][indexPath.row]
+        cell.textLabel?.textColor = UIColor.white
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.text = ["Recognizer", "Generator"][indexPath.row]
+        let backView = UIView()
+        backView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
+        cell.selectedBackgroundView = backView
+        let imageView = UIImageView(image: UIImage(named: ["Recognizer", "Generator"][indexPath.row]))
+        imageView.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
+        imageView.contentMode = .scaleAspectFit
+        cell.accessoryView = imageView
         return cell
     }
 }

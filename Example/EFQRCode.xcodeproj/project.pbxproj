@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1272BC5D1E386F740066792E /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272BC5C1E386F740066792E /* CreateController.swift */; };
-		1272BC5F1E386F870066792E /* ScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272BC5E1E386F870066792E /* ScanController.swift */; };
+		1272BC5D1E386F740066792E /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272BC5C1E386F740066792E /* GeneratorController.swift */; };
+		1272BC5F1E386F870066792E /* RecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272BC5E1E386F870066792E /* RecognizerController.swift */; };
 		23698BB5E4015637A5390414 /* Pods_EFQRCode_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA908B756F8D29EB30999381 /* Pods_EFQRCode_Tests.framework */; };
 		3A831E2268079AD9C3A5DDE9 /* Pods_EFQRCode_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C563671B818ED87D8C14E4 /* Pods_EFQRCode_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -30,8 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1272BC5C1E386F740066792E /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
-		1272BC5E1E386F870066792E /* ScanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanController.swift; sourceTree = "<group>"; };
+		1272BC5C1E386F740066792E /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorController.swift; sourceTree = "<group>"; };
+		1272BC5E1E386F870066792E /* RecognizerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizerController.swift; sourceTree = "<group>"; };
 		49298A9D8DA3B1EE73933501 /* EFQRCode.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EFQRCode.podspec; path = ../EFQRCode.podspec; sourceTree = "<group>"; };
 		4C37F7381F67F465D9024FD5 /* Pods-EFQRCode_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EFQRCode_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EFQRCode_Example/Pods-EFQRCode_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		56DA7E91A0449333878D0CBF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -77,8 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				1272BC5E1E386F870066792E /* ScanController.swift */,
-				1272BC5C1E386F740066792E /* CreateController.swift */,
+				1272BC5E1E386F870066792E /* RecognizerController.swift */,
+				1272BC5C1E386F740066792E /* GeneratorController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -385,9 +385,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1272BC5F1E386F870066792E /* ScanController.swift in Sources */,
+				1272BC5F1E386F870066792E /* RecognizerController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				1272BC5D1E386F740066792E /* CreateController.swift in Sources */,
+				1272BC5D1E386F740066792E /* GeneratorController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

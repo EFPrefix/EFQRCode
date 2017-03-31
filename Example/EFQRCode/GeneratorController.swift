@@ -1,30 +1,19 @@
 //
-//  CreateController.swift
+//  GeneratorController.swift
 //  EFQRCode
 //
 //  Created by EyreFree on 17/1/25.
-//  Copyright © 2017年 CocoaPods. All rights reserved.
+//  Copyright (c) 2017 EyreFree. All rights reserved.
 //
 
 import Foundation
+import Photos
 import EFQRCode
 
-import Photos
-
-class CreateController: UIViewController, UITextViewDelegate {
+class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var textView: UITextView!
-    var chooseInputCorrectionLevelButton: UIButton!
-    var chooseSizeButton: UIButton!
-    var chooseMinButton: UIButton!
-    var chooseBackColorButton: UIButton!
-    var choosefrontColorButton: UIButton!
-    var chooseIconButton: UIButton!
-    var chooseIconSizeButton: UIButton!
-    var chooseIconColorfulButton: UIButton!
-    var chooseWatermarkButton: UIButton!
-    var chooseWatermarkModeButton: UIButton!
-    var chooseWatermarkColorfulButton: UIButton!
+    var tableView: UITableView!
     var createButton: UIButton!
 
     // Param
@@ -52,7 +41,7 @@ class CreateController: UIViewController, UITextViewDelegate {
 
         self.title = "Create"
         self.automaticallyAdjustsScrollViewInsets = false
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
 
         setupViews()
     }
@@ -77,15 +66,18 @@ class CreateController: UIViewController, UITextViewDelegate {
             )
         ]
         for (index, colorName) in colorNameArray.enumerated() {
-            colorList.append(CreateController.colorData(color: colorArray[index], name: colorName))
+            colorList.append(GeneratorController.colorData(color: colorArray[index], name: colorName))
         }
 
         //string: textView.text ?? "https://github.com/EyreFree/EFQRCode",
         textView = UITextView()
+        textView.tintColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
         textView.font = UIFont.systemFont(ofSize: 24)
-        textView.textColor = UIColor.black
-        textView.layer.borderColor = UIColor.black.cgColor
+        textView.textColor = UIColor.white
+        textView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.32)
+        textView.layer.borderColor = UIColor.white.cgColor
         textView.layer.borderWidth = 1
+        textView.layer.cornerRadius = 5
         textView.layer.masksToBounds = true
         textView.delegate = self
         textView.returnKeyType = .done
@@ -94,179 +86,38 @@ class CreateController: UIViewController, UITextViewDelegate {
             x: 10, y: 80, width: screenSize.width - 20, height: screenSize.height - 90 - (buttonHeight + 10) * 6
         )
 
-        //inputCorrectionLevel: .h,
-        chooseInputCorrectionLevelButton = UIButton(type: .system)
-        chooseInputCorrectionLevelButton.setTitle("ICLevel: \(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])", for: .normal)
-        chooseInputCorrectionLevelButton.setTitleColor(UIColor.black, for: .normal)
-        chooseInputCorrectionLevelButton.layer.borderColor = UIColor.black.cgColor
-        chooseInputCorrectionLevelButton.layer.borderWidth = 1
-        chooseInputCorrectionLevelButton.layer.masksToBounds = true
-        chooseInputCorrectionLevelButton.addTarget(self, action: #selector(CreateController.chooseInputCorrectionLevel), for: .touchDown)
-        self.view.addSubview(chooseInputCorrectionLevelButton)
-        chooseInputCorrectionLevelButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56 * 6, width: buttonWidth, height: 46
-        )
-
-        //size: UIScreen.main.bounds.size.width * 2,
-        chooseSizeButton = UIButton(type: .system)
-        chooseSizeButton.setTitle("size: \(size)", for: .normal)
-        chooseSizeButton.setTitleColor(UIColor.black, for: .normal)
-        chooseSizeButton.layer.borderColor = UIColor.black.cgColor
-        chooseSizeButton.layer.borderWidth = 1
-        chooseSizeButton.layer.masksToBounds = true
-        chooseSizeButton.addTarget(self, action: #selector(CreateController.chooseSize), for: .touchDown)
-        self.view.addSubview(chooseSizeButton)
-        chooseSizeButton.frame = CGRect(
-            x: 20 + buttonWidth, y: screenSize.height - 56 * 6, width: buttonWidth, height: buttonHeight
-        )
-
-        //magnification: nil,
-        chooseMinButton = UIButton(type: .system)
-        chooseMinButton.setTitle("magnification: nil", for: .normal)
-        chooseMinButton.setTitleColor(UIColor.black, for: .normal)
-        chooseMinButton.layer.borderColor = UIColor.black.cgColor
-        chooseMinButton.layer.borderWidth = 1
-        chooseMinButton.layer.masksToBounds = true
-        chooseMinButton.addTarget(self, action: #selector(CreateController.chooseMagnification), for: .touchDown)
-        self.view.addSubview(chooseMinButton)
-        chooseMinButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56 * 5, width: buttonWidth, height: 46
-        )
-
-        //backColor: .white,
-        chooseBackColorButton = UIButton(type: .system)
-        chooseBackColorButton.setTitle("backColor", for: .normal)
-        chooseBackColorButton.setTitleColor(UIColor.black, for: .normal)
-        chooseBackColorButton.layer.borderColor = UIColor.black.cgColor
-        chooseBackColorButton.layer.borderWidth = 1
-        chooseBackColorButton.layer.masksToBounds = true
-        chooseBackColorButton.addTarget(self, action: #selector(CreateController.chooseBackColor), for: .touchDown)
-        self.view.addSubview(chooseBackColorButton)
-        chooseBackColorButton.frame = CGRect(
-            x: 20 + buttonWidth, y: screenSize.height - 56 * 5, width: buttonWidth, height: buttonHeight
-        )
-
-        //frontColor: .black,
-        choosefrontColorButton = UIButton(type: .system)
-        choosefrontColorButton.setTitle("frontColor", for: .normal)
-        choosefrontColorButton.setTitleColor(UIColor.black, for: .normal)
-        choosefrontColorButton.layer.borderColor = UIColor.black.cgColor
-        choosefrontColorButton.layer.borderWidth = 1
-        choosefrontColorButton.layer.masksToBounds = true
-        choosefrontColorButton.addTarget(self, action: #selector(CreateController.chooseFrontColor), for: .touchDown)
-        self.view.addSubview(choosefrontColorButton)
-        choosefrontColorButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56 * 4, width: buttonWidth, height: 46
-        )
-
-        //icon: nil,
-        chooseIconButton = UIButton(type: .system)
-        chooseIconButton.setTitle("icon: \(icon)", for: .normal)
-        chooseIconButton.setTitleColor(UIColor.black, for: .normal)
-        chooseIconButton.layer.borderColor = UIColor.black.cgColor
-        chooseIconButton.layer.borderWidth = 1
-        chooseIconButton.layer.masksToBounds = true
-        chooseIconButton.addTarget(self, action: #selector(CreateController.chooseIcon), for: .touchDown)
-        self.view.addSubview(chooseIconButton)
-        chooseIconButton.frame = CGRect(
-            x: 20 + buttonWidth, y: screenSize.height - 56 * 4, width: buttonWidth, height: buttonHeight
-        )
-
-        //iconSize: nil,
-        chooseIconSizeButton = UIButton(type: .system)
-        chooseIconSizeButton.setTitle("iconSize: \(iconSize)", for: .normal)
-        chooseIconSizeButton.setTitleColor(UIColor.black, for: .normal)
-        chooseIconSizeButton.layer.borderColor = UIColor.black.cgColor
-        chooseIconSizeButton.layer.borderWidth = 1
-        chooseIconSizeButton.layer.masksToBounds = true
-        chooseIconSizeButton.addTarget(self, action: #selector(CreateController.chooseIconSize), for: .touchDown)
-        self.view.addSubview(chooseIconSizeButton)
-        chooseIconSizeButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56 * 3, width: buttonWidth, height: 46
-        )
-
-        //iconColorful: false,
-        chooseIconColorfulButton = UIButton(type: .system)
-        chooseIconColorfulButton.setTitle("iColorful: \(iconColorful)", for: .normal)
-        chooseIconColorfulButton.setTitleColor(UIColor.black, for: .normal)
-        chooseIconColorfulButton.layer.borderColor = UIColor.black.cgColor
-        chooseIconColorfulButton.layer.borderWidth = 1
-        chooseIconColorfulButton.layer.masksToBounds = true
-        chooseIconColorfulButton.addTarget(self, action: #selector(CreateController.chooseIconColorful), for: .touchDown)
-        self.view.addSubview(chooseIconColorfulButton)
-        chooseIconColorfulButton.frame = CGRect(
-            x: 20 + buttonWidth, y: screenSize.height - 56 * 3, width: buttonWidth, height: buttonHeight
-        )
-
-        //watermark: watermarkImage,
-        chooseWatermarkButton = UIButton(type: .system)
-        chooseWatermarkButton.setTitle("watermark: \(watermark)", for: .normal)
-        chooseWatermarkButton.setTitleColor(UIColor.black, for: .normal)
-        chooseWatermarkButton.layer.borderColor = UIColor.black.cgColor
-        chooseWatermarkButton.layer.borderWidth = 1
-        chooseWatermarkButton.layer.masksToBounds = true
-        chooseWatermarkButton.addTarget(self, action: #selector(CreateController.chooseWatermark), for: .touchDown)
-        self.view.addSubview(chooseWatermarkButton)
-        chooseWatermarkButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56 * 2, width: buttonWidth, height: 46
-        )
-
-        //watermarkMode: .scaleAspectFit,
-        chooseWatermarkModeButton = UIButton(type: .system)
-        chooseWatermarkModeButton.setTitle(
-            "wMode: \(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])"
-            , for: .normal)
-        chooseWatermarkModeButton.setTitleColor(UIColor.black, for: .normal)
-        chooseWatermarkModeButton.layer.borderColor = UIColor.black.cgColor
-        chooseWatermarkModeButton.layer.borderWidth = 1
-        chooseWatermarkModeButton.layer.masksToBounds = true
-        chooseWatermarkModeButton.addTarget(self, action: #selector(CreateController.chooseWatermarkMode), for: .touchDown)
-        self.view.addSubview(chooseWatermarkModeButton)
-        chooseWatermarkModeButton.frame = CGRect(
-            x: 20 + buttonWidth, y: screenSize.height - 56 * 2, width: buttonWidth, height: buttonHeight
-        )
-
-        //watermarkColorful: false
-        chooseWatermarkColorfulButton = UIButton(type: .system)
-        chooseWatermarkColorfulButton.setTitle("wColorful: \(watermarkColorful)", for: .normal)
-        chooseWatermarkColorfulButton.setTitleColor(UIColor.black, for: .normal)
-        chooseWatermarkColorfulButton.layer.borderColor = UIColor.black.cgColor
-        chooseWatermarkColorfulButton.layer.borderWidth = 1
-        chooseWatermarkColorfulButton.layer.masksToBounds = true
-        chooseWatermarkColorfulButton.addTarget(self, action: #selector(CreateController.chooseWatermarkColorful), for: .touchDown)
-        self.view.addSubview(chooseWatermarkColorfulButton)
-        chooseWatermarkColorfulButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56, width: buttonWidth, height: 46
+        //tableView
+        tableView = UITableView()
+        tableView.bounces = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.alwaysBounceVertical = true
+        tableView.separatorColor = UIColor.white
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.backgroundColor = UIColor.clear
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        self.view.addSubview(tableView)
+        tableView.frame = CGRect(
+            x: 0, y: screenSize.height - 56 * 6, width: screenSize.width, height: 4 * (buttonHeight + 10) + buttonHeight
         )
 
         createButton = UIButton(type: .system)
         createButton.setTitle("Create", for: .normal)
-        createButton.setTitleColor(UIColor.red, for: .normal)
-        createButton.layer.borderColor = UIColor.black.cgColor
+        createButton.setTitleColor(UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal)
+        createButton.layer.borderColor = UIColor.white.cgColor
         createButton.layer.borderWidth = 1
+        createButton.layer.cornerRadius = 5
         createButton.layer.masksToBounds = true
-        createButton.addTarget(self, action: #selector(CreateController.createCode), for: .touchDown)
+        createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .touchDown)
         self.view.addSubview(createButton)
         createButton.frame = CGRect(
-            x: 20 + buttonWidth, y: screenSize.height - 56, width: buttonWidth, height: buttonHeight
+            x: 10, y: screenSize.height - 56, width: screenSize.width - 20, height: buttonHeight
         )
     }
 
     func refresh() {
-        chooseInputCorrectionLevelButton.setTitle("ICLevel: \(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])", for: .normal)
-        chooseSizeButton.setTitle("size: \(size)", for: .normal)
-        chooseMinButton.setTitle("magnification: \(nil == magnification ? "nil" : "\(magnification ?? 0)")", for: .normal)
-        chooseBackColorButton.setTitle("backColor", for: .normal)
-        choosefrontColorButton.setTitle("frontColor", for: .normal)
-        chooseIconButton.setTitle("icon: \(icon)", for: .normal)
-        chooseIconSizeButton.setTitle("iconSize: \(iconSize)", for: .normal)
-        chooseIconColorfulButton.setTitle("iColorful: \(iconColorful)", for: .normal)
-        chooseWatermarkButton.setTitle("watermark: \(watermark)", for: .normal)
-        chooseWatermarkModeButton.setTitle(
-            "wMode: \(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])"
-            , for: .normal)
-        chooseWatermarkColorfulButton.setTitle("wColorful: \(watermarkColorful)", for: .normal)
-        createButton.setTitle("Create", for: .normal)
+        tableView.reloadData()
     }
 
     func createCode() {
@@ -755,6 +606,135 @@ class CreateController: UIViewController, UITextViewDelegate {
         )
         self.present(alert, animated: true, completion: nil)
     }
+
+    // UITableViewDelegate & UITableViewDataSource
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        switch indexPath.row {
+        case 0:
+            chooseInputCorrectionLevel()
+            break
+        case 1:
+            chooseSize()
+            break
+        case 2:
+            chooseMagnification()
+            break
+        case 3:
+            chooseBackColor()
+            break
+        case 4:
+            chooseFrontColor()
+            break
+        case 5:
+            chooseIcon()
+            break
+        case 6:
+            chooseIconSize()
+            break
+        case 7:
+            chooseIconColorful()
+            break
+        case 8:
+            chooseWatermark()
+            break
+        case 9:
+            chooseWatermarkMode()
+            break
+        case 10:
+            chooseWatermarkColorful()
+            break
+        default:
+            break
+        }
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 11
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 46
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0000001
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0000001
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let titleArray = [
+            "inputCorrectionLevel",
+            "size",
+            "magnification",
+            "backgroundColor",
+            "foregroundColor",
+            "icon",
+            "iconSize",
+            "isIconColorful",
+            "watermark",
+            "watermarkMode",
+            "isWatermarkColorful"
+        ]
+        let detailArray = [
+            "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
+            "\(size)",
+            "\(nil == magnification ? "nil" : "\(magnification ?? 0)")",
+            "", // backgroundColor
+            "", // foregroundColor
+            "", // icon
+            "\(nil == iconSize ? "nil" : "\(iconSize ?? 0)")",
+            "\(iconColorful)",
+            "", // watermark
+            "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])",
+            "\(watermarkColorful)"
+        ]
+
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.textLabel?.textColor = UIColor.white
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.text = titleArray[indexPath.row]
+        cell.detailTextLabel?.text = detailArray[indexPath.row]
+        let backView = UIView()
+        backView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
+        cell.selectedBackgroundView = backView
+
+        if detailArray[indexPath.row] == "" {
+            let rightImageView = UIImageView(
+                frame: CGRect(x: UIScreen.main.bounds.size.width - 45.0, y: 8.0, width: 30.0, height: 30.0)
+            )
+            rightImageView.contentMode = .scaleAspectFit
+            rightImageView.layer.borderColor = UIColor.white.cgColor
+            rightImageView.layer.borderWidth = 0.5
+            cell.addSubview(rightImageView)
+
+            switch indexPath.row {
+            case 3:
+                rightImageView.backgroundColor = backColor
+                break
+            case 4:
+                rightImageView.backgroundColor = frontColor
+                break
+            case 5:
+                rightImageView.image = icon
+                break
+            case 8:
+                rightImageView.image = watermark
+                break
+            default:
+                break
+            }
+        }
+        return cell
+    }
 }
 
 class ShowController: UIViewController {
@@ -774,7 +754,7 @@ class ShowController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
         setupViews()
     }
 
@@ -782,10 +762,12 @@ class ShowController: UIViewController {
         let screenSize = UIScreen.main.bounds.size
 
         let imageView = UIImageView()
+        imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
         imageView.contentMode = .scaleAspectFit
         imageView.image = self.image
-        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 1
+        imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         self.view.addSubview(imageView)
         imageView.frame = CGRect(
@@ -794,9 +776,10 @@ class ShowController: UIViewController {
 
         let createButton = UIButton(type: .system)
         createButton.setTitle("Save", for: .normal)
-        createButton.setTitleColor(UIColor.black, for: .normal)
-        createButton.layer.borderColor = UIColor.black.cgColor
+        createButton.setTitleColor(UIColor.white, for: .normal)
+        createButton.layer.borderColor = UIColor.white.cgColor
         createButton.layer.borderWidth = 1
+        createButton.layer.cornerRadius = 5
         createButton.layer.masksToBounds = true
         createButton.addTarget(self, action: #selector(ShowController.saveToAlbum), for: .touchDown)
         self.view.addSubview(createButton)
@@ -806,9 +789,10 @@ class ShowController: UIViewController {
 
         let backButton = UIButton(type: .system)
         backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(UIColor.black, for: .normal)
-        backButton.layer.borderColor = UIColor.black.cgColor
+        backButton.setTitleColor(UIColor.white, for: .normal)
+        backButton.layer.borderColor = UIColor.white.cgColor
         backButton.layer.borderWidth = 1
+        backButton.layer.cornerRadius = 5
         backButton.layer.masksToBounds = true
         backButton.addTarget(self, action: #selector(ShowController.back), for: .touchDown)
         self.view.addSubview(backButton)
