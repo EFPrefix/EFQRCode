@@ -446,7 +446,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF"] {
+        for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF", "test"] {
             alert.addAction(
                 UIAlertAction(title: watermark, style: .default, handler: {
                     [weak self] (action) -> Void in
