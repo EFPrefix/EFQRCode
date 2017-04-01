@@ -21,9 +21,9 @@ EFQRCode is a tool to generate QRCode UIImage or recognize QRCode from UIImage, 
 
 ## Overview
 
-![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)|![](assets/QRCode6.jpg)  
+![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode3.jpg)|![](assets/QRCode4.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)|![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)  
+![](assets/QRCode5.jpg)|![](assets/QRCode6.jpg)|![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)  
 
 ## Demo
 
@@ -51,7 +51,7 @@ it, simply add the following line to your Podfile:
 pod "EFQRCode", '~> 1.2.0'
 ```
 
-## Use
+## Usage
 
 #### 1. Import EFQRCode
 
@@ -84,7 +84,7 @@ if let testImage = UIImage(named: "test.png") {
 
 #### 3. Generation
 
-Create QR Code image:
+Create QR Code image, quick usage:
 
 ```swift
 // Common parameters:
@@ -128,6 +128,10 @@ if let tryImage = EFQRCode.generate(
 Result：
 
 <img src="assets/sample1.jpg" width = "36%"/>
+
+## User Guide
+
+[To be continued.](https://github.com/EyreFree/EFQRCode/blob/master/README_CN.md)
 
 ## PS
 

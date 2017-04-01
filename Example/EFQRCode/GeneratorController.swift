@@ -10,11 +10,14 @@ import Foundation
 import Photos
 import EFQRCode
 
-class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var textView: UITextView!
     var tableView: UITableView!
     var createButton: UIButton!
+
+    var imagePicker: UIImagePickerController?
+    var titleCurrent: String = ""
 
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
@@ -56,7 +59,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
 
         // Add test data
         let colorNameArray = [
-            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille"
+            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille", "Hearth Stone", "Pikachu Red"
         ]
         let colorArray = [
             UIColor.black, UIColor.white, UIColor.gray, UIColor.red, UIColor.blue, UIColor(
@@ -65,6 +68,10 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 red: 57.0 / 255.0, green: 197.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0
             ), UIColor(
                 red: 208.0 / 255.0, green: 34.0 / 255.0, blue: 87.0 / 255.0, alpha: 1.0
+            ), UIColor(
+                red: 125.0 / 255.0, green: 112.0 / 255.0, blue: 93.0 / 255.0, alpha: 1.0
+            ), UIColor(
+                red: 233.0 / 255.0, green: 77.0 / 255.0, blue: 52.0 / 255.0, alpha: 1.0
             )
         ]
         for (index, colorName) in colorNameArray.enumerated() {
@@ -330,6 +337,15 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
+        alert.addAction(
+            UIAlertAction(title: "Select from system album", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.chooseImageFromAlbum(title: "icon")
+                    strongSelf.refresh()
+                }
+            })
+        )
         for icon in ["EyreFree", "GitHub", "LPD", "Pikachu", "Swift"] {
             alert.addAction(
                 UIAlertAction(title: icon, style: .default, handler: {
@@ -442,6 +458,15 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
                     strongSelf.watermark = nil
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "Select from system album", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.chooseImageFromAlbum(title: "watermark")
                     strongSelf.refresh()
                 }
             })
@@ -829,6 +854,51 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             }
         }
         return cell
+    }
+
+    // MARK:- UIImagePickerControllerDelegate
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var finalImage: UIImage?
+        if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            finalImage = tryImage
+        } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            finalImage = tryImage
+        } else{
+            print("Something went wrong")
+        }
+        switch titleCurrent {
+        case "watermark":
+            self.watermark = finalImage
+            break
+        case "icon":
+            self.icon = finalImage
+            break
+        default:
+            break
+        }
+        self.refresh()
+
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func chooseImageFromAlbum(title: String) {
+        titleCurrent = title
+
+        if let tryPicker = imagePicker {
+            self.present(tryPicker, animated: true, completion: nil)
+        } else {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = false
+            imagePicker = picker
+
+            self.present(picker, animated: true, completion: nil)
+        }
     }
 }
 
