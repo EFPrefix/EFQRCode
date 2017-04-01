@@ -59,7 +59,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
 
         // Add test data
         let colorNameArray = [
-            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille", "Hearth Stone", "Pikachu Red"
+            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille", "Hearth Stone", "Pikachu Red", "3 Red"
         ]
         let colorArray = [
             UIColor.black, UIColor.white, UIColor.gray, UIColor.red, UIColor.blue, UIColor(
@@ -72,6 +72,8 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 red: 125.0 / 255.0, green: 112.0 / 255.0, blue: 93.0 / 255.0, alpha: 1.0
             ), UIColor(
                 red: 233.0 / 255.0, green: 77.0 / 255.0, blue: 52.0 / 255.0, alpha: 1.0
+            ), UIColor(
+                red: 132.0 / 255.0, green: 37.0 / 255.0, blue: 43.0 / 255.0, alpha: 1.0
             )
         ]
         for (index, colorName) in colorNameArray.enumerated() {
