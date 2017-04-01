@@ -130,7 +130,7 @@ if let tryImage = EFQRCode.generate(
 
 <img src="assets/sample1.jpg" width = "36%"/>
 
-## 详细说明
+## 使用指南
 
 ### 1. 二维码识别
 
@@ -284,11 +284,11 @@ size 300 | magnification 9
 
 * **backgroundColor: UIColor**
 
-前景色，可选值，二维码码点的颜色，默认为黑色。
+背景色，可选值，默认为白色。
 
 * **foregroundColor: UIColor**
 
-背景色，可选值，默认为白色。
+前景色，可选值，二维码码点的颜色，默认为黑色。
 
   前景设为红色 | 背景设为灰色  
 :-------------------------:|:-------------------------:

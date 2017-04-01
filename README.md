@@ -125,13 +125,239 @@ if let tryImage = EFQRCode.generate(
 }
 ```
 
-Result：
+Result: 
 
 <img src="assets/sample1.jpg" width = "36%"/>
 
 ## User Guide
 
-[To be continued.](https://github.com/EyreFree/EFQRCode/blob/master/README_CN.md)
+### 1. Recognition
+
+```
+EFQRCode.recognize(image: UIImage)
+```
+
+Or
+
+```
+EFQRCodeRecognizer(image: image).contents
+```
+
+Two way before is exactly the same, because of the possibility of more than one two-dimensional code in the same iamge, so the return value is `[String]? ', if the return is nil means that the input data is incorrect or null. If the return array is empty, it means we can not recognize  any two-dimensional code at the image.
+
+### 2. Generation
+
+```
+EFQRCode.generate(
+    content: String, 
+    inputCorrectionLevel: EFInputCorrectionLevel, 
+    size: CGFloat, 
+    magnification: UInt?, 
+    backgroundColor: UIColor, 
+    foregroundColor: UIColor, 
+    icon: UIImage?, 
+    iconSize: CGFloat?, 
+    isIconColorful: Bool, 
+    watermark: UIImage?, 
+    watermarkMode: EFWatermarkMode, 
+    isWatermarkColorful: Bool
+)
+```
+
+Or
+
+```
+EFQRCodeGenerator(
+    content: content,
+    inputCorrectionLevel: inputCorrectionLevel,
+    size: size,
+    magnification: magnification,
+    backgroundColor: backgroundColor,
+    foregroundColor: foregroundColor,
+    icon: icon,
+    iconSize: iconSize,
+    isIconColorful: isIconColorful,
+    watermark: watermark,
+    watermarkMode: watermarkMode,
+    isWatermarkColorful: isWatermarkColorful
+).image
+```
+
+Two way before is exactly the same, the return value is `UIImage?`, if the return is nil means that there is some wrong during the generation.
+
+If you want to use the extra parameters, you must establish a EFQRCodeGenerator object:
+
+```
+let generator = EFQRCodeGenerator(
+    content: content,
+    inputCorrectionLevel: inputCorrectionLevel,
+    size: size,
+    magnification: magnification,
+    backgroundColor: backColor,
+    foregroundColor: frontColor,
+    icon: icon,
+    iconSize: iconSize,
+    isIconColorful: iconColorful,
+    watermark: watermark,
+    watermarkMode: watermarkMode,
+    isWatermarkColorful: watermarkColorful
+)
+generator.foregroundPointOffset = self.foregroundPointOffset
+generator.allowTransparent = self.allowTransparent
+
+// Final two-dimensional code image
+generator.image
+```
+
+Parameters explaination:
+
+* **content: String?**
+
+Content, compulsive, capacity is limited, 1273 character most, the density of the two-dimensional lattice increases with the increase of the content. Comparison of different capacity is as follows:
+
+10 characters | 250 characters
+:-------------------------:|:-------------------------:
+![](assets/compareContent1.jpg)|![](assets/compareContent2.jpg)
+
+* **inputCorrectionLevel: EFInputCorrectionLevel**
+
+Error-tolerant rate, optional, 4 different level, L: 7% / M 15% / Q 25% / H 30%, default is H, the definition of EFInputCorrectionLevel:
+
+```
+// EFInputCorrectionLevel
+public enum EFInputCorrectionLevel: Int {
+    case l = 0;     // L 7%
+    case m = 1;     // M 15%
+    case q = 2;     // Q 25%
+    case h = 3;     // H 30%
+}
+```
+
+Comparison of different inputCorrectionLevel:
+
+L | M | Q | H
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](assets/compareInputCorrectionLevel1.jpg)|![](assets/compareInputCorrectionLevel2.jpg)|![](assets/compareInputCorrectionLevel3.jpg)|![](assets/compareInputCorrectionLevel4.jpg)
+
+* **size: CGFloat**
+
+Two-dimensional code length, optional, default is 256 (PS: if magnification is not nil, size will be ignored).
+
+* **magnification: UInt?**
+
+Magnification, optional, default is nil.
+
+Because in accordance with the existence of size scaling two-dimensional code clarity is not high, if you want to get a more clear two-dimensional code, you can use magnification to set the size of the final generation of two-dimensional code. Here is the smallest ratio relative to the two-dimensional code matrix is concerned, if there is a want size but I hope to have a clear and size and have size approximation of the two-dimensional code by using magnification, through `maxMagnificationLessThanOrEqualTo (size: CGFloat), and `minMagnificationGreaterThanOrEqualTo (size: CGFloat), want to get magnification these two functions the specific value, the use of specific methods are as follows:
+
+```
+let generator = EFQRCodeGenerator(
+    content: content,
+    inputCorrectionLevel: inputCorrectionLevel,
+    size: size,
+    magnification: magnification,
+    backgroundColor: backColor,
+    foregroundColor: frontColor,
+    icon: icon,
+    iconSize: iconSize,
+    isIconColorful: iconColorful,
+    watermark: watermark,
+    watermarkMode: watermarkMode,
+    isWatermarkColorful: watermarkColorful
+)
+
+// Want to get max magnification when size is less than or equalTo 600
+generator.magnification = generator.maxMagnificationLessThanOrEqualTo(size: 600)
+
+// Or
+
+// Want to get min magnification when size is greater than or equalTo 600
+// generator.magnification = generator.minMagnificationGreaterThanOrEqualTo(size: 600)
+
+// Final two-dimensional code image
+generator.image
+```
+
+size 300 | magnification 9
+:-------------------------:|:-------------------------:
+![](assets/compareMagnification1.jpg)|![](assets/compareMagnification2.jpg)
+
+* **backgroundColor: UIColor**
+
+BackgroundColor, optional, default is white.
+
+* **foregroundColor: UIColor**
+
+ForegroundColor, optional, color of code point, default is black.
+
+  ForegroundColor set to red | BackgroundColor set to gray  
+:-------------------------:|:-------------------------:
+![](assets/compareForegroundcolor.jpg)|![](assets/compareBackgroundcolor.jpg)
+
+* **icon: UIImage?**
+
+Icon image in the center of code image, optional, default is nil.
+
+* **iconSize: CGFloat?**
+
+Size of icon image, optional, default is 20% of size: 
+
+  Default 20% size | Set to 64  
+:-------------------------:|:-------------------------:
+![](assets/compareIcon.jpg)|![](assets/compareIconSize.jpg)
+
+* **isIconColorful: Bool**
+
+Is icon colorful, optional, default is `true`.
+
+* **watermark: UIImage?**
+
+Watermark image, optional, default is nil, for example: 
+
+  1 | 2  
+:-------------------------:|:-------------------------:
+![](assets/compareWatermark1.jpg)|![](assets/compareWatermark2.jpg)
+
+* **watermarkMode: EFWatermarkMode**
+
+The watermark placed in two-dimensional code position, optional, default is scaleAspectFill, refer to UIViewContentMode, you can treat the two-dimensional code as UIImageView, the definition of UIViewContentMode:
+
+```
+// Like UIViewContentMode
+public enum EFWatermarkMode: Int {
+    case scaleToFill        = 0;
+    case scaleAspectFit     = 1;
+    case scaleAspectFill    = 2;
+    case center             = 3;
+    case top                = 4;
+    case bottom             = 5;
+    case left               = 6;
+    case right              = 7;
+    case topLeft            = 8;
+    case topRight           = 9;
+    case bottomLeft         = 10;
+    case bottomRight        = 11;
+}
+```
+
+* **isWatermarkColorful: Bool**
+
+Is watermark colorful, optional, default is `true`.
+
+* **foregroundPointOffset: CGFloat**
+
+Foreground point offset, optional, default is 0, is not recommended to use, may make the two-dimensional code broken:
+
+0 | 0.5 
+:-------------------------:|:-------------------------:
+![](assets/compareForegroundPointOffset1.jpg)|![](assets/compareForegroundPointOffset2.jpg)
+
+* **allowTransparent: Bool**
+
+Allow watermark image transparent, optional, default is `true`:
+
+true | false
+:-------------------------:|:-------------------------:
+![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
 
 ## PS
 
@@ -141,7 +367,7 @@ Result：
 4. It is recommended to test the QRCode image before put it into use;
 5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome.
 
-PS of PS：I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...
+PS of PS: I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...
 
 ## Author
 
