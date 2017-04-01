@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // EFInputCorrectionLevel
 public enum EFInputCorrectionLevel: Int {

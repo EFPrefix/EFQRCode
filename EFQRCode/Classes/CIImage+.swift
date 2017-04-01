@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreImage
 
 struct EFUIntPixel {
     var red: UInt8 = 0
