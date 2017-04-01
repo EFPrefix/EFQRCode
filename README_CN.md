@@ -214,7 +214,7 @@ generator.image
 
 * **content: String?**
 
-二维码内容，有容量限制，最大为 424 个汉字（或 1273 个英文字母），二维码点阵越密集程度随内容增加而提高。不同容量对比如下：
+二维码内容，必填，有容量限制，最大为 424 个汉字（或 1273 个英文字母），二维码点阵越密集程度随内容增加而提高。不同容量对比如下：
 
 10 个字母 | 250 个字母
 :-------------------------:|:-------------------------:
@@ -246,7 +246,9 @@ L | M | Q | H
 
 * **magnification: UInt?**
 
-放大倍数，可选值，默认为 nil。因为按照 size 缩放二维码存在清晰度不高的问题，如果希望得到比较清晰的二维码，可以使用 magnification 来设定最终生成的二维码大小。这里的倍数是相对于最小的二维码点阵而言的，如果已有一个想要的 size 但是希望通过使用 magnification 获得一个清晰且大小和自己所要 size 近似的二维码，可以通过 `maxMagnificationLessThanOrEqualTo(size: CGFloat)` 和 `minMagnificationGreaterThanOrEqualTo(size: CGFloat)` 这两个函数来获得想要的 magnification 具体值，具体使用方法如下：
+放大倍数，可选值，默认为 nil。
+
+因为按照 size 缩放二维码存在清晰度不高的问题，如果希望得到比较清晰的二维码，可以使用 magnification 来设定最终生成的二维码大小。这里的倍数是相对于最小的二维码点阵而言的，如果已有一个想要的 size 但是希望通过使用 magnification 获得一个清晰且大小和自己所要 size 近似的二维码，可以通过 `maxMagnificationLessThanOrEqualTo(size: CGFloat)` 和 `minMagnificationGreaterThanOrEqualTo(size: CGFloat)` 这两个函数来获得想要的 magnification 具体值，具体使用方法如下：
 
 ```
 let generator = EFQRCodeGenerator(
@@ -284,13 +286,13 @@ size 300 | magnification 9
 
 前景色，可选值，二维码码点的颜色，默认为黑色。
 
-<img src="assets/compareForegroundcolor.jpg" width = "72%"/>
-
 * **foregroundColor: UIColor**
 
 背景色，可选值，默认为白色。
 
-<img src="assets/compareBackgroundcolor.jpg" width = "72%"/>
+  前景设为红色 | 背景设为灰色  
+:-------------------------:|:-------------------------:
+![](assets/compareForegroundcolor.jpg)|![](assets/compareBackgroundcolor.jpg)
 
 * **icon: UIImage?**
 
@@ -300,7 +302,7 @@ size 300 | magnification 9
 
 二维码中心图标变长，可选值，默认为最终二维码边长的 20%，这里设为 64，可以和上一个二维码对比：
 
-  外边长的 20% | 固定为 64  
+  外边长的 20% | 设为固定值  
 :-------------------------:|:-------------------------:
 ![](assets/compareIcon.jpg)|![](assets/compareIconSize.jpg)
 
