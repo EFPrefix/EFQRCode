@@ -284,25 +284,25 @@ size 300 | magnification 9
 
 前景色，可选值，二维码码点的颜色，默认为黑色。
 
-<img src="assets/compareForegroundcolor.jpg" width = "40%"/>
+<img src="assets/compareForegroundcolor.jpg" width = "72%"/>
 
 * **foregroundColor: UIColor**
 
 背景色，可选值，默认为白色。
 
-<img src="assets/compareBackgroundcolor.jpg" width = "40%"/>
+<img src="assets/compareBackgroundcolor.jpg" width = "72%"/>
 
 * **icon: UIImage?**
 
 二维码中心图标，可选值，默认为空。
 
-<img src="assets/compareIcon.jpg" width = "11.32%"/>
+* **iconSize: CGFloat?**
 
-* **iconSize: CGFloat?*
+二维码中心图标变长，可选值，默认为最终二维码边长的 20%，这里设为 64，可以和上一个二维码对比：
 
-二维码中心图标变长，可选值，默认为最终二维码边长的 20%，这里设为 64 像素，可以和上一个二维码对比：
-
-<img src="assets/compareIconSize.jpg" width = "11.32%"/>
+  外边长的 20% | 固定为 64  
+:-------------------------:|:-------------------------:
+![](assets/compareIcon.jpg)|![](assets/compareIconSize.jpg)
 
 * **isIconColorful: Bool**
 
