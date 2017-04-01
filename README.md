@@ -44,7 +44,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```
-pod "EFQRCode", '~> 1.1.1'
+pod "EFQRCode", '~> 1.2.0'
 ```
 
 ## Use

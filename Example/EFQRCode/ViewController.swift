@@ -34,14 +34,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func setupViews() {
         let screenSize = UIScreen.main.bounds.size
 
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+
         let titleLabel = UILabel()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 48)
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
-        titleLabel.text = "EFQRCode"
+        titleLabel.text = "EFQRCode\(version == "" ? "" : "\n\(version)")"
+        titleLabel.numberOfLines = 0
         self.view.addSubview(titleLabel)
         titleLabel.frame = CGRect(
-            x: 0, y: 0, width: screenSize.width, height: screenSize.height / 3.0
+            x: 0, y: 0, width: screenSize.width, height: screenSize.height / 2.5
         )
 
         let tableView = UITableView()
@@ -56,7 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         self.view.addSubview(tableView)
         tableView.frame = CGRect(
-            x: 0, y: titleLabel.frame.maxY + 32, width: screenSize.width, height: screenSize.height / 3.0
+            x: 0, y: titleLabel.frame.maxY, width: screenSize.width, height: screenSize.height / 3.0
         )
 
         let bottomLabel = UIButton(type: .system)
