@@ -22,7 +22,9 @@ script:
   - set -o pipefail
   - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Debug clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
   - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Release clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  - xcodebuild -scheme "$SCHEME" -workspace "$XCODE_WORKSPACE" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=9.1' build test
   - pod lib lint --no-clean
 
 after_success:
+  - bash <(curl -s https://codecov.io/bash)
   - sleep 5
