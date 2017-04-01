@@ -278,31 +278,31 @@ generator.image
 
 size 300 | magnification 9
 :-------------------------:|:-------------------------:
-![](assets/compareInputMagnification1.jpg)|![](assets/compareInputMagnification2.jpg)
+![](assets/compareMagnification1.jpg)|![](assets/compareMagnification2.jpg)
 
 * **backgroundColor: UIColor**
 
 前景色，可选值，二维码码点的颜色，默认为黑色。
 
-![](assets/compareInputForegroundcolor.jpg)
+<img src="assets/compareForegroundcolor.jpg" width = "40%"/>
 
 * **foregroundColor: UIColor**
 
 背景色，可选值，默认为白色。
 
-![](assets/compareInputBackgroundcolor.jpg)
+<img src="assets/compareBackgroundcolor.jpg" width = "40%"/>
 
 * **icon: UIImage?**
 
 二维码中心图标，可选值，默认为空。
 
-![](assets/compareIcon.jpg)
+<img src="assets/compareIcon.jpg" width = "11.32%"/>
 
 * **iconSize: CGFloat?*
 
 二维码中心图标变长，可选值，默认为最终二维码边长的 20%，这里设为 64 像素，可以和上一个二维码对比：
 
-![](assets/compareIconSize.jpg)
+<img src="assets/compareIconSize.jpg" width = "11.32%"/>
 
 * **isIconColorful: Bool**
 
