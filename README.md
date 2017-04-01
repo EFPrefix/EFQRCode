@@ -1,4 +1,4 @@
-![](assets/EFQRCodeImage.jpg)
+![](assets/EFQRCode.jpg)
 
 <p align="center">
 <a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
@@ -12,16 +12,18 @@
 <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img alt="codebeat badge" src="https://codebeat.co/assets/svg/badges/A-398b39-669406e9e1b136187b91af587d4092b0160370f271f66a651f444b990c2730e9.svg" /></a>
 </p>
 
-EFQRCode is a tool to create QRCode UIImage or scan QRCode from UIImage, in Swift. It is based on `CIDetector` and `CIFilter` but better.
+EFQRCode is a tool to generate QRCode UIImage or recognize QRCode from UIImage, in Swift. It is based on `CIDetector` and `CIFilter`.
 
-- Generation: Create QRCode image with a lot of styles
-- Recognition: Recognition rate is higher than simply `CIDetector`
+- Generation: Create pretty two-dimensional code image with input watermark or icon;
+- Recognition: Recognition rate is higher than simply `CIDetector`.
 
 > [中文介绍](https://github.com/EyreFree/EFQRCode/blob/master/README_CN.md)
 
 ## Overview
 
-![](assets/screenshot.png)
+![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)|![](assets/QRCode6.jpg)  
+:---------------------:|:---------------------:|:---------------------:|:---------------------:
+![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)|![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)  
 
 ## Demo
 
@@ -40,6 +42,8 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install
 
 ## Installation
 
+### CocoaPods
+
 EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
@@ -49,64 +53,72 @@ pod "EFQRCode", '~> 1.2.0'
 
 ## Use
 
-#### 1. Import EFQRCode module where you want to use it:
+#### 1. Import EFQRCode
+
+Import EFQRCode module where you want to use it:
 
 ```swift
 import EFQRCode
 ```
 
-#### 2. Get QR Codes from UIImage, maybe there are several codes in a image, so it will return an array:
+#### 2. Recognition
+
+Get QR Codes from UIImage, maybe there are several codes in a image, so it will return an array:
 
 ```swift
 if let testImage = UIImage(named: "test.png") {
-	let codes = EFQRCode.GetQRCodeString(From: testImage)
-	if codes.count > 0 {
-		print("There are \(codes.count) codes in testImage.")
-		for (index, code) in codes.enumerated() {
-			print("The content of \(index) QR Code is: \(code).")
-		}
-	} else {
-		print("There is no QR Codes in testImage.")
-	}
+    if let tryCodes = EFQRCode.recognize(image: testImage) {
+        if tryCodes.count > 0 {
+            print("There are \(tryCodes.count) codes in testImage.")
+            for (index, code) in tryCodes.enumerated() {
+                print("The content of \(index) QR Code is: \(code).")
+            }
+        } else {
+            print("There is no QR Codes in testImage.")
+        }
+    } else {
+        print("Recognize failed, check your input image!")
+    }
 }
 ```
 
-#### 3. Create QR Code image:
+#### 3. Generation
+
+Create QR Code image:
 
 ```swift
-//                          string: Content of QR Code
+// Common parameters:
+//                         content: Content of QR Code
 // inputCorrectionLevel (Optional): error-tolerant rate
-// 		                            L 7%
-// 		                            M 15%
-// 		                            Q 25%
-// 		                            H 30%
+//                                  L 7%
+//                                  M 15%
+//                                  Q 25%
+//                                  H 30%(Default)
 //                 size (Optional): Width and height of image
-//              quality (Optional): Quality of QRCode
-//            backColor (Optional): Background color of QRCode
-//           frontColor (Optional): Front color of QRCode
-//                 icon (Optional): icon in the middle of QR Code Image
+//        magnification (Optional): Magnification of QRCode compare with the minimum size
+//                                  (Parameter size will be ignored if magnification is not nil)
+//      backgroundColor (Optional): Background color of QRCode
+//      foregroundColor (Optional): Foreground color of QRCode
+//                 icon (Optional): Icon in the middle of QR Code Image
 //             iconSize (Optional): Width and height of icon
-//         iconColorful (Optional): Is icon colorful
+//       isIconColorful (Optional): Is icon colorful
 //            watermark (Optional): Watermark background image
 //        watermarkMode (Optional): Watermark background image mode, like UIViewContentMode
-//    watermarkColorful (Optional): Is Watermark colorful
+//  isWatermarkColorful (Optional): Is Watermark colorful
+
+// Extra parameters:
+//           foregroundPointOffset: Offset of foreground point
+//                allowTransparent: Allow transparent
 ```
 
 ```swift
-if let tryImage = EFQRCode.createQRImage(
-    string: "https://github.com/EyreFree/EFQRCode",
-    inputCorrectionLevel: .h,
-    size: 750,
-    quality: .low,
-    backColor: .white,
-    frontColor: .black,
-    icon: nil,
-    iconSize: nil,
-    iconColorful: true,
-    watermark: UIImage(named: "eyrefree"),
+if let tryImage = EFQRCode.generate(
+    content: "https://github.com/EyreFree/EFQRCode",
+    magnification: 9,
+    watermark: UIImage(named: "WWF"),
     watermarkMode: .scaleAspectFill,
-    watermarkColorful: false
-    ) {
+    isWatermarkColorful: false
+) {
     print("Create QRCode image success!")
 } else {
     print("Create QRCode image failed!")
@@ -115,21 +127,15 @@ if let tryImage = EFQRCode.createQRImage(
 
 Result：
 
-<img src="assets/QRCode5.jpg" width = "40%"/>
-
-## Examples
-
-![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode4.jpg)|![](assets/QRCode6.jpg)  
-:---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)|![](assets/QRCode9.jpg)|![](assets/QRCode10.jpg)  
+<img src="assets/sample1.jpg" width = "36%"/>
 
 ## PS
 
 1. Please select a high contrast foreground and background color combinations;
-2. Want to improve the definition of QRCode image, you can improve the quality and size;
-3. Quality too high／Size too long／Content too much may cause failure;
+2. You should use `magnification` instead of `size` if you want to improve the definition of QRCode image, you can also increase the value of them;
+3. Magnification too high／Size too long／Content too much may cause failure;
 4. It is recommended to test the QRCode image before put it into use;
-5. You can contact me if there is any problem, both Issue and Pull request are welcome.
+5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome.
 
 PS of PS：I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...
 
