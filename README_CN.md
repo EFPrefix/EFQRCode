@@ -48,7 +48,7 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install
 
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
-```
+```ruby
 pod "EFQRCode", '~> 1.2.0'
 ```
 
@@ -134,13 +134,13 @@ if let tryImage = EFQRCode.generate(
 
 ### 1. 二维码识别
 
-```
+```swift
 EFQRCode.recognize(image: UIImage)
 ```
 
 或
 
-```
+```swift
 EFQRCodeRecognizer(image: image).contents
 ```
 
@@ -148,7 +148,7 @@ EFQRCodeRecognizer(image: image).contents
 
 ### 2. 二维码生成
 
-```
+```swift
 EFQRCode.generate(
     content: String, 
     inputCorrectionLevel: EFInputCorrectionLevel, 
@@ -167,7 +167,7 @@ EFQRCode.generate(
 
 或
 
-```
+```swift
 EFQRCodeGenerator(
     content: content,
     inputCorrectionLevel: inputCorrectionLevel,
@@ -188,7 +188,7 @@ EFQRCodeGenerator(
 
 若需要使用额外参数，则必须使用创建 EFQRCodeGenerator 对象的方式：
 
-```
+```swift
 let generator = EFQRCodeGenerator(
     content: content,
     inputCorrectionLevel: inputCorrectionLevel,
@@ -224,7 +224,7 @@ generator.image
 
 容错率，可选值，有四个等级，L：7%／M 15%／Q 25%／H 30%，默认值为最高容错等级 H，枚举类型 EFInputCorrectionLevel 定义如下：
 
-```
+```swift
 // EFInputCorrectionLevel
 public enum EFInputCorrectionLevel: Int {
     case l = 0;     // L 7%
@@ -250,7 +250,7 @@ L | M | Q | H
 
 因为按照 size 缩放二维码存在清晰度不高的问题，如果希望得到比较清晰的二维码，可以使用 magnification 来设定最终生成的二维码大小。这里的倍数是相对于最小的二维码点阵而言的，如果已有一个想要的 size 但是希望通过使用 magnification 获得一个清晰且大小和自己所要 size 近似的二维码，可以通过 `maxMagnificationLessThanOrEqualTo(size: CGFloat)` 和 `minMagnificationGreaterThanOrEqualTo(size: CGFloat)` 这两个函数来获得想要的 magnification 具体值，具体使用方法如下：
 
-```
+```swift
 let generator = EFQRCodeGenerator(
     content: content,
     inputCorrectionLevel: inputCorrectionLevel,
@@ -322,7 +322,7 @@ size 300 | magnification 9
 
 水印图放置于最终生成二维码的位置，可选值，默认为 scaleAspectFill，可参考 UIViewContentMode，将生成的二维码当作 UIImageView 理解即可，枚举类型 EFWatermarkMode 定义如下：
 
-```
+```swift
 // Like UIViewContentMode
 public enum EFWatermarkMode: Int {
     case scaleToFill        = 0;
