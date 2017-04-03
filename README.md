@@ -133,13 +133,13 @@ Result:
 
 ### 1. Recognition
 
-```
+```swift
 EFQRCode.recognize(image: UIImage)
 ```
 
 Or
 
-```
+```swift
 EFQRCodeRecognizer(image: image).contents
 ```
 
@@ -147,7 +147,7 @@ Two way before is exactly the same, because of the possibility of more than one 
 
 ### 2. Generation
 
-```
+```swift
 EFQRCode.generate(
     content: String, 
     inputCorrectionLevel: EFInputCorrectionLevel, 
@@ -166,7 +166,7 @@ EFQRCode.generate(
 
 Or
 
-```
+```swift
 EFQRCodeGenerator(
     content: content,
     inputCorrectionLevel: inputCorrectionLevel,
@@ -187,7 +187,7 @@ Two way before is exactly the same, the return value is `UIImage?`, if the retur
 
 If you want to use the extra parameters, you must establish a EFQRCodeGenerator object:
 
-```
+```swift
 let generator = EFQRCodeGenerator(
     content: content,
     inputCorrectionLevel: inputCorrectionLevel,
@@ -223,7 +223,7 @@ Content, compulsive, capacity is limited, 1273 character most, the density of th
 
 Error-tolerant rate, optional, 4 different level, L: 7% / M 15% / Q 25% / H 30%, default is H, the definition of EFInputCorrectionLevel:
 
-```
+```swift
 // EFInputCorrectionLevel
 public enum EFInputCorrectionLevel: Int {
     case l = 0;     // L 7%
@@ -249,7 +249,7 @@ Magnification, optional, default is nil.
 
 Because in accordance with the existence of size scaling two-dimensional code clarity is not high, if you want to get a more clear two-dimensional code, you can use magnification to set the size of the final generation of two-dimensional code. Here is the smallest ratio relative to the two-dimensional code matrix is concerned, if there is a want size but I hope to have a clear and size and have size approximation of the two-dimensional code by using magnification, through `maxMagnificationLessThanOrEqualTo (size: CGFloat), and `minMagnificationGreaterThanOrEqualTo (size: CGFloat), want to get magnification these two functions the specific value, the use of specific methods are as follows:
 
-```
+```swift
 let generator = EFQRCodeGenerator(
     content: content,
     inputCorrectionLevel: inputCorrectionLevel,
@@ -321,7 +321,7 @@ Watermark image, optional, default is nil, for example:
 
 The watermark placed in two-dimensional code position, optional, default is scaleAspectFill, refer to UIViewContentMode, you can treat the two-dimensional code as UIImageView, the definition of UIViewContentMode:
 
-```
+```swift
 // Like UIViewContentMode
 public enum EFWatermarkMode: Int {
     case scaleToFill        = 0;
