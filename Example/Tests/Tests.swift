@@ -14,11 +14,8 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testGenerate() {
+    func testExample() {
         // This is an example of EFQRCodeGenerator test case.
-        let waterMarkImage = UIImage(named: "Jobs", in: Bundle(for: self.classForCoder), compatibleWith: nil)
-        XCTAssert(waterMarkImage != nil, "waterMarkImage is nil!")
-
         let testResult = EFQRCode.generate(
             content: "https://github.com/EyreFree/EFQRCode",
             inputCorrectionLevel: .h,
@@ -29,7 +26,7 @@ class Tests: XCTestCase {
             icon: nil,
             iconSize: nil,
             isIconColorful: false,
-            watermark: waterMarkImage,
+            watermark: nil,
             watermarkMode: .scaleAspectFill,
             isWatermarkColorful: true
         )
