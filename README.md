@@ -359,6 +359,11 @@ true | false
 :-------------------------:|:-------------------------:
 ![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
 
+## Todo
+
+- Support .gif
+- Add more styles
+
 ## PS
 
 1. Please select a high contrast foreground and background color combinations;
