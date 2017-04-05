@@ -16,7 +16,7 @@ class Tests: XCTestCase {
     
     func testGenerate() {
         // This is an example of EFQRCodeGenerator test case.
-        let waterMarkImage = UIImage(named: "Jobs")
+        let waterMarkImage = UIImage(named: "Jobs", in: Bundle(for: self.classForCoder), compatibleWith: nil)
         XCTAssert(waterMarkImage != nil, "waterMarkImage is nil!")
 
         let testResult = EFQRCode.generate(

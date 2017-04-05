@@ -214,6 +214,7 @@
 				607FACE31AFB9204008FA782 /* Resources */,
 				78DED00C436819CA001003E5 /* [CP] Embed Pods Frameworks */,
 				7B149548BD32E4F6DE4D0A6C /* [CP] Copy Pods Resources */,
+				122082491E94A62D0016FD30 /* Fix Bundle Load Error */,
 			);
 			buildRules = (
 			);
@@ -244,7 +245,6 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = P3X2725LYY;
 						LastSwiftMigration = 0820;
-						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
 			};
@@ -302,6 +302,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EFQRCode_Example/Pods-EFQRCode_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		122082491E94A62D0016FD30 /* Fix Bundle Load Error */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fix Bundle Load Error";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find ${TARGET_BUILD_DIR} -type d -name \"*.framework\" -exec cp -Rf {} ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ \\;";
 		};
 		44EC41E839042FC8F27F3354 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -567,7 +581,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EFQRCode_Example.app/EFQRCode_Example";
 			};
 			name = Debug;
 		};
@@ -585,7 +598,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EFQRCode_Example.app/EFQRCode_Example";
 			};
 			name = Release;
 		};
