@@ -360,6 +360,11 @@ true | false
 :-------------------------:|:-------------------------:
 ![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
 
+## 待办
+
+- 支持 .gif 动图
+- 添加更多样式
+
 ## 备注
 
 1. 请选用对比度较高的前景色和背景色组合；
