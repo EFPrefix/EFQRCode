@@ -24,8 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
-import UIKit
+import CoreImage
 
 // EFInputCorrectionLevel
 public enum EFInputCorrectionLevel: Int {
@@ -92,7 +91,7 @@ public class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
-    public var icon: UIImage? = nil {
+    public var icon: CIImage? = nil {
         didSet {
             imageQRCode = nil
         }
@@ -107,7 +106,7 @@ public class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
-    public var watermark: UIImage? = nil {
+    public var watermark: CIImage? = nil {
         didSet {
             imageQRCode = nil
         }
@@ -136,7 +135,7 @@ public class EFQRCodeGenerator {
     }
 
     // MARK:- Get QRCode image
-    public var image: UIImage? {
+    public var image: CIImage? {
         get {
             if nil == imageQRCode {
                 imageQRCode = createQRCodeImage()
@@ -147,7 +146,7 @@ public class EFQRCodeGenerator {
 
     // MARK:- Cache
     private var QRImageCodes: [[Bool]]?
-    private var imageQRCode: UIImage?
+    private var imageQRCode: CIImage?
     private var minSuitableSize: CGFloat?
 
     public init(
@@ -157,10 +156,10 @@ public class EFQRCodeGenerator {
         magnification: UInt? = nil,
         backgroundColor: UIColor = UIColor.white,
         foregroundColor: UIColor = UIColor.black,
-        icon: UIImage? = nil,
+        icon: CIImage? = nil,
         iconSize: CGFloat? = nil,
         isIconColorful: Bool = true,
-        watermark: UIImage? = nil,
+        watermark: CIImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleToFill,
         isWatermarkColorful: Bool = true
         ) {
@@ -179,7 +178,7 @@ public class EFQRCodeGenerator {
         self.isWatermarkColorful = isWatermarkColorful
     }
 
-    private func createQRCodeImage() -> UIImage? {
+    private func createQRCodeImage() -> CIImage? {
 
         var finalSize = self.size
         let finalBackgroundColor = self.backgroundColor
@@ -201,13 +200,13 @@ public class EFQRCodeGenerator {
             finalSize = CGFloat(tryMagnification * UInt(QRCodes.count))
         }
 
-        var finalImage: UIImage?
+        var finalImage: CIImage?
 
         // Cache size
         minSuitableSize = minSuitableSizeGreaterThanOrEqualTo(size: finalSize)
 
         // Watermark
-        if let tryWatermark = finalIsWatermarkColorful ? finalWatermark : finalWatermark?.greyScale() {
+        if let tryWatermark = finalIsWatermarkColorful ? finalWatermark : finalWatermark?.greyscale() {
             // Has watermark
             finalImage = createQRUIImageTransparent(
                 codes: QRCodes,
@@ -243,7 +242,7 @@ public class EFQRCodeGenerator {
         }
 
         // Add icon
-        if let tryIcon = finalIsIconColorful ? finalIcon : finalIcon?.greyScale(), let tryFinalImage = finalImage {
+        if let tryIcon = finalIsIconColorful ? finalIcon : finalIcon?.greyscale(), let tryFinalImage = finalImage {
             let maxIconSize = finalSize * [0.26, 0.38, 0.5, 0.54][inputCorrectionLevel.rawValue]
             var iconSize = finalIconSize ?? finalSize * 0.2
             if iconSize > maxIconSize {
@@ -322,7 +321,7 @@ public class EFQRCodeGenerator {
     }
 
     // Create Colorful QR Image
-    private func createQRUIImage(codes: [[Bool]], colorBack: UIColor, colorFront: UIColor, size: CGFloat) -> UIImage? {
+    private func createQRUIImage(codes: [[Bool]], colorBack: UIColor, colorFront: UIColor, size: CGFloat) -> CIImage? {
         let scale = size / CGFloat(codes.count)
         if scale < 1.0 {
             print("Warning: Size too small.")
@@ -330,7 +329,7 @@ public class EFQRCodeGenerator {
 
         let codeSize = codes.count
 
-        var finalImage: UIImage?
+        var finalImage: CIImage?
         UIGraphicsBeginImageContext(CGSize(width: size, height: size))
         if let context = UIGraphicsGetCurrentContext() {
             // Back
@@ -366,7 +365,7 @@ public class EFQRCodeGenerator {
         colorBack: UIColor,
         colorFront: UIColor,
         size: CGFloat
-        ) -> UIImage? {
+        ) -> CIImage? {
 
         let scale = size / CGFloat(codes.count)
         if scale < 3.0 {
@@ -394,7 +393,7 @@ public class EFQRCodeGenerator {
             }
         }
 
-        var finalImage: UIImage?
+        var finalImage: CIImage?
         UIGraphicsBeginImageContext(CGSize(width: size, height: size))
         if let context = UIGraphicsGetCurrentContext() {
             // Back point
@@ -513,7 +512,7 @@ public class EFQRCodeGenerator {
     }
 
     // Pre
-    private func preWatermarkImage(image: UIImage, colorBack: UIColor, mode: EFWatermarkMode, size: CGSize) -> UIImage? {
+    private func preWatermarkImage(image: CIImage, colorBack: UIColor, mode: EFWatermarkMode, size: CGSize) -> CIImage? {
         UIGraphicsBeginImageContext(size)
         if let context = UIGraphicsGetCurrentContext() {
             // Back
@@ -595,12 +594,9 @@ public class EFQRCodeGenerator {
     }
 
     // Mix
-    private func mixImage(
-        backImage: UIImage,
-        backImageSize: CGSize,
-        frontImage: UIImage?,
-        frontImageSize: CGSize? = nil
-        ) -> UIImage? {
+    private func mixImage(back: CIImage, backSize: CGSize, fore: CIImage?, foreSize: CGSize? = nil) -> CIImage? {
+        if
+
 
         if let tryBackCIImage = backImage.toCIImage() {
             let extent = tryBackCIImage.extent.integral
@@ -625,7 +621,7 @@ public class EFQRCodeGenerator {
                     // Save bitmap to image
                     if let scaledImage = bitmapRef.makeImage() {
                         // Back image
-                        let outputImage = UIImage(cgImage: scaledImage)
+                        let outputImage = CIImage(cgImage: scaledImage)
                         UIGraphicsBeginImageContextWithOptions(outputImage.size, false, UIScreen.main.scale)
                         outputImage.draw(in: CGRect(x: 0, y: 0, width: backImageSize.width, height: backImageSize.height))
 

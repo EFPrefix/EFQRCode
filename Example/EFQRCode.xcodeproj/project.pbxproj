@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		122C9E441E967A4900DBA3A3 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122C9E431E967A4900DBA3A3 /* UIImage+.swift */; };
 		1272BC5D1E386F740066792E /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272BC5C1E386F740066792E /* GeneratorController.swift */; };
 		1272BC5F1E386F870066792E /* RecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272BC5E1E386F870066792E /* RecognizerController.swift */; };
 		23698BB5E4015637A5390414 /* Pods_EFQRCode_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA908B756F8D29EB30999381 /* Pods_EFQRCode_Tests.framework */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		122C9E431E967A4900DBA3A3 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		1272BC5C1E386F740066792E /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorController.swift; sourceTree = "<group>"; };
 		1272BC5E1E386F870066792E /* RecognizerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizerController.swift; sourceTree = "<group>"; };
 		49298A9D8DA3B1EE73933501 /* EFQRCode.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EFQRCode.podspec; path = ../EFQRCode.podspec; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		122C9E421E967A3300DBA3A3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				122C9E431E967A4900DBA3A3 /* UIImage+.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		123167511E77D84F00B71351 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 		607FACD21AFB9204008FA782 /* Example for EFQRCode */ = {
 			isa = PBXGroup;
 			children = (
+				122C9E421E967A3300DBA3A3 /* Extension */,
 				123167521E77D85600B71351 /* Res */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				123167511E77D84F00B71351 /* Controller */,
@@ -401,6 +412,7 @@
 			files = (
 				1272BC5F1E386F870066792E /* RecognizerController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				122C9E441E967A4900DBA3A3 /* UIImage+.swift in Sources */,
 				1272BC5D1E386F740066792E /* GeneratorController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

@@ -299,7 +299,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 UIAlertAction(title: "Average of watermark", style: .default, handler: {
                     [weak self] (action) -> Void in
                     if let strongSelf = self {
-                        strongSelf.frontColor = EFQRCode.avarageColor(image: tryWaterMark) ?? UIColor.clear
+                        strongSelf.frontColor = tryWaterMark.avarageColor() ?? UIColor.clear
                         strongSelf.refresh()
                     }
                 })

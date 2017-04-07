@@ -24,7 +24,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
 import CoreImage
 
 struct EFUIntPixel {
@@ -36,7 +35,7 @@ struct EFUIntPixel {
 
 extension CIImage {
 
-    // Gray
+    // Resize
     // https://gist.github.com/darcwader/bd346656db880666007e0dff6a1727fc
     func resize(size: CGSize) -> CIImage? {
         let scale = size.width / self.extent.width
@@ -45,6 +44,16 @@ extension CIImage {
             tryFilter.setValue(NSNumber(value: Double(scale)), forKey: kCIInputScaleKey)
             tryFilter.setValue(1.0, forKey: kCIInputAspectRatioKey)
             return tryFilter.value(forKey: kCIOutputImageKey) as? CIImage
+        }
+        return nil
+    }
+
+    // Greyscale
+    // http://stackoverflow.com/questions/40178846/convert-uiimage-to-grayscale-keeping-image-quality
+    func greyscale() -> CIImage? {
+        if let tryFilter = CIFilter(name: "CIPhotoEffectNoir") {
+            tryFilter.setValue(self, forKey: kCIInputImageKey)
+            return tryFilter.outputImage
         }
         return nil
     }

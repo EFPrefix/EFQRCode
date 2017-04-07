@@ -24,12 +24,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
-import UIKit
+import CoreImage
 
 public class EFQRCodeRecognizer {
 
-    public var image: UIImage? {
+    public var image: CIImage? {
         didSet {
             contentArray = nil
         }
@@ -45,7 +44,7 @@ public class EFQRCodeRecognizer {
 
     private var contentArray: [String]?
 
-    public init(image: UIImage) {
+    public init(image: CIImage) {
         self.image = image
     }
 
@@ -58,17 +57,17 @@ public class EFQRCodeRecognizer {
         let result = scanFrom(image: finalImage, options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
         if (result?.count ?? 0) <= 0 {
             return scanFrom(
-                image: finalImage.greyScale(), options: [CIDetectorAccuracy : CIDetectorAccuracyLow]
+                image: finalImage.greyscale(), options: [CIDetectorAccuracy : CIDetectorAccuracyLow]
             )
         }
         return result
     }
 
-    private func scanFrom(image: UIImage?, options: [String : Any]? = nil) -> [String]? {
-        if let tryCGImage = image?.cgImage {
+    private func scanFrom(image: CIImage?, options: [String : Any]? = nil) -> [String]? {
+        if let tryCIImage = image {
             var result = [String]()
             let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
-            if let features = detector?.features(in: CIImage(cgImage: tryCGImage)) {
+            if let features = detector?.features(in: tryCIImage) {
                 for feature in features {
                     if let tryString = (feature as? CIQRCodeFeature)?.messageString {
                         result.append(tryString)

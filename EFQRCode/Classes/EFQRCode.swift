@@ -24,13 +24,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
-import UIKit
+import CoreImage
 
 public class EFQRCode {
 
     // MARK:- Recognizer
-    public static func recognize(image: UIImage) -> [String]? {
+    public static func recognize(image: CIImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).contents
     }
 
@@ -42,13 +41,13 @@ public class EFQRCode {
         magnification: UInt? = nil,
         backgroundColor: UIColor = UIColor.white,
         foregroundColor: UIColor = UIColor.black,
-        icon: UIImage? = nil,
+        icon: CIImage? = nil,
         iconSize: CGFloat? = nil,
         isIconColorful: Bool = true,
-        watermark: UIImage? = nil,
+        watermark: CIImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleToFill,
         isWatermarkColorful: Bool = true
-        ) -> UIImage? {
+        ) -> CIImage? {
 
         return EFQRCodeGenerator(
             content: content,
@@ -64,10 +63,5 @@ public class EFQRCode {
             watermarkMode: watermarkMode,
             isWatermarkColorful: isWatermarkColorful
             ).image
-    }
-
-    // MARK:-
-    public static func avarageColor(image: UIImage) -> UIColor? {
-        return image.avarageColor()
     }
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		12360A061E8A9C410081320F /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12360A051E8A9C410081320F /* EFQRCodeRecognizer.swift */; };
 		12360A081E8A9E1A0081320F /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12360A071E8A9E1A0081320F /* EFQRCode.swift */; };
-		12360A0A1E8B64DD0081320F /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12360A091E8B64DD0081320F /* UIImage+.swift */; };
 		12360A0C1E8B64EB0081320F /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12360A0B1E8B64EB0081320F /* CIImage+.swift */; };
 		167086D8D4DC3342ADDCF59FD4FD5CDD /* Pods-EFQRCode_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DF7B193DAE41E27189E7E76D9CF97E72 /* Pods-EFQRCode_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F94B82B251B767726B54BE83E7BE8A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
@@ -39,7 +38,6 @@
 		059AA9A4DD4B45934666FFFCB396EC67 /* EFQRCode.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EFQRCode.modulemap; sourceTree = "<group>"; };
 		12360A051E8A9C410081320F /* EFQRCodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCodeRecognizer.swift; sourceTree = "<group>"; };
 		12360A071E8A9E1A0081320F /* EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCode.swift; sourceTree = "<group>"; };
-		12360A091E8B64DD0081320F /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		12360A0B1E8B64EB0081320F /* CIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIImage+.swift"; sourceTree = "<group>"; };
 		277E37FE1B47760F9913058038DF41A8 /* Pods-EFQRCode_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EFQRCode_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2ADF4DC99F9DCAC7DF2C6114AD45015F /* Pods-EFQRCode_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EFQRCode_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				12360A0B1E8B64EB0081320F /* CIImage+.swift */,
-				12360A091E8B64DD0081320F /* UIImage+.swift */,
 				12360A071E8A9E1A0081320F /* EFQRCode.swift */,
 				C19194C573A5462C79E8FA9A2380C718 /* EFQRCodeGenerator.swift */,
 				12360A051E8A9C410081320F /* EFQRCodeRecognizer.swift */,
@@ -367,7 +364,6 @@
 			files = (
 				12360A061E8A9C410081320F /* EFQRCodeRecognizer.swift in Sources */,
 				A365FFEFDAC52203C5C1102D84EE94D3 /* EFQRCode-dummy.m in Sources */,
-				12360A0A1E8B64DD0081320F /* UIImage+.swift in Sources */,
 				12360A081E8A9E1A0081320F /* EFQRCode.swift in Sources */,
 				FE95E8B8D4487100E426BED05ED1B8A7 /* EFQRCodeGenerator.swift in Sources */,
 				12360A0C1E8B64EB0081320F /* CIImage+.swift in Sources */,
