@@ -13,6 +13,10 @@ env:
   matrix:
     - SCHEME="EFQRCode-Example"
 
+branches:
+  only:
+  - master
+
 before_install:
   - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
