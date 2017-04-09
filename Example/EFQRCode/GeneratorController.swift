@@ -141,21 +141,22 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         let generator = EFQRCodeGenerator(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
-            size: size,
+            size: UInt(size),
             magnification: magnification,
-            backgroundColor: backColor,
-            foregroundColor: frontColor,
-            icon: icon,
-            iconSize: iconSize,
+            backgroundColor: CIColor(color: backColor),
+            foregroundColor: CIColor(color: frontColor),
+            icon: icon?.toCGImage(),
+            iconSize: iconSize == nil ? nil : UInt(iconSize!),
             isIconColorful: iconColorful,
-            watermark: watermark,
+            watermark: watermark?.toCGImage(),
             watermarkMode: watermarkMode,
             isWatermarkColorful: watermarkColorful
         )
         generator.foregroundPointOffset = self.foregroundPointOffset
         generator.allowTransparent = self.allowTransparent
 
-        if let tryImage = generator.image {
+        if let tryCGImage = generator.image {
+            let tryImage = UIImage(cgImage: tryCGImage)
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
@@ -912,6 +913,10 @@ class ShowController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         self.image = image
+    }
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {

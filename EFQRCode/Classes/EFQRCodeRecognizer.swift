@@ -44,13 +44,12 @@ public class EFQRCodeRecognizer {
 
     private var contentArray: [String]?
 
-    public init(image: CIImage) {
-        self.image = image
+    public init(image: CGImage) {
+        self.image = image.toCIImage()
     }
 
     // Get QRCodes from image
     private func getQRString() -> [String]? {
-
         guard let finalImage = self.image else {
             return nil
         }

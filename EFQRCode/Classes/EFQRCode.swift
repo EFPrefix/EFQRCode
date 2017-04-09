@@ -29,7 +29,7 @@ import CoreImage
 public class EFQRCode {
 
     // MARK:- Recognizer
-    public static func recognize(image: CIImage) -> [String]? {
+    public static func recognize(image: CGImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).contents
     }
 
@@ -37,17 +37,17 @@ public class EFQRCode {
     public static func generate(
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
-        size: CGFloat = 256,
+        size: UInt = 256,
         magnification: UInt? = nil,
-        backgroundColor: UIColor = UIColor.white,
-        foregroundColor: UIColor = UIColor.black,
-        icon: CIImage? = nil,
-        iconSize: CGFloat? = nil,
+        backgroundColor: CIColor = CIColor.white,
+        foregroundColor: CIColor = CIColor.black,
+        icon: CGImage? = nil,
+        iconSize: UInt? = nil,
         isIconColorful: Bool = true,
-        watermark: CIImage? = nil,
+        watermark: CGImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleToFill,
         isWatermarkColorful: Bool = true
-        ) -> CIImage? {
+        ) -> CGImage? {
 
         return EFQRCodeGenerator(
             content: content,

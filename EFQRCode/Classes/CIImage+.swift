@@ -26,14 +26,18 @@
 
 import CoreImage
 
-struct EFUIntPixel {
+public struct EFUIntPixel {
     var red: UInt8 = 0
     var green: UInt8 = 0
     var blue: UInt8 = 0
     var alpha: UInt8 = 0
 }
 
-extension CIImage {
+public extension CIImage {
+
+    static func create(color: CIColor, size: CGSize) -> CIImage? {
+        return CIImage(color: color).clip(rect: CGRect(origin: CGPoint.zero, size: size))
+    }
 
     // Resize
     // https://gist.github.com/darcwader/bd346656db880666007e0dff6a1727fc
@@ -43,7 +47,7 @@ extension CIImage {
             tryFilter.setValue(self, forKey: kCIInputImageKey)
             tryFilter.setValue(NSNumber(value: Double(scale)), forKey: kCIInputScaleKey)
             tryFilter.setValue(1.0, forKey: kCIInputAspectRatioKey)
-            return tryFilter.value(forKey: kCIOutputImageKey) as? CIImage
+            return tryFilter.outputImage
         }
         return nil
     }
@@ -58,10 +62,38 @@ extension CIImage {
         return nil
     }
 
-    // Convert CIImage To CGImage
-    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    func toCGImage() -> CGImage? {
-        return CIContext(options: nil).createCGImage(self, from: self.extent)
+    // Color
+    // https://github.com/objcio/issue-16-functional-apis/blob/master/FunctionalCoreImage/CoreImage.swift
+    func color(color: CIColor) -> CIImage? {
+        if let tryFilter = CIFilter(name: "CIConstantColorGenerator") {
+            tryFilter.setValue(color, forKey: kCIInputColorKey)
+            return tryFilter.outputImage
+        }
+        return nil
+    }
+
+    // Draw
+    // https://github.com/objcio/issue-16-functional-apis/blob/master/FunctionalCoreImage/CoreImage.swift
+    func draw(image: CIImage, loaction: CGPoint = .zero) -> CIImage? {
+        if let tryFilter = CIFilter(name: "CISourceOverCompositing") {
+            tryFilter.setValue(self, forKey: kCIInputBackgroundImageKey)
+            tryFilter.setValue(image.applying(CGAffineTransform(translationX: loaction.x, y: loaction.y)), forKey: kCIInputImageKey)
+            return tryFilter.outputImage
+        }
+        return nil
+    }
+
+    // Draw in rect
+    func draw(image: CIImage, rect: CGRect) -> CIImage? {
+        if let tryImage = image.resize(size: rect.size) {
+            return image.draw(image: tryImage, loaction: rect.origin)
+        }
+        return nil
+    }
+
+    // Clip
+    func clip(rect: CGRect) -> CIImage? {
+        return self.cropping(to: rect)
     }
 
     // Get pixels from CIImage
@@ -89,5 +121,16 @@ extension CIImage {
             }
         }
         return nil
+    }
+
+    // Size
+    func size() -> CGSize {
+        return self.extent.size
+    }
+
+    // Convert CIImage To CGImage
+    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
+    public func toCGImage() -> CGImage? {
+        return CIContext(options: nil).createCGImage(self, from: self.extent)
     }
 }
