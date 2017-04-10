@@ -186,7 +186,6 @@ public class EFQRCodeGenerator {
     private var imageCodes: [[Bool]]?
     private var imageQRCode: CGImage?
     private var minSuitableSize: EFIntSize!
-    private var contexts = [CGContext]()
 
     public init(
         content: String,
@@ -221,23 +220,14 @@ public class EFQRCodeGenerator {
         self.allowTransparent = extra.allowTransparent
     }
 
-    func EFBeiginContext(size: EFIntSize) -> CGContext? {
-        guard let content = CGContext(
-            data: nil, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(),
+    func CreateContext(size: EFIntSize) -> CGContext? {
+        return CGContext(
+            data: nil,
+            width: size.width, height: size.height,
+            bitsPerComponent: 8, bytesPerRow: 0,
+            space: CGColorSpaceCreateDeviceRGB(),
             bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue
-            ) else {
-                return nil
-        }
-        contexts.append(content)
-        return content
-    }
-
-    func EFEndContext() {
-        self.contexts.removeLast()
-    }
-
-    func currentContext() -> CGContext? {
-        return self.contexts.last
+        )
     }
 
     private func createQRCodeImage() -> CGImage? {
@@ -251,23 +241,23 @@ public class EFQRCodeGenerator {
         let finalWatermarkMode = self.watermarkMode
         let finalIsWatermarkColorful = self.isWatermarkColorful
 
+        // Get QRCodes from image
+        guard let codes = generateCodes() else {
+            return nil
+        }
+
+        // If magnification is not nil, reset finalSize
+        if let tryMagnification = magnification {
+            finalSize = EFIntSize(width: tryMagnification.width * codes.count, height: tryMagnification.height * codes.count)
+        }
+
         var result: CGImage?
-        if let context = EFBeiginContext(size: finalSize) {
-
-            // Get QRCodes from image
-            guard let codes = generateCodes() else {
-                return nil
-            }
-
-            // If magnification is not nil, reset finalSize
-            if let tryMagnification = magnification {
-                finalSize = EFIntSize(width: tryMagnification.width * codes.count, height: tryMagnification.height * codes.count)
-            }
+        if let context = CreateContext(size: finalSize) {
 
             // Cache size
-            let minSuitableWidth = minSuitableSizeGreaterThanOrEqualTo(size: CGFloat(finalSize.width)) ?? finalSize.width
+            let minSuitableWidth = minSuitableSizeGreaterThanOrEqualTo(size: finalSize.widthCGFloat()) ?? finalSize.width
             minSuitableSize = EFIntSize(
-                width: minSuitableWidth, height: Int(CGFloat(finalSize.height) / CGFloat(finalSize.width) * CGFloat(minSuitableWidth))
+                width: minSuitableWidth, height: Int(finalSize.heightCGFloat() / finalSize.widthCGFloat() * CGFloat(minSuitableWidth))
             )
 
             // Watermark
@@ -298,13 +288,16 @@ public class EFQRCodeGenerator {
 
             // Add icon
             if let tryIcon = finalIsIconColorful ? finalIcon : finalIcon?.grayscale() {
-                let iconSize = finalIconSize ?? EFIntSize(
+                var iconSize = finalIconSize ?? EFIntSize(
                     width: Int(CGFloat(finalSize.width) * 0.2), height: Int(CGFloat(finalSize.height) * 0.2)
                 )
                 let maxScale = [CGFloat(0.26), 0.38, 0.5, 0.54][inputCorrectionLevel.rawValue]
-                if CGFloat(iconSize.width) / CGFloat(finalSize.width) > maxScale
-                    || CGFloat(iconSize.height) / CGFloat(finalSize.height) > maxScale {
-                    print("Warning: iconSize too big.")
+                if CGFloat(iconSize.width) / CGFloat(finalSize.width) > maxScale {
+                    iconSize = EFIntSize(width: Int(finalSize.widthCGFloat() * maxScale), height: iconSize.height)
+                    print("Warning: icon width too big, it has been changed.")
+                } else if CGFloat(iconSize.height) / CGFloat(finalSize.height) > maxScale {
+                    iconSize = EFIntSize(width: finalSize.width, height: Int(finalSize.heightCGFloat() * maxScale))
+                    print("Warning: icon height too big, it has been changed.")
                 }
                 context.draw(
                     tryIcon,
@@ -319,7 +312,6 @@ public class EFQRCodeGenerator {
             }
 
             result = context.makeImage()
-            EFEndContext()
         }
 
         return result
@@ -387,7 +379,7 @@ public class EFQRCodeGenerator {
         }
 
         var result: CGImage?
-        if let context = EFBeiginContext(size: size) {
+        if let context = CreateContext(size: size) {
             // Back
             context.setFillColor(colorCGBack)
             context.fill(CGRect(origin: .zero, size: size.toCGSize()))
@@ -396,10 +388,13 @@ public class EFQRCodeGenerator {
             for indexY in 0 ..< codeSize {
                 for indexX in 0 ..< codeSize {
                     if true == codes[indexY][indexX] {
+                        // CTM-90
+                        let indexXCTM = indexY
+                        let indexYCTM = codeSize - indexX - 1
                         context.fill(
                             CGRect(
-                                x: CGFloat(indexX) * scaleX + foregroundPointOffset,
-                                y: CGFloat(indexY) * scaleY + foregroundPointOffset,
+                                x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
+                                y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
                                 width: scaleX - 2 * foregroundPointOffset,
                                 height: scaleY - 2 * foregroundPointOffset
                             )
@@ -408,7 +403,6 @@ public class EFQRCodeGenerator {
                 }
             }
             result = context.makeImage()
-            EFEndContext()
         }
         return result
     }
@@ -451,24 +445,27 @@ public class EFQRCodeGenerator {
 
         var finalImage: CGImage?
 
-        if let context = EFBeiginContext(size: size) {
+        if let context = CreateContext(size: size) {
             // Back point
             context.setFillColor(colorCGBack)
             for indexY in 0 ..< codeSize {
                 for indexX in 0 ..< codeSize {
                     if false == codes[indexY][indexX] {
+                        // CTM-90
+                        let indexXCTM = indexY
+                        let indexYCTM = codeSize - indexX - 1
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scaleX, y: CGFloat(indexY) * scaleY,
+                                    x: CGFloat(indexXCTM) * scaleX, y: CGFloat(indexYCTM) * scaleY,
                                     width: pointWidthOriX, height: pointWidthOriY
                                 )
                             )
                         } else {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scaleX + pointMinOffsetX,
-                                    y: CGFloat(indexY) * scaleY + pointMinOffsetY,
+                                    x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
+                                    y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
                                     width: pointWidthMinX, height: pointWidthMinY
                                 )
                             )
@@ -481,11 +478,14 @@ public class EFQRCodeGenerator {
             for indexY in 0 ..< codeSize {
                 for indexX in 0 ..< codeSize {
                     if true == codes[indexY][indexX] {
+                        // CTM-90
+                        let indexXCTM = indexY
+                        let indexYCTM = codeSize - indexX - 1
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scaleX + foregroundPointOffset,
-                                    y: CGFloat(indexY) * scaleY + foregroundPointOffset,
+                                    x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
+                                    y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
                                     width: pointWidthOriX - 2 * foregroundPointOffset,
                                     height: pointWidthOriY - 2 * foregroundPointOffset
                                 )
@@ -493,8 +493,8 @@ public class EFQRCodeGenerator {
                         } else {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scaleX + pointMinOffsetX,
-                                    y: CGFloat(indexY) * scaleY + pointMinOffsetY,
+                                    x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
+                                    y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
                                     width: pointWidthMinX, height: pointWidthMinY
                                 )
                             )
@@ -568,7 +568,7 @@ public class EFQRCodeGenerator {
     private func drawWatermarkImage(image: CGImage, colorBack: CIColor, mode: EFWatermarkMode, intSize: EFIntSize) -> CGImage? {
         let size = intSize.toCGSize()
         var result: CGImage?
-        if let context = EFBeiginContext(size: intSize) {
+        if let context = CreateContext(size: intSize) {
             if allowTransparent {
                 guard let codes = generateCodes() else {
                     return nil
@@ -647,8 +647,6 @@ public class EFQRCodeGenerator {
             }
             context.draw(image, in: CGRect(origin: finalOrigin, size: finalSize))
             result = context.makeImage()
-
-            EFEndContext()
         }
         return result
     }
