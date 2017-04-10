@@ -37,31 +37,32 @@ public class EFQRCode {
     public static func generate(
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
-        size: UInt = 256,
-        magnification: UInt? = nil,
+        size: EFIntSize = EFIntSize(width: 256, height: 256),
+        magnification: EFIntSize? = nil,
         backgroundColor: CIColor = CIColor.white,
         foregroundColor: CIColor = CIColor.black,
-        icon: CGImage? = nil,
-        iconSize: UInt? = nil,
-        isIconColorful: Bool = true,
-        watermark: CGImage? = nil,
-        watermarkMode: EFWatermarkMode = .scaleToFill,
-        isWatermarkColorful: Bool = true
+        icon: EFIcon? = nil,
+        watermark: EFWatermark? = nil,
+        extra: EFExtra? = nil
         ) -> CGImage? {
 
-        return EFQRCodeGenerator(
+        let generator = EFQRCodeGenerator(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
             size: size,
             magnification: magnification,
             backgroundColor: backgroundColor,
-            foregroundColor: foregroundColor,
-            icon: icon,
-            iconSize: iconSize,
-            isIconColorful: isIconColorful,
-            watermark: watermark,
-            watermarkMode: watermarkMode,
-            isWatermarkColorful: isWatermarkColorful
-            ).image
+            foregroundColor: foregroundColor
+        )
+        if let tryIcon = icon {
+            generator.setIcon(icon: tryIcon)
+        }
+        if let tryWatermark = watermark {
+            generator.setWatermark(watermark: tryWatermark)
+        }
+        if let tryExtra = extra {
+            generator.setExtra(extra: tryExtra)
+        }
+        return generator.image
     }
 }

@@ -15,6 +15,7 @@
 		12869E8B1E9A8EA70050BC54 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12869E8A1E9A8EA70050BC54 /* CGImage+.swift */; };
 		12869E911E9A94140050BC54 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12869E8F1E9A94140050BC54 /* UIColor+.swift */; };
 		12869E921E9A94140050BC54 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12869E901E9A94140050BC54 /* UIImage+.swift */; };
+		128FA1BA1E9BBEE2009C6E08 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FA1B91E9BBEE2009C6E08 /* CGSize+.swift */; };
 		167086D8D4DC3342ADDCF59FD4FD5CDD /* Pods-EFQRCode_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DF7B193DAE41E27189E7E76D9CF97E72 /* Pods-EFQRCode_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F94B82B251B767726B54BE83E7BE8A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		395FB8F169C4132866643AB697C518C8 /* Pods-EFQRCode_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F102214AF42A4E8D7A5B3CC644D4B9 /* Pods-EFQRCode_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,7 @@
 		12869E8A1E9A8EA70050BC54 /* CGImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+.swift"; sourceTree = "<group>"; };
 		12869E8F1E9A94140050BC54 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		12869E901E9A94140050BC54 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		128FA1B91E9BBEE2009C6E08 /* CGSize+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
 		277E37FE1B47760F9913058038DF41A8 /* Pods-EFQRCode_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EFQRCode_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2ADF4DC99F9DCAC7DF2C6114AD45015F /* Pods-EFQRCode_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EFQRCode_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2BEFC7803C3FFCB8F0922C0618712B85 /* Pods-EFQRCode_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EFQRCode_Example-resources.sh"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				12869E8A1E9A8EA70050BC54 /* CGImage+.swift */,
 				120380831E9A4E8D008BCF5E /* CIColor+.swift */,
 				12360A0B1E8B64EB0081320F /* CIImage+.swift */,
+				128FA1B91E9BBEE2009C6E08 /* CGSize+.swift */,
 				12360A071E8A9E1A0081320F /* EFQRCode.swift */,
 				C19194C573A5462C79E8FA9A2380C718 /* EFQRCodeGenerator.swift */,
 				12360A051E8A9C410081320F /* EFQRCodeRecognizer.swift */,
@@ -387,6 +390,7 @@
 			files = (
 				12869E911E9A94140050BC54 /* UIColor+.swift in Sources */,
 				12869E891E9A83C20050BC54 /* CGColor+.swift in Sources */,
+				128FA1BA1E9BBEE2009C6E08 /* CGSize+.swift in Sources */,
 				12869E8B1E9A8EA70050BC54 /* CGImage+.swift in Sources */,
 				12869E921E9A94140050BC54 /* UIImage+.swift in Sources */,
 				12360A061E8A9C410081320F /* EFQRCodeRecognizer.swift in Sources */,

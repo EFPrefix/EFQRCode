@@ -152,7 +152,7 @@ EFQRCode.generate(
     content: String, 
     inputCorrectionLevel: EFInputCorrectionLevel, 
     size: CGFloat, 
-    magnification: UInt?, 
+    magnification: Int?, 
     backgroundColor: UIColor, 
     foregroundColor: UIColor, 
     icon: UIImage?, 
@@ -243,7 +243,7 @@ L | M | Q | H
 
 Two-dimensional code length, optional, default is 256 (PS: if magnification is not nil, size will be ignored).
 
-* **magnification: UInt?**
+* **magnification: Int?**
 
 Magnification, optional, default is nil.
 

@@ -53,6 +53,44 @@ public enum EFWatermarkMode: Int {
 struct EFIntPoint {
     var x: Int = 0
     var y: Int = 0
+
+    public func toCGPoint() -> CGPoint {
+        return CGPoint(x: self.x, y: self.y)
+    }
+}
+
+public struct EFIcon {
+    var image: CGImage?
+    var size: EFIntSize?
+    var isColorful: Bool = true
+
+    public init(image: CGImage?, size: EFIntSize?, isColorful: Bool = true) {
+        self.image = image
+        self.size = size
+        self.isColorful = isColorful
+    }
+}
+
+public struct EFWatermark {
+    var image: CGImage?
+    var mode: EFWatermarkMode = .scaleToFill
+    var isColorful: Bool = true
+
+    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill, isColorful: Bool = true) {
+        self.image = image
+        self.mode = mode
+        self.isColorful = isColorful
+    }
+}
+
+public struct EFExtra {
+    var foregroundPointOffset: CGFloat = 0
+    var allowTransparent: Bool = true
+
+    public init(foregroundPointOffset: CGFloat = 0, allowTransparent: Bool = true) {
+        self.foregroundPointOffset = foregroundPointOffset
+        self.allowTransparent = allowTransparent
+    }
 }
 
 // EFQRCode+Create
@@ -61,22 +99,22 @@ public class EFQRCodeGenerator {
     public var content: String? {
         didSet {
             imageQRCode = nil
-            QRImageCodes = nil
+            imageCodes = nil
         }
     }
     public var inputCorrectionLevel: EFInputCorrectionLevel = .h {
         didSet {
             imageQRCode = nil
-            QRImageCodes = nil
+            imageCodes = nil
         }
     }
-    public var size: UInt = 256 {
+    public var size: EFIntSize = EFIntSize(width: 256, height: 256) {
         didSet {
             imageQRCode = nil
         }
     }
-    // If set this, size will be ignored.
-    public var magnification: UInt? {
+    // If set magnification, size will be ignored.
+    public var magnification: EFIntSize? {
         didSet {
             imageQRCode = nil
         }
@@ -96,7 +134,7 @@ public class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
-    public var iconSize: UInt? = nil {
+    public var iconSize: EFIntSize? = nil {
         didSet {
             imageQRCode = nil
         }
@@ -145,41 +183,64 @@ public class EFQRCodeGenerator {
     }
 
     // MARK:- Cache
-    private var QRImageCodes: [[Bool]]?
+    private var imageCodes: [[Bool]]?
     private var imageQRCode: CGImage?
-    private var minSuitableSize: CGFloat?
+    private var minSuitableSize: EFIntSize!
+    private var contexts = [CGContext]()
 
     public init(
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
-        size: UInt = 256,
-        magnification: UInt? = nil,
+        size: EFIntSize = EFIntSize(width: 256, height: 256),
+        magnification: EFIntSize? = nil,
         backgroundColor: CIColor = CIColor.white,
-        foregroundColor: CIColor = CIColor.black,
-        icon: CGImage? = nil,
-        iconSize: UInt? = nil,
-        isIconColorful: Bool = true,
-        watermark: CGImage? = nil,
-        watermarkMode: EFWatermarkMode = .scaleToFill,
-        isWatermarkColorful: Bool = true
+        foregroundColor: CIColor = CIColor.black
         ) {
-
         self.content = content
         self.inputCorrectionLevel = inputCorrectionLevel
         self.size = size
         self.magnification = magnification
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
-        self.icon = icon
-        self.iconSize = iconSize
-        self.isIconColorful = isIconColorful
-        self.watermark = watermark
-        self.watermarkMode = watermarkMode
-        self.isWatermarkColorful = isWatermarkColorful
+    }
+
+    func setIcon(icon: EFIcon) {
+        self.icon = icon.image
+        self.iconSize = icon.size
+        self.isIconColorful = icon.isColorful
+    }
+
+    func setWatermark(watermark: EFWatermark) {
+        self.watermark = watermark.image
+        self.watermarkMode = watermark.mode
+        self.isWatermarkColorful = watermark.isColorful
+    }
+
+    func setExtra(extra: EFExtra) {
+        self.foregroundPointOffset = extra.foregroundPointOffset
+        self.allowTransparent = extra.allowTransparent
+    }
+
+    func EFBeiginContext(size: EFIntSize) -> CGContext? {
+        guard let content = CGContext(
+            data: nil, width: size.width, height: size.height, bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue
+            ) else {
+                return nil
+        }
+        contexts.append(content)
+        return content
+    }
+
+    func EFEndContext() {
+        self.contexts.removeLast()
+    }
+
+    func currentContext() -> CGContext? {
+        return self.contexts.last
     }
 
     private func createQRCodeImage() -> CGImage? {
-
         var finalSize = self.size
         let finalBackgroundColor = self.backgroundColor
         let finalForegroundColor = self.foregroundColor
@@ -190,86 +251,78 @@ public class EFQRCodeGenerator {
         let finalWatermarkMode = self.watermarkMode
         let finalIsWatermarkColorful = self.isWatermarkColorful
 
-        // Get QRCodes from image
-        guard let QRCodes = generateCodes() else {
-            return nil
-        }
+        var result: CGImage?
+        if let context = EFBeiginContext(size: finalSize) {
 
-        // If magnification is not nil, reset finalSize
-        if let tryMagnification = magnification {
-            finalSize = tryMagnification * UInt(QRCodes.count)
-        }
-
-        var finalImage: CGImage?
-
-        // Cache size
-        minSuitableSize = minSuitableSizeGreaterThanOrEqualTo(size: CGFloat(finalSize))
-
-        // Watermark
-        if let tryWatermark = finalIsWatermarkColorful ? finalWatermark : finalWatermark?.toCIImage().greyscale()?.toCGImage() {
-            // Has watermark
-            finalImage = createQRUIImageTransparent(
-                codes: QRCodes,
-                colorBack: finalBackgroundColor,
-                colorFront: finalForegroundColor,
-                size: minSuitableSize ?? CGFloat(finalSize)
-            )
-
-            // Position of WatermarkImage
-            guard let tryPreWatermarkImage = preWatermarkImage(
-                image: tryWatermark.toCIImage(),
-                colorBack: finalBackgroundColor,
-                mode: finalWatermarkMode,
-                size: CGSize(width: CGFloat(finalSize), height: CGFloat(finalSize))
-                ) else {
-                    return nil
+            // Get QRCodes from image
+            guard let codes = generateCodes() else {
+                return nil
             }
 
-            // Mix QRCode and watermark
-            finalImage = mixImageCenter(
-                back: tryPreWatermarkImage,
-                backSize: CGSize(width: CGFloat(finalSize), height: CGFloat(finalSize)),
-                fore: finalImage?.toCIImage()
-            )?.toCGImage()
-        } else {
-            //No watermark
-            finalImage = createQRUIImage(
-                codes: QRCodes,
-                colorBack: finalBackgroundColor,
-                colorFront: finalForegroundColor,
-                size: minSuitableSize ?? CGFloat(finalSize)
-            )
-        }
-
-        // Add icon
-        if let tryIcon = finalIsIconColorful ? finalIcon : finalIcon?.toCIImage().greyscale()?.toCGImage(), let tryFinalImage = finalImage {
-            let maxIconSize = CGFloat(finalSize) * [0.26, 0.38, 0.5, 0.54][inputCorrectionLevel.rawValue]
-            var iconSize = CGFloat(finalIconSize ?? UInt(CGFloat(finalSize) * 0.2))
-            if iconSize > maxIconSize {
-                print("Warning: iconSize too big, it has been modified to \(maxIconSize)")
+            // If magnification is not nil, reset finalSize
+            if let tryMagnification = magnification {
+                finalSize = EFIntSize(width: tryMagnification.width * codes.count, height: tryMagnification.height * codes.count)
             }
 
-            iconSize = min(maxIconSize, iconSize)
-            finalImage = mixImageCenter(
-                back: tryFinalImage.toCIImage(),
-                backSize: CGSize(width: CGFloat(finalSize), height: CGFloat(finalSize)),
-                fore: tryIcon.toCIImage(),
-                foreSize: CGSize(width: iconSize, height: iconSize)
-            )?.toCGImage()
+            // Cache size
+            let minSuitableWidth = minSuitableSizeGreaterThanOrEqualTo(size: CGFloat(finalSize.width)) ?? finalSize.width
+            minSuitableSize = EFIntSize(
+                width: minSuitableWidth, height: Int(CGFloat(finalSize.height) / CGFloat(finalSize.width) * CGFloat(minSuitableWidth))
+            )
+
+            // Watermark
+            if let tryWatermark = finalIsWatermarkColorful ? finalWatermark : finalWatermark?.grayscale() {
+                // Has watermark
+                if let tryBackImage = drawWatermarkImage(
+                    image: tryWatermark,
+                    colorBack: finalBackgroundColor,
+                    mode: finalWatermarkMode,
+                    intSize: finalSize
+                    ) {
+                    context.draw(tryBackImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
+                }
+
+                if let tryFrontImage = drawQRCodeImageTransparent(
+                    codes: codes, colorBack: finalBackgroundColor, colorFront: finalForegroundColor, size: minSuitableSize
+                    ) {
+                    context.draw(tryFrontImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
+                }
+            } else {
+                // No watermark
+                if let tryImage = drawQRCodeImage(
+                    codes: codes, colorBack: finalBackgroundColor, colorFront: finalForegroundColor, size: minSuitableSize
+                    ) {
+                    context.draw(tryImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
+                }
+            }
+
+            // Add icon
+            if let tryIcon = finalIsIconColorful ? finalIcon : finalIcon?.grayscale() {
+                let iconSize = finalIconSize ?? EFIntSize(
+                    width: Int(CGFloat(finalSize.width) * 0.2), height: Int(CGFloat(finalSize.height) * 0.2)
+                )
+                let maxScale = [CGFloat(0.26), 0.38, 0.5, 0.54][inputCorrectionLevel.rawValue]
+                if CGFloat(iconSize.width) / CGFloat(finalSize.width) > maxScale
+                    || CGFloat(iconSize.height) / CGFloat(finalSize.height) > maxScale {
+                    print("Warning: iconSize too big.")
+                }
+                context.draw(
+                    tryIcon,
+                    in: CGRect(
+                        origin: CGPoint(
+                            x: CGFloat(context.width - iconSize.width) / 2.0,
+                            y: CGFloat(context.height - iconSize.height) / 2.0
+                        ),
+                        size: iconSize.toCGSize()
+                    )
+                )
+            }
+
+            result = context.makeImage()
+            EFEndContext()
         }
 
-        return finalImage
-    }
-
-    // Create QR CIImage
-    private func createQRCIImage(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
-        let stringData = string.data(using: String.Encoding.utf8)
-        if let qrFilter = CIFilter(name: "CIQRCodeGenerator") {
-            qrFilter.setValue(stringData, forKey: "inputMessage")
-            qrFilter.setValue(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue], forKey: "inputCorrectionLevel")
-            return qrFilter.outputImage
-        }
-        return nil
+        return result
     }
 
     private func getPixels() -> [[EFUIntPixel]]? {
@@ -278,9 +331,9 @@ public class EFQRCodeGenerator {
         }
         let finalInputCorrectionLevel = self.inputCorrectionLevel
 
-        guard let tryQRImagePixels = createQRCIImage(
+        guard let tryQRImagePixels = CIImage.generateQRCode(
             string: finalContent, inputCorrectionLevel: finalInputCorrectionLevel
-            )?.pixels() else {
+            )?.toCGImage()?.pixels() else {
                 print("Warning: Content too large.")
                 return nil
         }
@@ -305,8 +358,8 @@ public class EFQRCodeGenerator {
 
     // Get QRCodes from pixels
     private func generateCodes() -> [[Bool]]? {
-        if let tryQRImageCodes = QRImageCodes {
-            return tryQRImageCodes
+        if let tryImageCodes = imageCodes {
+            return tryImageCodes
         }
 
         // Get pixels from image
@@ -315,34 +368,29 @@ public class EFQRCodeGenerator {
         }
 
         // Get QRCodes from image
-        QRImageCodes = getCodes(pixels: tryQRImagePixels)
+        imageCodes = getCodes(pixels: tryQRImagePixels)
 
-        return QRImageCodes
+        return imageCodes
     }
 
     // Create Colorful QR Image
-    private func createQRUIImage(codes: [[Bool]], colorBack: CIColor, colorFront: CIColor, size: CGFloat) -> CGImage? {
-        let scale = size / CGFloat(codes.count)
-        if scale < 1.0 {
+    private func drawQRCodeImage(codes: [[Bool]], colorBack: CIColor, colorFront: CIColor, size: EFIntSize) -> CGImage? {
+        let scaleX = CGFloat(size.width) / CGFloat(codes.count)
+        let scaleY = CGFloat(size.height) / CGFloat(codes.count)
+        if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
 
         let codeSize = codes.count
-
         guard let colorCGBack = colorBack.toCGColor(), let colorCGFront = colorFront.toCGColor() else {
             return nil
         }
 
-        var finalImage: CGImage?
-
-        if let context = CGContext.init(
-            data: nil, width: Int(size), height: Int(size),
-            bitsPerComponent: 8, bytesPerRow: 0,
-            space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-            ) {
+        var result: CGImage?
+        if let context = EFBeiginContext(size: size) {
             // Back
             context.setFillColor(colorCGBack)
-            context.fill(CGRect(x: 0, y: 0, width: size, height: size))
+            context.fill(CGRect(origin: .zero, size: size.toCGSize()))
             // Point
             context.setFillColor(colorCGFront)
             for indexY in 0 ..< codeSize {
@@ -350,32 +398,36 @@ public class EFQRCodeGenerator {
                     if true == codes[indexY][indexX] {
                         context.fill(
                             CGRect(
-                                x: CGFloat(indexX) * scale + foregroundPointOffset,
-                                y: CGFloat(indexY) * scale + foregroundPointOffset,
-                                width: scale - 2 * foregroundPointOffset,
-                                height: scale - 2 * foregroundPointOffset
+                                x: CGFloat(indexX) * scaleX + foregroundPointOffset,
+                                y: CGFloat(indexY) * scaleY + foregroundPointOffset,
+                                width: scaleX - 2 * foregroundPointOffset,
+                                height: scaleY - 2 * foregroundPointOffset
                             )
                         )
                     }
                 }
             }
-
-            finalImage = context.makeImage()
+            result = context.makeImage()
+            EFEndContext()
         }
-        return finalImage
+        return result
     }
 
     // Create Colorful QR Image
-    private func createQRUIImageTransparent(codes: [[Bool]], colorBack: CIColor, colorFront: CIColor, size: CGFloat) -> CGImage? {
-        let scale = size / CGFloat(codes.count)
-        if scale < 3.0 {
+    private func drawQRCodeImageTransparent(codes: [[Bool]], colorBack: CIColor, colorFront: CIColor, size: EFIntSize) -> CGImage? {
+        let scaleX = CGFloat(size.width) / CGFloat(codes.count)
+        let scaleY = CGFloat(size.height) / CGFloat(codes.count)
+        if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
 
         let codeSize = codes.count
-        let pointMinOffset = scale / 3
-        let pointWidthOri = scale
-        let pointWidthMin = scale - 2 * pointMinOffset
+        let pointMinOffsetX = scaleX / 3
+        let pointMinOffsetY = scaleY / 3
+        let pointWidthOriX = scaleX
+        let pointWidthOriY = scaleY
+        let pointWidthMinX = scaleX - 2 * pointMinOffsetX
+        let pointWidthMinY = scaleY - 2 * pointMinOffsetY
 
         // Get AlignmentPatternLocations first
         var points = [EFIntPoint]()
@@ -399,11 +451,7 @@ public class EFQRCodeGenerator {
 
         var finalImage: CGImage?
 
-        if let context = CGContext.init(
-            data: nil, width: Int(size), height: Int(size),
-            bitsPerComponent: 8, bytesPerRow: 0,
-            space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-            ) {
+        if let context = EFBeiginContext(size: size) {
             // Back point
             context.setFillColor(colorCGBack)
             for indexY in 0 ..< codeSize {
@@ -412,16 +460,16 @@ public class EFQRCodeGenerator {
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scale, y: CGFloat(indexY) * scale,
-                                    width: pointWidthOri, height: pointWidthOri
+                                    x: CGFloat(indexX) * scaleX, y: CGFloat(indexY) * scaleY,
+                                    width: pointWidthOriX, height: pointWidthOriY
                                 )
                             )
                         } else {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scale + pointMinOffset,
-                                    y: CGFloat(indexY) * scale + pointMinOffset,
-                                    width: pointWidthMin, height: pointWidthMin
+                                    x: CGFloat(indexX) * scaleX + pointMinOffsetX,
+                                    y: CGFloat(indexY) * scaleY + pointMinOffsetY,
+                                    width: pointWidthMinX, height: pointWidthMinY
                                 )
                             )
                         }
@@ -436,19 +484,18 @@ public class EFQRCodeGenerator {
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scale + foregroundPointOffset,
-                                    y: CGFloat(indexY) * scale + foregroundPointOffset,
-                                    width: pointWidthOri - 2 * foregroundPointOffset,
-                                    height: pointWidthOri - 2 * foregroundPointOffset
+                                    x: CGFloat(indexX) * scaleX + foregroundPointOffset,
+                                    y: CGFloat(indexY) * scaleY + foregroundPointOffset,
+                                    width: pointWidthOriX - 2 * foregroundPointOffset,
+                                    height: pointWidthOriY - 2 * foregroundPointOffset
                                 )
                             )
                         } else {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexX) * scale + pointMinOffset,
-                                    y: CGFloat(indexY) * scale + pointMinOffset,
-                                    width: pointWidthMin,
-                                    height: pointWidthMin
+                                    x: CGFloat(indexX) * scaleX + pointMinOffsetX,
+                                    y: CGFloat(indexY) * scaleY + pointMinOffsetY,
+                                    width: pointWidthMinX, height: pointWidthMinY
                                 )
                             )
                         }
@@ -518,115 +565,105 @@ public class EFQRCodeGenerator {
     }
 
     // Pre
-    private func preWatermarkImage(image: CIImage, colorBack: CIColor, mode: EFWatermarkMode, size: CGSize) -> CIImage? {
-        let finalImage: CIImage!
-        if allowTransparent {
-            guard let QRCodes = generateCodes() else {
-                return nil
+    private func drawWatermarkImage(image: CGImage, colorBack: CIColor, mode: EFWatermarkMode, intSize: EFIntSize) -> CGImage? {
+        let size = intSize.toCGSize()
+        var result: CGImage?
+        if let context = EFBeiginContext(size: intSize) {
+            if allowTransparent {
+                guard let codes = generateCodes() else {
+                    return nil
+                }
+                let finalBackgroundColor = self.backgroundColor
+                let finalForegroundColor = self.foregroundColor
+
+                if let tryCGImage = drawQRCodeImage(
+                    codes: codes,
+                    colorBack: finalBackgroundColor,
+                    colorFront: finalForegroundColor,
+                    size: minSuitableSize
+                    ) {
+                    context.draw(tryCGImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                }
+            } else {
+                if let tryColor = colorBack.toCGColor() {
+                    context.setFillColor(tryColor)
+                    context.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                }
             }
-            let finalBackgroundColor = self.backgroundColor
-            let finalForegroundColor = self.foregroundColor
 
-            finalImage = createQRUIImage(
-                codes: QRCodes,
-                colorBack: finalBackgroundColor,
-                colorFront: finalForegroundColor,
-                size: minSuitableSize ?? size.width
-                )?.toCIImage().resize(size: size)
-        } else {
-            finalImage = CIImage.create(color: colorBack, size: size)
-        }
-        guard let _ = finalImage else {
-            return nil
-        }
-
-        // Image
-        var finalSize = size
-        var finalOrigin = CGPoint.zero
-        switch mode {
-        case .bottom:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: (size.width - image.size().width) / 2.0, y: 0)
-            break
-        case .bottomLeft:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: 0, y: 0)
-            break
-        case .bottomRight:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: size.width - image.size().width, y: 0)
-            break
-        case .center:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: (size.width - image.size().width) / 2.0, y: (size.height - image.size().height) / 2.0)
-            break
-        case .left:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: 0, y: (size.height - image.size().height) / 2.0)
-            break
-        case .right:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: size.width - image.size().width, y: (size.height - image.size().height) / 2.0)
-            break
-        case .top:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: (size.width - image.size().width) / 2.0, y: size.height - image.size().height)
-            break
-        case .topLeft:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: 0, y: size.height - image.size().height)
-            break
-        case .topRight:
-            finalSize = image.size()
-            finalOrigin = CGPoint(x: size.width - image.size().width, y: size.height - image.size().height)
-            break
-        case .scaleAspectFill:
-            let scale = max(size.width / image.size().width, size.height / image.size().height)
-            finalSize = CGSize(width: image.size().width * scale, height: image.size().height * scale)
-            finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0, y: (size.height - finalSize.height) / 2.0)
-            break
-        case .scaleAspectFit:
-            let scale = max(image.size().width / size.width, image.size().height / size.height)
-            finalSize = CGSize(width: image.size().width / scale, height: image.size().height / scale)
-            finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0, y: (size.height - finalSize.height) / 2.0)
-            break
-        default:
-            break
-        }
-        return finalImage?.draw(image: image, rect: CGRect(origin: finalOrigin, size: finalSize))?.clip(
-            rect: CGRect(origin: .zero, size: size)
-        )
-    }
-
-    // Mix
-    private func mixImageCenter(back: CIImage, backSize: CGSize, fore: CIImage?, foreSize: CGSize? = nil) -> CIImage? {
-        if let tryNewBack = back.resize(size: backSize) {
-            let tryForeSize = foreSize ?? backSize
-            if let tryFore = fore, let tryNewBack = tryFore.resize(size: tryForeSize) {
-                return tryNewBack.draw(
-                    image: tryNewBack,
-                    loaction: CGPoint(
-                        x: (backSize.width - tryForeSize.width) / 2.0,
-                        y: (backSize.height - tryForeSize.height) / 2.0
-                    )
-                )
+            // Image
+            var finalSize = size
+            var finalOrigin = CGPoint.zero
+            let imageSize = CGSize(width: image.width, height: image.height)
+            switch mode {
+            case .bottom:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: 0)
+                break
+            case .bottomLeft:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: 0, y: 0)
+                break
+            case .bottomRight:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: size.width - imageSize.width, y: 0)
+                break
+            case .center:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: (size.height - imageSize.height) / 2.0)
+                break
+            case .left:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: 0, y: (size.height - imageSize.height) / 2.0)
+                break
+            case .right:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: size.width - imageSize.width, y: (size.height - imageSize.height) / 2.0)
+                break
+            case .top:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: size.height - imageSize.height)
+                break
+            case .topLeft:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: 0, y: size.height - imageSize.height)
+                break
+            case .topRight:
+                finalSize = imageSize
+                finalOrigin = CGPoint(x: size.width - imageSize.width, y: size.height - imageSize.height)
+                break
+            case .scaleAspectFill:
+                let scale = max(size.width / imageSize.width, size.height / imageSize.height)
+                finalSize = CGSize(width: imageSize.width * scale, height: imageSize.height * scale)
+                finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0, y: (size.height - finalSize.height) / 2.0)
+                break
+            case .scaleAspectFit:
+                let scale = max(imageSize.width / size.width, imageSize.height / size.height)
+                finalSize = CGSize(width: imageSize.width / scale, height: imageSize.height / scale)
+                finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0, y: (size.height - finalSize.height) / 2.0)
+                break
+            default:
+                break
             }
-            return tryNewBack
+            context.draw(image, in: CGRect(origin: finalOrigin, size: finalSize))
+            result = context.makeImage()
+
+            EFEndContext()
         }
-        return nil
+        return result
     }
 
     // MARK:- Recommand magnification
-    public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> UInt? {
-        guard let QRCodes = generateCodes() else {
+    public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> Int? {
+        guard let codes = generateCodes() else {
             return nil
         }
         let finalWatermark = self.watermark
 
-        let baseMagnification = max(1, UInt(size / CGFloat(QRCodes.count)))
-        for offset in [UInt(0), 1, 2, 3] {
+        let baseMagnification = max(1, Int(size / CGFloat(codes.count)))
+        for offset in [Int(0), 1, 2, 3] {
             let tempMagnification = baseMagnification + offset
-            if CGFloat(Int(tempMagnification) * QRCodes.count) >= size {
+            if CGFloat(Int(tempMagnification) * codes.count) >= size {
                 if finalWatermark == nil {
                     return tempMagnification
                 } else {
@@ -639,24 +676,24 @@ public class EFQRCodeGenerator {
         return nil
     }
 
-    public func maxMagnificationLessThanOrEqualTo(size: CGFloat) -> UInt? {
-        guard let QRCodes = generateCodes() else {
+    public func maxMagnificationLessThanOrEqualTo(size: CGFloat) -> Int? {
+        guard let codes = generateCodes() else {
             return nil
         }
         let finalWatermark = self.watermark
 
-        let baseMagnification = max(1, Int(size / CGFloat(QRCodes.count)))
+        let baseMagnification = max(1, Int(size / CGFloat(codes.count)))
         for offset in [0, -1, -2, -3] {
             let tempMagnification = baseMagnification + offset
             if tempMagnification <= 0 {
                 return finalWatermark == nil ? 1 : 3
             }
-            if CGFloat(tempMagnification * QRCodes.count) <= size {
+            if CGFloat(tempMagnification * codes.count) <= size {
                 if finalWatermark == nil {
-                    return UInt(tempMagnification)
+                    return Int(tempMagnification)
                 } else {
                     if tempMagnification % 3 == 0 {
-                        return UInt(tempMagnification)
+                        return Int(tempMagnification)
                     }
                 }
             }
@@ -665,16 +702,16 @@ public class EFQRCodeGenerator {
     }
 
     // MARK:- calculateSuitableSize
-    private func minSuitableSizeGreaterThanOrEqualTo(size: CGFloat) -> CGFloat? {
-        guard let QRCodes = generateCodes() else {
+    private func minSuitableSizeGreaterThanOrEqualTo(size: CGFloat) -> Int? {
+        guard let codes = generateCodes() else {
             return nil
         }
         
         let baseSuitableSize = Int(size)
-        for offset in 0...QRCodes.count {
+        for offset in 0...codes.count {
             let tempSuitableSize = baseSuitableSize + offset
-            if tempSuitableSize % QRCodes.count == 0 {
-                return CGFloat(tempSuitableSize)
+            if tempSuitableSize % codes.count == 0 {
+                return tempSuitableSize
             }
         }
         return nil

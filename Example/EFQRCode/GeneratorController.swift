@@ -21,12 +21,12 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
 
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
-    var size: CGFloat = 256
-    var magnification: UInt? = nil
+    var size: Int = 256
+    var magnification: Int? = nil
     var backColor = UIColor.white
     var frontColor = UIColor.black
     var icon: UIImage? = nil
-    var iconSize: CGFloat? = nil
+    var iconSize: Int? = nil
     var iconColorful = true
     var watermark: UIImage? = nil
     var watermarkMode = EFWatermarkMode.scaleAspectFill
@@ -138,24 +138,17 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             content = textView.text
         }
 
-        let generator = EFQRCodeGenerator(
+        if let tryCGImage = EFQRCode.generate(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
-            size: UInt(size),
-            magnification: magnification,
+            size: EFIntSize(width: size, height: size),
+            magnification: magnification == nil ? nil : EFIntSize(width: magnification!, height: magnification!),
             backgroundColor: CIColor(color: backColor),
             foregroundColor: CIColor(color: frontColor),
-            icon: icon?.toCGImage(),
-            iconSize: iconSize == nil ? nil : UInt(iconSize!),
-            isIconColorful: iconColorful,
-            watermark: watermark?.toCGImage(),
-            watermarkMode: watermarkMode,
-            isWatermarkColorful: watermarkColorful
-        )
-        generator.foregroundPointOffset = self.foregroundPointOffset
-        generator.allowTransparent = self.allowTransparent
-
-        if let tryCGImage = generator.image {
+            icon: EFIcon(image: icon?.toCGImage(), size: EFIntSize(width: iconSize ?? 10, height: iconSize ?? 10), isColorful: iconColorful),
+            watermark: EFWatermark(image: watermark?.toCGImage(), mode: watermarkMode, isColorful: watermarkColorful),
+            extra: EFExtra(foregroundPointOffset: foregroundPointOffset, allowTransparent: allowTransparent)
+            ) {
             let tryImage = UIImage(cgImage: tryCGImage)
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
@@ -211,7 +204,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 (action) -> Void in
             })
         )
-        for width in [CGFloat(1), 32, 64, 128, 256, 512, 1024, 2048] {
+        for width in [Int(1), 32, 64, 128, 256, 512, 1024, 2048] {
             alert.addAction(
                 UIAlertAction(title: "\(width)", style: .default, handler: {
                     [weak self] (action) -> Void in
@@ -245,7 +238,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        for magnification in [UInt(1), 3, 6, 9, 12, 15, 18, 21, 23, 25, 27, 30] {
+        for magnification in [Int(1), 3, 6, 9, 12, 15, 18, 21, 23, 25, 27, 30] {
             alert.addAction(
                 UIAlertAction(title: "\(magnification)", style: .default, handler: {
                     [weak self] (action) -> Void in
@@ -387,7 +380,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             UIAlertAction(title: "\(UIScreen.main.bounds.size.width * 0.06)", style: .default, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
-                    strongSelf.iconSize = UIScreen.main.bounds.size.width * 0.06
+                    strongSelf.iconSize = Int(UIScreen.main.bounds.size.width * 0.06)
                     strongSelf.refresh()
                 }
             })
@@ -396,7 +389,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             UIAlertAction(title: "\(UIScreen.main.bounds.size.width * 2 * 0.06)", style: .default, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
-                    strongSelf.iconSize = UIScreen.main.bounds.size.width * 2 * 0.06
+                    strongSelf.iconSize = Int(UIScreen.main.bounds.size.width * 2 * 0.06)
                     strongSelf.refresh()
                 }
             })
