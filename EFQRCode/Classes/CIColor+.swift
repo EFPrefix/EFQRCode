@@ -24,12 +24,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+import CoreGraphics
 
 public extension CIColor {
 
-    public static let white = CIColor(red: 1, green: 1, blue: 1)
-    public static let black = CIColor(red: 0, green: 0, blue: 0)
+    public static func EFWhite() -> CIColor {
+        return CIColor(red: 1, green: 1, blue: 1)
+    }
+
+    public static func EFBlack() -> CIColor {
+        return CIColor(red: 0, green: 0, blue: 0)
+    }
 
     public func toCGColor() -> CGColor? {
         return CGColor(colorSpace: self.colorSpace, components: self.components)

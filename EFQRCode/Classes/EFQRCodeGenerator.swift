@@ -24,7 +24,7 @@
  //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  //  THE SOFTWARE.
 
- import CoreImage
+import CoreGraphics
 
  // EFQRCode+Create
  public class EFQRCodeGenerator {
@@ -53,12 +53,12 @@
             imageQRCode = nil
         }
     }
-    public var backgroundColor: CIColor = CIColor.white {
+    public var backgroundColor: CIColor = CIColor.EFWhite() {
         didSet {
             imageQRCode = nil
         }
     }
-    public var foregroundColor: CIColor = CIColor.black {
+    public var foregroundColor: CIColor = CIColor.EFBlack() {
         didSet {
             imageQRCode = nil
         }
@@ -127,8 +127,8 @@
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
         size: EFIntSize = EFIntSize(width: 256, height: 256),
         magnification: EFIntSize? = nil,
-        backgroundColor: CIColor = CIColor.white,
-        foregroundColor: CIColor = CIColor.black
+        backgroundColor: CIColor = CIColor.EFWhite(),
+        foregroundColor: CIColor = CIColor.EFBlack()
         ) {
         self.content = content
         self.inputCorrectionLevel = inputCorrectionLevel
@@ -181,9 +181,9 @@
         if let context = createContext(size: finalSize) {
 
             // Cache size
-            let minSuitableWidth = minSuitableSizeGreaterThanOrEqualTo(size: finalSize.widthCGFloat()) ?? finalSize.width
             minSuitableSize = EFIntSize(
-                width: minSuitableWidth, height: Int(finalSize.heightCGFloat() / finalSize.widthCGFloat() * CGFloat(minSuitableWidth))
+                width: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.widthCGFloat()) ?? finalSize.width,
+                height: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.heightCGFloat()) ?? finalSize.height
             )
 
             // Watermark
@@ -336,8 +336,10 @@
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
                             context.fill(
                                 CGRect(
-                                    x: CGFloat(indexXCTM) * scaleX, y: CGFloat(indexYCTM) * scaleY,
-                                    width: pointWidthOriX, height: pointWidthOriY
+                                    x: CGFloat(indexXCTM) * scaleX,
+                                    y: CGFloat(indexYCTM) * scaleY,
+                                    width: pointWidthOriX,
+                                    height: pointWidthOriY
                                 )
                             )
                         } else {
@@ -345,7 +347,8 @@
                                 CGRect(
                                     x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
                                     y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
-                                    width: pointWidthMinX, height: pointWidthMinY
+                                    width: pointWidthMinX,
+                                    height: pointWidthMinY
                                 )
                             )
                         }
@@ -374,7 +377,8 @@
                                 CGRect(
                                     x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
                                     y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
-                                    width: pointWidthMinX, height: pointWidthMinY
+                                    width: pointWidthMinX,
+                                    height: pointWidthMinY
                                 )
                             )
                         }

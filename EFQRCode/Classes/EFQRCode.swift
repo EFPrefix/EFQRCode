@@ -24,7 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+import CoreGraphics
 
 public class EFQRCode {
 
@@ -39,8 +39,8 @@ public class EFQRCode {
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
         size: EFIntSize = EFIntSize(width: 256, height: 256),
         magnification: EFIntSize? = nil,
-        backgroundColor: CIColor = CIColor.white,
-        foregroundColor: CIColor = CIColor.black,
+        backgroundColor: CIColor = CIColor.EFWhite(),
+        foregroundColor: CIColor = CIColor.EFBlack(),
         icon: EFIcon? = nil,
         watermark: EFWatermark? = nil,
         extra: EFExtra? = nil

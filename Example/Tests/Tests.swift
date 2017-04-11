@@ -21,8 +21,8 @@ class Tests: XCTestCase {
             inputCorrectionLevel: .h,
             size: EFIntSize(width: 256, height: 256),
             magnification: EFIntSize(width: 6, height: 6),
-            backgroundColor: CIColor.white,
-            foregroundColor: CIColor.black,
+            backgroundColor: CIColor.EFWhite(),
+            foregroundColor: CIColor.EFBlack(),
             icon: nil,
             watermark: nil,
             extra: nil
