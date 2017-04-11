@@ -815,17 +815,20 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             "foregroundPointOffset",
             "allowTransparent"
         ]
+        let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
+        let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
+        let watermarkModeString = "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])"
         let detailArray = [
             "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
             "\(size.width)x\(size.height)",
-            "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")",
+            magnificationString,
             "", // backgroundColor
             "", // foregroundColor
             "", // icon
-            "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")",
+            iconSizeString,
             "\(iconColorful)",
             "", // watermark
-            "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])",
+            watermarkModeString,
             "\(watermarkColorful)",
             "\(foregroundPointOffset)",
             "\(allowTransparent)"
