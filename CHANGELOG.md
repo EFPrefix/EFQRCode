@@ -2,6 +2,20 @@
 
 -----
 
+## [1.2.1](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.1) (2017-04-11)
+
+#### Add
+
+* Change parameter size and iconSize from CGFloat to EFIntSize;
+* Remove UIKit.
+
+#### Fix
+
+* Increase efficiency.
+* Fix issue [#4](https://github.com/EyreFree/EFQRCode/issues/4).
+
+---
+
 ## [1.2.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.0) (2017-04-01)
 
 #### Add
