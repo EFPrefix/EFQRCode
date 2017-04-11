@@ -26,35 +26,6 @@
 
 import CoreImage
 
-public struct EFUIntPixel {
-    var red: UInt8 = 0
-    var green: UInt8 = 0
-    var blue: UInt8 = 0
-    var alpha: UInt8 = 0
-}
-
-public class EFIntSize {
-    private(set) var width: Int = 0
-    private(set) var height: Int = 0
-
-    public init(width: Int, height: Int) {
-        self.width = width
-        self.height = height
-    }
-
-    public func toCGSize() -> CGSize {
-        return CGSize(width: self.width, height: self.height)
-    }
-
-    public func widthCGFloat() -> CGFloat {
-        return CGFloat(width)
-    }
-
-    public func heightCGFloat() -> CGFloat {
-        return CGFloat(height)
-    }
-}
-
 public extension CGImage {
 
     public func toCIImage() -> CIImage {
@@ -96,20 +67,6 @@ public extension CGImage {
             bitmapInfo: CGImageAlphaInfo.none.rawValue
             ) {
             context.draw(self, in: CGRect(origin: CGPoint.zero, size: CGSize(width: self.width, height: self.height)))
-            return context.makeImage()
-        }
-        return nil
-    }
-
-    // Resize
-    private func resize(size: EFIntSize) -> CGImage? {
-        if let context = CGContext(
-            data: nil, width: size.width, height: size.height,
-            bitsPerComponent: 8, bytesPerRow: 0,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue
-            ) {
-            context.draw(self, in: CGRect(origin: CGPoint.zero, size: size.toCGSize()))
             return context.makeImage()
         }
         return nil

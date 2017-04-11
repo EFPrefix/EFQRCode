@@ -39,7 +39,7 @@ public extension CIImage {
         return self.extent.size
     }
 
-    // Get QRCode
+    // Get QRCode from image
     func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
         var result = [String]()
         let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
