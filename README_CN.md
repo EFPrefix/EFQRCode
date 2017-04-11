@@ -103,10 +103,6 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 //                 icon (Optional): 中心图标以及设置
 //            watermark (Optional): 水印图以及设置
 //                extra (Optional): 额外参数
-
-// 额外参数
-//           foregroundPointOffset: 前景点偏移量
-//                allowTransparent: 允许透明
 ```
 
 ```swift
@@ -184,7 +180,7 @@ generator.image
 
 以上两种写法是完全相等的，返回值为 `CGImage?`，若返回 nil 则表示生成失败。
 
-参数比较：
+参数说明：
 
 * **content: String?**
 
