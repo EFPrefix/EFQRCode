@@ -238,6 +238,10 @@ public class EFIntSize {
 }
 ```
 
+234*234 | 312*234
+:-------------------------:|:-------------------------:
+![](assets/size1.jpg)|![](assets/size2.jpg)
+
 * **magnification: EFIntSize?**
 
 放大倍数，可选值，默认为 nil。
