@@ -1,5 +1,5 @@
 //
-//  UIColor+.swift
+//  UIImage+.swift
 //  Pods
 //
 //  Created by EyreFree on 2017/4/9.
@@ -24,15 +24,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(macOS)
+
+#else
 import UIKit
 
-public extension UIColor {
+public extension UIImage {
 
-    public func toCIColor() -> CIColor {
-        return self.cgColor.toCIColor()
+    public func toCIImage() -> CIImage? {
+        return CIImage(image: self)
     }
 
-    public func toCGColor() -> CGColor {
-        return self.cgColor
+    public func toCGImage() -> CGImage? {
+        return self.toCIImage()?.toCGImage()
     }
 }
+#endif

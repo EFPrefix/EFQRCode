@@ -30,7 +30,6 @@ let package = Package(
     name: "EFQRCode",
     exclude: [
         "assets",
-        "Example",
-        "EFQRCode/Classes/iOS"
+        "Example"
     ]
 )

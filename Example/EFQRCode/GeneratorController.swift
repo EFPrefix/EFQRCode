@@ -145,8 +145,8 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             magnification: magnification,
             backgroundColor: CIColor(color: backColor),
             foregroundColor: CIColor(color: frontColor),
-            icon: EFIcon(image: icon?.toCGImage(), size: iconSize, isColorful: iconColorful),
-            watermark: EFWatermark(image: watermark?.toCGImage(), mode: watermarkMode, isColorful: watermarkColorful),
+            icon: EFIcon(image: UIImage2CGimage(icon), size: iconSize, isColorful: iconColorful),
+            watermark: EFWatermark(image: UIImage2CGimage(watermark), mode: watermarkMode, isColorful: watermarkColorful),
             extra: EFExtra(foregroundPointOffset: foregroundPointOffset, allowTransparent: allowTransparent)
             ) {
             let tryImage = UIImage(cgImage: tryCGImage)
