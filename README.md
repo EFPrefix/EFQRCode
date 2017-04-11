@@ -352,10 +352,58 @@ true | false
 :-------------------------:|:-------------------------:
 ![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
 
+* Other
+
+EFIcon is consist of icon, iconSize and isIconColorful, the definition is:
+
+```swift
+public struct EFIcon {
+    public var image: CGImage?
+    public var size: EFIntSize?
+    public var isColorful: Bool = true
+
+    public init(image: CGImage?, size: EFIntSize?, isColorful: Bool = true) {
+        self.image = image
+        self.size = size
+        self.isColorful = isColorful
+    }
+}
+```
+
+EFWatermark is consist of watermark, watermarkMode and isWatermarkColorful, the definition is:
+
+```swift
+public struct EFWatermark {
+    public var image: CGImage?
+    public var mode: EFWatermarkMode = .scaleToFill
+    public var isColorful: Bool = true
+
+    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill, isColorful: Bool = true) {
+        self.image = image
+        self.mode = mode
+        self.isColorful = isColorful
+    }
+}
+```
+
+EFExtra is consist of foregroundPointOffset and allowTransparent, the definition is:
+
+```swift
+public struct EFExtra {
+    public var foregroundPointOffset: CGFloat = 0
+    public var allowTransparent: Bool = true
+
+    public init(foregroundPointOffset: CGFloat = 0, allowTransparent: Bool = true) {
+        self.foregroundPointOffset = foregroundPointOffset
+        self.allowTransparent = allowTransparent
+    }
+}
+```
+
 ## Todo
 
-- Support .gif
-- Add more styles
+- [ ] Support .gif
+- [ ] Add more styles
 
 ## PS
 

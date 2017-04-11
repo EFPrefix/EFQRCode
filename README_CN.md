@@ -180,7 +180,7 @@ generator.image
 
 以上两种写法是完全相等的，返回值为 `CGImage?`，若返回 nil 则表示生成失败。
 
-参数说明：
+#### 参数说明
 
 * **content: String?**
 
@@ -353,10 +353,58 @@ true | false
 :-------------------------:|:-------------------------:
 ![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
 
+* 其它
+
+EFIcon 是 icon，iconSize，isIconColorful 的集合，定义如下：
+
+```swift
+public struct EFIcon {
+    public var image: CGImage?
+    public var size: EFIntSize?
+    public var isColorful: Bool = true
+
+    public init(image: CGImage?, size: EFIntSize?, isColorful: Bool = true) {
+        self.image = image
+        self.size = size
+        self.isColorful = isColorful
+    }
+}
+```
+
+EFWatermark 是 watermark，watermarkMode，isWatermarkColorful 的集合，定义如下：
+
+```swift
+public struct EFWatermark {
+    public var image: CGImage?
+    public var mode: EFWatermarkMode = .scaleToFill
+    public var isColorful: Bool = true
+
+    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill, isColorful: Bool = true) {
+        self.image = image
+        self.mode = mode
+        self.isColorful = isColorful
+    }
+}
+```
+
+EFExtra 是 foregroundPointOffset，allowTransparent 的集合，定义如下：
+
+```swift
+public struct EFExtra {
+    public var foregroundPointOffset: CGFloat = 0
+    public var allowTransparent: Bool = true
+
+    public init(foregroundPointOffset: CGFloat = 0, allowTransparent: Bool = true) {
+        self.foregroundPointOffset = foregroundPointOffset
+        self.allowTransparent = allowTransparent
+    }
+}
+```
+
 ## 待办
 
-- 支持 .gif 动图
-- 添加更多样式
+- [ ] 支持 .gif 动图
+- [ ] 添加更多样式
 
 ## 备注
 
