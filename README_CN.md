@@ -12,7 +12,7 @@
 <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img alt="codebeat badge" src="https://codebeat.co/assets/svg/badges/A-398b39-669406e9e1b136187b91af587d4092b0160370f271f66a651f444b990c2730e9.svg" /></a>
 </p>
 
-EFQRCode 是一个用 Swift 编写的用来生成和识别二维码的库，它基于系统二维码生成与识别进行开发。
+EFQRCode 是一个用 Swift 编写的用来生成和识别二维码的库，基于 CoreImage 进行开发。
 
 - 生成：利用输入的水印图/图标等资源生成各种艺术二维码；
 - 识别：识别率比 iOS 原生二维码识别率更高。
@@ -67,7 +67,7 @@ import EFQRCode
 获取图片中所包含的二维码，同一张图片中可能包含多个二维码，所以返回值是一个字符串数组：
 
 ```swift
-if let testImage = UIImage(named: "test.png") {
+if let testImage = UIImage(named: "test.png")?.toCGImage() {
     if let tryCodes = EFQRCode.recognize(image: testImage) {
         if tryCodes.count > 0 {
             print("There are \(tryCodes.count) codes in testImage.")
@@ -95,17 +95,14 @@ if let testImage = UIImage(named: "test.png") {
 //                                  M 15%
 //                                  Q 25%
 //                                  H 30%(默认值)
-//                 size (Optional): 边长
+//                 size (Optional): 尺寸
 //        magnification (Optional): 放大倍数
 //                                  (如果 magnification 不为空，将会忽略 size 参数)
 //      backgroundColor (Optional): 背景色
 //      foregroundColor (Optional): 前景色
-//                 icon (Optional): 中心图标
-//             iconSize (Optional): 中心图标边长
-//       isIconColorful (Optional): 中心图标是否为彩色
-//            watermark (Optional): 水印图
-//        watermarkMode (Optional): 水印图模式
-//  isWatermarkColorful (Optional): 水印图是否为彩色
+//                 icon (Optional): 中心图标以及设置
+//            watermark (Optional): 水印图以及设置
+//                extra (Optional): 额外参数
 
 // 额外参数
 //           foregroundPointOffset: 前景点偏移量
@@ -115,12 +112,10 @@ if let testImage = UIImage(named: "test.png") {
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EyreFree/EFQRCode",
-    magnification: 9,
-    watermark: UIImage(named: "WWF"),
-    watermarkMode: .scaleAspectFill,
-    isWatermarkColorful: false
+    magnification: EFIntSize(width: 9, height: 9),
+    watermark: EFWatermark(image: UIImage(named: "WWF")?.toCGImage(), mode: .scaleAspectFill, isColorful: false)
 ) {
-    print("Create QRCode image success!")
+    print("Create QRCode image success: \(tryImage)")
 } else {
     print("Create QRCode image failed!")
 }
@@ -135,13 +130,13 @@ if let tryImage = EFQRCode.generate(
 ### 1. 二维码识别
 
 ```swift
-EFQRCode.recognize(image: UIImage)
+EFQRCode.recognize(image: CGImage)
 ```
 
 或
 
 ```swift
-EFQRCodeRecognizer(image: image).contents
+EFQRCodeRecognizer(image: CGImage).contents
 ```
 
 以上两种写法是完全相等的，因为传入的图片中可能包好多个二维码，所以返回值为 `[String]?`，若返回 nil 则表示传入数据有误或为空，若返回数组为空则表示图片上未识别到二维码。
@@ -150,65 +145,44 @@ EFQRCodeRecognizer(image: image).contents
 
 ```swift
 EFQRCode.generate(
-    content: String, 
-    inputCorrectionLevel: EFInputCorrectionLevel, 
-    size: CGFloat, 
-    magnification: UInt?, 
-    backgroundColor: UIColor, 
-    foregroundColor: UIColor, 
-    icon: UIImage?, 
-    iconSize: CGFloat?, 
-    isIconColorful: Bool, 
-    watermark: UIImage?, 
-    watermarkMode: EFWatermarkMode, 
-    isWatermarkColorful: Bool
+    content: String,
+    inputCorrectionLevel: EFInputCorrectionLevel,
+    size: EFIntSize,
+    magnification: EFIntSize?,
+    backgroundColor: CIColor,
+    foregroundColor: CIColor,
+    icon: EFIcon?,
+    watermark: EFWatermark?,
+    extra: EFExtra?
 )
 ```
 
 或
 
 ```swift
-EFQRCodeGenerator(
-    content: content,
-    inputCorrectionLevel: inputCorrectionLevel,
-    size: size,
-    magnification: magnification,
-    backgroundColor: backgroundColor,
-    foregroundColor: foregroundColor,
-    icon: icon,
-    iconSize: iconSize,
-    isIconColorful: isIconColorful,
-    watermark: watermark,
-    watermarkMode: watermarkMode,
-    isWatermarkColorful: isWatermarkColorful
-).image
-```
-
-以上两种写法是完全相等的，返回值为 `UIImage?`，若返回 nil 则表示生成失败。
-
-若需要使用额外参数，则必须使用创建 EFQRCodeGenerator 对象的方式：
-
-```swift
 let generator = EFQRCodeGenerator(
-    content: content,
-    inputCorrectionLevel: inputCorrectionLevel,
-    size: size,
-    magnification: magnification,
-    backgroundColor: backColor,
-    foregroundColor: frontColor,
-    icon: icon,
-    iconSize: iconSize,
-    isIconColorful: iconColorful,
-    watermark: watermark,
-    watermarkMode: watermarkMode,
-    isWatermarkColorful: watermarkColorful
+    content: String,
+    inputCorrectionLevel: EFInputCorrectionLevel,
+    size: EFIntSize,
+    magnification: EFIntSize?,
+    backgroundColor: CIColor,
+    foregroundColor: CIColor
 )
-generator.foregroundPointOffset = self.foregroundPointOffset
-generator.allowTransparent = self.allowTransparent
+if let tryIcon = icon {
+    generator.setIcon(icon: EFIcon?)
+}
+if let tryWatermark = watermark {
+    generator.setWatermark(watermark: EFWatermark?)
+}
+if let tryExtra = extra {
+    generator.setExtra(extra: EFExtra?)
+}
 
 // 最终生成的二维码
 generator.image
 ```
+
+以上两种写法是完全相等的，返回值为 `CGImage?`，若返回 nil 则表示生成失败。
 
 参数比较：
 
@@ -240,11 +214,35 @@ L | M | Q | H
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](assets/compareInputCorrectionLevel1.jpg)|![](assets/compareInputCorrectionLevel2.jpg)|![](assets/compareInputCorrectionLevel3.jpg)|![](assets/compareInputCorrectionLevel4.jpg)
 
-* **size: CGFloat**
+* **size: EFIntSize**
 
-生成的二维码边长，可选值，默认为 256（PS：如果 magnification 不为空，将会忽略 size 参数）。
+生成的二维码边长，可选值，默认为 (256, 256)（PS：如果 magnification 不为空，将会忽略 size 参数），结构体 EFIntSize 定义如下：
 
-* **magnification: UInt?**
+```swift
+public class EFIntSize {
+    public private(set) var width: Int = 0
+    public private(set) var height: Int = 0
+
+    public init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+    }
+
+    public func toCGSize() -> CGSize {
+        return CGSize(width: self.width, height: self.height)
+    }
+
+    public func widthCGFloat() -> CGFloat {
+        return CGFloat(width)
+    }
+
+    public func heightCGFloat() -> CGFloat {
+        return CGFloat(height)
+    }
+}
+```
+
+* **magnification: EFIntSize?**
 
 放大倍数，可选值，默认为 nil。
 
@@ -252,27 +250,26 @@ L | M | Q | H
 
 ```swift
 let generator = EFQRCodeGenerator(
-    content: content,
-    inputCorrectionLevel: inputCorrectionLevel,
-    size: size,
-    magnification: magnification,
-    backgroundColor: backColor,
-    foregroundColor: frontColor,
-    icon: icon,
-    iconSize: iconSize,
-    isIconColorful: iconColorful,
-    watermark: watermark,
-    watermarkMode: watermarkMode,
-    isWatermarkColorful: watermarkColorful
+    content: String,
+    inputCorrectionLevel: EFInputCorrectionLevel,
+    size: EFIntSize,
+    magnification: EFIntSize?,
+    backgroundColor: CIColor,
+    foregroundColor: CIColor
 )
 
 // 希望获得最终 size 小于等于 600 的最大倍率
-generator.magnification = generator.maxMagnificationLessThanOrEqualTo(size: 600)
+if let magnification = generator.maxMagnificationLessThanOrEqualTo(size: 600) {
+    generator.magnification = EFIntSize(width: magnification, height: magnification)
+}
 
 // 或
 
-// 希望获得最终 size 大于等于 600 的最小倍率
-// generator.magnification = generator.minMagnificationGreaterThanOrEqualTo(size: 600)
+// 希望获得最终 size 的宽大于等于 600 的最小倍率和高大于等于 800 的最小倍率
+// if let magnificationWidth = generator.minMagnificationGreaterThanOrEqualTo(size: 600),
+//     let magnificationHeight = generator.minMagnificationGreaterThanOrEqualTo(size: 600) {
+//     generator.magnification = EFIntSize(width: magnificationWidth, height: magnificationHeight)
+// }
 
 // 最终生成的二维码
 generator.image
@@ -282,11 +279,11 @@ size 300 | magnification 9
 :-------------------------:|:-------------------------:
 ![](assets/compareMagnification1.jpg)|![](assets/compareMagnification2.jpg)
 
-* **backgroundColor: UIColor**
+* **backgroundColor: CIColor**
 
 背景色，可选值，默认为白色。
 
-* **foregroundColor: UIColor**
+* **foregroundColor: CIColor**
 
 前景色，可选值，二维码码点的颜色，默认为黑色。
 
@@ -294,7 +291,7 @@ size 300 | magnification 9
 :-------------------------:|:-------------------------:
 ![](assets/compareForegroundcolor.jpg)|![](assets/compareBackgroundcolor.jpg)
 
-* **icon: UIImage?**
+* **icon: CGImage?**
 
 二维码中心图标，可选值，默认为空。
 
@@ -310,7 +307,7 @@ size 300 | magnification 9
 
 二维码中心图标是否为彩色，可选值，默认为彩色。
 
-* **watermark: UIImage?**
+* **watermark: CGImage?**
 
 水印图，可选值，默认为 nil，示例如下：
 
