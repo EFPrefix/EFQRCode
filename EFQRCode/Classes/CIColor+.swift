@@ -24,7 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreGraphics
+import CoreImage
 
 public extension CIColor {
 
@@ -36,7 +36,7 @@ public extension CIColor {
         return CIColor(red: 0, green: 0, blue: 0)
     }
 
-    public func toCGColor() -> CGColor? {
+    public func toCGColor() -> CoreImage.CGColor? {
         return CGColor(colorSpace: self.colorSpace, components: self.components)
     }
 }

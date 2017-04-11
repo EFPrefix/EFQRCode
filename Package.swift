@@ -31,9 +31,6 @@ let package = Package(
     exclude: [
         "assets",
         "Example",
-        "EFQRCode/Classes/EFQRCode.swift",
-        "EFQRCode/Classes/EFQRCodeGenerator.swift",
-        "EFQRCode/Classes/EFQRCodeRecognizer.swift",
-        "EFQRCode/Classes/UIImage+.swift"
+        "EFQRCode/Classes/iOS"
     ]
 )

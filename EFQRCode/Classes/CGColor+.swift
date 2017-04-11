@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
+import CoreImage
 
 public extension CGColor {
 
