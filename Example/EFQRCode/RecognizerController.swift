@@ -81,7 +81,7 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     func scanQRCode() {
-        if let tryImage = iamgeView.image {
+        if let tryImage = UIImage2CGimage(iamgeView.image) {
             var title = "Error"
             var result = "Get QRCode from image failed!"
             let codes = EFQRCode.recognize(image: tryImage) ?? [String]()

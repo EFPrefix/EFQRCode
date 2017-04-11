@@ -1,8 +1,8 @@
 //
-//  Package.swift
-//  EFQRCode
+//  CGSize+.swift
+//  Pods
 //
-//  Created by EyreFree on 2017/4/1.
+//  Created by EyreFree on 2017/4/10.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,12 +24,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import PackageDescription
+import CoreGraphics
 
-let package = Package(
-    name: "EFQRCode",
-    exclude: [
-        "assets",
-        "Example"
-    ]
-)
+public extension CGSize {
+
+    public func widthInt() -> Int {
+        return Int(width)
+    }
+
+    public func heightInt() -> Int {
+        return Int(height)
+    }
+}

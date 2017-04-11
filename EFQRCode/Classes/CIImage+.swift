@@ -24,60 +24,42 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
 import CoreImage
 
-struct EFUIntPixel {
-    var red: UInt8 = 0
-    var green: UInt8 = 0
-    var blue: UInt8 = 0
-    var alpha: UInt8 = 0
-}
-
-extension CIImage {
-
-    // Gray
-    // https://gist.github.com/darcwader/bd346656db880666007e0dff6a1727fc
-    func resize(size: CGSize) -> CIImage? {
-        let scale = size.width / self.extent.width
-        if let tryFilter = CIFilter(name: "CILanczosScaleTransform") {
-            tryFilter.setValue(self, forKey: kCIInputImageKey)
-            tryFilter.setValue(NSNumber(value: Double(scale)), forKey: kCIInputScaleKey)
-            tryFilter.setValue(1.0, forKey: kCIInputAspectRatioKey)
-            return tryFilter.value(forKey: kCIOutputImageKey) as? CIImage
-        }
-        return nil
-    }
+public extension CIImage {
 
     // Convert CIImage To CGImage
     // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    func toCGImage() -> CGImage? {
+    public func toCGImage() -> CGImage? {
         return CIContext(options: nil).createCGImage(self, from: self.extent)
     }
 
-    // Get pixels from CIImage
-    func pixels() -> [[EFUIntPixel]]? {
-        var pixels: [[EFUIntPixel]]?
-        if let tryCGImage = self.toCGImage() {
-            if let pixelData = tryCGImage.dataProvider?.data {
-                let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-                pixels = [[EFUIntPixel]]()
-                for indexY in 0 ..< tryCGImage.height {
-                    pixels?.append([EFUIntPixel]())
-                    for indexX in 0 ..< tryCGImage.width {
-                        let pixelInfo: Int = ((Int(tryCGImage.width) * Int(indexY)) + Int(indexX)) * 4
-                        pixels?[indexY].append(
-                            EFUIntPixel(
-                                red: data[pixelInfo],
-                                green: data[pixelInfo + 1],
-                                blue: data[pixelInfo + 2],
-                                alpha: data[pixelInfo + 3]
-                            )
-                        )
-                    }
+    // Size
+    func size() -> CGSize {
+        return self.extent.size
+    }
+
+    // Get QRCode from image
+    func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
+        var result = [String]()
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
+        if let features = detector?.features(in: self) {
+            for feature in features {
+                if let tryString = (feature as? CIQRCodeFeature)?.messageString {
+                    result.append(tryString)
                 }
-                return pixels
             }
+        }
+        return result
+    }
+
+    // Create QR CIImage
+    static func generateQRCode(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
+        let stringData = string.data(using: String.Encoding.utf8)
+        if let qrFilter = CIFilter(name: "CIQRCodeGenerator") {
+            qrFilter.setValue(stringData, forKey: "inputMessage")
+            qrFilter.setValue(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue], forKey: "inputCorrectionLevel")
+            return qrFilter.outputImage
         }
         return nil
     }

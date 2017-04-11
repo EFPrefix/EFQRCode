@@ -19,16 +19,13 @@ class Tests: XCTestCase {
         let testResult = EFQRCode.generate(
             content: "https://github.com/EyreFree/EFQRCode",
             inputCorrectionLevel: .h,
-            size: 256,
-            magnification: 6,
-            backgroundColor: UIColor.white,
-            foregroundColor: UIColor.black,
+            size: EFIntSize(width: 256, height: 256),
+            magnification: EFIntSize(width: 6, height: 6),
+            backgroundColor: CIColor.EFWhite(),
+            foregroundColor: CIColor.EFBlack(),
             icon: nil,
-            iconSize: nil,
-            isIconColorful: false,
             watermark: nil,
-            watermarkMode: .scaleAspectFill,
-            isWatermarkColorful: true
+            extra: nil
         )
         XCTAssert(testResult != nil, "testResult is nil!")
 

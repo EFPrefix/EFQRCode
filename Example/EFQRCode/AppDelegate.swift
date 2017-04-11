@@ -44,3 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+func UIImage2CGimage(_ image: UIImage?) -> CGImage? {
+    if let tryImage = image, let tryCIImage = CIImage(image: tryImage) {
+        return CIContext(options: nil).createCGImage(tryCIImage, from: tryCIImage.extent)
+    }
+    return nil
+}
+

@@ -12,7 +12,7 @@
 <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img alt="codebeat badge" src="https://codebeat.co/assets/svg/badges/A-398b39-669406e9e1b136187b91af587d4092b0160370f271f66a651f444b990c2730e9.svg" /></a>
 </p>
 
-EFQRCode is a tool to generate QRCode UIImage or recognize QRCode from UIImage, in Swift. It is based on `CIDetector` and `CIFilter`.
+EFQRCode is a tool to generate QRCode image or recognize QRCode from image, in Swift. It is based on `CoreImage`.
 
 - Generation: Create pretty two-dimensional code image with input watermark or icon;
 - Recognition: Recognition rate is higher than simply `CIDetector`.
@@ -48,7 +48,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EFQRCode", '~> 1.2.0'
+pod "EFQRCode", '~> 1.2.1'
 ```
 
 ## Usage
@@ -63,10 +63,10 @@ import EFQRCode
 
 #### 2. Recognition
 
-Get QR Codes from UIImage, maybe there are several codes in a image, so it will return an array:
+Get QR Codes from CGImage, maybe there are several codes in a image, so it will return an array:
 
 ```swift
-if let testImage = UIImage(named: "test.png") {
+if let testImage = UIImage(named: "test.png")?.toCGImage() {
     if let tryCodes = EFQRCode.recognize(image: testImage) {
         if tryCodes.count > 0 {
             print("There are \(tryCodes.count) codes in testImage.")
@@ -99,27 +99,18 @@ Create QR Code image, quick usage:
 //                                  (Parameter size will be ignored if magnification is not nil)
 //      backgroundColor (Optional): Background color of QRCode
 //      foregroundColor (Optional): Foreground color of QRCode
-//                 icon (Optional): Icon in the middle of QR Code Image
-//             iconSize (Optional): Width and height of icon
-//       isIconColorful (Optional): Is icon colorful
-//            watermark (Optional): Watermark background image
-//        watermarkMode (Optional): Watermark background image mode, like UIViewContentMode
-//  isWatermarkColorful (Optional): Is Watermark colorful
-
-// Extra parameters:
-//           foregroundPointOffset: Offset of foreground point
-//                allowTransparent: Allow transparent
+//                 icon (Optional): Icon in the middle of QR Code Image and it's setting
+//            watermark (Optional): Watermark background image and it's setting
+//                extra (Optional): Extra parameters
 ```
 
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EyreFree/EFQRCode",
-    magnification: 9,
-    watermark: UIImage(named: "WWF"),
-    watermarkMode: .scaleAspectFill,
-    isWatermarkColorful: false
+    magnification: EFIntSize(width: 9, height: 9),
+    watermark: EFWatermark(image: UIImage(named: "WWF")?.toCGImage(), mode: .scaleAspectFill, isColorful: false)
 ) {
-    print("Create QRCode image success!")
+    print("Create QRCode image success: \(tryImage)")
 } else {
     print("Create QRCode image failed!")
 }
@@ -134,13 +125,13 @@ Result:
 ### 1. Recognition
 
 ```swift
-EFQRCode.recognize(image: UIImage)
+EFQRCode.recognize(image: CGImage)
 ```
 
 Or
 
 ```swift
-EFQRCodeRecognizer(image: image).contents
+EFQRCodeRecognizer(image: CGImage).contents
 ```
 
 Two way before is exactly the same, because of the possibility of more than one two-dimensional code in the same iamge, so the return value is `[String]? ', if the return is nil means that the input data is incorrect or null. If the return array is empty, it means we can not recognize  any two-dimensional code at the image.
@@ -149,67 +140,46 @@ Two way before is exactly the same, because of the possibility of more than one 
 
 ```swift
 EFQRCode.generate(
-    content: String, 
-    inputCorrectionLevel: EFInputCorrectionLevel, 
-    size: CGFloat, 
-    magnification: UInt?, 
-    backgroundColor: UIColor, 
-    foregroundColor: UIColor, 
-    icon: UIImage?, 
-    iconSize: CGFloat?, 
-    isIconColorful: Bool, 
-    watermark: UIImage?, 
-    watermarkMode: EFWatermarkMode, 
-    isWatermarkColorful: Bool
+    content: String,
+    inputCorrectionLevel: EFInputCorrectionLevel,
+    size: EFIntSize,
+    magnification: EFIntSize?,
+    backgroundColor: CIColor,
+    foregroundColor: CIColor,
+    icon: EFIcon?,
+    watermark: EFWatermark?,
+    extra: EFExtra?
 )
 ```
 
 Or
 
 ```swift
-EFQRCodeGenerator(
-    content: content,
-    inputCorrectionLevel: inputCorrectionLevel,
-    size: size,
-    magnification: magnification,
-    backgroundColor: backgroundColor,
-    foregroundColor: foregroundColor,
-    icon: icon,
-    iconSize: iconSize,
-    isIconColorful: isIconColorful,
-    watermark: watermark,
-    watermarkMode: watermarkMode,
-    isWatermarkColorful: isWatermarkColorful
-).image
-```
-
-Two way before is exactly the same, the return value is `UIImage?`, if the return is nil means that there is some wrong during the generation.
-
-If you want to use the extra parameters, you must establish a EFQRCodeGenerator object:
-
-```swift
 let generator = EFQRCodeGenerator(
-    content: content,
-    inputCorrectionLevel: inputCorrectionLevel,
-    size: size,
-    magnification: magnification,
-    backgroundColor: backColor,
-    foregroundColor: frontColor,
-    icon: icon,
-    iconSize: iconSize,
-    isIconColorful: iconColorful,
-    watermark: watermark,
-    watermarkMode: watermarkMode,
-    isWatermarkColorful: watermarkColorful
+    content: String,
+    inputCorrectionLevel: EFInputCorrectionLevel,
+    size: EFIntSize,
+    magnification: EFIntSize?,
+    backgroundColor: CIColor,
+    foregroundColor: CIColor
 )
-generator.foregroundPointOffset = self.foregroundPointOffset
-generator.allowTransparent = self.allowTransparent
+if let tryIcon = icon {
+    generator.setIcon(icon: EFIcon?)
+}
+if let tryWatermark = watermark {
+    generator.setWatermark(watermark: EFWatermark?)
+}
+if let tryExtra = extra {
+    generator.setExtra(extra: EFExtra?)
+}
 
-// Final two-dimensional code image
+// Final two-dimensional code image we get
 generator.image
 ```
 
-Parameters explaination:
+Two way before is exactly the same, the return value is `CGImage?`, if the return is nil means that there is some wrong during the generation.
+
+#### Parameters Explaination
 
 * **content: String?**
 
@@ -239,11 +209,39 @@ L | M | Q | H
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](assets/compareInputCorrectionLevel1.jpg)|![](assets/compareInputCorrectionLevel2.jpg)|![](assets/compareInputCorrectionLevel3.jpg)|![](assets/compareInputCorrectionLevel4.jpg)
 
-* **size: CGFloat**
+* **size: EFIntSize**
 
-Two-dimensional code length, optional, default is 256 (PS: if magnification is not nil, size will be ignored).
+Two-dimensional code length, optional, default is 256 (PS: if magnification is not nil, size will be ignored), the definition of EFIntSize:
 
-* **magnification: UInt?**
+```swift
+public class EFIntSize {
+    public private(set) var width: Int = 0
+    public private(set) var height: Int = 0
+
+    public init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+    }
+
+    public func toCGSize() -> CGSize {
+        return CGSize(width: self.width, height: self.height)
+    }
+
+    public func widthCGFloat() -> CGFloat {
+        return CGFloat(width)
+    }
+
+    public func heightCGFloat() -> CGFloat {
+        return CGFloat(height)
+    }
+}
+```
+
+234*234 | 312*234
+:-------------------------:|:-------------------------:
+![](assets/size1.jpg)|![](assets/size2.jpg)
+
+* **magnification: EFIntSize?**
 
 Magnification, optional, default is nil.
 
@@ -251,27 +249,26 @@ Because by the existence of size scaling two-dimensional code clarity is not hig
 
 ```swift
 let generator = EFQRCodeGenerator(
-    content: content,
-    inputCorrectionLevel: inputCorrectionLevel,
-    size: size,
-    magnification: magnification,
-    backgroundColor: backColor,
-    foregroundColor: frontColor,
-    icon: icon,
-    iconSize: iconSize,
-    isIconColorful: iconColorful,
-    watermark: watermark,
-    watermarkMode: watermarkMode,
-    isWatermarkColorful: watermarkColorful
+    content: String,
+    inputCorrectionLevel: EFInputCorrectionLevel,
+    size: EFIntSize,
+    magnification: EFIntSize?,
+    backgroundColor: CIColor,
+    foregroundColor: CIColor
 )
 
 // Want to get max magnification when size is less than or equalTo 600
-generator.magnification = generator.maxMagnificationLessThanOrEqualTo(size: 600)
+if let magnification = generator.maxMagnificationLessThanOrEqualTo(size: 600) {
+    generator.magnification = EFIntSize(width: magnification, height: magnification)
+}
 
 // Or
 
-// Want to get min magnification when size is greater than or equalTo 600
-// generator.magnification = generator.minMagnificationGreaterThanOrEqualTo(size: 600)
+// Want to get min magnification when width is greater than or equalTo 600 and height is greater than or equalTo 800
+// if let magnificationWidth = generator.minMagnificationGreaterThanOrEqualTo(size: 600),
+//     let magnificationHeight = generator.minMagnificationGreaterThanOrEqualTo(size: 600) {
+//     generator.magnification = EFIntSize(width: magnificationWidth, height: magnificationHeight)
+// }
 
 // Final two-dimensional code image
 generator.image
@@ -281,11 +278,11 @@ size 300 | magnification 9
 :-------------------------:|:-------------------------:
 ![](assets/compareMagnification1.jpg)|![](assets/compareMagnification2.jpg)
 
-* **backgroundColor: UIColor**
+* **backgroundColor: CIColor**
 
 BackgroundColor, optional, default is white.
 
-* **foregroundColor: UIColor**
+* **foregroundColor: CIColor**
 
 ForegroundColor, optional, color of code point, default is black.
 
@@ -293,7 +290,7 @@ ForegroundColor, optional, color of code point, default is black.
 :-------------------------:|:-------------------------:
 ![](assets/compareForegroundcolor.jpg)|![](assets/compareBackgroundcolor.jpg)
 
-* **icon: UIImage?**
+* **icon: CGImage?**
 
 Icon image in the center of code image, optional, default is nil.
 
@@ -309,7 +306,7 @@ Size of icon image, optional, default is 20% of size:
 
 Is icon colorful, optional, default is `true`.
 
-* **watermark: UIImage?**
+* **watermark: CGImage?**
 
 Watermark image, optional, default is nil, for example: 
 
@@ -359,10 +356,58 @@ true | false
 :-------------------------:|:-------------------------:
 ![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
 
+* Other
+
+EFIcon is consist of icon, iconSize and isIconColorful, the definition is:
+
+```swift
+public struct EFIcon {
+    public var image: CGImage?
+    public var size: EFIntSize?
+    public var isColorful: Bool = true
+
+    public init(image: CGImage?, size: EFIntSize?, isColorful: Bool = true) {
+        self.image = image
+        self.size = size
+        self.isColorful = isColorful
+    }
+}
+```
+
+EFWatermark is consist of watermark, watermarkMode and isWatermarkColorful, the definition is:
+
+```swift
+public struct EFWatermark {
+    public var image: CGImage?
+    public var mode: EFWatermarkMode = .scaleToFill
+    public var isColorful: Bool = true
+
+    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill, isColorful: Bool = true) {
+        self.image = image
+        self.mode = mode
+        self.isColorful = isColorful
+    }
+}
+```
+
+EFExtra is consist of foregroundPointOffset and allowTransparent, the definition is:
+
+```swift
+public struct EFExtra {
+    public var foregroundPointOffset: CGFloat = 0
+    public var allowTransparent: Bool = true
+
+    public init(foregroundPointOffset: CGFloat = 0, allowTransparent: Bool = true) {
+        self.foregroundPointOffset = foregroundPointOffset
+        self.allowTransparent = allowTransparent
+    }
+}
+```
+
 ## Todo
 
-- Support .gif
-- Add more styles
+- [ ] Support .gif
+- [ ] Add more styles
 
 ## PS
 

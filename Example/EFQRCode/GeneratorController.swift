@@ -21,12 +21,12 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
 
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
-    var size: CGFloat = 256
-    var magnification: UInt? = nil
+    var size: EFIntSize = EFIntSize(width: 256, height: 256)
+    var magnification: EFIntSize? = nil
     var backColor = UIColor.white
     var frontColor = UIColor.black
     var icon: UIImage? = nil
-    var iconSize: CGFloat? = nil
+    var iconSize: EFIntSize? = nil
     var iconColorful = true
     var watermark: UIImage? = nil
     var watermarkMode = EFWatermarkMode.scaleAspectFill
@@ -138,24 +138,18 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             content = textView.text
         }
 
-        let generator = EFQRCodeGenerator(
+        if let tryCGImage = EFQRCode.generate(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
             size: size,
             magnification: magnification,
-            backgroundColor: backColor,
-            foregroundColor: frontColor,
-            icon: icon,
-            iconSize: iconSize,
-            isIconColorful: iconColorful,
-            watermark: watermark,
-            watermarkMode: watermarkMode,
-            isWatermarkColorful: watermarkColorful
-        )
-        generator.foregroundPointOffset = self.foregroundPointOffset
-        generator.allowTransparent = self.allowTransparent
-
-        if let tryImage = generator.image {
+            backgroundColor: CIColor(color: backColor),
+            foregroundColor: CIColor(color: frontColor),
+            icon: EFIcon(image: UIImage2CGimage(icon), size: iconSize, isColorful: iconColorful),
+            watermark: EFWatermark(image: UIImage2CGimage(watermark), mode: watermarkMode, isColorful: watermarkColorful),
+            extra: EFExtra(foregroundPointOffset: foregroundPointOffset, allowTransparent: allowTransparent)
+            ) {
+            let tryImage = UIImage(cgImage: tryCGImage)
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
@@ -210,16 +204,27 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 (action) -> Void in
             })
         )
-        for width in [CGFloat(1), 32, 64, 128, 256, 512, 1024, 2048] {
+        for width in [Int(1), 32, 64, 128, 256, 512, 1024, 2048] {
             alert.addAction(
-                UIAlertAction(title: "\(width)", style: .default, handler: {
+                UIAlertAction(title: "\(width)x\(width)", style: .default, handler: {
                     [weak self] (action) -> Void in
                     if let strongSelf = self {
-                        strongSelf.size = width
+                        strongSelf.size = EFIntSize(width: width, height: width)
                         strongSelf.refresh()
                     }
                 })
             )
+            if 512 == width {
+                alert.addAction(
+                    UIAlertAction(title: "\(512)x\(640)", style: .default, handler: {
+                        [weak self] (action) -> Void in
+                        if let strongSelf = self {
+                            strongSelf.size = EFIntSize(width: 512, height: 640)
+                            strongSelf.refresh()
+                        }
+                    })
+                )
+            }
         }
         popActionSheet(alert: alert)
     }
@@ -244,16 +249,27 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        for magnification in [UInt(1), 3, 6, 9, 12, 15, 18, 21, 23, 25, 27, 30] {
+        for magnification in [Int(1), 3, 6, 9, 12, 15, 18, 21, 23, 25, 27, 30] {
             alert.addAction(
-                UIAlertAction(title: "\(magnification)", style: .default, handler: {
+                UIAlertAction(title: "\(magnification)x\(magnification)", style: .default, handler: {
                     [weak self] (action) -> Void in
                     if let strongSelf = self {
-                        strongSelf.magnification = magnification
+                        strongSelf.magnification = EFIntSize(width: magnification, height: magnification)
                         strongSelf.refresh()
                     }
                 })
             )
+            if magnification == 9 {
+                alert.addAction(
+                    UIAlertAction(title: "\(12)x\(9)", style: .default, handler: {
+                        [weak self] (action) -> Void in
+                        if let strongSelf = self {
+                            strongSelf.magnification = EFIntSize(width: 12, height: 9)
+                            strongSelf.refresh()
+                        }
+                    })
+                )
+            }
         }
         popActionSheet(alert: alert)
     }
@@ -299,7 +315,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 UIAlertAction(title: "Average of watermark", style: .default, handler: {
                     [weak self] (action) -> Void in
                     if let strongSelf = self {
-                        strongSelf.frontColor = EFQRCode.avarageColor(image: tryWaterMark) ?? UIColor.clear
+                        strongSelf.frontColor = tryWaterMark.avarageColor() ?? UIColor.clear
                         strongSelf.refresh()
                     }
                 })
@@ -382,33 +398,28 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "\(UIScreen.main.bounds.size.width * 0.06)", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.iconSize = UIScreen.main.bounds.size.width * 0.06
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "\(UIScreen.main.bounds.size.width * 2 * 0.06)", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.iconSize = UIScreen.main.bounds.size.width * 2 * 0.06
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "64", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.iconSize = 64
-                    strongSelf.refresh()
-                }
-            })
-        )
+        for width in [Int(1), 32, 64, 128, 256, 512, 1024, 2048] {
+            alert.addAction(
+                UIAlertAction(title: "\(width)x\(width)", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.iconSize = EFIntSize(width: width, height: width)
+                        strongSelf.refresh()
+                    }
+                })
+            )
+            if 512 == width {
+                alert.addAction(
+                    UIAlertAction(title: "\(512)x\(640)", style: .default, handler: {
+                        [weak self] (action) -> Void in
+                        if let strongSelf = self {
+                            strongSelf.iconSize = EFIntSize(width: 512, height: 640)
+                            strongSelf.refresh()
+                        }
+                    })
+                )
+            }
+        }
         popActionSheet(alert: alert)
     }
 
@@ -804,17 +815,20 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             "foregroundPointOffset",
             "allowTransparent"
         ]
+        let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
+        let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
+        let watermarkModeString = "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])"
         let detailArray = [
             "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
-            "\(size)",
-            "\(nil == magnification ? "nil" : "\(magnification ?? 0)")",
+            "\(size.width)x\(size.height)",
+            magnificationString,
             "", // backgroundColor
             "", // foregroundColor
             "", // icon
-            "\(nil == iconSize ? "nil" : "\(iconSize ?? 0)")",
+            iconSizeString,
             "\(iconColorful)",
             "", // watermark
-            "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])",
+            watermarkModeString,
             "\(watermarkColorful)",
             "\(foregroundPointOffset)",
             "\(allowTransparent)"
@@ -912,6 +926,10 @@ class ShowController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         self.image = image
+    }
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {

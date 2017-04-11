@@ -1,8 +1,8 @@
 //
-//  Package.swift
-//  EFQRCode
+//  UIImage+.swift
+//  Pods
 //
-//  Created by EyreFree on 2017/4/1.
+//  Created by EyreFree on 2017/4/9.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,12 +24,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import PackageDescription
+#if os(macOS)
 
-let package = Package(
-    name: "EFQRCode",
-    exclude: [
-        "assets",
-        "Example"
-    ]
-)
+#else
+import UIKit
+
+public extension UIImage {
+
+    public func toCIImage() -> CIImage? {
+        return CIImage(image: self)
+    }
+
+    public func toCGImage() -> CGImage? {
+        return self.toCIImage()?.toCGImage()
+    }
+}
+#endif

@@ -1,8 +1,8 @@
 //
-//  Package.swift
-//  EFQRCode
+//  CGColor+.swift
+//  Pods
 //
-//  Created by EyreFree on 2017/4/1.
+//  Created by EyreFree on 2017/4/9.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,12 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import PackageDescription
+import CoreGraphics
+import CoreImage
 
-let package = Package(
-    name: "EFQRCode",
-    exclude: [
-        "assets",
-        "Example"
-    ]
-)
+public extension CGColor {
+
+    public static func EFWhite() -> CGColor {
+        return CIColor.EFWhite().toCGColor()!
+    }
+
+    public static func EFBlack() -> CGColor {
+        return CIColor.EFBlack().toCGColor()!
+    }
+
+    public func toCIColor() -> CIColor {
+        return CIColor(cgColor: self)
+    }
+}

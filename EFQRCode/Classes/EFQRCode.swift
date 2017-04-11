@@ -24,13 +24,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
-import UIKit
+import CoreImage
 
 public class EFQRCode {
 
     // MARK:- Recognizer
-    public static func recognize(image: UIImage) -> [String]? {
+    public static func recognize(image: CGImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).contents
     }
 
@@ -38,36 +37,32 @@ public class EFQRCode {
     public static func generate(
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
-        size: CGFloat = 256,
-        magnification: UInt? = nil,
-        backgroundColor: UIColor = UIColor.white,
-        foregroundColor: UIColor = UIColor.black,
-        icon: UIImage? = nil,
-        iconSize: CGFloat? = nil,
-        isIconColorful: Bool = true,
-        watermark: UIImage? = nil,
-        watermarkMode: EFWatermarkMode = .scaleToFill,
-        isWatermarkColorful: Bool = true
-        ) -> UIImage? {
+        size: EFIntSize = EFIntSize(width: 256, height: 256),
+        magnification: EFIntSize? = nil,
+        backgroundColor: CIColor = CIColor.EFWhite(),
+        foregroundColor: CIColor = CIColor.EFBlack(),
+        icon: EFIcon? = nil,
+        watermark: EFWatermark? = nil,
+        extra: EFExtra? = nil
+        ) -> CGImage? {
 
-        return EFQRCodeGenerator(
+        let generator = EFQRCodeGenerator(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
             size: size,
             magnification: magnification,
             backgroundColor: backgroundColor,
-            foregroundColor: foregroundColor,
-            icon: icon,
-            iconSize: iconSize,
-            isIconColorful: isIconColorful,
-            watermark: watermark,
-            watermarkMode: watermarkMode,
-            isWatermarkColorful: isWatermarkColorful
-            ).image
-    }
-
-    // MARK:-
-    public static func avarageColor(image: UIImage) -> UIColor? {
-        return image.avarageColor()
+            foregroundColor: foregroundColor
+        )
+        if let tryIcon = icon {
+            generator.setIcon(icon: tryIcon)
+        }
+        if let tryWatermark = watermark {
+            generator.setWatermark(watermark: tryWatermark)
+        }
+        if let tryExtra = extra {
+            generator.setExtra(extra: tryExtra)
+        }
+        return generator.image
     }
 }
