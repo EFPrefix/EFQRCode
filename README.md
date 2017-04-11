@@ -179,7 +179,7 @@ generator.image
 
 Two way before is exactly the same, the return value is `CGImage?`, if the return is nil means that there is some wrong during the generation.
 
-Parameters explaination:
+#### Parameters Explaination
 
 * **content: String?**
 
