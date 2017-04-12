@@ -407,8 +407,9 @@ public struct EFExtra {
 
 ## 待办
 
-- [ ] 支持 .gif 动图
-- [ ] 添加更多样式
+- [ ] 支持 GIF 动图
+- [ ] 支持 tvOS/macOS/watchOS
+- [ ] 支持更多样式
 
 ## 备注
 

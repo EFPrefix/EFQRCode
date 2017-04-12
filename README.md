@@ -406,8 +406,9 @@ public struct EFExtra {
 
 ## Todo
 
-- [ ] Support .gif
-- [ ] Add more styles
+- [ ] Support GIF
+- [ ] Support tvOS/macOS/watchOS
+- [ ] Support more styles
 
 ## PS
 
