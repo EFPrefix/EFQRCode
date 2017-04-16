@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 
 #if os(macOS)
-
+import AppKit
 #else
 import UIKit
 
