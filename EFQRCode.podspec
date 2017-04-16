@@ -33,7 +33,7 @@ s.source           = { :git => 'https://github.com/EyreFree/EFQRCode.git', :tag 
 s.ios.deployment_target = '8.0'
 s.requires_arc = true
 
-s.source_files = 'EFQRCode/Classes/*.swift'
+s.source_files = 'Source/*.swift'
 
 # s.resource_bundles = {
 #   'EFQRCode' => ['EFQRCode/Assets/*.png']
