@@ -1,4 +1,4 @@
-![](assets/EFQRCode.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
 <a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
@@ -21,9 +21,9 @@ EFQRCode 是一个用 Swift 编写的用来生成和识别二维码的库，基�
 
 ## 概述
 
-![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode3.jpg)|![](assets/QRCode4.jpg)  
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode3.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode4.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](assets/QRCode5.jpg)|![](assets/QRCode6.jpg)|![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)  
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode8.jpg)  
 
 ## 示例
 
@@ -119,7 +119,7 @@ if let tryImage = EFQRCode.generate(
 
 结果：
 
-<img src="assets/sample1.jpg" width = "36%"/>
+<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
 ## 使用指南
 
@@ -188,7 +188,7 @@ generator.image
 
 10 个字母 | 250 个字母
 :-------------------------:|:-------------------------:
-![](assets/compareContent1.jpg)|![](assets/compareContent2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareContent1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareContent2.jpg)
 
 * **inputCorrectionLevel: EFInputCorrectionLevel**
 
@@ -208,7 +208,7 @@ public enum EFInputCorrectionLevel: Int {
 
 L | M | Q | H
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](assets/compareInputCorrectionLevel1.jpg)|![](assets/compareInputCorrectionLevel2.jpg)|![](assets/compareInputCorrectionLevel3.jpg)|![](assets/compareInputCorrectionLevel4.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel3.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel4.jpg)
 
 * **size: EFIntSize**
 
@@ -240,7 +240,7 @@ public class EFIntSize {
 
 234*234 | 312*234
 :-------------------------:|:-------------------------:
-![](assets/size1.jpg)|![](assets/size2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/size1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/size2.jpg)
 
 * **magnification: EFIntSize?**
 
@@ -277,7 +277,7 @@ generator.image
 
 size 300 | magnification 9
 :-------------------------:|:-------------------------:
-![](assets/compareMagnification1.jpg)|![](assets/compareMagnification2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareMagnification1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareMagnification2.jpg)
 
 * **backgroundColor: CIColor**
 
@@ -289,7 +289,7 @@ size 300 | magnification 9
 
   前景设为红色 | 背景设为灰色  
 :-------------------------:|:-------------------------:
-![](assets/compareForegroundcolor.jpg)|![](assets/compareBackgroundcolor.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareForegroundcolor.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareBackgroundcolor.jpg)
 
 * **icon: CGImage?**
 
@@ -301,7 +301,7 @@ size 300 | magnification 9
 
   外边长的 20% | 设为固定值  
 :-------------------------:|:-------------------------:
-![](assets/compareIcon.jpg)|![](assets/compareIconSize.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareIcon.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareIconSize.jpg)
 
 * **isIconColorful: Bool**
 
@@ -313,7 +313,7 @@ size 300 | magnification 9
 
   1 | 2  
 :-------------------------:|:-------------------------:
-![](assets/compareWatermark1.jpg)|![](assets/compareWatermark2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareWatermark1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareWatermark2.jpg)
 
 * **watermarkMode: EFWatermarkMode**
 
@@ -347,7 +347,7 @@ public enum EFWatermarkMode: Int {
 
 0 | 0.5 
 :-------------------------:|:-------------------------:
-![](assets/compareForegroundPointOffset1.jpg)|![](assets/compareForegroundPointOffset2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareForegroundPointOffset1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareForegroundPointOffset2.jpg)
 
 * **allowTransparent: Bool**
 
@@ -355,7 +355,7 @@ public enum EFWatermarkMode: Int {
 
 true | false
 :-------------------------:|:-------------------------:
-![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareAllowTransparent1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareAllowTransparent2.jpg)
 
 * 其它
 
