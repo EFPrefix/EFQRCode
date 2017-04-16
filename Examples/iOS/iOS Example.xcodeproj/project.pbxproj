@@ -14,8 +14,69 @@
 		120B78071EA396A000D34440 /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78061EA396A000D34440 /* GeneratorController.swift */; };
 		120B780A1EA3977300D34440 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78091EA3977300D34440 /* UIImage+.swift */; };
 		120B78411EA39E1B00D34440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78401EA39E1B00D34440 /* AppDelegate.swift */; };
+		120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; };
+		120B785E1EA3AA1100D34440 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C6D2C8F1C67EFEC00846168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		120B784D1EA3A9E100D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "EFQRCode iOS";
+		};
+		120B784F1EA3A9E100D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
+			remoteInfo = "EFQRCode iOS Tests";
+		};
+		120B78511EA3A9E100D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "EFQRCode macOS";
+		};
+		120B78531EA3A9E100D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F829C6B21A7A94F100A2CD59;
+			remoteInfo = "EFQRCode macOS Tests";
+		};
+		120B78551EA3A9E100D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
+			remoteInfo = "EFQRCode tvOS";
+		};
+		120B78571EA3A9E100D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
+			remoteInfo = "EFQRCode tvOS Tests";
+		};
+		120B78591EA3A9E100D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E4202FE01B667AA100C997FB;
+			remoteInfo = "EFQRCode watchOS";
+		};
+		120B785B1EA3A9F500D34440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
+			remoteInfo = "EFQRCode iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F818D0E519CA8D15006034B1 /* Copy Frameworks */ = {
@@ -24,6 +85,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				120B785E1EA3AA1100D34440 /* EFQRCode.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,6 +100,7 @@
 		120B78061EA396A000D34440 /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorController.swift; sourceTree = SOURCE_ROOT; };
 		120B78091EA3977300D34440 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = SOURCE_ROOT; };
 		120B78401EA39E1B00D34440 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
 		4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4C6D2C8D1C67EFEC00846168 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		F8111E0519A951050040E7D1 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,11 +146,26 @@
 			name = Res;
 			sourceTree = "<group>";
 		};
+		120B78431EA3A9E100D34440 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				120B784E1EA3A9E100D34440 /* EFQRCode.framework */,
+				120B78501EA3A9E100D34440 /* EFQRCode iOS Tests.xctest */,
+				120B78521EA3A9E100D34440 /* EFQRCode.framework */,
+				120B78541EA3A9E100D34440 /* EFQRCode macOS Tests.xctest */,
+				120B78561EA3A9E100D34440 /* EFQRCode.framework */,
+				120B78581EA3A9E100D34440 /* EFQRCode tvOS Tests.xctest */,
+				120B785A1EA3A9E100D34440 /* EFQRCode.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F8111DFC19A951050040E7D1 = {
 			isa = PBXGroup;
 			children = (
 				F8111E0719A951050040E7D1 /* EFQRCode */,
 				F8111E0619A951050040E7D1 /* Products */,
+				120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -137,6 +216,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				120B785C1EA3A9F500D34440 /* PBXTargetDependency */,
 			);
 			name = "iOS Example";
 			productName = Alamofire;
@@ -171,12 +251,70 @@
 			mainGroup = F8111DFC19A951050040E7D1;
 			productRefGroup = F8111E0619A951050040E7D1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 120B78431EA3A9E100D34440 /* Products */;
+					ProjectRef = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F8111E0419A951050040E7D1 /* iOS Example */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		120B784E1EA3A9E100D34440 /* EFQRCode.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFQRCode.framework;
+			remoteRef = 120B784D1EA3A9E100D34440 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		120B78501EA3A9E100D34440 /* EFQRCode iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "EFQRCode iOS Tests.xctest";
+			remoteRef = 120B784F1EA3A9E100D34440 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		120B78521EA3A9E100D34440 /* EFQRCode.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFQRCode.framework;
+			remoteRef = 120B78511EA3A9E100D34440 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		120B78541EA3A9E100D34440 /* EFQRCode macOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "EFQRCode macOS Tests.xctest";
+			remoteRef = 120B78531EA3A9E100D34440 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		120B78561EA3A9E100D34440 /* EFQRCode.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFQRCode.framework;
+			remoteRef = 120B78551EA3A9E100D34440 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		120B78581EA3A9E100D34440 /* EFQRCode tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "EFQRCode tvOS Tests.xctest";
+			remoteRef = 120B78571EA3A9E100D34440 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		120B785A1EA3A9E100D34440 /* EFQRCode.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFQRCode.framework;
+			remoteRef = 120B78591EA3A9E100D34440 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F8111E0319A951050040E7D1 /* Resources */ = {
@@ -205,6 +343,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		120B785C1EA3A9F500D34440 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "EFQRCode iOS";
+			targetProxy = 120B785B1EA3A9F500D34440 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		120B77FD1EA395EC00D34440 /* Main.storyboard */ = {

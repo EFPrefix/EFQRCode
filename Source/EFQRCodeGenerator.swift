@@ -653,7 +653,7 @@ import CoreImage
         guard let codes = generateCodes() else {
             return nil
         }
-        
+
         let baseSuitableSize = Int(size)
         for offset in 0...codes.count {
             let tempSuitableSize = baseSuitableSize + offset
