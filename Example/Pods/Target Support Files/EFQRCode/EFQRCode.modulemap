@@ -1,6 +1,0 @@
-framework module EFQRCode {
-  umbrella header "EFQRCode-umbrella.h"
-
-  export *
-  module * { export * }
-}
