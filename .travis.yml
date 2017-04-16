@@ -1,34 +1,57 @@
-
-osx_image: xcode8
 language: objective-c
-
-cache: cocoapods
-podfile: Example/Podfile
-
-env:
-  global:
-    - LANG=en_US.UTF-8
-    - LC_ALL=en_US.UTF-8
-    - XCODE_WORKSPACE=Example/EFQRCode.xcworkspace
-  matrix:
-    - SCHEME="EFQRCode-Example"
-
+osx_image: xcode8.3
 branches:
   only:
-  - master
+    - master
+env:
+  global:
+  - LC_CTYPE=en_US.UTF-8
+  - LANG=en_US.UTF-8
+  - WORKSPACE=EFQRCode.xcworkspace
+  - IOS_FRAMEWORK_SCHEME="EFQRCode iOS"
+  - MACOS_FRAMEWORK_SCHEME="EFQRCode macOS"
+  - TVOS_FRAMEWORK_SCHEME="EFQRCode tvOS"
+  - EXAMPLE_SCHEME="iOS Example"
+  matrix:
+    - DESTINATION="OS=10.3,name=iPhone 7 Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"
+    - DESTINATION="OS=9.0,name=iPhone 6"           SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    #- DESTINATION="OS=8.1,name=iPhone 4s"          SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
 
+    - DESTINATION="OS=10.2,name=Apple TV 1080p"    SCHEME="$TVOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    - DESTINATION="OS=9.0,name=Apple TV 1080p"     SCHEME="$TVOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+
+    #- DESTINATION="arch=x86_64"                    SCHEME="$MACOS_FRAMEWORK_SCHEME"    RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
 before_install:
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
-  - pod install --project-directory=Example
-
 script:
   - set -o pipefail
-  - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Debug clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
-  - xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$SCHEME" -configuration Release clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
-  - xcodebuild -scheme "$SCHEME" -workspace "$XCODE_WORKSPACE" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6S,OS=9.1' build test
-  - pod lib lint --no-clean
+  - xcodebuild -version
+  - xcodebuild -showsdks
+
+  # Build Framework in Debug and Run Tests if specified
+  - if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
+    else
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
+    fi
+
+  # Build Framework in Release and Run Tests if specified
+  - if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
+    else
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty;
+    fi
+
+  # Build Example in Debug if specified
+  - if [ $BUILD_EXAMPLE == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
+    fi
+
+  # Run `pod lib lint` if specified
+  - if [ $POD_LINT == "YES" ]; then
+      pod lib lint;
+    fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - sleep 5
+  - sleep 3

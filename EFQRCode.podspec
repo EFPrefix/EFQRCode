@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 s.name             = 'EFQRCode'
 s.version          = '1.2.1'
-s.summary          = 'An extension for UIImage to create and scan QRCode.'
+s.summary          = 'A better way to operate quick response code in Swift.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,9 @@ s.summary          = 'An extension for UIImage to create and scan QRCode.'
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
 s.description      = <<-DESC
-An extension for UIImage to create and scan QRCode, in Swift.
+EFQRCode is a tool to generate QRCode image or recognize QRCode from image, in Swift. It is based on CoreImage.
+Generation: Create pretty two-dimensional code image with input watermark or icon;
+Recognition: Recognition rate is higher than simply CIDetector.
 DESC
 
 s.homepage         = 'https://github.com/EyreFree/EFQRCode'
@@ -31,7 +33,7 @@ s.source           = { :git => 'https://github.com/EyreFree/EFQRCode.git', :tag 
 s.ios.deployment_target = '8.0'
 s.requires_arc = true
 
-s.source_files = 'EFQRCode/Classes/*.swift'
+s.source_files = 'Source/*.swift'
 
 # s.resource_bundles = {
 #   'EFQRCode' => ['EFQRCode/Assets/*.png']

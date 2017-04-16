@@ -1,4 +1,4 @@
-![](assets/EFQRCode.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
 <a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
@@ -21,9 +21,9 @@ EFQRCode is a tool to generate QRCode image or recognize QRCode from image, in S
 
 ## Overview
 
-![](assets/QRCode1.jpg)|![](assets/QRCode2.jpg)|![](assets/QRCode3.jpg)|![](assets/QRCode4.jpg)  
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode3.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode4.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](assets/QRCode5.jpg)|![](assets/QRCode6.jpg)|![](assets/QRCode7.jpg)|![](assets/QRCode8.jpg)  
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode8.jpg)  
 
 ## Demo
 
@@ -118,7 +118,7 @@ if let tryImage = EFQRCode.generate(
 
 Result: 
 
-<img src="assets/sample1.jpg" width = "36%"/>
+<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
 ## User Guide
 
@@ -187,7 +187,7 @@ Content, compulsive, capacity is limited, 1273 character most, the density of th
 
 10 characters | 250 characters
 :-------------------------:|:-------------------------:
-![](assets/compareContent1.jpg)|![](assets/compareContent2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareContent1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareContent2.jpg)
 
 * **inputCorrectionLevel: EFInputCorrectionLevel**
 
@@ -207,7 +207,7 @@ Comparison of different inputCorrectionLevel:
 
 L | M | Q | H
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](assets/compareInputCorrectionLevel1.jpg)|![](assets/compareInputCorrectionLevel2.jpg)|![](assets/compareInputCorrectionLevel3.jpg)|![](assets/compareInputCorrectionLevel4.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel3.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareInputCorrectionLevel4.jpg)
 
 * **size: EFIntSize**
 
@@ -239,7 +239,7 @@ public class EFIntSize {
 
 234*234 | 312*234
 :-------------------------:|:-------------------------:
-![](assets/size1.jpg)|![](assets/size2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/size1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/size2.jpg)
 
 * **magnification: EFIntSize?**
 
@@ -276,7 +276,7 @@ generator.image
 
 size 300 | magnification 9
 :-------------------------:|:-------------------------:
-![](assets/compareMagnification1.jpg)|![](assets/compareMagnification2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareMagnification1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareMagnification2.jpg)
 
 * **backgroundColor: CIColor**
 
@@ -288,7 +288,7 @@ ForegroundColor, optional, color of code point, default is black.
 
   ForegroundColor set to red | BackgroundColor set to gray  
 :-------------------------:|:-------------------------:
-![](assets/compareForegroundcolor.jpg)|![](assets/compareBackgroundcolor.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareForegroundcolor.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareBackgroundcolor.jpg)
 
 * **icon: CGImage?**
 
@@ -300,7 +300,7 @@ Size of icon image, optional, default is 20% of size:
 
   Default 20% size | Set to 64  
 :-------------------------:|:-------------------------:
-![](assets/compareIcon.jpg)|![](assets/compareIconSize.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareIcon.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareIconSize.jpg)
 
 * **isIconColorful: Bool**
 
@@ -312,7 +312,7 @@ Watermark image, optional, default is nil, for example:
 
   1 | 2  
 :-------------------------:|:-------------------------:
-![](assets/compareWatermark1.jpg)|![](assets/compareWatermark2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareWatermark1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareWatermark2.jpg)
 
 * **watermarkMode: EFWatermarkMode**
 
@@ -346,7 +346,7 @@ Foreground point offset, optional, default is 0, is not recommended to use, may 
 
 0 | 0.5 
 :-------------------------:|:-------------------------:
-![](assets/compareForegroundPointOffset1.jpg)|![](assets/compareForegroundPointOffset2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareForegroundPointOffset1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareForegroundPointOffset2.jpg)
 
 * **allowTransparent: Bool**
 
@@ -354,7 +354,7 @@ Allow watermark image transparent, optional, default is `true`:
 
 true | false
 :-------------------------:|:-------------------------:
-![](assets/compareAllowTransparent1.jpg)|![](assets/compareAllowTransparent2.jpg)
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareAllowTransparent1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareAllowTransparent2.jpg)
 
 * Other
 

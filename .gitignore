@@ -22,15 +22,12 @@ DerivedData
 # Bundler
 .bundle
 
-Carthage
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-# 
-# Note: if you ignore the Pods directory, make sure to uncomment
-# `pod install` in .travis.yml
-#
-# Pods/
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
 
-# scan temporary files
-.build
+# Swift Package Manager
+.build/
+
+# Carthage
+Carthage/Build

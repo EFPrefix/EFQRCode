@@ -1,8 +1,8 @@
 //
-//  Package.swift
-//  EFQRCode
+//  EFQRCode.h
+//  Pods
 //
-//  Created by EyreFree on 2017/4/1.
+//  Created by EyreFree on 2017/4/16.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,12 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import PackageDescription
+@import Foundation;
 
-let package = Package(
-    name: "EFQRCode",
-    exclude: [
-        "Tests",
-        "Examples"
-    ]
-)
+FOUNDATION_EXPORT double EFQRCodeVersionNumber;
+FOUNDATION_EXPORT const unsigned char EFQRCodeVersionString[];
