@@ -49,7 +49,7 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod "EFQRCode", '~> 1.2.0'
+pod "EFQRCode", '~> 1.2.2'
 ```
 
 ## 快速使用
@@ -408,7 +408,6 @@ public struct EFExtra {
 ## 待办
 
 - [ ] 支持 GIF 动图
-- [ ] 支持 tvOS/macOS/watchOS
 - [ ] 支持更多样式
 
 ## 备注

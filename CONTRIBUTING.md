@@ -39,7 +39,7 @@ When reporting issues, please include the following:
 
 This information will help us review and fix your issue faster.
 
-## Developer's Certificate of Origin 1.1
+## Developer's Certificate of Origin
 
 By making a contribution to this project, I certify that:
 

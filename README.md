@@ -48,7 +48,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EFQRCode", '~> 1.2.1'
+pod "EFQRCode", '~> 1.2.2'
 ```
 
 ## Usage
@@ -407,7 +407,6 @@ public struct EFExtra {
 ## Todo
 
 - [ ] Support GIF
-- [ ] Support tvOS/macOS/watchOS
 - [ ] Support more styles
 
 ## PS

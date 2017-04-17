@@ -62,13 +62,6 @@
 			remoteGlobalIDString = 4CF626F81BA7CB3E0011A099;
 			remoteInfo = "EFQRCode tvOS Tests";
 		};
-		120B78591EA3A9E100D34440 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4202FE01B667AA100C997FB;
-			remoteInfo = "EFQRCode watchOS";
-		};
 		120B785B1EA3A9F500D34440 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
@@ -155,7 +148,6 @@
 				120B78541EA3A9E100D34440 /* EFQRCode macOS Tests.xctest */,
 				120B78561EA3A9E100D34440 /* EFQRCode.framework */,
 				120B78581EA3A9E100D34440 /* EFQRCode tvOS Tests.xctest */,
-				120B785A1EA3A9E100D34440 /* EFQRCode.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,13 +297,6 @@
 			fileType = wrapper.cfbundle;
 			path = "EFQRCode tvOS Tests.xctest";
 			remoteRef = 120B78571EA3A9E100D34440 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		120B785A1EA3A9E100D34440 /* EFQRCode.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = EFQRCode.framework;
-			remoteRef = 120B78591EA3A9E100D34440 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

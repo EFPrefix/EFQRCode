@@ -2,6 +2,16 @@
 
 -----
 
+## [1.2.2](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.2) (2017-04-17)
+
+#### Add
+
+* Support Carthage;
+* Support tvOS;
+* Support macOS.
+
+---
+
 ## [1.2.1](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.1) (2017-04-11)
 
 #### Add
