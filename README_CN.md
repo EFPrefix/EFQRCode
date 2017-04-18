@@ -53,6 +53,43 @@ EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要
 pod "EFQRCode", '~> 1.2.3'
 ```
 
+然后，执行如下命令即可：
+
+```bash
+$ pod install
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) 是一个去中心化的依赖管理器，它为我们构建依赖并通过提供二进制 Frameworks 的方式供我们使用。
+
+你可以通过 [Homebrew](http://brew.sh/) 使用如下命令来安装 Carthage：
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
+
+```ogdl
+github "EyreFree/EFQRCode" ~> 1.2.3
+```
+
+接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
+
+### Swift Package Manager
+
+[Swift Package Manager](https://swift.org/package-manager/) 是一个集成在 `swift` 编译器中的用来进行 Swift 代码自动化发布的工具。
+
+如果你已经建立了你的 Swift 包，将 EFQRCode 加入依赖是十分容易的，只需要将其添加到你的 `Package.swift` 文件的 `dependencies` 项中即可：
+
+```swift
+dependencies: [
+    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 3))
+]
+```
+
 ## 快速使用
 
 #### 1. 导入 EFQRCode
