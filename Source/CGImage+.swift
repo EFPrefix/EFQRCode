@@ -36,26 +36,26 @@ public extension CGImage {
     // Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
         var pixels: [[EFUIntPixel]]?
-        if let pixelData = self.dataProvider?.data {
-            let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-            pixels = [[EFUIntPixel]]()
-            for indexY in 0 ..< self.height {
-                pixels?.append([EFUIntPixel]())
-                for indexX in 0 ..< self.width {
-                    let pixelInfo: Int = ((Int(self.width) * Int(indexY)) + Int(indexX)) * 4
-                    pixels?[indexY].append(
-                        EFUIntPixel(
-                            red: data[pixelInfo],
-                            green: data[pixelInfo + 1],
-                            blue: data[pixelInfo + 2],
-                            alpha: data[pixelInfo + 3]
-                        )
-                    )
-                }
-            }
-            return pixels
+        guard let pixelData = self.dataProvider?.data else {
+            return nil
         }
-        return nil
+        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
+        pixels = [[EFUIntPixel]]()
+        for indexY in 0 ..< self.height {
+            pixels?.append([EFUIntPixel]())
+            for indexX in 0 ..< self.width {
+                let pixelInfo = ((Int(self.width) * Int(indexY)) + Int(indexX)) * 4
+                pixels?[indexY].append(
+                    EFUIntPixel(
+                        red: data[pixelInfo],
+                        green: data[pixelInfo + 1],
+                        blue: data[pixelInfo + 2],
+                        alpha: data[pixelInfo + 3]
+                    )
+                )
+            }
+        }
+        return pixels
     }
 
     // Grayscale

@@ -43,11 +43,12 @@ public extension CIImage {
     func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
         var result = [String]()
         let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
-        if let features = detector?.features(in: self) {
-            for feature in features {
-                if let tryString = (feature as? CIQRCodeFeature)?.messageString {
-                    result.append(tryString)
-                }
+        guard let features = detector?.features(in: self) else {
+            return result
+        }
+        for feature in features {
+            if let tryString = (feature as? CIQRCodeFeature)?.messageString {
+                result.append(tryString)
             }
         }
         return result
