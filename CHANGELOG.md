@@ -2,6 +2,14 @@
 
 -----
 
+## [1.2.3](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.3) (2017-04-18)
+
+#### Fix
+
+* Fix cocoapods platform.
+
+---
+
 ## [1.2.2](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.2) (2017-04-17)
 
 #### Add
@@ -21,7 +29,7 @@
 
 #### Fix
 
-* Increase efficiency.
+* Increase efficiency;
 * Fix issue [#4](https://github.com/EyreFree/EFQRCode/issues/4).
 
 ---
