@@ -41,6 +41,7 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install
 
 - XCode 8.0+
 - Swift 3.0+
+- iOS 8.0+ / macOS 10.11+ / tvOS 9.0+
 
 ## 安装
 
@@ -49,7 +50,7 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod "EFQRCode", '~> 1.2.2'
+pod "EFQRCode", '~> 1.2.3'
 ```
 
 ## 快速使用

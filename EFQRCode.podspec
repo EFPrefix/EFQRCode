@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'EFQRCode'
-s.version          = '1.2.2'
+s.version          = '1.2.3'
 s.summary          = 'A better way to operate quick response code in Swift.'
 
 # This description is used to generate tags and improve search results.
@@ -31,6 +31,9 @@ s.source           = { :git => 'https://github.com/EyreFree/EFQRCode.git', :tag 
 # s.social_media_url = 'https://twitter.com/EyreFree777'
 
 s.ios.deployment_target = '8.0'
+s.osx.deployment_target = '10.11'
+s.tvos.deployment_target = '9.0'
+
 s.requires_arc = true
 
 s.source_files = 'Source/*.swift'

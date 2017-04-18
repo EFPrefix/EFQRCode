@@ -39,6 +39,7 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install
 
 - XCode 8.0+
 - Swift 3.0+
+- iOS 8.0+ / macOS 10.11+ / tvOS 9.0+
 
 ## Installation
 
@@ -48,7 +49,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EFQRCode", '~> 1.2.2'
+pod "EFQRCode", '~> 1.2.3'
 ```
 
 ## Usage
