@@ -26,12 +26,12 @@ EFQRCode is a tool to generate QRCode image or recognize QRCode from image, in S
 
 ## Demo
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, demos are in the 'Examples' folder.
 
 Or you can run the following command in terminal:
 
 ```bash
-git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install; open EFQRCode.xcworkspace
+git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Examples/iOS; open 'iOS Example.xcodeproj'
 ```
 
 ## Requirements

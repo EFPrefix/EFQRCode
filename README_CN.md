@@ -26,14 +26,13 @@ EFQRCode 是一个用 Swift 编写的用来生成和识别二维码的库，基�
 
 ## 示例
 
-1. 利用 `git clone` 命令下载本仓库；
-2. 利用 cd 命令切换到 Example 目录下，执行 `pod install` 命令；
-3. 随后打开 `EFQRCode.xcworkspace` 编译即可。
+1. 利用 `git clone` 命令下载本仓库, `Examples` 目录包含了所有的示例程序；
+2. 用 XCode 打开对应项目编译即可。
 
 或执行以下命令：
 
 ```bash
-git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Example; pod install; open EFQRCode.xcworkspace
+git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Examples/iOS; open 'iOS Example.xcodeproj'
 ```
 
 ## 环境
