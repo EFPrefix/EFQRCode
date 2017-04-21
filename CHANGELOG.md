@@ -2,6 +2,18 @@
 
 -----
 
+## [1.2.4](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.4) (2017-xx-xx)
+
+#### Add
+
+* Add example for macOS.
+
+#### Fix
+
+* Fix iOS 8 problem.
+
+---
+
 ## [1.2.3](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.3) (2017-04-18)
 
 #### Fix
