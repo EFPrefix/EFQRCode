@@ -2,5 +2,4 @@ ignore:
   - Carthage
   - Tests
   - Examples
-  - Kingfisher-Demo
   - Package.swift
