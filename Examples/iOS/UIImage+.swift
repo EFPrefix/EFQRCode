@@ -10,12 +10,6 @@ import UIKit
 
 extension UIImage {
 
-    // Convert UIImage to CIImage
-    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    func toCIImage() -> CIImage? {
-        return CIImage(image: self)
-    }
-
     // Get avarage color
     func avarageColor() -> UIColor? {
         let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)

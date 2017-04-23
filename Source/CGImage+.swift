@@ -29,6 +29,8 @@ import CoreImage
 
 public extension CGImage {
 
+    // Convert UIImage to CIImage
+    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     public func toCIImage() -> CIImage {
         return CIImage(cgImage: self)
     }

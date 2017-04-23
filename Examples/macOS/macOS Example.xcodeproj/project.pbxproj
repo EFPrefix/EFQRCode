@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1215ADB41EAC908000F824B1 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B41EA8DE740049DE67 /* EFQRCode.framework */; };
+		1215ADBB1EAC90AF00F824B1 /* EFQRCode macOS Tests.xctest in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B61EA8DE740049DE67 /* EFQRCode macOS Tests.xctest */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125436EE1EABA98C00C46CC7 /* NSColor+.swift */; };
 		12F371971EA8DE3A0049DE67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371961EA8DE3A0049DE67 /* AppDelegate.swift */; };
 		12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371981EA8DE3A0049DE67 /* ViewController.swift */; };
 		12F3719B1EA8DE3A0049DE67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */; };
@@ -14,6 +17,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1215ADAC1EAC907800F824B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12F371A61EA8DE740049DE67 /* EFQRCode.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4DD67C0A1A5C55C900ED2280;
+			remoteInfo = "EFQRCode macOS";
+		};
 		12F371AF1EA8DE740049DE67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 12F371A61EA8DE740049DE67 /* EFQRCode.xcodeproj */;
@@ -58,8 +68,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1215ADBA1EAC909D00F824B1 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1215ADBB1EAC90AF00F824B1 /* EFQRCode macOS Tests.xctest in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		12F371931EA8DE3A0049DE67 /* EFQRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		125436EE1EABA98C00C46CC7 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
+		12F371931EA8DE3A0049DE67 /* macOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F371961EA8DE3A0049DE67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12F371981EA8DE3A0049DE67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,12 +98,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1215ADB41EAC908000F824B1 /* EFQRCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		125436E71EABA97900C46CC7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				125436EE1EABA98C00C46CC7 /* NSColor+.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		125436F01EABA9B000C46CC7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				12F3719F1EA8DE3A0049DE67 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		125436F11EABA9BA00C46CC7 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */,
+				12F3719C1EA8DE3A0049DE67 /* Main.storyboard */,
+			);
+			name = Res;
+			sourceTree = "<group>";
+		};
+		125436F21EABA9D000C46CC7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12F371981EA8DE3A0049DE67 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		12F3718A1EA8DE3A0049DE67 = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +150,7 @@
 		12F371941EA8DE3A0049DE67 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				12F371931EA8DE3A0049DE67 /* EFQRCode.app */,
+				12F371931EA8DE3A0049DE67 /* macOS Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,10 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				12F371961EA8DE3A0049DE67 /* AppDelegate.swift */,
-				12F371981EA8DE3A0049DE67 /* ViewController.swift */,
-				12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */,
-				12F3719C1EA8DE3A0049DE67 /* Main.storyboard */,
-				12F3719F1EA8DE3A0049DE67 /* Info.plist */,
+				125436F11EABA9BA00C46CC7 /* Res */,
+				125436E71EABA97900C46CC7 /* Extension */,
+				125436F21EABA9D000C46CC7 /* Controller */,
+				125436F01EABA9B000C46CC7 /* Supporting Files */,
 			);
 			path = "macOS Example";
 			sourceTree = "<group>";
@@ -131,14 +190,16 @@
 				12F3718F1EA8DE3A0049DE67 /* Sources */,
 				12F371901EA8DE3A0049DE67 /* Frameworks */,
 				12F371911EA8DE3A0049DE67 /* Resources */,
+				1215ADBA1EAC909D00F824B1 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1215ADAD1EAC907800F824B1 /* PBXTargetDependency */,
 			);
 			name = "macOS Example";
 			productName = "macOS Example";
-			productReference = 12F371931EA8DE3A0049DE67 /* EFQRCode.app */;
+			productReference = 12F371931EA8DE3A0049DE67 /* macOS Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -245,11 +306,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */,
+				125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */,
 				12F371971EA8DE3A0049DE67 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1215ADAD1EAC907800F824B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "EFQRCode macOS";
+			targetProxy = 1215ADAC1EAC907800F824B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		12F3719C1EA8DE3A0049DE67 /* Main.storyboard */ = {
@@ -366,7 +436,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "eyrefree.org.macOS-Example";
-				PRODUCT_NAME = EFQRCode;
+				PRODUCT_NAME = "macOS Example";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -383,7 +453,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "eyrefree.org.macOS-Example";
-				PRODUCT_NAME = EFQRCode;
+				PRODUCT_NAME = "macOS Example";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
