@@ -25,18 +25,29 @@
 //  THE SOFTWARE.
 
 #if os(macOS)
-import AppKit
+    import AppKit
+
+    public extension NSColor {
+
+        public func toCIColor() -> CIColor {
+            return self.cgColor.toCIColor()
+        }
+
+        public func toCGColor() -> CGColor {
+            return self.cgColor
+        }
+    }
 #else
-import UIKit
+    import UIKit
 
-public extension UIColor {
+    public extension UIColor {
 
-    public func toCIColor() -> CIColor {
-        return self.cgColor.toCIColor()
+        public func toCIColor() -> CIColor {
+            return self.cgColor.toCIColor()
+        }
+
+        public func toCGColor() -> CGColor {
+            return self.cgColor
+        }
     }
-
-    public func toCGColor() -> CGColor {
-        return self.cgColor
-    }
-}
 #endif

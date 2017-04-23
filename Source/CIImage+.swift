@@ -31,7 +31,7 @@ public extension CIImage {
     // Convert CIImage To CGImage
     // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     public func toCGImage() -> CGImage? {
-        return CIContext(options: nil).createCGImage(self, from: self.extent)
+        return CIContext().createCGImage(self, from: self.extent)
     }
 
     // Size

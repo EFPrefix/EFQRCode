@@ -52,7 +52,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = true
-        tableView.separatorColor = UIColor.white
+        #if os(iOS)
+            tableView.separatorColor = UIColor.white
+        #endif
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.backgroundColor = UIColor.clear
@@ -66,7 +68,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         bottomLabel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         bottomLabel.setTitleColor(UIColor.white, for: .normal)
         bottomLabel.setTitle("https://github.com/EyreFree/EFQRCode", for: .normal)
-        bottomLabel.addTarget(self, action: #selector(ViewController.openBlog), for: .touchDown)
+        #if os(iOS)
+            bottomLabel.addTarget(self, action: #selector(ViewController.openBlog), for: .touchDown)
+        #endif
         self.view.addSubview(bottomLabel)
         bottomLabel.frame = CGRect(
             x: 0, y: screenSize.height - 40, width: screenSize.width, height: 20
@@ -83,14 +87,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        switch indexPath.row {
-        case 0:
-            self.navigationController?.pushViewController(RecognizerController(), animated: true)
-            break
-        default:
+        #if os(iOS)
+            switch indexPath.row {
+            case 0:
+                self.navigationController?.pushViewController(RecognizerController(), animated: true)
+                break
+            default:
+                self.navigationController?.pushViewController(GeneratorController(), animated: true)
+                break
+            }
+        #else
             self.navigationController?.pushViewController(GeneratorController(), animated: true)
-            break
-        }
+        #endif
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -98,7 +106,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        #if os(iOS)
+            return 2
+        #else
+            return 1
+        #endif
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -114,14 +126,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        #if os(iOS)
+            let text = ["Recognizer", "Generator"][indexPath.row]
+        #else
+            let text = "Generator"
+        #endif
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.textColor = UIColor.white
         cell.backgroundColor = UIColor.clear
-        cell.textLabel?.text = ["Recognizer", "Generator"][indexPath.row]
+        cell.textLabel?.text = text
         let backView = UIView()
         backView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
         cell.selectedBackgroundView = backView
-        let imageView = UIImageView(image: UIImage(named: ["Recognizer", "Generator"][indexPath.row]))
+        let imageView = UIImageView(image: UIImage(named: text))
         imageView.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
         imageView.contentMode = .scaleAspectFit
         cell.accessoryView = imageView

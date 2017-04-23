@@ -40,13 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
 func UIImage2CGimage(_ image: UIImage?) -> CGImage? {
     if let tryImage = image, let tryCIImage = CIImage(image: tryImage) {
-        return CIContext(options: nil).createCGImage(tryCIImage, from: tryCIImage.extent)
+        return CIContext().createCGImage(tryCIImage, from: tryCIImage.extent)
     }
     return nil
 }

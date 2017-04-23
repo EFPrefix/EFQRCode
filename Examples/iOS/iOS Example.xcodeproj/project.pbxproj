@@ -155,7 +155,7 @@
 		F8111DFC19A951050040E7D1 = {
 			isa = PBXGroup;
 			children = (
-				F8111E0719A951050040E7D1 /* EFQRCode */,
+				F8111E0719A951050040E7D1 /* iOS Example */,
 				F8111E0619A951050040E7D1 /* Products */,
 				120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */,
 			);
@@ -172,7 +172,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F8111E0719A951050040E7D1 /* EFQRCode */ = {
+		F8111E0719A951050040E7D1 /* iOS Example */ = {
 			isa = PBXGroup;
 			children = (
 				120B78401EA39E1B00D34440 /* AppDelegate.swift */,
@@ -181,7 +181,7 @@
 				120B77F81EA394FB00D34440 /* Controller */,
 				F8111E0819A951050040E7D1 /* Supporting Files */,
 			);
-			name = EFQRCode;
+			name = "iOS Example";
 			path = Example;
 			sourceTree = "<group>";
 		};
