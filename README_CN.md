@@ -71,7 +71,7 @@ $ brew install carthage
 通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 1.2.3
+github "EyreFree/EFQRCode" ~> 1.2.4
 ```
 
 接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
@@ -84,7 +84,7 @@ github "EyreFree/EFQRCode" ~> 1.2.3
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 3))
+    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 4))
 ]
 ```
 
