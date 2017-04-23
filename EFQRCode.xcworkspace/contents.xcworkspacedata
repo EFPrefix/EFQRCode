@@ -10,4 +10,7 @@
    <FileRef
       location = "group:Examples/macOS/macOS Example.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Examples/tvOS/tvOS Example.xcodeproj">
+   </FileRef>
 </Workspace>
