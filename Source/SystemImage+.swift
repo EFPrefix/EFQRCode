@@ -31,7 +31,7 @@
 
         public func toCIImage() -> CIImage? {
             if let data = self.tiffRepresentation(using: NSTIFFCompression.none, factor: 0) {
-                CIImage(data: data)
+                return CIImage(data: data)
             }
             return nil
         }
