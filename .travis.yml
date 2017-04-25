@@ -54,6 +54,6 @@ script:
 
 after_success:
   - if [ $DESTINATION == "OS=10.3,name=iPhone 7 Plus" ]; then
-    bash <(curl -s https://codecov.io/bash)
-  fi
+      bash <(curl -s https://codecov.io/bash)
+    fi
   - sleep 3
