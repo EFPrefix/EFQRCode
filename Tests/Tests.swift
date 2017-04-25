@@ -39,6 +39,17 @@ class Tests: XCTestCase {
         super.tearDown()
     }
 
+    func getImage(name: String) -> CGImage? {
+        if let filePath = Bundle.init(for: self.classForCoder).path(forResource: "eyrefree", ofType: "png") {
+            #if os(macOS)
+                return NSImage(contentsOfFile: filePath)?.toCGImage()
+            #else
+                return UIImage(contentsOfFile: filePath)?.toCGImage()
+            #endif
+        }
+        return nil
+    }
+
     func testExample1() {
         // This is an example of EFQRCodeGenerator test case.
         let content = "https://github.com/EyreFree/EFQRCode"
@@ -94,7 +105,13 @@ class Tests: XCTestCase {
             size: EFIntSize(width: 1024, height: 1024),
             magnification: nil,
             backgroundColor: CIColor.EFWhite(),
-            foregroundColor: UIColor.gray.toCIColor(),
+            foregroundColor: {
+                #if os(macOS)
+                    return NSColor.gray.toCIColor()
+                #else
+                    return UIColor.gray.toCIColor()
+                #endif
+        }(),
             icon: nil,
             watermark: nil,
             extra: nil
@@ -116,10 +133,16 @@ class Tests: XCTestCase {
             inputCorrectionLevel: .q,
             size: EFIntSize(width: 256, height: 256),
             magnification: EFIntSize(width: 20, height: 20),
-            backgroundColor: UIColor.red.toCIColor(),
+            backgroundColor: {
+                #if os(macOS)
+                    return NSColor.gray.toCIColor()
+                #else
+                    return UIColor.red.toCIColor()
+                #endif
+        }(),
             foregroundColor: CIColor.EFBlack(),
-            icon: EFIcon(image: UIImage(named: "eyrefree.png")?.toCGImage()),
-            watermark: EFWatermark(image: UIImage(named: "eyrefree.png")?.toCGImage()),
+            icon: EFIcon(image: getImage(name: "eyrefree")),
+            watermark: EFWatermark(image: getImage(name: "eyrefree")),
             extra: nil
         )
         XCTAssert(testResult != nil, "testResult is nil!")
