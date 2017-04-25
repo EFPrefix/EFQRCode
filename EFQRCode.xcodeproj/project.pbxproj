@@ -43,6 +43,9 @@
 		120B787B1EA3B84D00D34440 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DF1EA393A600D34440 /* EFQRCode.swift */; };
 		120B787C1EA3B84D00D34440 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E01EA393A600D34440 /* EFQRCodeGenerator.swift */; };
 		120B787D1EA3B84D00D34440 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E11EA393A600D34440 /* EFQRCodeRecognizer.swift */; };
+		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
+		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
+		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		4C256A531B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4C256A541B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4CF626F91BA7CB3E0011A099 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */; };
@@ -88,6 +91,7 @@
 		120B77E11EA393A600D34440 /* EFQRCodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCodeRecognizer.swift; sourceTree = "<group>"; };
 		120B77E21EA393A600D34440 /* SystemColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystemColor+.swift"; sourceTree = "<group>"; };
 		120B77E31EA393A600D34440 /* SystemImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystemImage+.swift"; sourceTree = "<group>"; };
+		126A1B591EAF225100EFBA1B /* eyrefree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyrefree.png; sourceTree = "<group>"; };
 		4C0E02681BF99A18004E7F18 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Source/Info-tvOS.plist"; sourceTree = SOURCE_ROOT; };
 		4C256A501B096C2C0065714F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,20 +186,12 @@
 			name = Define;
 			sourceTree = "<group>";
 		};
-		4C3238E91B3617A600FE04AE /* Resources */ = {
+		126A1B581EAF225100EFBA1B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4C33A1221B5207DB00873DFF /* Images */,
+				126A1B591EAF225100EFBA1B /* eyrefree.png */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		4C33A1221B5207DB00873DFF /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Images;
-			path = Resources/Images;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		F8111E2919A95C8B0040E7D1 = {
@@ -248,7 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				4C256A501B096C2C0065714F /* Tests.swift */,
-				4C3238E91B3617A600FE04AE /* Resources */,
+				126A1B581EAF225100EFBA1B /* Resources */,
 				F8111E4019A95C8B0040E7D1 /* Supporting Files */,
 			);
 			path = Tests;
@@ -479,6 +475,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +497,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +505,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

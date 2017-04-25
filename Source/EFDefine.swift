@@ -94,7 +94,7 @@ public struct EFIcon {
     public var size: EFIntSize?
     public var isColorful: Bool = true
 
-    public init(image: CGImage?, size: EFIntSize?, isColorful: Bool = true) {
+    public init(image: CGImage?, size: EFIntSize? = nil, isColorful: Bool = true) {
         self.image = image
         self.size = size
         self.isColorful = isColorful
