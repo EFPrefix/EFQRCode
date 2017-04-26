@@ -2,19 +2,20 @@
 
 <p align="center">
 <a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
-<a href="https://codecov.io/gh/EyreFree/EFQRCode"><img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg" alt="Codecov" /></a>
+<a href="https://codecov.io/gh/EyreFree/EFQRCode"><img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg"></a>
 <a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-ready-orange.svg"></a>
 <a href="http://cocoapods.org/pods/EFQRCode"><img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat"></a>
 <a href="http://cocoapods.org/pods/EFQRCode"><img src="https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat"></a>
-<a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="https://img.shields.io/badge/language-swift-orange.svg"></a>
-<a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img alt="codebeat badge" src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f" /></a>
+<a href="https://github.com/apple/swift"><img src="https://img.shields.io/badge/language-swift-orange.svg"></a>
+<a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f"></a>
+<a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat"></a>
+<a href="https://gitter.im/EFQRCode/Lobby"><img src="https://badges.gitter.im/EyreFree/EFQRCode.svg"></a>
+<a href="https://twitter.com/EyreFree777"><img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat"></a>
+<a href="http://weibo.com/eyrefree777"><img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat"></a>
 </p>
 
-EFQRCode is a tool to generate QRCode image or recognize QRCode from image, in Swift. It is based on `CoreImage`.
-
-- Generation: Create pretty two-dimensional code image with input watermark or icon;
-- Recognition: Recognition rate is higher than simply `CIDetector`.
+EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on `CoreImage`. This project is inspired by [qrcode](https://github.com/sylnsfar/qrcode). It provides you a better way to operate QRCode in your app.
 
 > [中文介绍](https://github.com/EyreFree/EFQRCode/blob/master/README_CN.md)
 
@@ -88,7 +89,7 @@ dependencies: [
 ]
 ```
 
-## Usage
+## Quick Start
 
 #### 1. Import EFQRCode
 
@@ -456,9 +457,19 @@ public struct EFExtra {
 
 PS of PS: I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...
 
-## Author
+## Other Platforms/Languages
 
-EyreFree, eyrefree@eyrefree.org
+Platforms/Languages|Link
+:-------------------------:|:-------------------------:
+Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
+Android|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
+JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
+
+## Contact
+
+1. Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
+2. Weibo: [@EyreFree](http://weibo.com/eyrefree777)
+3. Twitter: [@EyreFree777](https://twitter.com/EyreFree777)
 
 ## License
 

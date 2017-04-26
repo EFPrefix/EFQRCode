@@ -2,19 +2,20 @@
 
 <p align="center">
 <a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
-<a href="https://codecov.io/gh/EyreFree/EFQRCode"><img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg" alt="Codecov" /></a>
+<a href="https://codecov.io/gh/EyreFree/EFQRCode"><img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg"></a>
 <a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-ready-orange.svg"></a>
 <a href="http://cocoapods.org/pods/EFQRCode"><img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat"></a>
 <a href="http://cocoapods.org/pods/EFQRCode"><img src="https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat"></a>
-<a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="https://img.shields.io/badge/language-swift-orange.svg"></a>
-<a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img alt="codebeat badge" src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f" /></a>
+<a href="https://github.com/apple/swift"><img src="https://img.shields.io/badge/language-swift-orange.svg"></a>
+<a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f"></a>
+<a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat"></a>
+<a href="https://gitter.im/EFQRCode/Lobby"><img src="https://badges.gitter.im/EyreFree/EFQRCode.svg"></a>
+<a href="https://twitter.com/EyreFree777"><img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat"></a>
+<a href="http://weibo.com/eyrefree777"><img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat"></a>
 </p>
 
-EFQRCode 是一个用 Swift 编写的用来生成和识别二维码的库，基于 CoreImage 进行开发。
-
-- 生成：利用输入的水印图/图标等资源生成各种艺术二维码；
-- 识别：识别率比 iOS 原生二维码识别率更高。
+EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 CoreImage 进行开发。受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式。
 
 > [English Introduction](https://github.com/EyreFree/EFQRCode/blob/master/README.md)
 
@@ -157,7 +158,7 @@ if let tryImage = EFQRCode.generate(
 
 <img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-## 使用指南
+## 用户指南
 
 ### 1. 二维码识别
 
@@ -456,9 +457,19 @@ public struct EFExtra {
 
 备注的备注：好用的话可以给个`星星`，蟹蟹，QAQ...
 
-## 作者
+## 其它平台／语言
 
-EyreFree, eyrefree@eyrefree.org
+平台／语言|链接
+:-------------------------:|:-------------------------:
+Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
+Android|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
+JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
+
+## 联系
+
+1. Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
+2. Weibo: [@EyreFree](http://weibo.com/eyrefree777)
+3. Twitter: [@EyreFree777](https://twitter.com/EyreFree777)
 
 ## 协议
 
