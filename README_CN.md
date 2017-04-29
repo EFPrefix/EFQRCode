@@ -467,9 +467,9 @@ JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/Sumi
 
 ## 联系
 
-1. Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
-2. Weibo: [@EyreFree](http://weibo.com/eyrefree777)
-3. Twitter: [@EyreFree777](https://twitter.com/EyreFree777)
+Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   
+Weibo: [@EyreFree](http://weibo.com/eyrefree777)   
+Twitter: [@EyreFree777](https://twitter.com/EyreFree777)   
 
 ## 协议
 
