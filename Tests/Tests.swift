@@ -128,11 +128,11 @@ class Tests: XCTestCase {
     func testExample4() {
         // This is an example of EFQRCodeGenerator test case.
         let content = "https://github.com/EyreFree/EFQRCode"
-        let testResult = EFQRCode.generate(
+        let generator = EFQRCodeGenerator(
             content: content,
             inputCorrectionLevel: .q,
-            size: EFIntSize(width: 256, height: 256),
-            magnification: EFIntSize(width: 20, height: 20),
+            size: EFIntSize(width: 15, height: 15),
+            magnification: nil,
             backgroundColor: {
                 #if os(macOS)
                     return NSColor.gray.toCIColor()
@@ -140,17 +140,13 @@ class Tests: XCTestCase {
                     return UIColor.red.toCIColor()
                 #endif
         }(),
-            foregroundColor: CIColor.EFBlack(),
-            icon: EFIcon(image: getImage(name: "eyrefree")),
-            watermark: EFWatermark(image: getImage(name: "eyrefree")),
-            extra: nil
+            foregroundColor: CIColor.EFBlack()
         )
-        XCTAssert(testResult != nil, "testResult is nil!")
-
-        // This is an example of EFQRCodeRecognizer test case.
-        let testResultArray = EFQRCode.recognize(image: testResult!)
-        XCTAssert(testResultArray != nil, "testResultArray is nil!")
-        XCTAssert(testResultArray!.count > 0, "testResultArray has no result!")
-        XCTAssert(testResultArray![0] == content, "testResultArray is wrong!")
+        generator.setIcon(icon: EFIcon(image: getImage(name: "eyrefree")))
+        generator.setWatermark(watermark: EFWatermark(image: getImage(name: "eyrefree")))
+        generator.setExtra(extra: EFExtra(foregroundPointOffset: 0, allowTransparent: true))
+        generator.watermarkMode = .bottom
+        let testResult = generator.image
+        XCTAssert(testResult != nil, "testResult should be nil!")
     }
 }
