@@ -1,39 +1,44 @@
- //
- //  EFQRCodeGenerator.swift
- //  Pods
- //
- //  Created by EyreFree on 17/1/24.
- //
- //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
- //
- //  Permission is hereby granted, free of charge, to any person obtaining a copy
- //  of this software and associated documentation files (the "Software"), to deal
- //  in the Software without restriction, including without limitation the rights
- //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- //  copies of the Software, and to permit persons to whom the Software is
- //  furnished to do so, subject to the following conditions:
- //
- //  The above copyright notice and this permission notice shall be included in
- //  all copies or substantial portions of the Software.
- //
- //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- //  THE SOFTWARE.
+//
+//  EFQRCodeGenerator.swift
+//  EyreFree
+//
+//  Created by EyreFree on 17/1/24.
+//
+//  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import CoreImage
 
- // EFQRCode+Create
- public class EFQRCodeGenerator {
+// EFQRCode+Create
+public class EFQRCodeGenerator {
 
     // MARK:- Parameters
     public var content: String? {
         didSet {
             imageQRCode = nil
             imageCodes = nil
+        }
+    }
+    public var mode: EFQRCodeMode = .none {
+        didSet {
+            imageQRCode = nil
         }
     }
     public var inputCorrectionLevel: EFInputCorrectionLevel = .h {
@@ -73,22 +78,12 @@ import CoreImage
             imageQRCode = nil
         }
     }
-    public var isIconColorful: Bool = true {
-        didSet {
-            imageQRCode = nil
-        }
-    }
     public var watermark: CGImage? = nil {
         didSet {
             imageQRCode = nil
         }
     }
     public var watermarkMode: EFWatermarkMode = .scaleToFill {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var isWatermarkColorful: Bool = true {
         didSet {
             imageQRCode = nil
         }
@@ -101,6 +96,13 @@ import CoreImage
         }
     }
     public var allowTransparent: Bool = true {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+
+    // Only for mode binarization
+    public var binarizationThreshold : CGFloat = 0.5 {
         didSet {
             imageQRCode = nil
         }
@@ -125,47 +127,50 @@ import CoreImage
     public init(
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
-        size: EFIntSize = EFIntSize(width: 256, height: 256),
-        magnification: EFIntSize? = nil,
-        backgroundColor: CIColor = CIColor.EFWhite(),
-        foregroundColor: CIColor = CIColor.EFBlack()
+        size: EFIntSize = EFIntSize(width: 256, height: 256)
         ) {
         self.content = content
         self.inputCorrectionLevel = inputCorrectionLevel
         self.size = size
+    }
+
+    public func setMode(mode: EFQRCodeMode) {
+        self.mode = mode
+    }
+
+    public func setMagnification(magnification: EFIntSize?) {
         self.magnification = magnification
+    }
+
+    public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
         self.backgroundColor = backgroundColor
         self.foregroundColor = foregroundColor
     }
 
-    public func setIcon(icon: EFIcon) {
-        self.icon = icon.image
-        self.iconSize = icon.size
-        self.isIconColorful = icon.isColorful
+    public func setIcon(icon: EFIcon?) {
+        self.icon = icon?.image
+        self.iconSize = icon?.size
     }
 
-    public func setWatermark(watermark: EFWatermark) {
-        self.watermark = watermark.image
-        self.watermarkMode = watermark.mode
-        self.isWatermarkColorful = watermark.isColorful
+    public func setWatermark(watermark: EFWatermark?) {
+        self.watermark = watermark?.image
+        self.watermarkMode = watermark?.mode ?? .scaleToFill
     }
 
-    public func setExtra(extra: EFExtra) {
-        self.foregroundPointOffset = extra.foregroundPointOffset
-        self.allowTransparent = extra.allowTransparent
+    public func setExtra(extra: EFExtra?) {
+        self.foregroundPointOffset = extra?.foregroundPointOffset ?? 0
+        self.allowTransparent = extra?.allowTransparent ?? true
     }
 
     // MARK:- Draw
     private func createImageQRCode() -> CGImage? {
         var finalSize = self.size
-        let finalBackgroundColor = self.backgroundColor
-        let finalForegroundColor = self.foregroundColor
+        let finalBackgroundColor = getBackgroundColor()
+        let finalForegroundColor = getForegroundColor()
         let finalIcon = self.icon
         let finalIconSize = self.iconSize
-        let finalIsIconColorful = self.isIconColorful
         let finalWatermark = self.watermark
         let finalWatermarkMode = self.watermarkMode
-        let finalIsWatermarkColorful = self.isWatermarkColorful
 
         // Get QRCodes from image
         guard let codes = generateCodes() else {
@@ -187,7 +192,7 @@ import CoreImage
             )
 
             // Watermark
-            if let tryWatermark = finalIsWatermarkColorful ? finalWatermark : finalWatermark?.grayscale() {
+            if let tryWatermark = finalWatermark {
                 // Draw background with watermark
                 drawWatermarkImage(
                     context: context,
@@ -217,7 +222,7 @@ import CoreImage
             }
 
             // Add icon
-            if let tryIcon = finalIsIconColorful ? finalIcon : finalIcon?.grayscale() {
+            if let tryIcon = finalIcon {
                 var finalIconSizeWidth = CGFloat(finalSize.width) * 0.2
                 var finalIconSizeHeight = CGFloat(finalSize.width) * 0.2
                 if let tryFinalIconSize = finalIconSize {
@@ -244,7 +249,41 @@ import CoreImage
             result = context.makeImage()
         }
 
+        // Mode apply
+        switch mode {
+        case .grayscale:
+            if let tryModeImage = result?.grayscale() {
+                result = tryModeImage
+            }
+            break
+        case .binarization:
+            if let tryModeImage = result?.binarization(
+                value: binarizationThreshold,
+                foregroundColor: self.foregroundColor.toCGColor() ?? CGColor.EFBlack(),
+                backgroundColor: self.backgroundColor.toCGColor() ?? CGColor.EFWhite()
+                ) {
+                result = tryModeImage
+            }
+            break
+        default:
+            break
+        }
+
         return result
+    }
+
+    private func getForegroundColor() -> CIColor {
+        if mode == .binarization {
+            return CIColor.EFBlack()
+        }
+        return self.foregroundColor
+    }
+
+    private func getBackgroundColor() -> CIColor {
+        if mode == .binarization {
+            return CIColor.EFWhite()
+        }
+        return self.backgroundColor
     }
 
     // Create Colorful QR Image
@@ -402,13 +441,10 @@ import CoreImage
             guard let codes = generateCodes() else {
                 return
             }
-            let finalBackgroundColor = self.backgroundColor
-            let finalForegroundColor = self.foregroundColor
-
             if let tryCGImage = createQRCodeImage(
                 codes: codes,
-                colorBack: finalBackgroundColor,
-                colorFront: finalForegroundColor,
+                colorBack: getBackgroundColor(),
+                colorFront: getForegroundColor(),
                 size: minSuitableSize
                 ) {
                 context.draw(tryCGImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
@@ -653,7 +689,7 @@ import CoreImage
         guard let codes = generateCodes() else {
             return nil
         }
-
+        
         let baseSuitableSize = Int(size)
         for offset in 0...codes.count {
             let tempSuitableSize = baseSuitableSize + offset
@@ -663,4 +699,4 @@ import CoreImage
         }
         return nil
     }
- }
+}

@@ -1,6 +1,6 @@
 //
 //  EFQRCode.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/3/28.
 //
@@ -37,6 +37,7 @@ public class EFQRCode {
     public static func generate(
         content: String,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
+        mode: EFQRCodeMode = .none,
         size: EFIntSize = EFIntSize(width: 256, height: 256),
         magnification: EFIntSize? = nil,
         backgroundColor: CIColor = CIColor.EFWhite(),
@@ -49,20 +50,14 @@ public class EFQRCode {
         let generator = EFQRCodeGenerator(
             content: content,
             inputCorrectionLevel: inputCorrectionLevel,
-            size: size,
-            magnification: magnification,
-            backgroundColor: backgroundColor,
-            foregroundColor: foregroundColor
+            size: size
         )
-        if let tryIcon = icon {
-            generator.setIcon(icon: tryIcon)
-        }
-        if let tryWatermark = watermark {
-            generator.setWatermark(watermark: tryWatermark)
-        }
-        if let tryExtra = extra {
-            generator.setExtra(extra: tryExtra)
-        }
+        generator.setMode(mode: mode)
+        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
+        generator.setMagnification(magnification: magnification)
+        generator.setIcon(icon: icon)
+        generator.setWatermark(watermark: watermark)
+        generator.setExtra(extra: extra)
         return generator.image
     }
 }

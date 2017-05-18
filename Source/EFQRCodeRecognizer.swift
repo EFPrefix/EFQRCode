@@ -1,6 +1,6 @@
 //
 //  EFQRCodeRecognizer.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/3/28.
 //

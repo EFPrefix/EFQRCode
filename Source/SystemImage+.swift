@@ -1,6 +1,6 @@
 //
 //  UIImage+.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/4/9.
 //
@@ -40,7 +40,7 @@
             return self.toCIImage()?.toCGImage()
         }
     }
-#else
+#elseif os(iOS) || os(tvOS)
     import UIKit
 
     public extension UIImage {

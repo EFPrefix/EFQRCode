@@ -10,38 +10,76 @@ import UIKit
 import Photos
 import EFQRCode
 
-class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+#if os(iOS)
+    class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var textView: UITextView!
-    var tableView: UITableView!
-    var createButton: UIButton!
+        var textView: UITextView!
+        var tableView: UITableView!
+        var createButton: UIButton!
 
-    var imagePicker: UIImagePickerController?
-    var titleCurrent: String = ""
+        var imagePicker: UIImagePickerController?
+        var titleCurrent: String = ""
 
-    // Param
-    var inputCorrectionLevel = EFInputCorrectionLevel.h
-    var size: EFIntSize = EFIntSize(width: 256, height: 256)
-    var magnification: EFIntSize? = nil
-    var backColor = UIColor.white
-    var frontColor = UIColor.black
-    var icon: UIImage? = nil
-    var iconSize: EFIntSize? = nil
-    var iconColorful = true
-    var watermark: UIImage? = nil
-    var watermarkMode = EFWatermarkMode.scaleAspectFill
-    var watermarkColorful = true
+        // Param
+        var inputCorrectionLevel = EFInputCorrectionLevel.h
+        var size: EFIntSize = EFIntSize(width: 256, height: 256)
+        var magnification: EFIntSize? = nil
+        var backColor = UIColor.white
+        var frontColor = UIColor.black
+        var icon: UIImage? = nil
+        var iconSize: EFIntSize? = nil
+        var watermark: UIImage? = nil
+        var watermarkMode = EFWatermarkMode.scaleAspectFill
+        var mode: EFQRCodeMode = .none
+        var binarizationThreshold: CGFloat = 0.5
 
-    // MARK:- Not commonly used
-    var foregroundPointOffset: CGFloat = 0
-    var allowTransparent: Bool = true
+        // MARK:- Not commonly used
+        var foregroundPointOffset: CGFloat = 0
+        var allowTransparent: Bool = true
 
-    // Test data
-    struct colorData {
-        var color: UIColor
-        var name: String
+        // Test data
+        struct colorData {
+            var color: UIColor
+            var name: String
+        }
+        var colorList = [colorData]()
     }
-    var colorList = [colorData]()
+#else
+    class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
+
+        var textView: UITextView!
+        var tableView: UITableView!
+        var createButton: UIButton!
+
+        var titleCurrent: String = ""
+
+        // Param
+        var inputCorrectionLevel = EFInputCorrectionLevel.h
+        var size: EFIntSize = EFIntSize(width: 256, height: 256)
+        var magnification: EFIntSize? = nil
+        var backColor = UIColor.white
+        var frontColor = UIColor.black
+        var icon: UIImage? = nil
+        var iconSize: EFIntSize? = nil
+        var watermark: UIImage? = nil
+        var watermarkMode = EFWatermarkMode.scaleAspectFill
+        var mode: EFQRCodeMode = .none
+        var binarizationThreshold: CGFloat = 0.5
+
+        // MARK:- Not commonly used
+        var foregroundPointOffset: CGFloat = 0
+        var allowTransparent: Bool = true
+
+        // Test data
+        struct colorData {
+            var color: UIColor
+            var name: String
+        }
+        var colorList = [colorData]()
+    }
+#endif
+
+extension GeneratorController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +142,9 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = true
-        tableView.separatorColor = UIColor.white
+        #if os(iOS)
+            tableView.separatorColor = UIColor.white
+        #endif
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.backgroundColor = UIColor.clear
@@ -121,7 +161,11 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         createButton.layer.borderWidth = 1
         createButton.layer.cornerRadius = 5
         createButton.layer.masksToBounds = true
-        createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .touchDown)
+        #if os(iOS)
+            createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .touchDown)
+        #else
+            createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .primaryActionTriggered)
+        #endif
         self.view.addSubview(createButton)
         createButton.frame = CGRect(
             x: 10, y: screenSize.height - 56, width: screenSize.width - 20, height: buttonHeight
@@ -138,17 +182,16 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             content = textView.text
         }
 
-        if let tryCGImage = EFQRCode.generate(
-            content: content,
-            inputCorrectionLevel: inputCorrectionLevel,
-            size: size,
-            magnification: magnification,
-            backgroundColor: CIColor(color: backColor),
-            foregroundColor: CIColor(color: frontColor),
-            icon: EFIcon(image: UIImage2CGimage(icon), size: iconSize, isColorful: iconColorful),
-            watermark: EFWatermark(image: UIImage2CGimage(watermark), mode: watermarkMode, isColorful: watermarkColorful),
-            extra: EFExtra(foregroundPointOffset: foregroundPointOffset, allowTransparent: allowTransparent)
-            ) {
+        let generator = EFQRCodeGenerator(content: content, inputCorrectionLevel: inputCorrectionLevel, size: size)
+        generator.mode = mode
+        generator.magnification = magnification
+        generator.setColors(backgroundColor: CIColor(color: backColor), foregroundColor: CIColor(color: frontColor))
+        generator.setIcon(icon: EFIcon(image: UIImage2CGimage(icon), size: iconSize))
+        generator.setWatermark(watermark: EFWatermark(image: UIImage2CGimage(watermark), mode: watermarkMode))
+        generator.setExtra(extra: EFExtra(foregroundPointOffset: foregroundPointOffset, allowTransparent: allowTransparent))
+        generator.binarizationThreshold = binarizationThreshold
+
+        if let tryCGImage = generator.image {
             let tryImage = UIImage(cgImage: tryCGImage)
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
@@ -315,7 +358,24 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 UIAlertAction(title: "Average of watermark", style: .default, handler: {
                     [weak self] (action) -> Void in
                     if let strongSelf = self {
-                        strongSelf.frontColor = tryWaterMark.avarageColor() ?? UIColor.clear
+                        strongSelf.frontColor = tryWaterMark.avarageColor() ?? UIColor.black
+                        strongSelf.refresh()
+                    }
+                })
+            )
+            alert.addAction(
+                UIAlertAction(title: "Average of watermark (Dacker)", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        var xxxColor = tryWaterMark.avarageColor() ?? UIColor.black
+                        if let coms = xxxColor.cgColor.components {
+                            let r = (CGFloat(coms[0]) + 0) / 2.0
+                            let g = (CGFloat(coms[1]) + 0) / 2.0
+                            let b = (CGFloat(coms[2]) + 0) / 2.0
+                            let a = (CGFloat(coms[3]) + 1) / 2.0
+                            xxxColor = UIColor(red: r, green: g, blue: b, alpha: a)
+                        }
+                        strongSelf.frontColor = xxxColor
                         strongSelf.refresh()
                     }
                 })
@@ -355,15 +415,17 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "Select from system album", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.chooseImageFromAlbum(title: "icon")
-                    strongSelf.refresh()
-                }
-            })
-        )
+        #if os(iOS)
+            alert.addAction(
+                UIAlertAction(title: "Select from system album", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.chooseImageFromAlbum(title: "icon")
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        #endif
         for icon in ["EyreFree", "GitHub", "LPD", "Pikachu", "Swift"] {
             alert.addAction(
                 UIAlertAction(title: icon, style: .default, handler: {
@@ -423,38 +485,6 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         popActionSheet(alert: alert)
     }
 
-    func chooseIconColorful() {
-        let alert = UIAlertController(
-            title: "IconColorful",
-            message: nil,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "True", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.iconColorful = true
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "False", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.iconColorful = false
-                    strongSelf.refresh()
-                }
-            })
-        )
-        popActionSheet(alert: alert)
-    }
-
     func chooseWatermark() {
         let alert = UIAlertController(
             title: "Watermark",
@@ -475,15 +505,17 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 }
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "Select from system album", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.chooseImageFromAlbum(title: "watermark")
-                    strongSelf.refresh()
-                }
-            })
-        )
+        #if os(iOS)
+            alert.addAction(
+                UIAlertAction(title: "Select from system album", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.chooseImageFromAlbum(title: "watermark")
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        #endif
         for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF"] {
             alert.addAction(
                 UIAlertAction(title: watermark, style: .default, handler: {
@@ -621,38 +653,6 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         popActionSheet(alert: alert)
     }
 
-    func chooseWatermarkColorful() {
-        let alert = UIAlertController(
-            title: "WatermarkColorful",
-            message: nil,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "True", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkColorful = true
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "False", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkColorful = false
-                    strongSelf.refresh()
-                }
-            })
-        )
-        popActionSheet(alert: alert)
-    }
-
     func chooseForegroundPointOffset() {
         let alert = UIAlertController(
             title: "ForegroundPointOffset",
@@ -684,6 +684,72 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
                 })
             )
         }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseBinarizationThreshold() {
+        let alert = UIAlertController(
+            title: "binarizationThreshold",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        for binarizationThreshold in [CGFloat(0), 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] {
+            alert.addAction(
+                UIAlertAction(title: "\(binarizationThreshold)", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.binarizationThreshold = binarizationThreshold
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseMode() {
+        let alert = UIAlertController(
+            title: "mode",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "none", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.mode = .none
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "grayscale", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.mode = .grayscale
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "binarization", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.mode = .binarization
+                    strongSelf.refresh()
+                }
+            })
+        )
         popActionSheet(alert: alert)
     }
 
@@ -739,25 +805,25 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             chooseInputCorrectionLevel()
             break
         case 1:
-            chooseSize()
+            chooseMode()
             break
         case 2:
-            chooseMagnification()
+            chooseSize()
             break
         case 3:
-            chooseBackColor()
+            chooseMagnification()
             break
         case 4:
-            chooseFrontColor()
+            chooseBackColor()
             break
         case 5:
-            chooseIcon()
+            chooseFrontColor()
             break
         case 6:
-            chooseIconSize()
+            chooseIcon()
             break
         case 7:
-            chooseIconColorful()
+            chooseIconSize()
             break
         case 8:
             chooseWatermark()
@@ -766,14 +832,13 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             chooseWatermarkMode()
             break
         case 10:
-            chooseWatermarkColorful()
-            break
-        case 11:
             chooseForegroundPointOffset()
             break
-        case 12:
+        case 11:
             chooseAllowTransparent()
             break
+        case 12:
+            chooseBinarizationThreshold()
         default:
             break
         }
@@ -802,36 +867,36 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let titleArray = [
             "inputCorrectionLevel",
+            "mode",
             "size",
             "magnification",
             "backgroundColor",
             "foregroundColor",
             "icon",
             "iconSize",
-            "isIconColorful",
             "watermark",
             "watermarkMode",
-            "isWatermarkColorful",
             "foregroundPointOffset",
-            "allowTransparent"
+            "allowTransparent",
+            "binarizationThreshold"
         ]
         let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
         let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
         let watermarkModeString = "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])"
         let detailArray = [
             "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
+            "\(["none", "grayscale", "binarization"][mode.rawValue])",
             "\(size.width)x\(size.height)",
             magnificationString,
             "", // backgroundColor
             "", // foregroundColor
             "", // icon
             iconSizeString,
-            "\(iconColorful)",
             "", // watermark
             watermarkModeString,
-            "\(watermarkColorful)",
             "\(foregroundPointOffset)",
-            "\(allowTransparent)"
+            "\(allowTransparent)",
+            "\(binarizationThreshold)"
         ]
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
@@ -853,13 +918,13 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             cell.addSubview(rightImageView)
 
             switch indexPath.row {
-            case 3:
+            case 4:
                 rightImageView.backgroundColor = backColor
                 break
-            case 4:
+            case 5:
                 rightImageView.backgroundColor = frontColor
                 break
-            case 5:
+            case 6:
                 rightImageView.image = icon
                 break
             case 8:
@@ -872,6 +937,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         return cell
     }
 
+    #if os(iOS)
     // MARK:- UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
@@ -916,6 +982,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
             self.present(picker, animated: true, completion: nil)
         }
     }
+    #endif
 }
 
 class ShowController: UIViewController {
@@ -944,137 +1011,171 @@ class ShowController: UIViewController {
     }
 
     func setupViews() {
-        let screenSize = UIScreen.main.bounds.size
+        #if os(iOS)
+            let screenSize = UIScreen.main.bounds.size
 
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = self.image
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.layer.cornerRadius = 5
-        imageView.layer.masksToBounds = true
-        self.view.addSubview(imageView)
-        imageView.frame = CGRect(
-            x: 10, y: 30, width: screenSize.width - 20, height: screenSize.width - 20
-        )
+            let imageView = UIImageView()
+            imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = self.image
+            imageView.layer.borderColor = UIColor.white.cgColor
+            imageView.layer.borderWidth = 1
+            imageView.layer.cornerRadius = 5
+            imageView.layer.masksToBounds = true
+            self.view.addSubview(imageView)
+            imageView.frame = CGRect(
+                x: 10, y: 30, width: screenSize.width - 20, height: screenSize.width - 20
+            )
 
-        let createButton = UIButton(type: .system)
-        createButton.setTitle("Save", for: .normal)
-        createButton.setTitleColor(UIColor.white, for: .normal)
-        createButton.layer.borderColor = UIColor.white.cgColor
-        createButton.layer.borderWidth = 1
-        createButton.layer.cornerRadius = 5
-        createButton.layer.masksToBounds = true
-        createButton.addTarget(self, action: #selector(ShowController.saveToAlbum), for: .touchDown)
-        self.view.addSubview(createButton)
-        createButton.frame = CGRect(
-            x: 10, y: imageView.frame.maxY + 10, width: screenSize.width - 20, height: 46
-        )
+            let createButton = UIButton(type: .system)
+            createButton.setTitle("Save", for: .normal)
+            createButton.setTitleColor(UIColor.white, for: .normal)
+            createButton.layer.borderColor = UIColor.white.cgColor
+            createButton.layer.borderWidth = 1
+            createButton.layer.cornerRadius = 5
+            createButton.layer.masksToBounds = true
+            createButton.addTarget(self, action: #selector(ShowController.saveToAlbum), for: .touchDown)
+            self.view.addSubview(createButton)
+            createButton.frame = CGRect(
+                x: 10, y: imageView.frame.maxY + 10, width: screenSize.width - 20, height: 46
+            )
 
-        let backButton = UIButton(type: .system)
-        backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(UIColor.white, for: .normal)
-        backButton.layer.borderColor = UIColor.white.cgColor
-        backButton.layer.borderWidth = 1
-        backButton.layer.cornerRadius = 5
-        backButton.layer.masksToBounds = true
-        backButton.addTarget(self, action: #selector(ShowController.back), for: .touchDown)
-        self.view.addSubview(backButton)
-        backButton.frame = CGRect(
-            x: 10, y: imageView.frame.maxY + 10 + 56, width: screenSize.width - 20, height: 46
-        )
+            let backButton = UIButton(type: .system)
+            backButton.setTitle("Back", for: .normal)
+            backButton.setTitleColor(UIColor.white, for: .normal)
+            backButton.layer.borderColor = UIColor.white.cgColor
+            backButton.layer.borderWidth = 1
+            backButton.layer.cornerRadius = 5
+            backButton.layer.masksToBounds = true
+            backButton.addTarget(self, action: #selector(ShowController.back), for: .touchDown)
+            self.view.addSubview(backButton)
+            backButton.frame = CGRect(
+                x: 10, y: imageView.frame.maxY + 10 + 56, width: screenSize.width - 20, height: 46
+            )
+        #else
+            let screenSize = UIScreen.main.bounds.size
+
+            let imageView = UIImageView()
+            imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = self.image
+            imageView.layer.borderColor = UIColor.white.cgColor
+            imageView.layer.borderWidth = 1
+            imageView.layer.cornerRadius = 5
+            imageView.layer.masksToBounds = true
+            self.view.addSubview(imageView)
+            imageView.frame = CGRect(
+                x: 10, y: 30, width: screenSize.width - 20, height: min(screenSize.width - 20, screenSize.height - 20 - 46 - 60)
+            )
+
+            let createButton = UIButton(type: .system)
+            createButton.setTitle("Back", for: .normal)
+            createButton.setTitleColor(UIColor.white, for: .normal)
+            createButton.layer.borderColor = UIColor.white.cgColor
+            createButton.layer.borderWidth = 1
+            createButton.layer.cornerRadius = 5
+            createButton.layer.masksToBounds = true
+            createButton.addTarget(self, action: #selector(ShowController.back), for: .primaryActionTriggered)
+            self.view.addSubview(createButton)
+            createButton.frame = CGRect(
+                x: 10, y: imageView.frame.maxY + 10, width: screenSize.width - 20, height: 46
+            )
+        #endif
     }
 
+    #if os(iOS)
     func saveToAlbum() {
         if let tryImage = image {
             CustomPhotoAlbum.sharedInstance.save(image: tryImage)
         }
     }
+    #endif
 
     func back() {
         self.dismiss(animated: true, completion: nil)
     }
 }
 
-// http://stackoverflow.com/questions/28708846/how-to-save-image-to-custom-album
-class CustomPhotoAlbum: NSObject {
+#if os(iOS)
+    // http://stackoverflow.com/questions/28708846/how-to-save-image-to-custom-album
+    class CustomPhotoAlbum: NSObject {
 
-    static let albumName = "EFQRCode"
-    static let sharedInstance = CustomPhotoAlbum()
+        static let albumName = "EFQRCode"
+        static let sharedInstance = CustomPhotoAlbum()
 
-    var assetCollection: PHAssetCollection!
+        var assetCollection: PHAssetCollection!
 
-    override init() {
-        super.init()
+        override init() {
+            super.init()
 
-        if let assetCollection = fetchAssetCollectionForAlbum() {
-            self.assetCollection = assetCollection
-            return
-        }
+            if let assetCollection = fetchAssetCollectionForAlbum() {
+                self.assetCollection = assetCollection
+                return
+            }
 
-        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
-            PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
-                ()
-            })
-        }
+            if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+                PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
+                    ()
+                })
+            }
 
-        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-            self.createAlbum()
-        } else {
-            PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
-        }
-    }
-
-    func requestAuthorizationHandler(status: PHAuthorizationStatus) {
-        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-            // Ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
-            print("Trying again to create the album")
-            self.createAlbum()
-        } else {
-            print("Should really prompt the user to let them know it's failed")
-        }
-    }
-
-    func createAlbum() {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)
-            // Create an asset collection with the album name
-        }) { success, error in
-            if success {
-                self.assetCollection = self.fetchAssetCollectionForAlbum()
+            if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+                self.createAlbum()
             } else {
-                if let tryError = error {
-                    print("Error: \(tryError)")
+                PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+            }
+        }
+
+        func requestAuthorizationHandler(status: PHAuthorizationStatus) {
+            if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+                // Ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
+                print("Trying again to create the album")
+                self.createAlbum()
+            } else {
+                print("Should really prompt the user to let them know it's failed")
+            }
+        }
+
+        func createAlbum() {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)
+                // Create an asset collection with the album name
+            }) { success, error in
+                if success {
+                    self.assetCollection = self.fetchAssetCollectionForAlbum()
+                } else {
+                    if let tryError = error {
+                        print("Error: \(tryError)")
+                    }
                 }
             }
         }
-    }
 
-    func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title=%@", CustomPhotoAlbum.albumName)
-        let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
+        func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
+            let fetchOptions = PHFetchOptions()
+            fetchOptions.predicate = NSPredicate(format: "title=%@", CustomPhotoAlbum.albumName)
+            let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
 
-        if let _: AnyObject = collection.firstObject {
-            return collection.firstObject
-        }
-        return nil
-    }
-
-    func save(image: UIImage) {
-        if assetCollection == nil {
-            // If there was an error upstream, skip the save
-            return
+            if let _: AnyObject = collection.firstObject {
+                return collection.firstObject
+            }
+            return nil
         }
 
-        PHPhotoLibrary.shared().performChanges({
-            let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-            let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset
-            let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
-            let enumeration: NSArray = [assetPlaceHolder!]
-            albumChangeRequest!.addAssets(enumeration)
+        func save(image: UIImage) {
+            if assetCollection == nil {
+                // If there was an error upstream, skip the save
+                return
+            }
             
-        }, completionHandler: nil)
+            PHPhotoLibrary.shared().performChanges({
+                let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset
+                let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
+                let enumeration: NSArray = [assetPlaceHolder!]
+                albumChangeRequest!.addAssets(enumeration)
+                
+            }, completionHandler: nil)
+        }
     }
-}
+#endif

@@ -131,17 +131,17 @@ class Tests: XCTestCase {
         let generator = EFQRCodeGenerator(
             content: content,
             inputCorrectionLevel: .q,
-            size: EFIntSize(width: 15, height: 15),
-            magnification: nil,
-            backgroundColor: {
-                #if os(macOS)
-                    return NSColor.gray.toCIColor()
-                #else
-                    return UIColor.red.toCIColor()
-                #endif
-        }(),
-            foregroundColor: CIColor.EFBlack()
+            size: EFIntSize(width: 15, height: 15)
         )
+        generator.setMode(mode: .none)
+        generator.setColors(backgroundColor: {
+            #if os(macOS)
+                return NSColor.gray.toCIColor()
+            #else
+                return UIColor.red.toCIColor()
+            #endif
+        }(), foregroundColor: CIColor.EFBlack())
+        generator.setMagnification(magnification: nil)
         generator.setIcon(icon: EFIcon(image: getImage(name: "eyrefree")))
         generator.setWatermark(watermark: EFWatermark(image: getImage(name: "eyrefree")))
         generator.setExtra(extra: EFExtra(foregroundPointOffset: 0, allowTransparent: true))

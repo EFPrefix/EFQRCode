@@ -46,6 +46,7 @@
 		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
+		127F871F1ECF56AC0002B554 /* EFQRCode.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 127F871E1ECF56AC0002B554 /* EFQRCode.podspec */; };
 		4C256A531B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4C256A541B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4CF626F91BA7CB3E0011A099 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */; };
@@ -92,6 +93,7 @@
 		120B77E21EA393A600D34440 /* SystemColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystemColor+.swift"; sourceTree = "<group>"; };
 		120B77E31EA393A600D34440 /* SystemImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystemImage+.swift"; sourceTree = "<group>"; };
 		126A1B591EAF225100EFBA1B /* eyrefree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyrefree.png; sourceTree = "<group>"; };
+		127F871E1ECF56AC0002B554 /* EFQRCode.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EFQRCode.podspec; sourceTree = "<group>"; };
 		4C0E02681BF99A18004E7F18 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Source/Info-tvOS.plist"; sourceTree = SOURCE_ROOT; };
 		4C256A501B096C2C0065714F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,12 +170,12 @@
 			isa = PBXGroup;
 			children = (
 				120B77E21EA393A600D34440 /* SystemColor+.swift */,
-				120B77E31EA393A600D34440 /* SystemImage+.swift */,
 				120B77D91EA393A600D34440 /* CGColor+.swift */,
-				120B77DA1EA393A600D34440 /* CGImage+.swift */,
-				120B77DB1EA393A600D34440 /* CGSize+.swift */,
 				120B77DC1EA393A600D34440 /* CIColor+.swift */,
+				120B77E31EA393A600D34440 /* SystemImage+.swift */,
+				120B77DA1EA393A600D34440 /* CGImage+.swift */,
 				120B77DD1EA393A600D34440 /* CIImage+.swift */,
+				120B77DB1EA393A600D34440 /* CGSize+.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -197,6 +199,7 @@
 		F8111E2919A95C8B0040E7D1 = {
 			isa = PBXGroup;
 			children = (
+				127F871E1ECF56AC0002B554 /* EFQRCode.podspec */,
 				F8111E3519A95C8B0040E7D1 /* Source */,
 				F8111E3F19A95C8B0040E7D1 /* Tests */,
 				F8111E3419A95C8B0040E7D1 /* Products */,
@@ -490,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				127F871F1ECF56AC0002B554 /* EFQRCode.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

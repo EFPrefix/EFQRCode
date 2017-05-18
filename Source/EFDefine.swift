@@ -1,6 +1,6 @@
 //
 //  EFDefine.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/4/11.
 //
@@ -26,6 +26,12 @@
 
 import Foundation
 import CoreGraphics
+
+public enum EFQRCodeMode: Int {
+    case none           = 0;
+    case grayscale      = 1;
+    case binarization   = 2;
+}
 
 public struct EFUIntPixel {
     public var red: UInt8 = 0
@@ -92,24 +98,20 @@ struct EFIntPoint {
 public struct EFIcon {
     public var image: CGImage?
     public var size: EFIntSize?
-    public var isColorful: Bool = true
 
-    public init(image: CGImage?, size: EFIntSize? = nil, isColorful: Bool = true) {
+    public init(image: CGImage?, size: EFIntSize? = nil) {
         self.image = image
         self.size = size
-        self.isColorful = isColorful
     }
 }
 
 public struct EFWatermark {
     public var image: CGImage?
     public var mode: EFWatermarkMode = .scaleToFill
-    public var isColorful: Bool = true
 
-    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill, isColorful: Bool = true) {
+    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill) {
         self.image = image
         self.mode = mode
-        self.isColorful = isColorful
     }
 }
 

@@ -1,6 +1,6 @@
 //
 //  CGImage+.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/4/9.
 //
@@ -60,6 +60,30 @@ public extension CGImage {
         return pixels
     }
 
+    // Get avarage color
+    func avarageColor() -> CGColor? {
+        let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
+        guard let context = CGContext(
+            data: rgba,
+            width: 1,
+            height: 1,
+            bitsPerComponent: 8,
+            bytesPerRow: 4,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            ) else {
+                return nil
+        }
+        context.draw(self, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+
+        return CIColor(
+            red: CGFloat(rgba[0]) / 255.0,
+            green: CGFloat(rgba[1]) / 255.0,
+            blue: CGFloat(rgba[2]) / 255.0,
+            alpha: CGFloat(rgba[3]) / 255.0
+            ).toCGColor()
+    }
+
     // Grayscale
     // http://stackoverflow.com/questions/1311014/convert-to-grayscale-too-slow
     func grayscale() -> CGImage? {
@@ -70,6 +94,46 @@ public extension CGImage {
             bitmapInfo: CGImageAlphaInfo.none.rawValue
             ) {
             context.draw(self, in: CGRect(origin: CGPoint.zero, size: CGSize(width: self.width, height: self.height)))
+            return context.makeImage()
+        }
+        return nil
+    }
+
+    // Binarization
+    // http://blog.sina.com.cn/s/blog_6b7ba99d0101js23.html
+    public func binarization(
+        value: CGFloat = 0.5,
+        foregroundColor: CGColor = CGColor.EFWhite(),
+        backgroundColor: CGColor = CGColor.EFBlack()
+        ) -> CGImage? {
+        let dataSize = width * height * 4
+        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: &pixelData,
+                                   width: width,
+                                   height: height,
+                                   bitsPerComponent: 8,
+                                   bytesPerRow: 4 * width,
+                                   space: colorSpace,
+                                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
+            context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+            for x in 0 ..< width {
+                for y in 0 ..< height {
+                    let offset = 4 * (x + y * width)
+                    // RGBA
+                    let alpha = CGFloat(pixelData[offset + 3]) / 255.0
+                    let intensity = (
+                        CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
+                        ) / 3.0 / 255.0 * alpha + (1.0 - alpha)
+                    let components = intensity > value
+                        ? (backgroundColor.components ?? [1, 1, 1, 1])
+                        : (foregroundColor.components ?? [0, 0, 0, 1])
+                    pixelData[offset + 0] = UInt8(components[0] * 255.0)
+                    pixelData[offset + 1] = UInt8(components[1] * 255.0)
+                    pixelData[offset + 2] = UInt8(components[2] * 255.0)
+                    pixelData[offset + 3] = UInt8(components[3] * 255.0)
+                }
+            }
             return context.makeImage()
         }
         return nil

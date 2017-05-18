@@ -2,6 +2,18 @@
 
 -----
 
+## [1.2.5](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.5) (2017-05-19)
+
+#### Add
+
+* Add binarization.
+
+#### Fix
+
+* Make it more clean.
+
+---
+
 ## [1.2.4](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.4) (2017-04-23)
 
 #### Add
