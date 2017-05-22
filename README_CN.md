@@ -193,4 +193,6 @@ Twitter: [@EyreFree777](https://twitter.com/EyreFree777)
 
 ## 协议
 
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png)
+
 EFQRCode 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
