@@ -33,6 +33,11 @@ public enum EFQRCodeMode: Int {
     case binarization   = 2;
 }
 
+public enum EFPointShape: Int {
+    case square         = 0;
+    case circle         = 1;
+}
+
 public struct EFUIntPixel {
     public var red: UInt8 = 0
     public var green: UInt8 = 0
