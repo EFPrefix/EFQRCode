@@ -569,10 +569,9 @@ public class EFQRCodeGenerator {
         for indexY in 0 ..< pixels.count {
             codes.append([Bool]())
             for indexX in 0 ..< pixels[0].count {
+                let pixel = pixels[indexY][indexX]
                 codes[indexY].append(
-                    pixels[indexY][indexX].red == 0
-                        && pixels[indexY][indexX].green == 0
-                        && pixels[indexY][indexX].blue == 0
+                    pixel.red == 0 && pixel.green == 0 && pixel.blue == 0
                 )
             }
         }

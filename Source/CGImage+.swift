@@ -38,23 +38,31 @@ public extension CGImage {
     // Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
         var pixels: [[EFUIntPixel]]?
-        guard let pixelData = self.dataProvider?.data else {
-            return nil
-        }
-        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-        pixels = [[EFUIntPixel]]()
-        for indexY in 0 ..< self.height {
-            pixels?.append([EFUIntPixel]())
-            for indexX in 0 ..< self.width {
-                let pixelInfo = ((Int(self.width) * Int(indexY)) + Int(indexX)) * 4
-                pixels?[indexY].append(
-                    EFUIntPixel(
-                        red: data[pixelInfo],
-                        green: data[pixelInfo + 1],
-                        blue: data[pixelInfo + 2],
-                        alpha: data[pixelInfo + 3]
+        let dataSize = width * height * 4
+        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: &pixelData,
+                                   width: width,
+                                   height: height,
+                                   bitsPerComponent: 8,
+                                   bytesPerRow: 4 * width,
+                                   space: colorSpace,
+                                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
+            context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+            pixels = [[EFUIntPixel]]()
+            for y in 0 ..< height {
+                pixels?.append([EFUIntPixel]())
+                for x in 0 ..< width {
+                    let offset = 4 * (x + y * width)
+                    pixels?[y].append(
+                        EFUIntPixel(
+                            red: pixelData[offset + 0],
+                            green: pixelData[offset + 1],
+                            blue: pixelData[offset + 2],
+                            alpha: pixelData[offset + 3]
+                        )
                     )
-                )
+                }
             }
         }
         return pixels
