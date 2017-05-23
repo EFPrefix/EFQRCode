@@ -32,6 +32,7 @@ import EFQRCode
         var watermarkMode = EFWatermarkMode.scaleAspectFill
         var mode: EFQRCodeMode = .none
         var binarizationThreshold: CGFloat = 0.5
+        var pointShape: EFPointShape = .square
 
         // MARK:- Not commonly used
         var foregroundPointOffset: CGFloat = 0
@@ -65,6 +66,7 @@ import EFQRCode
         var watermarkMode = EFWatermarkMode.scaleAspectFill
         var mode: EFQRCodeMode = .none
         var binarizationThreshold: CGFloat = 0.5
+        var pointShape: EFPointShape = .square
 
         // MARK:- Not commonly used
         var foregroundPointOffset: CGFloat = 0
@@ -190,6 +192,7 @@ extension GeneratorController {
         generator.setWatermark(watermark: EFWatermark(image: UIImage2CGimage(watermark), mode: watermarkMode))
         generator.setExtra(extra: EFExtra(foregroundPointOffset: foregroundPointOffset, allowTransparent: allowTransparent))
         generator.binarizationThreshold = binarizationThreshold
+        generator.pointShape = pointShape
 
         if let tryCGImage = generator.image {
             let tryImage = UIImage(cgImage: tryCGImage)
@@ -753,6 +756,38 @@ extension GeneratorController {
         popActionSheet(alert: alert)
     }
 
+    func chooseShape() {
+        let alert = UIAlertController(
+            title: "pointShape",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: {
+                (action) -> Void in
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "square", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.pointShape = .square
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "circle", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.pointShape = .circle
+                    strongSelf.refresh()
+                }
+            })
+        )
+        popActionSheet(alert: alert)
+    }
+
     func popActionSheet(alert: UIAlertController) {
         //阻止 iPad Crash
         alert.popoverPresentationController?.sourceView = self.view
@@ -839,6 +874,8 @@ extension GeneratorController {
             break
         case 12:
             chooseBinarizationThreshold()
+        case 13:
+            chooseShape()
         default:
             break
         }
@@ -849,7 +886,7 @@ extension GeneratorController {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 13
+        return 14
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -878,7 +915,8 @@ extension GeneratorController {
             "watermarkMode",
             "foregroundPointOffset",
             "allowTransparent",
-            "binarizationThreshold"
+            "binarizationThreshold",
+            "pointShape"
         ]
         let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
         let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
@@ -896,7 +934,8 @@ extension GeneratorController {
             watermarkModeString,
             "\(foregroundPointOffset)",
             "\(allowTransparent)",
-            "\(binarizationThreshold)"
+            "\(binarizationThreshold)",
+            "\(["square", "circle"][pointShape.rawValue])"
         ]
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)

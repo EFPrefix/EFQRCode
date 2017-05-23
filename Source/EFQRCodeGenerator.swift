@@ -100,6 +100,11 @@ public class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
+    public var pointShape: EFPointShape = .square {
+        didSet {
+            imageQRCode = nil
+        }
+    }
 
     // Only for mode binarization
     public var binarizationThreshold : CGFloat = 0.5 {
@@ -309,8 +314,10 @@ public class EFQRCodeGenerator {
                         // CTM-90
                         let indexXCTM = indexY
                         let indexYCTM = codeSize - indexX - 1
-                        context.fill(
-                            CGRect(
+
+                        drawPoint(
+                            context: context,
+                            rect: CGRect(
                                 x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
                                 y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
                                 width: scaleX - 2 * foregroundPointOffset,
@@ -373,8 +380,9 @@ public class EFQRCodeGenerator {
                         let indexXCTM = indexY
                         let indexYCTM = codeSize - indexX - 1
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
-                            context.fill(
-                                CGRect(
+                            drawPoint(
+                                context: context,
+                                rect: CGRect(
                                     x: CGFloat(indexXCTM) * scaleX,
                                     y: CGFloat(indexYCTM) * scaleY,
                                     width: pointWidthOriX,
@@ -382,8 +390,9 @@ public class EFQRCodeGenerator {
                                 )
                             )
                         } else {
-                            context.fill(
-                                CGRect(
+                            drawPoint(
+                                context: context,
+                                rect: CGRect(
                                     x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
                                     y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
                                     width: pointWidthMinX,
@@ -403,8 +412,9 @@ public class EFQRCodeGenerator {
                         let indexXCTM = indexY
                         let indexYCTM = codeSize - indexX - 1
                         if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
-                            context.fill(
-                                CGRect(
+                            drawPoint(
+                                context: context,
+                                rect: CGRect(
                                     x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
                                     y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
                                     width: pointWidthOriX - 2 * foregroundPointOffset,
@@ -412,8 +422,9 @@ public class EFQRCodeGenerator {
                                 )
                             )
                         } else {
-                            context.fill(
-                                CGRect(
+                            drawPoint(
+                                context: context,
+                                rect: CGRect(
                                     x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
                                     y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
                                     width: pointWidthMinX,
@@ -518,6 +529,14 @@ public class EFQRCodeGenerator {
                 size: size.toCGSize()
             )
         )
+    }
+
+    private func drawPoint(context: CGContext, rect: CGRect) {
+        if pointShape == .circle {
+            context.fillEllipse(in: rect)
+        } else {
+            context.fill(rect)
+        }
     }
 
     private func createContext(size: EFIntSize) -> CGContext? {
