@@ -22,8 +22,8 @@ import EFQRCode
 
         // Param
         var inputCorrectionLevel = EFInputCorrectionLevel.h
-        var size: EFIntSize = EFIntSize(width: 256, height: 256)
-        var magnification: EFIntSize? = nil
+        var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
+        var magnification: EFIntSize? = EFIntSize(width: 24, height: 24)
         var backColor = UIColor.white
         var frontColor = UIColor.black
         var icon: UIImage? = nil
@@ -99,7 +99,8 @@ extension GeneratorController {
 
         // Add test data
         let colorNameArray = [
-            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille", "Hearth Stone", "Pikachu Red", "3 Red"
+            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille",
+            "Hearth Stone", "Pikachu Red", "3 Red", "Cee", "toto"
         ]
         let colorArray = [
             UIColor.black, UIColor.white, UIColor.gray, UIColor.red, UIColor.blue, UIColor(
@@ -114,6 +115,10 @@ extension GeneratorController {
                 red: 233.0 / 255.0, green: 77.0 / 255.0, blue: 52.0 / 255.0, alpha: 1.0
             ), UIColor(
                 red: 132.0 / 255.0, green: 37.0 / 255.0, blue: 43.0 / 255.0, alpha: 1.0
+            ), UIColor(
+                red: 42.0 / 255.0, green: 42.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0
+            ), UIColor(
+                red: 41.0 / 255.0, green: 44.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0
             )
         ]
         for (index, colorName) in colorNameArray.enumerated() {
@@ -184,17 +189,19 @@ extension GeneratorController {
             content = textView.text
         }
 
-        let generator = EFQRCodeGenerator(content: content, inputCorrectionLevel: inputCorrectionLevel, size: size)
-        generator.mode = mode
-        generator.magnification = magnification
+        let generator = EFQRCodeGenerator(content: content, size: size)
+        generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
+        generator.setMode(mode: mode)
+        generator.setMagnification(magnification: magnification)
         generator.setColors(backgroundColor: CIColor(color: backColor), foregroundColor: CIColor(color: frontColor))
-        generator.setIcon(icon: EFIcon(image: UIImage2CGimage(icon), size: iconSize))
-        generator.setWatermark(watermark: EFWatermark(image: UIImage2CGimage(watermark), mode: watermarkMode))
-        generator.setExtra(extra: EFExtra(foregroundPointOffset: foregroundPointOffset, allowTransparent: allowTransparent))
-        generator.binarizationThreshold = binarizationThreshold
-        generator.pointShape = pointShape
+        generator.setIcon(icon: UIImage2CGimage(icon), size: iconSize)
+        generator.setWatermark(watermark: UIImage2CGimage(watermark), mode: watermarkMode)
+        generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
+        generator.setAllowTransparent(allowTransparent: allowTransparent)
+        generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
+        generator.setPointShape(pointShape: pointShape)
 
-        if let tryCGImage = generator.image {
+        if let tryCGImage = generator.generate() {
             let tryImage = UIImage(cgImage: tryCGImage)
             self.present(ShowController(image: tryImage), animated: true, completion: nil)
         } else {
@@ -701,7 +708,7 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
-        for binarizationThreshold in [CGFloat(0), 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] {
+        for binarizationThreshold in [CGFloat(0), 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0] {
             alert.addAction(
                 UIAlertAction(title: "\(binarizationThreshold)", style: .default, handler: {
                     [weak self] (action) -> Void in

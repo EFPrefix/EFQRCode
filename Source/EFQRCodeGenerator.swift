@@ -30,97 +30,153 @@ import CoreImage
 public class EFQRCodeGenerator {
 
     // MARK:- Parameters
-    public var content: String? {
+
+    // Content of QR Code
+    private var content: String? {
         didSet {
             imageQRCode = nil
             imageCodes = nil
         }
     }
-    public var mode: EFQRCodeMode = .none {
+    public func setContent(content: String) {
+        self.content = content
+    }
+
+    // Mode of QR Code
+    private var mode: EFQRCodeMode = .none {
         didSet {
             imageQRCode = nil
         }
     }
-    public var inputCorrectionLevel: EFInputCorrectionLevel = .h {
+    public func setMode(mode: EFQRCodeMode) {
+        self.mode = mode
+    }
+
+    // Error-tolerant rate
+    // L 7%
+    // M 15%
+    // Q 25%
+    // H 30%(Default)
+    private var inputCorrectionLevel: EFInputCorrectionLevel = .h {
         didSet {
             imageQRCode = nil
             imageCodes = nil
         }
     }
-    public var size: EFIntSize = EFIntSize(width: 256, height: 256) {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    // If set magnification, size will be ignored.
-    public var magnification: EFIntSize? {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var backgroundColor: CIColor = CIColor.EFWhite() {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var foregroundColor: CIColor = CIColor.EFBlack() {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var icon: CGImage? = nil {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var iconSize: EFIntSize? = nil {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var watermark: CGImage? = nil {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var watermarkMode: EFWatermarkMode = .scaleToFill {
-        didSet {
-            imageQRCode = nil
-        }
+    public func setInputCorrectionLevel(inputCorrectionLevel: EFInputCorrectionLevel) {
+        self.inputCorrectionLevel = inputCorrectionLevel
     }
 
-    // Not commonly used
-    public var foregroundPointOffset: CGFloat = 0 {
+    // Size of QR Code
+    private var size: EFIntSize = EFIntSize(width: 256, height: 256) {
         didSet {
             imageQRCode = nil
         }
     }
-    public var allowTransparent: Bool = true {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public var pointShape: EFPointShape = .square {
-        didSet {
-            imageQRCode = nil
-        }
+    public func setSize(size: EFIntSize) {
+        self.size = size
     }
 
-    // Only for mode binarization
-    public var binarizationThreshold : CGFloat = 0.5 {
+    // Magnification of QRCode compare with the minimum size,
+    // (Parameter size will be ignored if magnification is not nil).
+    private var magnification: EFIntSize? {
         didSet {
             imageQRCode = nil
         }
     }
+    public func setMagnification(magnification: EFIntSize?) {
+        self.magnification = magnification
+    }
 
-    // Final QRCode image
-    public var image: CGImage? {
-        get {
-            if nil == imageQRCode {
-                imageQRCode = createImageQRCode()
-            }
-            return imageQRCode
+    // backgroundColor
+    private var backgroundColor: CIColor = CIColor.EFWhite() {
+        didSet {
+            imageQRCode = nil
         }
+    }
+    // foregroundColor
+    private var foregroundColor: CIColor = CIColor.EFBlack() {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
+        self.backgroundColor = backgroundColor
+        self.foregroundColor = foregroundColor
+    }
+
+    // Icon in the middle of QR Code
+    private var icon: CGImage? = nil {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    // Size of icon
+    private var iconSize: EFIntSize? = nil {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setIcon(icon: CGImage?, size: EFIntSize?) {
+        self.icon = icon
+        self.iconSize = size
+    }
+
+    // Watermark
+    private var watermark: CGImage? = nil {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    // Mode of watermark
+    private var watermarkMode: EFWatermarkMode = .scaleToFill {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setWatermark(watermark: CGImage?, mode: EFWatermarkMode = .scaleAspectFill) {
+        self.watermark = watermark
+        self.watermarkMode = mode
+    }
+
+    // Offset of foreground point
+    private var foregroundPointOffset: CGFloat = 0 {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setForegroundPointOffset(foregroundPointOffset: CGFloat) {
+        self.foregroundPointOffset = foregroundPointOffset
+    }
+
+    // Alpha 0 area of watermark will transparent
+    private var allowTransparent: Bool = true {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setAllowTransparent(allowTransparent: Bool) {
+        self.allowTransparent = allowTransparent
+    }
+
+    // Shape of foreground point
+    private var pointShape: EFPointShape = .square {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setPointShape(pointShape: EFPointShape) {
+        self.pointShape = pointShape
+    }
+
+    // Threshold for binarization (Only for mode binarization).
+    private var binarizationThreshold : CGFloat = 0.5 {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setBinarizationThreshold(binarizationThreshold: CGFloat) {
+        self.binarizationThreshold = binarizationThreshold
     }
 
     // Cache
@@ -131,40 +187,18 @@ public class EFQRCodeGenerator {
     // MARK:- Init
     public init(
         content: String,
-        inputCorrectionLevel: EFInputCorrectionLevel = .h,
         size: EFIntSize = EFIntSize(width: 256, height: 256)
         ) {
         self.content = content
-        self.inputCorrectionLevel = inputCorrectionLevel
         self.size = size
     }
 
-    public func setMode(mode: EFQRCodeMode) {
-        self.mode = mode
-    }
-
-    public func setMagnification(magnification: EFIntSize?) {
-        self.magnification = magnification
-    }
-
-    public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
-        self.backgroundColor = backgroundColor
-        self.foregroundColor = foregroundColor
-    }
-
-    public func setIcon(icon: EFIcon?) {
-        self.icon = icon?.image
-        self.iconSize = icon?.size
-    }
-
-    public func setWatermark(watermark: EFWatermark?) {
-        self.watermark = watermark?.image
-        self.watermarkMode = watermark?.mode ?? .scaleToFill
-    }
-
-    public func setExtra(extra: EFExtra?) {
-        self.foregroundPointOffset = extra?.foregroundPointOffset ?? 0
-        self.allowTransparent = extra?.allowTransparent ?? true
+    // Final QRCode image
+    public func generate() -> CGImage? {
+        if nil == imageQRCode {
+            imageQRCode = createImageQRCode()
+        }
+        return imageQRCode
     }
 
     // MARK:- Draw

@@ -28,24 +28,26 @@ import CoreImage
 
 public class EFQRCodeRecognizer {
 
-    public var image: CGImage? {
+    private var image: CGImage? {
         didSet {
             contentArray = nil
         }
     }
-    var contents: [String]? {
-        get {
-            if nil == contentArray {
-                contentArray = getQRString()
-            }
-            return contentArray
-        }
+    public func setImage(image: CGImage?) {
+        self.image = image
     }
 
     private var contentArray: [String]?
 
     public init(image: CGImage) {
         self.image = image
+    }
+
+    public func recognize() -> [String]? {
+        if nil == contentArray {
+            contentArray = getQRString()
+        }
+        return contentArray
     }
 
     // Get QRCodes from image

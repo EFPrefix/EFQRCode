@@ -30,34 +30,24 @@ public class EFQRCode {
 
     // MARK:- Recognizer
     public static func recognize(image: CGImage) -> [String]? {
-        return EFQRCodeRecognizer(image: image).contents
+        return EFQRCodeRecognizer(image: image).recognize()
     }
 
     // MARK:- Generator
     public static func generate(
         content: String,
-        inputCorrectionLevel: EFInputCorrectionLevel = .h,
-        mode: EFQRCodeMode = .none,
-        size: EFIntSize = EFIntSize(width: 256, height: 256),
-        magnification: EFIntSize? = nil,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
         backgroundColor: CIColor = CIColor.EFWhite(),
         foregroundColor: CIColor = CIColor.EFBlack(),
-        icon: EFIcon? = nil,
-        watermark: EFWatermark? = nil,
-        extra: EFExtra? = nil
+        watermark: CGImage? = nil
         ) -> CGImage? {
 
         let generator = EFQRCodeGenerator(
             content: content,
-            inputCorrectionLevel: inputCorrectionLevel,
             size: size
         )
-        generator.setMode(mode: mode)
-        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
-        generator.setMagnification(magnification: magnification)
-        generator.setIcon(icon: icon)
         generator.setWatermark(watermark: watermark)
-        generator.setExtra(extra: extra)
-        return generator.image
+        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
+        return generator.generate()
     }
 }

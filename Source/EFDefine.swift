@@ -99,33 +99,3 @@ struct EFIntPoint {
         return CGPoint(x: self.x, y: self.y)
     }
 }
-
-public struct EFIcon {
-    public var image: CGImage?
-    public var size: EFIntSize?
-
-    public init(image: CGImage?, size: EFIntSize? = nil) {
-        self.image = image
-        self.size = size
-    }
-}
-
-public struct EFWatermark {
-    public var image: CGImage?
-    public var mode: EFWatermarkMode = .scaleToFill
-
-    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill) {
-        self.image = image
-        self.mode = mode
-    }
-}
-
-public struct EFExtra {
-    public var foregroundPointOffset: CGFloat = 0
-    public var allowTransparent: Bool = true
-
-    public init(foregroundPointOffset: CGFloat = 0, allowTransparent: Bool = true) {
-        self.foregroundPointOffset = foregroundPointOffset
-        self.allowTransparent = allowTransparent
-    }
-}

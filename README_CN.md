@@ -126,29 +126,17 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 根据所输入参数创建各种艺术二维码图片，快速使用方式如下:
 
 ```swift
-// 常用参数:
-//                         content: 二维码内容
-// inputCorrectionLevel (Optional): 容错率
-//                                  L 7%
-//                                  M 15%
-//                                  Q 25%
-//                                  H 30%(默认值)
-//                            mode: 二维码生成模式
-//                 size (Optional): 尺寸
-//        magnification (Optional): 放大倍数
-//                                  (如果 magnification 不为空，将会忽略 size 参数)
-//      backgroundColor (Optional): 背景色
-//      foregroundColor (Optional): 前景色
-//                 icon (Optional): 中心图标以及设置
-//            watermark (Optional): 水印图以及设置
-//                extra (Optional): 额外参数
+//                    content: Content of QR Code
+//            size (Optional): Width and height of image
+// backgroundColor (Optional): Background color of QRCode
+// foregroundColor (Optional): Foreground color of QRCode
+//       watermark (Optional): Background image of QRCode
 ```
 
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EyreFree/EFQRCode",
-    magnification: EFIntSize(width: 9, height: 9),
-    watermark: EFWatermark(image: UIImage(named: "WWF")?.toCGImage(), mode: .scaleAspectFill, isColorful: false)
+    watermark: UIImage(named: "WWF")?.toCGImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
 } else {
@@ -160,7 +148,9 @@ if let tryImage = EFQRCode.generate(
 
 <img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-> 查看 [用户手册](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多。
+#### 4. 接下来
+
+查看 [用户手册](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多细节。
 
 ## 待办
 
