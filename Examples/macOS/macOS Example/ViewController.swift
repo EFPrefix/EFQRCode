@@ -72,14 +72,10 @@ class ViewController: NSViewController {
     func createButtonClicked() {
         if let testImage = EFQRCode.generate(
             content: "https://github.com/EyreFree/EFQRCode",
-            inputCorrectionLevel: .h,
-            size: EFIntSize(width: 256, height: 256),
-            magnification: EFIntSize(width: 6, height: 6),
+            size: EFIntSize(width: 1024, height: 1024),
             backgroundColor: CIColor.EFWhite(),
             foregroundColor: CIColor.EFBlack(),
-            icon: nil,
-            watermark: nil,
-            extra: nil
+            watermark: nil
             ) {
             imageView.image = NSImage(cgImage: testImage, size: NSSize(width: testImage.width, height: testImage.height))
         }

@@ -1,6 +1,6 @@
 //
 //  EFQRCode.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/3/28.
 //
@@ -30,39 +30,24 @@ public class EFQRCode {
 
     // MARK:- Recognizer
     public static func recognize(image: CGImage) -> [String]? {
-        return EFQRCodeRecognizer(image: image).contents
+        return EFQRCodeRecognizer(image: image).recognize()
     }
 
     // MARK:- Generator
     public static func generate(
         content: String,
-        inputCorrectionLevel: EFInputCorrectionLevel = .h,
-        size: EFIntSize = EFIntSize(width: 256, height: 256),
-        magnification: EFIntSize? = nil,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
         backgroundColor: CIColor = CIColor.EFWhite(),
         foregroundColor: CIColor = CIColor.EFBlack(),
-        icon: EFIcon? = nil,
-        watermark: EFWatermark? = nil,
-        extra: EFExtra? = nil
+        watermark: CGImage? = nil
         ) -> CGImage? {
 
         let generator = EFQRCodeGenerator(
             content: content,
-            inputCorrectionLevel: inputCorrectionLevel,
-            size: size,
-            magnification: magnification,
-            backgroundColor: backgroundColor,
-            foregroundColor: foregroundColor
+            size: size
         )
-        if let tryIcon = icon {
-            generator.setIcon(icon: tryIcon)
-        }
-        if let tryWatermark = watermark {
-            generator.setWatermark(watermark: tryWatermark)
-        }
-        if let tryExtra = extra {
-            generator.setExtra(extra: tryExtra)
-        }
-        return generator.image
+        generator.setWatermark(watermark: watermark)
+        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
+        return generator.generate()
     }
 }

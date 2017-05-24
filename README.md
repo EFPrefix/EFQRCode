@@ -50,7 +50,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EFQRCode", '~> 1.2.4'
+pod "EFQRCode", '~> 1.2.5'
 ```
 
 Then, run the following command:
@@ -73,7 +73,7 @@ $ brew install carthage
 To integrate EFQRCode into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 1.2.4
+github "EyreFree/EFQRCode" ~> 1.2.5
 ```
 
 Run `carthage update` to build the framework and drag the built `EFQRCode.framework` into your Xcode project.
@@ -86,7 +86,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 4))
+    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 5))
 ]
 ```
 
@@ -126,28 +126,17 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 Create QR Code image, quick usage:
 
 ```swift
-// Common parameters:
-//                         content: Content of QR Code
-// inputCorrectionLevel (Optional): error-tolerant rate
-//                                  L 7%
-//                                  M 15%
-//                                  Q 25%
-//                                  H 30%(Default)
-//                 size (Optional): Width and height of image
-//        magnification (Optional): Magnification of QRCode compare with the minimum size
-//                                  (Parameter size will be ignored if magnification is not nil)
-//      backgroundColor (Optional): Background color of QRCode
-//      foregroundColor (Optional): Foreground color of QRCode
-//                 icon (Optional): Icon in the middle of QR Code Image and it's setting
-//            watermark (Optional): Watermark background image and it's setting
-//                extra (Optional): Extra parameters
+//                    content: Content of QR Code
+//            size (Optional): Width and height of image
+// backgroundColor (Optional): Background color of QRCode
+// foregroundColor (Optional): Foreground color of QRCode
+//       watermark (Optional): Background image of QRCode
 ```
 
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EyreFree/EFQRCode",
-    magnification: EFIntSize(width: 9, height: 9),
-    watermark: EFWatermark(image: UIImage(named: "WWF")?.toCGImage(), mode: .scaleAspectFill, isColorful: false)
+    watermark: UIImage(named: "WWF")?.toCGImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
 } else {
@@ -159,7 +148,9 @@ Result:
 
 <img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-> Learn more from [User Guide](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE.md).
+#### 4. Next
+
+Learn more from [User Guide](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE.md).
 
 ## Todo
 
@@ -191,5 +182,7 @@ Weibo: [@EyreFree](http://weibo.com/eyrefree777)
 Twitter: [@EyreFree777](https://twitter.com/EyreFree777)   
 
 ## License
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png)
 
 EFQRCode is available under the MIT license. See the LICENSE file for more info.

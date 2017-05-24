@@ -1,6 +1,6 @@
 //
 //  CGImage+.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/4/9.
 //
@@ -38,26 +38,58 @@ public extension CGImage {
     // Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
         var pixels: [[EFUIntPixel]]?
-        guard let pixelData = self.dataProvider?.data else {
-            return nil
-        }
-        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-        pixels = [[EFUIntPixel]]()
-        for indexY in 0 ..< self.height {
-            pixels?.append([EFUIntPixel]())
-            for indexX in 0 ..< self.width {
-                let pixelInfo = ((Int(self.width) * Int(indexY)) + Int(indexX)) * 4
-                pixels?[indexY].append(
-                    EFUIntPixel(
-                        red: data[pixelInfo],
-                        green: data[pixelInfo + 1],
-                        blue: data[pixelInfo + 2],
-                        alpha: data[pixelInfo + 3]
+        let dataSize = width * height * 4
+        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: &pixelData,
+                                   width: width,
+                                   height: height,
+                                   bitsPerComponent: 8,
+                                   bytesPerRow: 4 * width,
+                                   space: colorSpace,
+                                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
+            context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+            pixels = [[EFUIntPixel]]()
+            for y in 0 ..< height {
+                pixels?.append([EFUIntPixel]())
+                for x in 0 ..< width {
+                    let offset = 4 * (x + y * width)
+                    pixels?[y].append(
+                        EFUIntPixel(
+                            red: pixelData[offset + 0],
+                            green: pixelData[offset + 1],
+                            blue: pixelData[offset + 2],
+                            alpha: pixelData[offset + 3]
+                        )
                     )
-                )
+                }
             }
         }
         return pixels
+    }
+
+    // Get avarage color
+    func avarageColor() -> CGColor? {
+        let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
+        guard let context = CGContext(
+            data: rgba,
+            width: 1,
+            height: 1,
+            bitsPerComponent: 8,
+            bytesPerRow: 4,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            ) else {
+                return nil
+        }
+        context.draw(self, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+
+        return CIColor(
+            red: CGFloat(rgba[0]) / 255.0,
+            green: CGFloat(rgba[1]) / 255.0,
+            blue: CGFloat(rgba[2]) / 255.0,
+            alpha: CGFloat(rgba[3]) / 255.0
+            ).toCGColor()
     }
 
     // Grayscale
@@ -70,6 +102,46 @@ public extension CGImage {
             bitmapInfo: CGImageAlphaInfo.none.rawValue
             ) {
             context.draw(self, in: CGRect(origin: CGPoint.zero, size: CGSize(width: self.width, height: self.height)))
+            return context.makeImage()
+        }
+        return nil
+    }
+
+    // Binarization
+    // http://blog.sina.com.cn/s/blog_6b7ba99d0101js23.html
+    public func binarization(
+        value: CGFloat = 0.5,
+        foregroundColor: CGColor = CGColor.EFWhite(),
+        backgroundColor: CGColor = CGColor.EFBlack()
+        ) -> CGImage? {
+        let foregroundCIColor = foregroundColor.toCIColor()
+        let backgroundCIColor = backgroundColor.toCIColor()
+        let dataSize = width * height * 4
+        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: &pixelData,
+                                   width: width,
+                                   height: height,
+                                   bitsPerComponent: 8,
+                                   bytesPerRow: 4 * width,
+                                   space: colorSpace,
+                                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
+            context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+            for x in 0 ..< width {
+                for y in 0 ..< height {
+                    let offset = 4 * (x + y * width)
+                    // RGBA
+                    let alpha = CGFloat(pixelData[offset + 3]) / 255.0
+                    let intensity = (
+                        CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
+                        ) / 3.0 / 255.0 * alpha + (1.0 - alpha)
+                    let finalColor = intensity > value ? backgroundCIColor : foregroundCIColor
+                    pixelData[offset + 0] = UInt8(finalColor.red * 255.0)
+                    pixelData[offset + 1] = UInt8(finalColor.green * 255.0)
+                    pixelData[offset + 2] = UInt8(finalColor.blue * 255.0)
+                    pixelData[offset + 3] = UInt8(finalColor.alpha * 255.0)
+                }
+            }
             return context.makeImage()
         }
         return nil

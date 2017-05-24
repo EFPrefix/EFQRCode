@@ -1,6 +1,6 @@
 //
 //  EFDefine.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/4/11.
 //
@@ -26,6 +26,17 @@
 
 import Foundation
 import CoreGraphics
+
+public enum EFQRCodeMode: Int {
+    case none           = 0;
+    case grayscale      = 1;
+    case binarization   = 2;
+}
+
+public enum EFPointShape: Int {
+    case square         = 0;
+    case circle         = 1;
+}
 
 public struct EFUIntPixel {
     public var red: UInt8 = 0
@@ -86,39 +97,5 @@ struct EFIntPoint {
 
     public func toCGPoint() -> CGPoint {
         return CGPoint(x: self.x, y: self.y)
-    }
-}
-
-public struct EFIcon {
-    public var image: CGImage?
-    public var size: EFIntSize?
-    public var isColorful: Bool = true
-
-    public init(image: CGImage?, size: EFIntSize? = nil, isColorful: Bool = true) {
-        self.image = image
-        self.size = size
-        self.isColorful = isColorful
-    }
-}
-
-public struct EFWatermark {
-    public var image: CGImage?
-    public var mode: EFWatermarkMode = .scaleToFill
-    public var isColorful: Bool = true
-
-    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill, isColorful: Bool = true) {
-        self.image = image
-        self.mode = mode
-        self.isColorful = isColorful
-    }
-}
-
-public struct EFExtra {
-    public var foregroundPointOffset: CGFloat = 0
-    public var allowTransparent: Bool = true
-
-    public init(foregroundPointOffset: CGFloat = 0, allowTransparent: Bool = true) {
-        self.foregroundPointOffset = foregroundPointOffset
-        self.allowTransparent = allowTransparent
     }
 }

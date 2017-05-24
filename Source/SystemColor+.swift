@@ -1,6 +1,6 @@
 //
 //  UIColor+.swift
-//  Pods
+//  EyreFree
 //
 //  Created by EyreFree on 2017/4/9.
 //
@@ -37,7 +37,7 @@
             return self.cgColor
         }
     }
-#else
+#elseif os(iOS) || os(tvOS)
     import UIKit
 
     public extension UIColor {

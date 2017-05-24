@@ -2,6 +2,19 @@
 
 -----
 
+## [1.2.5](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.5) (2017-05-24)
+
+#### Add
+
+* Add binarization.
+* Add point shape.
+
+#### Fix
+
+* Fix issue [#11](https://github.com/EyreFree/EFQRCode/issues/11).
+
+---
+
 ## [1.2.4](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.4) (2017-04-23)
 
 #### Add

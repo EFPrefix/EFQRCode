@@ -9,7 +9,7 @@ EFQRCode.recognize(image: CGImage)
 Or
 
 ```swift
-EFQRCodeRecognizer(image: CGImage).contents
+EFQRCodeRecognizer(image: CGImage).recognize()
 ```
 
 Two way before is exactly the same, because of the possibility of more than one two-dimensional code in the same iamge, so the return value is `[String]? ', if the return is nil means that the input data is incorrect or null. If the return array is empty, it means we can not recognize  any two-dimensional code at the image.
@@ -19,40 +19,32 @@ Two way before is exactly the same, because of the possibility of more than one 
 ```swift
 EFQRCode.generate(
     content: String,
-    inputCorrectionLevel: EFInputCorrectionLevel,
     size: EFIntSize,
-    magnification: EFIntSize?,
     backgroundColor: CIColor,
     foregroundColor: CIColor,
-    icon: EFIcon?,
-    watermark: EFWatermark?,
-    extra: EFExtra?
+    watermark: CGImage?
 )
 ```
 
 Or
 
 ```swift
-let generator = EFQRCodeGenerator(
-    content: String,
-    inputCorrectionLevel: EFInputCorrectionLevel,
-    size: EFIntSize,
-    magnification: EFIntSize?,
-    backgroundColor: CIColor,
-    foregroundColor: CIColor
-)
-if let tryIcon = icon {
-    generator.setIcon(icon: EFIcon?)
-}
-if let tryWatermark = watermark {
-    generator.setWatermark(watermark: EFWatermark?)
-}
-if let tryExtra = extra {
-    generator.setExtra(extra: EFExtra?)
-}
+let generator = EFQRCodeGenerator(content: String, size: EFIntSize)
+generator.setContent(content: String)
+generator.setMode(mode: EFQRCodeMode)
+generator.setInputCorrectionLevel(inputCorrectionLevel: EFInputCorrectionLevel)
+generator.setSize(size: EFIntSize)
+generator.setMagnification(magnification: EFIntSize?)
+generator.setColors(backgroundColor: CIColor, foregroundColor: CIColor)
+generator.setIcon(icon: CGImage?, size: EFIntSize?)
+generator.setWatermark(watermark: CGImage?, mode: EFWatermarkMode)
+generator.setForegroundPointOffset(foregroundPointOffset: CGFloat)
+generator.setAllowTransparent(allowTransparent: Bool)
+generator.setPointShape(pointShape: EFPointShape)
+generator.setBinarizationThreshold(binarizationThreshold: CGFloat)
 
 // Final two-dimensional code image we get
-generator.image
+generator.generate()
 ```
 
 Two way before is exactly the same, the return value is `CGImage?`, if the return is nil means that there is some wrong during the generation.
@@ -66,6 +58,22 @@ Content, compulsive, capacity is limited, 1273 character most, the density of th
 10 characters | 250 characters
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareContent1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareContent2.jpg)
+
+* **mode: EFQRCodeMode**
+
+Mode of QR Code, the definition of EFQRCodeMode:
+
+```swift
+public enum EFQRCodeMode: Int {
+    case none           = 0;
+    case grayscale      = 1;
+    case binarization   = 2;
+}
+```
+
+none | grayscale | binarization
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/mode1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/mode2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/mode3.jpg)
 
 * **inputCorrectionLevel: EFInputCorrectionLevel**
 
@@ -180,10 +188,6 @@ Size of icon image, optional, default is 20% of size:
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareIcon.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareIconSize.jpg)
 
-* **isIconColorful: Bool**
-
-Is icon colorful, optional, default is `true`.
-
 * **watermark: CGImage?**
 
 Watermark image, optional, default is nil, for example: 
@@ -214,10 +218,6 @@ public enum EFWatermarkMode: Int {
 }
 ```
 
-* **isWatermarkColorful: Bool**
-
-Is watermark colorful, optional, default is `true`.
-
 * **foregroundPointOffset: CGFloat**
 
 Foreground point offset, optional, default is 0, is not recommended to use, may make the two-dimensional code broken:
@@ -234,50 +234,25 @@ true | false
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareAllowTransparent1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareAllowTransparent2.jpg)
 
-* Other
+* **pointShape: EFPointShape**
 
-EFIcon is consist of icon, iconSize and isIconColorful, the definition is:
+Shape of foreground point, default is `.square`, the definition of UIViewContentMode:
 
 ```swift
-public struct EFIcon {
-    public var image: CGImage?
-    public var size: EFIntSize?
-    public var isColorful: Bool = true
-
-    public init(image: CGImage?, size: EFIntSize?, isColorful: Bool = true) {
-        self.image = image
-        self.size = size
-        self.isColorful = isColorful
-    }
+public enum EFPointShape: Int {
+    case square         = 0;
+    case circle         = 1;
 }
 ```
 
-EFWatermark is consist of watermark, watermarkMode and isWatermarkColorful, the definition is:
+square | circle
+:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/compareAllowTransparent1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/pointShape.jpg)
 
-```swift
-public struct EFWatermark {
-    public var image: CGImage?
-    public var mode: EFWatermarkMode = .scaleToFill
-    public var isColorful: Bool = true
+* **binarizationThreshold: CGFloat**
 
-    public init(image: CGImage?, mode: EFWatermarkMode = .scaleToFill, isColorful: Bool = true) {
-        self.image = image
-        self.mode = mode
-        self.isColorful = isColorful
-    }
-}
-```
+Threshold for binarization (Only for mode binarization).
 
-EFExtra is consist of foregroundPointOffset and allowTransparent, the definition is:
-
-```swift
-public struct EFExtra {
-    public var foregroundPointOffset: CGFloat = 0
-    public var allowTransparent: Bool = true
-
-    public init(foregroundPointOffset: CGFloat = 0, allowTransparent: Bool = true) {
-        self.foregroundPointOffset = foregroundPointOffset
-        self.allowTransparent = allowTransparent
-    }
-}
-```
+Origin | 0.3 | 0.5 | 0.8
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold0.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold3.jpg)

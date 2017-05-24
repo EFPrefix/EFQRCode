@@ -13,8 +13,8 @@
 		1215B72A1EAC96FB00DC5A86 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1215B7151EAC95AE00DC5A86 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1215B72E1EAC9FA800DC5A86 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B72D1EAC9FA800DC5A86 /* UIImage+.swift */; };
 		1215B7341EAC9FD300DC5A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7311EAC9FD300DC5A86 /* ViewController.swift */; };
-		1215B7361EACA0F900DC5A86 /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7351EACA0F900DC5A86 /* GeneratorController.swift */; };
 		1215B7381EACA23E00DC5A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7371EACA23E00DC5A86 /* AppDelegate.swift */; };
+		122D54881ED1D7020055969D /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122D54871ED1D7020055969D /* GeneratorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +91,8 @@
 		1215B7031EAC95AE00DC5A86 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
 		1215B72D1EAC9FA800DC5A86 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+.swift"; path = "../../iOS/UIImage+.swift"; sourceTree = "<group>"; };
 		1215B7311EAC9FD300DC5A86 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../iOS/ViewController.swift; sourceTree = "<group>"; };
-		1215B7351EACA0F900DC5A86 /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorController.swift; sourceTree = "<group>"; };
 		1215B7371EACA23E00DC5A86 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../iOS/AppDelegate.swift; sourceTree = "<group>"; };
+		122D54871ED1D7020055969D /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneratorController.swift; path = ../../iOS/GeneratorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				1215B7311EAC9FD300DC5A86 /* ViewController.swift */,
-				1215B7351EACA0F900DC5A86 /* GeneratorController.swift */,
+				122D54871ED1D7020055969D /* GeneratorController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -309,9 +309,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1215B7381EACA23E00DC5A86 /* AppDelegate.swift in Sources */,
-				1215B7361EACA0F900DC5A86 /* GeneratorController.swift in Sources */,
 				1215B7341EAC9FD300DC5A86 /* ViewController.swift in Sources */,
 				1215B72E1EAC9FA800DC5A86 /* UIImage+.swift in Sources */,
+				122D54881ED1D7020055969D /* GeneratorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

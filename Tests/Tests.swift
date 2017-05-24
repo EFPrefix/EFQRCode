@@ -53,17 +53,15 @@ class Tests: XCTestCase {
     func testExample1() {
         // This is an example of EFQRCodeGenerator test case.
         let content = "https://github.com/EyreFree/EFQRCode"
-        let testResult = EFQRCode.generate(
+        let generator = EFQRCodeGenerator(
             content: content,
-            inputCorrectionLevel: .h,
-            size: EFIntSize(width: 256, height: 256),
-            magnification: EFIntSize(width: 6, height: 6),
-            backgroundColor: CIColor.EFWhite(),
-            foregroundColor: CIColor.EFBlack(),
-            icon: nil,
-            watermark: nil,
-            extra: nil
+            size: EFIntSize(width: 256, height: 256)
         )
+        generator.setMode(mode: .none)
+        generator.setColors(backgroundColor: CIColor.EFWhite(), foregroundColor: CIColor.EFBlack())
+        generator.setInputCorrectionLevel(inputCorrectionLevel: .h)
+        generator.setMagnification(magnification: EFIntSize(width: 6, height: 6))
+        let testResult = generator.generate()
         XCTAssert(testResult != nil, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
@@ -76,17 +74,15 @@ class Tests: XCTestCase {
     func testExample2() {
         // This is an example of EFQRCodeGenerator test case.
         let content = ""
-        let testResult = EFQRCode.generate(
+        let generator = EFQRCodeGenerator(
             content: content,
-            inputCorrectionLevel: .l,
-            size: EFIntSize(width: 999, height: 999),
-            magnification: nil,
-            backgroundColor: CIColor.EFWhite(),
-            foregroundColor: CIColor.EFBlack(),
-            icon: nil,
-            watermark: nil,
-            extra: nil
+            size: EFIntSize(width: 999, height: 999)
         )
+        generator.setMode(mode: .none)
+        generator.setColors(backgroundColor: CIColor.EFWhite(), foregroundColor: CIColor.EFBlack())
+        generator.setInputCorrectionLevel(inputCorrectionLevel: .l)
+        generator.setMagnification(magnification: nil)
+        let testResult = generator.generate()
         XCTAssert(testResult != nil, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
@@ -99,23 +95,21 @@ class Tests: XCTestCase {
     func testExample3() {
         // This is an example of EFQRCodeGenerator test case.
         let content = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989"
-        let testResult = EFQRCode.generate(
+        let generator = EFQRCodeGenerator(
             content: content,
-            inputCorrectionLevel: .m,
-            size: EFIntSize(width: 1024, height: 1024),
-            magnification: nil,
-            backgroundColor: CIColor.EFWhite(),
-            foregroundColor: {
-                #if os(macOS)
-                    return NSColor.gray.toCIColor()
-                #else
-                    return UIColor.gray.toCIColor()
-                #endif
-        }(),
-            icon: nil,
-            watermark: nil,
-            extra: nil
+            size: EFIntSize(width: 1024, height: 1024)
         )
+        generator.setMode(mode: .none)
+        generator.setColors(backgroundColor: {
+            #if os(macOS)
+                return NSColor.gray.toCIColor()
+            #else
+                return UIColor.gray.toCIColor()
+            #endif
+        }(), foregroundColor: CIColor.EFBlack())
+        generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
+        generator.setMagnification(magnification: nil)
+        let testResult = generator.generate()
         XCTAssert(testResult != nil, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
@@ -130,23 +124,23 @@ class Tests: XCTestCase {
         let content = "https://github.com/EyreFree/EFQRCode"
         let generator = EFQRCodeGenerator(
             content: content,
-            inputCorrectionLevel: .q,
-            size: EFIntSize(width: 15, height: 15),
-            magnification: nil,
-            backgroundColor: {
-                #if os(macOS)
-                    return NSColor.gray.toCIColor()
-                #else
-                    return UIColor.red.toCIColor()
-                #endif
-        }(),
-            foregroundColor: CIColor.EFBlack()
+            size: EFIntSize(width: 15, height: 15)
         )
-        generator.setIcon(icon: EFIcon(image: getImage(name: "eyrefree")))
-        generator.setWatermark(watermark: EFWatermark(image: getImage(name: "eyrefree")))
-        generator.setExtra(extra: EFExtra(foregroundPointOffset: 0, allowTransparent: true))
-        generator.watermarkMode = .bottom
-        let testResult = generator.image
+        generator.setMode(mode: .none)
+        generator.setColors(backgroundColor: {
+            #if os(macOS)
+                return NSColor.gray.toCIColor()
+            #else
+                return UIColor.red.toCIColor()
+            #endif
+        }(), foregroundColor: CIColor.EFBlack())
+        generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
+        generator.setMagnification(magnification: nil)
+        generator.setIcon(icon: getImage(name: "eyrefree"), size: nil)
+        generator.setWatermark(watermark: getImage(name: "eyrefree"), mode: .bottom)
+        generator.setForegroundPointOffset(foregroundPointOffset: 0)
+        generator.setAllowTransparent(allowTransparent: true)
+        let testResult = generator.generate()
         XCTAssert(testResult != nil, "testResult should be nil!")
     }
 }

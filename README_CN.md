@@ -50,7 +50,7 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Examples/iOS; open '
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod "EFQRCode", '~> 1.2.4'
+pod "EFQRCode", '~> 1.2.5'
 ```
 
 然后，执行如下命令即可：
@@ -73,7 +73,7 @@ $ brew install carthage
 通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 1.2.4
+github "EyreFree/EFQRCode" ~> 1.2.5
 ```
 
 接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
@@ -86,7 +86,7 @@ github "EyreFree/EFQRCode" ~> 1.2.4
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 4))
+    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 5))
 ]
 ```
 
@@ -126,28 +126,17 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 根据所输入参数创建各种艺术二维码图片，快速使用方式如下:
 
 ```swift
-// 常用参数:
-//                         content: 二维码内容
-// inputCorrectionLevel (Optional): 容错率
-//                                  L 7%
-//                                  M 15%
-//                                  Q 25%
-//                                  H 30%(默认值)
-//                 size (Optional): 尺寸
-//        magnification (Optional): 放大倍数
-//                                  (如果 magnification 不为空，将会忽略 size 参数)
-//      backgroundColor (Optional): 背景色
-//      foregroundColor (Optional): 前景色
-//                 icon (Optional): 中心图标以及设置
-//            watermark (Optional): 水印图以及设置
-//                extra (Optional): 额外参数
+//                    content: Content of QR Code
+//            size (Optional): Width and height of image
+// backgroundColor (Optional): Background color of QRCode
+// foregroundColor (Optional): Foreground color of QRCode
+//       watermark (Optional): Background image of QRCode
 ```
 
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EyreFree/EFQRCode",
-    magnification: EFIntSize(width: 9, height: 9),
-    watermark: EFWatermark(image: UIImage(named: "WWF")?.toCGImage(), mode: .scaleAspectFill, isColorful: false)
+    watermark: UIImage(named: "WWF")?.toCGImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
 } else {
@@ -159,7 +148,9 @@ if let tryImage = EFQRCode.generate(
 
 <img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-> 查看 [用户手册](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多。
+#### 4. 接下来
+
+查看 [用户手册](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多细节。
 
 ## 待办
 
@@ -191,5 +182,7 @@ Weibo: [@EyreFree](http://weibo.com/eyrefree777)
 Twitter: [@EyreFree777](https://twitter.com/EyreFree777)   
 
 ## 协议
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png)
 
 EFQRCode 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
