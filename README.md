@@ -171,9 +171,10 @@ PS of PS: I wish you can click the `Star` button if this tool is useful for you,
 
 Platforms/Languages|Link
 :-------------------------:|:-------------------------:
-Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
 JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
+Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
+Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## Contact
 
