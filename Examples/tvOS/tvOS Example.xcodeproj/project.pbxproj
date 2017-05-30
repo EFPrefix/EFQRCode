@@ -84,7 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1215B6EF1EAC956F00DC5A86 /* tvOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tvOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1215B6EF1EAC956F00DC5A86 /* EFQRCode.tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.tvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1215B6F71EAC956F00DC5A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1215B6F91EAC957000DC5A86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1215B6FB1EAC957000DC5A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		1215B6F01EAC956F00DC5A86 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1215B6EF1EAC956F00DC5A86 /* tvOS Example.app */,
+				1215B6EF1EAC956F00DC5A86 /* EFQRCode.tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,7 +202,7 @@
 			);
 			name = "tvOS Example";
 			productName = "tvOS Example";
-			productReference = 1215B6EF1EAC956F00DC5A86 /* tvOS Example.app */;
+			productReference = 1215B6EF1EAC956F00DC5A86 /* EFQRCode.tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -438,8 +438,8 @@
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = "tvOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.EyreFree.tvOS-Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
+				PRODUCT_NAME = EFQRCode.tvOS;
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -453,8 +453,8 @@
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = "tvOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.EyreFree.tvOS-Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
+				PRODUCT_NAME = EFQRCode.tvOS;
 				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};

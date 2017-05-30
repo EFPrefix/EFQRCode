@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1215B6EE1EAC956F00DC5A86"
-               BuildableName = "tvOS Example.app"
+               BuildableName = "EFQRCode.tvOS.app"
                BlueprintName = "tvOS Example"
                ReferencedContainer = "container:tvOS Example.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1215B6EE1EAC956F00DC5A86"
-            BuildableName = "tvOS Example.app"
+            BuildableName = "EFQRCode.tvOS.app"
             BlueprintName = "tvOS Example"
             ReferencedContainer = "container:tvOS Example.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1215B6EE1EAC956F00DC5A86"
-            BuildableName = "tvOS Example.app"
+            BuildableName = "EFQRCode.tvOS.app"
             BlueprintName = "tvOS Example"
             ReferencedContainer = "container:tvOS Example.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1215B6EE1EAC956F00DC5A86"
-            BuildableName = "tvOS Example.app"
+            BuildableName = "EFQRCode.tvOS.app"
             BlueprintName = "tvOS Example"
             ReferencedContainer = "container:tvOS Example.xcodeproj">
          </BuildableReference>
