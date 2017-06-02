@@ -28,6 +28,16 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 ## 示例
 
+### AppStore
+
+你可以点击下方的 AppStore 按钮从应用商店下载示例程序，支持 iOS 和 tvOS。
+
+<a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
+	<img src='http://ww2.sinaimg.cn/large/0060lm7Tgw1f1hgrs1ebwj308102q0sp.jpg' width='144' height='49'/>
+</a>
+
+### 手动
+
 1. 利用 `git clone` 命令下载本仓库, `Examples` 目录包含了所有的示例程序；
 2. 用 XCode 打开对应项目编译即可。
 
