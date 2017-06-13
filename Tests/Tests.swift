@@ -141,6 +141,32 @@ class Tests: XCTestCase {
         generator.setForegroundPointOffset(foregroundPointOffset: 0)
         generator.setAllowTransparent(allowTransparent: true)
         let testResult = generator.generate()
-        XCTAssert(testResult != nil, "testResult should be nil!")
+        XCTAssert(testResult != nil, "testResult is nil!")
+    }
+
+    // CGColor
+    func testExampleCGColorExtension() {
+        XCTAssert(CGColor.EFWhite() != nil, "CGColor.EFWhite() should not be nil!")
+        XCTAssert(CGColor.EFBlack() != nil, "CGColor.EFBlack() should not be nil!")
+    }
+
+    // CGSize
+    func testExampleCGSizeExtension() {
+        let size = CGSize(width: 111.1, height: 888.8)
+        XCTAssert(size.widthInt() == 111, "size.widthInt() should be 111!")
+        XCTAssert(size.heightInt() == 888, "size.heightInt() should be 888!")
+    }
+
+    // EFIntPoint
+    // func testExampleEFIntPoint() {
+    //     let point = EFIntPoint(x: 111, y: 888).toCGPoint()
+    //     XCTAssert(point.x != 111, "point.x should be 111!")
+    //     XCTAssert(point.y != 888, "point.y should be 888!")
+    // }
+
+    // EFQRCode
+    func testExampleEFQRCode() {
+        let testResult = EFQRCode.generate(content: "https://github.com/EyreFree/EFQRCode")
+        XCTAssert(testResult != nil, "testResult is nil!")
     }
 }
