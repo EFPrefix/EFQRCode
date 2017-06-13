@@ -180,7 +180,7 @@ if let tryImage = EFQRCode.generate(
 ## 其它平台／语言
 
 平台／语言|链接
-:-------------------------:|:-------------------------:
+:-------------------------|:-------------------------
 Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
 JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
 Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
