@@ -344,7 +344,7 @@ public class EFQRCodeGenerator {
             context.setFillColor(colorCGFront)
             for indexY in 0 ..< codeSize {
                 for indexX in 0 ..< codeSize {
-                    if true == codes[indexY][indexX] {
+                    if true == codes[indexX][indexY] {
                         // CTM-90
                         let indexXCTM = indexY
                         let indexYCTM = codeSize - indexX - 1
@@ -409,7 +409,7 @@ public class EFQRCodeGenerator {
             context.setFillColor(colorCGBack)
             for indexY in 0 ..< codeSize {
                 for indexX in 0 ..< codeSize {
-                    if false == codes[indexY][indexX] {
+                    if false == codes[indexX][indexY] {
                         // CTM-90
                         let indexXCTM = indexY
                         let indexYCTM = codeSize - indexX - 1
@@ -441,7 +441,7 @@ public class EFQRCodeGenerator {
             context.setFillColor(colorCGFront)
             for indexY in 0 ..< codeSize {
                 for indexX in 0 ..< codeSize {
-                    if true == codes[indexY][indexX] {
+                    if true == codes[indexX][indexY] {
                         // CTM-90
                         let indexXCTM = indexY
                         let indexYCTM = codeSize - indexX - 1
