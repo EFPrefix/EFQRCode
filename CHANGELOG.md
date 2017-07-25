@@ -2,6 +2,14 @@
 
 -----
 
+## [1.2.6](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.6) (2017-07-25)
+
+#### Fix
+
+* Fix issue [#21](https://github.com/EyreFree/EFQRCode/issues/21).
+
+---
+
 ## [1.2.5](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.5) (2017-05-24)
 
 #### Add
