@@ -26,7 +26,7 @@
 
 import CoreImage
 
-public class EFQRCodeRecognizer {
+public class EFQRCodeRecognizer: NSObject {
 
     private var image: CGImage? {
         didSet {

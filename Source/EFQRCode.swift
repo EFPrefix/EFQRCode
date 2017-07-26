@@ -26,7 +26,7 @@
 
 import CoreImage
 
-public class EFQRCode {
+public class EFQRCode: NSObject {
 
     // MARK:- Recognizer
     public static func recognize(image: CGImage) -> [String]? {

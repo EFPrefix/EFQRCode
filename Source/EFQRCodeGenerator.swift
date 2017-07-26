@@ -27,7 +27,7 @@
 import CoreImage
 
 // EFQRCode+Create
-public class EFQRCodeGenerator {
+public class EFQRCodeGenerator: NSObject {
 
     // MARK:- Parameters
 
