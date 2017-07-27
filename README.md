@@ -1,7 +1,7 @@
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
-<a href="https://travis-ci.org/EyreFree/EFQRCode"><a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/EFQRCode/backers/badge.svg" /></a> <a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/EFQRCode/sponsors/badge.svg" /></a> <img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
+<a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
 <a href="https://codecov.io/gh/EyreFree/EFQRCode"><img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg"></a>
 <a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-ready-orange.svg"></a>
@@ -11,6 +11,8 @@
 <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f"></a>
 <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat"></a>
 <a href="https://gitter.im/EFQRCode/Lobby"><img src="https://img.shields.io/gitter/room/EyreFree/EFQRCode.svg"></a>
+<a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/EFQRCode/backers/badge.svg" /></a>
+<a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/EFQRCode/sponsors/badge.svg" /></a>
 <a href="https://twitter.com/EyreFree777"><img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat"></a>
 <a href="http://weibo.com/eyrefree777"><img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat"></a>
 <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
@@ -186,19 +188,17 @@ JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/Sumi
 Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
 Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
-
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
-<a href="graphs/contributors"><img src="https://opencollective.com/EFQRCode/contributors.svg?width=890" /></a>
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)]
 
+<a href="https://opencollective.com/EFQRCode#contributors"><img src="https://opencollective.com/EFQRCode/contributors.svg?width=890" /></a>
 
 ## Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/EFQRCode#backer)]
 
 <a href="https://opencollective.com/EFQRCode#backers" target="_blank"><img src="https://opencollective.com/EFQRCode/backers.svg?width=890"></a>
-
 
 ## Sponsors
 
@@ -215,13 +215,11 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/EFQRCode/sponsor/8/website" target="_blank"><img src="https://opencollective.com/EFQRCode/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/EFQRCode/sponsor/9/website" target="_blank"><img src="https://opencollective.com/EFQRCode/sponsor/9/avatar.svg"></a>
 
-
 ## Contact
 
 Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   
 Weibo: [@EyreFree](http://weibo.com/eyrefree777)   
 Twitter: [@EyreFree777](https://twitter.com/EyreFree777)   
-
 
 ## License
 

@@ -65,32 +65,24 @@ By making a contribution to this project, I certify that:
       maintained indefinitely and may be redistributed consistent with
       this project or the open source license(s) involved.
 
----
-
-*Some of the ideas and wording for the statements above were based on work by the [Alamofire](https://github.com/Alamofire/Alamofire/blob/master/CONTRIBUTING.md) communities. We commend them for their efforts to facilitate collaboration in their projects.*
-
-
 ## Financial contributions
 
 We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/EFQRCode).
 Anyone can file an expense. If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
 
-
 ## Credits
-
 
 ### Contributors
 
 Thank you to all the people who have already contributed to EFQRCode!
-<a href="graphs/contributors"><img src="https://opencollective.com/EFQRCode/contributors.svg?width=890" /></a>
 
+<a href="https://opencollective.com/EFQRCode#contributors"><img src="https://opencollective.com/EFQRCode/contributors.svg?width=890" /></a>
 
 ### Backers
 
 Thank you to all our backers! [[Become a backer](https://opencollective.com/EFQRCode#backer)]
 
 <a href="https://opencollective.com/EFQRCode#backers" target="_blank"><img src="https://opencollective.com/EFQRCode/backers.svg?width=890"></a>
-
 
 ### Sponsors
 
@@ -106,3 +98,7 @@ Thank you to all our sponsors! (please ask your company to also support this ope
 <a href="https://opencollective.com/EFQRCode/sponsor/7/website" target="_blank"><img src="https://opencollective.com/EFQRCode/sponsor/7/avatar.svg"></a>
 <a href="https://opencollective.com/EFQRCode/sponsor/8/website" target="_blank"><img src="https://opencollective.com/EFQRCode/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/EFQRCode/sponsor/9/website" target="_blank"><img src="https://opencollective.com/EFQRCode/sponsor/9/avatar.svg"></a>
+
+---
+
+*Some of the ideas and wording for the statements above were based on work by the [Alamofire](https://github.com/Alamofire/Alamofire/blob/master/CONTRIBUTING.md) communities. We commend them for their efforts to facilitate collaboration in their projects.*
