@@ -19,3 +19,6 @@ Thanks for considering to open an issue. Before you submit your issue, please co
 
 [Add anything else here]
 
+
+<!-- Love EFQRCode? Please consider supporting our collective:
+👉  https://opencollective.com/EFQRCode/donate -->
