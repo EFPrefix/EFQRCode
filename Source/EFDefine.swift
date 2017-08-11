@@ -28,14 +28,14 @@ import Foundation
 import CoreGraphics
 
 @objc public enum EFQRCodeMode: Int {
-    case none           = 0;
-    case grayscale      = 1;
-    case binarization   = 2;
+    case none           = 0
+    case grayscale      = 1
+    case binarization   = 2
 }
 
 @objc public enum EFPointShape: Int {
-    case square         = 0;
-    case circle         = 1;
+    case square         = 0
+    case circle         = 1
 }
 
 public struct EFUIntPixel {
@@ -69,26 +69,26 @@ public class EFIntSize: NSObject {
 
 // EFInputCorrectionLevel
 @objc public enum EFInputCorrectionLevel: Int {
-    case l = 0;     // L 7%
-    case m = 1;     // M 15%
-    case q = 2;     // Q 25%
-    case h = 3;     // H 30%
+    case l = 0     // L 7%
+    case m = 1     // M 15%
+    case q = 2     // Q 25%
+    case h = 3     // H 30%
 }
 
 // Like UIViewContentMode
 @objc public enum EFWatermarkMode: Int {
-    case scaleToFill        = 0;
-    case scaleAspectFit     = 1;
-    case scaleAspectFill    = 2;
-    case center             = 3;
-    case top                = 4;
-    case bottom             = 5;
-    case left               = 6;
-    case right              = 7;
-    case topLeft            = 8;
-    case topRight           = 9;
-    case bottomLeft         = 10;
-    case bottomRight        = 11;
+    case scaleToFill        = 0
+    case scaleAspectFit     = 1
+    case scaleAspectFill    = 2
+    case center             = 3
+    case top                = 4
+    case bottom             = 5
+    case left               = 6
+    case right              = 7
+    case topLeft            = 8
+    case topRight           = 9
+    case bottomLeft         = 10
+    case bottomRight        = 11
 }
 
 struct EFIntPoint {

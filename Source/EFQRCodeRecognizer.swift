@@ -55,9 +55,11 @@ public class EFQRCodeRecognizer: NSObject {
         guard let finalImage = self.image else {
             return nil
         }
-        let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy : CIDetectorAccuracyHigh])
+        let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
         if result.count <= 0 {
-            return finalImage.grayscale()?.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy : CIDetectorAccuracyLow])
+            return finalImage.grayscale()?.toCIImage().recognizeQRCode(
+                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
+            )
         }
         return result
     }

@@ -28,12 +28,12 @@ import CoreImage
 
 public class EFQRCode: NSObject {
 
-    // MARK:- Recognizer
+    // MARK: - Recognizer
     public static func recognize(image: CGImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).recognize()
     }
 
-    // MARK:- Generator
+    // MARK: - Generator
     public static func generate(
         content: String,
         size: EFIntSize = EFIntSize(width: 600, height: 600),

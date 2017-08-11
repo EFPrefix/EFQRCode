@@ -29,7 +29,7 @@ import CoreImage
 // EFQRCode+Create
 public class EFQRCodeGenerator: NSObject {
 
-    // MARK:- Parameters
+    // MARK: - Parameters
 
     // Content of QR Code
     private var content: String? {
@@ -170,7 +170,7 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // Threshold for binarization (Only for mode binarization).
-    private var binarizationThreshold : CGFloat = 0.5 {
+    private var binarizationThreshold: CGFloat = 0.5 {
         didSet {
             imageQRCode = nil
         }
@@ -184,7 +184,7 @@ public class EFQRCodeGenerator: NSObject {
     private var imageQRCode: CGImage?
     private var minSuitableSize: EFIntSize!
 
-    // MARK:- Init
+    // MARK: - Init
     public init(
         content: String,
         size: EFIntSize = EFIntSize(width: 256, height: 256)
@@ -201,7 +201,7 @@ public class EFQRCodeGenerator: NSObject {
         return imageQRCode
     }
 
-    // MARK:- Draw
+    // MARK: - Draw
     private func createImageQRCode() -> CGImage? {
         var finalSize = self.size
         let finalBackgroundColor = getBackgroundColor()
@@ -218,7 +218,9 @@ public class EFQRCodeGenerator: NSObject {
 
         // If magnification is not nil, reset finalSize
         if let tryMagnification = magnification {
-            finalSize = EFIntSize(width: tryMagnification.width * codes.count, height: tryMagnification.height * codes.count)
+            finalSize = EFIntSize(
+                width: tryMagnification.width * codes.count, height: tryMagnification.height * codes.count
+            )
         }
 
         var result: CGImage?
@@ -242,7 +244,10 @@ public class EFQRCodeGenerator: NSObject {
                 )
                 // Draw QR Code
                 if let tryFrontImage = createQRCodeImageTransparent(
-                    codes: codes, colorBack: finalBackgroundColor, colorFront: finalForegroundColor, size: minSuitableSize
+                    codes: codes,
+                    colorBack: finalBackgroundColor,
+                    colorFront: finalForegroundColor,
+                    size: minSuitableSize
                     ) {
                     context.draw(tryFrontImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
                 }
@@ -254,7 +259,10 @@ public class EFQRCodeGenerator: NSObject {
                 }
                 // Draw QR Code
                 if let tryImage = createQRCodeImage(
-                    codes: codes, colorBack: finalBackgroundColor, colorFront: finalForegroundColor, size: minSuitableSize
+                    codes: codes,
+                    colorBack: finalBackgroundColor,
+                    colorFront: finalForegroundColor,
+                    size: minSuitableSize
                     ) {
                     context.draw(tryImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
                 }
@@ -326,7 +334,11 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // Create Colorful QR Image
-    private func createQRCodeImage(codes: [[Bool]], colorBack: CIColor, colorFront: CIColor, size: EFIntSize) -> CGImage? {
+    private func createQRCodeImage(
+        codes: [[Bool]],
+        colorBack: CIColor,
+        colorFront: CIColor,
+        size: EFIntSize) -> CGImage? {
         let scaleX = CGFloat(size.width) / CGFloat(codes.count)
         let scaleY = CGFloat(size.height) / CGFloat(codes.count)
         if scaleX < 1.0 || scaleY < 1.0 {
@@ -343,22 +355,20 @@ public class EFQRCodeGenerator: NSObject {
             // Point
             context.setFillColor(colorCGFront)
             for indexY in 0 ..< codeSize {
-                for indexX in 0 ..< codeSize {
-                    if true == codes[indexX][indexY] {
-                        // CTM-90
-                        let indexXCTM = indexY
-                        let indexYCTM = codeSize - indexX - 1
+                for indexX in 0 ..< codeSize where true == codes[indexX][indexY] {
+                    // CTM-90
+                    let indexXCTM = indexY
+                    let indexYCTM = codeSize - indexX - 1
 
-                        drawPoint(
-                            context: context,
-                            rect: CGRect(
-                                x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
-                                y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
-                                width: scaleX - 2 * foregroundPointOffset,
-                                height: scaleY - 2 * foregroundPointOffset
-                            )
+                    drawPoint(
+                        context: context,
+                        rect: CGRect(
+                            x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
+                            y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
+                            width: scaleX - 2 * foregroundPointOffset,
+                            height: scaleY - 2 * foregroundPointOffset
                         )
-                    }
+                    )
                 }
             }
             result = context.makeImage()
@@ -367,7 +377,11 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // Create Colorful QR Image
-    private func createQRCodeImageTransparent(codes: [[Bool]], colorBack: CIColor, colorFront: CIColor, size: EFIntSize) -> CGImage? {
+    private func createQRCodeImageTransparent(
+        codes: [[Bool]],
+        colorBack: CIColor,
+        colorFront: CIColor,
+        size: EFIntSize) -> CGImage? {
         let scaleX = CGFloat(size.width) / CGFloat(codes.count)
         let scaleY = CGFloat(size.height) / CGFloat(codes.count)
         if scaleX < 1.0 || scaleY < 1.0 {
@@ -408,64 +422,60 @@ public class EFQRCodeGenerator: NSObject {
             // Back point
             context.setFillColor(colorCGBack)
             for indexY in 0 ..< codeSize {
-                for indexX in 0 ..< codeSize {
-                    if false == codes[indexX][indexY] {
-                        // CTM-90
-                        let indexXCTM = indexY
-                        let indexYCTM = codeSize - indexX - 1
-                        if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
-                            drawPoint(
-                                context: context,
-                                rect: CGRect(
-                                    x: CGFloat(indexXCTM) * scaleX,
-                                    y: CGFloat(indexYCTM) * scaleY,
-                                    width: pointWidthOriX,
-                                    height: pointWidthOriY
-                                )
+                for indexX in 0 ..< codeSize where false == codes[indexX][indexY] {
+                    // CTM-90
+                    let indexXCTM = indexY
+                    let indexYCTM = codeSize - indexX - 1
+                    if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
+                        drawPoint(
+                            context: context,
+                            rect: CGRect(
+                                x: CGFloat(indexXCTM) * scaleX,
+                                y: CGFloat(indexYCTM) * scaleY,
+                                width: pointWidthOriX,
+                                height: pointWidthOriY
                             )
-                        } else {
-                            drawPoint(
-                                context: context,
-                                rect: CGRect(
-                                    x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
-                                    y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
-                                    width: pointWidthMinX,
-                                    height: pointWidthMinY
-                                )
+                        )
+                    } else {
+                        drawPoint(
+                            context: context,
+                            rect: CGRect(
+                                x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
+                                y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
+                                width: pointWidthMinX,
+                                height: pointWidthMinY
                             )
-                        }
+                        )
                     }
                 }
             }
             // Front point
             context.setFillColor(colorCGFront)
             for indexY in 0 ..< codeSize {
-                for indexX in 0 ..< codeSize {
-                    if true == codes[indexX][indexY] {
-                        // CTM-90
-                        let indexXCTM = indexY
-                        let indexYCTM = codeSize - indexX - 1
-                        if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
-                            drawPoint(
-                                context: context,
-                                rect: CGRect(
-                                    x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
-                                    y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
-                                    width: pointWidthOriX - 2 * foregroundPointOffset,
-                                    height: pointWidthOriY - 2 * foregroundPointOffset
-                                )
+                for indexX in 0 ..< codeSize where true == codes[indexX][indexY] {
+                    // CTM-90
+                    let indexXCTM = indexY
+                    let indexYCTM = codeSize - indexX - 1
+                    if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
+                        drawPoint(
+                            context: context,
+                            rect: CGRect(
+                                x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
+                                y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
+                                width: pointWidthOriX - 2 * foregroundPointOffset,
+                                height: pointWidthOriY - 2 * foregroundPointOffset
                             )
-                        } else {
-                            drawPoint(
-                                context: context,
-                                rect: CGRect(
-                                    x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
-                                    y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
-                                    width: pointWidthMinX,
-                                    height: pointWidthMinY
-                                )
+                        )
+                    } else {
+                        drawPoint(
+                            context: context,
+                            rect: CGRect(
+                                x: CGFloat(indexXCTM) * scaleX + pointMinOffsetX,
+                                y: CGFloat(indexYCTM) * scaleY + pointMinOffsetY,
+                                width: pointWidthMinX,
+                                height: pointWidthMinY
                             )
-                        }
+                        )
                     }
                 }
             }
@@ -476,7 +486,12 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // Pre
-    private func drawWatermarkImage(context: CGContext, image: CGImage, colorBack: CIColor, mode: EFWatermarkMode, size: CGSize) {
+    private func drawWatermarkImage(
+        context: CGContext,
+        image: CGImage,
+        colorBack: CIColor,
+        mode: EFWatermarkMode,
+        size: CGSize) {
         // BGColor
         if let tryColor = colorBack.toCGColor() {
             context.setFillColor(tryColor)
@@ -581,7 +596,7 @@ public class EFQRCodeGenerator: NSObject {
         )
     }
 
-    // MARK:- Data
+    // MARK: - Data
     private func getPixels() -> [[EFUIntPixel]]? {
         guard let finalContent = self.content else {
             return nil
@@ -741,7 +756,7 @@ public class EFQRCodeGenerator: NSObject {
         guard let codes = generateCodes() else {
             return nil
         }
-        
+
         let baseSuitableSize = Int(size)
         for offset in 0...codes.count {
             let tempSuitableSize = baseSuitableSize + offset
