@@ -69,7 +69,7 @@ class ViewController: NSViewController {
         resizeControl()
     }
 
-    func createButtonClicked() {
+    @objc func createButtonClicked() {
         if let testImage = EFQRCode.generate(
             content: "https://github.com/EyreFree/EFQRCode",
             size: EFIntSize(width: 1024, height: 1024),

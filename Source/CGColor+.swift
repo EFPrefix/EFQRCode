@@ -29,12 +29,12 @@ import CoreImage
 
 public extension CGColor {
 
-    public static func EFWhite() -> CGColor {
-        return CIColor.EFWhite().toCGColor()!
+    public static func EFWhite() -> CGColor! {
+        return CIColor.EFWhite().toCGColor()
     }
 
-    public static func EFBlack() -> CGColor {
-        return CIColor.EFBlack().toCGColor()!
+    public static func EFBlack() -> CGColor! {
+        return CIColor.EFBlack().toCGColor()
     }
 
     public func toCIColor() -> CIColor {

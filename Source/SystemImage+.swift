@@ -30,7 +30,7 @@
     public extension NSImage {
 
         public func toCIImage() -> CIImage? {
-            if let data = self.tiffRepresentation(using: NSTIFFCompression.none, factor: 0) {
+            if let data = self.tiffRepresentation(using: NSBitmapImageRep.TIFFCompression.none, factor: 0) {
                 return CIImage(data: data)
             }
             return nil

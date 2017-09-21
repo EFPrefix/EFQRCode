@@ -66,7 +66,7 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         )
     }
 
-    func chooseImage() {
+    @objc func chooseImage() {
         if let tryPicker = imagePicker {
             self.present(tryPicker, animated: true, completion: nil)
         } else {
@@ -80,7 +80,7 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
 
-    func scanQRCode() {
+    @objc func scanQRCode() {
         if let tryImage = UIImage2CGimage(iamgeView.image) {
             var title = "Error"
             var result = "Get QRCode from image failed!"

@@ -215,6 +215,7 @@
 					12F371921EA8DE3A0049DE67 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = P3X2725LYY;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -386,6 +387,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -434,6 +436,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -450,7 +453,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.macOS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -467,7 +471,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.macOS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

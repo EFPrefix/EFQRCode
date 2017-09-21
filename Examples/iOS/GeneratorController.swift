@@ -183,7 +183,7 @@ extension GeneratorController {
         tableView.reloadData()
     }
 
-    func createCode() {
+    @objc func createCode() {
         var content = ""
         if !(nil == textView.text || textView.text == "") {
             content = textView.text
@@ -1130,14 +1130,14 @@ class ShowController: UIViewController {
     }
 
     #if os(iOS)
-    func saveToAlbum() {
+    @objc func saveToAlbum() {
         if let tryImage = image {
             CustomPhotoAlbum.sharedInstance.save(image: tryImage)
         }
     }
     #endif
 
-    func back() {
+    @objc func back() {
         self.dismiss(animated: true, completion: nil)
     }
 }
