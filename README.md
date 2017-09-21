@@ -50,9 +50,10 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Examples/iOS; open '
 
 ## Requirements
 
-- XCode 8.0+
-- Swift 3.0+
-- iOS 8.0+ / macOS 10.11+ / tvOS 9.0+
+| Version | Needs                                                           |
+|:--------|:----------------------------------------------------------------|
+| 1.x     | XCode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ |
+| 4.x     | XCode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ |
 
 ## Installation
 
@@ -62,7 +63,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EFQRCode", '~> 1.2.7'
+pod "EFQRCode", '~> 4.0.0'
 ```
 
 Then, run the following command:
@@ -85,7 +86,7 @@ $ brew install carthage
 To integrate EFQRCode into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 1.2.7
+github "EyreFree/EFQRCode" ~> 4.0.0
 ```
 
 Run `carthage update` to build the framework and drag the built `EFQRCode.framework` into your Xcode project.
@@ -98,7 +99,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(1, 2, 7))
+    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(4, 0, 0))
 ]
 ```
 

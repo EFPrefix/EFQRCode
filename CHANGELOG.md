@@ -2,6 +2,14 @@
 
 -----
 
+## [4.0.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.7) (2017-09-21)
+
+#### Add
+
+* Update for Swift 4.
+
+---
+
 ## [1.2.7](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.7) (2017-07-26)
 
 #### Add
