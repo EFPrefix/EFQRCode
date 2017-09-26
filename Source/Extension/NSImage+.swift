@@ -1,5 +1,5 @@
 //
-//  UIColor+.swift
+//  NSImage+.swift
 //  EyreFree
 //
 //  Created by EyreFree on 2017/4/9.
@@ -26,28 +26,19 @@
 
 #if os(macOS)
     import AppKit
-
-    public extension NSColor {
-
-        public func toCIColor() -> CIColor {
-            return self.cgColor.toCIColor()
+    
+    public extension NSImage {
+        
+        public func toCIImage() -> CIImage? {
+            if let data = self.tiffRepresentation(using: NSBitmapImageRep.TIFFCompression.none, factor: 0) {
+                return CIImage(data: data)
+            }
+            return nil
         }
-
-        public func toCGColor() -> CGColor {
-            return self.cgColor
-        }
-    }
-#elseif os(iOS) || os(tvOS)
-    import UIKit
-
-    public extension UIColor {
-
-        public func toCIColor() -> CIColor {
-            return self.cgColor.toCIColor()
-        }
-
-        public func toCGColor() -> CGColor {
-            return self.cgColor
+        
+        public func toCGImage() -> CGImage? {
+            return self.toCIImage()?.toCGImage()
         }
     }
 #endif
+
