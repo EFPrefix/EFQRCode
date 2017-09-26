@@ -143,12 +143,15 @@ extension GeneratorController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         self.view.addSubview(tableView)
         tableView.frame = CGRect(
-            x: 0, y: screenSize.height - 56 * 6, width: screenSize.width, height: 4 * (buttonHeight + 10) + buttonHeight
+            x: 0, y: screenSize.height - 56 * 6,
+            width: screenSize.width, height: 4 * (buttonHeight + 10) + buttonHeight
         )
 
         createButton = UIButton(type: .system)
         createButton.setTitle("Create", for: .normal)
-        createButton.setTitleColor(UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal)
+        createButton.setTitleColor(
+            UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal
+        )
         createButton.layer.borderColor = UIColor.white.cgColor
         createButton.layer.borderWidth = 1
         createButton.layer.cornerRadius = 5
@@ -233,41 +236,79 @@ extension GeneratorController {
 
     func chooseSize() {
         let alert = UIAlertController(
-            title: "Size",
-            message: nil,
-            preferredStyle: .actionSheet
+            title: "Size", message: nil, preferredStyle: .alert
         )
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
-            })
-        )
-        for width in [Int(1), 32, 64, 128, 256, 512, 1024, 2048] {
-            alert.addAction(
-                UIAlertAction(title: "\(width)x\(width)", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.size = EFIntSize(width: width, height: width)
-                        strongSelf.refresh()
-                    }
-                })
-            )
-            if 512 == width {
-                alert.addAction(
-                    UIAlertAction(title: "\(512)x\(640)", style: .default, handler: {
-                        [weak self] (action) -> Void in
-                        if let strongSelf = self {
-                            strongSelf.size = EFIntSize(width: 512, height: 640)
-                            strongSelf.refresh()
-                        }
-                    })
-                )
+        alert.addTextField {
+            [weak self] (textField) in
+            if let strongSelf = self {
+                textField.placeholder = "Width"
+                textField.text = "\(strongSelf.size.width)"
             }
         }
-        popActionSheet(alert: alert)
+        alert.addTextField {
+            [weak self] (textField) in
+            if let strongSelf = self {
+                textField.placeholder = "Height"
+                textField.text = "\(strongSelf.size.height)"
+            }
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action) in
+            if let strongSelf = self {
+                if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                    let heightString = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                    if let width = Int(widthString), let height = Int(heightString), 0 < width, 0 < height {
+                        strongSelf.size = EFIntSize(width: width, height: height)
+                        strongSelf.refresh()
+                        return
+                    }
+                }
+                let alert = UIAlertController(title: "Warning", message: "Illegal input size!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                strongSelf.present(alert, animated: true, completion: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
 
     func chooseMagnification() {
+        func customInput() {
+            let alert = UIAlertController(
+                title: "Magnification", message: nil, preferredStyle: .alert
+            )
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Width"
+                    textField.text = strongSelf.magnification == nil ? "" : "\(strongSelf.magnification?.width ?? 0)"
+                }
+            }
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Height"
+                    textField.text = strongSelf.magnification == nil ? "" : "\(strongSelf.magnification?.height ?? 0)"
+                }
+            }
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action) in
+                if let strongSelf = self {
+                    if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                        let heightString = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                        if let width = Int(widthString), let height = Int(heightString), 0 < width, 0 < height {
+                            strongSelf.magnification = EFIntSize(width: width, height: height)
+                            strongSelf.refresh()
+                            return
+                        }
+                    }
+                    let alert = UIAlertController(title: "Warning", message: "Illegal input magnification!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+
         let alert = UIAlertController(
             title: "Magnification",
             message: nil,
@@ -287,28 +328,23 @@ extension GeneratorController {
                 }
             })
         )
-        for magnification in [Int(1), 3, 6, 9, 12, 15, 18, 21, 23, 25, 27, 30] {
-            alert.addAction(
-                UIAlertAction(title: "\(magnification)x\(magnification)", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.magnification = EFIntSize(width: magnification, height: magnification)
-                        strongSelf.refresh()
-                    }
-                })
-            )
-            if magnification == 9 {
-                alert.addAction(
-                    UIAlertAction(title: "\(12)x\(9)", style: .default, handler: {
-                        [weak self] (action) -> Void in
-                        if let strongSelf = self {
-                            strongSelf.magnification = EFIntSize(width: 12, height: 9)
-                            strongSelf.refresh()
-                        }
-                    })
-                )
-            }
-        }
+        alert.addAction(
+            UIAlertAction(title: "\(9)x\(9)", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.magnification = EFIntSize(width: 9, height: 9)
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "custom", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let _ = self {
+                    customInput()
+                }
+            })
+        )
         popActionSheet(alert: alert)
     }
 
@@ -436,6 +472,43 @@ extension GeneratorController {
     }
 
     func chooseIconSize() {
+        func customInput() {
+            let alert = UIAlertController(
+                title: "IconSize", message: nil, preferredStyle: .alert
+            )
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Width"
+                    textField.text = strongSelf.iconSize == nil ? "" : "\(strongSelf.iconSize?.width ?? 0)"
+                }
+            }
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Height"
+                    textField.text = strongSelf.iconSize == nil ? "" : "\(strongSelf.iconSize?.height ?? 0)"
+                }
+            }
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action) in
+                if let strongSelf = self {
+                    if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                        let heightString = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                        if let width = Int(widthString), let height = Int(heightString), 0 < width, 0 < height {
+                            strongSelf.iconSize = EFIntSize(width: width, height: height)
+                            strongSelf.refresh()
+                            return
+                        }
+                    }
+                    let alert = UIAlertController(title: "Warning", message: "Illegal input iconSize!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+
         let alert = UIAlertController(
             title: "IconSize",
             message: nil,
@@ -455,28 +528,23 @@ extension GeneratorController {
                 }
             })
         )
-        for width in [Int(1), 32, 64, 128, 256, 512, 1024, 2048] {
-            alert.addAction(
-                UIAlertAction(title: "\(width)x\(width)", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.iconSize = EFIntSize(width: width, height: width)
-                        strongSelf.refresh()
-                    }
-                })
-            )
-            if 512 == width {
-                alert.addAction(
-                    UIAlertAction(title: "\(512)x\(640)", style: .default, handler: {
-                        [weak self] (action) -> Void in
-                        if let strongSelf = self {
-                            strongSelf.iconSize = EFIntSize(width: 512, height: 640)
-                            strongSelf.refresh()
-                        }
-                    })
-                )
-            }
-        }
+        alert.addAction(
+            UIAlertAction(title: "\(128)x\(128)", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.iconSize = EFIntSize(width: 128, height: 128)
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "custom", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let _ = self {
+                    customInput()
+                }
+            })
+        )
         popActionSheet(alert: alert)
     }
 
