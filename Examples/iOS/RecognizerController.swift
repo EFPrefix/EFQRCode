@@ -72,7 +72,9 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
 
         let scanButton = UIButton(type: .system)
         scanButton.setTitle("Scan", for: .normal)
-        scanButton.setTitleColor(UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal)
+        scanButton.setTitleColor(
+            UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal
+        )
         scanButton.layer.borderColor = UIColor.white.cgColor
         scanButton.layer.borderWidth = 1
         scanButton.layer.cornerRadius = 5
@@ -80,7 +82,8 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         scanButton.addTarget(self, action: #selector(RecognizerController.scanQRCode), for: .touchDown)
         self.view.addSubview(scanButton)
         scanButton.frame = CGRect(
-            x: 20 + chooseButton.frame.width, y: screenSize.height - 56, width: chooseButton.frame.width, height: 46
+            x: 20 + chooseButton.frame.width, y: screenSize.height - 56,
+            width: chooseButton.frame.width, height: 46
         )
     }
 

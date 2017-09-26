@@ -28,76 +28,43 @@ import UIKit
 import Photos
 import EFQRCode
 
-#if os(iOS)
-    class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
 
-        var textView: UITextView!
-        var tableView: UITableView!
-        var createButton: UIButton!
+    #if os(iOS)
+    var imagePicker: UIImagePickerController?
+    #endif
 
-        var imagePicker: UIImagePickerController?
-        var titleCurrent: String = ""
+    var textView: UITextView!
+    var tableView: UITableView!
+    var createButton: UIButton!
 
-        // Param
-        var inputCorrectionLevel = EFInputCorrectionLevel.h
-        var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
-        var magnification: EFIntSize? = EFIntSize(width: 24, height: 24)
-        var backColor = UIColor.white
-        var frontColor = UIColor.black
-        var icon: UIImage? = nil
-        var iconSize: EFIntSize? = nil
-        var watermark: UIImage? = nil
-        var watermarkMode = EFWatermarkMode.scaleAspectFill
-        var mode: EFQRCodeMode = .none
-        var binarizationThreshold: CGFloat = 0.5
-        var pointShape: EFPointShape = .square
+    var titleCurrent: String = ""
 
-        // MARK:- Not commonly used
-        var foregroundPointOffset: CGFloat = 0
-        var allowTransparent: Bool = true
+    // Param
+    var inputCorrectionLevel = EFInputCorrectionLevel.h
+    var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
+    var magnification: EFIntSize? = EFIntSize(width: 24, height: 24)
+    var backColor = UIColor.white
+    var frontColor = UIColor.black
+    var icon: UIImage? = nil
+    var iconSize: EFIntSize? = nil
+    var watermark: UIImage? = nil
+    var watermarkMode = EFWatermarkMode.scaleAspectFill
+    var mode: EFQRCodeMode = .none
+    var binarizationThreshold: CGFloat = 0.5
+    var pointShape: EFPointShape = .square
 
-        // Test data
-        struct colorData {
-            var color: UIColor
-            var name: String
-        }
-        var colorList = [colorData]()
+    // MARK:- Not commonly used
+    var foregroundPointOffset: CGFloat = 0
+    var allowTransparent: Bool = true
+
+    // Test data
+    struct colorData {
+        var color: UIColor
+        var name: String
     }
-#else
-    class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
-
-        var textView: UITextView!
-        var tableView: UITableView!
-        var createButton: UIButton!
-
-        var titleCurrent: String = ""
-
-        // Param
-        var inputCorrectionLevel = EFInputCorrectionLevel.h
-        var size: EFIntSize = EFIntSize(width: 256, height: 256)
-        var magnification: EFIntSize? = nil
-        var backColor = UIColor.white
-        var frontColor = UIColor.black
-        var icon: UIImage? = nil
-        var iconSize: EFIntSize? = nil
-        var watermark: UIImage? = nil
-        var watermarkMode = EFWatermarkMode.scaleAspectFill
-        var mode: EFQRCodeMode = .none
-        var binarizationThreshold: CGFloat = 0.5
-        var pointShape: EFPointShape = .square
-
-        // MARK:- Not commonly used
-        var foregroundPointOffset: CGFloat = 0
-        var allowTransparent: Bool = true
-
-        // Test data
-        struct colorData {
-            var color: UIColor
-            var name: String
-        }
-        var colorList = [colorData]()
-    }
-#endif
+    var colorList = [colorData]()
+}
 
 extension GeneratorController {
 
@@ -570,114 +537,25 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "scaleToFill", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .scaleToFill
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "scaleAspectFit", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .scaleAspectFit
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "scaleAspectFill", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .scaleAspectFill
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "center", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .center
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "top", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .top
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "bottom", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .bottom
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "left", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .left
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "right", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .right
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "topLeft", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .topLeft
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "topRight", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .topRight
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "bottomLeft", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .bottomLeft
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "bottomRight", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .bottomRight
-                    strongSelf.refresh()
-                }
-            })
-        )
+
+        let modeNameArray = [
+            "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center",
+            "top", "bottom", "left", "right",
+            "topLeft", "topRight", "bottomLeft", "bottomRight"
+        ]
+        for (index, modeName) in modeNameArray.enumerated() {
+            alert.addAction(
+                UIAlertAction(title: modeName, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        if let mode = EFWatermarkMode(rawValue: index) {
+                            strongSelf.watermarkMode = mode
+                        }
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         popActionSheet(alert: alert)
     }
 
@@ -751,33 +629,23 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "none", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.mode = .none
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "grayscale", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.mode = .grayscale
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "binarization", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.mode = .binarization
-                    strongSelf.refresh()
-                }
-            })
-        )
+
+        let modeNameArray = [
+            "none", "grayscale", "binarization"
+        ]
+        for (index, modeName) in modeNameArray.enumerated() {
+            alert.addAction(
+                UIAlertAction(title: modeName, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        if let mode = EFQRCodeMode(rawValue: index) {
+                            strongSelf.mode = mode
+                        }
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         popActionSheet(alert: alert)
     }
 
@@ -792,24 +660,23 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "square", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.pointShape = .square
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "circle", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.pointShape = .circle
-                    strongSelf.refresh()
-                }
-            })
-        )
+
+        let shapeNameArray = [
+            "square", "circle"
+        ]
+        for (index, shapeName) in shapeNameArray.enumerated() {
+            alert.addAction(
+                UIAlertAction(title: shapeName, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        if let shape = EFPointShape(rawValue: index) {
+                            strongSelf.pointShape = shape
+                        }
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         popActionSheet(alert: alert)
     }
 
@@ -1001,53 +868,58 @@ extension GeneratorController {
         return cell
     }
 
-    #if os(iOS)
-    // MARK:- UIImagePickerControllerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var finalImage: UIImage?
-        if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            finalImage = tryImage
-        } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            finalImage = tryImage
-        } else{
-            print("Something went wrong")
-        }
-        switch titleCurrent {
-        case "watermark":
-            self.watermark = finalImage
-            break
-        case "icon":
-            self.icon = finalImage
-            break
-        default:
-            break
-        }
-        self.refresh()
-
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-    func chooseImageFromAlbum(title: String) {
-        titleCurrent = title
-
-        if let tryPicker = imagePicker {
-            self.present(tryPicker, animated: true, completion: nil)
-        } else {
-            let picker = UIImagePickerController()
-            picker.sourceType = .photoLibrary
-            picker.delegate = self
-            picker.allowsEditing = false
-            imagePicker = picker
-
-            self.present(picker, animated: true, completion: nil)
-        }
-    }
-    #endif
 }
+
+#if os(iOS)
+    extension GeneratorController: UIImagePickerControllerDelegate {
+
+        // MARK:- UIImagePickerControllerDelegate
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true, completion: nil)
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+            var finalImage: UIImage?
+            if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                finalImage = tryImage
+            } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                finalImage = tryImage
+            } else{
+                print("Something went wrong")
+            }
+            switch titleCurrent {
+            case "watermark":
+                self.watermark = finalImage
+                break
+            case "icon":
+                self.icon = finalImage
+                break
+            default:
+                break
+            }
+            self.refresh()
+
+            picker.dismiss(animated: true, completion: nil)
+        }
+
+        func chooseImageFromAlbum(title: String) {
+            titleCurrent = title
+
+            if let tryPicker = imagePicker {
+                self.present(tryPicker, animated: true, completion: nil)
+            } else {
+                let picker = UIImagePickerController()
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = false
+                imagePicker = picker
+
+                self.present(picker, animated: true, completion: nil)
+            }
+        }
+    }
+#endif
 
 class ShowController: UIViewController {
 

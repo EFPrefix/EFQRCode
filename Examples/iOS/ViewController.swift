@@ -77,6 +77,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.showsHorizontalScrollIndicator = false
         tableView.backgroundColor = UIColor.clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        tableView.tableHeaderView = UIView()
+        tableView.tableFooterView = UIView()
         self.view.addSubview(tableView)
         tableView.frame = CGRect(
             x: 0, y: titleLabel.frame.maxY, width: screenSize.width, height: screenSize.height / 3.0
@@ -106,14 +108,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: true)
 
         #if os(iOS)
-            switch indexPath.row {
-            case 0:
-                self.navigationController?.pushViewController(RecognizerController(), animated: true)
-                break
-            default:
-                self.navigationController?.pushViewController(GeneratorController(), animated: true)
-                break
-            }
+            self.navigationController?.pushViewController(
+                [RecognizerController.self, GeneratorController.self][indexPath.row].init(), animated: true
+            )
         #else
             self.navigationController?.pushViewController(GeneratorController(), animated: true)
         #endif
@@ -162,4 +159,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.accessoryView = imageView
         return cell
     }
+
+    #if os(iOS)
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if 1 == indexPath.row {
+            cell.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
+        }
+    }
+    #endif
 }
