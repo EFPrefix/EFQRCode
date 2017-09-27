@@ -300,7 +300,9 @@ extension GeneratorController {
                             return
                         }
                     }
-                    let alert = UIAlertController(title: "Warning", message: "Illegal input magnification!", preferredStyle: .alert)
+                    let alert = UIAlertController(
+                        title: "Warning", message: "Illegal input magnification!", preferredStyle: .alert
+                    )
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     strongSelf.present(alert, animated: true, completion: nil)
                 }
@@ -500,7 +502,9 @@ extension GeneratorController {
                             return
                         }
                     }
-                    let alert = UIAlertController(title: "Warning", message: "Illegal input iconSize!", preferredStyle: .alert)
+                    let alert = UIAlertController(
+                        title: "Warning", message: "Illegal input iconSize!", preferredStyle: .alert
+                    )
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     strongSelf.present(alert, animated: true, completion: nil)
                 }
@@ -794,51 +798,10 @@ extension GeneratorController {
     // UITableViewDelegate & UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        switch indexPath.row {
-        case 0:
-            chooseInputCorrectionLevel()
-            break
-        case 1:
-            chooseMode()
-            break
-        case 2:
-            chooseSize()
-            break
-        case 3:
-            chooseMagnification()
-            break
-        case 4:
-            chooseBackColor()
-            break
-        case 5:
-            chooseFrontColor()
-            break
-        case 6:
-            chooseIcon()
-            break
-        case 7:
-            chooseIconSize()
-            break
-        case 8:
-            chooseWatermark()
-            break
-        case 9:
-            chooseWatermarkMode()
-            break
-        case 10:
-            chooseForegroundPointOffset()
-            break
-        case 11:
-            chooseAllowTransparent()
-            break
-        case 12:
-            chooseBinarizationThreshold()
-        case 13:
-            chooseShape()
-        default:
-            break
-        }
+        [chooseInputCorrectionLevel, chooseMode, chooseSize, chooseMagnification,
+         chooseBackColor, chooseFrontColor, chooseIcon, chooseIconSize,
+         chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset, chooseAllowTransparent,
+         chooseBinarizationThreshold, chooseShape][indexPath.row]()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -863,19 +826,9 @@ extension GeneratorController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let titleArray = [
-            "inputCorrectionLevel",
-            "mode",
-            "size",
-            "magnification",
-            "backgroundColor",
-            "foregroundColor",
-            "icon",
-            "iconSize",
-            "watermark",
-            "watermarkMode",
-            "foregroundPointOffset",
-            "allowTransparent",
-            "binarizationThreshold",
+            "inputCorrectionLevel", "mode", "size", "magnification",
+            "backgroundColor", "foregroundColor", "icon", "iconSize",
+            "watermark", "watermarkMode", "foregroundPointOffset", "allowTransparent", "binarizationThreshold",
             "pointShape"
         ]
         let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
@@ -1069,7 +1022,9 @@ class ShowController: UIViewController {
             imageView.layer.masksToBounds = true
             self.view.addSubview(imageView)
             imageView.frame = CGRect(
-                x: 10, y: 30, width: screenSize.width - 20, height: min(screenSize.width - 20, screenSize.height - 20 - 46 - 60)
+                x: 10, y: 30,
+                width: screenSize.width - 20,
+                height: min(screenSize.width - 20, screenSize.height - 20 - 46 - 60)
             )
 
             let createButton = UIButton(type: .system)
