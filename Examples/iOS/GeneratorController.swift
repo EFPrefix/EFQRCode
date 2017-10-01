@@ -895,7 +895,6 @@ extension GeneratorController {
 #if os(iOS)
     extension GeneratorController: UIImagePickerControllerDelegate {
 
-        // MARK:- UIImagePickerControllerDelegate
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             picker.dismiss(animated: true, completion: nil)
         }
@@ -907,7 +906,7 @@ extension GeneratorController {
             } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
                 finalImage = tryImage
             } else{
-                print("Something went wrong")
+                print("Something wrong")
             }
             switch titleCurrent {
             case "watermark":

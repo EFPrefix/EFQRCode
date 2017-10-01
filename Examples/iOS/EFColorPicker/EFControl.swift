@@ -1,8 +1,8 @@
 //
-//  EFQRCodeRecognizer.swift
-//  EyreFree
+//  EFControl.swift
+//  EFColorPicker
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2017/9/28.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,47 +24,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+import UIKit
 
-public class EFQRCodeRecognizer: NSObject {
+public class EFControl: UIControl {
 
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
+    // Edge inset values are applied to a view bounds to shrink or expand the touchable area.
+    var hitTestEdgeInsets: UIEdgeInsets = UIEdgeInsets.zero
+
+    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if UIEdgeInsetsEqualToEdgeInsets(self.hitTestEdgeInsets, UIEdgeInsets.zero)
+            || !self.isEnabled
+            || self.isHidden
+            || !self.isUserInteractionEnabled
+            || 0 == self.alpha {
+            return super.point(inside: point, with: event)
         }
-    }
-    public func setImage(image: CGImage?) {
-        self.image = image
-    }
 
-    private var contentArray: [String]?
-
-    public override init() {
-        super.init()
-    }
-
-    public init(image: CGImage) {
-        self.image = image
-    }
-
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
-    }
-
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = self.image else {
-            return nil
-        }
-        let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.count <= 0 {
-            return finalImage.grayscale()?.toCIImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
+        let hitFrame: CGRect = UIEdgeInsetsInsetRect(self.bounds, self.hitTestEdgeInsets)
+        return hitFrame.contains(point)
     }
 }

@@ -1,8 +1,8 @@
 //
-//  EFQRCodeRecognizer.swift
-//  EyreFree
+//  EFColorView.swift
+//  EFColorPicker
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2017/9/28.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,47 +24,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+import UIKit
 
-public class EFQRCodeRecognizer: NSObject {
+//  The delegate of a EFColorView object must adopt the EFColorViewDelegate protocol.
+//  Methods of the protocol allow the delegate to handle color value changes.
+public protocol EFColorViewDelegate: class {
 
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
-        }
-    }
-    public func setImage(image: CGImage?) {
-        self.image = image
-    }
+    // Tells the data source to return the color components.
+    // @param colorView The color view.
+    // @param color The new color value.
+    func colorView(colorView: EFColorView, didChangeColor color: UIColor)
+}
 
-    private var contentArray: [String]?
+/// The \c EFColorView protocol declares a view's interface for displaying and editing color value.
+public protocol EFColorView: class {
 
-    public override init() {
-        super.init()
-    }
+    // The object that acts as the delegate of the receiving color selection view.
+    weak var delegate: EFColorViewDelegate? { get set }
 
-    public init(image: CGImage) {
-        self.image = image
-    }
-
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
-    }
-
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = self.image else {
-            return nil
-        }
-        let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.count <= 0 {
-            return finalImage.grayscale()?.toCIImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
-    }
+    // The current color.
+    var color: UIColor { get set }
 }
