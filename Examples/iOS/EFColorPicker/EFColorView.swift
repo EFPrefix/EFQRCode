@@ -1,8 +1,8 @@
 //
-//  EFQRCode.swift
-//  EyreFree
+//  EFColorView.swift
+//  EFColorPicker
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2017/9/28.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,30 +24,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+import UIKit
 
-public class EFQRCode: NSObject {
+//  The delegate of a EFColorView object must adopt the EFColorViewDelegate protocol.
+//  Methods of the protocol allow the delegate to handle color value changes.
+public protocol EFColorViewDelegate: class {
 
-    // MARK: - Recognizer
-    public static func recognize(image: CGImage) -> [String]? {
-        return EFQRCodeRecognizer(image: image).recognize()
-    }
+    // Tells the data source to return the color components.
+    // @param colorView The color view.
+    // @param color The new color value.
+    func colorView(colorView: EFColorView, didChangeColor color: UIColor)
+}
 
-    // MARK: - Generator
-    public static func generate(
-        content: String,
-        size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CIColor = CIColor.EFWhite(),
-        foregroundColor: CIColor = CIColor.EFBlack(),
-        watermark: CGImage? = nil
-        ) -> CGImage? {
+/// The \c EFColorView protocol declares a view's interface for displaying and editing color value.
+public protocol EFColorView: class {
 
-        let generator = EFQRCodeGenerator(
-            content: content,
-            size: size
-        )
-        generator.setWatermark(watermark: watermark)
-        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
-        return generator.generate()
-    }
+    // The object that acts as the delegate of the receiving color selection view.
+    weak var delegate: EFColorViewDelegate? { get set }
+
+    // The current color.
+    var color: UIColor { get set }
 }

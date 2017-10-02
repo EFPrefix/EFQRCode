@@ -1,8 +1,8 @@
 //
-//  CGSize+.swift
-//  EyreFree
+//  NSColor+.swift
+//  EFQRCode
 //
-//  Created by EyreFree on 2017/4/10.
+//  Created by EyreFree on 2017/4/9.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,15 +24,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreGraphics
+#if os(macOS)
+    import AppKit
 
-public extension CGSize {
+    public extension NSColor {
 
-    public func widthInt() -> Int {
-        return Int(width)
+        public func toCIColor() -> CIColor {
+            return self.cgColor.toCIColor()
+        }
+
+        public func toCGColor() -> CGColor {
+            return self.cgColor
+        }
     }
-
-    public func heightInt() -> Int {
-        return Int(height)
-    }
-}
+#endif

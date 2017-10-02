@@ -1,8 +1,8 @@
 //
-//  AppDelegate.swift
+//  UIColor+.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/1/24.
+//  Created by EyreFree on 2017/4/9.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,41 +24,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+    public extension UIColor {
 
-    var window: UIWindow?
+        public func toCIColor() -> CIColor {
+            return self.cgColor.toCIColor()
+        }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        return true
+        public func toCGColor() -> CGColor {
+            return self.cgColor
+        }
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-
-    }
-}
-
-func UIImage2CGimage(_ image: UIImage?) -> CGImage? {
-    if let tryImage = image, let tryCIImage = CIImage(image: tryImage) {
-        return CIContext().createCGImage(tryCIImage, from: tryCIImage.extent)
-    }
-    return nil
-}
+#endif

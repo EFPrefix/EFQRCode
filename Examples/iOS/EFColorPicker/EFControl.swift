@@ -1,8 +1,8 @@
 //
-//  CIColor+.swift
-//  EyreFree
+//  EFControl.swift
+//  EFColorPicker
 //
-//  Created by EyreFree on 2017/4/9.
+//  Created by EyreFree on 2017/9/28.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,19 +24,23 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+import UIKit
 
-public extension CIColor {
+public class EFControl: UIControl {
 
-    public static func EFWhite() -> CIColor {
-        return CIColor(red: 1, green: 1, blue: 1)
-    }
+    // Edge inset values are applied to a view bounds to shrink or expand the touchable area.
+    var hitTestEdgeInsets: UIEdgeInsets = UIEdgeInsets.zero
 
-    public static func EFBlack() -> CIColor {
-        return CIColor(red: 0, green: 0, blue: 0)
-    }
+    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if UIEdgeInsetsEqualToEdgeInsets(self.hitTestEdgeInsets, UIEdgeInsets.zero)
+            || !self.isEnabled
+            || self.isHidden
+            || !self.isUserInteractionEnabled
+            || 0 == self.alpha {
+            return super.point(inside: point, with: event)
+        }
 
-    public func toCGColor() -> CoreImage.CGColor? {
-        return CGColor(colorSpace: self.colorSpace, components: self.components)
+        let hitFrame: CGRect = UIEdgeInsetsInsetRect(self.bounds, self.hitTestEdgeInsets)
+        return hitFrame.contains(point)
     }
 }

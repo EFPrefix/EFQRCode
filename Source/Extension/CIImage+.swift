@@ -1,6 +1,6 @@
 //
 //  CIImage+.swift
-//  EyreFree
+//  EFQRCode
 //
 //  Created by EyreFree on 2017/3/29.
 //

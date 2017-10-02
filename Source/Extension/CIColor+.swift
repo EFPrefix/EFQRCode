@@ -1,6 +1,6 @@
 //
-//  UIColor+.swift
-//  EyreFree
+//  CIColor+.swift
+//  EFQRCode
 //
 //  Created by EyreFree on 2017/4/9.
 //
@@ -24,30 +24,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(macOS)
-    import AppKit
+import CoreImage
 
-    public extension NSColor {
+public extension CIColor {
 
-        public func toCIColor() -> CIColor {
-            return self.cgColor.toCIColor()
-        }
-
-        public func toCGColor() -> CGColor {
-            return self.cgColor
-        }
+    public static func EFWhite() -> CIColor {
+        return CIColor(red: 1, green: 1, blue: 1)
     }
-#elseif os(iOS) || os(tvOS)
-    import UIKit
 
-    public extension UIColor {
-
-        public func toCIColor() -> CIColor {
-            return self.cgColor.toCIColor()
-        }
-
-        public func toCGColor() -> CGColor {
-            return self.cgColor
-        }
+    public static func EFBlack() -> CIColor {
+        return CIColor(red: 0, green: 0, blue: 0)
     }
-#endif
+
+    public func toCGColor() -> CoreImage.CGColor? {
+        return CGColor(colorSpace: self.colorSpace, components: self.components)
+    }
+}

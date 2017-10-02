@@ -7,42 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12046B0D1F7A512B000154A8 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B001F7A512B000154A8 /* EFQRCode.swift */; };
+		12046B0E1F7A512C000154A8 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B001F7A512B000154A8 /* EFQRCode.swift */; };
+		12046B0F1F7A512C000154A8 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B001F7A512B000154A8 /* EFQRCode.swift */; };
+		12046B101F7A512C000154A8 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B011F7A512B000154A8 /* EFQRCodeRecognizer.swift */; };
+		12046B111F7A512C000154A8 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B011F7A512B000154A8 /* EFQRCodeRecognizer.swift */; };
+		12046B121F7A512C000154A8 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B011F7A512B000154A8 /* EFQRCodeRecognizer.swift */; };
+		12046B131F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B021F7A512B000154A8 /* EFQRCodeGenerator.swift */; };
+		12046B141F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B021F7A512B000154A8 /* EFQRCodeGenerator.swift */; };
+		12046B151F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B021F7A512B000154A8 /* EFQRCodeGenerator.swift */; };
+		12046B161F7A512C000154A8 /* EFDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B041F7A512B000154A8 /* EFDefine.swift */; };
+		12046B171F7A512C000154A8 /* EFDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B041F7A512B000154A8 /* EFDefine.swift */; };
+		12046B181F7A512C000154A8 /* EFDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B041F7A512B000154A8 /* EFDefine.swift */; };
+		12046B191F7A512C000154A8 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B061F7A512B000154A8 /* CIImage+.swift */; };
+		12046B1A1F7A512C000154A8 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B061F7A512B000154A8 /* CIImage+.swift */; };
+		12046B1B1F7A512C000154A8 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B061F7A512B000154A8 /* CIImage+.swift */; };
+		12046B1C1F7A512C000154A8 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B071F7A512B000154A8 /* CIColor+.swift */; };
+		12046B1D1F7A512C000154A8 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B071F7A512B000154A8 /* CIColor+.swift */; };
+		12046B1E1F7A512C000154A8 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B071F7A512B000154A8 /* CIColor+.swift */; };
+		12046B1F1F7A512C000154A8 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B081F7A512B000154A8 /* CGSize+.swift */; };
+		12046B201F7A512C000154A8 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B081F7A512B000154A8 /* CGSize+.swift */; };
+		12046B211F7A512C000154A8 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B081F7A512B000154A8 /* CGSize+.swift */; };
+		12046B221F7A512C000154A8 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B091F7A512B000154A8 /* CGImage+.swift */; };
+		12046B231F7A512C000154A8 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B091F7A512B000154A8 /* CGImage+.swift */; };
+		12046B241F7A512C000154A8 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B091F7A512B000154A8 /* CGImage+.swift */; };
+		12046B251F7A512C000154A8 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0A1F7A512B000154A8 /* CGColor+.swift */; };
+		12046B261F7A512C000154A8 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0A1F7A512B000154A8 /* CGColor+.swift */; };
+		12046B271F7A512C000154A8 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0A1F7A512B000154A8 /* CGColor+.swift */; };
+		12046B281F7A512C000154A8 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0B1F7A512B000154A8 /* NSColor+.swift */; };
+		12046B291F7A512C000154A8 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0B1F7A512B000154A8 /* NSColor+.swift */; };
+		12046B2A1F7A512C000154A8 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0B1F7A512B000154A8 /* NSColor+.swift */; };
+		12046B2B1F7A512C000154A8 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0C1F7A512B000154A8 /* UIImage+.swift */; };
+		12046B2C1F7A512C000154A8 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0C1F7A512B000154A8 /* UIImage+.swift */; };
+		12046B2D1F7A512C000154A8 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B0C1F7A512B000154A8 /* UIImage+.swift */; };
+		12046B2F1F7A5E06000154A8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B2E1F7A5E06000154A8 /* UIColor+.swift */; };
+		12046B301F7A5E06000154A8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B2E1F7A5E06000154A8 /* UIColor+.swift */; };
+		12046B311F7A5E06000154A8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B2E1F7A5E06000154A8 /* UIColor+.swift */; };
+		12046B331F7A5EC6000154A8 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B321F7A5EC6000154A8 /* NSImage+.swift */; };
+		12046B341F7A5EC6000154A8 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B321F7A5EC6000154A8 /* NSImage+.swift */; };
+		12046B351F7A5EC6000154A8 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12046B321F7A5EC6000154A8 /* NSImage+.swift */; };
 		120B77D81EA3939F00D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		120B77E41EA393A600D34440 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77D91EA393A600D34440 /* CGColor+.swift */; };
-		120B77E51EA393A600D34440 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DA1EA393A600D34440 /* CGImage+.swift */; };
-		120B77E61EA393A600D34440 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DB1EA393A600D34440 /* CGSize+.swift */; };
-		120B77E71EA393A600D34440 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DC1EA393A600D34440 /* CIColor+.swift */; };
-		120B77E81EA393A600D34440 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DD1EA393A600D34440 /* CIImage+.swift */; };
-		120B77E91EA393A600D34440 /* EFDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DE1EA393A600D34440 /* EFDefine.swift */; };
-		120B77EA1EA393A600D34440 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DF1EA393A600D34440 /* EFQRCode.swift */; };
-		120B77EB1EA393A600D34440 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E01EA393A600D34440 /* EFQRCodeGenerator.swift */; };
-		120B77EC1EA393A600D34440 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E11EA393A600D34440 /* EFQRCodeRecognizer.swift */; };
-		120B77ED1EA393A600D34440 /* SystemColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E21EA393A600D34440 /* SystemColor+.swift */; };
-		120B77EE1EA393A600D34440 /* SystemImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E31EA393A600D34440 /* SystemImage+.swift */; };
 		120B78651EA3B70D00D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		120B78661EA3B71500D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		120B78681EA3B84500D34440 /* EFDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DE1EA393A600D34440 /* EFDefine.swift */; };
-		120B78691EA3B84500D34440 /* SystemColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E21EA393A600D34440 /* SystemColor+.swift */; };
-		120B786A1EA3B84500D34440 /* SystemImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E31EA393A600D34440 /* SystemImage+.swift */; };
-		120B786B1EA3B84500D34440 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77D91EA393A600D34440 /* CGColor+.swift */; };
-		120B786C1EA3B84500D34440 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DA1EA393A600D34440 /* CGImage+.swift */; };
-		120B786D1EA3B84500D34440 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DB1EA393A600D34440 /* CGSize+.swift */; };
-		120B786E1EA3B84500D34440 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DC1EA393A600D34440 /* CIColor+.swift */; };
-		120B786F1EA3B84500D34440 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DD1EA393A600D34440 /* CIImage+.swift */; };
-		120B78701EA3B84500D34440 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DF1EA393A600D34440 /* EFQRCode.swift */; };
-		120B78711EA3B84500D34440 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E01EA393A600D34440 /* EFQRCodeGenerator.swift */; };
-		120B78721EA3B84500D34440 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E11EA393A600D34440 /* EFQRCodeRecognizer.swift */; };
-		120B78731EA3B84D00D34440 /* EFDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DE1EA393A600D34440 /* EFDefine.swift */; };
-		120B78741EA3B84D00D34440 /* SystemColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E21EA393A600D34440 /* SystemColor+.swift */; };
-		120B78751EA3B84D00D34440 /* SystemImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E31EA393A600D34440 /* SystemImage+.swift */; };
-		120B78761EA3B84D00D34440 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77D91EA393A600D34440 /* CGColor+.swift */; };
-		120B78771EA3B84D00D34440 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DA1EA393A600D34440 /* CGImage+.swift */; };
-		120B78781EA3B84D00D34440 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DB1EA393A600D34440 /* CGSize+.swift */; };
-		120B78791EA3B84D00D34440 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DC1EA393A600D34440 /* CIColor+.swift */; };
-		120B787A1EA3B84D00D34440 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DD1EA393A600D34440 /* CIImage+.swift */; };
-		120B787B1EA3B84D00D34440 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77DF1EA393A600D34440 /* EFQRCode.swift */; };
-		120B787C1EA3B84D00D34440 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E01EA393A600D34440 /* EFQRCodeGenerator.swift */; };
-		120B787D1EA3B84D00D34440 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B77E11EA393A600D34440 /* EFQRCodeRecognizer.swift */; };
 		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
@@ -80,18 +86,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12046B001F7A512B000154A8 /* EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCode.swift; sourceTree = "<group>"; };
+		12046B011F7A512B000154A8 /* EFQRCodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCodeRecognizer.swift; sourceTree = "<group>"; };
+		12046B021F7A512B000154A8 /* EFQRCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCodeGenerator.swift; sourceTree = "<group>"; };
+		12046B041F7A512B000154A8 /* EFDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFDefine.swift; sourceTree = "<group>"; };
+		12046B061F7A512B000154A8 /* CIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIImage+.swift"; sourceTree = "<group>"; };
+		12046B071F7A512B000154A8 /* CIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIColor+.swift"; sourceTree = "<group>"; };
+		12046B081F7A512B000154A8 /* CGSize+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
+		12046B091F7A512B000154A8 /* CGImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+.swift"; sourceTree = "<group>"; };
+		12046B0A1F7A512B000154A8 /* CGColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
+		12046B0B1F7A512B000154A8 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
+		12046B0C1F7A512B000154A8 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		12046B2E1F7A5E06000154A8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		12046B321F7A5EC6000154A8 /* NSImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+.swift"; sourceTree = "<group>"; };
 		120B77D71EA3939F00D34440 /* EFQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFQRCode.h; sourceTree = "<group>"; };
-		120B77D91EA393A600D34440 /* CGColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
-		120B77DA1EA393A600D34440 /* CGImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImage+.swift"; sourceTree = "<group>"; };
-		120B77DB1EA393A600D34440 /* CGSize+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
-		120B77DC1EA393A600D34440 /* CIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIColor+.swift"; sourceTree = "<group>"; };
-		120B77DD1EA393A600D34440 /* CIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIImage+.swift"; sourceTree = "<group>"; };
-		120B77DE1EA393A600D34440 /* EFDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFDefine.swift; sourceTree = "<group>"; };
-		120B77DF1EA393A600D34440 /* EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCode.swift; sourceTree = "<group>"; };
-		120B77E01EA393A600D34440 /* EFQRCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCodeGenerator.swift; sourceTree = "<group>"; };
-		120B77E11EA393A600D34440 /* EFQRCodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFQRCodeRecognizer.swift; sourceTree = "<group>"; };
-		120B77E21EA393A600D34440 /* SystemColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystemColor+.swift"; sourceTree = "<group>"; };
-		120B77E31EA393A600D34440 /* SystemImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SystemImage+.swift"; sourceTree = "<group>"; };
 		126A1B591EAF225100EFBA1B /* eyrefree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyrefree.png; sourceTree = "<group>"; };
 		127F871E1ECF56AC0002B554 /* EFQRCode.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EFQRCode.podspec; sourceTree = "<group>"; };
 		4C0E02681BF99A18004E7F18 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Source/Info-tvOS.plist"; sourceTree = SOURCE_ROOT; };
@@ -156,36 +164,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		120B77EF1EA393A900D34440 /* Core */ = {
+		12046AFF1F7A512B000154A8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				120B77DF1EA393A600D34440 /* EFQRCode.swift */,
-				120B77E01EA393A600D34440 /* EFQRCodeGenerator.swift */,
-				120B77E11EA393A600D34440 /* EFQRCodeRecognizer.swift */,
+				12046B001F7A512B000154A8 /* EFQRCode.swift */,
+				12046B011F7A512B000154A8 /* EFQRCodeRecognizer.swift */,
+				12046B021F7A512B000154A8 /* EFQRCodeGenerator.swift */,
 			);
-			name = Core;
+			path = Core;
 			sourceTree = "<group>";
 		};
-		120B78341EA39C2300D34440 /* Extension */ = {
+		12046B031F7A512B000154A8 /* Define */ = {
 			isa = PBXGroup;
 			children = (
-				120B77E21EA393A600D34440 /* SystemColor+.swift */,
-				120B77D91EA393A600D34440 /* CGColor+.swift */,
-				120B77DC1EA393A600D34440 /* CIColor+.swift */,
-				120B77E31EA393A600D34440 /* SystemImage+.swift */,
-				120B77DA1EA393A600D34440 /* CGImage+.swift */,
-				120B77DD1EA393A600D34440 /* CIImage+.swift */,
-				120B77DB1EA393A600D34440 /* CGSize+.swift */,
+				12046B041F7A512B000154A8 /* EFDefine.swift */,
 			);
-			name = Extension;
+			path = Define;
 			sourceTree = "<group>";
 		};
-		120B78351EA39C4300D34440 /* Define */ = {
+		12046B051F7A512B000154A8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				120B77DE1EA393A600D34440 /* EFDefine.swift */,
+				12046B081F7A512B000154A8 /* CGSize+.swift */,
+				12046B071F7A512B000154A8 /* CIColor+.swift */,
+				12046B0A1F7A512B000154A8 /* CGColor+.swift */,
+				12046B0B1F7A512B000154A8 /* NSColor+.swift */,
+				12046B2E1F7A5E06000154A8 /* UIColor+.swift */,
+				12046B061F7A512B000154A8 /* CIImage+.swift */,
+				12046B091F7A512B000154A8 /* CGImage+.swift */,
+				12046B321F7A5EC6000154A8 /* NSImage+.swift */,
+				12046B0C1F7A512B000154A8 /* UIImage+.swift */,
 			);
-			name = Define;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		126A1B581EAF225100EFBA1B /* Resources */ = {
@@ -225,9 +235,9 @@
 		F8111E3519A95C8B0040E7D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				120B78351EA39C4300D34440 /* Define */,
-				120B78341EA39C2300D34440 /* Extension */,
-				120B77EF1EA393A900D34440 /* Core */,
+				12046B031F7A512B000154A8 /* Define */,
+				12046B051F7A512B000154A8 /* Extension */,
+				12046AFF1F7A512B000154A8 /* Core */,
 				F8111E3619A95C8B0040E7D1 /* Supporting Files */,
 			);
 			path = Source;
@@ -538,17 +548,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120B78731EA3B84D00D34440 /* EFDefine.swift in Sources */,
-				120B78741EA3B84D00D34440 /* SystemColor+.swift in Sources */,
-				120B78751EA3B84D00D34440 /* SystemImage+.swift in Sources */,
-				120B78761EA3B84D00D34440 /* CGColor+.swift in Sources */,
-				120B78771EA3B84D00D34440 /* CGImage+.swift in Sources */,
-				120B78781EA3B84D00D34440 /* CGSize+.swift in Sources */,
-				120B78791EA3B84D00D34440 /* CIColor+.swift in Sources */,
-				120B787A1EA3B84D00D34440 /* CIImage+.swift in Sources */,
-				120B787B1EA3B84D00D34440 /* EFQRCode.swift in Sources */,
-				120B787C1EA3B84D00D34440 /* EFQRCodeGenerator.swift in Sources */,
-				120B787D1EA3B84D00D34440 /* EFQRCodeRecognizer.swift in Sources */,
+				12046B271F7A512C000154A8 /* CGColor+.swift in Sources */,
+				12046B311F7A5E06000154A8 /* UIColor+.swift in Sources */,
+				12046B121F7A512C000154A8 /* EFQRCodeRecognizer.swift in Sources */,
+				12046B351F7A5EC6000154A8 /* NSImage+.swift in Sources */,
+				12046B241F7A512C000154A8 /* CGImage+.swift in Sources */,
+				12046B1E1F7A512C000154A8 /* CIColor+.swift in Sources */,
+				12046B151F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */,
+				12046B1B1F7A512C000154A8 /* CIImage+.swift in Sources */,
+				12046B211F7A512C000154A8 /* CGSize+.swift in Sources */,
+				12046B0F1F7A512C000154A8 /* EFQRCode.swift in Sources */,
+				12046B2A1F7A512C000154A8 /* NSColor+.swift in Sources */,
+				12046B181F7A512C000154A8 /* EFDefine.swift in Sources */,
+				12046B2D1F7A512C000154A8 /* UIImage+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,17 +576,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120B78681EA3B84500D34440 /* EFDefine.swift in Sources */,
-				120B78691EA3B84500D34440 /* SystemColor+.swift in Sources */,
-				120B786A1EA3B84500D34440 /* SystemImage+.swift in Sources */,
-				120B786B1EA3B84500D34440 /* CGColor+.swift in Sources */,
-				120B786C1EA3B84500D34440 /* CGImage+.swift in Sources */,
-				120B786D1EA3B84500D34440 /* CGSize+.swift in Sources */,
-				120B786E1EA3B84500D34440 /* CIColor+.swift in Sources */,
-				120B786F1EA3B84500D34440 /* CIImage+.swift in Sources */,
-				120B78701EA3B84500D34440 /* EFQRCode.swift in Sources */,
-				120B78711EA3B84500D34440 /* EFQRCodeGenerator.swift in Sources */,
-				120B78721EA3B84500D34440 /* EFQRCodeRecognizer.swift in Sources */,
+				12046B261F7A512C000154A8 /* CGColor+.swift in Sources */,
+				12046B301F7A5E06000154A8 /* UIColor+.swift in Sources */,
+				12046B111F7A512C000154A8 /* EFQRCodeRecognizer.swift in Sources */,
+				12046B341F7A5EC6000154A8 /* NSImage+.swift in Sources */,
+				12046B231F7A512C000154A8 /* CGImage+.swift in Sources */,
+				12046B1D1F7A512C000154A8 /* CIColor+.swift in Sources */,
+				12046B141F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */,
+				12046B1A1F7A512C000154A8 /* CIImage+.swift in Sources */,
+				12046B201F7A512C000154A8 /* CGSize+.swift in Sources */,
+				12046B0E1F7A512C000154A8 /* EFQRCode.swift in Sources */,
+				12046B291F7A512C000154A8 /* NSColor+.swift in Sources */,
+				12046B171F7A512C000154A8 /* EFDefine.swift in Sources */,
+				12046B2C1F7A512C000154A8 /* UIImage+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,17 +596,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120B77EA1EA393A600D34440 /* EFQRCode.swift in Sources */,
-				120B77E61EA393A600D34440 /* CGSize+.swift in Sources */,
-				120B77EB1EA393A600D34440 /* EFQRCodeGenerator.swift in Sources */,
-				120B77EC1EA393A600D34440 /* EFQRCodeRecognizer.swift in Sources */,
-				120B77E41EA393A600D34440 /* CGColor+.swift in Sources */,
-				120B77E81EA393A600D34440 /* CIImage+.swift in Sources */,
-				120B77E91EA393A600D34440 /* EFDefine.swift in Sources */,
-				120B77E51EA393A600D34440 /* CGImage+.swift in Sources */,
-				120B77ED1EA393A600D34440 /* SystemColor+.swift in Sources */,
-				120B77E71EA393A600D34440 /* CIColor+.swift in Sources */,
-				120B77EE1EA393A600D34440 /* SystemImage+.swift in Sources */,
+				12046B251F7A512C000154A8 /* CGColor+.swift in Sources */,
+				12046B2F1F7A5E06000154A8 /* UIColor+.swift in Sources */,
+				12046B101F7A512C000154A8 /* EFQRCodeRecognizer.swift in Sources */,
+				12046B331F7A5EC6000154A8 /* NSImage+.swift in Sources */,
+				12046B221F7A512C000154A8 /* CGImage+.swift in Sources */,
+				12046B1C1F7A512C000154A8 /* CIColor+.swift in Sources */,
+				12046B131F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */,
+				12046B191F7A512C000154A8 /* CIImage+.swift in Sources */,
+				12046B1F1F7A512C000154A8 /* CGSize+.swift in Sources */,
+				12046B0D1F7A512B000154A8 /* EFQRCode.swift in Sources */,
+				12046B281F7A512C000154A8 /* NSColor+.swift in Sources */,
+				12046B161F7A512C000154A8 /* EFDefine.swift in Sources */,
+				12046B2B1F7A512C000154A8 /* UIImage+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

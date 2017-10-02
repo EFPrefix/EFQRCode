@@ -1,8 +1,8 @@
 //
-//  AppDelegate.swift
+//  EFQRCodeRecognizer.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/1/24.
+//  Created by EyreFree on 2017/3/28.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,41 +24,47 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+import CoreImage
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+public class EFQRCodeRecognizer: NSObject {
 
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        return true
+    private var image: CGImage? {
+        didSet {
+            contentArray = nil
+        }
+    }
+    public func setImage(image: CGImage?) {
+        self.image = image
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
+    private var contentArray: [String]?
 
+    public override init() {
+        super.init()
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {
-
+    public init(image: CGImage) {
+        self.image = image
     }
 
-    func applicationWillEnterForeground(_ application: UIApplication) {
-
+    public func recognize() -> [String]? {
+        if nil == contentArray {
+            contentArray = getQRString()
+        }
+        return contentArray
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-
+    // Get QRCodes from image
+    private func getQRString() -> [String]? {
+        guard let finalImage = self.image else {
+            return nil
+        }
+        let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+        if result.count <= 0 {
+            return finalImage.grayscale()?.toCIImage().recognizeQRCode(
+                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
+            )
+        }
+        return result
     }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-
-    }
-}
-
-func UIImage2CGimage(_ image: UIImage?) -> CGImage? {
-    if let tryImage = image, let tryCIImage = CIImage(image: tryImage) {
-        return CIContext().createCGImage(tryCIImage, from: tryCIImage.extent)
-    }
-    return nil
 }

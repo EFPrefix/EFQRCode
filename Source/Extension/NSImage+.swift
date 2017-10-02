@@ -1,8 +1,8 @@
 //
-//  AppDelegate.swift
+//  NSImage+.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/1/24.
+//  Created by EyreFree on 2017/4/9.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,41 +24,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
-
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        return true
+#if os(macOS)
+    import AppKit
+    
+    public extension NSImage {
+        
+        public func toCIImage() -> CIImage? {
+            if let data = self.tiffRepresentation(using: NSBitmapImageRep.TIFFCompression.none, factor: 0) {
+                return CIImage(data: data)
+            }
+            return nil
+        }
+        
+        public func toCGImage() -> CGImage? {
+            return self.toCIImage()?.toCGImage()
+        }
     }
+#endif
 
-    func applicationWillResignActive(_ application: UIApplication) {
-
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-
-    }
-}
-
-func UIImage2CGimage(_ image: UIImage?) -> CGImage? {
-    if let tryImage = image, let tryCIImage = CIImage(image: tryImage) {
-        return CIContext().createCGImage(tryCIImage, from: tryCIImage.extent)
-    }
-    return nil
-}

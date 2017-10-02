@@ -2,84 +2,69 @@
 //  GeneratorController.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 17/1/25.
-//  Copyright (c) 2017 EyreFree. All rights reserved.
+//  Created by EyreFree on 2017/1/25.
 //
+//  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 import Photos
 import EFQRCode
 
-#if os(iOS)
-    class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
 
-        var textView: UITextView!
-        var tableView: UITableView!
-        var createButton: UIButton!
+    #if os(iOS)
+    var imagePicker: UIImagePickerController?
+    #endif
 
-        var imagePicker: UIImagePickerController?
-        var titleCurrent: String = ""
+    var textView: UITextView!
+    var tableView: UITableView!
+    var createButton: UIButton!
 
-        // Param
-        var inputCorrectionLevel = EFInputCorrectionLevel.h
-        var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
-        var magnification: EFIntSize? = EFIntSize(width: 24, height: 24)
-        var backColor = UIColor.white
-        var frontColor = UIColor.black
-        var icon: UIImage? = nil
-        var iconSize: EFIntSize? = nil
-        var watermark: UIImage? = nil
-        var watermarkMode = EFWatermarkMode.scaleAspectFill
-        var mode: EFQRCodeMode = .none
-        var binarizationThreshold: CGFloat = 0.5
-        var pointShape: EFPointShape = .square
+    var titleCurrent: String = ""
 
-        // MARK:- Not commonly used
-        var foregroundPointOffset: CGFloat = 0
-        var allowTransparent: Bool = true
+    // Param
+    var inputCorrectionLevel = EFInputCorrectionLevel.h
+    var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
+    var magnification: EFIntSize? = EFIntSize(width: 24, height: 24)
+    var backColor = UIColor.white
+    var frontColor = UIColor.black
+    var icon: UIImage? = nil
+    var iconSize: EFIntSize? = nil
+    var watermark: UIImage? = nil
+    var watermarkMode = EFWatermarkMode.scaleAspectFill
+    var mode: EFQRCodeMode = .none
+    var binarizationThreshold: CGFloat = 0.5
+    var pointShape: EFPointShape = .square
 
-        // Test data
-        struct colorData {
-            var color: UIColor
-            var name: String
-        }
-        var colorList = [colorData]()
+    // MARK:- Not commonly used
+    var foregroundPointOffset: CGFloat = 0
+    var allowTransparent: Bool = true
+
+    // Test data
+    struct colorData {
+        var color: UIColor
+        var name: String
     }
-#else
-    class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
-
-        var textView: UITextView!
-        var tableView: UITableView!
-        var createButton: UIButton!
-
-        var titleCurrent: String = ""
-
-        // Param
-        var inputCorrectionLevel = EFInputCorrectionLevel.h
-        var size: EFIntSize = EFIntSize(width: 256, height: 256)
-        var magnification: EFIntSize? = nil
-        var backColor = UIColor.white
-        var frontColor = UIColor.black
-        var icon: UIImage? = nil
-        var iconSize: EFIntSize? = nil
-        var watermark: UIImage? = nil
-        var watermarkMode = EFWatermarkMode.scaleAspectFill
-        var mode: EFQRCodeMode = .none
-        var binarizationThreshold: CGFloat = 0.5
-        var pointShape: EFPointShape = .square
-
-        // MARK:- Not commonly used
-        var foregroundPointOffset: CGFloat = 0
-        var allowTransparent: Bool = true
-
-        // Test data
-        struct colorData {
-            var color: UIColor
-            var name: String
-        }
-        var colorList = [colorData]()
-    }
-#endif
+    var colorList = [colorData]()
+}
 
 extension GeneratorController {
 
@@ -158,12 +143,15 @@ extension GeneratorController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         self.view.addSubview(tableView)
         tableView.frame = CGRect(
-            x: 0, y: screenSize.height - 56 * 6, width: screenSize.width, height: 4 * (buttonHeight + 10) + buttonHeight
+            x: 0, y: screenSize.height - 56 * 6,
+            width: screenSize.width, height: 4 * (buttonHeight + 10) + buttonHeight
         )
 
         createButton = UIButton(type: .system)
         createButton.setTitle("Create", for: .normal)
-        createButton.setTitleColor(UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal)
+        createButton.setTitleColor(
+            UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal
+        )
         createButton.layer.borderColor = UIColor.white.cgColor
         createButton.layer.borderWidth = 1
         createButton.layer.cornerRadius = 5
@@ -248,41 +236,81 @@ extension GeneratorController {
 
     func chooseSize() {
         let alert = UIAlertController(
-            title: "Size",
-            message: nil,
-            preferredStyle: .actionSheet
+            title: "Size", message: nil, preferredStyle: .alert
         )
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
-            })
-        )
-        for width in [Int(1), 32, 64, 128, 256, 512, 1024, 2048] {
-            alert.addAction(
-                UIAlertAction(title: "\(width)x\(width)", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.size = EFIntSize(width: width, height: width)
-                        strongSelf.refresh()
-                    }
-                })
-            )
-            if 512 == width {
-                alert.addAction(
-                    UIAlertAction(title: "\(512)x\(640)", style: .default, handler: {
-                        [weak self] (action) -> Void in
-                        if let strongSelf = self {
-                            strongSelf.size = EFIntSize(width: 512, height: 640)
-                            strongSelf.refresh()
-                        }
-                    })
-                )
+        alert.addTextField {
+            [weak self] (textField) in
+            if let strongSelf = self {
+                textField.placeholder = "Width"
+                textField.text = "\(strongSelf.size.width)"
             }
         }
-        popActionSheet(alert: alert)
+        alert.addTextField {
+            [weak self] (textField) in
+            if let strongSelf = self {
+                textField.placeholder = "Height"
+                textField.text = "\(strongSelf.size.height)"
+            }
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action) in
+            if let strongSelf = self {
+                if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                    let heightString = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                    if let width = Int(widthString), let height = Int(heightString), 0 < width, 0 < height {
+                        strongSelf.size = EFIntSize(width: width, height: height)
+                        strongSelf.refresh()
+                        return
+                    }
+                }
+                let alert = UIAlertController(title: "Warning", message: "Illegal input size!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                strongSelf.present(alert, animated: true, completion: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
 
     func chooseMagnification() {
+        func customInput() {
+            let alert = UIAlertController(
+                title: "Magnification", message: nil, preferredStyle: .alert
+            )
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Width"
+                    textField.text = strongSelf.magnification == nil ? "" : "\(strongSelf.magnification?.width ?? 0)"
+                }
+            }
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Height"
+                    textField.text = strongSelf.magnification == nil ? "" : "\(strongSelf.magnification?.height ?? 0)"
+                }
+            }
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action) in
+                if let strongSelf = self {
+                    if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                        let heightString = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                        if let width = Int(widthString), let height = Int(heightString), 0 < width, 0 < height {
+                            strongSelf.magnification = EFIntSize(width: width, height: height)
+                            strongSelf.refresh()
+                            return
+                        }
+                    }
+                    let alert = UIAlertController(
+                        title: "Warning", message: "Illegal input magnification!", preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+
         let alert = UIAlertController(
             title: "Magnification",
             message: nil,
@@ -302,28 +330,23 @@ extension GeneratorController {
                 }
             })
         )
-        for magnification in [Int(1), 3, 6, 9, 12, 15, 18, 21, 23, 25, 27, 30] {
-            alert.addAction(
-                UIAlertAction(title: "\(magnification)x\(magnification)", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.magnification = EFIntSize(width: magnification, height: magnification)
-                        strongSelf.refresh()
-                    }
-                })
-            )
-            if magnification == 9 {
-                alert.addAction(
-                    UIAlertAction(title: "\(12)x\(9)", style: .default, handler: {
-                        [weak self] (action) -> Void in
-                        if let strongSelf = self {
-                            strongSelf.magnification = EFIntSize(width: 12, height: 9)
-                            strongSelf.refresh()
-                        }
-                    })
-                )
-            }
-        }
+        alert.addAction(
+            UIAlertAction(title: "\(9)x\(9)", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.magnification = EFIntSize(width: 9, height: 9)
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "custom", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let _ = self {
+                    customInput()
+                }
+            })
+        )
         popActionSheet(alert: alert)
     }
 
@@ -338,6 +361,16 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
+        #if os(iOS)
+            alert.addAction(
+                UIAlertAction(title: "Custom", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.customColor(0)
+                    }
+                })
+            )
+        #endif
         for color in colorList {
             alert.addAction(
                 UIAlertAction(title: color.name, style: .default, handler: {
@@ -363,6 +396,16 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
+        #if os(iOS)
+            alert.addAction(
+                UIAlertAction(title: "Custom", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.customColor(1)
+                    }
+                })
+            )
+        #endif
         if let tryWaterMark = watermark {
             alert.addAction(
                 UIAlertAction(title: "Average of watermark", style: .default, handler: {
@@ -451,6 +494,45 @@ extension GeneratorController {
     }
 
     func chooseIconSize() {
+        func customInput() {
+            let alert = UIAlertController(
+                title: "IconSize", message: nil, preferredStyle: .alert
+            )
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Width"
+                    textField.text = strongSelf.iconSize == nil ? "" : "\(strongSelf.iconSize?.width ?? 0)"
+                }
+            }
+            alert.addTextField {
+                [weak self] (textField) in
+                if let strongSelf = self {
+                    textField.placeholder = "Height"
+                    textField.text = strongSelf.iconSize == nil ? "" : "\(strongSelf.iconSize?.height ?? 0)"
+                }
+            }
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action) in
+                if let strongSelf = self {
+                    if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+                        let heightString = alert.textFields?[1].text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                        if let width = Int(widthString), let height = Int(heightString), 0 < width, 0 < height {
+                            strongSelf.iconSize = EFIntSize(width: width, height: height)
+                            strongSelf.refresh()
+                            return
+                        }
+                    }
+                    let alert = UIAlertController(
+                        title: "Warning", message: "Illegal input iconSize!", preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+
         let alert = UIAlertController(
             title: "IconSize",
             message: nil,
@@ -470,28 +552,23 @@ extension GeneratorController {
                 }
             })
         )
-        for width in [Int(1), 32, 64, 128, 256, 512, 1024, 2048] {
-            alert.addAction(
-                UIAlertAction(title: "\(width)x\(width)", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.iconSize = EFIntSize(width: width, height: width)
-                        strongSelf.refresh()
-                    }
-                })
-            )
-            if 512 == width {
-                alert.addAction(
-                    UIAlertAction(title: "\(512)x\(640)", style: .default, handler: {
-                        [weak self] (action) -> Void in
-                        if let strongSelf = self {
-                            strongSelf.iconSize = EFIntSize(width: 512, height: 640)
-                            strongSelf.refresh()
-                        }
-                    })
-                )
-            }
-        }
+        alert.addAction(
+            UIAlertAction(title: "\(128)x\(128)", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.iconSize = EFIntSize(width: 128, height: 128)
+                    strongSelf.refresh()
+                }
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "custom", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let _ = self {
+                    customInput()
+                }
+            })
+        )
         popActionSheet(alert: alert)
     }
 
@@ -552,114 +629,25 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "scaleToFill", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .scaleToFill
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "scaleAspectFit", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .scaleAspectFit
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "scaleAspectFill", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .scaleAspectFill
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "center", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .center
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "top", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .top
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "bottom", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .bottom
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "left", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .left
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "right", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .right
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "topLeft", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .topLeft
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "topRight", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .topRight
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "bottomLeft", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .bottomLeft
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "bottomRight", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = .bottomRight
-                    strongSelf.refresh()
-                }
-            })
-        )
+
+        let modeNameArray = [
+            "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center",
+            "top", "bottom", "left", "right",
+            "topLeft", "topRight", "bottomLeft", "bottomRight"
+        ]
+        for (index, modeName) in modeNameArray.enumerated() {
+            alert.addAction(
+                UIAlertAction(title: modeName, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        if let mode = EFWatermarkMode(rawValue: index) {
+                            strongSelf.watermarkMode = mode
+                        }
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         popActionSheet(alert: alert)
     }
 
@@ -733,33 +721,23 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "none", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.mode = .none
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "grayscale", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.mode = .grayscale
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "binarization", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.mode = .binarization
-                    strongSelf.refresh()
-                }
-            })
-        )
+
+        let modeNameArray = [
+            "none", "grayscale", "binarization"
+        ]
+        for (index, modeName) in modeNameArray.enumerated() {
+            alert.addAction(
+                UIAlertAction(title: modeName, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        if let mode = EFQRCodeMode(rawValue: index) {
+                            strongSelf.mode = mode
+                        }
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         popActionSheet(alert: alert)
     }
 
@@ -774,24 +752,23 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
-        alert.addAction(
-            UIAlertAction(title: "square", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.pointShape = .square
-                    strongSelf.refresh()
-                }
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "circle", style: .default, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    strongSelf.pointShape = .circle
-                    strongSelf.refresh()
-                }
-            })
-        )
+
+        let shapeNameArray = [
+            "square", "circle"
+        ]
+        for (index, shapeName) in shapeNameArray.enumerated() {
+            alert.addAction(
+                UIAlertAction(title: shapeName, style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        if let shape = EFPointShape(rawValue: index) {
+                            strongSelf.pointShape = shape
+                        }
+                        strongSelf.refresh()
+                    }
+                })
+            )
+        }
         popActionSheet(alert: alert)
     }
 
@@ -841,51 +818,10 @@ extension GeneratorController {
     // UITableViewDelegate & UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        switch indexPath.row {
-        case 0:
-            chooseInputCorrectionLevel()
-            break
-        case 1:
-            chooseMode()
-            break
-        case 2:
-            chooseSize()
-            break
-        case 3:
-            chooseMagnification()
-            break
-        case 4:
-            chooseBackColor()
-            break
-        case 5:
-            chooseFrontColor()
-            break
-        case 6:
-            chooseIcon()
-            break
-        case 7:
-            chooseIconSize()
-            break
-        case 8:
-            chooseWatermark()
-            break
-        case 9:
-            chooseWatermarkMode()
-            break
-        case 10:
-            chooseForegroundPointOffset()
-            break
-        case 11:
-            chooseAllowTransparent()
-            break
-        case 12:
-            chooseBinarizationThreshold()
-        case 13:
-            chooseShape()
-        default:
-            break
-        }
+        [chooseInputCorrectionLevel, chooseMode, chooseSize, chooseMagnification,
+         chooseBackColor, chooseFrontColor, chooseIcon, chooseIconSize,
+         chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset, chooseAllowTransparent,
+         chooseBinarizationThreshold, chooseShape][indexPath.row]()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -910,19 +846,9 @@ extension GeneratorController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let titleArray = [
-            "inputCorrectionLevel",
-            "mode",
-            "size",
-            "magnification",
-            "backgroundColor",
-            "foregroundColor",
-            "icon",
-            "iconSize",
-            "watermark",
-            "watermarkMode",
-            "foregroundPointOffset",
-            "allowTransparent",
-            "binarizationThreshold",
+            "inputCorrectionLevel", "mode", "size", "magnification",
+            "backgroundColor", "foregroundColor", "icon", "iconSize",
+            "watermark", "watermarkMode", "foregroundPointOffset", "allowTransparent", "binarizationThreshold",
             "pointShape"
         ]
         let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
@@ -983,53 +909,113 @@ extension GeneratorController {
         return cell
     }
 
-    #if os(iOS)
-    // MARK:- UIImagePickerControllerDelegate
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var finalImage: UIImage?
-        if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            finalImage = tryImage
-        } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            finalImage = tryImage
-        } else{
-            print("Something went wrong")
-        }
-        switch titleCurrent {
-        case "watermark":
-            self.watermark = finalImage
-            break
-        case "icon":
-            self.icon = finalImage
-            break
-        default:
-            break
-        }
-        self.refresh()
-
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-    func chooseImageFromAlbum(title: String) {
-        titleCurrent = title
-
-        if let tryPicker = imagePicker {
-            self.present(tryPicker, animated: true, completion: nil)
-        } else {
-            let picker = UIImagePickerController()
-            picker.sourceType = .photoLibrary
-            picker.delegate = self
-            picker.allowsEditing = false
-            imagePicker = picker
-
-            self.present(picker, animated: true, completion: nil)
-        }
-    }
-    #endif
 }
+
+#if os(iOS)
+    // EFColorPicker
+    extension GeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
+
+        struct EFColorPicker {
+            static var isFront = false
+        }
+
+        func customColor(_ isFront: Int) {
+
+            EFColorPicker.isFront = isFront == 1
+
+            let colorSelectionController = EFColorSelectionViewController()
+            let navCtrl = UINavigationController(rootViewController: colorSelectionController)
+
+            navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
+            navCtrl.popoverPresentationController?.delegate = self
+            navCtrl.popoverPresentationController?.sourceView = tableView
+            navCtrl.popoverPresentationController?.sourceRect = tableView.bounds
+            navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFitting(
+                UILayoutFittingCompressedSize
+            )
+
+            colorSelectionController.delegate = self
+            colorSelectionController.color = EFColorPicker.isFront ?  self.frontColor : self.backColor
+
+            if UIUserInterfaceSizeClass.compact == self.traitCollection.horizontalSizeClass {
+                let doneBtn: UIBarButtonItem = UIBarButtonItem(
+                    title: NSLocalizedString("Done", comment: ""),
+                    style: UIBarButtonItemStyle.done,
+                    target: self,
+                    action: #selector(ef_dismissViewController(sender:))
+                )
+                colorSelectionController.navigationItem.rightBarButtonItem = doneBtn
+            }
+            self.present(navCtrl, animated: true, completion: nil)
+        }
+
+        // EFColorViewDelegate
+        func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+            if EFColorPicker.isFront {
+                self.frontColor = color
+            } else {
+                self.backColor = color
+            }
+            self.refresh()
+        }
+
+        // Private
+        @objc private func ef_dismissViewController(sender: UIBarButtonItem) {
+            self.dismiss(animated: true, completion: nil)
+            self.refresh()
+        }
+    }
+#endif
+
+#if os(iOS)
+    extension GeneratorController: UIImagePickerControllerDelegate {
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true, completion: nil)
+        }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+            var finalImage: UIImage?
+            if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                finalImage = tryImage
+            } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                finalImage = tryImage
+            } else{
+                print("Something wrong")
+            }
+            switch titleCurrent {
+            case "watermark":
+                self.watermark = finalImage
+                break
+            case "icon":
+                self.icon = finalImage
+                break
+            default:
+                break
+            }
+            self.refresh()
+
+            picker.dismiss(animated: true, completion: nil)
+        }
+
+        func chooseImageFromAlbum(title: String) {
+            titleCurrent = title
+
+            if let tryPicker = imagePicker {
+                self.present(tryPicker, animated: true, completion: nil)
+            } else {
+                let picker = UIImagePickerController()
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                picker.allowsEditing = false
+                imagePicker = picker
+
+                self.present(picker, animated: true, completion: nil)
+            }
+        }
+    }
+#endif
 
 class ShowController: UIViewController {
 
@@ -1111,7 +1097,9 @@ class ShowController: UIViewController {
             imageView.layer.masksToBounds = true
             self.view.addSubview(imageView)
             imageView.frame = CGRect(
-                x: 10, y: 30, width: screenSize.width - 20, height: min(screenSize.width - 20, screenSize.height - 20 - 46 - 60)
+                x: 10, y: 30,
+                width: screenSize.width - 20,
+                height: min(screenSize.width - 20, screenSize.height - 20 - 46 - 60)
             )
 
             let createButton = UIButton(type: .system)

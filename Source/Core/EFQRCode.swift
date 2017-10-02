@@ -1,8 +1,8 @@
 //
-//  CGColor+.swift
-//  EyreFree
+//  EFQRCode.swift
+//  EFQRCode
 //
-//  Created by EyreFree on 2017/4/9.
+//  Created by EyreFree on 2017/3/28.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,20 +24,30 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreGraphics
 import CoreImage
 
-public extension CGColor {
+public class EFQRCode: NSObject {
 
-    public static func EFWhite() -> CGColor! {
-        return CIColor.EFWhite().toCGColor()
+    // MARK: - Recognizer
+    public static func recognize(image: CGImage) -> [String]? {
+        return EFQRCodeRecognizer(image: image).recognize()
     }
 
-    public static func EFBlack() -> CGColor! {
-        return CIColor.EFBlack().toCGColor()
-    }
+    // MARK: - Generator
+    public static func generate(
+        content: String,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
+        backgroundColor: CIColor = CIColor.EFWhite(),
+        foregroundColor: CIColor = CIColor.EFBlack(),
+        watermark: CGImage? = nil
+        ) -> CGImage? {
 
-    public func toCIColor() -> CIColor {
-        return CIColor(cgColor: self)
+        let generator = EFQRCodeGenerator(
+            content: content,
+            size: size
+        )
+        generator.setWatermark(watermark: watermark)
+        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
+        return generator.generate()
     }
 }

@@ -1,8 +1,8 @@
 //
-//  EFQRCodeRecognizer.swift
-//  EyreFree
+//  CGColor+.swift
+//  EFQRCode
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2017/4/9.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,43 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+import CoreGraphics
 import CoreImage
 
-public class EFQRCodeRecognizer: NSObject {
+public extension CGColor {
 
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
-        }
-    }
-    public func setImage(image: CGImage?) {
-        self.image = image
+    public static func EFWhite() -> CGColor! {
+        return CIColor.EFWhite().toCGColor()
     }
 
-    private var contentArray: [String]?
-
-    public init(image: CGImage) {
-        self.image = image
+    public static func EFBlack() -> CGColor! {
+        return CIColor.EFBlack().toCGColor()
     }
 
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
-    }
-
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = self.image else {
-            return nil
-        }
-        let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.count <= 0 {
-            return finalImage.grayscale()?.toCIImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
+    public func toCIColor() -> CIColor {
+        return CIColor(cgColor: self)
     }
 }
