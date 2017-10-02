@@ -1,6 +1,6 @@
 //
 //  EFQRCodeGenerator.swift
-//  EyreFree
+//  EFQRCode
 //
 //  Created by EyreFree on 17/1/24.
 //

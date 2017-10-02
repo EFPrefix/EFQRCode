@@ -1,6 +1,6 @@
 //
 //  CGColor+.swift
-//  EyreFree
+//  EFQRCode
 //
 //  Created by EyreFree on 2017/4/9.
 //

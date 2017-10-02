@@ -1,6 +1,6 @@
 //
 //  GeneratorController.swift
-//  EyreFree
+//  EFQRCode
 //
 //  Created by EyreFree on 2017/1/25.
 //
