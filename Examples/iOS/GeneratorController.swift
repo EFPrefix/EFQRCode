@@ -361,6 +361,16 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
+        #if os(iOS)
+            alert.addAction(
+                UIAlertAction(title: "Custom", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.customColor(0)
+                    }
+                })
+            )
+        #endif
         for color in colorList {
             alert.addAction(
                 UIAlertAction(title: color.name, style: .default, handler: {
@@ -386,6 +396,16 @@ extension GeneratorController {
                 (action) -> Void in
             })
         )
+        #if os(iOS)
+            alert.addAction(
+                UIAlertAction(title: "Custom", style: .default, handler: {
+                    [weak self] (action) -> Void in
+                    if let strongSelf = self {
+                        strongSelf.customColor(1)
+                    }
+                })
+            )
+        #endif
         if let tryWaterMark = watermark {
             alert.addAction(
                 UIAlertAction(title: "Average of watermark", style: .default, handler: {
@@ -891,6 +911,62 @@ extension GeneratorController {
 
 
 }
+
+#if os(iOS)
+    // EFColorPicker
+    extension GeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
+
+        struct EFColorPicker {
+            static var isFront = false
+        }
+
+        func customColor(_ isFront: Int) {
+
+            EFColorPicker.isFront = isFront == 1
+
+            let colorSelectionController = EFColorSelectionViewController()
+            let navCtrl = UINavigationController(rootViewController: colorSelectionController)
+
+            navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
+            navCtrl.popoverPresentationController?.delegate = self
+            navCtrl.popoverPresentationController?.sourceView = tableView
+            navCtrl.popoverPresentationController?.sourceRect = tableView.bounds
+            navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFitting(
+                UILayoutFittingCompressedSize
+            )
+
+            colorSelectionController.delegate = self
+            colorSelectionController.color = EFColorPicker.isFront ?  self.frontColor : self.backColor
+
+            if UIUserInterfaceSizeClass.compact == self.traitCollection.horizontalSizeClass {
+                let doneBtn: UIBarButtonItem = UIBarButtonItem(
+                    title: NSLocalizedString("Done", comment: ""),
+                    style: UIBarButtonItemStyle.done,
+                    target: self,
+                    action: #selector(ef_dismissViewController(sender:))
+                )
+                colorSelectionController.navigationItem.rightBarButtonItem = doneBtn
+            }
+            self.present(navCtrl, animated: true, completion: nil)
+        }
+
+        // EFColorViewDelegate
+        func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+            if EFColorPicker.isFront {
+                self.frontColor = color
+            } else {
+                self.backColor = color
+            }
+            self.refresh()
+        }
+
+        // Private
+        @objc private func ef_dismissViewController(sender: UIBarButtonItem) {
+            self.dismiss(animated: true, completion: nil)
+            self.refresh()
+        }
+    }
+#endif
 
 #if os(iOS)
     extension GeneratorController: UIImagePickerControllerDelegate {
