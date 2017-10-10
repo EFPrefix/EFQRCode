@@ -21,6 +21,6 @@ s.tvos.deployment_target = '9.0'
 
 s.requires_arc = true
 
-s.source_files = 'Source/*.swift'
+s.source_files = 'Source/**/*.{h,swift}'
 
 end
