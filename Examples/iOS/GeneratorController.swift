@@ -926,7 +926,8 @@ extension GeneratorController {
 
             let colorSelectionController = EFColorSelectionViewController()
             let navCtrl = UINavigationController(rootViewController: colorSelectionController)
-
+            navCtrl.navigationBar.backgroundColor = UIColor.white
+            navCtrl.navigationBar.isTranslucent = false
             navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
             navCtrl.popoverPresentationController?.delegate = self
             navCtrl.popoverPresentationController?.sourceView = tableView
