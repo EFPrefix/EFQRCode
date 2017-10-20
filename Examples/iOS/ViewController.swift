@@ -142,11 +142,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -173,7 +173,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if !UIDevice.current.model.contains("iPad") {
             if 1 == indexPath.row {
-                cell.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
+                cell.separatorInset = UIEdgeInsets(
+                    top: 15, left: 0, bottom: 0, right: max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+                )
             }
         }
     }

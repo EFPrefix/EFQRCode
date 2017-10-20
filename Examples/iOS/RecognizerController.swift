@@ -54,7 +54,7 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         iamgeView.snp.makeConstraints {
             (make) in
             make.left.equalTo(10)
-            make.top.equalTo(80)
+            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
             make.width.equalTo(self.view).offset(-20)
             make.height.equalTo(self.view).offset(-146)
         }

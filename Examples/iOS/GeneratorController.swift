@@ -126,9 +126,9 @@ extension GeneratorController {
         textView.snp.makeConstraints {
             (make) in
             make.left.equalTo(10)
-            make.top.equalTo(80)
+            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
             make.width.equalTo(self.view).offset(-20)
-            make.height.equalTo(self.view).offset(-(90 + (buttonHeight + 10) * 6))
+            make.height.equalTo(self.view).dividedBy(3.0)
         }
 
         // tableView
@@ -148,9 +148,8 @@ extension GeneratorController {
         tableView.snp.makeConstraints {
             (make) in
             make.left.equalTo(0)
-            make.top.equalTo(self.view.snp.bottom).offset(-56 * 6)
+            make.top.equalTo(textView.snp.bottom)
             make.width.equalTo(self.view)
-            make.height.equalTo(4 * (buttonHeight + 10) + buttonHeight)
         }
 
         createButton = UIButton(type: .system)
@@ -171,9 +170,10 @@ extension GeneratorController {
         createButton.snp.makeConstraints {
             (make) in
             make.left.equalTo(10)
-            make.top.equalTo(self.view.snp.bottom).offset(-56)
+            make.top.equalTo(tableView.snp.bottom)
             make.width.equalTo(self.view).offset(-20)
             make.height.equalTo(buttonHeight)
+            make.bottom.equalTo(-10)
         }
     }
 
@@ -847,11 +847,11 @@ extension GeneratorController {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -1083,7 +1083,7 @@ class ShowController: UIViewController {
             imageView.snp.makeConstraints {
                 (make) in
                 make.left.equalTo(10)
-                make.top.equalTo(30)
+                make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
                 make.width.equalTo(self.view).offset(-20)
                 make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
                 make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-46-60)
@@ -1110,7 +1110,7 @@ class ShowController: UIViewController {
             imageView.snp.makeConstraints {
                 (make) in
                 make.left.equalTo(10)
-                make.top.equalTo(30)
+                make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
                 make.width.equalTo(self.view).offset(-20)
                 make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
                 make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-60)

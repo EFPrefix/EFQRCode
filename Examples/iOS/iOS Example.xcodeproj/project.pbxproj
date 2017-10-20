@@ -50,6 +50,7 @@
 		126EBCD11F99D91500D0B536 /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126EBCAE1F99D91400D0B536 /* ConstraintLayoutGuide+Extensions.swift */; };
 		126EBCD21F99D91500D0B536 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126EBCAF1F99D91400D0B536 /* ConstraintLayoutSupportDSL.swift */; };
 		126EBCD31F99D91500D0B536 /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126EBCB01F99D91400D0B536 /* ConstraintMakerRelatable.swift */; };
+		12981D8A1F99F75D00156E1E /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12981D891F99F75D00156E1E /* CGFloat+.swift */; };
 		12C322421F80F1AD003E9BF4 /* EFSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C322371F80F1AD003E9BF4 /* EFSliderView.swift */; };
 		12C322431F80F1AD003E9BF4 /* EFColorComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C322381F80F1AD003E9BF4 /* EFColorComponentView.swift */; };
 		12C322441F80F1AD003E9BF4 /* EFHSBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C322391F80F1AD003E9BF4 /* EFHSBView.swift */; };
@@ -173,6 +174,7 @@
 		126EBCAE1F99D91400D0B536 /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
 		126EBCAF1F99D91400D0B536 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		126EBCB01F99D91400D0B536 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
+		12981D891F99F75D00156E1E /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = SOURCE_ROOT; };
 		12C322371F80F1AD003E9BF4 /* EFSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFSliderView.swift; sourceTree = "<group>"; };
 		12C322381F80F1AD003E9BF4 /* EFColorComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFColorComponentView.swift; sourceTree = "<group>"; };
 		12C322391F80F1AD003E9BF4 /* EFHSBView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFHSBView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				120B78091EA3977300D34440 /* UIImage+.swift */,
+				12981D891F99F75D00156E1E /* CGFloat+.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				12C322451F80F1AD003E9BF4 /* EFColorUtils.swift in Sources */,
 				120B78411EA39E1B00D34440 /* AppDelegate.swift in Sources */,
 				12C322441F80F1AD003E9BF4 /* EFHSBView.swift in Sources */,
+				12981D8A1F99F75D00156E1E /* CGFloat+.swift in Sources */,
 				126EBCC41F99D91500D0B536 /* ConstraintConstantTarget.swift in Sources */,
 				120B78071EA396A000D34440 /* GeneratorController.swift in Sources */,
 				126EBCBC1F99D91400D0B536 /* ConstraintPriority.swift in Sources */,
