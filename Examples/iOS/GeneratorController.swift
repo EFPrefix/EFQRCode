@@ -943,6 +943,7 @@ extension GeneratorController {
                 UILayoutFittingCompressedSize
             )
 
+            colorSelectionController.isColorTextFieldHidden = false
             colorSelectionController.delegate = self
             colorSelectionController.color = EFColorPicker.isFront ?  self.frontColor : self.backColor
 

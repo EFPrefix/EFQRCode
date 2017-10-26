@@ -41,8 +41,8 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
     // The selected color view
     private(set) var selectedIndex: EFSelectedColorView = EFSelectedColorView.RGB
 
-    private let rgbColorView: UIView = EFRGBView()
-    private let hsbColorView: UIView = EFHSBView()
+    let rgbColorView: EFRGBView = EFRGBView()
+    let hsbColorView: EFHSBView = EFHSBView()
 
     weak public var delegate: EFColorViewDelegate?
 
@@ -89,22 +89,20 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
             let views = [
                 "view" : view
             ]
-            self.addConstraints(
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "H:|[view]|",
-                    options: NSLayoutFormatOptions(rawValue: 0),
-                    metrics: nil,
-                    views: views
+            let visualFormats = [
+                "H:|[view]|",
+                "V:|[view]|"
+            ]
+            for visualFormat in visualFormats {
+                self.addConstraints(
+                    NSLayoutConstraint.constraints(
+                        withVisualFormat: visualFormat,
+                        options: NSLayoutFormatOptions(rawValue: 0),
+                        metrics: nil,
+                        views: views
+                    )
                 )
-            )
-            self.addConstraints(
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "V:|[view]|",
-                    options: NSLayoutFormatOptions(rawValue: 0),
-                    metrics: nil,
-                    views: views
-                )
-            )
+            }
         }
     }
 
@@ -125,10 +123,8 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
         self.accessibilityLabel = "color_selection_view"
 
         self.backgroundColor = UIColor.white
-        if let rgbColorView = self.rgbColorView as? EFColorView, let hsbColorView = self.hsbColorView as? EFColorView {
-            self.addColorView(view: rgbColorView)
-            self.addColorView(view: hsbColorView)
-        }
+        self.addColorView(view: rgbColorView)
+        self.addColorView(view: hsbColorView)
         self.setSelectedIndex(index: EFSelectedColorView.RGB, animated: false)
     }
 }

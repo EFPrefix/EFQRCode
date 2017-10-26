@@ -34,7 +34,7 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
     let EFColorWheelDimension: CGFloat = 200.0
 
     private let colorWheel: EFColorWheelView = EFColorWheelView()
-    private let brightnessView: EFColorComponentView = EFColorComponentView()
+    let brightnessView: EFColorComponentView = EFColorComponentView()
     private let colorSample: UIView = UIView()
 
     private var colorComponents: HSB = HSB(1, 1, 1, 1)
@@ -133,38 +133,22 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
         ]
 
         var layoutConstraints: [NSLayoutConstraint] = []
-        layoutConstraints.append(
-            contentsOf: NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-margin-[colorSample]-margin-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
-                views: views
+        let visualFormats = [
+            "H:|-margin-[colorSample]-margin-|",
+            "H:|-margin-[colorWheel(>=color_wheel_dimension)]-margin-|",
+            "H:|-margin-[brightnessView]-margin-|",
+            "V:|-margin-[colorSample(height)]-margin-[colorWheel]-margin-[brightnessView]-(>=margin@250)-|"
+        ]
+        for visualFormat in visualFormats {
+            layoutConstraints.append(
+                contentsOf: NSLayoutConstraint.constraints(
+                    withVisualFormat: visualFormat,
+                    options: NSLayoutFormatOptions(rawValue: 0),
+                    metrics: metrics,
+                    views: views
+                )
             )
-        )
-        layoutConstraints.append(
-            contentsOf: NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-margin-[colorWheel(>=color_wheel_dimension)]-margin-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
-                views: views
-            )
-        )
-        layoutConstraints.append(
-            contentsOf: NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-margin-[brightnessView]-margin-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
-                views: views
-            )
-        )
-        layoutConstraints.append(
-            contentsOf: NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-margin-[colorSample(height)]-margin-[colorWheel]-margin-[brightnessView]-(>=margin@250)-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
-                views: views
-            )
-        )
+        }
         layoutConstraints.append(
             NSLayoutConstraint(
                 item: colorWheel,
@@ -191,30 +175,21 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
         ]
 
         var layoutConstraints: [NSLayoutConstraint] = []
-        layoutConstraints.append(
-            contentsOf: NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-margin-[colorSample]-margin-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
-                views: views
+        let visualFormats = [
+            "H:|-margin-[colorSample]-margin-|",
+            "H:|-margin-[colorWheel(>=color_wheel_dimension)]-margin-[brightnessView]-(margin@500)-|",
+            "V:|-margin-[colorSample(height)]-margin-[colorWheel]-(margin@500)-|"
+        ]
+        for visualFormat in visualFormats {
+            layoutConstraints.append(
+                contentsOf: NSLayoutConstraint.constraints(
+                    withVisualFormat: visualFormat,
+                    options: NSLayoutFormatOptions(rawValue: 0),
+                    metrics: metrics,
+                    views: views
+                )
             )
-        )
-        layoutConstraints.append(
-            contentsOf: NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-margin-[colorWheel(>=color_wheel_dimension)]-margin-[brightnessView]-(margin@500)-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
-                views: views
-            )
-        )
-        layoutConstraints.append(
-            contentsOf: NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-margin-[colorSample(height)]-margin-[colorWheel]-(margin@500)-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
-                views: views
-            )
-        )
+        }
         layoutConstraints.append(
             NSLayoutConstraint(
                 item: colorWheel,
@@ -246,7 +221,9 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
 
     private func ef_updateSlidersWithColorComponents(colorComponents: HSB) {
         brightnessView.value = colorComponents.brightness
-        let tmp: UIColor = UIColor(hue: colorComponents.hue, saturation: colorComponents.saturation , brightness: 1, alpha: 1)
+        let tmp: UIColor = UIColor(
+            hue: colorComponents.hue, saturation: colorComponents.saturation , brightness: 1, alpha: 1
+        )
         brightnessView.setColors(colors: [UIColor.black.cgColor, tmp.cgColor])
     }
 
