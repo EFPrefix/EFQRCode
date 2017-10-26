@@ -50,8 +50,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func setupViews() {
-        let screenSize = UIScreen.main.bounds.size
-
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
 
         let titleLabel = UILabel()
@@ -61,9 +59,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         titleLabel.text = "EFQRCode\(version == "" ? "" : "\n\(version)")"
         titleLabel.numberOfLines = 0
         self.view.addSubview(titleLabel)
-        titleLabel.frame = CGRect(
-            x: 0, y: 0, width: screenSize.width, height: screenSize.height / 2.5
-        )
+        titleLabel.snp.makeConstraints {
+            (make) in
+            make.top.left.equalTo(0)
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view).dividedBy(2.5)
+        }
 
         let tableView = UITableView()
         tableView.bounces = false
@@ -80,9 +81,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         self.view.addSubview(tableView)
-        tableView.frame = CGRect(
-            x: 0, y: titleLabel.frame.maxY, width: screenSize.width, height: screenSize.height / 3.0
-        )
+        tableView.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(0)
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.width.equalTo(self.view)
+            make.height.equalTo(self.view).dividedBy(3)
+        }
 
         let bottomLabel = UIButton(type: .system)
         bottomLabel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -92,9 +97,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             bottomLabel.addTarget(self, action: #selector(ViewController.openBlog), for: .touchDown)
         #endif
         self.view.addSubview(bottomLabel)
-        bottomLabel.frame = CGRect(
-            x: 0, y: screenSize.height - 40, width: screenSize.width, height: 20
-        )
+        bottomLabel.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(0)
+            make.bottom.equalTo(-20)
+            make.height.equalTo(20)
+            make.width.equalTo(self.view)
+        }
     }
 
     @objc func openBlog() {
@@ -133,11 +142,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,8 +171,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     #if os(iOS)
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if 1 == indexPath.row {
-            cell.separatorInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
+        if !UIDevice.current.model.contains("iPad") {
+            if 1 == indexPath.row {
+                cell.separatorInset = UIEdgeInsets(
+                    top: 15, left: 0, bottom: 0, right: max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+                )
+            }
         }
     }
     #endif

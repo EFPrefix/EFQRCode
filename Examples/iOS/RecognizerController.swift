@@ -43,8 +43,6 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     func setupViews() {
-        let screenSize = UIScreen.main.bounds.size
-
         iamgeView = UIImageView()
         iamgeView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.32)
         iamgeView.contentMode = .scaleAspectFit
@@ -53,9 +51,13 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         iamgeView.layer.cornerRadius = 5
         iamgeView.layer.masksToBounds = true
         self.view.addSubview(iamgeView)
-        iamgeView.frame = CGRect(
-            x: 10, y: 80, width: screenSize.width - 20, height: screenSize.height - 146
-        )
+        iamgeView.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.equalTo(self.view).offset(-146)
+        }
 
         let chooseButton = UIButton(type: .system)
         chooseButton.setTitle("Choose image", for: .normal)
@@ -66,9 +68,13 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         chooseButton.layer.masksToBounds = true
         chooseButton.addTarget(self, action: #selector(RecognizerController.chooseImage), for: .touchDown)
         self.view.addSubview(chooseButton)
-        chooseButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56, width: (screenSize.width - 30) / 2.0, height: 46
-        )
+        chooseButton.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.bottom.equalTo(-10)
+            make.width.equalTo(self.view).dividedBy(2).offset(-15)
+            make.height.equalTo(46)
+        }
 
         let scanButton = UIButton(type: .system)
         scanButton.setTitle("Scan", for: .normal)
@@ -81,10 +87,13 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         scanButton.layer.masksToBounds = true
         scanButton.addTarget(self, action: #selector(RecognizerController.scanQRCode), for: .touchDown)
         self.view.addSubview(scanButton)
-        scanButton.frame = CGRect(
-            x: 20 + chooseButton.frame.width, y: screenSize.height - 56,
-            width: chooseButton.frame.width, height: 46
-        )
+        scanButton.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(chooseButton.snp.right).offset(10)
+            make.bottom.equalTo(-10)
+            make.width.equalTo(chooseButton)
+            make.height.equalTo(46)
+        }
     }
 
     @objc func chooseImage() {
@@ -117,7 +126,9 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Warning", message: "Please choose image first!", preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: "Warning", message: "Please choose image first!", preferredStyle: .alert
+            )
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }

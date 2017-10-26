@@ -79,7 +79,6 @@ extension GeneratorController {
     }
 
     func setupViews() {
-        let screenSize = UIScreen.main.bounds.size
         let buttonHeight: CGFloat = 46
 
         // Add test data
@@ -124,9 +123,13 @@ extension GeneratorController {
         textView.delegate = self
         textView.returnKeyType = .done
         self.view.addSubview(textView)
-        textView.frame = CGRect(
-            x: 10, y: 80, width: screenSize.width - 20, height: screenSize.height - 90 - (buttonHeight + 10) * 6
-        )
+        textView.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.equalTo(self.view).dividedBy(3.0)
+        }
 
         // tableView
         tableView = UITableView()
@@ -142,10 +145,12 @@ extension GeneratorController {
         tableView.backgroundColor = UIColor.clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         self.view.addSubview(tableView)
-        tableView.frame = CGRect(
-            x: 0, y: screenSize.height - 56 * 6,
-            width: screenSize.width, height: 4 * (buttonHeight + 10) + buttonHeight
-        )
+        tableView.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(0)
+            make.top.equalTo(textView.snp.bottom)
+            make.width.equalTo(self.view)
+        }
 
         createButton = UIButton(type: .system)
         createButton.setTitle("Create", for: .normal)
@@ -162,9 +167,14 @@ extension GeneratorController {
             createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .primaryActionTriggered)
         #endif
         self.view.addSubview(createButton)
-        createButton.frame = CGRect(
-            x: 10, y: screenSize.height - 56, width: screenSize.width - 20, height: buttonHeight
-        )
+        createButton.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(tableView.snp.bottom)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.equalTo(buttonHeight)
+            make.bottom.equalTo(-10)
+        }
     }
 
     func refresh() {
@@ -837,11 +847,11 @@ extension GeneratorController {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0000001
+        return CGFloat.zeroHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -871,7 +881,7 @@ extension GeneratorController {
             "\(["square", "circle"][pointShape.rawValue])"
         ]
 
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
         cell.textLabel?.textColor = UIColor.white
         cell.backgroundColor = UIColor.clear
         cell.textLabel?.text = titleArray[indexPath.row]
@@ -881,13 +891,12 @@ extension GeneratorController {
         cell.selectedBackgroundView = backView
 
         if detailArray[indexPath.row] == "" {
-            let rightImageView = UIImageView(
-                frame: CGRect(x: UIScreen.main.bounds.size.width - 45.0, y: 8.0, width: 30.0, height: 30.0)
-            )
+            let rightImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
             rightImageView.contentMode = .scaleAspectFit
             rightImageView.layer.borderColor = UIColor.white.cgColor
             rightImageView.layer.borderWidth = 0.5
-            cell.addSubview(rightImageView)
+            cell.contentView.addSubview(rightImageView)
+            cell.accessoryView = rightImageView
 
             switch indexPath.row {
             case 4:
@@ -908,8 +917,6 @@ extension GeneratorController {
         }
         return cell
     }
-
-
 }
 
 #if os(iOS)
@@ -926,7 +933,8 @@ extension GeneratorController {
 
             let colorSelectionController = EFColorSelectionViewController()
             let navCtrl = UINavigationController(rootViewController: colorSelectionController)
-
+            navCtrl.navigationBar.backgroundColor = UIColor.white
+            navCtrl.navigationBar.isTranslucent = false
             navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
             navCtrl.popoverPresentationController?.delegate = self
             navCtrl.popoverPresentationController?.sourceView = tableView
@@ -935,6 +943,7 @@ extension GeneratorController {
                 UILayoutFittingCompressedSize
             )
 
+            colorSelectionController.isColorTextFieldHidden = false
             colorSelectionController.delegate = self
             colorSelectionController.color = EFColorPicker.isFront ?  self.frontColor : self.backColor
 
@@ -1043,77 +1052,79 @@ class ShowController: UIViewController {
     }
 
     func setupViews() {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = self.image
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 1
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+        self.view.addSubview(imageView)
+
+        let backButton = UIButton(type: .system)
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(UIColor.white, for: .normal)
+        backButton.layer.borderColor = UIColor.white.cgColor
+        backButton.layer.borderWidth = 1
+        backButton.layer.cornerRadius = 5
+        backButton.layer.masksToBounds = true
+        self.view.addSubview(backButton)
+
         #if os(iOS)
-            let screenSize = UIScreen.main.bounds.size
+            let saveButton = UIButton(type: .system)
+            saveButton.setTitle("Save", for: .normal)
+            saveButton.setTitleColor(UIColor.white, for: .normal)
+            saveButton.layer.borderColor = UIColor.white.cgColor
+            saveButton.layer.borderWidth = 1
+            saveButton.layer.cornerRadius = 5
+            saveButton.layer.masksToBounds = true
+            self.view.addSubview(saveButton)
 
-            let imageView = UIImageView()
-            imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = self.image
-            imageView.layer.borderColor = UIColor.white.cgColor
-            imageView.layer.borderWidth = 1
-            imageView.layer.cornerRadius = 5
-            imageView.layer.masksToBounds = true
-            self.view.addSubview(imageView)
-            imageView.frame = CGRect(
-                x: 10, y: 30, width: screenSize.width - 20, height: screenSize.width - 20
-            )
+            imageView.snp.makeConstraints {
+                (make) in
+                make.left.equalTo(10)
+                make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+                make.width.equalTo(self.view).offset(-20)
+                make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
+                make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-46-60)
+            }
 
-            let createButton = UIButton(type: .system)
-            createButton.setTitle("Save", for: .normal)
-            createButton.setTitleColor(UIColor.white, for: .normal)
-            createButton.layer.borderColor = UIColor.white.cgColor
-            createButton.layer.borderWidth = 1
-            createButton.layer.cornerRadius = 5
-            createButton.layer.masksToBounds = true
-            createButton.addTarget(self, action: #selector(ShowController.saveToAlbum), for: .touchDown)
-            self.view.addSubview(createButton)
-            createButton.frame = CGRect(
-                x: 10, y: imageView.frame.maxY + 10, width: screenSize.width - 20, height: 46
-            )
+            saveButton.addTarget(self, action: #selector(ShowController.saveToAlbum), for: .touchDown)
+            saveButton.snp.makeConstraints {
+                (make) in
+                make.left.equalTo(10)
+                make.top.equalTo(imageView.snp.bottom).offset(10)
+                make.width.equalTo(self.view).offset(-20)
+                make.height.equalTo(46)
+            }
 
-            let backButton = UIButton(type: .system)
-            backButton.setTitle("Back", for: .normal)
-            backButton.setTitleColor(UIColor.white, for: .normal)
-            backButton.layer.borderColor = UIColor.white.cgColor
-            backButton.layer.borderWidth = 1
-            backButton.layer.cornerRadius = 5
-            backButton.layer.masksToBounds = true
             backButton.addTarget(self, action: #selector(ShowController.back), for: .touchDown)
-            self.view.addSubview(backButton)
-            backButton.frame = CGRect(
-                x: 10, y: imageView.frame.maxY + 10 + 56, width: screenSize.width - 20, height: 46
-            )
+            backButton.snp.makeConstraints {
+                (make) in
+                make.left.equalTo(10)
+                make.top.equalTo(saveButton.snp.bottom).offset(10)
+                make.width.equalTo(self.view).offset(-20)
+                make.height.equalTo(46)
+            }
         #else
-            let screenSize = UIScreen.main.bounds.size
+            imageView.snp.makeConstraints {
+                (make) in
+                make.left.equalTo(10)
+                make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+                make.width.equalTo(self.view).offset(-20)
+                make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
+                make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-60)
+            }
 
-            let imageView = UIImageView()
-            imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = self.image
-            imageView.layer.borderColor = UIColor.white.cgColor
-            imageView.layer.borderWidth = 1
-            imageView.layer.cornerRadius = 5
-            imageView.layer.masksToBounds = true
-            self.view.addSubview(imageView)
-            imageView.frame = CGRect(
-                x: 10, y: 30,
-                width: screenSize.width - 20,
-                height: min(screenSize.width - 20, screenSize.height - 20 - 46 - 60)
-            )
-
-            let createButton = UIButton(type: .system)
-            createButton.setTitle("Back", for: .normal)
-            createButton.setTitleColor(UIColor.white, for: .normal)
-            createButton.layer.borderColor = UIColor.white.cgColor
-            createButton.layer.borderWidth = 1
-            createButton.layer.cornerRadius = 5
-            createButton.layer.masksToBounds = true
-            createButton.addTarget(self, action: #selector(ShowController.back), for: .primaryActionTriggered)
-            self.view.addSubview(createButton)
-            createButton.frame = CGRect(
-                x: 10, y: imageView.frame.maxY + 10, width: screenSize.width - 20, height: 46
-            )
+            backButton.addTarget(self, action: #selector(ShowController.back), for: .primaryActionTriggered)
+            backButton.snp.makeConstraints {
+                (make) in
+                make.left.equalTo(10)
+                make.top.equalTo(imageView.snp.bottom).offset(10)
+                make.width.equalTo(self.view).offset(-20)
+                make.height.equalTo(46)
+            }
         #endif
     }
 

@@ -30,7 +30,14 @@ import UIKit
 public class EFColorComponentView: UIControl, UITextFieldDelegate {
 
     // Temporary disabled the color component editing via text field
-    let COLOR_TEXT_FIELD_ENABLED: Bool = false
+    public var colorTextFieldEnabled: Bool = false {
+        didSet {
+            if textField.isHidden != !colorTextFieldEnabled {
+                ef_remakeConstraints()
+                textField.isHidden = !colorTextFieldEnabled
+            }
+        }
+    }
 
     let EFColorComponentViewSpacing: CGFloat = 5.0
     let EFColorComponentLabelWidth: CGFloat = 60.0
@@ -144,12 +151,11 @@ public class EFColorComponentView: UIControl, UITextFieldDelegate {
         slider.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(slider)
 
-        if COLOR_TEXT_FIELD_ENABLED {
-            textField.borderStyle = UITextBorderStyle.roundedRect
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.keyboardType = UIKeyboardType.numbersAndPunctuation
-            self.addSubview(textField)
-        }
+        textField.borderStyle = UITextBorderStyle.roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.keyboardType = UIKeyboardType.numbersAndPunctuation
+        textField.isHidden = !colorTextFieldEnabled
+        self.addSubview(textField)
 
         self.value = 0.0
 
@@ -165,7 +171,7 @@ public class EFColorComponentView: UIControl, UITextFieldDelegate {
     }
 
     private func ef_installConstraints() {
-        if COLOR_TEXT_FIELD_ENABLED {
+        if colorTextFieldEnabled {
             let views: [String : Any] = [
                 "label" : label,
                 "slider" : slider,
@@ -227,5 +233,79 @@ public class EFColorComponentView: UIControl, UITextFieldDelegate {
                 )
             )
         }
+    }
+
+    private func ef_remakeConstraints() {
+        // Remove all old constraints
+        if !colorTextFieldEnabled {
+            let views: [String : Any] = [
+                "label" : label,
+                "slider" : slider,
+                "textField" : textField
+            ]
+            let metrics: [String : Any] = [
+                "spacing" : EFColorComponentViewSpacing,
+                "label_width" : EFColorComponentLabelWidth,
+                "textfield_width" : EFColorComponentTextFieldWidth
+            ]
+            self.removeConstraints(
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|[label(label_width)]-spacing-[slider]-spacing-[textField(textfield_width)]|",
+                    options: NSLayoutFormatOptions.alignAllCenterY,
+                    metrics: metrics,
+                    views: views
+                )
+            )
+            self.removeConstraints(
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:|[label]|",
+                    options: NSLayoutFormatOptions(rawValue: 0),
+                    metrics: nil,
+                    views: views
+                )
+            )
+            self.removeConstraints(
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:|[textField]|",
+                    options: NSLayoutFormatOptions(rawValue: 0),
+                    metrics: nil,
+                    views: views
+                )
+            )
+        } else {
+            let views: [String : Any] = [
+                "label" : label,
+                "slider" : slider
+            ]
+            let metrics: [String : Any] = [
+                "spacing" : EFColorComponentViewSpacing,
+                "label_width" : EFColorComponentLabelWidth
+            ]
+            self.removeConstraints(
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|[label(label_width)]-spacing-[slider]-spacing-|",
+                    options: NSLayoutFormatOptions.alignAllCenterY,
+                    metrics: metrics,
+                    views: views
+                )
+            )
+            self.removeConstraints(
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:|[label]|",
+                    options: NSLayoutFormatOptions(rawValue: 0),
+                    metrics: nil,
+                    views: views
+                )
+            )
+        }
+
+        // Readd control
+        for control in [label, slider, textField] {
+            control.removeFromSuperview()
+            self.addSubview(control)
+        }
+
+        // Add new constraints
+        ef_installConstraints()
     }
 }
