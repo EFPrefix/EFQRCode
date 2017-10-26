@@ -52,7 +52,6 @@
 		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
-		127F871F1ECF56AC0002B554 /* EFQRCode.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 127F871E1ECF56AC0002B554 /* EFQRCode.podspec */; };
 		4C256A531B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4C256A541B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4CF626F91BA7CB3E0011A099 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */; };
@@ -504,7 +503,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				127F871F1ECF56AC0002B554 /* EFQRCode.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
