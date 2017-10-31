@@ -26,7 +26,6 @@
 
 import CoreGraphics
 import CoreImage
-import ImageIO
 
 public extension CGImage {
 
@@ -148,20 +147,5 @@ public extension CGImage {
             return context.makeImage()
         }
         return nil
-    }
-}
-
-public extension CGImageSource {
-
-    // GIF
-    public func toCGImages() -> [CGImage] {
-        var frames = [CGImage]()
-        let gifCount = CGImageSourceGetCount(self)
-        for index in 0 ..< gifCount {
-            if let cgImage = CGImageSourceCreateImageAtIndex(self, index, nil) {
-                frames.append(cgImage)
-            }
-        }
-        return frames
     }
 }

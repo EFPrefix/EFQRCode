@@ -52,6 +52,9 @@
 		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
+		12AE92771FA8572E00E64E39 /* EFQRCodeGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AE92761FA8572E00E64E39 /* EFQRCodeGIF.swift */; };
+		12AE92781FA8572E00E64E39 /* EFQRCodeGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AE92761FA8572E00E64E39 /* EFQRCodeGIF.swift */; };
+		12AE92791FA8572E00E64E39 /* EFQRCodeGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AE92761FA8572E00E64E39 /* EFQRCodeGIF.swift */; };
 		4C256A531B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4C256A541B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4CF626F91BA7CB3E0011A099 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */; };
@@ -101,6 +104,7 @@
 		120B77D71EA3939F00D34440 /* EFQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFQRCode.h; sourceTree = "<group>"; };
 		126A1B591EAF225100EFBA1B /* eyrefree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyrefree.png; sourceTree = "<group>"; };
 		127F871E1ECF56AC0002B554 /* EFQRCode.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EFQRCode.podspec; sourceTree = "<group>"; };
+		12AE92761FA8572E00E64E39 /* EFQRCodeGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeGIF.swift; sourceTree = "<group>"; };
 		4C0E02681BF99A18004E7F18 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Source/Info-tvOS.plist"; sourceTree = SOURCE_ROOT; };
 		4C256A501B096C2C0065714F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +173,7 @@
 				12046B001F7A512B000154A8 /* EFQRCode.swift */,
 				12046B011F7A512B000154A8 /* EFQRCodeRecognizer.swift */,
 				12046B021F7A512B000154A8 /* EFQRCodeGenerator.swift */,
+				12AE92761FA8572E00E64E39 /* EFQRCodeGIF.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -553,6 +558,7 @@
 				12046B241F7A512C000154A8 /* CGImage+.swift in Sources */,
 				12046B1E1F7A512C000154A8 /* CIColor+.swift in Sources */,
 				12046B151F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */,
+				12AE92791FA8572E00E64E39 /* EFQRCodeGIF.swift in Sources */,
 				12046B1B1F7A512C000154A8 /* CIImage+.swift in Sources */,
 				12046B211F7A512C000154A8 /* CGSize+.swift in Sources */,
 				12046B0F1F7A512C000154A8 /* EFQRCode.swift in Sources */,
@@ -581,6 +587,7 @@
 				12046B231F7A512C000154A8 /* CGImage+.swift in Sources */,
 				12046B1D1F7A512C000154A8 /* CIColor+.swift in Sources */,
 				12046B141F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */,
+				12AE92781FA8572E00E64E39 /* EFQRCodeGIF.swift in Sources */,
 				12046B1A1F7A512C000154A8 /* CIImage+.swift in Sources */,
 				12046B201F7A512C000154A8 /* CGSize+.swift in Sources */,
 				12046B0E1F7A512C000154A8 /* EFQRCode.swift in Sources */,
@@ -601,6 +608,7 @@
 				12046B221F7A512C000154A8 /* CGImage+.swift in Sources */,
 				12046B1C1F7A512C000154A8 /* CIColor+.swift in Sources */,
 				12046B131F7A512C000154A8 /* EFQRCodeGenerator.swift in Sources */,
+				12AE92771FA8572E00E64E39 /* EFQRCodeGIF.swift in Sources */,
 				12046B191F7A512C000154A8 /* CIImage+.swift in Sources */,
 				12046B1F1F7A512C000154A8 /* CGSize+.swift in Sources */,
 				12046B0D1F7A512B000154A8 /* EFQRCode.swift in Sources */,
