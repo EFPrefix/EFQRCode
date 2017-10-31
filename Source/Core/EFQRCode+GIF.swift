@@ -1,5 +1,5 @@
 //
-//  EFQRCodeGIF.swift
+//  EFQRCode+GIF.swift
 //  EFQRCode
 //
 //  Created by EyreFree on 2017/10/23.
