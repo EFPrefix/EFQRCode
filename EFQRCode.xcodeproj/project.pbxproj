@@ -171,9 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				12046B001F7A512B000154A8 /* EFQRCode.swift */,
+				12AE92761FA8572E00E64E39 /* EFQRCode+GIF.swift */,
 				12046B011F7A512B000154A8 /* EFQRCodeRecognizer.swift */,
 				12046B021F7A512B000154A8 /* EFQRCodeGenerator.swift */,
-				12AE92761FA8572E00E64E39 /* EFQRCode+GIF.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";

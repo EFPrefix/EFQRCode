@@ -36,6 +36,8 @@ import ImageIO
 
 public extension EFQRCode {
 
+    public static var tempResultPath: URL?
+
     public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, delay: Double? = nil, loopCount: Int? = nil) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
@@ -107,7 +109,7 @@ public extension CGImageSource {
     }
 }
 
-public extension Array where Element: CGImage {
+extension Array where Element: CGImage {
 
     public func saveToGIFFile(framePropertiesArray: [CFDictionary], fileProperties: CFDictionary, url: URL? = nil) -> URL? {
         var fileURL = url
@@ -118,6 +120,7 @@ public extension Array where Element: CGImage {
             // The URL to write to. If the URL already exists, the data at this location is overwritten.
             fileURL = documentsDirectoryURL?.appendingPathComponent("EFQRCode_temp.gif")
         }
+        EFQRCode.tempResultPath = fileURL
 
         if let url = fileURL as CFURL? {
             if let destination = CGImageDestinationCreateWithURL(url, kUTTypeGIF, self.count, nil) {

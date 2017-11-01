@@ -129,14 +129,17 @@ public class EFQRCodeGenerator: NSObject {
         }
     }
     // Mode of watermark
-    private var watermarkMode: EFWatermarkMode = .scaleToFill {
+    private var watermarkMode: EFWatermarkMode = .scaleAspectFill {
         didSet {
             imageQRCode = nil
         }
     }
-    public func setWatermark(watermark: CGImage?, mode: EFWatermarkMode = .scaleAspectFill) {
+    public func setWatermark(watermark: CGImage?, mode: EFWatermarkMode? = nil) {
         self.watermark = watermark
-        self.watermarkMode = mode
+
+        if let mode = mode {
+            self.watermarkMode = mode
+        }
     }
 
     // Offset of foreground point

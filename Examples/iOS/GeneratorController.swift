@@ -71,7 +71,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
     var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
-    var magnification: EFIntSize? = EFIntSize(width: 24, height: 24)
+    var magnification: EFIntSize? = EFIntSize(width: 9, height: 9)
     var backColor = UIColor.white
     var frontColor = UIColor.black
     var icon: UIImage? = nil
@@ -212,6 +212,9 @@ extension GeneratorController {
     }
 
     @objc func createCode() {
+        // Lock user activity
+        createButton.isEnabled = false
+
         var content = ""
         if !(nil == textView.text || textView.text == "") {
             content = textView.text
@@ -240,6 +243,8 @@ extension GeneratorController {
                 self.present(alert, animated: true, completion: nil)
             }
         } else if watermark?.isGIF == true, let data = watermark?.data as? Data {
+            generator.setWatermark(watermark: nil, mode: watermarkMode)
+            
             if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
                 self.present(ShowController(image: EFImage(afterData)), animated: true, completion: nil)
             } else {
@@ -248,6 +253,9 @@ extension GeneratorController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+
+        // Recove user activity
+        createButton.isEnabled = true
     }
 
     // UITextViewDelegate
@@ -631,7 +639,10 @@ extension GeneratorController {
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.refresh()
+                }
             })
         )
         alert.addAction(
@@ -1353,11 +1364,7 @@ class ShowController: UIViewController {
             PHPhotoLibrary.shared().performChanges({
                 var assetChangeRequest: PHAssetChangeRequest?
                 if image.isGIF == true {
-                    let documentsDirectoryURL: URL? = try? FileManager.default.url(
-                        for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true
-                    )
-                    // The URL to write to. If the URL already exists, the data at this location is overwritten.
-                    guard let fileURL = documentsDirectoryURL?.appendingPathComponent("EFQRCode_temp.gif") else {
+                    guard let fileURL = EFQRCode.tempResultPath else {
                         print("Error: func save(image: UIImage)")
                         return
                     }
