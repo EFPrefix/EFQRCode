@@ -2,6 +2,14 @@
 
 -----
 
+## [4.1.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.7) (2017-11-01)
+
+#### Add
+
+* Add GIF support.
+
+---
+
 ## [4.0.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.7) (2017-09-21)
 
 #### Add
