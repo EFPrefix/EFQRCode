@@ -32,8 +32,12 @@ extension CGFloat {
 
     // ~= 20
     static func statusBar() -> CGFloat {
-        NSLog("statusBar: \(UIApplication.shared.statusBarFrame.height)")
-        return UIApplication.shared.statusBarFrame.height
+        #if os(iOS)
+            NSLog("statusBar: \(UIApplication.shared.statusBarFrame.height)")
+            return UIApplication.shared.statusBarFrame.height
+        #else
+            return 0
+        #endif
     }
 
     // ~= 44
