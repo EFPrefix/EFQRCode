@@ -24,9 +24,9 @@ EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image
 
 ## Overview
 
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode3.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode4.jpg)  
-:---------------------:|:---------------------:|:---------------------:|:---------------------:
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode8.jpg)  
+:---------------------:|:---------------------:|:---------------------:|:---------------------:
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF8.gif)  
 
 ## Demo
 
@@ -161,7 +161,31 @@ Result:
 
 <img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-#### 4. Next
+#### 4. Generation from GIF
+
+You can create GIF QRCode with function `generateWithGIF` of class `EFQRCode`, for example:
+
+```swift
+//                  data: Data of input GIF
+//             generator: An object of EFQRCodeGenerator, use for setting
+// pathToSave (Optional): Path to save the output GIF, default is temp path
+//      delay (Optional): Output QRCode GIF delay, default is same as input GIF
+//  loopCount (Optional): Output QRCode GIF loopCount, default is same as input GIF
+```
+
+```swift
+if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+    print("Create QRCode image success.")
+} else {
+    print("Create QRCode image failed!")
+}
+```
+
+You can get more information from the demo, result will like this:
+
+<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/>
+
+#### 5. Next
 
 Learn more from [User Guide](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE.md).
 

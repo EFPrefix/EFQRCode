@@ -256,3 +256,33 @@ Threshold for binarization (Only for mode binarization).
 Origin | 0.3 | 0.5 | 0.8
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold0.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold3.jpg)
+
+### 3. Generation from GIF
+
+1. First you should get the complete data of a GIF file, type is `Data`, can not get from `UIImage` or you will only get the first frame;
+2. Then you can create GIF QRCode with function `generateWithGIF` of class `EFQRCode`, for example:
+
+```swift
+//                  data: Data of input GIF
+//             generator: An object of EFQRCodeGenerator, use for setting
+// pathToSave (Optional): Path to save the output GIF, default is temp path
+//      delay (Optional): Output QRCode GIF delay, default is same as input GIF
+//  loopCount (Optional): Output QRCode GIF loopCount, default is same as input GIF
+```
+
+The `generator` here is an object of class `EFQRCodeGenerator`, to process each frame in GIF, you can find the use of it above.
+
+```swift
+if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+    print("Create QRCode image success.")
+} else {
+    print("Create QRCode image failed!")
+}
+```
+
+You can get more information from the demo, result will like this:
+
+<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/>
+
+3. Now you can get the complete data of output QRCode GIF, next we can save it to local path / system photo library / upload to server or some other things you want to do;
+4. Emmmmmm, note that the `tempResultPath` of `EFQRcode` is the path of data of GIF of last generation.

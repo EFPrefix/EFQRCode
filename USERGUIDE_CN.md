@@ -256,3 +256,33 @@ square | circle
 Origin | 0.3 | 0.5 | 0.8
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold0.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/binarizationThreshold3.jpg)
+
+### 3. 动态二维码
+
+1. 首先需要从网络/本地/相册等来源获取输入的 GIF 文件的完整数据，要 Data 类型，不能通过 UIImage 来获取，不然的话只能取到 GIF 的第一帧；
+2. 然后可以通过 EFQRCode 的类方法 generateWithGIF 来创建 GIF 二维码，使用方式如下：
+
+```swift
+//                  data: 输入的 GIF 图片的数据
+//             generator: 一个用来获取设置的 EFQRCodeGenerator 对象
+// pathToSave (Optional): 用来存储 GIF 的路径，默认不填的话会存储在临时路径
+//      delay (Optional): 输出的动态 QRCode 的帧间延时，默认不填的话从输入的 GIF 图片获取
+//  loopCount (Optional): 输出的动态 QRCode 的循环次数，默认不填的话从输入的 GIF 图片获取
+```
+
+这里的 generator 是一个 EFQRCodeGenerator 类型的对象，用来对 GIF 中的每一帧进行处理，详细用法参考上文。
+
+```swift
+if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+    print("Create QRCode image success.")
+} else {
+    print("Create QRCode image failed!")
+}
+```
+
+你可以通过查看 Demo 代码的方式来获取更多信息，结果预览：
+
+<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/>
+
+3. 到这里我们已经获取了生成的 GIF 文件的完整数据，接下来可以进行将返回的 Data 类型的数据直接保存到本地/系统相册/上传到服务器等你想做的操作；
+4. 唔，这里有一个隐藏设定，最近一次生成的 GIF 二维码是保存在 EFQRcode 类的 tempResultPath 所在的位置的。

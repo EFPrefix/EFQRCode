@@ -24,9 +24,9 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 ## 概述
 
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode1.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode2.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode3.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode4.jpg)  
-:---------------------:|:---------------------:|:---------------------:|:---------------------:
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode8.jpg)  
+:---------------------:|:---------------------:|:---------------------:|:---------------------:
+![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF8.gif)  
 
 ## 示例
 
@@ -139,11 +139,11 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 根据所输入参数创建各种艺术二维码图片，快速使用方式如下:
 
 ```swift
-//                    content: Content of QR Code
-//            size (Optional): Width and height of image
-// backgroundColor (Optional): Background color of QRCode
-// foregroundColor (Optional): Foreground color of QRCode
-//       watermark (Optional): Background image of QRCode
+//                    content: 二维码内容
+//            size (Optional): 二维码宽高
+// backgroundColor (Optional): 二维码背景色
+// foregroundColor (Optional): 二维码前景色
+//       watermark (Optional): 水印图
 ```
 
 ```swift
@@ -161,7 +161,31 @@ if let tryImage = EFQRCode.generate(
 
 <img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-#### 4. 接下来
+#### 4. 动态二维码
+
+可通过 EFQRCode 的类方法 generateWithGIF 来创建 GIF 二维码，使用方式如下：
+
+```swift
+//                  data: 输入的 GIF 图片的数据
+//             generator: 一个用来获取设置的 EFQRCodeGenerator 对象
+// pathToSave (Optional): 用来存储 GIF 的路径，默认不填的话会存储在临时路径
+//      delay (Optional): 输出的动态 QRCode 的帧间延时，默认不填的话从输入的 GIF 图片获取
+//  loopCount (Optional): 输出的动态 QRCode 的循环次数，默认不填的话从输入的 GIF 图片获取
+```
+
+```swift
+if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+    print("Create QRCode image success.")
+} else {
+    print("Create QRCode image failed!")
+}
+```
+
+你可以通过查看 Demo 代码的方式来获取更多信息，结果预览：
+
+<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/>
+
+#### 5. 接下来
 
 查看 [用户手册](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多细节。
 

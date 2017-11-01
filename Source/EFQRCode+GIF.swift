@@ -38,7 +38,7 @@ public extension EFQRCode {
 
     public static var tempResultPath: URL?
 
-    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, delay: Double? = nil, loopCount: Int? = nil) -> Data? {
+    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
 
@@ -85,7 +85,7 @@ public extension EFQRCode {
             }
 
             if let fileProperties = fileProperties, framePropertiesArray.count == frames.count {
-                if let url = frames.saveToGIFFile(framePropertiesArray: framePropertiesArray, fileProperties: fileProperties) {
+                if let url = frames.saveToGIFFile(framePropertiesArray: framePropertiesArray, fileProperties: fileProperties, url: pathToSave) {
                     return try? Data(contentsOf: url)
                 }
             }
