@@ -41,13 +41,14 @@ public extension CGImage {
         let dataSize = width * height * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: &pixelData,
-                                   width: width,
-                                   height: height,
-                                   bitsPerComponent: 8,
-                                   bytesPerRow: 4 * width,
-                                   space: colorSpace,
-                                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
+        if let context = CGContext(
+            data: &pixelData,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: 4 * width,
+            space: colorSpace,
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
             context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
             pixels = [[EFUIntPixel]]()
             for y in 0 ..< height {
@@ -119,13 +120,14 @@ public extension CGImage {
         let dataSize = width * height * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: &pixelData,
-                                   width: width,
-                                   height: height,
-                                   bitsPerComponent: 8,
-                                   bytesPerRow: 4 * width,
-                                   space: colorSpace,
-                                   bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
+        if let context = CGContext(
+            data: &pixelData,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: 4 * width,
+            space: colorSpace,
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
             context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
             for x in 0 ..< width {
                 for y in 0 ..< height {

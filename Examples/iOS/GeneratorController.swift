@@ -27,6 +27,34 @@
 import UIKit
 import Photos
 import EFQRCode
+import MobileCoreServices
+
+class EFImage {
+    var isGIF: Bool = false
+    var data: Any?
+
+    init() {
+
+    }
+
+    init?(_ image: UIImage?) {
+        if let image = image {
+            self.data = image
+            self.isGIF = false
+        } else {
+            return nil
+        }
+    }
+
+    init?(_ data: Data?) {
+        if let data = data {
+            self.data = data
+            self.isGIF = true
+        } else {
+            return nil
+        }
+    }
+}
 
 class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
 
@@ -43,12 +71,11 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
     var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
-    var magnification: EFIntSize? = EFIntSize(width: 24, height: 24)
+    var magnification: EFIntSize? = EFIntSize(width: 9, height: 9)
     var backColor = UIColor.white
     var frontColor = UIColor.black
     var icon: UIImage? = nil
     var iconSize: EFIntSize? = nil
-    var watermark: UIImage? = nil
     var watermarkMode = EFWatermarkMode.scaleAspectFill
     var mode: EFQRCodeMode = .none
     var binarizationThreshold: CGFloat = 0.5
@@ -64,6 +91,9 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         var name: String
     }
     var colorList = [colorData]()
+
+    // Image data
+    var watermark: EFImage? = nil
 }
 
 extension GeneratorController {
@@ -182,6 +212,9 @@ extension GeneratorController {
     }
 
     @objc func createCode() {
+        // Lock user activity
+        createButton.isEnabled = false
+
         var content = ""
         if !(nil == textView.text || textView.text == "") {
             content = textView.text
@@ -193,20 +226,36 @@ extension GeneratorController {
         generator.setMagnification(magnification: magnification)
         generator.setColors(backgroundColor: CIColor(color: backColor), foregroundColor: CIColor(color: frontColor))
         generator.setIcon(icon: UIImage2CGimage(icon), size: iconSize)
-        generator.setWatermark(watermark: UIImage2CGimage(watermark), mode: watermarkMode)
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowTransparent)
         generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: pointShape)
 
-        if let tryCGImage = generator.generate() {
-            let tryImage = UIImage(cgImage: tryCGImage)
-            self.present(ShowController(image: tryImage), animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        if watermark?.isGIF == false, let image = watermark?.data as? UIImage {
+            generator.setWatermark(watermark: UIImage2CGimage(image), mode: watermarkMode)
+
+            if let tryCGImage = generator.generate() {
+                let tryImage = UIImage(cgImage: tryCGImage)
+                self.present(ShowController(image: EFImage(tryImage)), animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else if watermark?.isGIF == true, let data = watermark?.data as? Data {
+            generator.setWatermark(watermark: nil, mode: watermarkMode)
+            
+            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+                self.present(ShowController(image: EFImage(afterData)), animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
+
+        // Recove user activity
+        createButton.isEnabled = true
     }
 
     // UITextViewDelegate
@@ -416,7 +465,7 @@ extension GeneratorController {
                 })
             )
         #endif
-        if let tryWaterMark = watermark {
+        if let tryWaterMark = watermark?.data as? UIImage {
             alert.addAction(
                 UIAlertAction(title: "Average of watermark", style: .default, handler: {
                     [weak self] (action) -> Void in
@@ -590,7 +639,10 @@ extension GeneratorController {
         )
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                (action) -> Void in
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.refresh()
+                }
             })
         )
         alert.addAction(
@@ -618,7 +670,7 @@ extension GeneratorController {
                 UIAlertAction(title: watermark, style: .default, handler: {
                     [weak self] (action) -> Void in
                     if let strongSelf = self {
-                        strongSelf.watermark = UIImage(named: watermark)
+                        strongSelf.watermark = EFImage(UIImage(named: watermark))
                         strongSelf.refresh()
                     }
                 })
@@ -863,7 +915,10 @@ extension GeneratorController {
         ]
         let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
         let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
-        let watermarkModeString = "\(["scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"][watermarkMode.rawValue])"
+        let watermarkModeString = [
+            "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
+            "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"
+            ][watermarkMode.rawValue]
         let detailArray = [
             "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
             "\(["none", "grayscale", "binarization"][mode.rawValue])",
@@ -909,7 +964,21 @@ extension GeneratorController {
                 rightImageView.image = icon
                 break
             case 8:
-                rightImageView.image = watermark
+                rightImageView.stopAnimating()
+                if watermark?.isGIF == true {
+                    if let dataGIF = watermark?.data as? Data {
+                        if let source = CGImageSourceCreateWithData(dataGIF as CFData, nil) {
+                            var images = [UIImage]()
+                            for cgImage in source.toCGImages() {
+                                images.append(UIImage(cgImage: cgImage))
+                            }
+                            rightImageView.animationImages = images
+                            rightImageView.startAnimating()
+                        }
+                    }
+                } else {
+                    rightImageView.image = watermark?.data as? UIImage
+                }
                 break
             default:
                 break
@@ -985,6 +1054,7 @@ extension GeneratorController {
         }
 
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
             var finalImage: UIImage?
             if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
                 finalImage = tryImage
@@ -993,9 +1063,22 @@ extension GeneratorController {
             } else{
                 print("Something wrong")
             }
+
             switch titleCurrent {
             case "watermark":
-                self.watermark = finalImage
+                self.watermark = EFImage(finalImage)
+
+                var images = [EFImage]()
+                if let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+                    if let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).lastObject {
+                        images = selectedAlbumPhotosIncludingGifWithPHAssets(assets: [asset])
+                    }
+                }
+                if let tryGIF = images.first {
+                    if tryGIF.isGIF == true {
+                        watermark = tryGIF
+                    }
+                }
                 break
             case "icon":
                 self.icon = finalImage
@@ -1006,6 +1089,58 @@ extension GeneratorController {
             self.refresh()
 
             picker.dismiss(animated: true, completion: nil)
+        }
+
+
+        // 选择相册图片（包括 GIF 图片）
+        // http://www.jianshu.com/p/ad391f4d0bcb
+        func selectedAlbumPhotosIncludingGifWithPHAssets(assets: [PHAsset]) -> [EFImage] {
+            var imageArray = [EFImage]()
+
+            let targetSize: CGSize = CGSize(width: 1024, height: 1024)
+
+            let options: PHImageRequestOptions = PHImageRequestOptions()
+            options.resizeMode = PHImageRequestOptionsResizeMode.fast
+            options.isSynchronous = true
+
+            let imageManager: PHCachingImageManager = PHCachingImageManager()
+            for asset in assets {
+                imageManager.requestImageData(for: asset, options: options, resultHandler: {
+                    [weak self] (imageData, dataUTI, orientation, info) in
+                    if let _ = self {
+                        print("dataUTI: \(dataUTI ?? "")")
+
+                        let imageElement = EFImage()
+
+                        // GIF
+                        if kUTTypeGIF as String == dataUTI {
+                            imageElement.isGIF = true
+
+                            if nil != imageData {
+                                imageElement.data = imageData
+                            }
+                        } else {
+                            imageElement.isGIF = false
+
+                            // 其他格式的图片，直接请求压缩后的图片
+                            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: PHImageContentMode.aspectFill, options: options, resultHandler: {
+                                [weak self] (result, info) in
+                                if let _ = self {
+                                    // 得到一张 UIImage，展示到界面上
+                                    if let isDegraded = info?[PHImageResultIsDegradedKey] as? Bool {
+                                        if !isDegraded {
+                                            imageElement.data = result
+                                        }
+                                    }
+                                }
+                            })
+                        }
+
+                        imageArray.append(imageElement)
+                    }
+                })
+            }
+            return imageArray
         }
 
         func chooseImageFromAlbum(title: String) {
@@ -1028,9 +1163,9 @@ extension GeneratorController {
 
 class ShowController: UIViewController {
 
-    var image: UIImage?
+    var image: EFImage?
 
-    init(image: UIImage) {
+    init(image: EFImage?) {
         super.init(nibName: nil, bundle: nil)
 
         self.image = image
@@ -1055,12 +1190,25 @@ class ShowController: UIViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
         imageView.contentMode = .scaleAspectFit
-        imageView.image = self.image
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         self.view.addSubview(imageView)
+        if self.image?.isGIF == true {
+            if let dataGIF = self.image?.data as? Data {
+                if let source = CGImageSourceCreateWithData(dataGIF as CFData, nil) {
+                    var images = [UIImage]()
+                    for cgImage in source.toCGImages() {
+                        images.append(UIImage(cgImage: cgImage))
+                    }
+                    imageView.animationImages = images
+                    imageView.startAnimating()
+                }
+            }
+        } else {
+            imageView.image = self.image?.data as? UIImage
+        }
 
         let backButton = UIButton(type: .system)
         backButton.setTitle("Back", for: .normal)
@@ -1207,19 +1355,32 @@ class ShowController: UIViewController {
             return nil
         }
 
-        func save(image: UIImage) {
+        func save(image: EFImage) {
             if assetCollection == nil {
                 // If there was an error upstream, skip the save
                 return
             }
             
             PHPhotoLibrary.shared().performChanges({
-                let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-                let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset
-                let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
-                let enumeration: NSArray = [assetPlaceHolder!]
-                albumChangeRequest!.addAssets(enumeration)
-                
+                var assetChangeRequest: PHAssetChangeRequest?
+                if image.isGIF == true {
+                    guard let fileURL = EFQRCode.tempResultPath else {
+                        print("Error: func save(image: UIImage)")
+                        return
+                    }
+                    assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: fileURL)
+                } else {
+                    if let image = image.data as? UIImage {
+                        assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                    }
+                }
+                if let assetPlaceHolder = assetChangeRequest?.placeholderForCreatedAsset {
+                    let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
+                    let enumeration: NSArray = [assetPlaceHolder]
+                    albumChangeRequest!.addAssets(enumeration)
+                } else {
+                    print("Error: func save(image: UIImage)")
+                }
             }, completionHandler: nil)
         }
     }
