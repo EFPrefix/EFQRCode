@@ -231,22 +231,24 @@ extension GeneratorController {
         generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: pointShape)
 
-        if watermark?.isGIF == false, let image = watermark?.data as? UIImage {
-            generator.setWatermark(watermark: UIImage2CGimage(image), mode: watermarkMode)
+        if watermark?.isGIF == true, let data = watermark?.data as? Data {
+            // GIF
+            generator.setWatermark(watermark: nil, mode: watermarkMode)
 
-            if let tryCGImage = generator.generate() {
-                let tryImage = UIImage(cgImage: tryCGImage)
-                self.present(ShowController(image: EFImage(tryImage)), animated: true, completion: nil)
+            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+                self.present(ShowController(image: EFImage(afterData)), animated: true, completion: nil)
             } else {
                 let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-        } else if watermark?.isGIF == true, let data = watermark?.data as? Data {
-            generator.setWatermark(watermark: nil, mode: watermarkMode)
-            
-            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
-                self.present(ShowController(image: EFImage(afterData)), animated: true, completion: nil)
+        } else {
+            // Other use UIImage
+            generator.setWatermark(watermark: UIImage2CGimage(watermark?.data as? UIImage), mode: watermarkMode)
+
+            if let tryCGImage = generator.generate() {
+                let tryImage = UIImage(cgImage: tryCGImage)
+                self.present(ShowController(image: EFImage(tryImage)), animated: true, completion: nil)
             } else {
                 let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -641,7 +643,7 @@ extension GeneratorController {
             UIAlertAction(title: "Cancel", style: .cancel, handler: {
                 [weak self] (action) -> Void in
                 if let strongSelf = self {
-                    strongSelf.refresh()
+                    // strongSelf.refresh()
                 }
             })
         )
@@ -884,6 +886,16 @@ extension GeneratorController {
          chooseBackColor, chooseFrontColor, chooseIcon, chooseIconSize,
          chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset, chooseAllowTransparent,
          chooseBinarizationThreshold, chooseShape][indexPath.row]()
+
+        if 8 == indexPath.row {
+            self.refresh()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        if 8 == indexPath.row {
+            self.refresh()
+        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -1279,7 +1291,18 @@ class ShowController: UIViewController {
     #if os(iOS)
     @objc func saveToAlbum() {
         if let tryImage = image {
-            CustomPhotoAlbum.sharedInstance.save(image: tryImage)
+            CustomPhotoAlbum.sharedInstance.save(image: tryImage) {
+                [weak self] (result) in
+                if let strongSelf = self {
+                    let alert = UIAlertController(
+                        title: result == nil ? "Success" : "Error",
+                        message: result ?? "Save finished.",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+            }
         }
     }
     #endif
@@ -1355,33 +1378,46 @@ class ShowController: UIViewController {
             return nil
         }
 
-        func save(image: EFImage) {
+        func save(image: EFImage, finish: ((String?) -> Void)? = nil) {
             if assetCollection == nil {
                 // If there was an error upstream, skip the save
+                finish?("AssetCollection is nil!")
                 return
             }
-            
+
             PHPhotoLibrary.shared().performChanges({
-                var assetChangeRequest: PHAssetChangeRequest?
-                if image.isGIF == true {
-                    guard let fileURL = EFQRCode.tempResultPath else {
-                        print("Error: func save(image: UIImage)")
-                        return
+                [weak self] in
+                if let strongSelf = self {
+                    var assetChangeRequest: PHAssetChangeRequest?
+                    if image.isGIF == true {
+                        guard let fileURL = EFQRCode.tempResultPath else {
+                            finish?("EFQRCode.tempResultPath is nil!")
+                            return
+                        }
+                        assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: fileURL)
+                    } else {
+                        if let image = image.data as? UIImage {
+                            assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                        }
                     }
-                    assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: fileURL)
-                } else {
-                    if let image = image.data as? UIImage {
-                        assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                    if let assetPlaceHolder = assetChangeRequest?.placeholderForCreatedAsset {
+                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: strongSelf.assetCollection)
+                        let enumeration: NSArray = [assetPlaceHolder]
+                        albumChangeRequest?.addAssets(enumeration)
+                    } else {
+                        finish?("PlaceholderForCreatedAsset is nil!")
                     }
                 }
-                if let assetPlaceHolder = assetChangeRequest?.placeholderForCreatedAsset {
-                    let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
-                    let enumeration: NSArray = [assetPlaceHolder]
-                    albumChangeRequest!.addAssets(enumeration)
-                } else {
-                    print("Error: func save(image: UIImage)")
+            }, completionHandler: {
+                [weak self] (result, error) in
+                if let _ = self {
+                    if result {
+                        finish?(nil)
+                    } else {
+                        finish?(error?.localizedDescription ?? "")
+                    }
                 }
-            }, completionHandler: nil)
+            })
         }
     }
 #endif
