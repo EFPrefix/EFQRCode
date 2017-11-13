@@ -18,7 +18,7 @@
 <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
 </p>
 
-EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 CoreImage 进行开发。受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，1.2.7 及后续版本支持通过 Objective-C 调用。
+EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 CoreImage 进行开发。受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式。
 
 > [English Introduction](https://github.com/EyreFree/EFQRCode/blob/master/README.md)
 

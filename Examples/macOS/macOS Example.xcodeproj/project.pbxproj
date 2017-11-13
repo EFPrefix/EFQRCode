@@ -450,7 +450,7 @@
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
+				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.macOS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -468,7 +468,7 @@
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
+				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.macOS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
