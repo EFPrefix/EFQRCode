@@ -35,12 +35,13 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addControl()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
 
-        addControl()
+        self.view.window?.title = "EFQRCode"
     }
 
     override var representedObject: Any? {
@@ -50,41 +51,33 @@ class ViewController: NSViewController {
     }
 
     func addControl() {
-        imageView = NSImageView()
-        imageView.imageAlignment = .alignCenter
-        imageView.imageScaling = .scaleProportionallyUpOrDown
-        imageView.wantsLayer = true
-        imageView.layer?.borderColor = NSColor.black.cgColor
-        imageView.layer?.borderWidth = 1.0
-        self.view.addSubview(imageView)
-
         createButton = NSButton()
         createButton.title = "Create"
         createButton.target = self
         createButton.action = #selector(createButtonClicked)
         self.view.addSubview(createButton)
+        createButton.snp.makeConstraints {
+            (make) in
+            make.left.top.equalTo(10)
+            make.right.equalTo(-10)
+            make.height.equalTo(40)
+            make.width.greaterThanOrEqualTo(600)
+        }
 
-        resizeControl()
-    }
-
-    func resizeControl() {
-        let controllerSize = self.view.frame.size
-
-        imageView.frame = CGRect(x: 10, y: 10, width: controllerSize.width - 20, height: controllerSize.height - 70)
-        createButton.frame = CGRect(x: 10, y: controllerSize.height - 50, width: controllerSize.width - 20, height: 40)
-    }
-
-    override func preferredContentSizeDidChange(for viewController: NSViewController) {
-        super.preferredContentSizeDidChange(for: viewController)
-
-
-    }
-
-    override func viewWillTransition(to newSize: NSSize) {
-
-        super.viewWillTransition(to: newSize)
-
-        resizeControl()
+        imageView = NSImageView()
+        imageView.imageAlignment = .alignCenter
+        imageView.imageScaling = .scaleAxesIndependently
+        imageView.wantsLayer = true
+        imageView.layer?.borderColor = NSColor.black.cgColor
+        imageView.layer?.borderWidth = 1.0
+        self.view.addSubview(imageView)
+        imageView.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.right.bottom.equalTo(-10)
+            make.top.equalTo(createButton.snp.bottom).offset(10)
+            make.height.greaterThanOrEqualTo(400)
+        }
     }
 
     @objc func createButtonClicked() {
