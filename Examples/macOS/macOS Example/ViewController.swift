@@ -29,13 +29,22 @@ import EFQRCode
 
 class ViewController: NSViewController {
 
-    var imageView: NSImageView!
-    var createButton: NSButton!
+    var backgroundView: NSView = NSView()
+
+    var leftBarView: NSView = NSView()
+    var leftLineView: NSView = NSView()
+    var buttonRecognize: NSImageView = EFImageView()
+    var buttonGenerate: NSImageView = EFImageView()
+
+    var imageView: NSImageView = NSImageView()
+
+    var indexSelected = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addControl()
+        refreshSelect()
     }
 
     override func viewDidAppear() {
@@ -44,51 +53,99 @@ class ViewController: NSViewController {
         self.view.window?.title = "EFQRCode"
     }
 
-    override var representedObject: Any? {
-        didSet {
-            // Update the view, if already loaded.
-        }
-    }
-
     func addControl() {
-        createButton = NSButton()
-        createButton.title = "Create"
-        createButton.target = self
-        createButton.action = #selector(createButtonClicked)
-        self.view.addSubview(createButton)
-        createButton.snp.makeConstraints {
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.backgroundColor = NSColor.theme.cgColor
+        self.view.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints {
             (make) in
-            make.left.top.equalTo(10)
-            make.right.equalTo(-10)
-            make.height.equalTo(40)
-            make.width.greaterThanOrEqualTo(600)
+            make.top.left.right.bottom.equalTo(0)
+            make.width.equalTo(600)
+            make.height.equalTo(350)
         }
 
-        imageView = NSImageView()
+        backgroundView.addSubview(leftBarView)
+        leftBarView.snp.makeConstraints {
+            (make) in
+            make.top.left.bottom.equalTo(0)
+            make.width.equalTo(48)
+        }
+
+        leftLineView.wantsLayer = true
+        leftLineView.layer?.backgroundColor = NSColor.white.cgColor
+        backgroundView.addSubview(leftLineView)
+        leftLineView.snp.makeConstraints {
+            (make) in
+            make.top.bottom.equalTo(0)
+            make.left.equalTo(leftBarView.snp.right)
+            make.width.equalTo(1)
+        }
+
+        buttonRecognize.wantsLayer = true
+        buttonRecognize.imageAlignment = .alignCenter
+        buttonRecognize.imageScaling = .scaleAxesIndependently
+        buttonRecognize.image = NSImage(named: NSImage.Name("Recognizer"))
+        buttonRecognize.action = #selector(buttonRecognizeClicked)
+        leftBarView.addSubview(buttonRecognize)
+        buttonRecognize.snp.makeConstraints {
+            (make) in
+            make.left.right.top.equalTo(0)
+            make.height.equalTo(buttonRecognize.snp.width)
+        }
+
+        buttonGenerate.wantsLayer = true
+        buttonGenerate.imageAlignment = .alignCenter
+        buttonGenerate.imageScaling = .scaleAxesIndependently
+        buttonGenerate.image = NSImage(named: NSImage.Name("Generator"))
+        buttonGenerate.action = #selector(buttonGenerateClicked)
+        leftBarView.addSubview(buttonGenerate)
+        buttonGenerate.snp.makeConstraints {
+            (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(buttonRecognize.snp.bottom)
+            make.height.equalTo(buttonGenerate.snp.width)
+        }
+
         imageView.imageAlignment = .alignCenter
         imageView.imageScaling = .scaleAxesIndependently
-        imageView.wantsLayer = true
-        imageView.layer?.borderColor = NSColor.black.cgColor
-        imageView.layer?.borderWidth = 1.0
-        self.view.addSubview(imageView)
+        imageView.image = NSImage(named: NSImage.Name("launchimage"))
+        leftBarView.addSubview(imageView)
         imageView.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
-            make.right.bottom.equalTo(-10)
-            make.top.equalTo(createButton.snp.bottom).offset(10)
-            make.height.greaterThanOrEqualTo(400)
+            make.left.right.bottom.equalTo(0)
+            make.height.equalTo(imageView.snp.width)
         }
     }
 
-    @objc func createButtonClicked() {
-        if let testImage = EFQRCode.generate(
-            content: "https://github.com/EyreFree/EFQRCode",
-            size: EFIntSize(width: 1024, height: 1024),
-            backgroundColor: CIColor.EFWhite(),
-            foregroundColor: CIColor.EFBlack(),
-            watermark: nil
-            ) {
-            imageView.image = NSImage(cgImage: testImage, size: NSSize(width: testImage.width, height: testImage.height))
+    func refreshSelect() {
+        let imageArray = ["Recognizer", "Generator"]
+        let imageSelectedArray = ["Recognizer_D", "Generator_D"]
+        for (index, button) in [buttonRecognize, buttonGenerate].enumerated() {
+            button.image = NSImage(named: NSImage.Name((index == indexSelected ? imageSelectedArray : imageArray)[index]))
+            button.layer?.backgroundColor = (index == indexSelected ? NSColor.white : NSColor.theme).cgColor
+        }
+    }
+
+    @objc func buttonRecognizeClicked() {
+        if 0 != indexSelected {
+            indexSelected = 0
+            refreshSelect()
+        }
+    }
+
+    @objc func buttonGenerateClicked() {
+        if 1 != indexSelected {
+            indexSelected = 1
+            refreshSelect()
+        }
+    }
+}
+
+class EFImageView: NSImageView {
+
+    override func mouseDown(with event: NSEvent) {
+        if let action = self.action {
+            NSApp.sendAction(action, to: self.target, from: self)
         }
     }
 }

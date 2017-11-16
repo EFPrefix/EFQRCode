@@ -28,6 +28,8 @@ import Cocoa
 
 extension NSColor {
 
+    static let theme = NSColor(calibratedRed: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
+
     convenience init(value: UInt, alpha: CGFloat = 1.0) {
         self.init(
             calibratedRed: CGFloat((value & 0xFF0000) >> 16) / 255.0,
