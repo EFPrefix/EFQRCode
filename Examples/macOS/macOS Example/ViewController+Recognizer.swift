@@ -1,8 +1,8 @@
 //
-//  RecognizerController.swift
+//  ViewController+Recognizer.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/4/20.
+//  Created by EyreFree on 2017/11/14.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -25,3 +25,21 @@
 //  THE SOFTWARE.
 
 import Foundation
+
+extension ViewController {
+
+    func addControlRecognizer() {
+        recognizerView.addSubview(recognizerViewImage)
+        recognizerViewImage.snp.makeConstraints {
+            (make) in
+            make.left.top.bottom.equalTo(0)
+            make.width.equalTo(recognizerViewImage.snp.height)
+        }
+
+//        var recognizerView = NSView()
+//        var recognizerViewImage: NSImageView = EFImageView()
+//        var recognizerViewPick: NSButton = NSButton()
+//        var recognizerViewScan: NSButton = NSButton()
+//        var recognizerViewResult: NSTextView = NSTextView()
+    }
+}

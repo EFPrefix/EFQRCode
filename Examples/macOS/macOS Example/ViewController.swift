@@ -36,9 +36,19 @@ class ViewController: NSViewController {
     var buttonRecognize: NSImageView = EFImageView()
     var buttonGenerate: NSImageView = EFImageView()
 
-    var imageView: NSImageView = NSImageView()
+    var imageView: NSImageView = EFImageView()
 
     var indexSelected = 0
+
+    // ViewController+Recognizer
+    var recognizerView = NSView()
+    var recognizerViewImage: NSImageView = EFImageView()
+    var recognizerViewPick: NSButton = NSButton()
+    var recognizerViewScan: NSButton = NSButton()
+    var recognizerViewResult: NSTextView = NSTextView()
+
+    // ViewController+Generator
+    var generatorView = NSView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,20 +119,32 @@ class ViewController: NSViewController {
         imageView.imageAlignment = .alignCenter
         imageView.imageScaling = .scaleAxesIndependently
         imageView.image = NSImage(named: NSImage.Name("launchimage"))
+        imageView.action = #selector(imageViewClicked)
         leftBarView.addSubview(imageView)
         imageView.snp.makeConstraints {
             (make) in
             make.left.right.bottom.equalTo(0)
             make.height.equalTo(imageView.snp.width)
         }
+
+        for tabView in [recognizerView, generatorView] {
+            backgroundView.addSubview(tabView)
+            tabView.snp.makeConstraints {
+                (make) in
+                make.top.bottom.right.equalTo(0)
+                make.left.equalTo(leftLineView.snp.right)
+            }
+        }
     }
 
     func refreshSelect() {
         let imageArray = ["Recognizer", "Generator"]
         let imageSelectedArray = ["Recognizer_D", "Generator_D"]
+        let views = [recognizerView, generatorView]
         for (index, button) in [buttonRecognize, buttonGenerate].enumerated() {
             button.image = NSImage(named: NSImage.Name((index == indexSelected ? imageSelectedArray : imageArray)[index]))
             button.layer?.backgroundColor = (index == indexSelected ? NSColor.white : NSColor.theme).cgColor
+            views[index].isHidden = index != indexSelected
         }
     }
 
@@ -137,6 +159,12 @@ class ViewController: NSViewController {
         if 1 != indexSelected {
             indexSelected = 1
             refreshSelect()
+        }
+    }
+
+    @objc func imageViewClicked() {
+        if let url = URL(string: "https://github.com/EyreFree/EFQRCode") {
+            NSWorkspace.shared.open(url)
         }
     }
 }

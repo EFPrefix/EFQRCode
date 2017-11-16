@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		1215ADB41EAC908000F824B1 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B41EA8DE740049DE67 /* EFQRCode.framework */; };
 		1215ADBB1EAC90AF00F824B1 /* EFQRCode macOS Tests.xctest in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B61EA8DE740049DE67 /* EFQRCode macOS Tests.xctest */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1218B8241FBB2E8700560874 /* RecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B8231FBB2E8700560874 /* RecognizerController.swift */; };
-		1218B82B1FBB2E9000560874 /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B82A1FBB2E9000560874 /* GeneratorController.swift */; };
+		1218B8241FBB2E8700560874 /* ViewController+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */; };
+		1218B82B1FBB2E9000560874 /* ViewController+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */; };
 		125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125436EE1EABA98C00C46CC7 /* NSColor+.swift */; };
 		12F371971EA8DE3A0049DE67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371961EA8DE3A0049DE67 /* AppDelegate.swift */; };
 		12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371981EA8DE3A0049DE67 /* ViewController.swift */; };
@@ -120,8 +120,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1218B8231FBB2E8700560874 /* RecognizerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizerController.swift; sourceTree = "<group>"; };
-		1218B82A1FBB2E9000560874 /* GeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorController.swift; sourceTree = "<group>"; };
+		1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Recognizer.swift"; sourceTree = "<group>"; };
+		1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Generator.swift"; sourceTree = "<group>"; };
 		125436EE1EABA98C00C46CC7 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
 		12F371931EA8DE3A0049DE67 /* EFQRCode.macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F371961EA8DE3A0049DE67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -209,8 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				12F371981EA8DE3A0049DE67 /* ViewController.swift */,
-				1218B8231FBB2E8700560874 /* RecognizerController.swift */,
-				1218B82A1FBB2E9000560874 /* GeneratorController.swift */,
+				1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */,
+				1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -448,14 +448,14 @@
 				12F715741FBB17B100EAEFDE /* ConstraintLayoutSupportDSL.swift in Sources */,
 				12F7156E1FBB17B100EAEFDE /* Constraint.swift in Sources */,
 				12F715681FBB17B100EAEFDE /* ConstraintMakerEditable.swift in Sources */,
-				1218B82B1FBB2E9000560874 /* GeneratorController.swift in Sources */,
+				1218B82B1FBB2E9000560874 /* ViewController+Generator.swift in Sources */,
 				12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */,
 				12F715731FBB17B100EAEFDE /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				12F7155F1FBB17B100EAEFDE /* ConstraintInsetTarget.swift in Sources */,
 				12F7156C1FBB17B100EAEFDE /* ConstraintView+Extensions.swift in Sources */,
 				12F715541FBB17B100EAEFDE /* LayoutConstraintItem.swift in Sources */,
 				12F715721FBB17B100EAEFDE /* LayoutConstraint.swift in Sources */,
-				1218B8241FBB2E8700560874 /* RecognizerController.swift in Sources */,
+				1218B8241FBB2E8700560874 /* ViewController+Recognizer.swift in Sources */,
 				12F7155A1FBB17B100EAEFDE /* ConstraintInsets.swift in Sources */,
 				12F715671FBB17B100EAEFDE /* ConstraintOffsetTarget.swift in Sources */,
 				125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */,
