@@ -42,7 +42,7 @@ class ViewController: NSViewController {
 
     // ViewController+Recognizer
     var recognizerView = NSView()
-    var recognizerViewImage: NSImageView = EFImageView()
+    var recognizerViewImage: DragDropImageView = DragDropImageView()
     var recognizerViewPick: NSButton = NSButton()
     var recognizerViewScan: NSButton = NSButton()
     var recognizerViewResult: NSTextView = NSTextView()
@@ -128,6 +128,9 @@ class ViewController: NSViewController {
         }
 
         for tabView in [recognizerView, generatorView] {
+            tabView.wantsLayer = true
+            tabView.layer?.backgroundColor = NSColor.white.cgColor
+            tabView.isHidden = true
             backgroundView.addSubview(tabView)
             tabView.snp.makeConstraints {
                 (make) in
@@ -135,6 +138,9 @@ class ViewController: NSViewController {
                 make.left.equalTo(leftLineView.snp.right)
             }
         }
+
+        addControlRecognizer()
+        addControlGenerator()
     }
 
     func refreshSelect() {

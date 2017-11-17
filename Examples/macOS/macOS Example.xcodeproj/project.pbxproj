@@ -12,6 +12,7 @@
 		1218B8241FBB2E8700560874 /* ViewController+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */; };
 		1218B82B1FBB2E9000560874 /* ViewController+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */; };
 		125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125436EE1EABA98C00C46CC7 /* NSColor+.swift */; };
+		12C4B5291FBECBF3006BD46D /* DragDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C4B5281FBECBF3006BD46D /* DragDropImageView.swift */; };
 		12F371971EA8DE3A0049DE67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371961EA8DE3A0049DE67 /* AppDelegate.swift */; };
 		12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371981EA8DE3A0049DE67 /* ViewController.swift */; };
 		12F3719B1EA8DE3A0049DE67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */; };
@@ -123,6 +124,7 @@
 		1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Recognizer.swift"; sourceTree = "<group>"; };
 		1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Generator.swift"; sourceTree = "<group>"; };
 		125436EE1EABA98C00C46CC7 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
+		12C4B5281FBECBF3006BD46D /* DragDropImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropImageView.swift; sourceTree = "<group>"; };
 		12F371931EA8DE3A0049DE67 /* EFQRCode.macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F371961EA8DE3A0049DE67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12F371981EA8DE3A0049DE67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,14 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		12C4B5221FBECBD7006BD46D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12C4B5281FBECBF3006BD46D /* DragDropImageView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		12F3718A1EA8DE3A0049DE67 = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +250,7 @@
 				125436F11EABA9BA00C46CC7 /* Res */,
 				125436E71EABA97900C46CC7 /* Extension */,
 				125436F21EABA9D000C46CC7 /* Controller */,
+				12C4B5221FBECBD7006BD46D /* View */,
 				125436F01EABA9B000C46CC7 /* Supporting Files */,
 			);
 			path = "macOS Example";
@@ -464,6 +475,7 @@
 				12F715591FBB17B100EAEFDE /* ConstraintPriorityTarget.swift in Sources */,
 				12F715641FBB17B100EAEFDE /* ConstraintLayoutSupport.swift in Sources */,
 				12F715621FBB17B100EAEFDE /* ConstraintView.swift in Sources */,
+				12C4B5291FBECBF3006BD46D /* DragDropImageView.swift in Sources */,
 				12F7155C1FBB17B100EAEFDE /* ConstraintDSL.swift in Sources */,
 				12F715661FBB17B100EAEFDE /* ConstraintConstantTarget.swift in Sources */,
 				12F7156F1FBB17B100EAEFDE /* Debugging.swift in Sources */,
