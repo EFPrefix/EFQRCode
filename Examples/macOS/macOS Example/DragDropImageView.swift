@@ -80,7 +80,7 @@ class DragDropImageView: NSImageView, NSDraggingSource {
         guard let mouseDown = mouseDownEvent?.locationInWindow else {
             return
         }
-        let dragPoint    = theEvent.locationInWindow
+        let dragPoint = theEvent.locationInWindow
         let dragDistance = hypot(mouseDown.x - dragPoint.x, mouseDown.y - dragPoint.y)
 
         // ...to cancel the dragging session in case of accidental drag.
@@ -99,17 +99,18 @@ class DragDropImageView: NSImageView, NSDraggingSource {
             let draggingFrameOrigin = convert(mouseDown, from: nil)
             // Build the dragging frame and offset it by half the image size on each axis
             // to center the mouse cursor within the dragging frame.
-            let draggingFrame = NSRect(origin: draggingFrameOrigin, size: img.size).offsetBy(dx: -img.size.width / 2,
-                                                                                             dy: -img.size.height / 2)
+            let draggingFrame = NSRect(origin: draggingFrameOrigin, size: img.size).offsetBy(
+                dx: -img.size.width / 2, dy: -img.size.height / 2
+            )
 
             // Assign the dragging frame to the draggingFrame property of our dragging item.
             draggingItem.draggingFrame = draggingFrame
 
             // Provide the components of the dragging image.
             draggingItem.imageComponentsProvider = {
-                let component      = NSDraggingImageComponent(key : NSDraggingItem.ImageComponentKey.icon)
+                let component = NSDraggingImageComponent(key : NSDraggingItem.ImageComponentKey.icon)
                 component.contents = image
-                component.frame    = NSRect(origin: NSPoint(), size: draggingFrame.size)
+                component.frame = NSRect(origin: NSPoint(), size: draggingFrame.size)
 
                 return [component]
             }

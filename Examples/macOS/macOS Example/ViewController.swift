@@ -29,26 +29,31 @@ import EFQRCode
 
 class ViewController: NSViewController {
 
-    var backgroundView: NSView = NSView()
+    let backgroundView: NSView = NSView()
 
-    var leftBarView: NSView = NSView()
-    var leftLineView: NSView = NSView()
-    var buttonRecognize: NSImageView = EFImageView()
-    var buttonGenerate: NSImageView = EFImageView()
+    let leftBarView: NSView = NSView()
+    let leftLineView: NSView = NSView()
+    let buttonRecognize: NSImageView = EFImageView()
+    let buttonGenerate: NSImageView = EFImageView()
 
-    var imageView: NSImageView = EFImageView()
+    let imageView: NSImageView = EFImageView()
 
     var indexSelected = 0
 
     // ViewController+Recognizer
-    var recognizerView = NSView()
-    var recognizerViewImage: DragDropImageView = DragDropImageView()
-    var recognizerViewPick: NSButton = NSButton()
-    var recognizerViewScan: NSButton = NSButton()
-    var recognizerViewResult: NSTextView = NSTextView()
+    let recognizerView = NSView()
+    let recognizerViewImage: DragDropImageView = DragDropImageView()
+    let recognizerViewPick: NSButton = NSButton()
+    let recognizerViewScan: NSButton = NSButton()
+    let recognizerViewResult: NSTextView = NSTextView()
 
     // ViewController+Generator
-    var generatorView = NSView()
+    let generatorView = NSView()
+    let generatorViewImage: NSImageView = NSImageView()
+    let generatorViewCreate: NSButton = NSButton()
+    let generatorViewSave: NSButton = NSButton()
+    let generatorViewContent: NSTextView = NSTextView()
+    let generatorViewTable: NSTableView = NSTableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +153,9 @@ class ViewController: NSViewController {
         let imageSelectedArray = ["Recognizer_D", "Generator_D"]
         let views = [recognizerView, generatorView]
         for (index, button) in [buttonRecognize, buttonGenerate].enumerated() {
-            button.image = NSImage(named: NSImage.Name((index == indexSelected ? imageSelectedArray : imageArray)[index]))
+            button.image = NSImage(
+                named: NSImage.Name((index == indexSelected ? imageSelectedArray : imageArray)[index])
+            )
             button.layer?.backgroundColor = (index == indexSelected ? NSColor.white : NSColor.theme).cgColor
             views[index].isHidden = index != indexSelected
         }

@@ -11,6 +11,7 @@
 		1215ADBB1EAC90AF00F824B1 /* EFQRCode macOS Tests.xctest in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B61EA8DE740049DE67 /* EFQRCode macOS Tests.xctest */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1218B8241FBB2E8700560874 /* ViewController+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */; };
 		1218B82B1FBB2E9000560874 /* ViewController+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */; };
+		122BB03B1FBEFA1B00BBCA0B /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BB03A1FBEFA1B00BBCA0B /* NSImage+.swift */; };
 		125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125436EE1EABA98C00C46CC7 /* NSColor+.swift */; };
 		12C4B5291FBECBF3006BD46D /* DragDropImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C4B5281FBECBF3006BD46D /* DragDropImageView.swift */; };
 		12F371971EA8DE3A0049DE67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371961EA8DE3A0049DE67 /* AppDelegate.swift */; };
@@ -123,6 +124,8 @@
 /* Begin PBXFileReference section */
 		1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Recognizer.swift"; sourceTree = "<group>"; };
 		1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Generator.swift"; sourceTree = "<group>"; };
+		122BB0391FBEF5E100BBCA0B /* EFQRCode.macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EFQRCode.macOS.entitlements; sourceTree = "<group>"; };
+		122BB03A1FBEFA1B00BBCA0B /* NSImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+.swift"; sourceTree = "<group>"; };
 		125436EE1EABA98C00C46CC7 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
 		12C4B5281FBECBF3006BD46D /* DragDropImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropImageView.swift; sourceTree = "<group>"; };
 		12F371931EA8DE3A0049DE67 /* EFQRCode.macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				125436EE1EABA98C00C46CC7 /* NSColor+.swift */,
+				122BB03A1FBEFA1B00BBCA0B /* NSImage+.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -245,6 +249,7 @@
 		12F371951EA8DE3A0049DE67 /* macOS Example */ = {
 			isa = PBXGroup;
 			children = (
+				122BB0391FBEF5E100BBCA0B /* EFQRCode.macOS.entitlements */,
 				12F371961EA8DE3A0049DE67 /* AppDelegate.swift */,
 				12F715281FBB16D700EAEFDE /* 3rd */,
 				125436F11EABA9BA00C46CC7 /* Res */,
@@ -358,6 +363,11 @@
 						DevelopmentTeam = P3X2725LYY;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -461,6 +471,7 @@
 				12F715681FBB17B100EAEFDE /* ConstraintMakerEditable.swift in Sources */,
 				1218B82B1FBB2E9000560874 /* ViewController+Generator.swift in Sources */,
 				12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */,
+				122BB03B1FBEFA1B00BBCA0B /* NSImage+.swift in Sources */,
 				12F715731FBB17B100EAEFDE /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				12F7155F1FBB17B100EAEFDE /* ConstraintInsetTarget.swift in Sources */,
 				12F7156C1FBB17B100EAEFDE /* ConstraintView+Extensions.swift in Sources */,
@@ -623,6 +634,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "macOS Example/EFQRCode.macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -641,6 +653,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "macOS Example/EFQRCode.macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
