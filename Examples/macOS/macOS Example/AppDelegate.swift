@@ -37,3 +37,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
 }
+
+func messageBox(_ message: String) {
+    let alert = NSAlert()
+    alert.messageText = message
+    alert.runModal()
+}

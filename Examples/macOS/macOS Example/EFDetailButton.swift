@@ -1,8 +1,8 @@
 //
-//  NSColor+.swift
-//  EFQRCode
+//  EFDetailButton.swift
+//  macOS Example
 //
-//  Created by EyreFree on 2017/4/22.
+//  Created by EyreFree on 2017/11/22.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -26,16 +26,7 @@
 
 import Cocoa
 
-extension NSColor {
+class EFDetailButton: NSButton {
 
-    static let theme = NSColor(calibratedRed: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
-
-    convenience init(value: UInt, alpha: CGFloat = 1.0) {
-        self.init(
-            calibratedRed: CGFloat((value & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((value & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(value & 0x0000FF) / 255.0,
-            alpha: alpha
-        )
-    }
+    var detailView: NSView?
 }
