@@ -62,6 +62,8 @@ class ViewController: NSViewController {
         return buttons
     }()
 
+    var result: Data?
+
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
     var mode: EFQRCodeMode = .none

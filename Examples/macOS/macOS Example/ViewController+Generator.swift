@@ -62,7 +62,7 @@ class EFFrontColorPicker: NSColorPanel {
 
 }
 
-extension ViewController {
+extension ViewController: NSAlertDelegate {
 
     func addControlGenerator() {
         generatorView.addSubview(generatorViewImage)
@@ -209,6 +209,7 @@ extension ViewController {
 
             if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
                 generatorViewImage.image = NSImage(data: afterData)
+                self.result = afterData
             } else {
                 messageBox("Create QRCode failed!")
             }
@@ -232,20 +233,28 @@ extension ViewController {
     @objc func generatorViewSaveClicked() {
         if let image = generatorViewImage.image {
             let panel = NSSavePanel()
-            panel.nameFieldStringValue = "Untitle.png"
+            panel.allowedFileTypes = ["png", "gif"]
+            panel.nameFieldStringValue = self.watermark?.isGIF == true ? "Untitle.gif" : "Untitle.png"
             panel.message = "Choose the path to save the image"
             panel.allowsOtherFileTypes = true
-            panel.allowedFileTypes = ["png"]
             panel.isExtensionHidden = true
             panel.canCreateDirectories = true
             panel.begin {
                 [weak self] (result) in
-                if let _ = self {
+                if let strongSelf = self {
                     if result.rawValue == NSFileHandlingPanelOKButton {
                         // [@"onecodego" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
                         if let url = panel.url {
-                            if image.pngWrite(to: url, options: .atomic) {
-                                print("Image saved")
+                            if url.absoluteString.lowercased().hasSuffix(".gif") {
+                                do {
+                                    try strongSelf.result?.write(to: url)
+                                } catch {
+                                    messageBox("GIF image saved failed!")
+                                    return
+                                }
+                                messageBox("GIF image saved.")
+                            } else if image.pngWrite(to: url, options: .atomic) {
+                                messageBox("Image saved.")
                             }
                         }
                     }
@@ -363,19 +372,90 @@ extension ViewController {
 
     // MARK:- param
     func chooseInputCorrectionLevel() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "inputCorrectionLevel"
+            alert.addButton(withTitle: "L")
+            alert.addButton(withTitle: "M")
+            alert.addButton(withTitle: "Q")
+            alert.addButton(withTitle: "H")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    strongSelf.inputCorrectionLevel = [
+                        EFInputCorrectionLevel.l,
+                        EFInputCorrectionLevel.m,
+                        EFInputCorrectionLevel.q,
+                        EFInputCorrectionLevel.h
+                        ][response.rawValue - 1000]
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseMode() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "mode"
+            alert.addButton(withTitle: "none")
+            alert.addButton(withTitle: "grayscale")
+            alert.addButton(withTitle: "binarization")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    strongSelf.mode = [
+                        EFQRCodeMode.none,
+                        EFQRCodeMode.grayscale,
+                        EFQRCodeMode.binarization
+                        ][response.rawValue - 1000]
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseSize() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "size"
+            alert.addButton(withTitle: "128x128")
+            alert.addButton(withTitle: "256x256")
+            alert.addButton(withTitle: "1024x1024")
+            alert.addButton(withTitle: "2048x2048")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    let size = [128, 256, 1024, 2048][response.rawValue - 1000]
+                    strongSelf.size = EFIntSize(width: size, height: size)
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseMagnification() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "magnification"
+            alert.addButton(withTitle: "nil")
+            alert.addButton(withTitle: "3x3")
+            alert.addButton(withTitle: "9x9")
+            alert.addButton(withTitle: "12x12")
+            alert.addButton(withTitle: "30x30")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    let size = [nil, 3, 9, 12, 30][response.rawValue - 1000]
+                    strongSelf.magnification = size == nil ? nil : EFIntSize(width: size!, height: size!)
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseBackColor() {
@@ -401,7 +481,23 @@ extension ViewController {
     }
 
     func chooseIconSize() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "iconSize"
+            alert.addButton(withTitle: "nil")
+            alert.addButton(withTitle: "32x32")
+            alert.addButton(withTitle: "64x64")
+            alert.addButton(withTitle: "128x128")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    let size = [nil, 32, 64, 128][response.rawValue - 1000]
+                    strongSelf.iconSize = size == nil ? nil : EFIntSize(width: size!, height: size!)
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseWatermark() {
@@ -421,22 +517,125 @@ extension ViewController {
     }
 
     func chooseWatermarkMode() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "watermarkMode"
+            alert.addButton(withTitle: "scaleToFill")
+            alert.addButton(withTitle: "scaleAspectFit")
+            alert.addButton(withTitle: "scaleAspectFill")
+            alert.addButton(withTitle: "center")
+            alert.addButton(withTitle: "top")
+            alert.addButton(withTitle: "bottom")
+            alert.addButton(withTitle: "left")
+            alert.addButton(withTitle: "right")
+            alert.addButton(withTitle: "topLeft")
+            alert.addButton(withTitle: "topRight")
+            alert.addButton(withTitle: "bottomLeft")
+            alert.addButton(withTitle: "bottomRight")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    strongSelf.watermarkMode = [
+                        EFWatermarkMode.scaleToFill,
+                        EFWatermarkMode.scaleAspectFit,
+                        EFWatermarkMode.scaleAspectFill,
+                        EFWatermarkMode.center,
+                        EFWatermarkMode.top,
+                        EFWatermarkMode.bottom,
+                        EFWatermarkMode.left,
+                        EFWatermarkMode.right,
+                        EFWatermarkMode.topLeft,
+                        EFWatermarkMode.topRight,
+                        EFWatermarkMode.bottomLeft,
+                        EFWatermarkMode.bottomRight
+                        ][response.rawValue - 1000]
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseForegroundPointOffset() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "foregroundPointOffset"
+            alert.addButton(withTitle: "nil")
+            alert.addButton(withTitle: "-0.5")
+            alert.addButton(withTitle: "-0.25")
+            alert.addButton(withTitle: "0")
+            alert.addButton(withTitle: "0.25")
+            alert.addButton(withTitle: "0.5")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    strongSelf.foregroundPointOffset = [nil, CGFloat(-0.5), -0.25, 0, 0.25, 0.5][response.rawValue - 1000] ?? 0
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseAllowTransparent() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "allowTransparent"
+            alert.addButton(withTitle: "true")
+            alert.addButton(withTitle: "false")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    strongSelf.allowTransparent = [true, false][response.rawValue - 1000]
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseBinarizationThreshold() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "binarizationThreshold"
+            alert.addButton(withTitle: "0")
+            alert.addButton(withTitle: "0.1")
+            alert.addButton(withTitle: "0.2")
+            alert.addButton(withTitle: "0.3")
+            alert.addButton(withTitle: "0.4")
+            alert.addButton(withTitle: "0.5")
+            alert.addButton(withTitle: "0.6")
+            alert.addButton(withTitle: "0.7")
+            alert.addButton(withTitle: "0.8")
+            alert.addButton(withTitle: "0.9")
+            alert.addButton(withTitle: "1")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    strongSelf.binarizationThreshold = CGFloat(
+                        [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1][response.rawValue - 1000]
+                    )
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 
     func chooseShape() {
-
+        if let window = self.view.window {
+            let alert = NSAlert()
+            alert.messageText = "shape"
+            alert.addButton(withTitle: "square")
+            alert.addButton(withTitle: "circle")
+            alert.delegate = self
+            alert.beginSheetModal(for: window) {
+                [weak self] (response) in
+                if let strongSelf = self {
+                    strongSelf.pointShape = [EFPointShape.square, EFPointShape.circle][response.rawValue - 1000]
+                    strongSelf.refresh()
+                }
+            }
+        }
     }
 }
