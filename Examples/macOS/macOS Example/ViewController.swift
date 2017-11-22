@@ -54,13 +54,29 @@ class ViewController: NSViewController {
     let generatorViewSave: NSButton = NSButton()
     let generatorViewContent: NSTextView = NSTextView()
     let generatorViewTable = NSView()
-    lazy var generatorViewOptions: [NSButton] = {
-        var buttons = [NSButton]()
+    lazy var generatorViewOptions: [EFDetailButton] = {
+        var buttons = [EFDetailButton]()
         for index in 0 ..< titleArray.count {
-            buttons.append(NSButton())
+            buttons.append(EFDetailButton())
         }
         return buttons
     }()
+
+    // Param
+    var inputCorrectionLevel = EFInputCorrectionLevel.h
+    var mode: EFQRCodeMode = .none
+    var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
+    var magnification: EFIntSize? = EFIntSize(width: 9, height: 9)
+    var backColor = NSColor.white
+    var frontColor = NSColor.black
+    var icon: NSImage? = nil
+    var iconSize: EFIntSize? = nil
+    var watermark: EFImage? = nil
+    var watermarkMode = EFWatermarkMode.scaleAspectFill
+    var foregroundPointOffset: CGFloat = 0
+    var allowTransparent: Bool = true
+    var binarizationThreshold: CGFloat = 0.5
+    var pointShape: EFPointShape = .square
 
     let titleArray = [
         "inputCorrectionLevel", "mode", "size", "magnification",
@@ -72,7 +88,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        recognizerViewResult.string = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+        recognizerViewResult.string = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
         generatorViewContent.string = "\n\n\n\n\n\n\n"
 
         addControl()
@@ -83,7 +99,7 @@ class ViewController: NSViewController {
         super.viewDidAppear()
 
         recognizerViewResult.string = ""
-        generatorViewContent.string = ""
+        generatorViewContent.string = "https://github.com/EyreFree/EFQRCode"
 
         self.view.window?.title = "EFQRCode"
     }
@@ -95,8 +111,8 @@ class ViewController: NSViewController {
         backgroundView.snp.makeConstraints {
             (make) in
             make.top.left.right.bottom.equalTo(0)
-            make.width.equalTo(600)
-            make.height.equalTo(350)
+            make.width.equalTo(800)
+            make.height.equalTo(380)
         }
 
         backgroundView.addSubview(leftBarView)

@@ -1,8 +1,8 @@
 //
-//  AppDelegate.swift
-//  EFQRCode
+//  EFDetailButton.swift
+//  macOS Example
 //
-//  Created by EyreFree on 2017/4/20.
+//  Created by EyreFree on 2017/11/22.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -26,20 +26,7 @@
 
 import Cocoa
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class EFDetailButton: NSButton {
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        
-    }
-}
-
-func messageBox(_ message: String) {
-    let alert = NSAlert()
-    alert.messageText = message
-    alert.runModal()
+    var detailView: NSView?
 }

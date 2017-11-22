@@ -27,13 +27,48 @@
 import Cocoa
 import EFQRCode
 
+class EFImage {
+    var isGIF: Bool = false
+    var data: Any?
+
+    init() {
+
+    }
+
+    init?(_ image: NSImage?) {
+        if let image = image {
+            self.data = image
+            self.isGIF = false
+        } else {
+            return nil
+        }
+    }
+
+    init?(_ data: Data?) {
+        if let data = data {
+            self.data = data
+            self.isGIF = true
+        } else {
+            return nil
+        }
+    }
+}
+
+class EFBackColorPicker: NSColorPanel {
+
+}
+
+class EFFrontColorPicker: NSColorPanel {
+
+}
+
 extension ViewController {
 
     func addControlGenerator() {
         generatorView.addSubview(generatorViewImage)
 
         let tryCentredStyle = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
-        tryCentredStyle?.alignment = .center
+        tryCentredStyle?.alignment = .left
         let centredStyle = tryCentredStyle ?? NSMutableParagraphStyle.default
 
         generatorViewSave.wantsLayer = true
@@ -113,6 +148,7 @@ extension ViewController {
         for index in 0 ..< generatorViewOptions.count {
             let margin = 5
 
+            generatorViewOptions[index].tag = index
             generatorViewOptions[index].wantsLayer = true
             generatorViewOptions[index].layer?.cornerRadius = 5
             generatorViewOptions[index].bezelStyle = .regularSquare
@@ -122,6 +158,7 @@ extension ViewController {
                     NSAttributedStringKey.paragraphStyle: centredStyle
                 ]
             )
+            generatorViewOptions[index].action = #selector(generatorViewOptionsClicked(button:))
             generatorViewTable.addSubview(generatorViewOptions[index])
             generatorViewOptions[index].snp.makeConstraints {
                 (make) in
@@ -145,15 +182,51 @@ extension ViewController {
                 }
             }
         }
+
+        refresh()
     }
 
     @objc func generatorViewCreateClicked() {
+        // Lock user activity
+        generatorViewCreate.isEnabled = false
+
         let content = generatorViewContent.string
-        if let cgImage = EFQRCode.generate(content: content) {
-            generatorViewImage.image = NSImage(
-                cgImage: cgImage, size: NSSize(width: cgImage.width, height: cgImage.height)
-            )
+
+        let generator = EFQRCodeGenerator(content: content, size: size)
+        generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
+        generator.setMode(mode: mode)
+        generator.setMagnification(magnification: magnification)
+        generator.setColors(backgroundColor: backColor.toCIColor(), foregroundColor: frontColor.toCIColor())
+        generator.setIcon(icon: icon?.toCGImage(), size: iconSize)
+        generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
+        generator.setAllowTransparent(allowTransparent: allowTransparent)
+        generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
+        generator.setPointShape(pointShape: pointShape)
+
+        if watermark?.isGIF == true, let data = watermark?.data as? Data {
+            // GIF
+            generator.setWatermark(watermark: nil, mode: watermarkMode)
+
+            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+                generatorViewImage.image = NSImage(data: afterData)
+            } else {
+                messageBox("Create QRCode failed!")
+            }
+        } else {
+            // Other use UIImage
+            generator.setWatermark(watermark: (watermark?.data as? NSImage)?.toCGImage(), mode: watermarkMode)
+
+            if let tryCGImage = generator.generate() {
+                generatorViewImage.image = NSImage(
+                    cgImage: tryCGImage, size: NSSize(width: tryCGImage.width, height: tryCGImage.height)
+                )
+            } else {
+                messageBox("Create QRCode failed!")
+            }
         }
+
+        // Recove user activity
+        generatorViewCreate.isEnabled = true
     }
 
     @objc func generatorViewSaveClicked() {
@@ -179,5 +252,181 @@ extension ViewController {
                 }
             }
         }
+    }
+
+    @objc func generatorViewOptionsClicked(button: NSButton) {
+        [chooseInputCorrectionLevel, chooseMode, chooseSize, chooseMagnification,
+         chooseBackColor, chooseFrontColor, chooseIcon, chooseIconSize,
+         chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset, chooseAllowTransparent,
+         chooseBinarizationThreshold, chooseShape][button.tag]()
+    }
+
+    func refresh() {
+        let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
+        let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
+        let watermarkModeString = [
+            "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
+            "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"
+            ][watermarkMode.rawValue]
+        let detailArray = [
+            "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
+            "\(["none", "grayscale", "binarization"][mode.rawValue])",
+            "\(size.width)x\(size.height)",
+            magnificationString,
+            "", // backgroundColor
+            "", // foregroundColor
+            "", // icon
+            iconSizeString,
+            "", // watermark
+            watermarkModeString,
+            "\(foregroundPointOffset)",
+            "\(allowTransparent)",
+            "\(binarizationThreshold)",
+            "\(["square", "circle"][pointShape.rawValue])"
+        ]
+
+        for (index, button) in self.generatorViewOptions.enumerated() {
+            if "" != detailArray[index] {
+                if nil == button.detailView {
+                    let label = NSTextField()
+                    label.isBezeled = false
+                    label.drawsBackground = false
+                    label.isEditable = false
+                    label.alignment = .right
+                    label.textColor = NSColor.gray
+                    label.sizeToFit()
+                    button.addSubview(label)
+                    label.snp.makeConstraints {
+                        (make) in
+                        make.left.centerY.equalTo(button)
+                        make.right.equalTo(-10)
+                    }
+
+                    button.detailView = label
+                }
+                (button.detailView as? NSTextField)?.stringValue = detailArray[index]
+            } else {
+                if nil == button.detailView {
+                    let rightImageView = NSImageView()
+                    rightImageView.imageAlignment = .alignCenter
+                    rightImageView.imageScaling = .scaleAxesIndependently
+                    rightImageView.wantsLayer = true
+                    rightImageView.layer?.borderColor = NSColor.theme.cgColor
+                    rightImageView.layer?.borderWidth = 0.5
+                    button.addSubview(rightImageView)
+                    rightImageView.snp.makeConstraints {
+                        (make) in
+                        make.width.equalTo(rightImageView.snp.height)
+                        make.right.bottom.equalTo(-5)
+                        make.top.equalTo(5)
+                    }
+
+                    button.detailView = rightImageView
+                }
+
+                let rightImageView = (button.detailView as? NSImageView)
+                switch index {
+                case 4:
+                    rightImageView?.layer?.backgroundColor = backColor.cgColor
+                    break
+                case 5:
+                    rightImageView?.layer?.backgroundColor = frontColor.cgColor
+                    break
+                case 6:
+                    rightImageView?.image = icon
+                    break
+                case 8:
+//                    rightImageView.stopAnimating()
+//                    if watermark?.isGIF == true {
+//                        if let dataGIF = watermark?.data as? Data {
+//                            if let source = CGImageSourceCreateWithData(dataGIF as CFData, nil) {
+//                                var images = [UIImage]()
+//                                for cgImage in source.toCGImages() {
+//                                    images.append(UIImage(cgImage: cgImage))
+//                                }
+//                                rightImageView.animationImages = images
+//                                rightImageView.startAnimating()
+//                            }
+//                        }
+//                    } else {
+//                        rightImageView.image = watermark?.data as? UIImage
+//                    }
+                    break
+                default:
+                    break
+                }
+            }
+        }
+    }
+
+    @objc func backColorChanged(colorPanel: NSColorPanel) {
+        self.backColor = colorPanel.color
+        self.refresh()
+    }
+
+    @objc func frontColorChanged(colorPanel: NSColorPanel) {
+        self.frontColor = colorPanel.color
+        self.refresh()
+    }
+
+    // MARK:- param
+    func chooseInputCorrectionLevel() {
+
+    }
+
+    func chooseMode() {
+
+    }
+
+    func chooseSize() {
+
+    }
+
+    func chooseMagnification() {
+
+    }
+
+    func chooseBackColor() {
+        EFBackColorPicker.shared.setAction(#selector(backColorChanged(colorPanel:)))
+        EFBackColorPicker.shared.setTarget(self)
+        EFBackColorPicker.shared.makeKeyAndOrderFront(self)
+    }
+
+    func chooseFrontColor() {
+        EFFrontColorPicker.shared.setAction(#selector(frontColorChanged(colorPanel:)))
+        EFFrontColorPicker.shared.setTarget(self)
+        EFFrontColorPicker.shared.makeKeyAndOrderFront(self)
+    }
+
+    func chooseIcon() {
+
+    }
+
+    func chooseIconSize() {
+
+    }
+
+    func chooseWatermark() {
+
+    }
+
+    func chooseWatermarkMode() {
+
+    }
+
+    func chooseForegroundPointOffset() {
+
+    }
+
+    func chooseAllowTransparent() {
+
+    }
+
+    func chooseBinarizationThreshold() {
+
+    }
+
+    func chooseShape() {
+
     }
 }

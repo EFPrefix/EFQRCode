@@ -80,6 +80,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     var mode: EFQRCodeMode = .none
     var binarizationThreshold: CGFloat = 0.5
     var pointShape: EFPointShape = .square
+    var watermark: EFImage? = nil
 
     // MARK:- Not commonly used
     var foregroundPointOffset: CGFloat = 0
@@ -91,9 +92,6 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
         var name: String
     }
     var colorList = [colorData]()
-
-    // Image data
-    var watermark: EFImage? = nil
 }
 
 extension GeneratorController {
