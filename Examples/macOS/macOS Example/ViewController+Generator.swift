@@ -336,21 +336,13 @@ extension ViewController {
                     rightImageView?.image = icon
                     break
                 case 8:
-//                    rightImageView.stopAnimating()
-//                    if watermark?.isGIF == true {
-//                        if let dataGIF = watermark?.data as? Data {
-//                            if let source = CGImageSourceCreateWithData(dataGIF as CFData, nil) {
-//                                var images = [UIImage]()
-//                                for cgImage in source.toCGImages() {
-//                                    images.append(UIImage(cgImage: cgImage))
-//                                }
-//                                rightImageView.animationImages = images
-//                                rightImageView.startAnimating()
-//                            }
-//                        }
-//                    } else {
-//                        rightImageView.image = watermark?.data as? UIImage
-//                    }
+                    if watermark?.isGIF == true {
+                        if let dataGIF = watermark?.data as? Data {
+                            rightImageView?.image = NSImage(data: dataGIF)
+                        }
+                    } else {
+                        rightImageView?.image = watermark?.data as? NSImage
+                    }
                     break
                 default:
                     break
@@ -399,7 +391,13 @@ extension ViewController {
     }
 
     func chooseIcon() {
-
+        selectImageFromDisk(finish: {
+            [weak self] (image) in
+            if let strongSelf = self {
+                strongSelf.icon = image
+                strongSelf.refresh()
+            }
+        })
     }
 
     func chooseIconSize() {
@@ -407,7 +405,19 @@ extension ViewController {
     }
 
     func chooseWatermark() {
-
+        selectImageFromDisk(finish: {
+            [weak self] (image) in
+            if let strongSelf = self {
+                strongSelf.watermark = EFImage(image)
+                strongSelf.refresh()
+            }
+        }) {
+            [weak self] (imageGIF) in
+            if let strongSelf = self {
+                strongSelf.watermark = EFImage(imageGIF)
+                strongSelf.refresh()
+            }
+        }
     }
 
     func chooseWatermarkMode() {

@@ -105,6 +105,24 @@ extension ViewController {
     }
 
     @objc func recognizerViewPickClicked() {
+        selectImageFromDisk(finish: {
+            [weak self] (image) in
+            if let strongSelf = self {
+                strongSelf.recognizerViewImage.image = image
+            }
+        })
+    }
+
+    @objc func recognizerViewScanClicked() {
+        recognizerViewResult.string = ""
+        if let image = recognizerViewImage.image?.toCGImage() {
+            if let resultArray = EFQRCode.recognize(image: image), resultArray.count > 0 {
+                recognizerViewResult.string = resultArray[0]
+            }
+        }
+    }
+
+    func selectImageFromDisk(finish: ((NSImage) -> Void)?, finishGIF: ((Data) -> Void)? = nil) {
         // https://gist.github.com/jlindsey/499215
         let panel = NSOpenPanel()
         panel.allowedFileTypes = NSImage.imageTypes
@@ -118,25 +136,25 @@ extension ViewController {
 
         panel.begin {
             [weak self] (result) in
-            if let strongSelf = self {
+            if let _ = self {
                 if result.rawValue == NSFileHandlingPanelOKButton {
                     // We aren't allowing multiple selection, but NSOpenPanel still returns
                     // an array with a single element.
-                    if let imagePath = panel.urls.first, let image = NSImage(contentsOf: imagePath) {
-                        strongSelf.recognizerViewImage.image = image
+                    if let imagePath = panel.urls.first {
+
+                        if imagePath.absoluteString.lowercased().hasSuffix(".gif") && nil != finishGIF {
+                            if let image = try? Data(contentsOf: imagePath) {
+                                finishGIF?(image)
+                            }
+                        } else {
+                            if let image = NSImage(contentsOf: imagePath) {
+                                finish?(image)
+                            }
+                        }
                     }
                 } else {
                     panel.close()
                 }
-            }
-        }
-    }
-
-    @objc func recognizerViewScanClicked() {
-        recognizerViewResult.string = ""
-        if let image = recognizerViewImage.image?.toCGImage() {
-            if let resultArray = EFQRCode.recognize(image: image), resultArray.count > 0 {
-                recognizerViewResult.string = resultArray[0]
             }
         }
     }
