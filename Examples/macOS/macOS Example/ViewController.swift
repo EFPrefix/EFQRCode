@@ -53,10 +53,27 @@ class ViewController: NSViewController {
     let generatorViewCreate: NSButton = NSButton()
     let generatorViewSave: NSButton = NSButton()
     let generatorViewContent: NSTextView = NSTextView()
-    let generatorViewTable: NSTableView = NSTableView()
+    let generatorViewTable = NSView()
+    lazy var generatorViewOptions: [NSButton] = {
+        var buttons = [NSButton]()
+        for index in 0 ..< titleArray.count {
+            buttons.append(NSButton())
+        }
+        return buttons
+    }()
+
+    let titleArray = [
+        "inputCorrectionLevel", "mode", "size", "magnification",
+        "backgroundColor", "foregroundColor", "icon", "iconSize",
+        "watermark", "watermarkMode", "foregroundPointOffset", "allowTransparent",
+        "binarizationThreshold", "pointShape"
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        recognizerViewResult.string = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+        generatorViewContent.string = "\n\n\n\n\n\n\n"
 
         addControl()
         refreshSelect()
@@ -64,6 +81,9 @@ class ViewController: NSViewController {
 
     override func viewDidAppear() {
         super.viewDidAppear()
+
+        recognizerViewResult.string = ""
+        generatorViewContent.string = ""
 
         self.view.window?.title = "EFQRCode"
     }

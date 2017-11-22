@@ -102,16 +102,48 @@ extension ViewController {
             make.height.equalTo(100)
         }
 
-        generatorViewTable.wantsLayer = true
-        generatorViewTable.layer?.borderColor = NSColor.theme.cgColor
-        generatorViewTable.layer?.borderWidth = 1
-        generatorViewTable.layer?.cornerRadius = 5
         generatorView.addSubview(generatorViewTable)
         generatorViewTable.snp.makeConstraints {
             (make) in
             make.top.equalTo(generatorViewContent.snp.bottom).offset(10)
             make.bottom.equalTo(-10)
             make.left.right.equalTo(generatorViewContent)
+        }
+
+        for index in 0 ..< generatorViewOptions.count {
+            let margin = 5
+
+            generatorViewOptions[index].wantsLayer = true
+            generatorViewOptions[index].layer?.cornerRadius = 5
+            generatorViewOptions[index].bezelStyle = .regularSquare
+            generatorViewOptions[index].attributedTitle = NSMutableAttributedString(
+                string: titleArray[index], attributes: [
+                    NSAttributedStringKey.foregroundColor: NSColor.theme,
+                    NSAttributedStringKey.paragraphStyle: centredStyle
+                ]
+            )
+            generatorViewTable.addSubview(generatorViewOptions[index])
+            generatorViewOptions[index].snp.makeConstraints {
+                (make) in
+                if 1 == index % 2 {
+                    make.left.equalTo(generatorViewOptions[index - 1].snp.right).offset(margin)
+                    make.right.equalTo(0)
+                    make.width.equalTo(generatorViewOptions[index - 1])
+                } else {
+                    make.left.equalTo(0)
+                }
+
+                if index > 1 {
+                    make.top.equalTo(generatorViewOptions[index - 2].snp.bottom).offset(margin)
+                    make.height.equalTo(generatorViewOptions[index - 2])
+                } else {
+                    make.top.equalTo(0)
+                }
+
+                if generatorViewOptions.count - 1 == index || generatorViewOptions.count - 2 == index {
+                    make.bottom.equalTo(0)
+                }
+            }
         }
     }
 
@@ -135,7 +167,7 @@ extension ViewController {
             panel.canCreateDirectories = true
             panel.begin {
                 [weak self] (result) in
-                if let strongSelf = self {
+                if let _ = self {
                     if result.rawValue == NSFileHandlingPanelOKButton {
                         // [@"onecodego" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
                         if let url = panel.url {

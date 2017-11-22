@@ -637,7 +637,7 @@
 				CODE_SIGN_ENTITLEMENTS = "macOS Example/EFQRCode.macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -656,7 +656,7 @@
 				CODE_SIGN_ENTITLEMENTS = "macOS Example/EFQRCode.macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
