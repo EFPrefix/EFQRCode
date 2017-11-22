@@ -95,6 +95,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "EFQRCode"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

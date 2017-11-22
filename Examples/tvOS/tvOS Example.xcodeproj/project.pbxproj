@@ -45,7 +45,6 @@
 		12664E841FA9B57900D56500 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E611FA9B57900D56500 /* Constraint.swift */; };
 		12664E851FA9B57900D56500 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E621FA9B57900D56500 /* Debugging.swift */; };
 		12664E861FA9B57900D56500 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E631FA9B57900D56500 /* ConstraintRelatableTarget.swift */; };
-		12664E871FA9B57900D56500 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12664E641FA9B57900D56500 /* Info.plist */; };
 		12664E881FA9B57900D56500 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E651FA9B57900D56500 /* LayoutConstraint.swift */; };
 		12664E891FA9B57900D56500 /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E661FA9B57900D56500 /* ConstraintLayoutGuide+Extensions.swift */; };
 		12664E8A1FA9B57900D56500 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E671FA9B57900D56500 /* ConstraintLayoutSupportDSL.swift */; };
@@ -426,7 +425,6 @@
 			files = (
 				1215B6FA1EAC957000DC5A86 /* Assets.xcassets in Resources */,
 				1215B6F81EAC956F00DC5A86 /* Main.storyboard in Resources */,
-				12664E871FA9B57900D56500 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
