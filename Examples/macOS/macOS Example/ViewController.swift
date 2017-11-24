@@ -104,6 +104,7 @@ class ViewController: NSViewController {
         generatorViewContent.string = "https://github.com/EyreFree/EFQRCode"
 
         self.view.window?.title = "EFQRCode"
+        self.view.window?.collectionBehavior = .fullScreenAuxiliary
     }
 
     func addControl() {
