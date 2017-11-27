@@ -129,7 +129,7 @@
 		12409D671FC582D200719A02 /* EFDetailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFDetailButton.swift; sourceTree = "<group>"; };
 		125436EE1EABA98C00C46CC7 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
 		12C4B5281FBECBF3006BD46D /* DragDropImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropImageView.swift; sourceTree = "<group>"; };
-		12F371931EA8DE3A0049DE67 /* EFQRCode.macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12F371931EA8DE3A0049DE67 /* EFQRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F371961EA8DE3A0049DE67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12F371981EA8DE3A0049DE67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		12F371941EA8DE3A0049DE67 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				12F371931EA8DE3A0049DE67 /* EFQRCode.macOS.app */,
+				12F371931EA8DE3A0049DE67 /* EFQRCode.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 			);
 			name = "macOS Example";
 			productName = "macOS Example";
-			productReference = 12F371931EA8DE3A0049DE67 /* EFQRCode.macOS.app */;
+			productReference = 12F371931EA8DE3A0049DE67 /* EFQRCode.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -644,7 +644,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
-				PRODUCT_NAME = EFQRCode.macOS;
+				PRODUCT_MODULE_NAME = EFQRCode_Module;
+				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -663,7 +664,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
-				PRODUCT_NAME = EFQRCode.macOS;
+				PRODUCT_MODULE_NAME = EFQRCode_Module;
+				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

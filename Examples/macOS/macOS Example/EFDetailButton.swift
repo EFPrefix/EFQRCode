@@ -1,6 +1,6 @@
 //
 //  EFDetailButton.swift
-//  macOS Example
+//  EFQRCode
 //
 //  Created by EyreFree on 2017/11/22.
 //
