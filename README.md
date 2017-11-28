@@ -30,12 +30,18 @@ EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image
 
 ## Demo
 
-### AppStore
+### App Store
 
-You can click the AppStore button below to download demo, support iOS and tvOS.
+You can click the `App Store` button below to download demo, support iOS and tvOS:
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
-	<img src='http://ww2.sinaimg.cn/large/0060lm7Tgw1f1hgrs1ebwj308102q0sp.jpg' width='144' height='49'/>
+    <img src='https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
+</a>
+
+You can also click the `Mac App Store` button below to download demo for macOS:
+
+<a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
+    <img src='https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
 </a>
 
 ### Manual
