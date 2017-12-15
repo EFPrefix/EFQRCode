@@ -246,6 +246,17 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/efqrcode/sponsor/8/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/efqrcode/sponsor/9/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/9/avatar.svg"></a>
 
+## Donations
+
+If you think this project has brought you help, you can buy me a cup of coffee. If you like this project and are willing to provide further support for it's development, you can choose to become `Backer` or `Sponsor` in [Open Collective](https://opencollective.com/efqrcode).
+
+If you don't have a `Open Collective` account or you think it is too complicated, the following way of payment is also supported:
+
+![AliPay](https://github.com/EyreFree/EFArticles/blob/master/Res/AliPay.jpg?raw=true)|![WeChat](https://github.com/EyreFree/EFArticles/blob/master/Res/WeChat.jpg?raw=true)|![PayPal](https://github.com/EyreFree/EFArticles/blob/master/Res/PayPal.jpg?raw=true)  
+:---------------------:|:---------------------:|:---------------------:
+
+Thank you for your support, 🙏!
+
 ## Contact
 
 Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   

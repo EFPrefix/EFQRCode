@@ -246,6 +246,17 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 <a href="https://opencollective.com/efqrcode/sponsor/8/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/efqrcode/sponsor/9/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/9/avatar.svg"></a>
 
+## 捐赠
+
+如果你认为这个项目给你带来了帮助，你可以给我买杯咖啡。如果你喜欢这个项目，并愿意为它的发展提供进一步的支持，你可以选择在 [Open Collective](https://opencollective.com/efqrcode) 上成为 `支持者` 或 `赞助商`。
+
+如果你没有 `Open Collective` 帐户或者你认为它的操作太复杂，下面的付款方式也是支持的：
+
+![AliPay](https://github.com/EyreFree/EFArticles/blob/master/Res/AliPay.jpg?raw=true)|![WeChat](https://github.com/EyreFree/EFArticles/blob/master/Res/WeChat.jpg?raw=true)|![PayPal](https://github.com/EyreFree/EFArticles/blob/master/Res/PayPal.jpg?raw=true)  
+:---------------------:|:---------------------:|:---------------------:
+
+感谢您的支援，🙏！
+
 ## 联系
 
 Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   
