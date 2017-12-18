@@ -189,7 +189,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 You can get more information from the demo, result will like this:
 
-<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/>
+<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/>
 
 #### 5. Next
 
