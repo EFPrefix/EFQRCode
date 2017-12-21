@@ -1,26 +1,56 @@
 ![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
-<a href="https://travis-ci.org/EyreFree/EFQRCode"><img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg"></a>
-<a href="https://codecov.io/gh/EyreFree/EFQRCode"><img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg"></a>
-<a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
-<a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-ready-orange.svg"></a>
-<a href="http://cocoapods.org/pods/EFQRCode"><img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat"></a>
-<a href="http://cocoapods.org/pods/EFQRCode"><img src="https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat"></a>
-<a href="https://github.com/apple/swift"><img src="https://img.shields.io/badge/language-swift-orange.svg"></a>
-<a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master"><img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f"></a>
-<a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat"></a>
-<a href="https://gitter.im/EFQRCode/Lobby"><img src="https://img.shields.io/gitter/room/EyreFree/EFQRCode.svg"></a>
-<a href="#backers" alt="sponsors on Open Collective"><img src="https://opencollective.com/EFQRCode/backers/badge.svg" /></a>
-<a href="#sponsors" alt="Sponsors on Open Collective"><img src="https://opencollective.com/EFQRCode/sponsors/badge.svg" /></a>
-<a href="https://twitter.com/EyreFree777"><img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat"></a>
-<a href="http://weibo.com/eyrefree777"><img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat"></a>
-<img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
+    <a href="https://travis-ci.org/EyreFree/EFQRCode">
+        <img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg">
+    </a>
+    <a href="https://codecov.io/gh/EyreFree/EFQRCode">
+        <img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg">
+    </a>
+    <a href="https://github.com/Carthage/Carthage/">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
+    </a>
+    <a href="https://swift.org/package-manager/">
+        <img src="https://img.shields.io/badge/SPM-ready-orange.svg">
+    </a>
+    <a href="http://cocoapods.org/pods/EFQRCode">
+        <img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat">
+    </a>
+    <a href="http://cocoapods.org/pods/EFQRCode">
+        <img src="https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat">
+    </a>
+    <a href="https://github.com/apple/swift">
+        <img src="https://img.shields.io/badge/language-swift-orange.svg">
+    </a>
+    <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master">
+        <img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f">
+    </a>
+    <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/master/LICENSE">
+        <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
+    </a>
+    <a href="https://gitter.im/EFQRCode/Lobby">
+        <img src="https://img.shields.io/gitter/room/EyreFree/EFQRCode.svg">
+    </a>
+    <a href="#backers" alt="sponsors on Open Collective">
+        <img src="https://opencollective.com/EFQRCode/backers/badge.svg" />
+    </a>
+    <a href="#sponsors" alt="Sponsors on Open Collective">
+        <img src="https://opencollective.com/EFQRCode/sponsors/badge.svg" />
+    </a>
+    <a href="https://twitter.com/EyreFree777">
+        <img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat">
+    </a>
+    <a href="http://weibo.com/eyrefree777">
+        <img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat">
+    </a>
+    <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/MadeWith%3C3.png">
+        <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
+    </a>
 </p>
 
 EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 CoreImage 进行开发。受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式。
 
-> [English Introduction](https://github.com/EyreFree/EFQRCode/blob/master/README.md)
+> [English Introduction](/README.md)
 
 ## 概述
 
@@ -193,7 +223,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 #### 5. 接下来
 
-查看 [用户手册](https://github.com/EyreFree/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多细节。
+查看 [用户手册](/.github/USERGUIDE_CN.md) 了解更多细节。
 
 ## 待办
 
@@ -221,30 +251,54 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 贡献者
 
-这个项目的存在多亏了所有贡献的人。 [[Contribute](CONTRIBUTING.md)]
+这个项目的存在多亏了所有贡献的人。 [[Contribute](/.github/CONTRIBUTING.md)]
 
-<a href="https://opencollective.com/efqrcode#contributors"><img src="https://opencollective.com/efqrcode/contributors.svg?width=890" /></a>
+<a href="https://opencollective.com/efqrcode#contributors">
+    <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
+</a>
 
 ## 支持者
 
 感谢所有的支持者！ 🙏 [[Become a backer](https://opencollective.com/efqrcode#backer)]
 
-<a href="https://opencollective.com/efqrcode#backers" target="_blank"><img src="https://opencollective.com/efqrcode/backers.svg?width=890"></a>
+<a href="https://opencollective.com/efqrcode#backers" target="_blank">
+    <img src="https://opencollective.com/efqrcode/backers.svg?width=890">
+</a>
 
 ## 赞助商
 
 通过成为赞助商来支持这个项目，您的徽标将显示在这里并且链接到您的网站。 [[Become a sponsor](https://opencollective.com/efqrcode#sponsor)]
 
-<a href="https://opencollective.com/efqrcode/sponsor/0/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/1/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/2/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/3/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/4/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/5/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/6/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/7/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/8/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/efqrcode/sponsor/9/website" target="_blank"><img src="https://opencollective.com/efqrcode/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/efqrcode/sponsor/0/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/0/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/1/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/1/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/2/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/2/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/3/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/3/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/4/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/4/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/5/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/5/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/6/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/6/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/7/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/7/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/8/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/8/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/9/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/9/avatar.svg">
+</a>
 
 ## 捐赠
 
@@ -265,6 +319,8 @@ Twitter: [@EyreFree777](https://twitter.com/EyreFree777)
 
 ## 协议
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png)
+<a href="https://github.com/EyreFree/EFQRCode/blob/master/LICENSE">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
+</a>
 
 EFQRCode 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
