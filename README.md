@@ -48,7 +48,7 @@
     </a>
 </p>
 
-EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on `CoreImage`. This project is inspired by [qrcode](https://github.com/sylnsfar/qrcode). It provides you a better way to operate QRCode in your app.
+EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on `CoreGraphics`, `CoreImage` and `ImageIO`. EFQRCode provides you a better way to operate QRCode in your app, it works on `iOS`, `macOS` and `tvOS`, and it is available through `CocoaPods`, `Carthage` and `Swift Package Manager`. This project is inspired by [qrcode](https://github.com/sylnsfar/qrcode). 
 
 > [中文介绍](/README_CN.md)
 
