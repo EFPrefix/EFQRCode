@@ -25,19 +25,35 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
-import CoreImage
 
-public extension CGColor {
+#if os(watchOS)
+    import UIKit
 
-    public static func EFWhite() -> CGColor! {
-        return CIColor.EFWhite().toCGColor()
+    public extension CGColor {
+
+        public static func EFWhite() -> CGColor! {
+            return UIColor.white.cgColor
+        }
+
+        public static func EFBlack() -> CGColor! {
+            return UIColor.black.cgColor
+        }
     }
+#else
+    import CoreImage
 
-    public static func EFBlack() -> CGColor! {
-        return CIColor.EFBlack().toCGColor()
-    }
+    public extension CGColor {
 
-    public func toCIColor() -> CIColor {
-        return CIColor(cgColor: self)
+        public static func EFWhite() -> CGColor! {
+            return CIColor.EFWhite().toCGColor()
+        }
+
+        public static func EFBlack() -> CGColor! {
+            return CIColor.EFBlack().toCGColor()
+        }
+
+        public func toCIColor() -> CIColor {
+            return CIColor(cgColor: self)
+        }
     }
-}
+#endif

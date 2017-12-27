@@ -25,15 +25,21 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
+#if os(watchOS)
+import UIKit
+#else
 import CoreImage
+#endif
 
 public extension CGImage {
 
     // Convert UIImage to CIImage
     // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
+    #if !os(watchOS)
     public func toCIImage() -> CIImage {
         return CIImage(cgImage: self)
     }
+    #endif
 
     // Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
@@ -85,24 +91,33 @@ public extension CGImage {
         }
         context.draw(self, in: CGRect(x: 0, y: 0, width: 1, height: 1))
 
+        #if os(watchOS)
+        return UIColor(
+            red: CGFloat(rgba[0]) / 255.0,
+            green: CGFloat(rgba[1]) / 255.0,
+            blue: CGFloat(rgba[2]) / 255.0,
+            alpha: CGFloat(rgba[3]) / 255.0
+            ).toCGColor()
+        #else
         return CIColor(
             red: CGFloat(rgba[0]) / 255.0,
             green: CGFloat(rgba[1]) / 255.0,
             blue: CGFloat(rgba[2]) / 255.0,
             alpha: CGFloat(rgba[3]) / 255.0
             ).toCGColor()
+        #endif
     }
 
     // Grayscale
     // http://stackoverflow.com/questions/1311014/convert-to-grayscale-too-slow
     func grayscale() -> CGImage? {
         if let context = CGContext(
-            data: nil, width: self.width, height: self.height,
+            data: nil, width: width, height: height,
             bitsPerComponent: 8, bytesPerRow: 4 * width,
             space: CGColorSpaceCreateDeviceGray(),
             bitmapInfo: CGImageAlphaInfo.none.rawValue
             ) {
-            context.draw(self, in: CGRect(origin: CGPoint.zero, size: CGSize(width: self.width, height: self.height)))
+            context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
             return context.makeImage()
         }
         return nil

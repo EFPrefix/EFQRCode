@@ -24,7 +24,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
 import CoreGraphics
 
 public enum EFQRCodeMode: Int {
@@ -55,7 +54,7 @@ public class EFIntSize: NSObject {
     }
 
     public func toCGSize() -> CGSize {
-        return CGSize(width: self.width, height: self.height)
+        return CGSize(width: width, height: height)
     }
 
     public func widthCGFloat() -> CGFloat {
@@ -96,6 +95,6 @@ struct EFIntPoint {
     public var y: Int = 0
 
     public func toCGPoint() -> CGPoint {
-        return CGPoint(x: self.x, y: self.y)
+        return CGPoint(x: x, y: y)
     }
 }

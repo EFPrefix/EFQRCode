@@ -56,7 +56,10 @@ public class EFQRCodeRecognizer: NSObject {
 
     // Get QRCodes from image
     private func getQRString() -> [String]? {
-        guard let finalImage = self.image else {
+        #if os(watchOS)
+            return nil
+        #else
+        guard let finalImage = image else {
             return nil
         }
         let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
@@ -66,5 +69,6 @@ public class EFQRCodeRecognizer: NSObject {
             )
         }
         return result
+        #endif
     }
 }

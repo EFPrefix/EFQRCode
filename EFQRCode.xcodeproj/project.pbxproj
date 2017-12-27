@@ -175,7 +175,7 @@
 				12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */,
 				12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */,
 			);
-			path = Core;
+			name = Core;
 			sourceTree = "<group>";
 		};
 		12046B031F7A512B000154A8 /* Define */ = {
@@ -183,7 +183,7 @@
 			children = (
 				12664E9A1FA9CEAB00D56500 /* EFDefine.swift */,
 			);
-			path = Define;
+			name = Define;
 			sourceTree = "<group>";
 		};
 		12046B051F7A512B000154A8 /* Extension */ = {
@@ -199,7 +199,7 @@
 				12664EA61FA9CED100D56500 /* UIColor+.swift */,
 				12664EA51FA9CED100D56500 /* UIImage+.swift */,
 			);
-			path = Extension;
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		126A1B581EAF225100EFBA1B /* Resources */ = {
@@ -423,7 +423,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = Alamofire;
+				ORGANIZATIONNAME = EyreFree;
 				TargetAttributes = {
 					4CF626EE1BA7CB3E0011A099 = {
 						CreatedOnToolsVersion = 7.1;

@@ -344,7 +344,6 @@
 				F8111E0819A951050040E7D1 /* Supporting Files */,
 			);
 			name = "iOS Example";
-			path = Example;
 			sourceTree = "<group>";
 		};
 		F8111E0819A951050040E7D1 /* Supporting Files */ = {
@@ -385,7 +384,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = Alamofire;
+				ORGANIZATIONNAME = EyreFree;
 				TargetAttributes = {
 					F8111E0419A951050040E7D1 = {
 						CreatedOnToolsVersion = 6.0;
