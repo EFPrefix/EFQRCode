@@ -106,8 +106,8 @@ public class EFQRCodeGenerator: NSObject {
     }
     #if !os(watchOS)
     public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
-        self.backgroundColor = backgroundColor.toCGColor() ?? .EFWhite()
-        self.foregroundColor = foregroundColor.toCGColor() ?? .EFBlack()
+    self.backgroundColor = backgroundColor.toCGColor() ?? .EFWhite()
+    self.foregroundColor = foregroundColor.toCGColor() ?? .EFBlack()
     }
     #endif
     public func setColors(backgroundColor: CGColor, foregroundColor: CGColor) {
@@ -349,14 +349,14 @@ public class EFQRCodeGenerator: NSObject {
     // Create Colorful QR Image
     #if !os(watchOS)
     private func createQRCodeImage(
-        codes: [[Bool]],
-        colorBack: CIColor,
-        colorFront: CIColor,
-        size: EFIntSize) -> CGImage? {
-        guard let colorCGFront = colorFront.toCGColor() else {
-            return nil
-        }
-        return createQRCodeImage(codes: codes, colorFront: colorCGFront, size: size)
+    codes: [[Bool]],
+    colorBack: CIColor,
+    colorFront: CIColor,
+    size: EFIntSize) -> CGImage? {
+    guard let colorCGFront = colorFront.toCGColor() else {
+    return nil
+    }
+    return createQRCodeImage(codes: codes, colorFront: colorCGFront, size: size)
     }
     #endif
     private func createQRCodeImage(
@@ -402,14 +402,14 @@ public class EFQRCodeGenerator: NSObject {
     // Create Colorful QR Image
     #if !os(watchOS)
     private func createQRCodeImageTransparent(
-        codes: [[Bool]],
-        colorBack: CIColor,
-        colorFront: CIColor,
-        size: EFIntSize) -> CGImage? {
-        guard let colorCGBack = colorBack.toCGColor(), let colorCGFront = colorFront.toCGColor() else {
-            return nil
-        }
-        return createQRCodeImageTransparent(codes: codes, colorBack: colorCGBack, colorFront: colorCGFront, size: size)
+    codes: [[Bool]],
+    colorBack: CIColor,
+    colorFront: CIColor,
+    size: EFIntSize) -> CGImage? {
+    guard let colorCGBack = colorBack.toCGColor(), let colorCGFront = colorFront.toCGColor() else {
+    return nil
+    }
+    return createQRCodeImageTransparent(codes: codes, colorBack: colorCGBack, colorFront: colorCGFront, size: size)
     }
     #endif
     private func createQRCodeImageTransparent(
@@ -519,20 +519,20 @@ public class EFQRCodeGenerator: NSObject {
     // Pre
     #if !os(watchOS)
     private func drawWatermarkImage(
-        context: CGContext,
-        image: CGImage,
-        colorBack: CIColor,
-        mode: EFWatermarkMode,
-        size: CGSize) {
-        drawWatermarkImage(context: context, image: image, colorBack: colorBack.toCGColor(), mode: mode, size: size)
+    context: CGContext,
+    image: CGImage,
+    colorBack: CIColor,
+    mode: EFWatermarkMode,
+    size: CGSize) {
+    drawWatermarkImage(context: context, image: image, colorBack: colorBack.toCGColor(), mode: mode, size: size)
     }
     #endif
     private func drawWatermarkImage(
-            context: CGContext,
-            image: CGImage,
-            colorBack: CGColor?,
-            mode: EFWatermarkMode,
-            size: CGSize) {
+        context: CGContext,
+        image: CGImage,
+        colorBack: CGColor?,
+        mode: EFWatermarkMode,
+        size: CGSize) {
         // BGColor
         if let tryColor = colorBack {
             context.setFillColor(tryColor)
@@ -640,18 +640,18 @@ public class EFQRCodeGenerator: NSObject {
     #if !os(watchOS)
     // MARK: - Data
     private func getPixels() -> [[EFUIntPixel]]? {
-        guard let finalContent = self.content else {
-            return nil
-        }
-        let finalInputCorrectionLevel = self.inputCorrectionLevel
+    guard let finalContent = content else {
+    return nil
+    }
+    let finalInputCorrectionLevel = inputCorrectionLevel
 
-        guard let tryQRImagePixels = CIImage.generateQRCode(
-            string: finalContent, inputCorrectionLevel: finalInputCorrectionLevel
-            )?.toCGImage()?.pixels() else {
-                print("Warning: Content too large.")
-                return nil
-        }
-        return tryQRImagePixels
+    guard let tryQRImagePixels = CIImage.generateQRCode(
+    string: finalContent, inputCorrectionLevel: finalInputCorrectionLevel
+    )?.toCGImage()?.pixels() else {
+    print("Warning: Content too large.")
+    return nil
+    }
+    return tryQRImagePixels
     }
     #endif
 
@@ -676,18 +676,31 @@ public class EFQRCodeGenerator: NSObject {
             return tryImageCodes
         }
 
-        #if !os(watchOS)
-        // Get pixels from image
-        guard let tryQRImagePixels = getPixels() else {
-            return nil
-        }
+        #if os(iOS) || os(macOS) || os(tvOS)
+            // Get pixels from image
+            guard let tryQRImagePixels = getPixels() else {
+                return nil
+            }
 
-        // Get QRCodes from image
-        imageCodes = getCodes(pixels: tryQRImagePixels)
+            // Get QRCodes from image
+            imageCodes = getCodes(pixels: tryQRImagePixels)
 
-        return imageCodes
+            return imageCodes
+        #else
+            let level = inputCorrectionLevel.qrErrorCorrectLevel
+            guard let finalContent = content,
+                let typeNumber = try? QRCodeType
+                    .typeNumber(of: finalContent, errorCorrectLevel: level),
+                let model = QRCodeModel(text: finalContent,
+                                        typeNumber: typeNumber,
+                                        errorCorrectLevel: level)
+                else { return nil }
+            return (0..<model.moduleCount).map { r in
+                (0..<model.moduleCount).map { c in
+                    model.isDark(r, c)
+                }
+            }
         #endif
-        fatalError("Not supported yet")
     }
     
 
