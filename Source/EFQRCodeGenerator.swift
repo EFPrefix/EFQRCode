@@ -637,6 +637,7 @@ public class EFQRCodeGenerator: NSObject {
         )
     }
 
+    #if !os(watchOS)
     // MARK: - Data
     private func getPixels() -> [[EFUIntPixel]]? {
         guard let finalContent = self.content else {
@@ -652,6 +653,7 @@ public class EFQRCodeGenerator: NSObject {
         }
         return tryQRImagePixels
     }
+    #endif
 
     // Get QRCodes from pixels
     private func getCodes(pixels: [[EFUIntPixel]]) -> [[Bool]] {
@@ -674,6 +676,7 @@ public class EFQRCodeGenerator: NSObject {
             return tryImageCodes
         }
 
+        #if !os(watchOS)
         // Get pixels from image
         guard let tryQRImagePixels = getPixels() else {
             return nil
@@ -683,7 +686,10 @@ public class EFQRCodeGenerator: NSObject {
         imageCodes = getCodes(pixels: tryQRImagePixels)
 
         return imageCodes
+        #endif
+        fatalError("Not supported yet")
     }
+    
 
     // Special Points of QRCode
     private func isStatic(x: Int, y: Int, size: Int, APLPoints: [EFIntPoint]) -> Bool {

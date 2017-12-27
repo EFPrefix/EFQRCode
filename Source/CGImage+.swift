@@ -130,11 +130,12 @@ public extension CGImage {
         foregroundColor: CGColor = CGColor.EFWhite(),
         backgroundColor: CGColor = CGColor.EFBlack()
         ) -> CGImage? {
-        let foregroundCIColor = foregroundColor.toCIColor()
-        let backgroundCIColor = backgroundColor.toCIColor()
         let dataSize = width * height * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
         let colorSpace = CGColorSpaceCreateDeviceRGB()
+        guard let backgroundPixel = backgroundColor.toEFUIntPixel(),
+        let foregroundPixel = foregroundColor.toEFUIntPixel()
+            else { return nil }
         if let context = CGContext(
             data: &pixelData,
             width: width,
@@ -152,11 +153,11 @@ public extension CGImage {
                     let intensity = (
                         CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
                         ) / 3.0 / 255.0 * alpha + (1.0 - alpha)
-                    let finalColor = intensity > value ? backgroundCIColor : foregroundCIColor
-                    pixelData[offset + 0] = UInt8(finalColor.red * 255.0)
-                    pixelData[offset + 1] = UInt8(finalColor.green * 255.0)
-                    pixelData[offset + 2] = UInt8(finalColor.blue * 255.0)
-                    pixelData[offset + 3] = UInt8(finalColor.alpha * 255.0)
+                    let finalPixel = intensity > value ? backgroundPixel : foregroundPixel
+                    pixelData[offset + 0] = finalPixel.red
+                    pixelData[offset + 1] = finalPixel.green
+                    pixelData[offset + 2] = finalPixel.blue
+                    pixelData[offset + 3] = finalPixel.alpha
                 }
             }
             return context.makeImage()

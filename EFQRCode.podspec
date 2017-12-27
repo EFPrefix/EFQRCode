@@ -18,6 +18,7 @@ s.social_media_url = 'https://twitter.com/EyreFree777'
 s.ios.deployment_target = '8.0'
 s.osx.deployment_target = '10.11'
 s.tvos.deployment_target = '9.0'
+s.watchos.deployment_target = '2.0'
 
 s.requires_arc = true
 
