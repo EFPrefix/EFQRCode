@@ -638,12 +638,7 @@ extension GeneratorController {
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: {
-                [weak self] (action) -> Void in
-                if let strongSelf = self {
-                    // strongSelf.refresh()
-                }
-            })
+            UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         )
         alert.addAction(
             UIAlertAction(title: "nil", style: .default, handler: {

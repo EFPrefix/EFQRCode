@@ -24,51 +24,49 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+#if os(iOS) || os(macOS) || os(tvOS)
+    import CoreImage
 
-public class EFQRCodeRecognizer: NSObject {
+    public class EFQRCodeRecognizer: NSObject {
 
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
+        private var image: CGImage? {
+            didSet {
+                contentArray = nil
+            }
+        }
+        public func setImage(image: CGImage?) {
+            self.image = image
+        }
+
+        private var contentArray: [String]?
+
+        public override init() {
+            super.init()
+        }
+
+        public init(image: CGImage) {
+            self.image = image
+        }
+
+        public func recognize() -> [String]? {
+            if nil == contentArray {
+                contentArray = getQRString()
+            }
+            return contentArray
+        }
+
+        // Get QRCodes from image
+        private func getQRString() -> [String]? {
+            guard let finalImage = image else {
+                return nil
+            }
+            let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+            if result.count <= 0 {
+                return finalImage.grayscale()?.toCIImage().recognizeQRCode(
+                    options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
+                )
+            }
+            return result
         }
     }
-    public func setImage(image: CGImage?) {
-        self.image = image
-    }
-
-    private var contentArray: [String]?
-
-    public override init() {
-        super.init()
-    }
-
-    public init(image: CGImage) {
-        self.image = image
-    }
-
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
-    }
-
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        #if os(watchOS)
-            return nil
-        #else
-        guard let finalImage = image else {
-            return nil
-        }
-        let result = finalImage.toCIImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.count <= 0 {
-            return finalImage.grayscale()?.toCIImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
-        #endif
-    }
-}
+#endif
