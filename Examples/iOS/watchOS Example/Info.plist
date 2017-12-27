@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>EFQRCode</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -18,15 +20,14 @@
 	<string>4.1.2</string>
 	<key>CFBundleVersion</key>
 	<string>4.1.2.0</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UIRequiredDeviceCapabilities</key>
+	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>arm64</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Automatic</string>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>AppStore.EFQRCode</string>
+	<key>WKWatchKitApp</key>
+	<true/>
 </dict>
 </plist>

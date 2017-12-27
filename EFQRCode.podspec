@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'EFQRCode'
-s.version          = '4.1.0'
+s.version          = '4.1.2'
 s.summary          = 'A better way to operate quick response code in Swift.'
 
 s.description      = <<-DESC
