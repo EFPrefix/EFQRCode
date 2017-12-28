@@ -1,6 +1,6 @@
 //
-//  QRMaskPattern.swift
-//  EFQRCode
+//  VersionDisplayInterfaceController.swift
+//  watchOS Example Extension
 //
 //  Created by Apollo Zhu on 12/27/17.
 //
@@ -24,24 +24,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS) || os(macOS)
-#else
-    enum QRMaskPattern: Int {
-        case _000, _001, _010, _011, _100, _101, _110, _111
-    }
-    
-    extension QRMaskPattern {
-        func getMask(_ i: Int, _ j: Int) -> Bool {
-            switch (self) {
-            case ._000: return (i + j) % 2 == 0
-            case ._001: return i % 2 == 0
-            case ._010: return j % 3 == 0
-            case ._011: return (i + j) % 3 == 0
-            case ._100: return (i / 2 + j / 3) % 2 == 0
-            case ._101: return (i * j) % 2 + (i * j) % 3 == 0
-            case ._110: return ((i * j) % 2 + (i * j) % 3) % 2 == 0
-            case ._111: return ((i * j) % 3 + (i + j) % 2) % 2 == 0
-            }
+import WatchKit
+import Foundation
+
+
+class VersionDisplayInterfaceController: WKInterfaceController {
+    @IBOutlet var label: WKInterfaceLabel! {
+        didSet {
+            guard let label = label else { return }
+            let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+            label.setText(version)
         }
     }
-#endif
+}

@@ -64,7 +64,6 @@
 		12C3224C1F80F1AD003E9BF4 /* EFColorSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C322411F80F1AD003E9BF4 /* EFColorSelectionViewController.swift */; };
 		4C6D2C8F1C67EFEC00846168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */; };
 		5282BCE71FF3AD9000DFB36B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5282BCE51FF3AD9000DFB36B /* Interface.storyboard */; };
-		5282BCE91FF3AD9000DFB36B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282BCE81FF3AD9000DFB36B /* Assets.xcassets */; };
 		5282BCF01FF3AD9100DFB36B /* watchOS Example Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5282BCEF1FF3AD9100DFB36B /* watchOS Example Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5282BCF51FF3AD9100DFB36B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BCF41FF3AD9100DFB36B /* InterfaceController.swift */; };
 		5282BCF71FF3AD9100DFB36B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BCF61FF3AD9100DFB36B /* ExtensionDelegate.swift */; };
@@ -72,6 +71,10 @@
 		5282BCFD1FF3AD9100DFB36B /* watchOS Example.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5282BCE31FF3AD9000DFB36B /* watchOS Example.app */; };
 		5282BD1E1FF3FD8A00DFB36B /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5282BD091FF3AD9100DFB36B /* EFQRCode.framework */; };
 		5282BD1F1FF3FD8A00DFB36B /* EFQRCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5282BD091FF3AD9100DFB36B /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD231FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift */; };
+		5282BD261FF4137F00DFB36B /* NumberPadInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD251FF4137F00DFB36B /* NumberPadInterfaceController.swift */; };
+		5282BD281FF41A8200DFB36B /* ParametersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD271FF41A8200DFB36B /* ParametersInterfaceController.swift */; };
+		5282BD2A1FF46D9800DFB36B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282BD291FF46D9800DFB36B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,13 +263,16 @@
 		4C6D2C8D1C67EFEC00846168 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		5282BCE31FF3AD9000DFB36B /* watchOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "watchOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282BCE61FF3AD9000DFB36B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		5282BCE81FF3AD9000DFB36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5282BCEA1FF3AD9000DFB36B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5282BCEF1FF3AD9100DFB36B /* watchOS Example Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watchOS Example Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282BCF41FF3AD9100DFB36B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		5282BCF61FF3AD9100DFB36B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		5282BCF81FF3AD9100DFB36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5282BCFA1FF3AD9100DFB36B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5282BD231FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionDisplayInterfaceController.swift; sourceTree = "<group>"; };
+		5282BD251FF4137F00DFB36B /* NumberPadInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadInterfaceController.swift; sourceTree = "<group>"; };
+		5282BD271FF41A8200DFB36B /* ParametersInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersInterfaceController.swift; sourceTree = "<group>"; };
+		5282BD291FF46D9800DFB36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -405,7 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				5282BCE51FF3AD9000DFB36B /* Interface.storyboard */,
-				5282BCE81FF3AD9000DFB36B /* Assets.xcassets */,
+				5282BD291FF46D9800DFB36B /* Assets.xcassets */,
 				5282BCEA1FF3AD9000DFB36B /* Info.plist */,
 			);
 			path = "watchOS Example";
@@ -414,12 +420,39 @@
 		5282BCF31FF3AD9100DFB36B /* watchOS Example Extension */ = {
 			isa = PBXGroup;
 			children = (
-				5282BCF41FF3AD9100DFB36B /* InterfaceController.swift */,
 				5282BCF61FF3AD9100DFB36B /* ExtensionDelegate.swift */,
-				5282BCF81FF3AD9100DFB36B /* Assets.xcassets */,
-				5282BCFA1FF3AD9100DFB36B /* Info.plist */,
+				5282BD2C1FF4746900DFB36B /* Res */,
+				5282BD2D1FF4747B00DFB36B /* Controller */,
+				5282BD2B1FF4744A00DFB36B /* Supporting Files */,
 			);
 			path = "watchOS Example Extension";
+			sourceTree = "<group>";
+		};
+		5282BD2B1FF4744A00DFB36B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5282BCFA1FF3AD9100DFB36B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5282BD2C1FF4746900DFB36B /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				5282BCF81FF3AD9100DFB36B /* Assets.xcassets */,
+			);
+			name = Res;
+			sourceTree = "<group>";
+		};
+		5282BD2D1FF4747B00DFB36B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5282BD231FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift */,
+				5282BD271FF41A8200DFB36B /* ParametersInterfaceController.swift */,
+				5282BD251FF4137F00DFB36B /* NumberPadInterfaceController.swift */,
+				5282BCF41FF3AD9100DFB36B /* InterfaceController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		F8111DFC19A951050040E7D1 = {
@@ -636,7 +669,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5282BCE91FF3AD9000DFB36B /* Assets.xcassets in Resources */,
+				5282BD2A1FF46D9800DFB36B /* Assets.xcassets in Resources */,
 				5282BCE71FF3AD9000DFB36B /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,7 +699,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5282BD261FF4137F00DFB36B /* NumberPadInterfaceController.swift in Sources */,
+				5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */,
 				5282BCF71FF3AD9100DFB36B /* ExtensionDelegate.swift in Sources */,
+				5282BD281FF41A8200DFB36B /* ParametersInterfaceController.swift in Sources */,
 				5282BCF51FF3AD9100DFB36B /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
