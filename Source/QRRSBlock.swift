@@ -30,7 +30,7 @@
         let totalCount: Int
         let dataCount: Int
     }
-
+    
     extension QRRSBlock {
         fileprivate static let RS_BLOCK_TABLE: [[Int]] = [
             [1, 26, 19],
@@ -195,7 +195,7 @@
             [20, 45, 15, 61, 46, 16]
         ]
     }
-
+    
     extension QRErrorCorrectLevel {
         func getRSBlocksOfType(_ typeNumber: Int) -> [QRRSBlock] {
             let rsBlock = getRsBlockTableOfType(typeNumber)
@@ -211,7 +211,7 @@
             }
             return list
         }
-
+        
         private func getRsBlockTableOfType(_ typeNumber: Int) -> [Int] {
             switch (self) {
             case .L:

@@ -75,6 +75,9 @@
 		5282BD261FF4137F00DFB36B /* NumberPadInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD251FF4137F00DFB36B /* NumberPadInterfaceController.swift */; };
 		5282BD281FF41A8200DFB36B /* ParametersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD271FF41A8200DFB36B /* ParametersInterfaceController.swift */; };
 		5282BD2A1FF46D9800DFB36B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282BD291FF46D9800DFB36B /* Assets.xcassets */; };
+		5282BD321FF4764100DFB36B /* UnitTestInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD311FF4764100DFB36B /* UnitTestInterfaceController.swift */; };
+		5282BD391FF480EB00DFB36B /* UnitTestcaseRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD381FF480EB00DFB36B /* UnitTestcaseRowType.swift */; };
+		5282BD3C1FF4819200DFB36B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD3B1FF4819200DFB36B /* Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,6 +276,9 @@
 		5282BD251FF4137F00DFB36B /* NumberPadInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadInterfaceController.swift; sourceTree = "<group>"; };
 		5282BD271FF41A8200DFB36B /* ParametersInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersInterfaceController.swift; sourceTree = "<group>"; };
 		5282BD291FF46D9800DFB36B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5282BD311FF4764100DFB36B /* UnitTestInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestInterfaceController.swift; sourceTree = "<group>"; };
+		5282BD381FF480EB00DFB36B /* UnitTestcaseRowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestcaseRowType.swift; sourceTree = "<group>"; };
+		5282BD3B1FF4819200DFB36B /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -423,6 +429,7 @@
 				5282BCF61FF3AD9100DFB36B /* ExtensionDelegate.swift */,
 				5282BD2C1FF4746900DFB36B /* Res */,
 				5282BD2D1FF4747B00DFB36B /* Controller */,
+				5282BD3A1FF480F600DFB36B /* Unit Tests */,
 				5282BD2B1FF4744A00DFB36B /* Supporting Files */,
 			);
 			path = "watchOS Example Extension";
@@ -453,6 +460,16 @@
 				5282BCF41FF3AD9100DFB36B /* InterfaceController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		5282BD3A1FF480F600DFB36B /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5282BD3B1FF4819200DFB36B /* Tests.swift */,
+				5282BD311FF4764100DFB36B /* UnitTestInterfaceController.swift */,
+				5282BD381FF480EB00DFB36B /* UnitTestcaseRowType.swift */,
+			);
+			name = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		F8111DFC19A951050040E7D1 = {
@@ -699,9 +716,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5282BD391FF480EB00DFB36B /* UnitTestcaseRowType.swift in Sources */,
+				5282BD3C1FF4819200DFB36B /* Tests.swift in Sources */,
 				5282BD261FF4137F00DFB36B /* NumberPadInterfaceController.swift in Sources */,
 				5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */,
 				5282BCF71FF3AD9100DFB36B /* ExtensionDelegate.swift in Sources */,
+				5282BD321FF4764100DFB36B /* UnitTestInterfaceController.swift in Sources */,
 				5282BD281FF41A8200DFB36B /* ParametersInterfaceController.swift in Sources */,
 				5282BCF51FF3AD9100DFB36B /* InterfaceController.swift in Sources */,
 			);

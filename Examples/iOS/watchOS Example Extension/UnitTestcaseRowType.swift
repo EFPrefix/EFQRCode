@@ -1,6 +1,6 @@
 //
-//  QRBitBuffer.swift
-//  EFQRCode
+//  UnitTestcaseRowType.swift
+//  watchOS Example Extension
 //
 //  Created by Apollo Zhu on 12/27/17.
 //
@@ -24,36 +24,44 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS) || os(macOS)
-#else
-    struct QRBitBuffer {
-        var buffer = [UInt]()
-        private(set) var bitCount = 0
-        
-        func get(index: Int) -> Bool {
-            let bufIndex = index / 8
-            return ((buffer[bufIndex] >> (7 - index % 8)) & 1) == 1
-        }
-        
-        subscript(index: Int) -> Bool {
-            return get(index: index)
-        }
-        
-        mutating func put(_ num: UInt, length: Int) {
-            for i in 0..<length {
-                put(((num >> (length - i - 1)) & 1) == 1)
-            }
-        }
-        
-        mutating func put(_ bit: Bool) {
-            let bufIndex = bitCount / 8
-            if buffer.count <= bufIndex {
-                buffer.append(0)
-            }
-            if bit {
-                buffer[bufIndex] |= (UInt(0x80) >> (bitCount % 8))
-            }
-            bitCount += 1
+import WatchKit
+
+extension String {
+    static let passed = "Passed"
+    static let testing = "Testing..."
+}
+
+class UnitTestcaseRowType: NSObject {
+    @IBOutlet private var testcaseNameLabel: WKInterfaceLabel? {
+        didSet {
+            testcaseNameLabel?.setText(test?.name)
         }
     }
-#endif
+    @IBOutlet private var testcaseStatusLabel: WKInterfaceLabel? {
+        didSet {
+            testcaseStatusLabel?.setText(status)
+        }
+    }
+    public var test: (name: String, testcase: Testcase)? {
+        didSet {
+            testcaseNameLabel?.setText(test?.name)
+            status = .testing
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                self?.status = self?.test?.testcase() ?? .passed
+            }
+        }
+    }
+    private var status: String = .testing {
+        didSet {
+            testcaseStatusLabel?.setText(status)
+            switch status {
+            case .testing:
+                testcaseStatusLabel?.setTextColor(.white)
+            case .passed:
+                testcaseStatusLabel?.setTextColor(.green)
+            default:
+                testcaseStatusLabel?.setTextColor(.red)
+            }
+        }
+    }
+}

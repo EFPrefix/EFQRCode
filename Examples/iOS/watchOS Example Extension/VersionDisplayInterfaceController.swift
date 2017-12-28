@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 
 import WatchKit
-import Foundation
-
 
 class VersionDisplayInterfaceController: WKInterfaceController {
     @IBOutlet var label: WKInterfaceLabel! {
@@ -35,5 +33,8 @@ class VersionDisplayInterfaceController: WKInterfaceController {
             let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
             label.setText(version)
         }
+    }
+    @IBAction func showUnitTests() {
+        pushController(withName: "Tests", context: nil)
     }
 }

@@ -104,11 +104,11 @@
         
         private mutating func setupPositionAdjustPattern() {
             let pos = QRPatternLocator.getPatternPositionOfType(typeNumber)
-            for i in 0..<pos.count {
-                for j in 0..<pos.count {
+            for i in pos.indices {
+                for j in pos.indices {
                     let row = pos[i]
                     let col = pos[j]
-                    if (modules[row][col] != nil) {
+                    if modules[row][col] != nil {
                         continue
                     }
                     for r in -2...2 {
@@ -195,8 +195,8 @@
             }
         }
         
-        private static let PAD0: UInt8 = 0xEC
-        private static let PAD1: UInt8 = 0x11
+        private static let PAD0: UInt = 0xEC
+        private static let PAD1: UInt = 0x11
         
         private static func createData(typeNumber: Int, errorCorrectLevel: QRErrorCorrectLevel, data: QR8bitByte) throws -> [Int] {
             var rsBlocks = errorCorrectLevel.getRSBlocksOfType(typeNumber)
@@ -205,11 +205,11 @@
             buffer.put(data.mode.rawValue, length: 4)
             guard let length = data.mode.bitCount(ofType: typeNumber)
                 else { throw Failed("Can't determine length") }
-            buffer.put(UInt8(data.count), length: length)
+            buffer.put(UInt(data.count), length: length)
             data.write(to: &buffer)
             
             var totalDataCount = 0
-            for i in 0..<rsBlocks.count {
+            for i in rsBlocks.indices {
                 totalDataCount += rsBlocks[i].dataCount
             }
             if buffer.bitCount > totalDataCount * 8 {
@@ -242,13 +242,13 @@
             var maxEcCount = 0
             var dcdata = [[Int]!](repeating: nil, count: rsBlocks.count)
             var ecdata = [[Int]!](repeating: nil, count: rsBlocks.count)
-            for r in 0..<rsBlocks.count {
+            for r in rsBlocks.indices {
                 let dcCount = rsBlocks[r].dataCount
                 let ecCount = rsBlocks[r].totalCount - dcCount
                 maxDcCount = max(maxDcCount, dcCount)
                 maxEcCount = max(maxEcCount, ecCount)
                 dcdata[r] = [Int](repeating: 0, count: dcCount)
-                for i in 0..<dcdata[r].count {
+                for i in dcdata[r].indices {
                     dcdata[r][i] = Int(0xff & buffer.buffer[i + offset])
                 }
                 offset += dcCount
@@ -257,19 +257,19 @@
                     else { return nil }
                 let modPoly = rawPoly.moded(by: rsPoly)
                 ecdata[r] = [Int](repeating: 0, count: rsPoly.count - 1)
-                for i in 0..<ecdata[r].count {
+                for i in ecdata[r].indices {
                     let modIndex = i + modPoly.count - ecdata[r].count
                     ecdata[r][i] = (modIndex >= 0) ? modPoly[modIndex] : 0
                 }
             }
             var totalCodeCount = 0
-            for i in 0..<rsBlocks.count {
+            for i in rsBlocks.indices {
                 totalCodeCount += rsBlocks[i].totalCount
             }
             var data = [Int](repeating: 0, count: totalCodeCount)
             var index = 0
             for i in 0..<maxDcCount {
-                for r in 0..<rsBlocks.count {
+                for r in rsBlocks.indices {
                     if i < dcdata[r].count {
                         data[index] = dcdata[r]![i]
                         index += 1
@@ -277,7 +277,7 @@
                 }
             }
             for i in 0..<maxEcCount {
-                for r in 0..<rsBlocks.count {
+                for r in rsBlocks.indices {
                     if i < ecdata[r].count {
                         data[index] = ecdata[r]![i]
                         index += 1
@@ -304,7 +304,8 @@
         }
         
         var lostPoint: Int {
-            let moduleCount = self.moduleCount
+            // TODO: Remove if needed
+            // let moduleCount = self.moduleCount
             var lostPoint = 0
             for row in 0..<moduleCount {
                 for col in 0..<moduleCount {

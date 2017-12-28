@@ -24,9 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
 import WatchKit
-import Foundation
 
 typealias NumberInputHandler = (Int) -> Void
 
@@ -52,7 +50,11 @@ class NumberPadInterfaceController: WKInterfaceController {
             completion = handler
         }
     }
-
+    @IBAction func didFinishInput() {
+        completion?(value)
+        dismiss()
+    }
+    
     @IBAction func tapped0() { if value != 0 { tapped(0) } }
     @IBAction func tapped1() { tapped(1) }
     @IBAction func tapped2() { tapped(2) }
@@ -64,10 +66,6 @@ class NumberPadInterfaceController: WKInterfaceController {
     @IBAction func tapped8() { tapped(8) }
     @IBAction func tapped9() { tapped(9) }
     @IBAction func removeLast() { value /= 10 }
-    @IBAction func didFinishInput() {
-        completion?(value)
-        dismiss()
-    }
     private func tapped(_ number: Int) {
         if let newValue = Int("\(value)\(number)") {
             value = newValue

@@ -1,6 +1,6 @@
 //
-//  QRBitBuffer.swift
-//  EFQRCode
+//  UnitTestInterfaceController.swift
+//  watchOS Example Extension
 //
 //  Created by Apollo Zhu on 12/27/17.
 //
@@ -24,36 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS) || os(macOS)
-#else
-    struct QRBitBuffer {
-        var buffer = [UInt]()
-        private(set) var bitCount = 0
-        
-        func get(index: Int) -> Bool {
-            let bufIndex = index / 8
-            return ((buffer[bufIndex] >> (7 - index % 8)) & 1) == 1
-        }
-        
-        subscript(index: Int) -> Bool {
-            return get(index: index)
-        }
-        
-        mutating func put(_ num: UInt, length: Int) {
-            for i in 0..<length {
-                put(((num >> (length - i - 1)) & 1) == 1)
+import WatchKit
+import EFQRCode
+
+class UnitTestInterfaceController: WKInterfaceController {
+    @IBOutlet var table: WKInterfaceTable? {
+        didSet {
+            guard let table = table else { return }
+            let tests = Tests.allTests
+            table.setNumberOfRows(tests.count, withRowType: "UnitTestcaseRowType")
+            for (i, test) in tests.enumerated() {
+                if let row = table.rowController(at: i) as? UnitTestcaseRowType {
+                    row.test = test
+                }
             }
-        }
-        
-        mutating func put(_ bit: Bool) {
-            let bufIndex = bitCount / 8
-            if buffer.count <= bufIndex {
-                buffer.append(0)
-            }
-            if bit {
-                buffer[bufIndex] |= (UInt(0x80) >> (bitCount % 8))
-            }
-            bitCount += 1
         }
     }
-#endif
+}

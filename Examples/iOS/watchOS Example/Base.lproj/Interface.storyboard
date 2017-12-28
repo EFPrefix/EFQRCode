@@ -121,7 +121,7 @@
         <!--Version Display Interface Controller-->
         <scene sceneID="O0f-3r-sKj">
             <objects>
-                <controller id="CRb-ZU-aKh" customClass="VersionDisplayInterfaceController" customModule="watchOS_Example_Extension">
+                <controller fullScreen="YES" id="CRb-ZU-aKh" customClass="VersionDisplayInterfaceController" customModule="watchOS_Example_Extension">
                     <items>
                         <label width="1" alignment="left" text="EFQRCode" textAlignment="center" id="Fro-dS-7yC">
                             <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -140,12 +140,59 @@
                             </connections>
                         </button>
                     </items>
+                    <menu key="menu" id="7Ca-Q3-RKb">
+                        <items>
+                            <menuItem title="Unit Test" icon="play" id="dxU-PU-Rmi">
+                                <connections>
+                                    <action selector="showUnitTests" destination="CRb-ZU-aKh" id="oky-G9-Z0m"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="label" destination="mRZ-AU-Ngn" id="LzJ-uB-5Ke"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-382" y="134"/>
+        </scene>
+        <!--Unit Tests-->
+        <scene sceneID="26e-eU-Vke">
+            <objects>
+                <controller identifier="Tests" title="Unit Tests" id="bqn-P8-jul" customClass="UnitTestInterfaceController" customModule="watchOS_Example_Extension">
+                    <items>
+                        <activity alignment="left" id="Z77-Ph-U7f"/>
+                        <table alignment="left" id="beI-sM-P2H">
+                            <items>
+                                <tableRow identifier="UnitTestcaseRowType" id="5aA-TK-DxF" customClass="UnitTestcaseRowType" customModule="watchOS_Example_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="fDh-oU-OSg">
+                                        <items>
+                                            <label width="1" alignment="left" text="Testcase" textAlignment="left" minimumScaleFactor="0.01" id="HnN-v1-r3j">
+                                                <color key="textColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                            <label width="1" alignment="left" text="Testing" textAlignment="left" minimumScaleFactor="0.01" id="Z2h-16-bKr"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="testcaseNameLabel" destination="HnN-v1-r3j" id="fJ3-HR-UF1"/>
+                                        <outlet property="testcaseStatusLabel" destination="Z2h-16-bKr" id="yZs-0X-oBF"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <variation key="default">
+                        <mask key="items">
+                            <exclude reference="Z77-Ph-U7f"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="table" destination="beI-sM-P2H" id="5CE-Hk-7qm"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-382" y="468"/>
         </scene>
         <!--EFQRCode-->
         <scene sceneID="iSG-4e-WHm">

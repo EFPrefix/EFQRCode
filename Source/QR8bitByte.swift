@@ -45,9 +45,8 @@
         }
         
         func write(to buffer: inout QRBitBuffer) {
-            let l: Int = parsedData.count
-            for i in 0..<l {
-                buffer.put(parsedData[i], length: 8)
+            for datium in parsedData {
+                buffer.put(UInt(datium), length: 8)
             }
         }
     }

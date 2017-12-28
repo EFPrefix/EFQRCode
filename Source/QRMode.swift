@@ -26,7 +26,7 @@
 
 #if os(iOS) || os(tvOS) || os(macOS)
 #else
-    enum QRMode: UInt8 { // OptionSet
+    enum QRMode: UInt { // OptionSet
         case number = 0b0001 // 1 << 0
         case alphaNumber = 0b0010 // 1 << 1
         case _8bitByte = 0b0100 //1 << 2

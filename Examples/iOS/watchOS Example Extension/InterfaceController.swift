@@ -25,7 +25,6 @@
 //  THE SOFTWARE.
 
 import WatchKit
-import Foundation
 import EFQRCode
 
 class InterfaceController: WKInterfaceController {

@@ -32,12 +32,12 @@ class EFImage {
     private(set) var data: Any?
 
     init() { }
-
+    
     init?(_ image: UIImage?) {
         guard let data = image else { return nil }
         self.data = data
     }
-
+    
     init?(_ data: Data?) {
         guard let data = data else { return nil }
         self.data = data
@@ -46,7 +46,6 @@ class EFImage {
 }
 
 class ParametersInterfaceController: WKInterfaceController {
-
     private var link = "github.com/EyreFree/EFQRCode"
     @IBOutlet var contentDisplay: WKInterfaceLabel!
     @IBAction func changeLink() {
@@ -60,7 +59,7 @@ class ParametersInterfaceController: WKInterfaceController {
             }
         }
     }
-
+    
     private var correctionLevel = EFInputCorrectionLevel.h
     @IBAction func changeInputCorrectionLevel(_ value: Float) {
         if let level = EFInputCorrectionLevel(rawValue: Int(value)) {
@@ -83,7 +82,7 @@ class ParametersInterfaceController: WKInterfaceController {
     @IBAction func pickedMode(_ value: Int) {
         selectedMode = EFQRCodeMode(rawValue: value) ?? selectedMode
     }
-
+    
     private var width = 1024
     @IBOutlet var widthButton: WKInterfaceButton?
     @IBAction func changeWidth() {
@@ -104,7 +103,7 @@ class ParametersInterfaceController: WKInterfaceController {
             }
         }
     }
-
+    
     private var magnificationWidth = 9
     @IBOutlet var magnificationWidthButton: WKInterfaceButton?
     @IBAction func changeMagnificationWidth() {
@@ -125,7 +124,7 @@ class ParametersInterfaceController: WKInterfaceController {
             }
         }
     }
-
+    
     let colorNames = [
         "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille",
         "Hearth Stone", "Pikachu Red", "3 Red", "Cee", "toto"
@@ -149,7 +148,7 @@ class ParametersInterfaceController: WKInterfaceController {
             red: 41.0 / 255.0, green: 44.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0
         )
     ]
-
+    
     var backgroundColor: UIColor = .black
     @IBOutlet var backgroundColorPicker: WKInterfacePicker? {
         didSet {
@@ -163,7 +162,7 @@ class ParametersInterfaceController: WKInterfaceController {
     @IBAction func pickedBackgroundColor(_ value: Int) {
         backgroundColor = colors[value]
     }
-
+    
     var foregroundColor: UIColor = .white
     @IBOutlet var foregroundColorPicker: WKInterfacePicker? {
         didSet {
@@ -178,7 +177,7 @@ class ParametersInterfaceController: WKInterfaceController {
     @IBAction func pickedForegroundColor(_ value: Int) {
         foregroundColor = colors[value]
     }
-
+    
     var icon: UIImage? = nil
     let icons = [nil, "EyreFree", "GitHub", "LPD", "Pikachu", "Swift"]
     @IBOutlet var iconPicker: WKInterfacePicker? {
@@ -197,7 +196,7 @@ class ParametersInterfaceController: WKInterfaceController {
             icon = nil
         }
     }
-
+    
     private var iconWidth = 128
     @IBOutlet var iconWidthButton: WKInterfaceButton?
     @IBAction func changeIconWidth() {
@@ -218,7 +217,7 @@ class ParametersInterfaceController: WKInterfaceController {
             }
         }
     }
-
+    
     var watermark: EFImage? = nil
     let watermarks = [nil, "Beethoven", "Jobs", "Miku", "Wille", "WWF"]
     @IBOutlet var watermarkPicker: WKInterfacePicker? {
@@ -237,7 +236,7 @@ class ParametersInterfaceController: WKInterfaceController {
             watermark = nil
         }
     }
-
+    
     private var watermarkMode = EFWatermarkMode.scaleAspectFill
     let watermarkModeString = [
         "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
@@ -257,7 +256,7 @@ class ParametersInterfaceController: WKInterfaceController {
     @IBAction func pickedWatermarkMode(_ value: Int) {
         watermarkMode = EFWatermarkMode(rawValue: value) ?? watermarkMode
     }
-
+    
     var foregroundPointOffset: CGFloat = 0
     let foregroundPointOffsets: [CGFloat] = [-0.5, -0.25, 0, 0.25, 0.5]
     @IBOutlet var foregroundPointOffsetPicker: WKInterfacePicker? {
@@ -274,12 +273,12 @@ class ParametersInterfaceController: WKInterfaceController {
     @IBAction func pickedForegroundPointOffset(_ value: Int) {
         foregroundPointOffset = foregroundPointOffsets[value]
     }
-
+    
     private var allowsTransparent = false
     @IBAction func allowTransparent(_ value: Bool) {
         allowsTransparent = value
     }
-
+    
     private var binarizationThreshold: CGFloat = 0.5
     private let binarizationThresholds: [CGFloat] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
     @IBOutlet var binarizationThresholdPicker: WKInterfacePicker? {
@@ -296,12 +295,12 @@ class ParametersInterfaceController: WKInterfaceController {
     @IBAction func pickedBinarizationThreshold(_ value: Int) {
         binarizationThreshold = binarizationThresholds[value]
     }
-
+    
     private var isCircular = false
     @IBAction func prefersCircular(_ value: Bool) {
         isCircular = value
     }
-
+    
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         let generator = EFQRCodeGenerator(content: link, size: EFIntSize(width: width, height: height))
         generator.setInputCorrectionLevel(inputCorrectionLevel: correctionLevel)
@@ -313,7 +312,7 @@ class ParametersInterfaceController: WKInterfaceController {
         generator.setAllowTransparent(allowTransparent: allowsTransparent)
         generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: isCircular ? .circle : .square)
-
+        
         if watermark?.isGIF == true, let data = watermark?.data as? Data {
             // GIF
             // TODO: Confirm if possible to even have this case on watchOS
@@ -322,7 +321,7 @@ class ParametersInterfaceController: WKInterfaceController {
         } else {
             // Other use UIImage
             generator.setWatermark(watermark: (watermark?.data as? UIImage)?.toCGImage(), mode: watermarkMode)
-
+            
             if let tryCGImage = generator.generate() {
                 return  EFImage(UIImage(cgImage: tryCGImage))
             }
