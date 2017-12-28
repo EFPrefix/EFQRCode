@@ -315,7 +315,6 @@ public class EFQRCodeGenerator: NSObject {
             if let tryModeImage = result?.grayscale() {
                 result = tryModeImage
             }
-            break
         case .binarization:
             if let tryModeImage = result?.binarization(
                 value: binarizationThreshold,
@@ -324,7 +323,6 @@ public class EFQRCodeGenerator: NSObject {
                 ) {
                 result = tryModeImage
             }
-            break
         default:
             break
         }
@@ -559,49 +557,38 @@ public class EFQRCodeGenerator: NSObject {
         case .bottom:
             finalSize = imageSize
             finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: 0)
-            break
         case .bottomLeft:
             finalSize = imageSize
             finalOrigin = CGPoint(x: 0, y: 0)
-            break
         case .bottomRight:
             finalSize = imageSize
             finalOrigin = CGPoint(x: size.width - imageSize.width, y: 0)
-            break
         case .center:
             finalSize = imageSize
             finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: (size.height - imageSize.height) / 2.0)
-            break
         case .left:
             finalSize = imageSize
             finalOrigin = CGPoint(x: 0, y: (size.height - imageSize.height) / 2.0)
-            break
         case .right:
             finalSize = imageSize
             finalOrigin = CGPoint(x: size.width - imageSize.width, y: (size.height - imageSize.height) / 2.0)
-            break
         case .top:
             finalSize = imageSize
             finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: size.height - imageSize.height)
-            break
         case .topLeft:
             finalSize = imageSize
             finalOrigin = CGPoint(x: 0, y: size.height - imageSize.height)
-            break
         case .topRight:
             finalSize = imageSize
             finalOrigin = CGPoint(x: size.width - imageSize.width, y: size.height - imageSize.height)
-            break
         case .scaleAspectFill:
             let scale = max(size.width / imageSize.width, size.height / imageSize.height)
             finalSize = CGSize(width: imageSize.width * scale, height: imageSize.height * scale)
             finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0, y: (size.height - finalSize.height) / 2.0)
-            break
         case .scaleAspectFit:
             let scale = max(imageSize.width / size.width, imageSize.height / size.height)
             finalSize = CGSize(width: imageSize.width / scale, height: imageSize.height / scale)
             finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0, y: (size.height - finalSize.height) / 2.0)
-            break
         default:
             break
         }

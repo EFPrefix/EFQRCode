@@ -337,13 +337,10 @@ extension ViewController: NSAlertDelegate {
                 switch index {
                 case 4:
                     rightImageView?.layer?.backgroundColor = backColor.cgColor
-                    break
                 case 5:
                     rightImageView?.layer?.backgroundColor = frontColor.cgColor
-                    break
                 case 6:
                     rightImageView?.image = icon
-                    break
                 case 8:
                     if watermark?.isGIF == true {
                         if let dataGIF = watermark?.data as? Data {
@@ -352,7 +349,6 @@ extension ViewController: NSAlertDelegate {
                     } else {
                         rightImageView?.image = watermark?.data as? NSImage
                     }
-                    break
                 default:
                     break
                 }

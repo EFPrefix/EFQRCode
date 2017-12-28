@@ -961,13 +961,10 @@ extension GeneratorController {
             switch indexPath.row {
             case 4:
                 rightImageView.backgroundColor = backColor
-                break
             case 5:
                 rightImageView.backgroundColor = frontColor
-                break
             case 6:
                 rightImageView.image = icon
-                break
             case 8:
                 rightImageView.stopAnimating()
                 if watermark?.isGIF == true {
@@ -984,7 +981,6 @@ extension GeneratorController {
                 } else {
                     rightImageView.image = watermark?.data as? UIImage
                 }
-                break
             default:
                 break
             }
@@ -1084,10 +1080,8 @@ extension GeneratorController {
                         watermark = tryGIF
                     }
                 }
-                break
             case "icon":
                 self.icon = finalImage
-                break
             default:
                 break
             }
