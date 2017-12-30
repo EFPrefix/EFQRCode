@@ -39,14 +39,15 @@ public class EFQRCode: NSObject {
         size: EFIntSize = EFIntSize(width: 600, height: 600),
         backgroundColor: CIColor = CIColor.EFWhite(),
         foregroundColor: CIColor = CIColor.EFBlack(),
-        watermark: CGImage? = nil
+        watermark: CGImage? = nil,
+        watermarkMode mode: EFWatermarkMode? = .scaleAspectFit
         ) -> CGImage? {
 
         let generator = EFQRCodeGenerator(
             content: content,
             size: size
         )
-        generator.setWatermark(watermark: watermark)
+        generator.setWatermark(watermark: watermark, mode: mode)
         generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
         return generator.generate()
     }
