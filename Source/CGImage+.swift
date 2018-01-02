@@ -25,15 +25,20 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
-import CoreImage
+
+#if !os(watchOS)
+    import CoreImage
+#endif
 
 public extension CGImage {
 
     // Convert UIImage to CIImage
     // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
+    #if !os(watchOS)
     public func toCIImage() -> CIImage {
         return CIImage(cgImage: self)
     }
+    #endif
 
     // Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
@@ -85,24 +90,24 @@ public extension CGImage {
         }
         context.draw(self, in: CGRect(x: 0, y: 0, width: 1, height: 1))
 
-        return CIColor(
+        return CGColor.fromRGB(
             red: CGFloat(rgba[0]) / 255.0,
             green: CGFloat(rgba[1]) / 255.0,
             blue: CGFloat(rgba[2]) / 255.0,
             alpha: CGFloat(rgba[3]) / 255.0
-            ).toCGColor()
+        )
     }
 
     // Grayscale
     // http://stackoverflow.com/questions/1311014/convert-to-grayscale-too-slow
     func grayscale() -> CGImage? {
         if let context = CGContext(
-            data: nil, width: self.width, height: self.height,
+            data: nil, width: width, height: height,
             bitsPerComponent: 8, bytesPerRow: 4 * width,
             space: CGColorSpaceCreateDeviceGray(),
             bitmapInfo: CGImageAlphaInfo.none.rawValue
             ) {
-            context.draw(self, in: CGRect(origin: CGPoint.zero, size: CGSize(width: self.width, height: self.height)))
+            context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
             return context.makeImage()
         }
         return nil
@@ -115,11 +120,12 @@ public extension CGImage {
         foregroundColor: CGColor = CGColor.EFWhite(),
         backgroundColor: CGColor = CGColor.EFBlack()
         ) -> CGImage? {
-        let foregroundCIColor = foregroundColor.toCIColor()
-        let backgroundCIColor = backgroundColor.toCIColor()
         let dataSize = width * height * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
         let colorSpace = CGColorSpaceCreateDeviceRGB()
+        guard let backgroundPixel = EFUIntPixel(color: backgroundColor),
+            let foregroundPixel = EFUIntPixel(color: foregroundColor)
+            else { return nil }
         if let context = CGContext(
             data: &pixelData,
             width: width,
@@ -137,11 +143,11 @@ public extension CGImage {
                     let intensity = (
                         CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
                         ) / 3.0 / 255.0 * alpha + (1.0 - alpha)
-                    let finalColor = intensity > value ? backgroundCIColor : foregroundCIColor
-                    pixelData[offset + 0] = UInt8(finalColor.red * 255.0)
-                    pixelData[offset + 1] = UInt8(finalColor.green * 255.0)
-                    pixelData[offset + 2] = UInt8(finalColor.blue * 255.0)
-                    pixelData[offset + 3] = UInt8(finalColor.alpha * 255.0)
+                    let finalPixel = intensity > value ? backgroundPixel : foregroundPixel
+                    pixelData[offset + 0] = finalPixel.red
+                    pixelData[offset + 1] = finalPixel.green
+                    pixelData[offset + 2] = finalPixel.blue
+                    pixelData[offset + 3] = finalPixel.alpha
                 }
             }
             return context.makeImage()

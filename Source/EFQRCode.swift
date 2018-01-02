@@ -24,21 +24,61 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreImage
+#if os(macOS)
+    import AppKit
+#else
+    import UIKit
+#endif
 
 public class EFQRCode: NSObject {
 
     // MARK: - Recognizer
+    #if !os(watchOS)
     public static func recognize(image: CGImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).recognize()
     }
+    #endif
 
     // MARK: - Generator
+    #if !os(watchOS)
     public static func generate(
         content: String,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CIColor = CIColor.EFWhite(),
-        foregroundColor: CIColor = CIColor.EFBlack(),
+        backgroundColor: CIColor,
+        foregroundColor: CIColor,
+        watermark: CGImage? = nil
+        ) -> CGImage? {
+        return generate(content: content, size: size, backgroundColor: backgroundColor.toCGColor() ?? CGColor.EFWhite(), foregroundColor: foregroundColor.toCGColor() ?? CGColor.EFBlack(), watermark: watermark)
+    }
+    #endif
+
+    #if os(macOS)
+    public static func generate(
+        content: String,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
+        backgroundColor: NSColor,
+        foregroundColor: NSColor,
+        watermark: CGImage? = nil
+        ) -> CGImage? {
+        return generate(content: content, size: size, backgroundColor: backgroundColor.toCGColor(), foregroundColor: foregroundColor.toCGColor(), watermark: watermark)
+    }
+    #else
+    public static func generate(
+    content: String,
+    size: EFIntSize = EFIntSize(width: 600, height: 600),
+    backgroundColor: UIColor,
+    foregroundColor: UIColor,
+    watermark: CGImage? = nil
+    ) -> CGImage? {
+    return generate(content: content, size: size, backgroundColor: backgroundColor.toCGColor(), foregroundColor: foregroundColor.toCGColor(), watermark: watermark)
+    }
+    #endif
+
+    public static func generate(
+        content: String,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
+        backgroundColor: CGColor = CGColor.EFWhite(),
+        foregroundColor: CGColor = CGColor.EFBlack(),
         watermark: CGImage? = nil
         ) -> CGImage? {
 

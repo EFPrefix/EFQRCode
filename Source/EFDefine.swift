@@ -24,8 +24,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
 import CoreGraphics
+
+#if !os(watchOS)
+    import CoreImage
+#endif
 
 public enum EFQRCodeMode: Int {
     case none           = 0
@@ -43,6 +46,25 @@ public struct EFUIntPixel {
     public var green: UInt8 = 0
     public var blue: UInt8 = 0
     public var alpha: UInt8 = 0
+
+    init(red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8) {
+        self.red = red
+        self.green = green
+        self.blue = blue
+        self.alpha = alpha
+    }
+
+    init?(color: CGColor) {
+        if let components = color.components, 4 == color.numberOfComponents {
+            self.init(
+                red: UInt8(components[0] * 255.0),
+                green: UInt8(components[1] * 255.0),
+                blue: UInt8(components[2] * 255.0),
+                alpha: UInt8(components[3] * 255.0)
+            )
+        }
+        return nil
+    }
 }
 
 public class EFIntSize: NSObject {
@@ -55,7 +77,7 @@ public class EFIntSize: NSObject {
     }
 
     public func toCGSize() -> CGSize {
-        return CGSize(width: self.width, height: self.height)
+        return CGSize(width: width, height: height)
     }
 
     public func widthCGFloat() -> CGFloat {
@@ -96,6 +118,6 @@ struct EFIntPoint {
     public var y: Int = 0
 
     public func toCGPoint() -> CGPoint {
-        return CGPoint(x: self.x, y: self.y)
+        return CGPoint(x: x, y: y)
     }
 }

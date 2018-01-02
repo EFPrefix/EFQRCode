@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "12F371921EA8DE3A0049DE67"
-               BuildableName = "EFQRCode.macOS.app"
+               BuildableName = "EFQRCode.app"
                BlueprintName = "macOS Example"
                ReferencedContainer = "container:macOS Example.xcodeproj">
             </BuildableReference>
@@ -34,7 +34,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "12F371921EA8DE3A0049DE67"
-            BuildableName = "EFQRCode.macOS.app"
+            BuildableName = "EFQRCode.app"
             BlueprintName = "macOS Example"
             ReferencedContainer = "container:macOS Example.xcodeproj">
          </BuildableReference>
@@ -58,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "12F371921EA8DE3A0049DE67"
-            BuildableName = "EFQRCode.macOS.app"
+            BuildableName = "EFQRCode.app"
             BlueprintName = "macOS Example"
             ReferencedContainer = "container:macOS Example.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "12F371921EA8DE3A0049DE67"
-            BuildableName = "EFQRCode.macOS.app"
+            BuildableName = "EFQRCode.app"
             BlueprintName = "macOS Example"
             ReferencedContainer = "container:macOS Example.xcodeproj">
          </BuildableReference>

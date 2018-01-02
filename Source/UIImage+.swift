@@ -24,8 +24,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if !os(macOS)
     import UIKit
+#endif
+
+#if os(iOS) || os(tvOS)
 
     public extension UIImage {
 
@@ -34,7 +37,13 @@
         }
 
         public func toCGImage() -> CGImage? {
-            return self.toCIImage()?.toCGImage()
+            return toCIImage()?.toCGImage()
+        }
+    }
+#elseif os(watchOS)
+    public extension UIImage {
+        public func toCGImage() -> CGImage? {
+            return cgImage
         }
     }
 #endif

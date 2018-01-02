@@ -30,11 +30,11 @@
     public extension NSColor {
 
         public func toCIColor() -> CIColor {
-            return self.cgColor.toCIColor()
+            return cgColor.toCIColor()
         }
 
         public func toCGColor() -> CGColor {
-            return self.cgColor
+            return cgColor
         }
     }
 #endif

@@ -24,14 +24,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+import Foundation
 import CoreGraphics
-import CoreImage
 import ImageIO
 
-#if os(iOS) || os(tvOS)
-    import MobileCoreServices
-#else
+#if os(macOS)
     import CoreServices
+#else
+    import MobileCoreServices
 #endif
 
 public extension EFQRCode {

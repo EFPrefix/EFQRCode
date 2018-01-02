@@ -24,17 +24,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(watchOS)
     import UIKit
 
     public extension UIColor {
 
+        #if !os(watchOS)
         public func toCIColor() -> CIColor {
-            return self.cgColor.toCIColor()
+            return cgColor.toCIColor()
         }
+        #endif
 
         public func toCGColor() -> CGColor {
-            return self.cgColor
+            return cgColor
         }
     }
 #endif

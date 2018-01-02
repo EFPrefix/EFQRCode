@@ -24,6 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if !os(watchOS)
 import CoreImage
 
 public extension CIImage {
@@ -31,7 +32,7 @@ public extension CIImage {
     // Convert CIImage To CGImage
     // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     public func toCGImage() -> CGImage? {
-        return CIContext().createCGImage(self, from: self.extent)
+        return CIContext().createCGImage(self, from: extent)
     }
 
     // Size
@@ -65,3 +66,4 @@ public extension CIImage {
         return nil
     }
 }
+#endif

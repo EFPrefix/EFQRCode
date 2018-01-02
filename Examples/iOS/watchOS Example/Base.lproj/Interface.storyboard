@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+    </dependencies>
+    <scenes>
+        <!--NumberPad-->
+        <scene sceneID="xDD-Gb-LOX">
+            <objects>
+                <controller identifier="NumberPad" fullScreen="YES" id="i87-te-Kf6" customClass="NumberPadInterfaceController" customModule="watchOS_Example_Extension">
+                    <items>
+                        <group width="1" height="0.20000000000000001" alignment="left" id="Mkx-Zv-Roj">
+                            <items>
+                                <label width="1" height="1" alignment="left" text="0" textAlignment="right" minimumScaleFactor="0.5" id="kqt-Cp-biJ"/>
+                            </items>
+                        </group>
+                        <group width="1" height="0.20000000000000001" alignment="left" id="Qr2-WV-uNo">
+                            <items>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="7" id="brk-IV-KtD">
+                                    <connections>
+                                        <action selector="tapped7" destination="i87-te-Kf6" id="Vkk-8w-0kV"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="8" id="N3g-aP-wFy">
+                                    <connections>
+                                        <action selector="tapped8" destination="i87-te-Kf6" id="eqF-wZ-jH6"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="9" id="U6A-Ai-ZgN">
+                                    <connections>
+                                        <action selector="tapped9" destination="i87-te-Kf6" id="zSc-8D-j0P"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="0.20000000000000001" alignment="left" id="ZOy-2x-7xe">
+                            <items>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="4" id="sf8-cl-KBf">
+                                    <connections>
+                                        <action selector="tapped4" destination="i87-te-Kf6" id="nlP-QH-Ybh"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="5" id="OXL-Cy-cMP">
+                                    <connections>
+                                        <action selector="tapped5" destination="i87-te-Kf6" id="5qC-Rg-LnO"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="6" id="Eg8-dd-0gI">
+                                    <connections>
+                                        <action selector="tapped6" destination="i87-te-Kf6" id="kjZ-5p-JwT"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="0.20000000000000001" alignment="left" id="st7-ai-8yF">
+                            <items>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="1" id="rw2-1Q-OeY">
+                                    <connections>
+                                        <action selector="tapped1" destination="i87-te-Kf6" id="kCy-io-HsA"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="2" id="6Jy-pE-fYR">
+                                    <connections>
+                                        <action selector="tapped2" destination="i87-te-Kf6" id="UoT-kX-dTZ"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="3" id="0De-13-4Ar">
+                                    <connections>
+                                        <action selector="tapped3" destination="i87-te-Kf6" id="gOX-zF-2pu"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group width="1" height="0.20000000000000001" alignment="left" id="2Mz-WI-BsQ">
+                            <items>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="⏪" id="BeC-AW-Gbi">
+                                    <connections>
+                                        <action selector="removeLast" destination="i87-te-Kf6" id="X4g-jv-DqF"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="0" id="0tP-44-GIh">
+                                    <connections>
+                                        <action selector="tapped0" destination="i87-te-Kf6" id="kxk-HZ-TJW"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33000000000000002" height="1" alignment="left" title="✅" id="ASC-4U-S90">
+                                    <color key="titleColor" red="0.023529411760000001" green="0.87058823529999996" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="didFinishInput" destination="i87-te-Kf6" id="5TV-31-zpT"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="display" destination="kqt-Cp-biJ" id="vEF-5z-p0p"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="307" y="-17"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchOS_Example" customModuleProvider="target">
+                    <items>
+                        <imageView width="1" height="1" alignment="left" contentMode="scaleAspectFit" id="Tcp-eo-X92"/>
+                    </items>
+                    <connections>
+                        <outlet property="qrcodeImage" destination="Tcp-eo-X92" id="dk8-lf-imx"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="307" y="305"/>
+        </scene>
+        <!--Version Display Interface Controller-->
+        <scene sceneID="O0f-3r-sKj">
+            <objects>
+                <controller fullScreen="YES" id="CRb-ZU-aKh" customClass="VersionDisplayInterfaceController" customModule="watchOS_Example_Extension">
+                    <items>
+                        <label width="1" alignment="left" text="EFQRCode" textAlignment="center" id="Fro-dS-7yC">
+                            <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label width="1" alignment="left" text="Ver." textAlignment="center" id="mRZ-AU-Ngn">
+                            <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </label>
+                        <label width="1" alignment="left" text="github.com/EyreFree/EFQRCode" textAlignment="center" minimumScaleFactor="0.01" id="sa0-VE-eaV">
+                            <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </label>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Generator" id="oDI-5t-GBk">
+                            <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="x7r-oY-9um" kind="push" id="N9T-5z-QPm"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <menu key="menu" id="7Ca-Q3-RKb">
+                        <items>
+                            <menuItem title="Unit Test" icon="play" id="dxU-PU-Rmi">
+                                <connections>
+                                    <action selector="showUnitTests" destination="CRb-ZU-aKh" id="oky-G9-Z0m"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="label" destination="mRZ-AU-Ngn" id="LzJ-uB-5Ke"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-382" y="134"/>
+        </scene>
+        <!--Unit Tests-->
+        <scene sceneID="26e-eU-Vke">
+            <objects>
+                <controller identifier="Tests" title="Unit Tests" id="bqn-P8-jul" customClass="UnitTestInterfaceController" customModule="watchOS_Example_Extension">
+                    <items>
+                        <activity alignment="left" id="Z77-Ph-U7f"/>
+                        <table alignment="left" id="beI-sM-P2H">
+                            <items>
+                                <tableRow identifier="UnitTestcaseRowType" id="5aA-TK-DxF" customClass="UnitTestcaseRowType" customModule="watchOS_Example_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="fDh-oU-OSg">
+                                        <items>
+                                            <label width="1" alignment="left" text="Testcase" textAlignment="left" minimumScaleFactor="0.01" id="HnN-v1-r3j">
+                                                <color key="textColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                            <label width="1" alignment="left" text="Testing" textAlignment="left" minimumScaleFactor="0.01" id="Z2h-16-bKr"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="testcaseNameLabel" destination="HnN-v1-r3j" id="fJ3-HR-UF1"/>
+                                        <outlet property="testcaseStatusLabel" destination="Z2h-16-bKr" id="yZs-0X-oBF"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <variation key="default">
+                        <mask key="items">
+                            <exclude reference="Z77-Ph-U7f"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="table" destination="beI-sM-P2H" id="5CE-Hk-7qm"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-382" y="468"/>
+        </scene>
+        <!--EFQRCode-->
+        <scene sceneID="iSG-4e-WHm">
+            <objects>
+                <controller title="EFQRCode" id="x7r-oY-9um" customClass="ParametersInterfaceController" customModule="watchOS_Example_Extension">
+                    <items>
+                        <button width="1" alignment="left" title="Generate" id="FcX-tR-c93">
+                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="AgC-eL-Hgc" kind="push" id="6xH-8Q-rON"/>
+                            </connections>
+                        </button>
+                        <label width="1" alignment="left" text="github.com/EyreFree/EFQRCode" textAlignment="center" minimumScaleFactor="0.01" id="pSv-yw-I6b"/>
+                        <button width="1" alignment="left" title="Change Content" id="hTq-XK-AZe">
+                            <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="changeLink" destination="x7r-oY-9um" id="GS5-Vr-TDe"/>
+                            </connections>
+                        </button>
+                        <label width="1" alignment="left" text="Input Correction Level" textAlignment="center" minimumScaleFactor="0.5" id="a4t-ug-YcG"/>
+                        <slider width="1" alignment="left" value="3" maximum="3" steps="3" id="Ihz-Ai-RWc">
+                            <color key="color" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="changeInputCorrectionLevel:" destination="x7r-oY-9um" id="Q26-Vi-WCv"/>
+                            </connections>
+                        </slider>
+                        <label width="1" alignment="left" text="Mode" textAlignment="center" minimumScaleFactor="0.5" id="A9e-1b-MIh"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="a6K-zF-snE">
+                            <connections>
+                                <action selector="pickedMode:" destination="x7r-oY-9um" id="REW-xT-DS1"/>
+                            </connections>
+                        </picker>
+                        <label width="1" alignment="left" text="Width &amp; Height" textAlignment="center" minimumScaleFactor="0.5" id="CJT-KQ-1aL"/>
+                        <group width="1" alignment="left" id="S0W-4O-EuA">
+                            <items>
+                                <button width="0.5" alignment="left" title="1024" id="XF9-rQ-Phv">
+                                    <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="changeWidth" destination="x7r-oY-9um" id="wA7-K5-FtW"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" alignment="left" title="1024" id="g5f-Nh-PEu">
+                                    <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="changeHeight" destination="x7r-oY-9um" id="xLE-cT-TyH"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <label width="1" alignment="left" textAlignment="center" numberOfLines="2" minimumScaleFactor="0.5" id="8j4-XA-kpD">
+                            <string key="text">Magnification
+Width &amp; Height</string>
+                        </label>
+                        <group width="1" alignment="left" id="nAD-ez-FX5">
+                            <items>
+                                <button width="0.5" alignment="left" title="9" id="HHX-1E-4RW">
+                                    <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="changeMagnificationWidth" destination="x7r-oY-9um" id="cdl-oi-UVD"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" alignment="left" title="9" id="dIX-c1-Atv">
+                                    <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="changeMagnificationHeight" destination="x7r-oY-9um" id="E4O-Sp-9O4"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <label width="1" alignment="left" text="Background Color" textAlignment="center" minimumScaleFactor="0.5" id="wY4-5P-rXd"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="7Px-Vg-gTE">
+                            <connections>
+                                <action selector="pickedBackgroundColor:" destination="x7r-oY-9um" id="9ob-8k-syG"/>
+                            </connections>
+                        </picker>
+                        <label width="1" alignment="left" text="Foreground Color" textAlignment="center" minimumScaleFactor="0.5" id="ngi-5C-3ro"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="LB4-rc-W90">
+                            <connections>
+                                <action selector="pickedForegroundColor:" destination="x7r-oY-9um" id="Wqs-Ca-Tdb"/>
+                            </connections>
+                        </picker>
+                        <label width="1" alignment="left" text="Icon" textAlignment="center" minimumScaleFactor="0.5" id="0Ot-Gs-CxN"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="8m3-XO-9cI">
+                            <connections>
+                                <action selector="pickedIcon:" destination="x7r-oY-9um" id="jNy-Wh-9ku"/>
+                            </connections>
+                        </picker>
+                        <label width="1" alignment="left" text="Icon Width &amp; Height" textAlignment="center" minimumScaleFactor="0.5" id="c96-UO-I1i"/>
+                        <group width="1" alignment="left" id="bi3-2H-8q0">
+                            <items>
+                                <button width="0.5" alignment="left" title="128" id="BcR-4r-XTb">
+                                    <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="changeIconWidth" destination="x7r-oY-9um" id="w0Q-Uf-dh3"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" alignment="left" title="128" id="Cnh-dl-KBY">
+                                    <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="changeIconHeight" destination="x7r-oY-9um" id="WZG-v7-0xV"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <label width="1" alignment="left" text="Watermark" textAlignment="center" minimumScaleFactor="0.5" id="vTy-54-msA"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="OW9-Hq-tI2">
+                            <connections>
+                                <action selector="pickedWatermark:" destination="x7r-oY-9um" id="pEJ-U1-lfU"/>
+                            </connections>
+                        </picker>
+                        <label width="1" alignment="left" text="Watermark Mode" textAlignment="center" minimumScaleFactor="0.5" id="N8w-sb-2bc"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="Z4t-N1-j6n">
+                            <connections>
+                                <action selector="pickedWatermarkMode:" destination="x7r-oY-9um" id="svk-PR-LoN"/>
+                            </connections>
+                        </picker>
+                        <label width="1" alignment="left" text="Foreground Point Offset" textAlignment="center" minimumScaleFactor="0.5" id="qcK-9t-ZZl"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="U0M-Ic-fIA">
+                            <connections>
+                                <action selector="pickedForegroundPointOffset:" destination="x7r-oY-9um" id="3N4-P5-tjZ"/>
+                            </connections>
+                        </picker>
+                        <switch width="1" alignment="left" value="YES" title="Allow Transparent" numberOfLines="1" minimumScaleFactor="0.5" id="N9p-sO-zfZ">
+                            <color key="tintColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="allowTransparent:" destination="x7r-oY-9um" id="Ye1-aq-yKY"/>
+                            </connections>
+                        </switch>
+                        <label width="1" alignment="left" text="Binarization Threshold" textAlignment="center" minimumScaleFactor="0.5" id="BcI-AJ-ri0"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="lmO-o0-84w">
+                            <connections>
+                                <action selector="pickedBinarizationThreshold:" destination="x7r-oY-9um" id="zMm-2H-NTd"/>
+                            </connections>
+                        </picker>
+                        <switch width="1" alignment="left" title="Circular Point Shape" numberOfLines="1" minimumScaleFactor="0.10000000000000001" id="TeM-rT-bHj">
+                            <color key="tintColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="prefersCircular:" destination="x7r-oY-9um" id="Jy8-MZ-Vq9"/>
+                            </connections>
+                        </switch>
+                        <button width="1" alignment="left" title="Generate" id="UDk-vC-rXj">
+                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="AgC-eL-Hgc" kind="push" id="nUc-7Q-ju6"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="backgroundColorPicker" destination="7Px-Vg-gTE" id="mG3-mf-mHG"/>
+                        <outlet property="binarizationThresholdPicker" destination="lmO-o0-84w" id="Kz5-ea-YzO"/>
+                        <outlet property="contentDisplay" destination="pSv-yw-I6b" id="RVw-tK-to0"/>
+                        <outlet property="foregroundColorPicker" destination="LB4-rc-W90" id="r7v-dV-pMY"/>
+                        <outlet property="foregroundPointOffsetPicker" destination="U0M-Ic-fIA" id="eD3-DU-lgl"/>
+                        <outlet property="heightButton" destination="g5f-Nh-PEu" id="2A2-IG-hAL"/>
+                        <outlet property="iconHeightButton" destination="Cnh-dl-KBY" id="F2n-Y6-dym"/>
+                        <outlet property="iconPicker" destination="8m3-XO-9cI" id="rYb-2y-env"/>
+                        <outlet property="iconWidthButton" destination="BcR-4r-XTb" id="z5l-ve-nB5"/>
+                        <outlet property="magnificationHeightButton" destination="dIX-c1-Atv" id="c69-Tr-Ibv"/>
+                        <outlet property="magnificationWidthButton" destination="HHX-1E-4RW" id="B1r-WH-AFf"/>
+                        <outlet property="modePicker" destination="a6K-zF-snE" id="Qca-XF-9ae"/>
+                        <outlet property="watermarkModePicker" destination="Z4t-N1-j6n" id="jvH-CI-ZDP"/>
+                        <outlet property="watermarkPicker" destination="OW9-Hq-tI2" id="zOo-hZ-Pud"/>
+                        <outlet property="widthButton" destination="XF9-rQ-Phv" id="kR8-Hk-f5u"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-84" y="134"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6xH-8Q-rON"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</document>
