@@ -67,7 +67,7 @@ public struct EFUIntPixel {
     }
 }
 
-public class EFIntSize: NSObject {
+public class EFIntSize {
     public private(set) var width: Int = 0
     public private(set) var height: Int = 0
 

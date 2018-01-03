@@ -24,13 +24,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(macOS)
-    import AppKit
-#else
-    import UIKit
+import CoreGraphics
+
+#if !os(watchOS)
+    import CoreImage
 #endif
 
-public class EFQRCode: NSObject {
+public class EFQRCode {
 
     // MARK: - Recognizer
     #if !os(watchOS)
@@ -40,40 +40,6 @@ public class EFQRCode: NSObject {
     #endif
 
     // MARK: - Generator
-    #if !os(watchOS)
-    public static func generate(
-        content: String,
-        size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CIColor,
-        foregroundColor: CIColor,
-        watermark: CGImage? = nil
-        ) -> CGImage? {
-        return generate(content: content, size: size, backgroundColor: backgroundColor.toCGColor() ?? CGColor.EFWhite(), foregroundColor: foregroundColor.toCGColor() ?? CGColor.EFBlack(), watermark: watermark)
-    }
-    #endif
-
-    #if os(macOS)
-    public static func generate(
-        content: String,
-        size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: NSColor,
-        foregroundColor: NSColor,
-        watermark: CGImage? = nil
-        ) -> CGImage? {
-        return generate(content: content, size: size, backgroundColor: backgroundColor.toCGColor(), foregroundColor: foregroundColor.toCGColor(), watermark: watermark)
-    }
-    #else
-    public static func generate(
-    content: String,
-    size: EFIntSize = EFIntSize(width: 600, height: 600),
-    backgroundColor: UIColor,
-    foregroundColor: UIColor,
-    watermark: CGImage? = nil
-    ) -> CGImage? {
-    return generate(content: content, size: size, backgroundColor: backgroundColor.toCGColor(), foregroundColor: foregroundColor.toCGColor(), watermark: watermark)
-    }
-    #endif
-
     public static func generate(
         content: String,
         size: EFIntSize = EFIntSize(width: 600, height: 600),

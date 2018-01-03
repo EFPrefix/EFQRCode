@@ -27,7 +27,7 @@
 #if os(iOS) || os(macOS) || os(tvOS)
     import CoreImage
 
-    public class EFQRCodeRecognizer: NSObject {
+    public class EFQRCodeRecognizer {
 
         private var image: CGImage? {
             didSet {
@@ -39,10 +39,6 @@
         }
 
         private var contentArray: [String]?
-
-        public override init() {
-            super.init()
-        }
 
         public init(image: CGImage) {
             self.image = image
