@@ -1,11 +1,11 @@
 
 Pod::Spec.new do |s|
 s.name             = 'EFQRCode'
-s.version          = '4.1.2'
+s.version          = '4.2.0'
 s.summary          = 'A better way to operate quick response code in Swift.'
 
 s.description      = <<-DESC
-EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on CoreImage. It provides you a better way to operate QRCode in your app.
+EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on CoreGraphics, CoreImage and ImageIO. EFQRCode provides you a better way to operate QRCode in your app, it works on iOS, macOS, tvOS and watchOS, and it is available through CocoaPods, Carthage and Swift Package Manager.
 DESC
 
 s.homepage         = 'https://github.com/EyreFree/EFQRCode'
