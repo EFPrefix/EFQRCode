@@ -46,7 +46,7 @@ class EFImage {
 }
 
 class ParametersInterfaceController: WKInterfaceController {
-    private var link = "github.com/EyreFree/EFQRCode"
+    private var link = "https://github.com/EyreFree/EFQRCode"
     @IBOutlet var contentDisplay: WKInterfaceLabel!
     @IBAction func changeLink() {
         presentTextInputController(withSuggestions: [link], allowedInputMode: .plain) { [weak self] array in
@@ -149,7 +149,7 @@ class ParametersInterfaceController: WKInterfaceController {
         )
     ]
     
-    var backgroundColor: UIColor = .black
+    var backgroundColor: UIColor = .white
     @IBOutlet var backgroundColorPicker: WKInterfacePicker? {
         didSet {
             backgroundColorPicker?.setItems(colorNames.map {
@@ -157,13 +157,14 @@ class ParametersInterfaceController: WKInterfaceController {
                 item.title = $0
                 return item
             })
+            backgroundColorPicker?.setSelectedItemIndex(1)
         }
     }
     @IBAction func pickedBackgroundColor(_ value: Int) {
         backgroundColor = colors[value]
     }
     
-    var foregroundColor: UIColor = .white
+    var foregroundColor: UIColor = .black
     @IBOutlet var foregroundColorPicker: WKInterfacePicker? {
         didSet {
             foregroundColorPicker?.setItems(colorNames.map {
@@ -171,7 +172,6 @@ class ParametersInterfaceController: WKInterfaceController {
                 item.title = $0
                 return item
             })
-            foregroundColorPicker?.setSelectedItemIndex(1)
         }
     }
     @IBAction func pickedForegroundColor(_ value: Int) {
