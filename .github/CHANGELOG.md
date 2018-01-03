@@ -2,7 +2,16 @@
 
 -----
 
-## [4.1.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.7) (2017-11-01)
+## [4.2.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.0) (2018-01-03)
+
+#### Add
+
+* Support watchOS;
+* Add example for watchOS.
+
+---
+
+## [4.1.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.1.0) (2017-11-01)
 
 #### Add
 
@@ -10,7 +19,7 @@
 
 ---
 
-## [4.0.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.7) (2017-09-21)
+## [4.0.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.0.0) (2017-09-21)
 
 #### Add
 
