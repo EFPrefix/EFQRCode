@@ -26,14 +26,14 @@
 
 import CoreGraphics
 
-#if !os(watchOS)
+#if os(iOS) || os(tvOS) || os(macOS)
     import CoreImage
 #endif
 
 public class EFQRCode {
 
     // MARK: - Recognizer
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     public static func recognize(image: CGImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).recognize()
     }

@@ -29,8 +29,7 @@ import WatchKit
 typealias NumberInputHandler = (Int) -> Void
 
 extension WKInterfaceController {
-    func presentNumberInputController(withDefault default: Int,
-                                      completion handler: @escaping NumberInputHandler) {
+    func presentNumberInputController(withDefault default: Int, completion handler: @escaping NumberInputHandler) {
         presentController(withName: "NumberPad", context: (abs(`default`), handler))
     }
 }
@@ -55,17 +54,41 @@ class NumberPadInterfaceController: WKInterfaceController {
         dismiss()
     }
     
-    @IBAction func tapped0() { if value != 0 { tapped(0) } }
-    @IBAction func tapped1() { tapped(1) }
-    @IBAction func tapped2() { tapped(2) }
-    @IBAction func tapped3() { tapped(3) }
-    @IBAction func tapped4() { tapped(4) }
-    @IBAction func tapped5() { tapped(5) }
-    @IBAction func tapped6() { tapped(6) }
-    @IBAction func tapped7() { tapped(7) }
-    @IBAction func tapped8() { tapped(8) }
-    @IBAction func tapped9() { tapped(9) }
-    @IBAction func removeLast() { value /= 10 }
+    @IBAction func tapped0() {
+        if value != 0 {
+            tapped(0)
+        }
+    }
+    @IBAction func tapped1() {
+        tapped(1)
+    }
+    @IBAction func tapped2() {
+        tapped(2)
+    }
+    @IBAction func tapped3() {
+        tapped(3)
+    }
+    @IBAction func tapped4() {
+        tapped(4)
+    }
+    @IBAction func tapped5() {
+        tapped(5)
+    }
+    @IBAction func tapped6() {
+        tapped(6)
+    }
+    @IBAction func tapped7() {
+        tapped(7)
+    }
+    @IBAction func tapped8() {
+        tapped(8)
+    }
+    @IBAction func tapped9() {
+        tapped(9)
+    }
+    @IBAction func removeLast() {
+        value /= 10
+    }
     private func tapped(_ number: Int) {
         if let newValue = Int("\(value)\(number)") {
             value = newValue

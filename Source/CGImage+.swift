@@ -26,7 +26,7 @@
 
 import CoreGraphics
 
-#if !os(watchOS)
+#if os(iOS) || os(tvOS) || os(macOS)
     import CoreImage
 #endif
 
@@ -34,7 +34,7 @@ public extension CGImage {
 
     // Convert UIImage to CIImage
     // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     public func toCIImage() -> CIImage {
         return CIImage(cgImage: self)
     }

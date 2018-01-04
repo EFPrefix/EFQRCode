@@ -29,7 +29,7 @@
 
     public extension UIColor {
 
-        #if !os(watchOS)
+        #if os(iOS) || os(tvOS)
         public func toCIColor() -> CIColor {
             return cgColor.toCIColor()
         }

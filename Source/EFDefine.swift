@@ -26,7 +26,7 @@
 
 import CoreGraphics
 
-#if !os(watchOS)
+#if os(iOS) || os(tvOS) || os(macOS)
     import CoreImage
 #endif
 

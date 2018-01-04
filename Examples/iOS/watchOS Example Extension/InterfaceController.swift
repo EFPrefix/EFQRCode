@@ -31,7 +31,9 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var qrcodeImage: WKInterfaceImage!
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        guard let image = context as? EFImage else { return dismiss() }
+        guard let image = context as? EFImage else {
+            return dismiss()
+        }
         if image.isGIF {
             qrcodeImage.setImageData(image.data as? Data)
         } else {

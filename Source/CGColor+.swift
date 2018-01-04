@@ -26,7 +26,7 @@
 
 import CoreGraphics
 
-#if !os(watchOS)
+#if os(iOS) || os(tvOS) || os(macOS)
     import CoreImage
 #endif
 
@@ -44,7 +44,7 @@ public extension CGColor {
         return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [red, green, blue, alpha])
     }
 
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     public func toCIColor() -> CIColor {
         return CIColor(cgColor: self)
     }

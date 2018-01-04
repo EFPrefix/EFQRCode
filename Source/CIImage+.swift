@@ -24,7 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if !os(watchOS)
+#if os(iOS) || os(tvOS) || os(macOS)
     import CoreImage
 
     public extension CIImage {

@@ -31,15 +31,21 @@ class EFImage {
     private(set) var isGIF: Bool = false
     private(set) var data: Any?
 
-    init() { }
+    init() {
+
+    }
     
     init?(_ image: UIImage?) {
-        guard let data = image else { return nil }
+        guard let data = image else {
+            return nil
+        }
         self.data = data
     }
     
     init?(_ data: Data?) {
-        guard let data = data else { return nil }
+        guard let data = data else {
+            return nil
+        }
         self.data = data
         self.isGIF = true
     }
@@ -49,8 +55,11 @@ class ParametersInterfaceController: WKInterfaceController {
     private var link = "https://github.com/EyreFree/EFQRCode"
     @IBOutlet var contentDisplay: WKInterfaceLabel!
     @IBAction func changeLink() {
-        presentTextInputController(withSuggestions: [link], allowedInputMode: .plain) { [weak self] array in
-            guard let inputs = array else { return }
+        presentTextInputController(withSuggestions: [link], allowedInputMode: .plain) {
+            [weak self] array in
+            guard let inputs = array else {
+                return
+            }
             for input in inputs {
                 if let str = input as? String {
                     self?.link = str
@@ -86,7 +95,8 @@ class ParametersInterfaceController: WKInterfaceController {
     private var width = 1024
     @IBOutlet var widthButton: WKInterfaceButton?
     @IBAction func changeWidth() {
-        presentNumberInputController(withDefault: width) { [weak self] in
+        presentNumberInputController(withDefault: width) {
+            [weak self] in
             if $0 > 0 {
                 self?.width = $0
                 self?.widthButton?.setTitle("\($0)")
@@ -96,7 +106,8 @@ class ParametersInterfaceController: WKInterfaceController {
     private var height = 1024
     @IBOutlet var heightButton: WKInterfaceButton?
     @IBAction func changeHeight() {
-        presentNumberInputController(withDefault: height) { [weak self] in
+        presentNumberInputController(withDefault: height) {
+            [weak self] in
             if $0 > 0 {
                 self?.height = $0
                 self?.heightButton?.setTitle("\($0)")
@@ -107,7 +118,8 @@ class ParametersInterfaceController: WKInterfaceController {
     private var magnificationWidth = 9
     @IBOutlet var magnificationWidthButton: WKInterfaceButton?
     @IBAction func changeMagnificationWidth() {
-        presentNumberInputController(withDefault: magnificationWidth) { [weak self] in
+        presentNumberInputController(withDefault: magnificationWidth) {
+            [weak self] in
             if $0 > 0 {
                 self?.magnificationWidth = $0
                 self?.magnificationWidthButton?.setTitle("\($0)")
@@ -117,7 +129,8 @@ class ParametersInterfaceController: WKInterfaceController {
     private var magnificationHeight = 9
     @IBOutlet var magnificationHeightButton: WKInterfaceButton?
     @IBAction func changeMagnificationHeight() {
-        presentNumberInputController(withDefault: magnificationHeight) { [weak self] in
+        presentNumberInputController(withDefault: magnificationHeight) {
+            [weak self] in
             if $0 > 0 {
                 self?.magnificationHeight = $0
                 self?.magnificationHeightButton?.setTitle("\($0)")
@@ -200,7 +213,8 @@ class ParametersInterfaceController: WKInterfaceController {
     private var iconWidth = 128
     @IBOutlet var iconWidthButton: WKInterfaceButton?
     @IBAction func changeIconWidth() {
-        presentNumberInputController(withDefault: iconWidth) { [weak self] in
+        presentNumberInputController(withDefault: iconWidth) {
+            [weak self] in
             if $0 > 0 {
                 self?.iconWidth = $0
                 self?.iconWidthButton?.setTitle("\($0)")
@@ -210,7 +224,8 @@ class ParametersInterfaceController: WKInterfaceController {
     private var iconHeight = 128
     @IBOutlet var iconHeightButton: WKInterfaceButton?
     @IBAction func changeIconHeight() {
-        presentNumberInputController(withDefault: iconHeight) { [weak self] in
+        presentNumberInputController(withDefault: iconHeight) {
+            [weak self] in
             if $0 > 0 {
                 self?.iconHeight = $0
                 self?.iconHeightButton?.setTitle("\($0)")
@@ -244,7 +259,9 @@ class ParametersInterfaceController: WKInterfaceController {
     ]
     @IBOutlet var watermarkModePicker: WKInterfacePicker? {
         didSet {
-            guard let picker = watermarkModePicker else { return }
+            guard let picker = watermarkModePicker else {
+                return
+            }
             picker.setItems(watermarkModeString.map {
                 let item = WKPickerItem()
                 item.title = "\($0)"
@@ -261,7 +278,9 @@ class ParametersInterfaceController: WKInterfaceController {
     let foregroundPointOffsets: [CGFloat] = [-0.5, -0.25, 0, 0.25, 0.5]
     @IBOutlet var foregroundPointOffsetPicker: WKInterfacePicker? {
         didSet {
-            guard let picker = foregroundPointOffsetPicker else { return }
+            guard let picker = foregroundPointOffsetPicker else {
+                return
+            }
             picker.setItems(foregroundPointOffsets.map {
                 let item = WKPickerItem()
                 item.title = "\($0)"
@@ -283,7 +302,9 @@ class ParametersInterfaceController: WKInterfaceController {
     private let binarizationThresholds: [CGFloat] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
     @IBOutlet var binarizationThresholdPicker: WKInterfacePicker? {
         didSet {
-            guard let picker = binarizationThresholdPicker else { return }
+            guard let picker = binarizationThresholdPicker else {
+                return
+            }
             picker.setItems(binarizationThresholds.map {
                 let item = WKPickerItem()
                 item.title = "\($0)"

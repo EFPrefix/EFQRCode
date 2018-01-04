@@ -27,13 +27,13 @@
 #if os(iOS) || os(tvOS) || os(watchOS)
     import UIKit
 
-#if !os(watchOS)
+#if os(iOS) || os(tvOS)
     import CoreImage
 #endif
 
     public extension UIImage {
 
-        #if !os(watchOS)
+        #if os(iOS) || os(tvOS)
         public func toCIImage() -> CIImage? {
             return CIImage(image: self)
         }

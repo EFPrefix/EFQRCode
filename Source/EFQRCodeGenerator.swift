@@ -104,7 +104,7 @@ public class EFQRCodeGenerator {
             imageQRCode = nil
         }
     }
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
         self.backgroundColor = backgroundColor.toCGColor() ?? .EFWhite()
         self.foregroundColor = foregroundColor.toCGColor() ?? .EFBlack()
@@ -346,7 +346,7 @@ public class EFQRCodeGenerator {
     }
 
     // Create Colorful QR Image
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     private func createQRCodeImage(
         codes: [[Bool]],
         colorBack: CIColor,
@@ -400,7 +400,7 @@ public class EFQRCodeGenerator {
     }
 
     // Create Colorful QR Image
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     private func createQRCodeImageTransparent(
         codes: [[Bool]],
         colorBack: CIColor,
@@ -518,7 +518,7 @@ public class EFQRCodeGenerator {
     }
 
     // Pre
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     private func drawWatermarkImage(
         context: CGContext,
         image: CGImage,
@@ -628,7 +628,7 @@ public class EFQRCodeGenerator {
         )
     }
 
-    #if !os(watchOS)
+    #if os(iOS) || os(tvOS) || os(macOS)
     // MARK: - Data
     private func getPixels() -> [[EFUIntPixel]]? {
         guard let finalContent = content else {

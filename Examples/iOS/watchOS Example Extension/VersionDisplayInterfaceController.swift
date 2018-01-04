@@ -29,7 +29,9 @@ import WatchKit
 class VersionDisplayInterfaceController: WKInterfaceController {
     @IBOutlet var label: WKInterfaceLabel! {
         didSet {
-            guard let label = label else { return }
+            guard let label = label else {
+                return
+            }
             let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
             label.setText(version)
         }
