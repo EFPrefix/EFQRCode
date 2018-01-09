@@ -2,6 +2,14 @@
 
 -----
 
+## [4.2.1](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.1) (2018-01-09)
+
+#### Fix
+
+* Add border for watchOS.
+
+---
+
 ## [4.2.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.0) (2018-01-03)
 
 #### Add

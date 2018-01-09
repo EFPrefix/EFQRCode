@@ -99,7 +99,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "EFQRCode", '~> 4.2.0'
+pod "EFQRCode", '~> 4.2.1'
 ```
 
 Then, run the following command:
@@ -122,7 +122,7 @@ $ brew install carthage
 To integrate EFQRCode into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 4.2.0
+github "EyreFree/EFQRCode" ~> 4.2.1
 ```
 
 Run `carthage update` to build the framework and drag the built `EFQRCode.framework` into your Xcode project.
@@ -135,7 +135,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(4, 2, 0))
+    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(4, 2, 1))
 ]
 ```
 
@@ -239,6 +239,10 @@ Learn more from [User Guide](/.github/USERGUIDE.md).
 5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome.
 
 PS of PS: I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...
+
+## Other
+
+The original generation code of QRCode in `watchOS` is based on [swift_qrcodejs](https://github.com/ApolloZhu/swift_qrcodejs)，thanks for [ApolloZhu](https://github.com/ApolloZhu)'s work.
 
 ## Other Platforms/Languages
 
