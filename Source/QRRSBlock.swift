@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
+
 #else
     struct QRRSBlock {
         let totalCount: Int
@@ -201,11 +202,11 @@
             let rsBlock = getRsBlockTableOfType(typeNumber)
             let length = rsBlock.count / 3
             var list = [QRRSBlock]()
-            for i in 0..<length {
+            for i in 0 ..< length {
                 let count = rsBlock[i * 3 + 0]
                 let totalCount = rsBlock[i * 3 + 1]
                 let dataCount = rsBlock[i * 3 + 2]
-                for _ in 0..<count {
+                for _ in 0 ..< count {
                     list.append(QRRSBlock(totalCount: totalCount, dataCount: dataCount))
                 }
             }

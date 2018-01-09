@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
+    
 #else
     /// This has weird rawValue
     enum QRErrorCorrectLevel: Int {

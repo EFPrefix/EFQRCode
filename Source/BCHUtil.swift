@@ -25,10 +25,11 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
+    
 #else
     struct BCHUtil {
-        private static let g15     =     0b10100110111
-        private static let g18     =   0b1111100100101
+        private static let g15 = 0b10100110111
+        private static let g18 = 0b1111100100101
         private static let g15Mask = 0b101010000010010
         private static let g15BCHDigit = bchDigit(of: g15)
         private static let g18BCHDigit = bchDigit(of: g18)

@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
+    
 #else
     struct Failed: Error {
         var localizedDescription: String {

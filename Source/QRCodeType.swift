@@ -24,8 +24,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 #if os(iOS) || os(tvOS) || os(macOS)
+    
 #else
     struct QRCodeType {
         private static let QRCodeLimitLength: [[Int]] = [
@@ -78,7 +78,7 @@
             var nType = 1
             let length = sText.utf8.count
             let len = QRCodeLimitLength.count
-            for i in 0...len {
+            for i in 0 ... len {
                 var nLimit = 0
                 
                 switch (nCorrectLevel) {

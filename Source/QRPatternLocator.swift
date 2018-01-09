@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
+
 #else
     struct QRPatternLocator {
         private static let PATTERN_POSITION_TABLE: [[Int]] = [

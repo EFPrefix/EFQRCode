@@ -695,7 +695,6 @@ public class EFQRCodeGenerator {
         imageCodes = fetchPixels()
         return imageCodes
     }
-    
 
     // Special Points of QRCode
     private func isStatic(x: Int, y: Int, size: Int, APLPoints: [EFIntPoint]) -> Bool {

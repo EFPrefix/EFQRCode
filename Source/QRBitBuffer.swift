@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
+    
 #else
     struct QRBitBuffer {
         var buffer = [UInt]()
@@ -40,7 +41,7 @@
         }
         
         mutating func put(_ num: UInt, length: Int) {
-            for i in 0..<length {
+            for i in 0 ..< length {
                 put(((num >> (length - i - 1)) & 1) == 1)
             }
         }

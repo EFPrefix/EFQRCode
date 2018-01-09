@@ -25,18 +25,20 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
+    
 #else
     import Foundation
     
     struct QR8bitByte {
-        let mode: QRMode = ._8bitByte
+        let mode: QRMode = .8bitByte
         let data: String
         let parsedData: Data
         
         init?(_ data: String) {
             self.data = data
-            guard let parsed = data.data(using: .utf8)
-                else { return nil }
+            guard let parsed = data.data(using: .utf8) else {
+                return nil
+            }
             self.parsedData = parsed
         }
         
