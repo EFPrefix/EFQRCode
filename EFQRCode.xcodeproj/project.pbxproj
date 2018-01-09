@@ -253,7 +253,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5282BCA71FF38F4E00DFB36B /* Watch Support */ = {
+		1293C5F32004B4A200EC2747 /* swift_qrcodejs */ = {
 			isa = PBXGroup;
 			children = (
 				5282BCC91FF3959E00DFB36B /* BCHUtil.swift */,
@@ -270,7 +270,15 @@
 				5282BCCC1FF3959F00DFB36B /* QRPolynomial.swift */,
 				5282BCC61FF3959E00DFB36B /* QRRSBlock.swift */,
 			);
-			name = "Watch Support";
+			name = swift_qrcodejs;
+			sourceTree = "<group>";
+		};
+		5282BCA71FF38F4E00DFB36B /* 3rd */ = {
+			isa = PBXGroup;
+			children = (
+				1293C5F32004B4A200EC2747 /* swift_qrcodejs */,
+			);
+			name = 3rd;
 			sourceTree = "<group>";
 		};
 		F8111E2919A95C8B0040E7D1 = {
@@ -303,9 +311,9 @@
 		F8111E3519A95C8B0040E7D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5282BCA71FF38F4E00DFB36B /* 3rd */,
 				12046B031F7A512B000154A8 /* Define */,
 				12046B051F7A512B000154A8 /* Extension */,
-				5282BCA71FF38F4E00DFB36B /* Watch Support */,
 				12046AFF1F7A512B000154A8 /* Core */,
 				F8111E3619A95C8B0040E7D1 /* Supporting Files */,
 			);

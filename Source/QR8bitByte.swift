@@ -30,7 +30,7 @@
     import Foundation
     
     struct QR8bitByte {
-        let mode: QRMode = .8bitByte
+        let mode: QRMode = .bitByte8
         let data: String
         let parsedData: Data
         

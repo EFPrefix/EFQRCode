@@ -680,12 +680,26 @@ public class EFQRCodeGenerator {
                 if let finalContent = content,
                     let typeNumber = try? QRCodeType.typeNumber(of: finalContent, errorCorrectLevel: level),
                     let model = QRCodeModel(text: finalContent, typeNumber: typeNumber, errorCorrectLevel: level) {
-                    return (0 ..< model.moduleCount).map {
+                    let contentMatrix: [[Bool]] = (0 ..< model.moduleCount).map {
                         r in
                         (0 ..< model.moduleCount).map {
                             c in
                             model.isDark(r, c)
                         }
+                    }
+                    // Add border
+                    if contentMatrix.count > 0 {
+                        var codes: [[Bool]] = [[Bool]]()
+                        codes.append([Bool](repeating: false, count: contentMatrix[0].count + 2))
+                        for indexX in 0 ..< contentMatrix.count {
+                            var codeLine: [Bool] = [false]
+                            codeLine.append(contentsOf: contentMatrix[indexX])
+                            codeLine.append(false)
+
+                            codes.append(codeLine)
+                        }
+                        codes.append([Bool](repeating: false, count: contentMatrix[0].count + 2))
+                        return codes
                     }
                 }
                 return nil
