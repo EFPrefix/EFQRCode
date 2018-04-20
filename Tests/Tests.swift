@@ -163,8 +163,10 @@ class Tests: XCTestCase {
 
         let hsb = Color(hue: 0.1, saturation: 0.4, brightness: 0.5, alpha: 1)
         XCTAssertNotNil(EFUIntPixel(color: hsb.cgColor), "HSB Failed")
+        #if os(macOS)
         let cmyk = Color(deviceCyan: 0.2, magenta: 0.3, yellow: 0.6, black: 0.8, alpha: 1)
         XCTAssertNotNil(EFUIntPixel(color: cmyk.cgColor), "CMYK Failed")
+        #endif
     }
 
     // CGColor
