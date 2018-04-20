@@ -321,6 +321,8 @@ Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
 Weibo: [@EyreFree](http://weibo.com/eyrefree777)   
 Twitter: [@EyreFree777](https://twitter.com/EyreFree777)   
 
+欢迎加入 EFQRCode 交流群，群号码：769966374
+
 ## 协议
 
 <a href="https://github.com/EyreFree/EFQRCode/blob/master/LICENSE">
