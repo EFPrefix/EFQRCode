@@ -55,6 +55,14 @@ public struct EFUIntPixel {
     }
 
     init?(color: CGColor) {
+        var color = color
+        if color.colorSpace?.model != .rgb, #available(iOS 9.0, *) {
+            color = color.converted(
+                to: CGColorSpaceCreateDeviceRGB(),
+                intent: .defaultIntent,
+                options: nil
+            ) ?? color
+        }
         if let components = color.components, 4 == color.numberOfComponents {
             self.init(
                 red: UInt8(components[0] * 255.0),
@@ -62,8 +70,9 @@ public struct EFUIntPixel {
                 blue: UInt8(components[2] * 255.0),
                 alpha: UInt8(components[3] * 255.0)
             )
+        } else {
+            return nil
         }
-        return nil
     }
 }
 
