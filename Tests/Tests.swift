@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 
 import XCTest
-import EFQRCode
+@testable import EFQRCode
 
 class Tests: XCTestCase {
 
@@ -142,6 +142,29 @@ class Tests: XCTestCase {
         generator.setAllowTransparent(allowTransparent: true)
         let testResult = generator.generate()
         XCTAssert(testResult != nil, "testResult is nil!")
+    }
+
+    // UI/NSColor
+    func testEFUIntPixelInitializer() {
+        #if os(macOS)
+        typealias Color = NSColor
+        #else
+        typealias Color = UIColor
+        #endif
+        let colors: [Color] = [
+            .black, .blue, .brown, .clear, .cyan,
+            .darkGray, .gray, .green, .lightGray, .magenta,
+            .orange, .purple, .red, .white, .yellow
+        ]
+        for color in colors {
+            XCTAssertNotNil(EFUIntPixel(color: color.cgColor),
+                            "\(color) should not be nil!")
+        }
+
+        let hsb = Color(hue: 0.1, saturation: 0.4, brightness: 0.5, alpha: 1)
+        XCTAssertNotNil(EFUIntPixel(color: hsb.cgColor), "HSB Failed")
+        let cmyk = Color(deviceCyan: 0.2, magenta: 0.3, yellow: 0.6, black: 0.8, alpha: 1)
+        XCTAssertNotNil(EFUIntPixel(color: cmyk.cgColor), "CMYK Failed")
     }
 
     // CGColor
