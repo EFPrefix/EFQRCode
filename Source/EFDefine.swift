@@ -56,7 +56,7 @@ public struct EFUIntPixel {
 
     init?(color: CGColor) {
         var color = color
-        if .rgb != color.colorSpace?.model, #available(iOS 9.0, *) {
+        if color.colorSpace?.model != .rgb, #available(iOS 9.0, *) {
             color = color.converted(
                 to: CGColorSpaceCreateDeviceRGB(),
                 intent: .defaultIntent,
