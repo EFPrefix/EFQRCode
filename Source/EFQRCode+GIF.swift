@@ -29,9 +29,9 @@ import CoreGraphics
 import ImageIO
 
 #if os(macOS)
-    import CoreServices
+import CoreServices
 #else
-    import MobileCoreServices
+import MobileCoreServices
 #endif
 
 public extension EFQRCode {
@@ -39,18 +39,18 @@ public extension EFQRCode {
     private static let framesPerSecond = 24
     public static var tempResultPath: URL?
 
-    private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start:Int, end:Int){
+    private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start: Int, end: Int) {
         var index =  start
-        while(index <= end) {
+        while index <= end {
             generator.setWatermark(watermark: frames[index])
             if let frameWithCode = generator.generate() {
                 frames[index] = frameWithCode
             }
-            index+=1
+            index += 1
         }
     }
     
-    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool? = false) -> Data? {
+    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool = false) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
 
@@ -88,25 +88,25 @@ public extension EFQRCode {
                 }
             }
 
-            if(useMultipleThread!){
+            if useMultipleThread {
                 let group = DispatchGroup()
 
                 let threshold = frames.count / framesPerSecond
-                var i:Int = 0
+                var i: Int = 0
 
-                while(i < threshold){
+                while i < threshold {
                     let local = i
                     group.enter()
                     DispatchQueue.global(qos: .default).async {
-                        batchWatermark(frames: &frames, generator: generator, start: local*framesPerSecond, end: (local+1)*framesPerSecond-1)
+                        batchWatermark(frames: &frames, generator: generator, start: local * framesPerSecond, end: (local + 1) * framesPerSecond - 1)
                         group.leave()
                     }
-                    i+=1
+                    i += 1
                 }
 
                 group.enter()
                 DispatchQueue.global(qos: .default).async {
-                    batchWatermark(frames: &frames, generator: generator, start: i*20, end: frames.count-1)
+                    batchWatermark(frames: &frames, generator: generator, start: i * 20, end: frames.count - 1)
                     group.leave()
                 }
 
