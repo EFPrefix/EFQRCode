@@ -36,9 +36,21 @@ import ImageIO
 
 public extension EFQRCode {
 
+    private static let framesPerSecond = 24
     public static var tempResultPath: URL?
 
-    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil) -> Data? {
+    private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start:Int, end:Int){
+        var index =  start
+        while(index <= end) {
+            generator.setWatermark(watermark: frames[index])
+            if let frameWithCode = generator.generate() {
+                frames[index] = frameWithCode
+            }
+            index+=1
+        }
+    }
+    
+    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool? = false) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
 
@@ -76,14 +88,40 @@ public extension EFQRCode {
                 }
             }
 
-            // Clear watermark
-            for (index, frame) in frames.enumerated() {
-                generator.setWatermark(watermark: frame)
-                if let frameWithCode = generator.generate() {
-                    frames[index] = frameWithCode
+            if(useMultipleThread!){
+                let group = DispatchGroup()
+
+                let threshold = frames.count / framesPerSecond
+                var i:Int = 0
+
+                while(i < threshold){
+                    let local = i
+                    group.enter()
+                    DispatchQueue.global(qos: .default).async {
+                        batchWatermark(frames: &frames, generator: generator, start: local*framesPerSecond, end: (local+1)*framesPerSecond-1)
+                        group.leave()
+                    }
+                    i+=1
+                }
+
+                group.enter()
+                DispatchQueue.global(qos: .default).async {
+                    batchWatermark(frames: &frames, generator: generator, start: i*20, end: frames.count-1)
+                    group.leave()
+                }
+
+                group.wait()
+                
+            } else {
+                // Clear watermark
+                for (index, frame) in frames.enumerated() {
+                    generator.setWatermark(watermark: frame)
+                    if let frameWithCode = generator.generate() {
+                        frames[index] = frameWithCode
+                    }
                 }
             }
-
+            
             if let fileProperties = fileProperties, framePropertiesArray.count == frames.count {
                 if let url = frames.saveToGIFFile(framePropertiesArray: framePropertiesArray, fileProperties: fileProperties, url: pathToSave) {
                     return try? Data(contentsOf: url)
