@@ -127,6 +127,8 @@
 		12664EC51FA9CEDD00D56500 /* EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFQRCode.swift; path = Source/EFQRCode.swift; sourceTree = SOURCE_ROOT; };
 		126A1B591EAF225100EFBA1B /* eyrefree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyrefree.png; sourceTree = "<group>"; };
 		127F871E1ECF56AC0002B554 /* EFQRCode.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EFQRCode.podspec; sourceTree = "<group>"; };
+		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
+		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4C0E02681BF99A18004E7F18 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Source/Info-tvOS.plist"; sourceTree = SOURCE_ROOT; };
 		4C256A501B096C2C0065714F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,6 +286,8 @@
 		F8111E2919A95C8B0040E7D1 = {
 			isa = PBXGroup;
 			children = (
+				128AD85F20C4075A006CED36 /* README.md */,
+				128AD85E20C40759006CED36 /* README_CN.md */,
 				127F871E1ECF56AC0002B554 /* EFQRCode.podspec */,
 				F8111E3519A95C8B0040E7D1 /* Source */,
 				F8111E3F19A95C8B0040E7D1 /* Tests */,

@@ -46,6 +46,9 @@
     <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/MadeWith%3C3.png">
         <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
     </a>
+    <a href="http://shang.qq.com/wpa/qunwpa?idkey=d0f732585dcb0c6f2eb26bc9e0327f6305d18260eeba89ed26a201b520c572c0">
+        <img src="http://image.eyrefree.org/QQGroup.png">
+    </a>
 </p>
 
 EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 `iOS`、`macOS`、`watchOS` 和 `tvOS` 平台，并且支持通过 `CocoaPods`、`Carthage` 和 `Swift Package Manager` 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。
@@ -99,7 +102,7 @@ git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Examples/iOS; open '
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod "EFQRCode", '~> 4.2.1'
+pod "EFQRCode", '~> 4.2.2'
 ```
 
 然后，执行如下命令即可：
@@ -122,7 +125,7 @@ $ brew install carthage
 通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 4.2.1
+github "EyreFree/EFQRCode" ~> 4.2.2
 ```
 
 接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
@@ -317,11 +320,8 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 联系
 
-Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   
-Weibo: [@EyreFree](http://weibo.com/eyrefree777)   
-Twitter: [@EyreFree777](https://twitter.com/EyreFree777)   
-
-欢迎加入 EFQRCode 交流群，群号码：769966374
+邮箱：[eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   
+EFQRCode 交流群：[769966374](http://shang.qq.com/wpa/qunwpa?idkey=d0f732585dcb0c6f2eb26bc9e0327f6305d18260eeba89ed26a201b520c572c0)
 
 ## 协议
 

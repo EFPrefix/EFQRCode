@@ -2,6 +2,14 @@
 
 -----
 
+## [4.2.2](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.1) (2018-01-09)
+
+#### Add
+
+* Add multiple threads support for GIF.
+
+---
+
 ## [4.2.1](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.1) (2018-01-09)
 
 #### Fix
