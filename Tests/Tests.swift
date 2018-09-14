@@ -182,13 +182,6 @@ class Tests: XCTestCase {
         XCTAssert(size.heightInt() == 888, "size.heightInt() should be 888!")
     }
 
-    // EFIntPoint
-    // func testExampleEFIntPoint() {
-    //     let point = EFIntPoint(x: 111, y: 888).toCGPoint()
-    //     XCTAssert(point.x != 111, "point.x should be 111!")
-    //     XCTAssert(point.y != 888, "point.y should be 888!")
-    // }
-
     // EFQRCode
     func testExampleEFQRCode() {
         let testResult = EFQRCode.generate(content: "https://github.com/EyreFree/EFQRCode")

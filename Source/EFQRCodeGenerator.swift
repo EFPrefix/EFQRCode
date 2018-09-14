@@ -433,7 +433,7 @@ public class EFQRCodeGenerator {
         let pointWidthMinY = scaleY - 2 * pointMinOffsetY
 
         // Get AlignmentPatternLocations first
-        var points = [EFIntPoint]()
+        var points = [CGPoint]()
         if let locations = getAlignmentPatternLocations(version: getVersion(size: codeSize - 2)) {
             for indexX in locations {
                 for indexY in locations {
@@ -442,7 +442,7 @@ public class EFQRCodeGenerator {
                     if !((finalX == 7 && finalY == 7)
                         || (finalX == 7 && finalY == (codeSize - 8))
                         || (finalX == (codeSize - 8) && finalY == 7)) {
-                        points.append(EFIntPoint(x: finalX, y: finalY))
+                        points.append(CGPoint(x: finalX, y: finalY))
                     }
                 }
             }
@@ -711,7 +711,7 @@ public class EFQRCodeGenerator {
     }
 
     // Special Points of QRCode
-    private func isStatic(x: Int, y: Int, size: Int, APLPoints: [EFIntPoint]) -> Bool {
+    private func isStatic(x: Int, y: Int, size: Int, APLPoints: [CGPoint]) -> Bool {
         // Empty border
         if x == 0 || y == 0 || x == (size - 1) || y == (size - 1) {
             return true
@@ -729,7 +729,7 @@ public class EFQRCodeGenerator {
 
         // Alignment Patterns
         for point in APLPoints {
-            if x >= (point.x - 2) && x <= (point.x + 2) && y >= (point.y - 2) && y <= (point.y + 2) {
+            if x >= Int(point.x - 2) && x <= Int(point.x + 2) && y >= Int(point.y - 2) && y <= Int(point.y + 2) {
                 return true
             }
         }

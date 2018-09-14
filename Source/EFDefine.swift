@@ -121,12 +121,3 @@ public enum EFWatermarkMode: Int {
     case bottomLeft         = 10
     case bottomRight        = 11
 }
-
-struct EFIntPoint {
-    public var x: Int = 0
-    public var y: Int = 0
-
-    public func toCGPoint() -> CGPoint {
-        return CGPoint(x: x, y: y)
-    }
-}
