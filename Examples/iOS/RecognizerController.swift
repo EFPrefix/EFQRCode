@@ -123,7 +123,14 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
                 // }
             }
             let alert = UIAlertController(title: title, message: result, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            if codes.count > 0 {
+                alert.addAction(UIAlertAction(title: "Copy", style: .default) { [weak self] (action) in
+                    if let _ = self {
+                        UIPasteboard.general.string = result
+                    }
+                })
+            }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(
