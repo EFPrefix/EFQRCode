@@ -2,7 +2,15 @@
 
 -----
 
-## [4.2.2](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.1) (2018-01-09)
+## [4.3.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.3.0) (2018-09-14)
+
+#### Fix
+
+* Update version.
+
+---
+
+## [4.2.2](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.2) (2018-01-09)
 
 #### Add
 
