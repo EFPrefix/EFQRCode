@@ -252,7 +252,9 @@
             var maxDcCount = 0
             var maxEcCount = 0
             var dcdata = [[Int]]()
+            dcdata.reserveCapacity(rsBlocks.count)
             var ecdata = [[Int]]()
+            ecdata.reserveCapacity(rsBlocks.count)
             for (dcCount, ecCount) in rsBlocks.map({ ($0.dataCount, $0.totalCount - $0.dataCount) }) {
                 maxDcCount = max(maxDcCount, dcCount)
                 maxEcCount = max(maxEcCount, ecCount)
