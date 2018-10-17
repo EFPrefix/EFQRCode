@@ -266,7 +266,7 @@
                 }
                 let modPoly = rawPoly.moded(by: rsPoly)
                 let ecdataCount = rsPoly.count - 1
-                ecdata.append((0..<ecdataCount).map { i -> Int in
+                ecdata.append((0..<ecdataCount).map { i in
                     let modIndex = i + modPoly.count - ecdataCount
                     return (modIndex >= 0) ? modPoly[modIndex] : 0
                 })
