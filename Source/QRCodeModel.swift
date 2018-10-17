@@ -251,28 +251,23 @@
             var offset = 0
             var maxDcCount = 0
             var maxEcCount = 0
-            var dcdata = [[Int]!](repeating: nil, count: rsBlocks.count)
-            var ecdata = [[Int]!](repeating: nil, count: rsBlocks.count)
-            for r in rsBlocks.indices {
-                let dcCount = rsBlocks[r].dataCount
-                let ecCount = rsBlocks[r].totalCount - dcCount
+            var dcdata = [[Int]]()
+            var ecdata = [[Int]]()
+            for (dcCount, ecCount) in rsBlocks.map({ ($0.dataCount, $0.totalCount - $0.dataCount) }) {
                 maxDcCount = max(maxDcCount, dcCount)
                 maxEcCount = max(maxEcCount, ecCount)
-                dcdata[r] = [Int](repeating: 0, count: dcCount)
-                for i in dcdata[r].indices {
-                    dcdata[r][i] = Int(0xff & buffer.buffer[i + offset])
-                }
+                dcdata.append((0..<dcCount).map { Int(0xff & buffer.buffer[$0 + offset]) })
                 offset += dcCount
                 guard let rsPoly = QRPolynomial.errorCorrectPolynomial(ofLength: ecCount),
-                    let rawPoly = QRPolynomial(dcdata[r]!, shift: rsPoly.count - 1) else {
+                    let rawPoly = QRPolynomial(dcdata.last!, shift: rsPoly.count - 1) else {
                         return nil
                 }
                 let modPoly = rawPoly.moded(by: rsPoly)
-                ecdata[r] = [Int](repeating: 0, count: rsPoly.count - 1)
-                for i in ecdata[r].indices {
-                    let modIndex = i + modPoly.count - ecdata[r].count
-                    ecdata[r][i] = (modIndex >= 0) ? modPoly[modIndex] : 0
-                }
+                let ecdataCount = rsPoly.count - 1
+                ecdata.append((0..<ecdataCount).map { i -> Int in
+                    let modIndex = i + modPoly.count - ecdataCount
+                    return (modIndex >= 0) ? modPoly[modIndex] : 0
+                })
             }
             var totalCodeCount = 0
             for i in rsBlocks.indices {
@@ -283,7 +278,7 @@
             for i in 0 ..< maxDcCount {
                 for r in rsBlocks.indices {
                     if i < dcdata[r].count {
-                        data[index] = dcdata[r]![i]
+                        data[index] = dcdata[r][i]
                         index += 1
                     }
                 }
@@ -291,7 +286,7 @@
             for i in 0 ..< maxEcCount {
                 for r in rsBlocks.indices {
                     if i < ecdata[r].count {
-                        data[index] = ecdata[r]![i]
+                        data[index] = ecdata[r][i]
                         index += 1
                     }
                 }
