@@ -22,8 +22,8 @@
     <a href="https://github.com/apple/swift">
         <img src="https://img.shields.io/badge/language-swift-orange.svg">
     </a>
-    <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master">
-        <img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f">
+    <a href="https://codebeat.co/projects/github-com-efprefix-efqrcode-master">
+        <img src="https://codebeat.co/badges/c2ae977c-157a-4cb7-a476-76530e7f292b">
     </a>
     <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/master/LICENSE">
         <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
