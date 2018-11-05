@@ -38,7 +38,7 @@ extension ViewController {
         recognizerViewImage.layer?.cornerRadius = 5
         recognizerViewImage.imageAlignment = .alignCenter
         recognizerViewImage.imageScaling = .scaleProportionallyUpOrDown
-        recognizerViewImage.image = NSImage(named: NSImage.Name("drag"))
+        recognizerViewImage.image = NSImage(named: "drag")
         recognizerView.addSubview(recognizerViewImage)
         recognizerViewImage.snp.makeConstraints {
             (make) in
@@ -56,8 +56,8 @@ extension ViewController {
         recognizerViewScan.bezelStyle = .regularSquare
         recognizerViewScan.attributedTitle = NSMutableAttributedString(
             string: "Scan", attributes: [
-                NSAttributedStringKey.foregroundColor: NSColor.theme,
-                NSAttributedStringKey.paragraphStyle: centredStyle
+                NSAttributedString.Key.foregroundColor: NSColor.theme,
+                NSAttributedString.Key.paragraphStyle: centredStyle
             ]
         )
         recognizerViewScan.action = #selector(recognizerViewScanClicked)
@@ -74,8 +74,8 @@ extension ViewController {
         recognizerViewPick.bezelStyle = .regularSquare
         recognizerViewPick.attributedTitle = NSMutableAttributedString(
             string: "Choose image", attributes: [
-                NSAttributedStringKey.foregroundColor: NSColor.theme,
-                NSAttributedStringKey.paragraphStyle: centredStyle
+                NSAttributedString.Key.foregroundColor: NSColor.theme,
+                NSAttributedString.Key.paragraphStyle: centredStyle
             ]
         )
         recognizerViewPick.action = #selector(recognizerViewPickClicked)

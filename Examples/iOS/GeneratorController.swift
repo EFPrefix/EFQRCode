@@ -166,7 +166,7 @@ extension GeneratorController {
         tableView.dataSource = self
         tableView.alwaysBounceVertical = true
         #if os(iOS)
-            tableView.separatorColor = UIColor.white
+        tableView.separatorColor = UIColor.white
         #endif
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
@@ -190,9 +190,9 @@ extension GeneratorController {
         createButton.layer.cornerRadius = 5
         createButton.layer.masksToBounds = true
         #if os(iOS)
-            createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .touchDown)
+        createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .touchDown)
         #else
-            createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .primaryActionTriggered)
+        createButton.addTarget(self, action: #selector(GeneratorController.createCode), for: .primaryActionTriggered)
         #endif
         self.view.addSubview(createButton)
         createButton.snp.makeConstraints {
@@ -421,14 +421,14 @@ extension GeneratorController {
             })
         )
         #if os(iOS)
-            alert.addAction(
-                UIAlertAction(title: "Custom", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.customColor(0)
-                    }
-                })
-            )
+        alert.addAction(
+            UIAlertAction(title: "Custom", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.customColor(0)
+                }
+            })
+        )
         #endif
         for color in colorList {
             alert.addAction(
@@ -456,14 +456,14 @@ extension GeneratorController {
             })
         )
         #if os(iOS)
-            alert.addAction(
-                UIAlertAction(title: "Custom", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.customColor(1)
-                    }
-                })
-            )
+        alert.addAction(
+            UIAlertAction(title: "Custom", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.customColor(1)
+                }
+            })
+        )
         #endif
         if let tryWaterMark = watermark?.data as? UIImage {
             alert.addAction(
@@ -528,15 +528,15 @@ extension GeneratorController {
             })
         )
         #if os(iOS)
-            alert.addAction(
-                UIAlertAction(title: "Select from system album", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.chooseImageFromAlbum(title: "icon")
-                        strongSelf.refresh()
-                    }
-                })
-            )
+        alert.addAction(
+            UIAlertAction(title: "Select from system album", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.chooseImageFromAlbum(title: "icon")
+                    strongSelf.refresh()
+                }
+            })
+        )
         #endif
         for icon in ["EyreFree", "GitHub", "LPD", "Pikachu", "Swift"] {
             alert.addAction(
@@ -650,15 +650,15 @@ extension GeneratorController {
             })
         )
         #if os(iOS)
-            alert.addAction(
-                UIAlertAction(title: "Select from system album", style: .default, handler: {
-                    [weak self] (action) -> Void in
-                    if let strongSelf = self {
-                        strongSelf.chooseImageFromAlbum(title: "watermark")
-                        strongSelf.refresh()
-                    }
-                })
-            )
+        alert.addAction(
+            UIAlertAction(title: "Select from system album", style: .default, handler: {
+                [weak self] (action) -> Void in
+                if let strongSelf = self {
+                    strongSelf.chooseImageFromAlbum(title: "watermark")
+                    strongSelf.refresh()
+                }
+            })
+        )
         #endif
         for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF"] {
             alert.addAction(
@@ -990,174 +990,176 @@ extension GeneratorController {
 }
 
 #if os(iOS)
-    // EFColorPicker
-    extension GeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
+// EFColorPicker
+extension GeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
 
-        struct EFColorPicker {
-            static var isFront = false
-        }
-
-        func customColor(_ isFront: Int) {
-
-            EFColorPicker.isFront = isFront == 1
-
-            let colorSelectionController = EFColorSelectionViewController()
-            let navCtrl = UINavigationController(rootViewController: colorSelectionController)
-            navCtrl.navigationBar.backgroundColor = UIColor.white
-            navCtrl.navigationBar.isTranslucent = false
-            navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
-            navCtrl.popoverPresentationController?.delegate = self
-            navCtrl.popoverPresentationController?.sourceView = tableView
-            navCtrl.popoverPresentationController?.sourceRect = tableView.bounds
-            navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFitting(
-                UILayoutFittingCompressedSize
-            )
-
-            colorSelectionController.isColorTextFieldHidden = false
-            colorSelectionController.delegate = self
-            colorSelectionController.color = EFColorPicker.isFront ?  self.frontColor : self.backColor
-
-            if UIUserInterfaceSizeClass.compact == self.traitCollection.horizontalSizeClass {
-                let doneBtn: UIBarButtonItem = UIBarButtonItem(
-                    title: NSLocalizedString("Done", comment: ""),
-                    style: UIBarButtonItemStyle.done,
-                    target: self,
-                    action: #selector(ef_dismissViewController(sender:))
-                )
-                colorSelectionController.navigationItem.rightBarButtonItem = doneBtn
-            }
-            self.present(navCtrl, animated: true, completion: nil)
-        }
-
-        // EFColorViewDelegate
-        func colorViewController(colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-            if EFColorPicker.isFront {
-                self.frontColor = color
-            } else {
-                self.backColor = color
-            }
-            self.refresh()
-        }
-
-        // Private
-        @objc private func ef_dismissViewController(sender: UIBarButtonItem) {
-            self.dismiss(animated: true, completion: nil)
-            self.refresh()
-        }
+    struct EFColorPicker {
+        static var isFront = false
     }
+
+    func customColor(_ isFront: Int) {
+
+        EFColorPicker.isFront = isFront == 1
+
+        let colorSelectionController = EFColorSelectionViewController()
+        let navCtrl = UINavigationController(rootViewController: colorSelectionController)
+        navCtrl.navigationBar.backgroundColor = UIColor.white
+        navCtrl.navigationBar.isTranslucent = false
+        navCtrl.modalPresentationStyle = UIModalPresentationStyle.popover
+        navCtrl.popoverPresentationController?.delegate = self
+        navCtrl.popoverPresentationController?.sourceView = tableView
+        navCtrl.popoverPresentationController?.sourceRect = tableView.bounds
+        navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFitting(
+            UIView.layoutFittingCompressedSize
+        )
+
+        colorSelectionController.isColorTextFieldHidden = false
+        colorSelectionController.delegate = self
+        colorSelectionController.color = EFColorPicker.isFront ?  self.frontColor : self.backColor
+
+        if UIUserInterfaceSizeClass.compact == self.traitCollection.horizontalSizeClass {
+            let doneBtn: UIBarButtonItem = UIBarButtonItem(
+                title: NSLocalizedString("Done", comment: ""),
+                style: UIBarButtonItem.Style.done,
+                target: self,
+                action: #selector(ef_dismissViewController(sender:))
+            )
+            colorSelectionController.navigationItem.rightBarButtonItem = doneBtn
+        }
+        self.present(navCtrl, animated: true, completion: nil)
+    }
+
+    // EFColorViewDelegate
+    func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+        if EFColorPicker.isFront {
+            self.frontColor = color
+        } else {
+            self.backColor = color
+        }
+        self.refresh()
+    }
+
+    // Private
+    @objc private func ef_dismissViewController(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+        self.refresh()
+    }
+}
 #endif
 
 #if os(iOS)
-    extension GeneratorController: UIImagePickerControllerDelegate {
+extension GeneratorController: UIImagePickerControllerDelegate {
 
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            picker.dismiss(animated: true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        var finalImage: UIImage?
+        if let tryImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
+            finalImage = tryImage
+        } else if let tryImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
+            finalImage = tryImage
+        } else{
+            print("Something wrong")
         }
 
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        switch titleCurrent {
+        case "watermark":
+            self.watermark = EFImage(finalImage)
 
-            var finalImage: UIImage?
-            if let tryImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-                finalImage = tryImage
-            } else if let tryImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                finalImage = tryImage
-            } else{
-                print("Something wrong")
-            }
-
-            switch titleCurrent {
-            case "watermark":
-                self.watermark = EFImage(finalImage)
-
-                var images = [EFImage]()
-                if let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL {
-                    if let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).lastObject {
-                        images = selectedAlbumPhotosIncludingGifWithPHAssets(assets: [asset])
-                    }
+            var images = [EFImage]()
+            if let imageUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL {
+                if let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).lastObject {
+                    images = selectedAlbumPhotosIncludingGifWithPHAssets(assets: [asset])
                 }
-                if let tryGIF = images.first {
-                    if tryGIF.isGIF == true {
-                        watermark = tryGIF
-                    }
-                }
-            case "icon":
-                self.icon = finalImage
-            default:
-                break
             }
-            self.refresh()
-
-            picker.dismiss(animated: true, completion: nil)
+            if let tryGIF = images.first {
+                if tryGIF.isGIF == true {
+                    watermark = tryGIF
+                }
+            }
+        case "icon":
+            self.icon = finalImage
+        default:
+            break
         }
+        self.refresh()
+
+        picker.dismiss(animated: true, completion: nil)
+    }
 
 
-        // 选择相册图片（包括 GIF 图片）
-        // http://www.jianshu.com/p/ad391f4d0bcb
-        func selectedAlbumPhotosIncludingGifWithPHAssets(assets: [PHAsset]) -> [EFImage] {
-            var imageArray = [EFImage]()
+    // 选择相册图片（包括 GIF 图片）
+    // http://www.jianshu.com/p/ad391f4d0bcb
+    func selectedAlbumPhotosIncludingGifWithPHAssets(assets: [PHAsset]) -> [EFImage] {
+        var imageArray = [EFImage]()
 
-            let targetSize: CGSize = CGSize(width: 1024, height: 1024)
+        let targetSize: CGSize = CGSize(width: 1024, height: 1024)
 
-            let options: PHImageRequestOptions = PHImageRequestOptions()
-            options.resizeMode = PHImageRequestOptionsResizeMode.fast
-            options.isSynchronous = true
+        let options: PHImageRequestOptions = PHImageRequestOptions()
+        options.resizeMode = PHImageRequestOptionsResizeMode.fast
+        options.isSynchronous = true
 
-            let imageManager: PHCachingImageManager = PHCachingImageManager()
-            for asset in assets {
-                imageManager.requestImageData(for: asset, options: options, resultHandler: {
-                    [weak self] (imageData, dataUTI, orientation, info) in
-                    if let _ = self {
-                        print("dataUTI: \(dataUTI ?? "")")
+        let imageManager: PHCachingImageManager = PHCachingImageManager()
+        for asset in assets {
+            imageManager.requestImageData(for: asset, options: options, resultHandler: {
+                [weak self] (imageData, dataUTI, orientation, info) in
+                if let _ = self {
+                    print("dataUTI: \(dataUTI ?? "")")
 
-                        let imageElement = EFImage()
+                    let imageElement = EFImage()
 
-                        // GIF
-                        if kUTTypeGIF as String == dataUTI {
-                            imageElement.isGIF = true
+                    // GIF
+                    if kUTTypeGIF as String == dataUTI {
+                        imageElement.isGIF = true
 
-                            if nil != imageData {
-                                imageElement.data = imageData
-                            }
-                        } else {
-                            imageElement.isGIF = false
+                        if nil != imageData {
+                            imageElement.data = imageData
+                        }
+                    } else {
+                        imageElement.isGIF = false
 
-                            // 其他格式的图片，直接请求压缩后的图片
-                            imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: PHImageContentMode.aspectFill, options: options, resultHandler: {
-                                [weak self] (result, info) in
-                                if let _ = self {
-                                    // 得到一张 UIImage，展示到界面上
-                                    if let isDegraded = info?[PHImageResultIsDegradedKey] as? Bool {
-                                        if !isDegraded {
-                                            imageElement.data = result
-                                        }
+                        // 其他格式的图片，直接请求压缩后的图片
+                        imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: PHImageContentMode.aspectFill, options: options, resultHandler: {
+                            [weak self] (result, info) in
+                            if let _ = self {
+                                // 得到一张 UIImage，展示到界面上
+                                if let isDegraded = info?[PHImageResultIsDegradedKey] as? Bool {
+                                    if !isDegraded {
+                                        imageElement.data = result
                                     }
                                 }
-                            })
-                        }
-
-                        imageArray.append(imageElement)
+                            }
+                        })
                     }
-                })
-            }
-            return imageArray
+
+                    imageArray.append(imageElement)
+                }
+            })
         }
+        return imageArray
+    }
 
-        func chooseImageFromAlbum(title: String) {
-            titleCurrent = title
+    func chooseImageFromAlbum(title: String) {
+        titleCurrent = title
 
-            if let tryPicker = imagePicker {
-                self.present(tryPicker, animated: true, completion: nil)
-            } else {
-                let picker = UIImagePickerController()
-                picker.sourceType = .photoLibrary
-                picker.delegate = self
-                picker.allowsEditing = false
-                imagePicker = picker
+        if let tryPicker = imagePicker {
+            self.present(tryPicker, animated: true, completion: nil)
+        } else {
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.allowsEditing = false
+            imagePicker = picker
 
-                self.present(picker, animated: true, completion: nil)
-            }
+            self.present(picker, animated: true, completion: nil)
         }
     }
+}
 #endif
 
 class ShowController: UIViewController {
@@ -1219,59 +1221,59 @@ class ShowController: UIViewController {
         self.view.addSubview(backButton)
 
         #if os(iOS)
-            let saveButton = UIButton(type: .system)
-            saveButton.setTitle("Save", for: .normal)
-            saveButton.setTitleColor(UIColor.white, for: .normal)
-            saveButton.layer.borderColor = UIColor.white.cgColor
-            saveButton.layer.borderWidth = 1
-            saveButton.layer.cornerRadius = 5
-            saveButton.layer.masksToBounds = true
-            self.view.addSubview(saveButton)
+        let saveButton = UIButton(type: .system)
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitleColor(UIColor.white, for: .normal)
+        saveButton.layer.borderColor = UIColor.white.cgColor
+        saveButton.layer.borderWidth = 1
+        saveButton.layer.cornerRadius = 5
+        saveButton.layer.masksToBounds = true
+        self.view.addSubview(saveButton)
 
-            imageView.snp.makeConstraints {
-                (make) in
-                make.left.equalTo(10)
-                make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
-                make.width.equalTo(self.view).offset(-20)
-                make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
-                make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-46-60)
-            }
+        imageView.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
+            make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-46-60)
+        }
 
-            saveButton.addTarget(self, action: #selector(ShowController.saveToAlbum), for: .touchDown)
-            saveButton.snp.makeConstraints {
-                (make) in
-                make.left.equalTo(10)
-                make.top.equalTo(imageView.snp.bottom).offset(10)
-                make.width.equalTo(self.view).offset(-20)
-                make.height.equalTo(46)
-            }
+        saveButton.addTarget(self, action: #selector(ShowController.saveToAlbum), for: .touchDown)
+        saveButton.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(imageView.snp.bottom).offset(10)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.equalTo(46)
+        }
 
-            backButton.addTarget(self, action: #selector(ShowController.back), for: .touchDown)
-            backButton.snp.makeConstraints {
-                (make) in
-                make.left.equalTo(10)
-                make.top.equalTo(saveButton.snp.bottom).offset(10)
-                make.width.equalTo(self.view).offset(-20)
-                make.height.equalTo(46)
-            }
+        backButton.addTarget(self, action: #selector(ShowController.back), for: .touchDown)
+        backButton.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(saveButton.snp.bottom).offset(10)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.equalTo(46)
+        }
         #else
-            imageView.snp.makeConstraints {
-                (make) in
-                make.left.equalTo(10)
-                make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
-                make.width.equalTo(self.view).offset(-20)
-                make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
-                make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-60)
-            }
+        imageView.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.lessThanOrEqualTo(self.view.snp.width).offset(-20)
+            make.height.lessThanOrEqualTo(self.view.snp.height).offset(-20-46-60)
+        }
 
-            backButton.addTarget(self, action: #selector(ShowController.back), for: .primaryActionTriggered)
-            backButton.snp.makeConstraints {
-                (make) in
-                make.left.equalTo(10)
-                make.top.equalTo(imageView.snp.bottom).offset(10)
-                make.width.equalTo(self.view).offset(-20)
-                make.height.equalTo(46)
-            }
+        backButton.addTarget(self, action: #selector(ShowController.back), for: .primaryActionTriggered)
+        backButton.snp.makeConstraints {
+            (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(imageView.snp.bottom).offset(10)
+            make.width.equalTo(self.view).offset(-20)
+            make.height.equalTo(46)
+        }
         #endif
     }
 
@@ -1300,101 +1302,101 @@ class ShowController: UIViewController {
 }
 
 #if os(iOS)
-    // http://stackoverflow.com/questions/28708846/how-to-save-image-to-custom-album
-    class CustomPhotoAlbum: NSObject {
+// http://stackoverflow.com/questions/28708846/how-to-save-image-to-custom-album
+class CustomPhotoAlbum: NSObject {
 
-        static let albumName = "EFQRCode"
-        static let sharedInstance = CustomPhotoAlbum()
+    static let albumName = "EFQRCode"
+    static let sharedInstance = CustomPhotoAlbum()
 
-        var assetCollection: PHAssetCollection!
+    var assetCollection: PHAssetCollection!
 
-        override init() {
-            super.init()
+    override init() {
+        super.init()
 
-            if let assetCollection = fetchAssetCollectionForAlbum() {
-                self.assetCollection = assetCollection
-                return
-            }
-
-            if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
-                PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
-                    ()
-                })
-            }
-
-            if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-                self.createAlbum()
-            } else {
-                PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
-            }
+        if let assetCollection = fetchAssetCollectionForAlbum() {
+            self.assetCollection = assetCollection
+            return
         }
 
-        func requestAuthorizationHandler(status: PHAuthorizationStatus) {
-            if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-                // Ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
-                print("Trying again to create the album")
-                self.createAlbum()
-            } else {
-                print("Should really prompt the user to let them know it's failed")
-            }
+        if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+            PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
+                ()
+            })
         }
 
-        func createAlbum() {
-            PHPhotoLibrary.shared().performChanges({
-                PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)
-                // Create an asset collection with the album name
-            }) { success, error in
-                if success {
-                    self.assetCollection = self.fetchAssetCollectionForAlbum()
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+            self.createAlbum()
+        } else {
+            PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+        }
+    }
+
+    func requestAuthorizationHandler(status: PHAuthorizationStatus) {
+        if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
+            // Ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
+            print("Trying again to create the album")
+            self.createAlbum()
+        } else {
+            print("Should really prompt the user to let them know it's failed")
+        }
+    }
+
+    func createAlbum() {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)
+            // Create an asset collection with the album name
+        }) { success, error in
+            if success {
+                self.assetCollection = self.fetchAssetCollectionForAlbum()
+            } else {
+                if let tryError = error {
+                    print("Error: \(tryError)")
+                }
+            }
+        }
+    }
+
+    func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "title=%@", CustomPhotoAlbum.albumName)
+        let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
+
+        if let _: AnyObject = collection.firstObject {
+            return collection.firstObject
+        }
+        return nil
+    }
+
+    func save(image: EFImage, finish: ((String?) -> Void)? = nil) {
+        if assetCollection == nil {
+            // If there was an error upstream, skip the save
+            finish?("AssetCollection is nil!")
+            return
+        }
+
+        PHPhotoLibrary.shared().performChanges({
+            [weak self] in
+            if let strongSelf = self {
+                var assetChangeRequest: PHAssetChangeRequest?
+                if image.isGIF == true {
+                    guard let fileURL = EFQRCode.tempResultPath else {
+                        finish?("EFQRCode.tempResultPath is nil!")
+                        return
+                    }
+                    assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: fileURL)
                 } else {
-                    if let tryError = error {
-                        print("Error: \(tryError)")
+                    if let image = image.data as? UIImage {
+                        assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
                     }
                 }
-            }
-        }
-
-        func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
-            let fetchOptions = PHFetchOptions()
-            fetchOptions.predicate = NSPredicate(format: "title=%@", CustomPhotoAlbum.albumName)
-            let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
-
-            if let _: AnyObject = collection.firstObject {
-                return collection.firstObject
-            }
-            return nil
-        }
-
-        func save(image: EFImage, finish: ((String?) -> Void)? = nil) {
-            if assetCollection == nil {
-                // If there was an error upstream, skip the save
-                finish?("AssetCollection is nil!")
-                return
-            }
-
-            PHPhotoLibrary.shared().performChanges({
-                [weak self] in
-                if let strongSelf = self {
-                    var assetChangeRequest: PHAssetChangeRequest?
-                    if image.isGIF == true {
-                        guard let fileURL = EFQRCode.tempResultPath else {
-                            finish?("EFQRCode.tempResultPath is nil!")
-                            return
-                        }
-                        assetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: fileURL)
-                    } else {
-                        if let image = image.data as? UIImage {
-                            assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-                        }
-                    }
-                    if let assetPlaceHolder = assetChangeRequest?.placeholderForCreatedAsset {
-                        let albumChangeRequest = PHAssetCollectionChangeRequest(for: strongSelf.assetCollection)
-                        let enumeration: NSArray = [assetPlaceHolder]
-                        albumChangeRequest?.addAssets(enumeration)
-                    } else {
-                        finish?("PlaceholderForCreatedAsset is nil!")
-                    }
+                if let assetPlaceHolder = assetChangeRequest?.placeholderForCreatedAsset {
+                    let albumChangeRequest = PHAssetCollectionChangeRequest(for: strongSelf.assetCollection)
+                    let enumeration: NSArray = [assetPlaceHolder]
+                    albumChangeRequest?.addAssets(enumeration)
+                } else {
+                    finish?("PlaceholderForCreatedAsset is nil!")
                 }
+            }
             }, completionHandler: {
                 [weak self] (result, error) in
                 if let _ = self {
@@ -1404,7 +1406,17 @@ class ShowController: UIViewController {
                         finish?(error?.localizedDescription ?? "")
                     }
                 }
-            })
-        }
+        })
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
+}
 #endif
