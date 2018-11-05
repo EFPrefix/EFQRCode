@@ -1,11 +1,11 @@
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/EFQRCode.jpg)
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
-    <a href="https://travis-ci.org/EyreFree/EFQRCode">
-        <img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg">
+    <a href="https://travis-ci.org/EFPrefix/EFQRCode">
+        <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
-    <a href="https://codecov.io/gh/EyreFree/EFQRCode">
-        <img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg">
+    <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
+        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/master/graph/badge.svg">
     </a>
     <a href="https://github.com/Carthage/Carthage/">
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
@@ -25,11 +25,11 @@
     <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master">
         <img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f">
     </a>
-    <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/master/LICENSE">
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/master/LICENSE">
         <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
     </a>
     <a href="https://gitter.im/EFQRCode/Lobby">
-        <img src="https://img.shields.io/gitter/room/EyreFree/EFQRCode.svg">
+        <img src="https://img.shields.io/gitter/room/EFPrefix/EFQRCode.svg">
     </a>
     <a href="#backers" alt="sponsors on Open Collective">
         <img src="https://opencollective.com/EFQRCode/backers/badge.svg" />
@@ -43,7 +43,7 @@
     <a href="http://weibo.com/eyrefree777">
         <img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat">
     </a>
-    <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/MadeWith%3C3.png">
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/MadeWith%3C3.png">
         <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
     </a>
     <a href="http://shang.qq.com/wpa/qunwpa?idkey=d0f732585dcb0c6f2eb26bc9e0327f6305d18260eeba89ed26a201b520c572c0">
@@ -57,9 +57,9 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 ## 概述
 
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode8.jpg)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF8.gif)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF8.gif)  
 
 ## 示例
 
@@ -68,24 +68,25 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 iOS 和 tvOS：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
-	<img src='https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
+	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
 你也可以点击下方的 Mac App Store 按钮下载 macOS 示例程序：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
-	<img src='https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
+	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
 </a>
 
 ### 手动
 
-1. 利用 `git clone` 命令下载本仓库, `Examples` 目录包含了所有的示例程序；
-2. 用 XCode 打开对应项目编译即可。
+1. 利用 `git clone` 命令下载本仓库；
+2. 切换到仓库根目录下，执行 `git submodule update --init --recursive` 命令获取所有 submodule；
+3. `EFQRCode.xcworkspace` 工程中包含了所有的示例程序，用 XCode 打开它，选择对应平台 target 编译即可。
 
 或执行以下命令：
 
 ```bash
-git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Examples/iOS; open 'iOS Example.xcodeproj'
+git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; git submodule update --init --recursive; open 'EFQRCode.xcworkspace'
 ```
 
 ## 环境
@@ -125,7 +126,7 @@ $ brew install carthage
 通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 4.3.0
+github "EFPrefix/EFQRCode" ~> 4.3.0
 ```
 
 接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
@@ -138,7 +139,7 @@ github "EyreFree/EFQRCode" ~> 4.3.0
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(4, 2, 1))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(4, 2, 1))
 ]
 ```
 
@@ -187,7 +188,7 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 
 ```swift
 if let tryImage = EFQRCode.generate(
-    content: "https://github.com/EyreFree/EFQRCode",
+    content: "https://github.com/EFPrefix/EFQRCode",
     watermark: UIImage(named: "WWF")?.toCGImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
@@ -198,7 +199,7 @@ if let tryImage = EFQRCode.generate(
 
 结果：
 
-<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
+<img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
 #### 4. 动态二维码
 
@@ -222,7 +223,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 你可以通过查看 Demo 代码的方式来获取更多信息，结果预览：
 
-<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/>
+<img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/>
 
 #### 5. 接下来
 
@@ -313,7 +314,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 如果你没有 `Open Collective` 帐户或者你认为它的操作太复杂，下面的付款方式也是支持的：
 
-![AliPay](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode/AliPay.jpg?raw=true)|![WeChat](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode/WeChat.jpg?raw=true)|![PayPal](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode/PayPal.jpg?raw=true)  
+![AliPay](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode/AliPay.jpg?raw=true)|![WeChat](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode/WeChat.jpg?raw=true)|![PayPal](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode/PayPal.jpg?raw=true)  
 :---------------------:|:---------------------:|:---------------------:
 
 感谢您的支援，🙏！
@@ -325,7 +326,7 @@ EFQRCode 交流群：[769966374](http://shang.qq.com/wpa/qunwpa?idkey=d0f732585d
 
 ## 协议
 
-<a href="https://github.com/EyreFree/EFQRCode/blob/master/LICENSE">
+<a href="https://github.com/EFPrefix/EFQRCode/blob/master/LICENSE">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
 </a>
 
