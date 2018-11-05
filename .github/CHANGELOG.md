@@ -2,7 +2,15 @@
 
 -----
 
-## [4.3.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.3.0) (2018-09-14)
+## [4.4.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.4.0) (2018-11-05)
+
+#### Add
+
+* Upgrade to Swift 4.2.
+
+---
+
+## [4.3.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.3.0) (2018-09-14)
 
 #### Fix
 
@@ -10,7 +18,7 @@
 
 ---
 
-## [4.2.2](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.2) (2018-01-09)
+## [4.2.2](https://github.com/EFPrefix/EFQRCode/releases/tag/4.2.2) (2018-01-09)
 
 #### Add
 
@@ -18,7 +26,7 @@
 
 ---
 
-## [4.2.1](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.1) (2018-01-09)
+## [4.2.1](https://github.com/EFPrefix/EFQRCode/releases/tag/4.2.1) (2018-01-09)
 
 #### Fix
 
@@ -26,7 +34,7 @@
 
 ---
 
-## [4.2.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.2.0) (2018-01-03)
+## [4.2.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.2.0) (2018-01-03)
 
 #### Add
 
@@ -35,7 +43,7 @@
 
 ---
 
-## [4.1.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.1.0) (2017-11-01)
+## [4.1.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.1.0) (2017-11-01)
 
 #### Add
 
@@ -43,7 +51,7 @@
 
 ---
 
-## [4.0.0](https://github.com/EyreFree/EFQRCode/releases/tag/4.0.0) (2017-09-21)
+## [4.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.0.0) (2017-09-21)
 
 #### Add
 
@@ -51,7 +59,7 @@
 
 ---
 
-## [1.2.7](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.7) (2017-07-26)
+## [1.2.7](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.7) (2017-07-26)
 
 #### Add
 
@@ -59,15 +67,15 @@
 
 ---
 
-## [1.2.6](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.6) (2017-07-25)
+## [1.2.6](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.6) (2017-07-25)
 
 #### Fix
 
-* Fix issue [#21](https://github.com/EyreFree/EFQRCode/issues/21).
+* Fix issue [#21](https://github.com/EFPrefix/EFQRCode/issues/21).
 
 ---
 
-## [1.2.5](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.5) (2017-05-24)
+## [1.2.5](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.5) (2017-05-24)
 
 #### Add
 
@@ -76,11 +84,11 @@
 
 #### Fix
 
-* Fix issue [#11](https://github.com/EyreFree/EFQRCode/issues/11).
+* Fix issue [#11](https://github.com/EFPrefix/EFQRCode/issues/11).
 
 ---
 
-## [1.2.4](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.4) (2017-04-23)
+## [1.2.4](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.4) (2017-04-23)
 
 #### Add
 
@@ -93,7 +101,7 @@
 
 ---
 
-## [1.2.3](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.3) (2017-04-18)
+## [1.2.3](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.3) (2017-04-18)
 
 #### Fix
 
@@ -101,7 +109,7 @@
 
 ---
 
-## [1.2.2](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.2) (2017-04-17)
+## [1.2.2](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.2) (2017-04-17)
 
 #### Add
 
@@ -111,7 +119,7 @@
 
 ---
 
-## [1.2.1](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.1) (2017-04-11)
+## [1.2.1](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.1) (2017-04-11)
 
 #### Add
 
@@ -121,11 +129,11 @@
 #### Fix
 
 * Increase efficiency;
-* Fix issue [#4](https://github.com/EyreFree/EFQRCode/issues/4).
+* Fix issue [#4](https://github.com/EFPrefix/EFQRCode/issues/4).
 
 ---
 
-## [1.2.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.2.0) (2017-04-01)
+## [1.2.0](https://github.com/EFPrefix/EFQRCode/releases/tag/1.2.0) (2017-04-01)
 
 #### Add
 
@@ -141,7 +149,7 @@
 
 ---
 
-## [1.1.1](https://github.com/EyreFree/EFQRCode/releases/tag/1.1.1) (2017-02-15)
+## [1.1.1](https://github.com/EFPrefix/EFQRCode/releases/tag/1.1.1) (2017-02-15)
 
 #### Fix
 
@@ -150,7 +158,7 @@
 
 ---
 
-## [1.1.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.1.0) (2017-02-10)
+## [1.1.0](https://github.com/EFPrefix/EFQRCode/releases/tag/1.1.0) (2017-02-10)
 
 #### Add
 
@@ -163,6 +171,6 @@
 
 ---
 
-## [1.0.0](https://github.com/EyreFree/EFQRCode/releases/tag/1.0.0) (2017-01-24)
+## [1.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/1.0.0) (2017-01-24)
 
 First public release.

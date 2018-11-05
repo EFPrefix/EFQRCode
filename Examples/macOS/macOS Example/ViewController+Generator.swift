@@ -76,8 +76,8 @@ extension ViewController: NSAlertDelegate {
         generatorViewSave.bezelStyle = .regularSquare
         generatorViewSave.attributedTitle = NSMutableAttributedString(
             string: "Save", attributes: [
-                NSAttributedStringKey.foregroundColor: NSColor.theme,
-                NSAttributedStringKey.paragraphStyle: centredStyle
+                NSAttributedString.Key.foregroundColor: NSColor.theme,
+                NSAttributedString.Key.paragraphStyle: centredStyle
             ]
         )
         generatorViewSave.action = #selector(generatorViewSaveClicked)
@@ -95,8 +95,8 @@ extension ViewController: NSAlertDelegate {
         generatorViewCreate.bezelStyle = .regularSquare
         generatorViewCreate.attributedTitle = NSMutableAttributedString(
             string: "Create", attributes: [
-                NSAttributedStringKey.foregroundColor: NSColor.theme,
-                NSAttributedStringKey.paragraphStyle: centredStyle
+                NSAttributedString.Key.foregroundColor: NSColor.theme,
+                NSAttributedString.Key.paragraphStyle: centredStyle
             ]
         )
         generatorViewCreate.action = #selector(generatorViewCreateClicked)
@@ -154,8 +154,8 @@ extension ViewController: NSAlertDelegate {
             generatorViewOptions[index].bezelStyle = .regularSquare
             generatorViewOptions[index].attributedTitle = NSMutableAttributedString(
                 string: titleArray[index], attributes: [
-                    NSAttributedStringKey.foregroundColor: NSColor.theme,
-                    NSAttributedStringKey.paragraphStyle: centredStyle
+                    NSAttributedString.Key.foregroundColor: NSColor.theme,
+                    NSAttributedString.Key.paragraphStyle: centredStyle
                 ]
             )
             generatorViewOptions[index].action = #selector(generatorViewOptionsClicked(button:))

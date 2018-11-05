@@ -138,7 +138,7 @@ class ViewController: NSViewController {
         buttonRecognize.wantsLayer = true
         buttonRecognize.imageAlignment = .alignCenter
         buttonRecognize.imageScaling = .scaleAxesIndependently
-        buttonRecognize.image = NSImage(named: NSImage.Name("Recognizer"))
+        buttonRecognize.image = NSImage(named: "Recognizer")
         buttonRecognize.action = #selector(buttonRecognizeClicked)
         leftBarView.addSubview(buttonRecognize)
         buttonRecognize.snp.makeConstraints {
@@ -150,7 +150,7 @@ class ViewController: NSViewController {
         buttonGenerate.wantsLayer = true
         buttonGenerate.imageAlignment = .alignCenter
         buttonGenerate.imageScaling = .scaleAxesIndependently
-        buttonGenerate.image = NSImage(named: NSImage.Name("Generator"))
+        buttonGenerate.image = NSImage(named: "Generator")
         buttonGenerate.action = #selector(buttonGenerateClicked)
         leftBarView.addSubview(buttonGenerate)
         buttonGenerate.snp.makeConstraints {
@@ -162,7 +162,7 @@ class ViewController: NSViewController {
 
         imageView.imageAlignment = .alignCenter
         imageView.imageScaling = .scaleAxesIndependently
-        imageView.image = NSImage(named: NSImage.Name("launchimage"))
+        imageView.image = NSImage(named: "launchimage")
         imageView.action = #selector(imageViewClicked)
         leftBarView.addSubview(imageView)
         imageView.snp.makeConstraints {
@@ -193,7 +193,7 @@ class ViewController: NSViewController {
         let views = [recognizerView, generatorView]
         for (index, button) in [buttonRecognize, buttonGenerate].enumerated() {
             button.image = NSImage(
-                named: NSImage.Name((index == indexSelected ? imageSelectedArray : imageArray)[index])
+                named: (index == indexSelected ? imageSelectedArray : imageArray)[index]
             )
             button.layer?.backgroundColor = (index == indexSelected ? NSColor.white : NSColor.theme).cgColor
             views[index].isHidden = index != indexSelected

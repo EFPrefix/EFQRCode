@@ -1,11 +1,11 @@
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/EFQRCode.jpg)
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
-    <a href="https://travis-ci.org/EyreFree/EFQRCode">
-        <img src="http://img.shields.io/travis/EyreFree/EFQRCode.svg">
+    <a href="https://travis-ci.org/EFPrefix/EFQRCode">
+        <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
-    <a href="https://codecov.io/gh/EyreFree/EFQRCode">
-        <img src="https://codecov.io/gh/EyreFree/EFQRCode/branch/master/graph/badge.svg">
+    <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
+        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/master/graph/badge.svg">
     </a>
     <a href="https://github.com/Carthage/Carthage/">
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
@@ -25,11 +25,11 @@
     <a href="https://codebeat.co/projects/github-com-eyrefree-efqrcode-master">
         <img src="https://codebeat.co/badges/01f53e9d-542c-4c22-adc7-d1dbff0d2a6f">
     </a>
-    <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/master/LICENSE">
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/master/LICENSE">
         <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
     </a>
     <a href="https://gitter.im/EFQRCode/Lobby">
-        <img src="https://img.shields.io/gitter/room/EyreFree/EFQRCode.svg">
+        <img src="https://img.shields.io/gitter/room/EFPrefix/EFQRCode.svg">
     </a>
     <a href="#backers" alt="sponsors on Open Collective">
         <img src="https://opencollective.com/EFQRCode/backers/badge.svg" />
@@ -43,7 +43,7 @@
     <a href="http://weibo.com/eyrefree777">
         <img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat">
     </a>
-    <a href="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/MadeWith%3C3.png">
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/MadeWith%3C3.png">
         <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
     </a>
 </p>
@@ -54,9 +54,9 @@ EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image
 
 ## Overview
 
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode8.jpg)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF8.gif)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF8.gif)  
 
 ## Demo
 
@@ -65,23 +65,23 @@ EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image
 You can click the `App Store` button below to download demo, support iOS and tvOS:
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
-    <img src='https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
 You can also click the `Mac App Store` button below to download demo for macOS:
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
-    <img src='https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
 </a>
 
 ### Manual
 
-To run the example project manually, clone the repo, demos are in the 'Examples' folder.
+To run the example project manually, clone the repo, demos are in the 'Examples' folder, remember run command `git submodule update --init --recursive` in terminal to get all `submodules` first, then open `EFQRCode.xcworkspace` with Xcode and select the target you want, run.
 
 Or you can run the following command in terminal:
 
 ```bash
-git clone git@github.com:EyreFree/EFQRCode.git; cd EFQRCode/Examples/iOS; open 'iOS Example.xcodeproj'
+git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; git submodule update --init --recursive; open 'EFQRCode.xcworkspace'
 ```
 
 ## Requirements
@@ -99,7 +99,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'EFQRCode', '~> 4.3.0'
+pod 'EFQRCode', '~> 4.4.0'
 ```
 
 Then, run the following command:
@@ -122,7 +122,7 @@ $ brew install carthage
 To integrate EFQRCode into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "EyreFree/EFQRCode" ~> 4.3.0
+github "EFPrefix/EFQRCode" ~> 4.4.0
 ```
 
 Run `carthage update` to build the framework and drag the built `EFQRCode.framework` into your Xcode project.
@@ -135,7 +135,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EyreFree/EFQRCode.git", Version(4, 2, 1))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(4, 2, 1))
 ]
 ```
 
@@ -184,7 +184,7 @@ Create QR Code image, quick usage:
 
 ```swift
 if let tryImage = EFQRCode.generate(
-    content: "https://github.com/EyreFree/EFQRCode",
+    content: "https://github.com/EFPrefix/EFQRCode",
     watermark: UIImage(named: "WWF")?.toCGImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
@@ -195,7 +195,7 @@ if let tryImage = EFQRCode.generate(
 
 Result: 
 
-<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/sample1.jpg" width = "36%"/>
+<img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
 #### 4. Generation from GIF
 
@@ -219,7 +219,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 You can get more information from the demo, result will like this:
 
-<img src="https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/>
+<img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/>
 
 #### 5. Next
 
@@ -310,7 +310,7 @@ If you think this project has brought you help, you can buy me a cup of coffee. 
 
 If you don't have a `Open Collective` account or you think it is too complicated, the following way of payment is also supported:
 
-![AliPay](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode/AliPay.jpg?raw=true)|![WeChat](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode/WeChat.jpg?raw=true)|![PayPal](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/QRCode/PayPal.jpg?raw=true)  
+![AliPay](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode/AliPay.jpg?raw=true)|![WeChat](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode/WeChat.jpg?raw=true)|![PayPal](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode/PayPal.jpg?raw=true)  
 :---------------------:|:---------------------:|:---------------------:
 
 Thank you for your support, 🙏!
@@ -321,7 +321,7 @@ Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
 
 ## License
 
-<a href="https://github.com/EyreFree/EFQRCode/blob/master/LICENSE">
+<a href="https://github.com/EFPrefix/EFQRCode/blob/master/LICENSE">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
 </a>
 
