@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name             = 'EFQRCode'
-	s.version          = '4.3.0'
+	s.version          = '4.4.0'
 	s.summary          = 'A better way to operate quick response code in Swift.'
 
 	s.description      = <<-DESC
@@ -20,8 +20,6 @@ Pod::Spec.new do |s|
 	s.watchos.deployment_target = '2.0'
 
 	s.requires_arc = true
-
 	s.source_files = 'Source/**/*.{h,swift}'
-
 	s.frameworks = 'ImageIO'
 end
