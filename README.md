@@ -223,7 +223,7 @@ You can get more information from the demo, result will like this:
 
 #### 5. Next
 
-Learn more from [User Guide](/.github/USERGUIDE.md).
+Learn more from [User Guide](/USERGUIDE.md).
 
 ## Todo
 
@@ -255,7 +255,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](/.github/CONTRIBUTING.md)]
+This project exists thanks to all the people who contribute. [[Contribute](/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />

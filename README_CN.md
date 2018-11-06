@@ -227,7 +227,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 #### 5. 接下来
 
-查看 [用户手册](/.github/USERGUIDE_CN.md) 了解更多细节。
+查看 [用户手册](/USERGUIDE_CN.md) 了解更多细节。
 
 ## 待办
 
@@ -259,7 +259,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 贡献者
 
-这个项目的存在多亏了所有贡献的人。 [[Contribute](/.github/CONTRIBUTING.md)]
+这个项目的存在多亏了所有贡献的人。 [[Contribute](/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
