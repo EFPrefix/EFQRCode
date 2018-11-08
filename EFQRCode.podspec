@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name             = 'EFQRCode'
-	s.version          = '4.4.0'
+	s.version          = '4.4.1'
 	s.summary          = 'A better way to operate quick response code in Swift.'
 
 	s.description      = <<-DESC
@@ -14,6 +14,8 @@ Pod::Spec.new do |s|
 	s.source           = { :git => 'https://github.com/EFPrefix/EFQRCode.git', :tag => s.version.to_s }
 	s.social_media_url = 'https://twitter.com/EyreFree777'
 
+	s.swift_version = "4.2"
+
 	s.ios.deployment_target = '8.0'
 	s.osx.deployment_target = '10.11'
 	s.tvos.deployment_target = '9.0'
@@ -21,5 +23,7 @@ Pod::Spec.new do |s|
 
 	s.requires_arc = true
 	s.source_files = 'Source/**/*.{h,swift}'
+	
 	s.frameworks = 'ImageIO'
+	s.dependency 'swift_qrcodejs', '~> 1.0.1'
 end
