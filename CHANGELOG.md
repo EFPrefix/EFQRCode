@@ -2,6 +2,14 @@
 
 -----
 
+## [4.4.1](https://github.com/EFPrefix/EFQRCode/releases/tag/4.4.1) (2018-11-08)
+
+#### Add
+
+* Add dependency on swift_qrcodejs.
+
+---
+
 ## [4.4.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.4.0) (2018-11-05)
 
 #### Add
