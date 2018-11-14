@@ -25,45 +25,45 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
-    import CoreImage
+import CoreImage
 
-    public extension CIImage {
-
-        // Convert CIImage To CGImage
-        // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-        public func toCGImage() -> CGImage? {
-            return CIContext().createCGImage(self, from: extent)
-        }
-
-        // Size
-        func size() -> CGSize {
-            return self.extent.size
-        }
-        
-        // Get QRCode from image
-        func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
-            var result = [String]()
-            let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
-            guard let features = detector?.features(in: self) else {
-                return result
-            }
-            for feature in features {
-                if let tryString = (feature as? CIQRCodeFeature)?.messageString {
-                    result.append(tryString)
-                }
-            }
+public extension CIImage {
+    
+    // Convert CIImage To CGImage
+    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
+    public func toCGImage() -> CGImage? {
+        return CIContext().createCGImage(self, from: extent)
+    }
+    
+    // Size
+    func size() -> CGSize {
+        return self.extent.size
+    }
+    
+    // Get QRCode from image
+    func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
+        var result = [String]()
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
+        guard let features = detector?.features(in: self) else {
             return result
         }
-
-        // Create QR CIImage
-        static func generateQRCode(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
-            let stringData = string.data(using: String.Encoding.utf8)
-            if let qrFilter = CIFilter(name: "CIQRCodeGenerator") {
-                qrFilter.setValue(stringData, forKey: "inputMessage")
-                qrFilter.setValue(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue], forKey: "inputCorrectionLevel")
-                return qrFilter.outputImage
+        for feature in features {
+            if let tryString = (feature as? CIQRCodeFeature)?.messageString {
+                result.append(tryString)
             }
-            return nil
         }
+        return result
     }
+    
+    // Create QR CIImage
+    static func generateQRCode(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
+        let stringData = string.data(using: String.Encoding.utf8)
+        if let qrFilter = CIFilter(name: "CIQRCodeGenerator") {
+            qrFilter.setValue(stringData, forKey: "inputMessage")
+            qrFilter.setValue(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue], forKey: "inputCorrectionLevel")
+            return qrFilter.outputImage
+        }
+        return nil
+    }
+}
 #endif

@@ -25,18 +25,18 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(watchOS)
-    import UIKit
+import UIKit
 
-    public extension UIColor {
+public extension UIColor {
 
-        #if os(iOS) || os(tvOS)
-        public func toCIColor() -> CIColor {
-            return cgColor.toCIColor()
-        }
-        #endif
-
-        public func toCGColor() -> CGColor {
-            return cgColor
-        }
+    #if os(iOS) || os(tvOS)
+    public func toCIColor() -> CIColor {
+        return cgColor.toCIColor()
     }
+    #endif
+
+    public func toCGColor() -> CGColor {
+        return cgColor
+    }
+}
 #endif
