@@ -1,8 +1,8 @@
 //
-//  EFDefine.swift
+//  EFUIntPixel.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/4/11.
+//  Created by EyreFree on 2018/11/14.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -27,19 +27,8 @@
 import CoreGraphics
 
 #if os(iOS) || os(tvOS) || os(macOS)
-    import CoreImage
+import CoreImage
 #endif
-
-public enum EFQRCodeMode: Int {
-    case none           = 0
-    case grayscale      = 1
-    case binarization   = 2
-}
-
-public enum EFPointShape: Int {
-    case square         = 0
-    case circle         = 1
-}
 
 public struct EFUIntPixel {
     public var red: UInt8 = 0
@@ -61,7 +50,7 @@ public struct EFUIntPixel {
                 to: CGColorSpaceCreateDeviceRGB(),
                 intent: .defaultIntent,
                 options: nil
-            ) ?? color
+                ) ?? color
         }
         if let components = color.components, 4 == color.numberOfComponents {
             self.init(
@@ -74,50 +63,4 @@ public struct EFUIntPixel {
             return nil
         }
     }
-}
-
-public class EFIntSize {
-    public private(set) var width: Int = 0
-    public private(set) var height: Int = 0
-
-    public init(width: Int, height: Int) {
-        self.width = width
-        self.height = height
-    }
-
-    public func toCGSize() -> CGSize {
-        return CGSize(width: width, height: height)
-    }
-
-    public func widthCGFloat() -> CGFloat {
-        return CGFloat(width)
-    }
-
-    public func heightCGFloat() -> CGFloat {
-        return CGFloat(height)
-    }
-}
-
-// EFInputCorrectionLevel
-public enum EFInputCorrectionLevel: Int {
-    case l = 0     // L 7%
-    case m = 1     // M 15%
-    case q = 2     // Q 25%
-    case h = 3     // H 30%
-}
-
-// Like UIViewContentMode
-public enum EFWatermarkMode: Int {
-    case scaleToFill        = 0
-    case scaleAspectFit     = 1
-    case scaleAspectFill    = 2
-    case center             = 3
-    case top                = 4
-    case bottom             = 5
-    case left               = 6
-    case right              = 7
-    case topLeft            = 8
-    case topRight           = 9
-    case bottomLeft         = 10
-    case bottomRight        = 11
 }

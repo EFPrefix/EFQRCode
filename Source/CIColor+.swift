@@ -25,20 +25,20 @@
 //  THE SOFTWARE.
 
 #if os(iOS) || os(tvOS) || os(macOS)
-    import CoreImage
+import CoreImage
 
-    public extension CIColor {
+public extension CIColor {
 
-        public static func EFWhite() -> CIColor {
-            return CIColor(red: 1, green: 1, blue: 1)
-        }
-
-        public static func EFBlack() -> CIColor {
-            return CIColor(red: 0, green: 0, blue: 0)
-        }
-
-        public func toCGColor() -> CoreImage.CGColor? {
-            return CGColor(colorSpace: colorSpace, components: components)
-        }
+    public static func EFWhite() -> CIColor {
+        return CIColor(red: 1, green: 1, blue: 1)
     }
+
+    public static func EFBlack() -> CIColor {
+        return CIColor(red: 0, green: 0, blue: 0)
+    }
+
+    public func toCGColor() -> CoreImage.CGColor? {
+        return CGColor(colorSpace: colorSpace, components: components)
+    }
+}
 #endif

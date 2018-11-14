@@ -25,19 +25,19 @@
 //  THE SOFTWARE.
 
 #if os(macOS)
-    import AppKit
+import AppKit
 
-    public extension NSImage {
-
-        public func toCIImage() -> CIImage? {
-            if let data = tiffRepresentation(using: NSBitmapImageRep.TIFFCompression.none, factor: 0) {
-                return CIImage(data: data)
-            }
-            return nil
+public extension NSImage {
+    
+    public func toCIImage() -> CIImage? {
+        if let data = tiffRepresentation(using: NSBitmapImageRep.TIFFCompression.none, factor: 0) {
+            return CIImage(data: data)
         }
-
-        public func toCGImage() -> CGImage? {
-            return toCIImage()?.toCGImage()
-        }
+        return nil
     }
+
+    public func toCGImage() -> CGImage? {
+        return toCIImage()?.toCGImage()
+    }
+}
 #endif

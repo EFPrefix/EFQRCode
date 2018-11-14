@@ -1,8 +1,8 @@
 //
-//  UIImage+.swift
+//  EFDefine.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/4/9.
+//  Created by EyreFree on 2017/4/11.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,27 +24,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS) || os(watchOS)
-import UIKit
+import CoreGraphics
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(macOS)
 import CoreImage
 #endif
 
-public extension UIImage {
-
-    #if os(iOS) || os(tvOS)
-    public func toCIImage() -> CIImage? {
-        return CIImage(image: self)
-    }
-    #endif
-
-    public func toCGImage() -> CGImage? {
-        #if os(watchOS)
-        return cgImage
-        #else
-        return toCIImage()?.toCGImage()
-        #endif
-    }
+// Like UIViewContentMode
+public enum EFWatermarkMode: Int {
+    case scaleToFill        = 0
+    case scaleAspectFit     = 1
+    case scaleAspectFill    = 2
+    case center             = 3
+    case top                = 4
+    case bottom             = 5
+    case left               = 6
+    case right              = 7
+    case topLeft            = 8
+    case topRight           = 9
+    case bottomLeft         = 10
+    case bottomRight        = 11
 }
-#endif

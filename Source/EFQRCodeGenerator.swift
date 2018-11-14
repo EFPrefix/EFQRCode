@@ -25,10 +25,10 @@
 //  THE SOFTWARE.
 
 #if os(watchOS)
-    import CoreGraphics
-    import swift_qrcodejs
+import CoreGraphics
+import swift_qrcodejs
 #else
-    import CoreImage
+import CoreImage
 #endif
 
 // EFQRCode+Create
@@ -670,18 +670,18 @@ public class EFQRCodeGenerator {
 
         func fetchPixels() -> [[Bool]]? {
             #if os(iOS) || os(macOS) || os(tvOS)
-                // Get pixels from image
-                guard let tryQRImagePixels = getPixels() else {
-                    return nil
-                }
-                // Get QRCodes from image
-                return getCodes(pixels: tryQRImagePixels)
-            #else
-                let level = inputCorrectionLevel.qrErrorCorrectLevel
-                if let finalContent = content {
-                    return QRCode(finalContent, errorCorrectLevel: level, withBorder: true)?.imageCodes
-                }
+            // Get pixels from image
+            guard let tryQRImagePixels = getPixels() else {
                 return nil
+            }
+            // Get QRCodes from image
+            return getCodes(pixels: tryQRImagePixels)
+            #else
+            let level = inputCorrectionLevel.qrErrorCorrectLevel
+            if let finalContent = content {
+                return QRCode(finalContent, errorCorrectLevel: level, withBorder: true)?.imageCodes
+            }
+            return nil
             #endif
         }
 

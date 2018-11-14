@@ -1,8 +1,8 @@
 //
-//  UIImage+.swift
+//  EFPointShape.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/4/9.
+//  Created by EyreFree on 2018/11/14.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,27 +24,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS) || os(watchOS)
-import UIKit
+import CoreGraphics
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(macOS)
 import CoreImage
 #endif
 
-public extension UIImage {
-
-    #if os(iOS) || os(tvOS)
-    public func toCIImage() -> CIImage? {
-        return CIImage(image: self)
-    }
-    #endif
-
-    public func toCGImage() -> CGImage? {
-        #if os(watchOS)
-        return cgImage
-        #else
-        return toCIImage()?.toCGImage()
-        #endif
-    }
+public enum EFPointShape: Int {
+    case square         = 0
+    case circle         = 1
 }
-#endif

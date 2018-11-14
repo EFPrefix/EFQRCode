@@ -1,8 +1,8 @@
 //
-//  UIImage+.swift
+//  EFInputCorrectionLevel.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/4/9.
+//  Created by EyreFree on 2018/11/14.
 //
 //  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
 //
@@ -24,27 +24,31 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS) || os(watchOS)
-import UIKit
+import CoreGraphics
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(macOS)
 import CoreImage
+#else
+import swift_qrcodejs
 #endif
 
-public extension UIImage {
+// EFInputCorrectionLevel
+public enum EFInputCorrectionLevel: Int {
+    case l = 0     // L 7%
+    case m = 1     // M 15%
+    case q = 2     // Q 25%
+    case h = 3     // H 30%
 
-    #if os(iOS) || os(tvOS)
-    public func toCIImage() -> CIImage? {
-        return CIImage(image: self)
+    #if os(iOS) || os(tvOS) || os(macOS)
+
+    #else
+    var qrErrorCorrectLevel: QRErrorCorrectLevel {
+        switch self {
+        case .h: return .H
+        case .l: return .L
+        case .m: return .M
+        case .q: return .Q
+        }
     }
     #endif
-
-    public func toCGImage() -> CGImage? {
-        #if os(watchOS)
-        return cgImage
-        #else
-        return toCIImage()?.toCGImage()
-        #endif
-    }
 }
-#endif

@@ -27,7 +27,7 @@
 import CoreGraphics
 
 #if os(iOS) || os(tvOS) || os(macOS)
-    import CoreImage
+import CoreImage
 #endif
 
 public extension CGImage {
