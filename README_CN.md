@@ -229,6 +229,11 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 查看 [用户手册](/USERGUIDE_CN.md) 了解更多细节。
 
+您也可以查看下列非官方的使用说明：
+
+- [不用请设计师，你也能做出个性二维码：EFQRCode](https://sspai.com/post/43211)
+- [想更优雅地分享 Wi-Fi 密码，只需一枚二维码](https://sspai.com/post/43097)
+
 ## 待办
 
 - [x] 支持 GIF 动图
@@ -252,6 +257,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 平台／语言|链接
 :-------------------------|:-------------------------
+Objective-C|[https://github.com/z624821876/YSQRCode](https://github.com/z624821876/YSQRCode)
 Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
 JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
 Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
