@@ -2,11 +2,19 @@
 
 -----
 
+## [4.4.2](https://github.com/EFPrefix/EFQRCode/releases/tag/4.4.2) (2018-11-14)
+
+#### Add
+
+* Add parameters to meet the needs of [#50](https://github.com/EFPrefix/EFQRCode/issues/50).
+
+---
+
 ## [4.4.1](https://github.com/EFPrefix/EFQRCode/releases/tag/4.4.1) (2018-11-08)
 
 #### Add
 
-* Add dependency on swift_qrcodejs.
+* Add dependency on (swift_qrcodejs)[https://github.com/ApolloZhu/swift_qrcodejs].
 
 ---
 
