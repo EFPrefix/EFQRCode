@@ -27,45 +27,22 @@
 import WatchKit
 import EFQRCode
 
-class EFImage {
-    private(set) var isGIF: Bool = false
-    private(set) var data: Any?
-
-    init() {
-
-    }
-    
-    init?(_ image: UIImage?) {
-        guard let data = image else {
-            return nil
-        }
-        self.data = data
-    }
-    
-    init?(_ data: Data?) {
-        guard let data = data else {
-            return nil
-        }
-        self.data = data
-        self.isGIF = true
-    }
+enum EFImage {
+    case normal(_ image: UIImage)
+    case gif(_ data: Data)
 }
 
 class ParametersInterfaceController: WKInterfaceController {
     private var link = "https://github.com/EyreFree/EFQRCode"
     @IBOutlet var contentDisplay: WKInterfaceLabel!
     @IBAction func changeLink() {
-        presentTextInputController(withSuggestions: [link], allowedInputMode: .plain) {
+        presentTextInputController(withSuggestions: [link], allowedInputMode: .allowEmoji) {
             [weak self] array in
-            guard let inputs = array else {
-                return
-            }
-            for input in inputs {
-                if let str = input as? String {
-                    self?.link = str
-                    self?.contentDisplay?.setText(str)
-                }
-            }
+            guard let self = self,
+                let link = array?.first(where: { $0 is NSString }) as? String
+                else { return }
+            self.link = link
+            self.contentDisplay?.setText(link)
         }
     }
     
@@ -245,8 +222,9 @@ class ParametersInterfaceController: WKInterfaceController {
         }
     }
     @IBAction func pickedWatermark(_ value: Int) {
-        if let name = watermarks[value] {
-            watermark = EFImage(UIImage(named: name))
+        if let name = watermarks[value],
+            let image = UIImage(named: name) {
+            watermark = .normal(image)
         } else {
             watermark = nil
         }
@@ -299,7 +277,9 @@ class ParametersInterfaceController: WKInterfaceController {
     }
     
     private var binarizationThreshold: CGFloat = 0.5
-    private let binarizationThresholds: [CGFloat] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
+    private let binarizationThresholds: [CGFloat] = [
+        0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0
+    ]
     @IBOutlet var binarizationThresholdPicker: WKInterfacePicker? {
         didSet {
             guard let picker = binarizationThresholdPicker else {
@@ -334,17 +314,19 @@ class ParametersInterfaceController: WKInterfaceController {
         generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: isCircular ? .circle : .square)
         
-        if watermark?.isGIF == true, let data = watermark?.data as? Data {
-            // GIF
+        switch watermark {
+        case .gif(let data)?: // GIF
             // TODO: Confirm if possible to even have this case on watchOS
             generator.setWatermark(watermark: nil, mode: watermarkMode)
-            return EFImage(EFQRCode.generateWithGIF(data: data, generator: generator))
-        } else {
-            // Other use UIImage
-            generator.setWatermark(watermark: (watermark?.data as? UIImage)?.toCGImage(), mode: watermarkMode)
-            
+            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+                return EFImage.gif(afterData)
+            }
+        case .normal(let uiImage)?:
+            generator.setWatermark(watermark: uiImage.toCGImage(), mode: watermarkMode)
+            fallthrough // Other use UIImage
+        case nil:
             if let tryCGImage = generator.generate() {
-                return  EFImage(UIImage(cgImage: tryCGImage))
+                return EFImage.normal(UIImage(cgImage: tryCGImage))
             }
         }
         return nil

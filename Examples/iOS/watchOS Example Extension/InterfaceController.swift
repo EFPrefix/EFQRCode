@@ -34,10 +34,11 @@ class InterfaceController: WKInterfaceController {
         guard let image = context as? EFImage else {
             return dismiss()
         }
-        if image.isGIF {
-            qrcodeImage.setImageData(image.data as? Data)
-        } else {
-            qrcodeImage.setImage(image.data as? UIImage)
+        switch image {
+        case .gif(let data):
+            qrcodeImage.setImageData(data)
+        case .normal(let uiImage):
+            qrcodeImage.setImage(uiImage)
         }
     }
 }

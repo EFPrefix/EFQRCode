@@ -39,7 +39,6 @@ enum EFImage {
         case .gif: return true
         }
     }
-    
 }
 
 final class Ref<Wrapped> {
@@ -259,7 +258,7 @@ extension GeneratorController {
         case .normal(let image)?:
             generator.setWatermark(watermark: UIImage2CGimage(image), mode: watermarkMode)
             fallthrough // Other use UIImage
-        default:
+        case nil:
             if let tryCGImage = generator.generate() {
                 let tryImage = UIImage(cgImage: tryCGImage)
                 present(ShowController(image: .normal(tryImage)), animated: true)
@@ -938,7 +937,7 @@ extension GeneratorController {
                     rightImageView.startAnimating()
                 case .normal(let image)?:
                     rightImageView.image = image
-                default:
+                case nil:
                     rightImageView.image = nil
                 }
             default:
@@ -1160,7 +1159,7 @@ class ShowController: UIViewController {
             imageView.startAnimating()
         case .normal(let uiImage)?:
             imageView.image = uiImage
-        default:
+        case nil:
             imageView.image = nil
         }
         
