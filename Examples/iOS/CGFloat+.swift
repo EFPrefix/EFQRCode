@@ -28,35 +28,35 @@ import UIKit
 
 extension CGFloat {
 
-    static let zeroHeight = CGFloat(0.00000000000000000001)
+    static let zeroHeight: CGFloat = leastNonzeroMagnitude
 
     // ~= 20
     static func statusBar() -> CGFloat {
         #if os(iOS)
-            NSLog("statusBar: \(UIApplication.shared.statusBarFrame.height)")
-            return UIApplication.shared.statusBarFrame.height
+        // debugPrint("statusBar: \(UIApplication.shared.statusBarFrame.height)")
+        return UIApplication.shared.statusBarFrame.height
         #else
-            return 0
+        return 0
         #endif
     }
 
     // ~= 44
     static func navigationBar(_ controller: UIViewController?) -> CGFloat {
         if let navi = controller?.navigationController {
-            NSLog("navigationBar: \(navi.navigationBar.frame.height)")
+            // debugPrint("navigationBar: \(navi.navigationBar.frame.height)")
             return navi.navigationBar.frame.height
         }
-        NSLog("navigationBar: 0")
+        // debugPrint("navigationBar: 0")
         return 0
     }
 
     // ~= 49
     static func tabBar(_ controller: UIViewController?) -> CGFloat {
         if let tabBar = controller?.tabBarController {
-            NSLog("tabBar: \(tabBar.tabBar.frame.height)")
+            // debugPrint("tabBar: \(tabBar.tabBar.frame.height)")
             return tabBar.tabBar.frame.height
         }
-        NSLog("tabBar: 0")
+        // debugPrint("tabBar: 0")
         return 0
     }
 }

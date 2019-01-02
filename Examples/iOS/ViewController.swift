@@ -31,8 +31,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.automaticallyAdjustsScrollViewInsets = false
-        self.view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
+        automaticallyAdjustsScrollViewInsets = false
+        view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
 
         setupViews()
     }
@@ -40,30 +40,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        self.navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
     }
 
     func setupViews() {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
 
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 48)
-        titleLabel.textColor = UIColor.white
+        titleLabel.font = .boldSystemFont(ofSize: 48)
+        titleLabel.textColor = .white
         titleLabel.textAlignment = .center
         titleLabel.text = "EFQRCode\(version == "" ? "" : "\n\(version)")"
         titleLabel.numberOfLines = 0
         self.view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             (make) in
-            make.top.left.equalTo(0)
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view).dividedBy(2.5)
+            make.top.leading.equalTo(0)
+            make.width.equalTo(view)
+            make.height.equalTo(view).dividedBy(2.5)
         }
 
         let tableView = UITableView()
@@ -72,37 +72,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.alwaysBounceVertical = true
         #if os(iOS)
-            tableView.separatorColor = UIColor.white
+        tableView.separatorColor = .white
         #endif
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints {
             (make) in
-            make.left.equalTo(0)
+            make.leading.equalTo(0)
             make.top.equalTo(titleLabel.snp.bottom)
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view).dividedBy(3)
+            make.width.equalTo(view)
+            make.height.equalTo(view).dividedBy(3)
         }
 
         let bottomLabel = UIButton(type: .system)
-        bottomLabel.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        bottomLabel.setTitleColor(UIColor.white, for: .normal)
+        bottomLabel.titleLabel?.font = .systemFont(ofSize: 16)
+        bottomLabel.setTitleColor(.white, for: .normal)
         bottomLabel.setTitle("https://github.com/EyreFree/EFQRCode", for: .normal)
         #if os(iOS)
-            bottomLabel.addTarget(self, action: #selector(ViewController.openBlog), for: .touchDown)
+        bottomLabel.addTarget(self, action: #selector(openBlog), for: .touchDown)
         #endif
-        self.view.addSubview(bottomLabel)
+        view.addSubview(bottomLabel)
         bottomLabel.snp.makeConstraints {
             (make) in
-            make.left.equalTo(0)
+            make.leading.equalTo(0)
             make.bottom.equalTo(-20)
             make.height.equalTo(20)
-            make.width.equalTo(self.view)
+            make.width.equalTo(view)
         }
     }
 
@@ -112,16 +112,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
-    // UITableViewDelegate & UITableViewDataSource
+    // MARK: - UITableViewDelegate & UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
         #if os(iOS)
-            self.navigationController?.pushViewController(
-                [RecognizerController.self, GeneratorController.self][indexPath.row].init(), animated: true
-            )
+        navigationController?.pushViewController(
+            [RecognizerController.self, GeneratorController.self][indexPath.row].init(), animated: true
+        )
         #else
-            self.navigationController?.pushViewController(GeneratorController(), animated: true)
+        navigationController?.pushViewController(GeneratorController(), animated: true)
         #endif
     }
 
@@ -131,9 +131,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         #if os(iOS)
-            return 2
+        return 2
         #else
-            return 1
+        return 1
         #endif
     }
 
@@ -142,22 +142,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat.zeroHeight
+        return .zeroHeight
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.zeroHeight
+        return .zeroHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         #if os(iOS)
-            let text = ["Recognizer", "Generator"][indexPath.row]
+        let text = ["Recognizer", "Generator"][indexPath.row]
         #else
-            let text = "Generator"
+        let text = "Generator"
         #endif
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.textColor = UIColor.white
-        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.textColor = .white
+        cell.backgroundColor = .clear
         cell.textLabel?.text = text
         let backView = UIView()
         backView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)

@@ -153,9 +153,9 @@ extension GeneratorController {
         view.addSubview(textView)
         textView.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
+            make.leading.equalTo(10)
+            make.trailing.equalTo(view).offset(-10)
             make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
-            make.width.equalTo(view).offset(-20)
             make.height.equalTo(view).dividedBy(3.0)
         }
 
@@ -175,7 +175,7 @@ extension GeneratorController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
             (make) in
-            make.left.equalTo(0)
+            make.leading.equalTo(0)
             make.top.equalTo(textView.snp.bottom)
             make.width.equalTo(view)
         }
@@ -185,6 +185,7 @@ extension GeneratorController {
         createButton.setTitleColor(
             UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal
         )
+        createButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.32)
         createButton.layer.borderColor = UIColor.white.cgColor
         createButton.layer.borderWidth = 1
         createButton.layer.cornerRadius = 5
@@ -197,12 +198,29 @@ extension GeneratorController {
         view.addSubview(createButton)
         createButton.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
+            make.leading.trailing.equalTo(textView)
             make.top.equalTo(tableView.snp.bottom)
-            make.width.equalTo(view).offset(-20)
             make.height.equalTo(buttonHeight)
             make.bottom.equalTo(-10)
         }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        textView.snp.updateConstraints {
+            (make) in
+            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+            if #available(iOS 11.0, *) {
+                make.leading.equalTo(max(view.safeAreaInsets.left, 10))
+                make.trailing.equalTo(view).offset(-max(view.safeAreaInsets.right, 10))
+            }
+        }
+        if #available(iOS 11.0, *) {
+            createButton.snp.updateConstraints {
+                (make) in
+                make.bottom.equalTo(-max(10, view.safeAreaInsets.bottom))
+            }
+        }
+        super.viewWillLayoutSubviews()
     }
 
     func refresh() {
@@ -894,6 +912,9 @@ extension GeneratorController {
 
         if detailArray[indexPath.row] == "" {
             let rightImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+            if #available(iOS 11.0, *) {
+                rightImageView.accessibilityIgnoresInvertColors = true
+            }
             rightImageView.contentMode = .scaleAspectFit
             rightImageView.layer.borderColor = UIColor.white.cgColor
             rightImageView.layer.borderWidth = 0.5
@@ -910,12 +931,11 @@ extension GeneratorController {
             case 8:
                 rightImageView.stopAnimating()
                 if watermark?.isGIF == true {
-                    if let dataGIF = watermark?.data as? Data {
-                        if let source = CGImageSourceCreateWithData(dataGIF as CFData, nil) {
-                            let images = source.toCGImages().map(UIImage.init(cgImage:))
-                            rightImageView.animationImages = images
-                            rightImageView.startAnimating()
-                        }
+                    if let dataGIF = watermark?.data as? Data,
+                        let source = CGImageSourceCreateWithData(dataGIF as CFData, nil) {
+                        let images = source.toCGImages().map(UIImage.init(cgImage:))
+                        rightImageView.animationImages = images
+                        rightImageView.startAnimating()
                     }
                 } else {
                     rightImageView.image = watermark?.data as? UIImage
@@ -1093,6 +1113,8 @@ extension GeneratorController: UIImagePickerControllerDelegate {
 }
 #endif
 
+// MARK: - QRCode Display
+
 extension ShowController {
     convenience init(image: EFImage?) {
         self.init()
@@ -1111,8 +1133,16 @@ class ShowController: UIViewController {
         setupViews()
     }
 
+    let imageView = UIImageView()
+    let backButton = UIButton(type: .system)
+    #if os(iOS)
+    let saveButton = UIButton(type: .system)
+    #endif
+    
     func setupViews() {
-        let imageView = UIImageView()
+        if #available(iOS 11.0, *) {
+            imageView.accessibilityIgnoresInvertColors = true
+        }
         imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -1131,7 +1161,6 @@ class ShowController: UIViewController {
             imageView.image = image?.data as? UIImage
         }
 
-        let backButton = UIButton(type: .system)
         backButton.setTitle("Back", for: .normal)
         backButton.setTitleColor(.white, for: .normal)
         backButton.layer.borderColor = UIColor.white.cgColor
@@ -1141,7 +1170,6 @@ class ShowController: UIViewController {
         view.addSubview(backButton)
 
         #if os(iOS)
-        let saveButton = UIButton(type: .system)
         saveButton.setTitle("Save", for: .normal)
         saveButton.setTitleColor(UIColor.white, for: .normal)
         saveButton.layer.borderColor = UIColor.white.cgColor
@@ -1152,52 +1180,70 @@ class ShowController: UIViewController {
 
         imageView.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
-            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
-            make.width.equalTo(view).offset(-20)
+            make.leading.equalTo(10)
+            make.trailing.equalTo(view).offset(-10)
+            let top = CGFloat.statusBar() + CGFloat.navigationBar(self) + 15
+            make.top.equalTo(top)
             make.height.lessThanOrEqualTo(view.snp.width).offset(-20)
-            make.height.lessThanOrEqualTo(view.snp.height).offset(-20-46-46-60)
+            make.height.lessThanOrEqualTo(view.snp.height).offset(-20-46-10-46-10-top)
         }
 
         saveButton.addTarget(self, action: #selector(saveToAlbum), for: .touchDown)
         saveButton.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
+            make.leading.width.equalTo(imageView)
             make.top.equalTo(imageView.snp.bottom).offset(10)
-            make.width.equalTo(view).offset(-20)
             make.height.equalTo(46)
         }
 
-        backButton.addTarget(self, action: #selector(ShowController.back), for: .touchDown)
+        backButton.addTarget(self, action: #selector(back), for: .touchDown)
         backButton.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
+            make.leading.width.height.equalTo(saveButton)
             make.top.equalTo(saveButton.snp.bottom).offset(10)
-            make.width.equalTo(view).offset(-20)
-            make.height.equalTo(46)
         }
         #else
         imageView.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
-            make.top.equalTo(CGFloat.statusBar() + CGFloat.navigationBar(self) + 15)
+            make.leading.equalTo(10)
+            let top = CGFloat.statusBar() + CGFloat.navigationBar(self) + 15
+            make.top.equalTo()
             make.width.equalTo(view).offset(-20)
             make.height.lessThanOrEqualTo(view.snp.width).offset(-20)
-            make.height.lessThanOrEqualTo(view.snp.height).offset(-20-46-60)
+            make.height.lessThanOrEqualTo(view.snp.height).offset(-20-46-10-top)
         }
 
         backButton.addTarget(self, action: #selector(back), for: .primaryActionTriggered)
         backButton.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
+            make.leading.width.equalTo(imageView)
             make.top.equalTo(imageView.snp.bottom).offset(10)
-            make.width.equalTo(view).offset(-20)
             make.height.equalTo(46)
         }
         #endif
     }
-
+    
     #if os(iOS)
+    override func viewWillLayoutSubviews() {
+        imageView.snp.updateConstraints {
+            (make) in
+            let top = CGFloat.statusBar() + CGFloat.navigationBar(self) + 15
+            make.top.equalTo(top)
+            if #available(iOS 11.0, *) {
+                let left = max(view.safeAreaInsets.left, 10)
+                let right = max(view.safeAreaInsets.right, 10)
+                make.leading.equalTo(left)
+                make.trailing.equalTo(view).offset(-right)
+                let total = left + right
+                make.height.lessThanOrEqualTo(view.snp.width).offset(-total)
+                make.height.lessThanOrEqualTo(view.snp.height).offset(
+                    -max(20, view.safeAreaInsets.bottom)-46-10-46-10-top
+                )
+            }
+        }
+        super.viewWillLayoutSubviews()
+    }
+
     @objc func saveToAlbum() {
         guard let tryImage = image else { return }
         CustomPhotoAlbum.sharedInstance.save(image: tryImage) {
