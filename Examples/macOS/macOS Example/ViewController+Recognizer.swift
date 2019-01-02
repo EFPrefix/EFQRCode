@@ -32,7 +32,8 @@ extension ViewController {
     func addControlRecognizer() {
         recognizerViewImage.focusRingType = .none
         recognizerViewImage.wantsLayer = true
-        recognizerViewImage.layer?.backgroundColor = NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0.08).cgColor
+        
+        recognizerViewImage.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.08).cgColor
         recognizerViewImage.layer?.borderColor = NSColor.theme.cgColor
         recognizerViewImage.layer?.borderWidth = 1
         recognizerViewImage.layer?.cornerRadius = 5
@@ -42,14 +43,14 @@ extension ViewController {
         recognizerView.addSubview(recognizerViewImage)
         recognizerViewImage.snp.makeConstraints {
             (make) in
-            make.left.top.equalTo(10)
+            make.leading.top.equalTo(10)
             make.bottom.equalTo(-10)
             make.width.equalTo(recognizerViewImage.snp.height)
         }
 
         let tryCentredStyle = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
         tryCentredStyle?.alignment = .center
-        let centredStyle = tryCentredStyle ?? NSMutableParagraphStyle.default
+        let centredStyle = tryCentredStyle ?? .default
 
         recognizerViewScan.wantsLayer = true
         recognizerViewScan.layer?.cornerRadius = 5
@@ -64,8 +65,8 @@ extension ViewController {
         recognizerView.addSubview(recognizerViewScan)
         recognizerViewScan.snp.makeConstraints {
             (make) in
-            make.left.equalTo(recognizerViewImage.snp.right).offset(10)
-            make.bottom.right.equalTo(-10)
+            make.leading.equalTo(recognizerViewImage.snp.trailing).offset(10)
+            make.bottom.trailing.equalTo(-10)
             make.height.equalTo(48)
         }
 
@@ -83,14 +84,14 @@ extension ViewController {
         recognizerViewPick.snp.makeConstraints {
             (make) in
             make.bottom.equalTo(recognizerViewScan.snp.top).offset(-10)
-            make.left.right.height.equalTo(recognizerViewScan)
+            make.leading.trailing.height.equalTo(recognizerViewScan)
         }
 
         recognizerViewResult.isEditable = false
         recognizerViewResult.wantsLayer = true
         recognizerViewResult.layer?.backgroundColor = NSColor(
             calibratedRed: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 0.08
-            ).cgColor
+        ).cgColor
         recognizerViewResult.layer?.borderColor = NSColor.theme.cgColor
         recognizerViewResult.layer?.borderWidth = 1
         recognizerViewResult.layer?.cornerRadius = 5
@@ -98,31 +99,30 @@ extension ViewController {
         recognizerViewResult.snp.makeConstraints {
             (make) in
             make.top.equalTo(10)
-            make.right.equalTo(-10)
-            make.left.equalTo(recognizerViewImage.snp.right).offset(10)
+            make.trailing.equalTo(-10)
+            make.leading.equalTo(recognizerViewImage.snp.trailing).offset(10)
             make.bottom.equalTo(recognizerViewPick.snp.top).offset(-10)
         }
     }
 
     @objc func recognizerViewPickClicked() {
-        selectImageFromDisk(finish: {
+        selectImageFromDisk {
             [weak self] (image) in
-            if let strongSelf = self {
-                strongSelf.recognizerViewImage.image = image
-            }
-        })
-    }
-
-    @objc func recognizerViewScanClicked() {
-        recognizerViewResult.string = ""
-        if let image = recognizerViewImage.image?.toCGImage() {
-            if let resultArray = EFQRCode.recognize(image: image), resultArray.count > 0 {
-                recognizerViewResult.string = resultArray[0]
+            if case let .normal(nsImage) = image {
+                self?.recognizerViewImage.image = nsImage
             }
         }
     }
 
-    func selectImageFromDisk(finish: ((NSImage) -> Void)?, finishGIF: ((Data) -> Void)? = nil) {
+    @objc func recognizerViewScanClicked() {
+        recognizerViewResult.string = ""
+        if let image = recognizerViewImage.image?.toCGImage(),
+            let result = EFQRCode.recognize(image: image)?.first {
+            recognizerViewResult.string = result
+        }
+    }
+
+    func selectImageFromDisk(process: @escaping (EFImage) -> Void) {
         // https://gist.github.com/jlindsey/499215
         let panel = NSOpenPanel()
         panel.allowedFileTypes = NSImage.imageTypes
@@ -136,25 +136,19 @@ extension ViewController {
 
         panel.begin {
             [weak self] (result) in
-            if let _ = self {
-                if result.rawValue == NSFileHandlingPanelOKButton {
-                    // We aren't allowing multiple selection, but NSOpenPanel still returns
-                    // an array with a single element.
-                    if let imagePath = panel.urls.first {
-
-                        if imagePath.absoluteString.lowercased().hasSuffix(".gif") && nil != finishGIF {
-                            if let image = try? Data(contentsOf: imagePath) {
-                                finishGIF?(image)
-                            }
-                        } else {
-                            if let image = NSImage(contentsOf: imagePath) {
-                                finish?(image)
-                            }
-                        }
-                    }
-                } else {
-                    panel.close()
-                }
+            guard self != nil else { return }
+            guard result.rawValue == NSFileHandlingPanelOKButton else {
+                return panel.close()
+            }
+            // We aren't allowing multiple selection,
+            // but NSOpenPanel still returns an array with a single element.
+            guard let imagePath = panel.urls.first else { return }
+            if imagePath.absoluteString.lowercased().hasSuffix(".gif"),
+                let image = try? Data(contentsOf: imagePath) {
+                return process(.gif(image))
+            }
+            if let image = NSImage(contentsOf: imagePath) {
+                process(.normal(image))
             }
         }
     }

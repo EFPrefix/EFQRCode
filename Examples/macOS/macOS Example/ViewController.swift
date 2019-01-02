@@ -29,37 +29,33 @@ import EFQRCode
 
 class ViewController: NSViewController {
 
-    let backgroundView: NSView = NSView()
+    let backgroundView = NSView()
 
-    let leftBarView: NSView = NSView()
-    let leftLineView: NSView = NSView()
-    let buttonRecognize: NSImageView = EFImageView()
-    let buttonGenerate: NSImageView = EFImageView()
+    let leftBarView = NSView()
+    let leftLineView = NSView()
+    let buttonRecognize = EFImageView()
+    let buttonGenerate = EFImageView()
 
-    let imageView: NSImageView = EFImageView()
+    let imageView = EFImageView()
 
     var indexSelected = 0
 
     // ViewController+Recognizer
     let recognizerView = NSView()
-    let recognizerViewImage: DragDropImageView = DragDropImageView()
-    let recognizerViewPick: NSButton = NSButton()
-    let recognizerViewScan: NSButton = NSButton()
-    let recognizerViewResult: NSTextView = NSTextView()
+    let recognizerViewImage = DragDropImageView()
+    let recognizerViewPick = NSButton()
+    let recognizerViewScan = NSButton()
+    let recognizerViewResult = NSTextView()
 
     // ViewController+Generator
     let generatorView = NSView()
-    let generatorViewImage: NSImageView = NSImageView()
-    let generatorViewCreate: NSButton = NSButton()
-    let generatorViewSave: NSButton = NSButton()
-    let generatorViewContent: NSTextView = NSTextView()
+    let generatorViewImage = NSImageView()
+    let generatorViewCreate = NSButton()
+    let generatorViewSave = NSButton()
+    let generatorViewContent = NSTextView()
     let generatorViewTable = NSView()
     lazy var generatorViewOptions: [EFDetailButton] = {
-        var buttons = [EFDetailButton]()
-        for index in 0 ..< titleArray.count {
-            buttons.append(EFDetailButton())
-        }
-        return buttons
+        return titleArray.indices.map { _ in EFDetailButton() }
     }()
 
     var result: Data?
@@ -67,7 +63,7 @@ class ViewController: NSViewController {
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
     var mode: EFQRCodeMode = .none
-    var size: EFIntSize = EFIntSize(width: 1024, height: 1024)
+    var size = EFIntSize(width: 1024, height: 1024)
     var magnification: EFIntSize? = EFIntSize(width: 9, height: 9)
     var backColor = NSColor.white
     var frontColor = NSColor.black
@@ -76,7 +72,7 @@ class ViewController: NSViewController {
     var watermark: EFImage? = nil
     var watermarkMode = EFWatermarkMode.scaleAspectFill
     var foregroundPointOffset: CGFloat = 0
-    var allowTransparent: Bool = true
+    var allowTransparent = true
     var binarizationThreshold: CGFloat = 0.5
     var pointShape: EFPointShape = .square
 
@@ -103,17 +99,17 @@ class ViewController: NSViewController {
         recognizerViewResult.string = ""
         generatorViewContent.string = "https://github.com/EyreFree/EFQRCode"
 
-        self.view.window?.title = "EFQRCode"
-        self.view.window?.collectionBehavior = .fullScreenAuxiliary
+        view.window?.title = "EFQRCode"
+        view.window?.collectionBehavior = .fullScreenAuxiliary
     }
 
     func addControl() {
         backgroundView.wantsLayer = true
         backgroundView.layer?.backgroundColor = NSColor.theme.cgColor
-        self.view.addSubview(backgroundView)
+        view.addSubview(backgroundView)
         backgroundView.snp.makeConstraints {
             (make) in
-            make.top.left.right.bottom.equalTo(0)
+            make.top.leading.trailing.bottom.equalTo(0)
             make.width.equalTo(800)
             make.height.equalTo(380)
         }
@@ -121,7 +117,7 @@ class ViewController: NSViewController {
         backgroundView.addSubview(leftBarView)
         leftBarView.snp.makeConstraints {
             (make) in
-            make.top.left.bottom.equalTo(0)
+            make.top.leading.bottom.equalTo(0)
             make.width.equalTo(48)
         }
 
@@ -131,7 +127,7 @@ class ViewController: NSViewController {
         leftLineView.snp.makeConstraints {
             (make) in
             make.top.bottom.equalTo(0)
-            make.left.equalTo(leftBarView.snp.right)
+            make.leading.equalTo(leftBarView.snp.trailing)
             make.width.equalTo(1)
         }
 
@@ -143,7 +139,7 @@ class ViewController: NSViewController {
         leftBarView.addSubview(buttonRecognize)
         buttonRecognize.snp.makeConstraints {
             (make) in
-            make.left.right.top.equalTo(0)
+            make.leading.trailing.top.equalTo(0)
             make.height.equalTo(buttonRecognize.snp.width)
         }
 
@@ -155,7 +151,7 @@ class ViewController: NSViewController {
         leftBarView.addSubview(buttonGenerate)
         buttonGenerate.snp.makeConstraints {
             (make) in
-            make.left.right.equalTo(0)
+            make.leading.trailing.equalTo(0)
             make.top.equalTo(buttonRecognize.snp.bottom)
             make.height.equalTo(buttonGenerate.snp.width)
         }
@@ -167,7 +163,7 @@ class ViewController: NSViewController {
         leftBarView.addSubview(imageView)
         imageView.snp.makeConstraints {
             (make) in
-            make.left.right.bottom.equalTo(0)
+            make.leading.trailing.bottom.equalTo(0)
             make.height.equalTo(imageView.snp.width)
         }
 
@@ -178,8 +174,8 @@ class ViewController: NSViewController {
             backgroundView.addSubview(tabView)
             tabView.snp.makeConstraints {
                 (make) in
-                make.top.bottom.right.equalTo(0)
-                make.left.equalTo(leftLineView.snp.right)
+                make.top.bottom.trailing.equalTo(0)
+                make.leading.equalTo(leftLineView.snp.trailing)
             }
         }
 
@@ -222,10 +218,9 @@ class ViewController: NSViewController {
 }
 
 class EFImageView: NSImageView {
-
     override func mouseDown(with event: NSEvent) {
-        if let action = self.action {
-            NSApp.sendAction(action, to: self.target, from: self)
+        if let action = action {
+            NSApp.sendAction(action, to: target, from: self)
         }
     }
 }

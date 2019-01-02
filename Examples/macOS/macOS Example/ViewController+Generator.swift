@@ -27,29 +27,14 @@
 import Cocoa
 import EFQRCode
 
-class EFImage {
-    var isGIF: Bool = false
-    var data: Any?
-
-    init() {
-
-    }
-
-    init?(_ image: NSImage?) {
-        if let image = image {
-            self.data = image
-            self.isGIF = false
-        } else {
-            return nil
-        }
-    }
-
-    init?(_ data: Data?) {
-        if let data = data {
-            self.data = data
-            self.isGIF = true
-        } else {
-            return nil
+enum EFImage {
+    case normal(_ image: NSImage)
+    case gif(_ data: Data)
+    
+    var isGIF: Bool {
+        switch self {
+        case .normal: return false
+        case .gif: return true
         }
     }
 }
@@ -84,7 +69,7 @@ extension ViewController: NSAlertDelegate {
         generatorView.addSubview(generatorViewSave)
         generatorViewSave.snp.makeConstraints {
             (make) in
-            make.left.equalTo(10)
+            make.leading.equalTo(10)
             make.bottom.equalTo(-10)
             make.height.equalTo(45)
             make.width.equalTo(generatorViewImage)
@@ -104,7 +89,7 @@ extension ViewController: NSAlertDelegate {
         generatorViewCreate.snp.makeConstraints {
             (make) in
             make.bottom.equalTo(generatorViewSave.snp.top).offset(-10)
-            make.left.right.height.equalTo(generatorViewSave)
+            make.leading.trailing.height.equalTo(generatorViewSave)
         }
 
         generatorViewImage.wantsLayer = true
@@ -116,7 +101,7 @@ extension ViewController: NSAlertDelegate {
         generatorViewImage.imageScaling = .scaleProportionallyUpOrDown
         generatorViewImage.snp.makeConstraints {
             (make) in
-            make.left.top.equalTo(10)
+            make.leading.top.equalTo(10)
             make.bottom.equalTo(generatorViewCreate.snp.top).offset(-10)
             make.width.equalTo(generatorViewImage.snp.height)
         }
@@ -132,8 +117,8 @@ extension ViewController: NSAlertDelegate {
         generatorViewContent.snp.makeConstraints {
             (make) in
             make.top.equalTo(10)
-            make.right.equalTo(-10)
-            make.left.equalTo(generatorViewImage.snp.right).offset(10)
+            make.trailing.equalTo(-10)
+            make.leading.equalTo(generatorViewImage.snp.trailing).offset(10)
             make.height.equalTo(100)
         }
 
@@ -142,10 +127,10 @@ extension ViewController: NSAlertDelegate {
             (make) in
             make.top.equalTo(generatorViewContent.snp.bottom).offset(10)
             make.bottom.equalTo(-10)
-            make.left.right.equalTo(generatorViewContent)
+            make.leading.trailing.equalTo(generatorViewContent)
         }
 
-        for index in 0 ..< generatorViewOptions.count {
+        for index in generatorViewOptions.indices {
             let margin = 5
 
             generatorViewOptions[index].tag = index
@@ -163,11 +148,11 @@ extension ViewController: NSAlertDelegate {
             generatorViewOptions[index].snp.makeConstraints {
                 (make) in
                 if 1 == index % 2 {
-                    make.left.equalTo(generatorViewOptions[index - 1].snp.right).offset(margin)
-                    make.right.equalTo(0)
+                    make.leading.equalTo(generatorViewOptions[index - 1].snp.trailing).offset(margin)
+                    make.trailing.equalTo(0)
                     make.width.equalTo(generatorViewOptions[index - 1])
                 } else {
-                    make.left.equalTo(0)
+                    make.leading.equalTo(0)
                 }
 
                 if index > 1 {
@@ -189,6 +174,8 @@ extension ViewController: NSAlertDelegate {
     @objc func generatorViewCreateClicked() {
         // Lock user activity
         generatorViewCreate.isEnabled = false
+        // Recover user activity
+        defer { generatorViewCreate.isEnabled = true }
 
         let content = generatorViewContent.string
 
@@ -203,20 +190,20 @@ extension ViewController: NSAlertDelegate {
         generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: pointShape)
 
-        if watermark?.isGIF == true, let data = watermark?.data as? Data {
-            // GIF
+        switch watermark {
+        case .gif(let data)?: // GIF
             generator.setWatermark(watermark: nil, mode: watermarkMode)
-
+            
             if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
                 generatorViewImage.image = NSImage(data: afterData)
-                self.result = afterData
+                result = afterData
             } else {
                 messageBox("Create QRCode failed!")
             }
-        } else {
-            // Other use UIImage
-            generator.setWatermark(watermark: (watermark?.data as? NSImage)?.toCGImage(), mode: watermarkMode)
-
+        case .normal(let image)?:
+            generator.setWatermark(watermark: image.toCGImage(), mode: watermarkMode)
+            fallthrough // Other use UIImage
+        case nil:
             if let tryCGImage = generator.generate() {
                 generatorViewImage.image = NSImage(
                     cgImage: tryCGImage, size: NSSize(width: tryCGImage.width, height: tryCGImage.height)
@@ -225,40 +212,33 @@ extension ViewController: NSAlertDelegate {
                 messageBox("Create QRCode failed!")
             }
         }
-
-        // Recove user activity
-        generatorViewCreate.isEnabled = true
     }
 
     @objc func generatorViewSaveClicked() {
-        if let image = generatorViewImage.image {
-            let panel = NSSavePanel()
-            panel.allowedFileTypes = ["png", "gif"]
-            panel.nameFieldStringValue = self.watermark?.isGIF == true ? "Untitle.gif" : "Untitle.png"
-            panel.message = "Choose the path to save the image"
-            panel.allowsOtherFileTypes = true
-            panel.isExtensionHidden = true
-            panel.canCreateDirectories = true
-            panel.begin {
-                [weak self] (result) in
-                if let strongSelf = self {
-                    if result.rawValue == NSFileHandlingPanelOKButton {
-                        // [@"onecodego" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                        if let url = panel.url {
-                            if url.absoluteString.lowercased().hasSuffix(".gif") {
-                                do {
-                                    try strongSelf.result?.write(to: url)
-                                } catch {
-                                    messageBox("GIF image saved failed!")
-                                    return
-                                }
-                                messageBox("GIF image saved.")
-                            } else if image.pngWrite(to: url, options: .atomic) {
-                                messageBox("Image saved.")
-                            }
-                        }
-                    }
+        guard let image = generatorViewImage.image else { return }
+        let panel = NSSavePanel()
+        panel.allowedFileTypes = ["png", "gif"]
+        panel.nameFieldStringValue = watermark?.isGIF == true ? "Untitle.gif" : "Untitle.png"
+        panel.message = "Choose the path to save the image"
+        panel.allowsOtherFileTypes = true
+        panel.isExtensionHidden = true
+        panel.canCreateDirectories = true
+        panel.begin {
+            [weak self] (result) in
+            guard let self = self,
+                result.rawValue == NSFileHandlingPanelOKButton,
+                let url = panel.url
+                else { return }
+            // [@"onecodego" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            if url.absoluteString.lowercased().hasSuffix(".gif") {
+                do {
+                    try self.result?.write(to: url)
+                    messageBox("GIF image saved.")
+                } catch {
+                    messageBox("GIF image saved failed!")
                 }
+            } else if image.pngWrite(to: url, options: .atomic) {
+                messageBox("Image saved.")
             }
         }
     }
@@ -294,21 +274,21 @@ extension ViewController: NSAlertDelegate {
             "\(["square", "circle"][pointShape.rawValue])"
         ]
 
-        for (index, button) in self.generatorViewOptions.enumerated() {
-            if "" != detailArray[index] {
+        for (index, button) in generatorViewOptions.enumerated() {
+            if !detailArray[index].isEmpty {
                 if nil == button.detailView {
                     let label = NSTextField()
                     label.isBezeled = false
                     label.drawsBackground = false
                     label.isEditable = false
                     label.alignment = .right
-                    label.textColor = NSColor.gray
+                    label.textColor = .gray
                     label.sizeToFit()
                     button.addSubview(label)
                     label.snp.makeConstraints {
                         (make) in
-                        make.left.centerY.equalTo(button)
-                        make.right.equalTo(-10)
+                        make.leading.centerY.equalTo(button)
+                        make.trailing.equalTo(-10)
                     }
 
                     button.detailView = label
@@ -326,7 +306,7 @@ extension ViewController: NSAlertDelegate {
                     rightImageView.snp.makeConstraints {
                         (make) in
                         make.width.equalTo(rightImageView.snp.height)
-                        make.right.bottom.equalTo(-5)
+                        make.trailing.bottom.equalTo(-5)
                         make.top.equalTo(5)
                     }
 
@@ -342,12 +322,13 @@ extension ViewController: NSAlertDelegate {
                 case 6:
                     rightImageView?.image = icon
                 case 8:
-                    if watermark?.isGIF == true {
-                        if let dataGIF = watermark?.data as? Data {
-                            rightImageView?.image = NSImage(data: dataGIF)
-                        }
-                    } else {
-                        rightImageView?.image = watermark?.data as? NSImage
+                    switch watermark {
+                    case .gif(let dataGIF)?:
+                        rightImageView?.image = NSImage(data: dataGIF)
+                    case .normal(let nsImage)?:
+                        rightImageView?.image = nsImage
+                    case nil:
+                        rightImageView?.image = nil
                     }
                 default:
                     break
@@ -357,100 +338,52 @@ extension ViewController: NSAlertDelegate {
     }
 
     @objc func backColorChanged(colorPanel: NSColorPanel) {
-        self.backColor = colorPanel.color
-        self.refresh()
+        backColor = colorPanel.color
+        refresh()
     }
 
     @objc func frontColorChanged(colorPanel: NSColorPanel) {
-        self.frontColor = colorPanel.color
-        self.refresh()
+        frontColor = colorPanel.color
+        refresh()
     }
 
-    // MARK:- param
+    // MARK: - param
     func chooseInputCorrectionLevel() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "inputCorrectionLevel"
-            alert.addButton(withTitle: "L")
-            alert.addButton(withTitle: "M")
-            alert.addButton(withTitle: "Q")
-            alert.addButton(withTitle: "H")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    strongSelf.inputCorrectionLevel = [
-                        EFInputCorrectionLevel.l,
-                        EFInputCorrectionLevel.m,
-                        EFInputCorrectionLevel.q,
-                        EFInputCorrectionLevel.h
-                        ][response.rawValue - 1000]
-                    strongSelf.refresh()
-                }
-            }
+        choose("inputCorrectionLevel", from: "L", "M", "Q", "H") {
+            (self, response) in
+            self.inputCorrectionLevel = [
+                EFInputCorrectionLevel.l,
+                EFInputCorrectionLevel.m,
+                EFInputCorrectionLevel.q,
+                EFInputCorrectionLevel.h
+            ][response.rawValue - 1000]
         }
     }
 
     func chooseMode() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "mode"
-            alert.addButton(withTitle: "none")
-            alert.addButton(withTitle: "grayscale")
-            alert.addButton(withTitle: "binarization")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    strongSelf.mode = [
-                        EFQRCodeMode.none,
-                        EFQRCodeMode.grayscale,
-                        EFQRCodeMode.binarization
-                        ][response.rawValue - 1000]
-                    strongSelf.refresh()
-                }
-            }
+        choose("mode", from: "none", "grayscale", "binarization") {
+            (self, response) in
+            self.mode = [
+                EFQRCodeMode.none,
+                EFQRCodeMode.grayscale,
+                EFQRCodeMode.binarization
+            ][response.rawValue - 1000]
         }
     }
 
     func chooseSize() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "size"
-            alert.addButton(withTitle: "128x128")
-            alert.addButton(withTitle: "256x256")
-            alert.addButton(withTitle: "1024x1024")
-            alert.addButton(withTitle: "2048x2048")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    let size = [128, 256, 1024, 2048][response.rawValue - 1000]
-                    strongSelf.size = EFIntSize(width: size, height: size)
-                    strongSelf.refresh()
-                }
-            }
+        choose("size", from: "128x128", "256x256", "1024x1024", "2048x2048") {
+            (self, response) in
+            let size = [128, 256, 1024, 2048][response.rawValue - 1000]
+            self.size = EFIntSize(width: size, height: size)
         }
     }
-
+    
     func chooseMagnification() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "magnification"
-            alert.addButton(withTitle: "nil")
-            alert.addButton(withTitle: "3x3")
-            alert.addButton(withTitle: "9x9")
-            alert.addButton(withTitle: "12x12")
-            alert.addButton(withTitle: "30x30")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    let size = [nil, 3, 9, 12, 30][response.rawValue - 1000]
-                    strongSelf.magnification = size == nil ? nil : EFIntSize(width: size!, height: size!)
-                    strongSelf.refresh()
-                }
-            }
+        choose("magnification", from: "nil", "3x3", "9x9", "12x12", "30x30") {
+            (self, response) in
+            let size = [nil, 3, 9, 12, 30][response.rawValue - 1000]
+            self.magnification = size.map { EFIntSize(width: $0, height: $0) }
         }
     }
 
@@ -467,171 +400,105 @@ extension ViewController: NSAlertDelegate {
     }
 
     func chooseIcon() {
-        selectImageFromDisk(finish: {
+        selectImageFromDisk {
             [weak self] (image) in
-            if let strongSelf = self {
-                strongSelf.icon = image
-                strongSelf.refresh()
-            }
-        })
+            guard let self = self,
+                case let .normal(nsImage) = image
+                else { return }
+            self.icon = nsImage
+            self.refresh()
+        }
     }
-
+    
     func chooseIconSize() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "iconSize"
-            alert.addButton(withTitle: "nil")
-            alert.addButton(withTitle: "32x32")
-            alert.addButton(withTitle: "64x64")
-            alert.addButton(withTitle: "128x128")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    let size = [nil, 32, 64, 128][response.rawValue - 1000]
-                    strongSelf.iconSize = size == nil ? nil : EFIntSize(width: size!, height: size!)
-                    strongSelf.refresh()
-                }
-            }
+        choose("iconSize", from: "nil", "32x32", "64x64", "128x128") {
+            (self, response) in
+            let size = [nil, 32, 64, 128][response.rawValue - 1000]
+            self.iconSize = size.map { EFIntSize(width: $0, height: $0) }
         }
     }
 
     func chooseWatermark() {
-        selectImageFromDisk(finish: {
+        selectImageFromDisk {
             [weak self] (image) in
-            if let strongSelf = self {
-                strongSelf.watermark = EFImage(image)
-                strongSelf.refresh()
-            }
-        }) {
-            [weak self] (imageGIF) in
-            if let strongSelf = self {
-                strongSelf.watermark = EFImage(imageGIF)
-                strongSelf.refresh()
-            }
+            guard let self = self else { return }
+            self.watermark = image
+            self.refresh()
         }
     }
 
     func chooseWatermarkMode() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "watermarkMode"
-            alert.addButton(withTitle: "scaleToFill")
-            alert.addButton(withTitle: "scaleAspectFit")
-            alert.addButton(withTitle: "scaleAspectFill")
-            alert.addButton(withTitle: "center")
-            alert.addButton(withTitle: "top")
-            alert.addButton(withTitle: "bottom")
-            alert.addButton(withTitle: "left")
-            alert.addButton(withTitle: "right")
-            alert.addButton(withTitle: "topLeft")
-            alert.addButton(withTitle: "topRight")
-            alert.addButton(withTitle: "bottomLeft")
-            alert.addButton(withTitle: "bottomRight")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    strongSelf.watermarkMode = [
-                        EFWatermarkMode.scaleToFill,
-                        EFWatermarkMode.scaleAspectFit,
-                        EFWatermarkMode.scaleAspectFill,
-                        EFWatermarkMode.center,
-                        EFWatermarkMode.top,
-                        EFWatermarkMode.bottom,
-                        EFWatermarkMode.left,
-                        EFWatermarkMode.right,
-                        EFWatermarkMode.topLeft,
-                        EFWatermarkMode.topRight,
-                        EFWatermarkMode.bottomLeft,
-                        EFWatermarkMode.bottomRight
-                        ][response.rawValue - 1000]
-                    strongSelf.refresh()
-                }
-            }
+        choose("watermarkMode",
+               from: "scaleToFill", "scaleAspectFit", "scaleAspectFill",
+               "center", "top", "bottom", "left", "right",
+               "topLeft", "topRight", "bottomLeft", "bottomRight"
+        ) { (self, response) in
+            self.watermarkMode = [
+                EFWatermarkMode.scaleToFill,
+                EFWatermarkMode.scaleAspectFit,
+                EFWatermarkMode.scaleAspectFill,
+                EFWatermarkMode.center,
+                EFWatermarkMode.top,
+                EFWatermarkMode.bottom,
+                EFWatermarkMode.left,
+                EFWatermarkMode.right,
+                EFWatermarkMode.topLeft,
+                EFWatermarkMode.topRight,
+                EFWatermarkMode.bottomLeft,
+                EFWatermarkMode.bottomRight
+            ][response.rawValue - 1000]
         }
     }
-
+    
     func chooseForegroundPointOffset() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "foregroundPointOffset"
-            alert.addButton(withTitle: "nil")
-            alert.addButton(withTitle: "-0.5")
-            alert.addButton(withTitle: "-0.25")
-            alert.addButton(withTitle: "0")
-            alert.addButton(withTitle: "0.25")
-            alert.addButton(withTitle: "0.5")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    strongSelf.foregroundPointOffset = [nil, CGFloat(-0.5), -0.25, 0, 0.25, 0.5][response.rawValue - 1000] ?? 0
-                    strongSelf.refresh()
-                }
-            }
+        choose("foregroundPointOffset",
+               from: "nil", "-0.5", "-0.25", "0", "0.25", "0.5"
+        ) { (self, response) in
+            self.foregroundPointOffset = [nil, CGFloat(-0.5), -0.25, 0, 0.25, 0.5][response.rawValue - 1000] ?? 0
         }
     }
 
     func chooseAllowTransparent() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "allowTransparent"
-            alert.addButton(withTitle: "true")
-            alert.addButton(withTitle: "false")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    strongSelf.allowTransparent = [true, false][response.rawValue - 1000]
-                    strongSelf.refresh()
-                }
-            }
+        choose("allowTransparent", from: "true", "false") {
+            (self, response) in
+            self.allowTransparent = [true, false][response.rawValue - 1000]
         }
     }
 
     func chooseBinarizationThreshold() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "binarizationThreshold"
-            alert.addButton(withTitle: "0")
-            alert.addButton(withTitle: "0.1")
-            alert.addButton(withTitle: "0.2")
-            alert.addButton(withTitle: "0.3")
-            alert.addButton(withTitle: "0.4")
-            alert.addButton(withTitle: "0.5")
-            alert.addButton(withTitle: "0.6")
-            alert.addButton(withTitle: "0.7")
-            alert.addButton(withTitle: "0.8")
-            alert.addButton(withTitle: "0.9")
-            alert.addButton(withTitle: "1")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    strongSelf.binarizationThreshold = CGFloat(
-                        [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1][response.rawValue - 1000]
-                    )
-                    strongSelf.refresh()
-                }
-            }
+        choose("binarizationThreshold",
+               from: "0", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"
+        ) { (self, response) in
+            self.binarizationThreshold = CGFloat(
+                [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1][response.rawValue - 1000]
+            )
         }
     }
-
+    
     func chooseShape() {
-        if let window = self.view.window {
-            let alert = NSAlert()
-            alert.messageText = "shape"
-            alert.addButton(withTitle: "square")
-            alert.addButton(withTitle: "circle")
-            alert.delegate = self
-            alert.beginSheetModal(for: window) {
-                [weak self] (response) in
-                if let strongSelf = self {
-                    strongSelf.pointShape = [EFPointShape.square, EFPointShape.circle][response.rawValue - 1000]
-                    strongSelf.refresh()
-                }
-            }
+        choose("shape", from: "square", "circle") {
+            (self, response) in
+            self.pointShape = [EFPointShape.square, EFPointShape.circle][response.rawValue - 1000]
+        }
+    }
+    
+    private func choose(
+        _ configuration: String,
+        from options: String...,
+        processBeforeRefresh: @escaping (ViewController, NSApplication.ModalResponse) -> Void
+    ) {
+        guard let window = view.window else { return }
+        let alert = NSAlert()
+        alert.messageText = configuration
+        for option in options {
+            alert.addButton(withTitle: option)
+        }
+        alert.delegate = self
+        alert.beginSheetModal(for: window) {
+            [weak self] (response) in
+            guard let self = self else { return }
+            processBeforeRefresh(self, response)
+            self.refresh()
         }
     }
 }
