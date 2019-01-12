@@ -25,12 +25,13 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
+import Foundation
 
 #if os(iOS) || os(tvOS) || os(macOS)
 import CoreImage
 #endif
 
-public enum EFQRCodeMode: Int {
+@objc public enum EFQRCodeMode: Int {
     case none           = 0
     case grayscale      = 1
     case binarization   = 2

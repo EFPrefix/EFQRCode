@@ -33,7 +33,7 @@ import swift_qrcodejs
 #endif
 
 // EFInputCorrectionLevel
-public enum EFInputCorrectionLevel: Int {
+@objc public enum EFInputCorrectionLevel: Int {
     case l = 0     // L 7%
     case m = 1     // M 15%
     case q = 2     // Q 25%

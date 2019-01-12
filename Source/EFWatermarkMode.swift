@@ -25,13 +25,14 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
+import Foundation
 
 #if os(iOS) || os(tvOS) || os(macOS)
 import CoreImage
 #endif
 
 // Like UIViewContentMode
-public enum EFWatermarkMode: Int {
+@objc public enum EFWatermarkMode: Int {
     case scaleToFill        = 0
     case scaleAspectFit     = 1
     case scaleAspectFill    = 2

@@ -31,7 +31,8 @@ import CoreGraphics
 import CoreImage
 #endif
 
-public class EFQRCode {
+@objcMembers
+public class EFQRCode: NSObject {
 
     // MARK: - Recognizer
     #if os(iOS) || os(tvOS) || os(macOS)

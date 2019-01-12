@@ -25,12 +25,13 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
+import Foundation
 
 #if os(iOS) || os(tvOS) || os(macOS)
 import CoreImage
 #endif
 
-public enum EFPointShape: Int {
+@objc public enum EFPointShape: Int {
     case square         = 0
     case circle         = 1
 }
