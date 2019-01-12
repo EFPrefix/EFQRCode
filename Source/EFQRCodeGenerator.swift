@@ -636,7 +636,7 @@ public class EFQRCodeGenerator {
     
     private func fillDiamond(context: CGContext, rect: CGRect) {
         // shrink rect edge
-        let drawingRect = rect.insetBy(dx: 0.3, dy: 0.3)
+        let drawingRect = rect.insetBy(dx: -2, dy: -2)
         
         // create path
         let path = CGMutablePath()
