@@ -32,7 +32,8 @@ import CoreImage
 #endif
 
 // EFQRCode+Create
-public class EFQRCodeGenerator {
+@objcMembers
+public class EFQRCodeGenerator: NSObject {
 
     // MARK: - Parameters
 
@@ -106,7 +107,7 @@ public class EFQRCodeGenerator {
         }
     }
     #if os(iOS) || os(tvOS) || os(macOS)
-    public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
+    @nonobjc public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
         self.backgroundColor = backgroundColor.toCGColor() ?? .EFWhite()
         self.foregroundColor = foregroundColor.toCGColor() ?? .EFBlack()
     }

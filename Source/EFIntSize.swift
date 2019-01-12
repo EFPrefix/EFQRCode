@@ -30,7 +30,8 @@ import CoreGraphics
 import CoreImage
 #endif
 
-public class EFIntSize {
+@objcMembers
+public class EFIntSize: NSObject {
     public private(set) var width: Int = 0
     public private(set) var height: Int = 0
 

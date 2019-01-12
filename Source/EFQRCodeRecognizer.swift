@@ -27,7 +27,8 @@
 #if os(iOS) || os(macOS) || os(tvOS)
 import CoreImage
 
-public class EFQRCodeRecognizer {
+@objcMembers
+public class EFQRCodeRecognizer: NSObject {
 
     private var image: CGImage? {
         didSet {
