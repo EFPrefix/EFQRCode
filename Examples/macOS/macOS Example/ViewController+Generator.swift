@@ -271,7 +271,7 @@ extension ViewController: NSAlertDelegate {
             "\(foregroundPointOffset)",
             "\(allowTransparent)",
             "\(binarizationThreshold)",
-            "\(["square", "circle"][pointShape.rawValue])"
+            "\(["square", "circle", "diamond"][pointShape.rawValue])"
         ]
 
         for (index, button) in generatorViewOptions.enumerated() {
@@ -476,9 +476,9 @@ extension ViewController: NSAlertDelegate {
     }
     
     func chooseShape() {
-        choose("shape", from: "square", "circle") {
+        choose("shape", from: "square", "circle", "diamond") {
             (self, response) in
-            self.pointShape = [EFPointShape.square, EFPointShape.circle][response.rawValue - 1000]
+            self.pointShape = [EFPointShape.square, EFPointShape.circle, EFPointShape.diamond][response.rawValue - 1000]
         }
     }
     
