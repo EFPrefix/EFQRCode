@@ -373,6 +373,22 @@ public class EFQRCodeGenerator {
         }
 
         let codeSize = codes.count
+        
+        var points = [CGPoint]()
+        if let locations = getAlignmentPatternLocations(version: getVersion(size: codeSize - 2)) {
+            for indexX in locations {
+                for indexY in locations {
+                    let finalX = indexX + 1
+                    let finalY = indexY + 1
+                    if !((finalX == 7 && finalY == 7)
+                        || (finalX == 7 && finalY == (codeSize - 8))
+                        || (finalX == (codeSize - 8) && finalY == 7)) {
+                        points.append(CGPoint(x: finalX, y: finalY))
+                    }
+                }
+            }
+        }
+
 
         var result: CGImage?
         if let context = createContext(size: size) {
@@ -383,6 +399,8 @@ public class EFQRCodeGenerator {
                     // CTM-90
                     let indexXCTM = indexY
                     let indexYCTM = codeSize - indexX - 1
+                    
+                    let isStaticPoint = isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points)
 
                     drawPoint(
                         context: context,
@@ -391,7 +409,8 @@ public class EFQRCodeGenerator {
                             y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
                             width: scaleX - 2 * foregroundPointOffset,
                             height: scaleY - 2 * foregroundPointOffset
-                        )
+                        ),
+                        isStatic: isStaticPoint
                     )
                 }
             }
@@ -467,7 +486,8 @@ public class EFQRCodeGenerator {
                                 y: CGFloat(indexYCTM) * scaleY,
                                 width: pointWidthOriX,
                                 height: pointWidthOriY
-                            )
+                            ),
+                            isStatic: true
                         )
                     } else {
                         drawPoint(
@@ -497,7 +517,8 @@ public class EFQRCodeGenerator {
                                 y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
                                 width: pointWidthOriX - 2 * foregroundPointOffset,
                                 height: pointWidthOriY - 2 * foregroundPointOffset
-                            )
+                            ),
+                            isStatic: true
                         )
                     } else {
                         drawPoint(
@@ -612,13 +633,47 @@ public class EFQRCodeGenerator {
             )
         )
     }
-
-    private func drawPoint(context: CGContext, rect: CGRect) {
-        if pointShape == .circle {
-            context.fillEllipse(in: rect)
-        } else {
-            context.fill(rect)
+    
+    private func fillDiamond(context: CGContext, rect: CGRect) {
+        // shrink rect edge
+        let drawingRect = rect.insetBy(dx: -2, dy: -2)
+        
+        // create path
+        let path = CGMutablePath()
+        // Bezier Control Point
+        let controlPoint = CGPoint(x: drawingRect.midX , y: drawingRect.midY)
+        // Bezier Start Point
+        let startPoint = CGPoint(x: drawingRect.minX, y: drawingRect.midY)
+        // the other point of diamond
+        let otherPoints = [CGPoint(x: drawingRect.midX, y: drawingRect.maxY),
+                      CGPoint(x: drawingRect.maxX, y: drawingRect.midY),
+                      CGPoint(x: drawingRect.midX, y: drawingRect.minY)]
+        path.move(to: startPoint)
+        for point in otherPoints {
+            path.addQuadCurve(to: point, control: controlPoint)
         }
+        path.addQuadCurve(to: startPoint, control: controlPoint)
+        context.addPath(path)
+        context.fillPath()
+
+    }
+
+    private func drawPoint(context: CGContext, rect: CGRect, isStatic: Bool = false) {
+        switch pointShape {
+            case .circle:
+                context.fillEllipse(in: rect)
+            case .diamond:
+                if isStatic {
+                    // draw rect in static area
+                    let drawingRect = rect.insetBy(dx: 1, dy: 1)
+                    context.fill(drawingRect)
+                } else {
+                    fillDiamond(context: context, rect: rect)
+                }
+            default:
+                context.fill(rect)
+        }
+        
     }
 
     private func createContext(size: EFIntSize) -> CGContext? {

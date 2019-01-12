@@ -774,7 +774,7 @@ extension GeneratorController {
         )
 
         let shapeNameArray = [
-            "square", "circle"
+            "square", "circle", "diamond"
         ]
         for (index, shapeName) in shapeNameArray.enumerated() {
             alert.addAction(
@@ -896,7 +896,7 @@ extension GeneratorController {
             "\(foregroundPointOffset)",
             "\(allowTransparent)",
             "\(binarizationThreshold)",
-            "\(["square", "circle"][pointShape.rawValue])"
+            "\(["square", "circle", "diamond"][pointShape.rawValue])"
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)

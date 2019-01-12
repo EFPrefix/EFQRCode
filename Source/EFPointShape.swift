@@ -33,4 +33,5 @@ import CoreImage
 public enum EFPointShape: Int {
     case square         = 0
     case circle         = 1
+    case diamond        = 2
 }
