@@ -202,7 +202,8 @@ extension GeneratorController {
             make.bottom.equalTo(-10)
         }
     }
-    
+
+    #if os(iOS)
     override func viewWillLayoutSubviews() {
         textView.snp.updateConstraints {
             (make) in
@@ -220,6 +221,7 @@ extension GeneratorController {
         }
         super.viewWillLayoutSubviews()
     }
+    #endif
 
     func refresh() {
         tableView.reloadData()
@@ -910,9 +912,11 @@ extension GeneratorController {
 
         if detailArray[indexPath.row] == "" {
             let rightImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+            #if os(iOS)
             if #available(iOS 11.0, *) {
                 rightImageView.accessibilityIgnoresInvertColors = true
             }
+            #endif
             rightImageView.contentMode = .scaleAspectFit
             rightImageView.layer.borderColor = UIColor.white.cgColor
             rightImageView.layer.borderWidth = 0.5
@@ -1140,9 +1144,11 @@ class ShowController: UIViewController {
     #endif
     
     func setupViews() {
+        #if os(iOS)
         if #available(iOS 11.0, *) {
             imageView.accessibilityIgnoresInvertColors = true
         }
+        #endif
         imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -1209,7 +1215,7 @@ class ShowController: UIViewController {
             (make) in
             make.leading.equalTo(10)
             let top = CGFloat.statusBar() + CGFloat.navigationBar(self) + 15
-            make.top.equalTo()
+            make.top.equalTo(top)
             make.width.equalTo(view).offset(-20)
             make.height.lessThanOrEqualTo(view.snp.width).offset(-20)
             make.height.lessThanOrEqualTo(view.snp.height).offset(-20-46-10-top)
