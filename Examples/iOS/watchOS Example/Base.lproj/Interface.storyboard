@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
     <dependencies>
-        <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
         <!--NumberPad-->
@@ -130,7 +126,7 @@
                         <label width="1" alignment="left" text="Ver." textAlignment="center" id="mRZ-AU-Ngn">
                             <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
-                        <label width="1" alignment="left" text="github.com/EyreFree/EFQRCode" textAlignment="center" minimumScaleFactor="0.01" id="sa0-VE-eaV">
+                        <label width="1" alignment="left" text="github.com/EFPrefix/EFQRCode" textAlignment="center" minimumScaleFactor="0.01" id="sa0-VE-eaV">
                             <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
                         <button width="1" alignment="left" verticalAlignment="bottom" title="Generator" id="oDI-5t-GBk">
@@ -205,7 +201,7 @@
                                 <segue destination="AgC-eL-Hgc" kind="push" id="6xH-8Q-rON"/>
                             </connections>
                         </button>
-                        <label width="1" alignment="left" text="github.com/EyreFree/EFQRCode" textAlignment="center" minimumScaleFactor="0.01" id="pSv-yw-I6b"/>
+                        <label width="1" alignment="left" text="github.com/EFPrefix/EFQRCode" textAlignment="center" minimumScaleFactor="0.01" id="pSv-yw-I6b"/>
                         <button width="1" alignment="left" title="Change Content" id="hTq-XK-AZe">
                             <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>

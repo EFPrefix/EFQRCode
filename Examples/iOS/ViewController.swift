@@ -92,7 +92,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let bottomLabel = UIButton(type: .system)
         bottomLabel.titleLabel?.font = .systemFont(ofSize: 16)
         bottomLabel.setTitleColor(.white, for: .normal)
-        bottomLabel.setTitle("https://github.com/EyreFree/EFQRCode", for: .normal)
+        bottomLabel.setTitle("https://github.com/EFPrefix/EFQRCode", for: .normal)
         #if os(iOS)
         bottomLabel.addTarget(self, action: #selector(openBlog), for: .touchDown)
         #endif
@@ -107,7 +107,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @objc func openBlog() {
-        if let tryUrl = URL(string: "https://github.com/EyreFree/EFQRCode") {
+        if let tryUrl = URL(string: "https://github.com/EFPrefix/EFQRCode") {
             UIApplication.shared.openURL(tryUrl)
         }
     }

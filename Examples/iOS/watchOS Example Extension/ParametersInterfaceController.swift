@@ -33,7 +33,7 @@ enum EFImage {
 }
 
 class ParametersInterfaceController: WKInterfaceController {
-    private var link = "https://github.com/EyreFree/EFQRCode"
+    private var link = "https://github.com/EFPrefix/EFQRCode"
     @IBOutlet var contentDisplay: WKInterfaceLabel!
     @IBAction func changeLink() {
         presentTextInputController(withSuggestions: [link], allowedInputMode: .allowEmoji) {

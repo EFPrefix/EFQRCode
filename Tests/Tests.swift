@@ -52,7 +52,7 @@ class Tests: XCTestCase {
 
     func testExample1() {
         // This is an example of EFQRCodeGenerator test case.
-        let content = "https://github.com/EyreFree/EFQRCode"
+        let content = "https://github.com/EFPrefix/EFQRCode"
         let generator = EFQRCodeGenerator(
             content: content,
             size: EFIntSize(width: 256, height: 256)
@@ -121,7 +121,7 @@ class Tests: XCTestCase {
 
     func testExample4() {
         // This is an example of EFQRCodeGenerator test case.
-        let content = "https://github.com/EyreFree/EFQRCode"
+        let content = "https://github.com/EFPrefix/EFQRCode"
         let generator = EFQRCodeGenerator(
             content: content,
             size: EFIntSize(width: 15, height: 15)
@@ -184,7 +184,7 @@ class Tests: XCTestCase {
 
     // EFQRCode
     func testExampleEFQRCode() {
-        let testResult = EFQRCode.generate(content: "https://github.com/EyreFree/EFQRCode")
+        let testResult = EFQRCode.generate(content: "https://github.com/EFPrefix/EFQRCode")
         XCTAssert(testResult != nil, "testResult is nil!")
     }
 }

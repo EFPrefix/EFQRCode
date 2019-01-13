@@ -52,7 +52,7 @@ final class Tests {
 
     func testExample1() -> String? {
         // This is an example of EFQRCodeGenerator test case.
-        let content = "https://github.com/EyreFree/EFQRCode"
+        let content = "https://github.com/EFPrefix/EFQRCode"
         let generator = EFQRCodeGenerator(
             content: content,
             size: EFIntSize(width: 256, height: 256)
@@ -100,7 +100,7 @@ final class Tests {
 
     func testExample4() -> String? {
         // This is an example of EFQRCodeGenerator test case.
-        let content = "https://github.com/EyreFree/EFQRCode"
+        let content = "https://github.com/EFPrefix/EFQRCode"
         let generator = EFQRCodeGenerator(
             content: content,
             size: EFIntSize(width: 15, height: 15)
@@ -134,7 +134,7 @@ final class Tests {
 
     // EFQRCode
     func testExampleEFQRCode() -> String? {
-        let testResult = EFQRCode.generate(content: "https://github.com/EyreFree/EFQRCode")
+        let testResult = EFQRCode.generate(content: "https://github.com/EFPrefix/EFQRCode")
         return testResult == nil ? "testResult is nil!" : .passed
     }
 }

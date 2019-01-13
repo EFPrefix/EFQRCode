@@ -137,7 +137,7 @@ extension GeneratorController {
 
         // MARK: Content
         textView = UITextView()
-        textView.text = "https://github.com/EyreFree/EFQRCode"
+        textView.text = "https://github.com/EFPrefix/EFQRCode"
         textView.tintColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
         textView.font = .systemFont(ofSize: 24)
         textView.textColor = .white

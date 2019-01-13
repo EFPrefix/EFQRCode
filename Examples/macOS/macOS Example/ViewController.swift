@@ -97,7 +97,7 @@ class ViewController: NSViewController {
         super.viewDidAppear()
 
         recognizerViewResult.string = ""
-        generatorViewContent.string = "https://github.com/EyreFree/EFQRCode"
+        generatorViewContent.string = "https://github.com/EFPrefix/EFQRCode"
 
         view.window?.title = "EFQRCode"
         view.window?.collectionBehavior = .fullScreenAuxiliary
@@ -211,7 +211,7 @@ class ViewController: NSViewController {
     }
 
     @objc func imageViewClicked() {
-        if let url = URL(string: "https://github.com/EyreFree/EFQRCode") {
+        if let url = URL(string: "https://github.com/EFPrefix/EFQRCode") {
             NSWorkspace.shared.open(url)
         }
     }

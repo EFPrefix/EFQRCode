@@ -242,12 +242,13 @@ true | false
 public enum EFPointShape: Int {
     case square         = 0;
     case circle         = 1;
+    case diamond        = 2;
 }
 ```
 
-square | circle
-:-------------------------:|:-------------------------:
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareAllowTransparent1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/pointShape.jpg)
+square | circle | diamond
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareAllowTransparent1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/pointShape.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/pointDiamond.jpg)
 
 * **binarizationThreshold: CGFloat**
 
