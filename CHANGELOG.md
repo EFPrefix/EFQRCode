@@ -2,6 +2,16 @@
 
 -----
 
+## [4.5.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.5.0) (2019-01-13)
+
+#### Add
+
+* Add point style `diamond`;
+* Add `Objective-C` support;
+* Add `accessibilityIgnoresInvertColors` support.
+
+---
+
 ## [4.4.2](https://github.com/EFPrefix/EFQRCode/releases/tag/4.4.2) (2018-11-14)
 
 #### Add
