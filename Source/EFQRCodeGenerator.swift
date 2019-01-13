@@ -665,16 +665,13 @@ public class EFQRCodeGenerator: NSObject {
                 context.fillEllipse(in: rect)
             case .diamond:
                 if isStatic {
-                    // draw rect in static area
-                    let drawingRect = rect.insetBy(dx: 1, dy: 1)
-                    context.fill(drawingRect)
+                    context.fill(rect)
                 } else {
                     fillDiamond(context: context, rect: rect)
                 }
             default:
                 context.fill(rect)
         }
-        
     }
 
     private func createContext(size: EFIntSize) -> CGContext? {
