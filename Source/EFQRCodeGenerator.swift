@@ -326,7 +326,7 @@ public class EFQRCodeGenerator: NSObject {
                 ) {
                 result = tryModeImage
             }
-        default:
+        case .none:
             break
         }
 
@@ -616,7 +616,7 @@ public class EFQRCodeGenerator: NSObject {
             let scale = max(imageSize.width / size.width, imageSize.height / size.height)
             finalSize = CGSize(width: imageSize.width / scale, height: imageSize.height / scale)
             finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0, y: (size.height - finalSize.height) / 2.0)
-        default:
+        case .scaleToFill:
             break
         }
         context.draw(image, in: CGRect(origin: finalOrigin, size: finalSize))
@@ -669,7 +669,7 @@ public class EFQRCodeGenerator: NSObject {
                 } else {
                     fillDiamond(context: context, rect: rect)
                 }
-            default:
+            case .square:
                 context.fill(rect)
         }
     }
