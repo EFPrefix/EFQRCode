@@ -297,9 +297,22 @@ class ParametersInterfaceController: WKInterfaceController {
         binarizationThreshold = binarizationThresholds[value]
     }
     
-    private var isCircular = false
-    @IBAction func prefersCircular(_ value: Bool) {
-        isCircular = value
+    private var pointShape = EFPointShape.square
+    private var pointShapeString = ["square", "circle", "diamond"]
+    @IBOutlet var pointShapePicker: WKInterfacePicker! {
+        didSet {
+            guard let picker = pointShapePicker else {
+                return
+            }
+            picker.setItems(pointShapeString.map {
+                let item = WKPickerItem()
+                item.title = $0
+                return item
+            })
+        }
+    }
+    @IBAction func pickedPointShape(_ value: Int) {
+        pointShape = EFPointShape(rawValue: value) ?? pointShape
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
@@ -312,7 +325,7 @@ class ParametersInterfaceController: WKInterfaceController {
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowsTransparent)
         generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
-        generator.setPointShape(pointShape: isCircular ? .circle : .square)
+        generator.setPointShape(pointShape: pointShape)
         
         switch watermark {
         case .gif(let data)?: // GIF

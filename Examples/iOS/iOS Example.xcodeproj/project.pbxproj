@@ -64,6 +64,8 @@
 		127B8285219084AD00B737E8 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B8262219084AD00B737E8 /* ConstraintDSL.swift */; };
 		12981D8A1F99F75D00156E1E /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12981D891F99F75D00156E1E /* CGFloat+.swift */; };
 		4C6D2C8F1C67EFEC00846168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */; };
+		527FAC3A21EEF53400EB1371 /* swift_qrcodejs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120AAAA52193325900F0783B /* swift_qrcodejs.framework */; };
+		527FAC3B21EEF53400EB1371 /* swift_qrcodejs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 120AAAA52193325900F0783B /* swift_qrcodejs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5282BCE71FF3AD9000DFB36B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5282BCE51FF3AD9000DFB36B /* Interface.storyboard */; };
 		5282BCF01FF3AD9100DFB36B /* watchOS Example Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5282BCEF1FF3AD9100DFB36B /* watchOS Example Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5282BCF51FF3AD9100DFB36B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BCF41FF3AD9100DFB36B /* InterfaceController.swift */; };
@@ -187,6 +189,13 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "EFQRCode iOS";
 		};
+		527FAC3C21EEF53400EB1371 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 120AAA952193325900F0783B /* swift_qrcodejs.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 52A9959D217C0DF600314AF8;
+			remoteInfo = "swift_qrcodejs-watchOS";
+		};
 		5282BCF11FF3AD9100DFB36B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F8111DFD19A951050040E7D1 /* Project object */;
@@ -247,6 +256,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5282BD1F1FF3FD8A00DFB36B /* EFQRCode.framework in Embed Frameworks */,
+				527FAC3B21EEF53400EB1371 /* swift_qrcodejs.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5282BD1E1FF3FD8A00DFB36B /* EFQRCode.framework in Frameworks */,
+				527FAC3A21EEF53400EB1371 /* swift_qrcodejs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +656,7 @@
 			);
 			dependencies = (
 				5282BD211FF3FD8A00DFB36B /* PBXTargetDependency */,
+				527FAC3D21EEF53400EB1371 /* PBXTargetDependency */,
 			);
 			name = "watchOS Example Extension";
 			productName = "watchOS Example Extension";
@@ -949,6 +961,11 @@
 			isa = PBXTargetDependency;
 			name = "EFQRCode iOS";
 			targetProxy = 120B785B1EA3A9F500D34440 /* PBXContainerItemProxy */;
+		};
+		527FAC3D21EEF53400EB1371 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "swift_qrcodejs-watchOS";
+			targetProxy = 527FAC3C21EEF53400EB1371 /* PBXContainerItemProxy */;
 		};
 		5282BCF21FF3AD9100DFB36B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

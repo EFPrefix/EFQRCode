@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
@@ -323,12 +327,12 @@ Width &amp; Height</string>
                                 <action selector="pickedBinarizationThreshold:" destination="x7r-oY-9um" id="zMm-2H-NTd"/>
                             </connections>
                         </picker>
-                        <switch width="1" alignment="left" title="Circular Point Shape" numberOfLines="1" minimumScaleFactor="0.10000000000000001" id="TeM-rT-bHj">
-                            <color key="tintColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <label width="1" alignment="left" text="Point Shape" textAlignment="center" id="3Y5-pz-aKM"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="xtz-td-Dau">
                             <connections>
-                                <action selector="prefersCircular:" destination="x7r-oY-9um" id="Jy8-MZ-Vq9"/>
+                                <action selector="pickedPointShape:" destination="x7r-oY-9um" id="vfw-z9-TVU"/>
                             </connections>
-                        </switch>
+                        </picker>
                         <button width="1" alignment="left" title="Generate" id="UDk-vC-rXj">
                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -349,6 +353,7 @@ Width &amp; Height</string>
                         <outlet property="magnificationHeightButton" destination="dIX-c1-Atv" id="c69-Tr-Ibv"/>
                         <outlet property="magnificationWidthButton" destination="HHX-1E-4RW" id="B1r-WH-AFf"/>
                         <outlet property="modePicker" destination="a6K-zF-snE" id="Qca-XF-9ae"/>
+                        <outlet property="pointShapePicker" destination="xtz-td-Dau" id="zGq-fq-Df0"/>
                         <outlet property="watermarkModePicker" destination="Z4t-N1-j6n" id="jvH-CI-ZDP"/>
                         <outlet property="watermarkPicker" destination="OW9-Hq-tI2" id="zOo-hZ-Pud"/>
                         <outlet property="widthButton" destination="XF9-rQ-Phv" id="kR8-Hk-f5u"/>
