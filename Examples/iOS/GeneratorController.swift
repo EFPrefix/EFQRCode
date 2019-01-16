@@ -1254,7 +1254,7 @@ class ShowController: UIViewController {
 
     @objc func saveToAlbum() {
         guard let tryImage = image else { return }
-        CustomPhotoAlbum.sharedInstance.save(image: tryImage) {
+        CustomPhotoAlbum.save(image: tryImage) {
             [weak self] (result) in
             guard let self = self else { return }
             let alert = UIAlertController(
@@ -1275,81 +1275,54 @@ class ShowController: UIViewController {
 
 #if os(iOS)
 // http://stackoverflow.com/questions/28708846/how-to-save-image-to-custom-album
-class CustomPhotoAlbum: NSObject {
+enum CustomPhotoAlbum {
 
     static let albumName = "EFQRCode"
-    static let sharedInstance = CustomPhotoAlbum()
 
-    var assetCollection: PHAssetCollection!
-
-    override init() {
-        super.init()
-
-        if let assetCollection = fetchAssetCollectionForAlbum() {
-            self.assetCollection = assetCollection
-            return
-        }
-
-        if PHPhotoLibrary.authorizationStatus() != .authorized {
-            PHPhotoLibrary.requestAuthorization { _ in }
-        }
-
-        if PHPhotoLibrary.authorizationStatus() == .authorized {
-            createAlbum()
-        } else {
-            PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
-        }
-    }
-
-    func requestAuthorizationHandler(status: PHAuthorizationStatus) {
-        if PHPhotoLibrary.authorizationStatus() == .authorized {
-            // Ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
-            print("Trying again to create the album")
-            createAlbum()
-        } else {
-            print("Should really prompt the user to let them know it's failed")
-        }
-    }
-    
-    func createAlbum() {
-        PHPhotoLibrary.shared().performChanges({
-            // Create an asset collection with the album name
-            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)
-        }, completionHandler: {
-            [weak self] (success, error) in
-            guard let self = self else { return }
-            if success {
-                self.assetCollection = self.fetchAssetCollectionForAlbum()
-            } else {
-                if let tryError = error {
-                    print("Error: \(tryError)")
-                }
-            }
-        })
-    }
-
-    func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
+    private static func fetchAssetCollectionForAlbum() -> PHAssetCollection? {
         let fetchOptions = PHFetchOptions()
-        fetchOptions.predicate = NSPredicate(format: "title=%@", CustomPhotoAlbum.albumName)
+        fetchOptions.predicate = NSPredicate(format: "title=%@", albumName)
         let collection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
         return collection.firstObject
     }
 
-    func save(image: EFImage, finish: ((String?) -> Void)? = nil) {
-        if assetCollection == nil {
-            // If there was an error upstream, skip the save
-            finish?("AssetCollection is nil!")
-            return
+    static func save(image: EFImage, finish: @escaping ((_ error: String?) -> Void)) {
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .authorized:
+            if let assetCollection = fetchAssetCollectionForAlbum() {
+                save(image: image, to: assetCollection, finish: finish)
+            } else {
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: albumName)
+                }, completionHandler: { (success, error) in
+                    if success {
+                        save(image: image, finish: finish)
+                    } else {
+                        finish(error?.localizedDescription ?? "Can't create photo album")
+                    }
+                })
+            }
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { _ in
+                save(image: image, finish: finish)
+            }
+        case .restricted:
+            finish("You can't grant access to the photo library.")
+        case .denied:
+            finish("You didn't grant access to the photo library.")
         }
-
+    }
+    
+    private static func save(image: EFImage, to assetCollection: PHAssetCollection,
+                             finish: @escaping ((_ error: String?) -> Void)) {
+        var errored = false
         PHPhotoLibrary.shared().performChanges({
-            [weak self] in
-            guard let self = self else { return }
-            var assetChangeRequest: PHAssetChangeRequest?
+            let assetChangeRequest: PHAssetChangeRequest?
             switch image {
             case .gif:
                 guard let fileURL = EFQRCode.tempResultPath else {
-                    finish?("EFQRCode.tempResultPath is nil!")
+                    finish("EFQRCode.tempResultPath is nil!")
+                    errored = true
                     return
                 }
                 assetChangeRequest = .creationRequestForAssetFromImage(atFileURL: fileURL)
@@ -1357,19 +1330,18 @@ class CustomPhotoAlbum: NSObject {
                 assetChangeRequest = .creationRequestForAsset(from: image)
             }
             if let assetPlaceHolder = assetChangeRequest?.placeholderForCreatedAsset {
-                let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
-                let enumeration: NSArray = [assetPlaceHolder]
-                albumChangeRequest?.addAssets(enumeration)
+                let albumChangeRequest = PHAssetCollectionChangeRequest(for: assetCollection)
+                albumChangeRequest?.addAssets([assetPlaceHolder] as NSFastEnumeration)
             } else {
-                finish?("PlaceholderForCreatedAsset is nil!")
+                finish("PlaceholderForCreatedAsset is nil!")
+                errored = true
             }
-        }, completionHandler: {
-            [weak self] (result, error) in
-            guard self != nil else { return }
-            if result {
-                finish?(nil)
+        }, completionHandler: { (success, error) in
+            if errored { return }
+            if success {
+                finish(nil)
             } else {
-                finish?(error?.localizedDescription ?? "")
+                finish(error?.localizedDescription ?? "Unknown error")
             }
         })
     }
