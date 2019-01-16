@@ -12,7 +12,7 @@
         <!--NumberPad-->
         <scene sceneID="xDD-Gb-LOX">
             <objects>
-                <controller identifier="NumberPad" fullScreen="YES" id="i87-te-Kf6" customClass="NumberPadInterfaceController" customModule="watchOS_Example_Extension">
+                <controller identifier="NumberPad" fullScreen="YES" id="i87-te-Kf6" customClass="NumberPadInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
                     <items>
                         <group width="1" height="0.20000000000000001" alignment="left" id="Mkx-Zv-Roj">
                             <items>
@@ -121,7 +121,7 @@
         <!--Version Display Interface Controller-->
         <scene sceneID="O0f-3r-sKj">
             <objects>
-                <controller fullScreen="YES" id="CRb-ZU-aKh" customClass="VersionDisplayInterfaceController" customModule="watchOS_Example_Extension">
+                <controller fullScreen="YES" id="CRb-ZU-aKh" customClass="VersionDisplayInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
                     <items>
                         <label width="1" alignment="left" text="EFQRCode" textAlignment="center" id="Fro-dS-7yC">
                             <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -159,7 +159,7 @@
         <!--Unit Tests-->
         <scene sceneID="26e-eU-Vke">
             <objects>
-                <controller identifier="Tests" title="Unit Tests" id="bqn-P8-jul" customClass="UnitTestInterfaceController" customModule="watchOS_Example_Extension">
+                <controller identifier="Tests" title="Unit Tests" id="bqn-P8-jul" customClass="UnitTestInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
                     <items>
                         <activity alignment="left" id="Z77-Ph-U7f"/>
                         <table alignment="left" id="beI-sM-P2H">
@@ -197,7 +197,7 @@
         <!--EFQRCode-->
         <scene sceneID="iSG-4e-WHm">
             <objects>
-                <controller title="EFQRCode" id="x7r-oY-9um" customClass="ParametersInterfaceController" customModule="watchOS_Example_Extension">
+                <controller title="EFQRCode" id="x7r-oY-9um" customClass="ParametersInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
                     <items>
                         <button width="1" alignment="left" title="Generate" id="FcX-tR-c93">
                             <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
