@@ -59,6 +59,7 @@ class ViewController: NSViewController {
     }()
 
     var result: Data?
+    let lastContent = StorageUserDefaults<NSString>(key: "lastContent")
 
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
@@ -97,7 +98,7 @@ class ViewController: NSViewController {
         super.viewDidAppear()
 
         recognizerViewResult.string = ""
-        generatorViewContent.string = "https://github.com/EFPrefix/EFQRCode"
+        generatorViewContent.string = (lastContent.value as String?) ?? "https://github.com/EFPrefix/EFQRCode"
 
         view.window?.title = "EFQRCode"
         view.window?.collectionBehavior = .fullScreenAuxiliary

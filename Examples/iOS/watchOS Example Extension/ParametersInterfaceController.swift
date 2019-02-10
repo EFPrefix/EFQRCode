@@ -33,7 +33,13 @@ enum EFImage {
 }
 
 class ParametersInterfaceController: WKInterfaceController {
-    private var link = "https://github.com/EFPrefix/EFQRCode"
+    override func willActivate() {
+        super.willActivate()
+        self.contentDisplay?.setText(link)
+    }
+
+    private static let lastContent = StorageUserDefaults<NSString>(key: "lastContent")
+    private var link = (ParametersInterfaceController.lastContent.value as String?) ?? "https://github.com/EFPrefix/EFQRCode"
     @IBOutlet var contentDisplay: WKInterfaceLabel!
     @IBAction func changeLink() {
         presentTextInputController(withSuggestions: [link], allowedInputMode: .allowEmoji) {
@@ -316,6 +322,8 @@ class ParametersInterfaceController: WKInterfaceController {
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        ParametersInterfaceController.lastContent.value = link as NSString
+
         let generator = EFQRCodeGenerator(content: link, size: EFIntSize(width: width, height: height))
         generator.setInputCorrectionLevel(inputCorrectionLevel: correctionLevel)
         generator.setMode(mode: selectedMode)

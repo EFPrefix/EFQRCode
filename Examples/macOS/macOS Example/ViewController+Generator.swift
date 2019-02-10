@@ -178,6 +178,7 @@ extension ViewController: NSAlertDelegate {
         defer { generatorViewCreate.isEnabled = true }
 
         let content = generatorViewContent.string
+        lastContent.value = content as NSString
 
         let generator = EFQRCodeGenerator(content: content, size: size)
         generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)

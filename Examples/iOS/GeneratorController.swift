@@ -65,6 +65,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     var createButton: UIButton!
 
     var titleCurrent: String = ""
+    let lastContent = StorageUserDefaults<NSString>(key: "lastContent")
 
     // MARK: - Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
@@ -137,7 +138,7 @@ extension GeneratorController {
 
         // MARK: Content
         textView = UITextView()
-        textView.text = "https://github.com/EFPrefix/EFQRCode"
+        textView.text = (lastContent.value as String?) ?? "https://github.com/EFPrefix/EFQRCode"
         textView.tintColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
         textView.font = .systemFont(ofSize: 24)
         textView.textColor = .white
@@ -234,6 +235,7 @@ extension GeneratorController {
         defer { createButton.isEnabled = true }
 
         let content = textView.text ?? ""
+        lastContent.value = content as NSString
 
         let generator = EFQRCodeGenerator(content: content, size: size)
         generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)

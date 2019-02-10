@@ -63,6 +63,8 @@
 		127B8284219084AD00B737E8 /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B8261219084AD00B737E8 /* ConstraintView+Extensions.swift */; };
 		127B8285219084AD00B737E8 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127B8262219084AD00B737E8 /* ConstraintDSL.swift */; };
 		12981D8A1F99F75D00156E1E /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12981D891F99F75D00156E1E /* CGFloat+.swift */; };
+		12A22CEB2210656D0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
+		12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
 		4C6D2C8F1C67EFEC00846168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */; };
 		527FAC3A21EEF53400EB1371 /* swift_qrcodejs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120AAAA52193325900F0783B /* swift_qrcodejs.framework */; };
 		527FAC3B21EEF53400EB1371 /* swift_qrcodejs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 120AAAA52193325900F0783B /* swift_qrcodejs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -332,6 +334,7 @@
 		127B8261219084AD00B737E8 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "../3rd/SnapKit/Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		127B8262219084AD00B737E8 /* ConstraintDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = ../3rd/SnapKit/Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		12981D891F99F75D00156E1E /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = SOURCE_ROOT; };
+		12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUserDefaults.swift; sourceTree = "<group>"; };
 		4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4C6D2C8D1C67EFEC00846168 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		5282BCE31FF3AD9000DFB36B /* watchOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "watchOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -507,6 +510,14 @@
 			name = SnapKit;
 			sourceTree = "<group>";
 		};
+		12A22CDD2210652B0063EE1F /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */,
+			);
+			name = Unit;
+			sourceTree = "<group>";
+		};
 		12C322351F80F192003E9BF4 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +618,7 @@
 				120B78401EA39E1B00D34440 /* AppDelegate.swift */,
 				12C322351F80F192003E9BF4 /* 3rd */,
 				120B77FA1EA3951700D34440 /* Res */,
+				12A22CDD2210652B0063EE1F /* Unit */,
 				120B77F91EA3951100D34440 /* Extension */,
 				120B77F81EA394FB00D34440 /* Controller */,
 				F8111E0819A951050040E7D1 /* Supporting Files */,
@@ -889,6 +901,7 @@
 				5282BD3C1FF4819200DFB36B /* Tests.swift in Sources */,
 				5282BD261FF4137F00DFB36B /* NumberPadInterfaceController.swift in Sources */,
 				5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */,
+				12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */,
 				5282BCF71FF3AD9100DFB36B /* ExtensionDelegate.swift in Sources */,
 				5282BD321FF4764100DFB36B /* UnitTestInterfaceController.swift in Sources */,
 				5282BD281FF41A8200DFB36B /* ParametersInterfaceController.swift in Sources */,
@@ -900,6 +913,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12A22CEB2210656D0063EE1F /* StorageUserDefaults.swift in Sources */,
 				120B78031EA3968700D34440 /* ViewController.swift in Sources */,
 				127B826F219084AD00B737E8 /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				127B823E2190849900B737E8 /* EFSliderView.swift in Sources */,
