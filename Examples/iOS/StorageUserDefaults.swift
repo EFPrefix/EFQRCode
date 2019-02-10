@@ -8,7 +8,7 @@
 
 import Foundation
 
-// UserDefaults 持久化存储
+/// UserDefaults 持久化存储
 class StorageUserDefaults<T: NSCoding> {
 
     let key: String
@@ -24,11 +24,8 @@ class StorageUserDefaults<T: NSCoding> {
 
     init(key: String) {
         self.key = key
-        self.value = {
-            if let tryData = UserDefaults.standard.data(forKey: key) {
-                return NSKeyedUnarchiver.unarchiveObject(with: tryData) as? T
-            }
-            return nil
-        }()
+        self.value = UserDefaults.standard.data(forKey: key).flatMap {
+            return NSKeyedUnarchiver.unarchiveObject(with: $0) as? T
+        }
     }
 }
