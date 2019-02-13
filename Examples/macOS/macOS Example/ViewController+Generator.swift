@@ -26,6 +26,9 @@
 
 import Cocoa
 import EFQRCode
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 enum EFImage {
     case normal(_ image: NSImage)
@@ -213,6 +216,8 @@ extension ViewController: NSAlertDelegate {
                 messageBox("Create QRCode failed!")
             }
         }
+
+        MSAnalytics.trackEvent("Generate", withProperties: [:])
     }
 
     @objc func generatorViewSaveClicked() {

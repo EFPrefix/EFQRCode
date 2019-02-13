@@ -25,12 +25,21 @@
 //  THE SOFTWARE.
 
 import Cocoa
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-
+        MSAppCenter.start(
+            "cc1493a5-d2ee-493b-ad4f-6cc7e5b1907f",
+            withServices:[
+                MSAnalytics.self,
+                MSCrashes.self
+            ]
+        )
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
