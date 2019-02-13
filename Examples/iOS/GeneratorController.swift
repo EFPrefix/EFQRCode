@@ -29,6 +29,12 @@ import Photos
 import EFQRCode
 import MobileCoreServices
 
+#if os(iOS)
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+#endif
+
 enum EFImage {
     case normal(_ image: UIImage)
     case gif(_ data: Data)
@@ -272,6 +278,8 @@ extension GeneratorController {
                 present(alert, animated: true)
             }
         }
+
+        MSAnalytics.trackEvent("Generate", withProperties: [:])
     }
 
     // UITextViewDelegate

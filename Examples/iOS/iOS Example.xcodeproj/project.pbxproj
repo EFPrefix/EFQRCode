@@ -65,6 +65,9 @@
 		12981D8A1F99F75D00156E1E /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12981D891F99F75D00156E1E /* CGFloat+.swift */; };
 		12A22CEB2210656D0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
 		12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
+		12F8CF992213F896005734D1 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F8CF962213F896005734D1 /* AppCenterAnalytics.framework */; };
+		12F8CF9A2213F896005734D1 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F8CF972213F896005734D1 /* AppCenter.framework */; };
+		12F8CF9B2213F896005734D1 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F8CF982213F896005734D1 /* AppCenterCrashes.framework */; };
 		4C6D2C8F1C67EFEC00846168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */; };
 		527FAC3A21EEF53400EB1371 /* swift_qrcodejs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120AAAA52193325900F0783B /* swift_qrcodejs.framework */; };
 		527FAC3B21EEF53400EB1371 /* swift_qrcodejs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 120AAAA52193325900F0783B /* swift_qrcodejs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -335,6 +338,9 @@
 		127B8262219084AD00B737E8 /* ConstraintDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = ../3rd/SnapKit/Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		12981D891F99F75D00156E1E /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = SOURCE_ROOT; };
 		12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUserDefaults.swift; sourceTree = "<group>"; };
+		12F8CF962213F896005734D1 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = AppCneter_iOS/AppCenterAnalytics.framework; sourceTree = "<group>"; };
+		12F8CF972213F896005734D1 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = AppCneter_iOS/AppCenter.framework; sourceTree = "<group>"; };
+		12F8CF982213F896005734D1 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = AppCneter_iOS/AppCenterCrashes.framework; sourceTree = "<group>"; };
 		4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4C6D2C8D1C67EFEC00846168 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		5282BCE31FF3AD9000DFB36B /* watchOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "watchOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -377,6 +383,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12F8CF992213F896005734D1 /* AppCenterAnalytics.framework in Frameworks */,
+				12F8CF9B2213F896005734D1 /* AppCenterCrashes.framework in Frameworks */,
+				12F8CF9A2213F896005734D1 /* AppCenter.framework in Frameworks */,
 				120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,10 +530,21 @@
 		12C322351F80F192003E9BF4 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				12F8CF892213F889005734D1 /* AppCneter_iOS */,
 				127B82282190848100B737E8 /* SnapKit */,
 				127B82272190846C00B737E8 /* EFColorPicker */,
 			);
 			name = 3rd;
+			sourceTree = "<group>";
+		};
+		12F8CF892213F889005734D1 /* AppCneter_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				12F8CF972213F896005734D1 /* AppCenter.framework */,
+				12F8CF962213F896005734D1 /* AppCenterAnalytics.framework */,
+				12F8CF982213F896005734D1 /* AppCenterCrashes.framework */,
+			);
+			name = AppCneter_iOS;
 			sourceTree = "<group>";
 		};
 		5282BCE41FF3AD9000DFB36B /* watchOS Example */ = {
@@ -1169,7 +1189,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1222,7 +1242,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1240,8 +1260,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = P3X2725LYY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppCneter_iOS",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
@@ -1257,8 +1281,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = P3X2725LYY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AppCneter_iOS",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
