@@ -49,6 +49,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return true
     }
+
+    @IBAction func showHelp(_ sender: Any) {
+        if let url = URL(string: "https://github.com/EFPrefix/EFQRCode") {
+            NSWorkspace.shared.open(url)
+        }
+    }
 }
 
 func messageBox(_ message: String) {
