@@ -26,27 +26,12 @@
 
 import UIKit
 
-#if os(iOS)
-import AppCenter
-import AppCenterAnalytics
-import AppCenterCrashes
-#endif
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        #if os(iOS)
-        MSAppCenter.start(
-            "bab3edd3-3971-4d6b-8a32-96fe65551097",
-            withServices: [
-                MSAnalytics.self,
-                MSCrashes.self
-            ]
-        )
-        #endif
         return true
     }
 
