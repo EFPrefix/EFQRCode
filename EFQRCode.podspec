@@ -25,5 +25,5 @@ Pod::Spec.new do |s|
 	s.source_files = 'Source/**/*.{h,swift}'
 	
 	s.frameworks = 'ImageIO', 'CoreGraphics', 'Foundation'
-	s.dependency 'swift_qrcodejs', '~> 1.0.1'
+	s.dependency 'swift_qrcodejs', '~> 1.1.0'
 end
