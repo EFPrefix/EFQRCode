@@ -29,14 +29,11 @@ import AppKit
 
 public extension NSImage {
     
-    public func toCIImage() -> CIImage? {
-        if let data = tiffRepresentation(using: NSBitmapImageRep.TIFFCompression.none, factor: 0) {
-            return CIImage(data: data)
-        }
-        return nil
+    func toCIImage() -> CIImage? {
+        return tiffRepresentation(using: .none, factor: 0).flatMap(CIImage.init)
     }
 
-    public func toCGImage() -> CGImage? {
+    func toCGImage() -> CGImage? {
         return toCIImage()?.toCGImage()
     }
 }

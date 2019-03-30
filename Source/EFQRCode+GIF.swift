@@ -40,13 +40,11 @@ public extension EFQRCode {
     static var tempResultPath: URL?
 
     private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start: Int, end: Int) {
-        var index =  start
-        while index <= end {
+        for index in start ... end {
             generator.setWatermark(watermark: frames[index])
             if let frameWithCode = generator.generate() {
                 frames[index] = frameWithCode
             }
-            index += 1
         }
     }
     
@@ -55,15 +53,8 @@ public extension EFQRCode {
             var frames = source.toCGImages()
 
             var fileProperties = CGImageSourceCopyProperties(source, nil)
-            var framePropertiesArray = [CFDictionary]()
-
-            var index: Int = 0
-            while frames.count > index {
-                if let framePropertie = CGImageSourceCopyPropertiesAtIndex(source, index, nil) {
-                    framePropertiesArray.append(framePropertie)
-                }
-
-                index += 1
+            var framePropertiesArray = ( 0 ..< frames.count ).compactMap { index in
+                CGImageSourceCopyPropertiesAtIndex(source, index, nil)
             }
 
             if let delay = delay {
@@ -78,14 +69,13 @@ public extension EFQRCode {
                 }
             }
 
-            if let loopCount = loopCount {
-                if var tempDict = fileProperties as? [String: Any] {
-                    if var gifDict = tempDict[kCGImagePropertyGIFDictionary as String] as? [String: Any] {
-                        gifDict.updateValue(loopCount, forKey: kCGImagePropertyGIFLoopCount as String)
-                        tempDict.updateValue(gifDict, forKey: kCGImagePropertyGIFDictionary as String)
-                    }
-                    fileProperties = tempDict as CFDictionary
+            if let loopCount = loopCount,
+                var tempDict = fileProperties as? [String: Any] {
+                if var gifDict = tempDict[kCGImagePropertyGIFDictionary as String] as? [String: Any] {
+                    gifDict.updateValue(loopCount, forKey: kCGImagePropertyGIFLoopCount as String)
+                    tempDict.updateValue(gifDict, forKey: kCGImagePropertyGIFDictionary as String)
                 }
+                fileProperties = tempDict as CFDictionary
             }
 
             if useMultipleThread {
@@ -122,10 +112,10 @@ public extension EFQRCode {
                 }
             }
             
-            if let fileProperties = fileProperties, framePropertiesArray.count == frames.count {
-                if let url = frames.saveToGIFFile(framePropertiesArray: framePropertiesArray, fileProperties: fileProperties, url: pathToSave) {
-                    return try? Data(contentsOf: url)
-                }
+            if let fileProperties = fileProperties, framePropertiesArray.count == frames.count,
+                let url = frames.saveToGIFFile(framePropertiesArray: framePropertiesArray,
+                                               fileProperties: fileProperties, url: pathToSave) {
+                return try? Data(contentsOf: url)
             }
         }
         return nil
@@ -136,12 +126,9 @@ public extension CGImageSource {
 
     // GIF
     func toCGImages() -> [CGImage] {
-        var frames = [CGImage]()
         let gifCount = CGImageSourceGetCount(self)
-        for index in 0 ..< gifCount {
-            if let cgImage = CGImageSourceCreateImageAtIndex(self, index, nil) {
-                frames.append(cgImage)
-            }
+        let frames: [CGImage] = ( 0 ..< gifCount ).compactMap { index in
+            CGImageSourceCreateImageAtIndex(self, index, nil)
         }
         return frames
     }
@@ -160,20 +147,20 @@ extension Array where Element: CGImage {
         }
         EFQRCode.tempResultPath = fileURL
 
-        if let url = fileURL as CFURL? {
-            if let destination = CGImageDestinationCreateWithURL(url, kUTTypeGIF, self.count, nil) {
-                CGImageDestinationSetProperties(destination, fileProperties)
-                for (index, image) in self.enumerated() {
-                    CGImageDestinationAddImage(destination, image, framePropertiesArray[index])
-                }
-                if !CGImageDestinationFinalize(destination) {
-                    // Failed to finalize the image destination
-                    return nil
-                }
-                return fileURL
-            }
+        guard let url = fileURL as CFURL?,
+            let destination = CGImageDestinationCreateWithURL(url, kUTTypeGIF, count, nil)
+            else {
+                return nil // Can't create path
         }
-        // Can't create path
-        return nil
+
+        CGImageDestinationSetProperties(destination, fileProperties)
+        for (index, image) in enumerated() {
+            CGImageDestinationAddImage(destination, image, framePropertiesArray[index])
+        }
+        guard CGImageDestinationFinalize(destination) else {
+            // Failed to finalize the image destination
+            return nil
+        }
+        return fileURL
     }
 }

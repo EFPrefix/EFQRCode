@@ -32,49 +32,46 @@ import CoreImage
 
 public extension CGImage {
 
-    // Convert UIImage to CIImage
-    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     #if os(iOS) || os(tvOS) || os(macOS)
+    /// Convert UIImage to CIImage
+    /// http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     func toCIImage() -> CIImage {
         return CIImage(cgImage: self)
     }
     #endif
 
-    // Get pixels from CIImage
+    /// Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
-        var pixels: [[EFUIntPixel]]?
         let dataSize = width * height * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(
+        guard let context = CGContext(
             data: &pixelData,
             width: width,
             height: height,
             bitsPerComponent: 8,
             bytesPerRow: 4 * width,
             space: colorSpace,
-            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
-            context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
-            pixels = [[EFUIntPixel]]()
-            for y in 0 ..< height {
-                pixels?.append([EFUIntPixel]())
-                for x in 0 ..< width {
-                    let offset = 4 * (x + y * width)
-                    pixels?[y].append(
-                        EFUIntPixel(
-                            red: pixelData[offset + 0],
-                            green: pixelData[offset + 1],
-                            blue: pixelData[offset + 2],
-                            alpha: pixelData[offset + 3]
-                        )
-                    )
-                }
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            ) else {
+                return nil
+        }
+        context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+        let pixels: [[EFUIntPixel]] = ( 0 ..< height ).map { y in
+            ( 0 ..< width ).map { x in
+                let offset = 4 * (x + y * width)
+                return EFUIntPixel(
+                    red: pixelData[offset + 0],
+                    green: pixelData[offset + 1],
+                    blue: pixelData[offset + 2],
+                    alpha: pixelData[offset + 3]
+                )
             }
         }
         return pixels
     }
 
-    // Get avarage color
+    /// Get avarage color
     func avarageColor() -> CGColor? {
         let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
         guard let context = CGContext(
@@ -98,60 +95,61 @@ public extension CGImage {
         )
     }
 
-    // Grayscale
-    // http://stackoverflow.com/questions/1311014/convert-to-grayscale-too-slow
+    /// Grayscale
+    /// http://stackoverflow.com/questions/1311014/convert-to-grayscale-too-slow
     func grayscale() -> CGImage? {
-        if let context = CGContext(
+        guard let context = CGContext(
             data: nil, width: width, height: height,
             bitsPerComponent: 8, bytesPerRow: 4 * width,
             space: CGColorSpaceCreateDeviceGray(),
             bitmapInfo: CGImageAlphaInfo.none.rawValue
-            ) {
-            context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
-            return context.makeImage()
+            ) else {
+                return nil
         }
-        return nil
+        context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
+        return context.makeImage()
     }
 
-    // Binarization
-    // http://blog.sina.com.cn/s/blog_6b7ba99d0101js23.html
+    /// Binarization
+    /// http://blog.sina.com.cn/s/blog_6b7ba99d0101js23.html
     func binarization(
         value: CGFloat = 0.5,
-        foregroundColor: CGColor = CGColor.EFWhite(),
-        backgroundColor: CGColor = CGColor.EFBlack()
+        foregroundColor: CGColor = .EFWhite(),
+        backgroundColor: CGColor = .EFBlack()
         ) -> CGImage? {
         let dataSize = width * height * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         guard let backgroundPixel = EFUIntPixel(color: backgroundColor),
-            let foregroundPixel = EFUIntPixel(color: foregroundColor)
-            else { return nil }
-        if let context = CGContext(
-            data: &pixelData,
-            width: width,
-            height: height,
-            bitsPerComponent: 8,
-            bytesPerRow: 4 * width,
-            space: colorSpace,
-            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) {
-            context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
-            for x in 0 ..< width {
-                for y in 0 ..< height {
-                    let offset = 4 * (x + y * width)
-                    // RGBA
-                    let alpha = CGFloat(pixelData[offset + 3]) / 255.0
-                    let intensity = (
-                        CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
-                        ) / 3.0 / 255.0 * alpha + (1.0 - alpha)
-                    let finalPixel = intensity > value ? backgroundPixel : foregroundPixel
-                    pixelData[offset + 0] = finalPixel.red
-                    pixelData[offset + 1] = finalPixel.green
-                    pixelData[offset + 2] = finalPixel.blue
-                    pixelData[offset + 3] = finalPixel.alpha
-                }
-            }
-            return context.makeImage()
+            let foregroundPixel = EFUIntPixel(color: foregroundColor),
+            let context = CGContext(
+                data: &pixelData,
+                width: width,
+                height: height,
+                bitsPerComponent: 8,
+                bytesPerRow: 4 * width,
+                space: colorSpace,
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            ) else {
+                return nil
         }
-        return nil
+
+        context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
+        for x in 0 ..< width {
+            for y in 0 ..< height {
+                let offset = 4 * (x + y * width)
+                // RGBA
+                let alpha = CGFloat(pixelData[offset + 3]) / 255.0
+                let intensity = (
+                    CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
+                    ) / 3.0 / 255.0 * alpha + (1.0 - alpha)
+                let finalPixel = intensity > value ? backgroundPixel : foregroundPixel
+                pixelData[offset + 0] = finalPixel.red
+                pixelData[offset + 1] = finalPixel.green
+                pixelData[offset + 2] = finalPixel.blue
+                pixelData[offset + 3] = finalPixel.alpha
+            }
+        }
+        return context.makeImage()
     }
 }
