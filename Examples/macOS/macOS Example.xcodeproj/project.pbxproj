@@ -54,9 +54,6 @@
 		12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371981EA8DE3A0049DE67 /* ViewController.swift */; };
 		12F3719B1EA8DE3A0049DE67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */; };
 		12F3719E1EA8DE3A0049DE67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719C1EA8DE3A0049DE67 /* Main.storyboard */; };
-		12F8CF752213ECFF005734D1 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F8CF722213ECFF005734D1 /* AppCenterCrashes.framework */; };
-		12F8CF762213ECFF005734D1 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F8CF732213ECFF005734D1 /* AppCenterAnalytics.framework */; };
-		12F8CF772213ECFF005734D1 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F8CF742213ECFF005734D1 /* AppCenter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,9 +180,6 @@
 		12F3719D1EA8DE3A0049DE67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12F3719F1EA8DE3A0049DE67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12F371A61EA8DE740049DE67 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
-		12F8CF722213ECFF005734D1 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = AppCneter_macOS/AppCenterCrashes.framework; sourceTree = SOURCE_ROOT; };
-		12F8CF732213ECFF005734D1 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = AppCneter_macOS/AppCenterAnalytics.framework; sourceTree = SOURCE_ROOT; };
-		12F8CF742213ECFF005734D1 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = AppCneter_macOS/AppCenter.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,9 +188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1215ADB41EAC908000F824B1 /* EFQRCode.framework in Frameworks */,
-				12F8CF772213ECFF005734D1 /* AppCenter.framework in Frameworks */,
-				12F8CF762213ECFF005734D1 /* AppCenterAnalytics.framework in Frameworks */,
-				12F8CF752213ECFF005734D1 /* AppCenterCrashes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,20 +339,9 @@
 		12F715281FBB16D700EAEFDE /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
-				12F8CF6B2213ECE6005734D1 /* AppCneter_macOS */,
 				1259BA162190880100E41FCD /* SnapKit */,
 			);
 			name = 3rd;
-			sourceTree = "<group>";
-		};
-		12F8CF6B2213ECE6005734D1 /* AppCneter_macOS */ = {
-			isa = PBXGroup;
-			children = (
-				12F8CF742213ECFF005734D1 /* AppCenter.framework */,
-				12F8CF732213ECFF005734D1 /* AppCenterAnalytics.framework */,
-				12F8CF722213ECFF005734D1 /* AppCenterCrashes.framework */,
-			);
-			name = AppCneter_macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -688,10 +668,6 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = P3X2725LYY;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AppCneter_macOS",
-				);
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -711,10 +687,6 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = P3X2725LYY;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AppCneter_macOS",
-				);
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
