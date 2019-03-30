@@ -1,6 +1,23 @@
 # Change Log
 
------
+---
+
+## [4.5.1](https://github.com/EFPrefix/EFQRCode/releases/tag/4.5.1) (2019-04-xx)
+
+#### Add
+
+* Add documentation for some extension methods.
+
+#### Change
+
+* Non-breaking update to Swift 5 (with Podspec in Swift 4.2 to maximize compatibility);
+* Improve internal implementation to allocate memory needed all at once.
+
+#### Remove
+
+* Remove Microsoft App Center SDK.
+
+---
 
 ## [4.5.0](https://github.com/EFPrefix/EFQRCode/releases/tag/4.5.0) (2019-01-13)
 
@@ -24,7 +41,7 @@
 
 #### Add
 
-* Add dependency on (swift_qrcodejs)[https://github.com/ApolloZhu/swift_qrcodejs].
+* Add dependency on [swift_qrcodejs](https://github.com/ApolloZhu/swift_qrcodejs).
 
 ---
 
@@ -105,7 +122,7 @@
 
 #### Add
 
-* Add binarization.
+* Add binarization;
 * Add point shape.
 
 #### Fix
@@ -131,7 +148,7 @@
 
 #### Fix
 
-* Fix cocoapods platform.
+* Fix CocoaPods platform.
 
 ---
 
@@ -192,7 +209,7 @@
 
 #### Fix
 
-* Remove UIImage entension;
+* Remove UIImage extension;
 * Improve documentation.
 
 ---

@@ -1,6 +1,6 @@
 language: objective-c
-osx_image: xcode10
-env: SWIFT_SNAPSHOT=4.2
+osx_image: xcode10.2
+env: SWIFT_SNAPSHOT=5.0
 branches:
   only:
     - master
@@ -29,7 +29,7 @@ env:
 
     - DESTINATION="arch=x86_64"                     SCHEME="$MACOS_FRAMEWORK_SCHEME"    RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
 before_install:
-  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - gem install cocoapods --pre --no-document --quiet
 script:
   - set -o pipefail
   - xcodebuild -version

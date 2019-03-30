@@ -621,7 +621,6 @@
 					};
 					F829C6B11A7A94F100A2CD59 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = KZ7D8X3PRK;
 						LastSwiftMigration = 0900;
 					};
 				};

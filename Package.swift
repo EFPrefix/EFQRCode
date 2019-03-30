@@ -29,7 +29,7 @@ import PackageDescription
 let package = Package(
     name: "EFQRCode",
     dependencies: [
-        .package(url: "https://github.com/ApolloZhu/swift_qrcodejs.git", .upToNextMinor(from: "1.0.1"))
+        .package(url: "https://github.com/ApolloZhu/swift_qrcodejs.git", .upToNextMinor(from: "1.1.1"))
     ],
     exclude: [
         "Tests",

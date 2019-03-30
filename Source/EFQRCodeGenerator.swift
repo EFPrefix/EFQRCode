@@ -780,7 +780,7 @@ public class EFQRCodeGenerator: NSObject {
         var coords = [6]
 
         // divs-2 down to 0, inclusive
-        coords += ( 0...(divs - 2) ).map { i in
+        coords += ( 0...(divs - 2) ).lazy.map { i in
             size - 7 - (divs - 2 - i) * step
         }
         return coords
@@ -796,7 +796,7 @@ public class EFQRCodeGenerator: NSObject {
         return 17 + 4 * version
     }
 
-    // Recommand magnification
+    /// Recommand magnification
     public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
@@ -804,7 +804,7 @@ public class EFQRCodeGenerator: NSObject {
         let finalWatermark = watermark
 
         let baseMagnification = max(1, Int(size / CGFloat(codes.count)))
-        for offset in [0, 1, 2, 3] {
+        for offset in 0 ... 3 {
             let tempMagnification = baseMagnification + offset
             if CGFloat(Int(tempMagnification) * codes.count) >= size {
                 if finalWatermark == nil {
@@ -847,7 +847,7 @@ public class EFQRCodeGenerator: NSObject {
         }
 
         let baseSuitableSize = Int(size)
-        for offset in 0...codes.count {
+        for offset in codes.indices {
             let tempSuitableSize = baseSuitableSize + offset
             if tempSuitableSize % codes.count == 0 {
                 return tempSuitableSize

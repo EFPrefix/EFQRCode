@@ -53,7 +53,7 @@ public extension EFQRCode {
             var frames = source.toCGImages()
 
             var fileProperties = CGImageSourceCopyProperties(source, nil)
-            var framePropertiesArray = ( 0 ..< frames.count ).compactMap { index in
+            var framePropertiesArray = frames.indices.compactMap { index in
                 CGImageSourceCopyPropertiesAtIndex(source, index, nil)
             }
 
