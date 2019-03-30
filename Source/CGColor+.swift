@@ -32,20 +32,20 @@ import CoreImage
 
 public extension CGColor {
     
-    public static func EFWhite() -> CGColor! {
+    static func EFWhite() -> CGColor! {
         return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
     }
     
-    public static func EFBlack() -> CGColor! {
+    static func EFBlack() -> CGColor! {
         return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
     }
 
-    public static func fromRGB(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> CGColor? {
+    static func fromRGB(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> CGColor? {
         return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [red, green, blue, alpha])
     }
 
     #if os(iOS) || os(tvOS) || os(macOS)
-    public func toCIColor() -> CIColor {
+    func toCIColor() -> CIColor {
         return CIColor(cgColor: self)
     }
     #endif

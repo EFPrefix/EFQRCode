@@ -34,12 +34,12 @@ import CoreImage
 public extension UIImage {
 
     #if os(iOS) || os(tvOS)
-    public func toCIImage() -> CIImage? {
+    func toCIImage() -> CIImage? {
         return CIImage(image: self)
     }
     #endif
 
-    public func toCGImage() -> CGImage? {
+    func toCGImage() -> CGImage? {
         #if os(watchOS)
         return cgImage
         #else

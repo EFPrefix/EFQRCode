@@ -605,13 +605,13 @@
 					5282BCAC1FF38F8100DFB36B = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = P3X2725LYY;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					F8111E3219A95C8B0040E7D1 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = P3X2725LYY;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					F8111E3D19A95C8B0040E7D1 = {
@@ -1090,7 +1090,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Debug;
@@ -1120,7 +1120,7 @@
 				PRODUCT_NAME = EFQRCode;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Release;
@@ -1267,7 +1267,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1289,7 +1289,7 @@
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

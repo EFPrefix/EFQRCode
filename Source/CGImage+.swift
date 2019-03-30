@@ -35,7 +35,7 @@ public extension CGImage {
     // Convert UIImage to CIImage
     // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     #if os(iOS) || os(tvOS) || os(macOS)
-    public func toCIImage() -> CIImage {
+    func toCIImage() -> CIImage {
         return CIImage(cgImage: self)
     }
     #endif
@@ -115,7 +115,7 @@ public extension CGImage {
 
     // Binarization
     // http://blog.sina.com.cn/s/blog_6b7ba99d0101js23.html
-    public func binarization(
+    func binarization(
         value: CGFloat = 0.5,
         foregroundColor: CGColor = CGColor.EFWhite(),
         backgroundColor: CGColor = CGColor.EFBlack()

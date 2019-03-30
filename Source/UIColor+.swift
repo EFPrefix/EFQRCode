@@ -30,12 +30,12 @@ import UIKit
 public extension UIColor {
 
     #if os(iOS) || os(tvOS)
-    public func toCIColor() -> CIColor {
+    func toCIColor() -> CIColor {
         return cgColor.toCIColor()
     }
     #endif
 
-    public func toCGColor() -> CGColor {
+    func toCGColor() -> CGColor {
         return cgColor
     }
 }

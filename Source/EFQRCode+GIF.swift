@@ -37,7 +37,7 @@ import MobileCoreServices
 public extension EFQRCode {
 
     private static let framesPerSecond = 24
-    public static var tempResultPath: URL?
+    static var tempResultPath: URL?
 
     private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start: Int, end: Int) {
         var index =  start
@@ -50,7 +50,7 @@ public extension EFQRCode {
         }
     }
     
-    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool = false) -> Data? {
+    static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool = false) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
 
@@ -135,7 +135,7 @@ public extension EFQRCode {
 public extension CGImageSource {
 
     // GIF
-    public func toCGImages() -> [CGImage] {
+    func toCGImages() -> [CGImage] {
         var frames = [CGImage]()
         let gifCount = CGImageSourceGetCount(self)
         for index in 0 ..< gifCount {

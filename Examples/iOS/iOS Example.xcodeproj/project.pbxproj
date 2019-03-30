@@ -734,13 +734,13 @@
 					5282BCEE1FF3AD9100DFB36B = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = P3X2725LYY;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					F8111E0419A951050040E7D1 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = P3X2725LYY;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -1111,7 +1111,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Debug;
@@ -1137,7 +1137,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Release;
@@ -1272,7 +1272,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1293,7 +1293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
