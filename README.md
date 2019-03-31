@@ -262,7 +262,11 @@ This project exists thanks to all the people who contribute. [[Contribute](/CONT
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
 </a>
 
-## Backers
+## Donations
+
+If you think this project has brought you help, you can buy me a cup of coffee. If you like this project and are willing to provide further support for it's development, you can choose to become `Backer` or `Sponsor` in [Open Collective](https://opencollective.com/efqrcode).
+
+### Backers
 
 Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/efqrcode#backer)]
 
@@ -270,7 +274,7 @@ Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com
     <img src="https://opencollective.com/efqrcode/backers.svg?width=890">
 </a>
 
-## Sponsors
+### Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/efqrcode#sponsor)]
 
@@ -305,15 +309,38 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
     <img src="https://opencollective.com/efqrcode/sponsor/9/avatar.svg">
 </a>
 
-## Donations
+Thanks for your support, 🙏
 
-If you think this project has brought you help, you can buy me a cup of coffee. If you like this project and are willing to provide further support for it's development, you can choose to become `Backer` or `Sponsor` in [Open Collective](https://opencollective.com/efqrcode).
+## Apps using EFQRCode
 
-If you don't have a `Open Collective` account or you think it is too complicated, the following way of payment is also supported:
+<div class="space_for_appsight EFQRCode">
+    <a href="https://www.appsight.io/app/%E7%BA%A2%E8%A2%96%E8%AF%BB%E4%B9%A6" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/345/043/media/tiny.png?1551923326" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="红袖读书">
+    </a>
+    <a href="https://www.appsight.io/app/join" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/253/338/media/tiny.png?1530300113" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Join - Medical Communication">
+    </a>
+    <a href="https://www.appsight.io/app/826953" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/154/094/media/tiny.png?1523038915" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Coinomi Wallet">
+    </a>
+    <a href="https://www.appsight.io/app/mymk" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/142/715/media/tiny.png?1522686154" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="myMK">
+    </a>
+    <a href="https://www.appsight.io/app/mume-vpn" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/880/440/media/tiny.png?1507339273" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Mume VPN">
+    </a>
+    <a href="https://www.appsight.io/app/blizzard-battle-net" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/863/841/media/tiny.png?1506955529" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Blizzard Battle.net">
+    </a>
+    <a href="https://www.appsight.io/app/%E5%85%B3%E5%85%AB-%E5%85%A8%E6%B0%91%E5%A8%B1%E4%B9%90%E6%98%8E%E6%98%9F%E5%85%AB%E5%8D%A6%E5%A4%B4%E6%9D%A1%E6%96%B0%E9%97%BB%E8%B5%84%E8%AE%AF%E8%A7%86%E9%A2%91%E7%A4%BE%E5%8C%BA" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/613/969/media/tiny.png?1495232846" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="关八-最懂娱乐圈">
+    </a>
+    <a href="https://www.appsight.io/app/pilot-speech-translator" targer="_blank">
+        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/531/486/media/tiny.png?1491242852" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Pilot Speech Translator">
+    </a>
+</div>
 
-![Donations](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode/Donations.jpg?raw=true)
-
-Thank you for your support, 🙏!
+[More...](https://www.appsight.io/sdk/efqr-code)
 
 ## Contact
 
