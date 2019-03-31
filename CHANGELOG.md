@@ -2,7 +2,7 @@
 
 ---
 
-## [4.5.1](https://github.com/EFPrefix/EFQRCode/releases/tag/4.5.1) (2019-04-xx)
+## [5.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/5.0.0) (2019-03-31)
 
 #### Add
 
@@ -10,12 +10,12 @@
 
 #### Change
 
-* Non-breaking update to Swift 5 (with Podspec in Swift 4.2 to maximize compatibility);
+* Update to Swift 5;
 * Improve internal implementation to allocate memory needed all at once.
 
 #### Remove
 
-* Remove Microsoft App Center SDK.
+* Remove Microsoft App Center SDK from examples.
 
 ---
 

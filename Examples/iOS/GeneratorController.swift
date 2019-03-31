@@ -1312,6 +1312,8 @@ enum CustomPhotoAlbum {
             finish("You can't grant access to the photo library.")
         case .denied:
             finish("You didn't grant access to the photo library.")
+        @unknown default:
+            finish("Unknown result.")
         }
     }
     
