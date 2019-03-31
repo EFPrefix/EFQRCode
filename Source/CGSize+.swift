@@ -28,11 +28,11 @@ import CoreGraphics
 
 public extension CGSize {
 
-    public func widthInt() -> Int {
+    func widthInt() -> Int {
         return Int(width)
     }
 
-    public func heightInt() -> Int {
+    func heightInt() -> Int {
         return Int(height)
     }
 }

@@ -29,11 +29,11 @@ import AppKit
 
 public extension NSColor {
 
-    public func toCIColor() -> CIColor {
+    func toCIColor() -> CIColor {
         return cgColor.toCIColor()
     }
 
-    public func toCGColor() -> CGColor {
+    func toCGColor() -> CGColor {
         return cgColor
     }
 }

@@ -209,7 +209,7 @@ public class EFQRCodeGenerator: NSObject {
         self.size = size
     }
 
-    // Final QRCode image
+    /// Final QRCode image
     public func generate() -> CGImage? {
         if nil == imageQRCode {
             imageQRCode = createImageQRCode()
@@ -286,13 +286,13 @@ public class EFQRCodeGenerator: NSObject {
 
             // Add icon
             if let tryIcon = finalIcon {
-                var finalIconSizeWidth = CGFloat(finalSize.width) * 0.2
-                var finalIconSizeHeight = CGFloat(finalSize.width) * 0.2
+                var finalIconSizeWidth = finalSize.widthCGFloat() * 0.2
+                var finalIconSizeHeight = finalSize.heightCGFloat() * 0.2
                 if let tryFinalIconSize = finalIconSize {
-                    finalIconSizeWidth = CGFloat(tryFinalIconSize.width)
-                    finalIconSizeHeight = CGFloat(tryFinalIconSize.height)
+                    finalIconSizeWidth = tryFinalIconSize.widthCGFloat()
+                    finalIconSizeHeight = tryFinalIconSize.heightCGFloat()
                 }
-                let maxLength = [CGFloat(0.2), 0.3, 0.4, 0.5][inputCorrectionLevel.rawValue] * CGFloat(finalSize.width)
+                let maxLength = [CGFloat(0.2), 0.3, 0.4, 0.5][inputCorrectionLevel.rawValue] * finalSize.widthCGFloat()
                 if finalIconSizeWidth > maxLength {
                     finalIconSizeWidth = maxLength
                     print("Warning: icon width too big, it has been changed.")
@@ -335,14 +335,14 @@ public class EFQRCodeGenerator: NSObject {
 
     private func getForegroundColor() -> CGColor {
         if mode == .binarization {
-            return CGColor.EFBlack()
+            return .EFBlack()
         }
         return foregroundColor
     }
 
     private func getBackgroundColor() -> CGColor {
         if mode == .binarization {
-            return CGColor.EFWhite()
+            return .EFWhite()
         }
         return backgroundColor
     }
@@ -366,14 +366,13 @@ public class EFQRCodeGenerator: NSObject {
         colorBack colorCGBack: CGColor? = nil,
         colorFront colorCGFront: CGColor,
         size: EFIntSize) -> CGImage? {
+        let codeSize = codes.count
         
-        let scaleX = CGFloat(size.width) / CGFloat(codes.count)
-        let scaleY = CGFloat(size.height) / CGFloat(codes.count)
+        let scaleX = size.widthCGFloat() / CGFloat(codeSize)
+        let scaleY = size.heightCGFloat() / CGFloat(codeSize)
         if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
-
-        let codeSize = codes.count
         
         var points = [CGPoint]()
         if let locations = getAlignmentPatternLocations(version: getVersion(size: codeSize - 2)) {
@@ -396,7 +395,7 @@ public class EFQRCodeGenerator: NSObject {
             // Point
             context.setFillColor(colorCGFront)
             for indexY in 0 ..< codeSize {
-                for indexX in 0 ..< codeSize where true == codes[indexX][indexY] {
+                for indexX in 0 ..< codeSize where codes[indexX][indexY] {
                     // CTM-90
                     let indexXCTM = indexY
                     let indexYCTM = codeSize - indexX - 1
@@ -439,13 +438,14 @@ public class EFQRCodeGenerator: NSObject {
         colorBack colorCGBack: CGColor,
         colorFront colorCGFront: CGColor,
         size: EFIntSize) -> CGImage? {
-        let scaleX = CGFloat(size.width) / CGFloat(codes.count)
-        let scaleY = CGFloat(size.height) / CGFloat(codes.count)
+        let codeSize = codes.count
+
+        let scaleX = size.widthCGFloat() / CGFloat(codeSize)
+        let scaleY = size.heightCGFloat() / CGFloat(codeSize)
         if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
 
-        let codeSize = codes.count
         let pointMinOffsetX = scaleX / 3
         let pointMinOffsetY = scaleY / 3
         let pointWidthOriX = scaleX
@@ -475,7 +475,7 @@ public class EFQRCodeGenerator: NSObject {
             // Back point
             context.setFillColor(colorCGBack)
             for indexY in 0 ..< codeSize {
-                for indexX in 0 ..< codeSize where false == codes[indexX][indexY] {
+                for indexX in 0 ..< codeSize where !codes[indexX][indexY] {
                     // CTM-90
                     let indexXCTM = indexY
                     let indexYCTM = codeSize - indexX - 1
@@ -506,7 +506,7 @@ public class EFQRCodeGenerator: NSObject {
             // Front point
             context.setFillColor(colorCGFront)
             for indexY in 0 ..< codeSize {
-                for indexX in 0 ..< codeSize where true == codes[indexX][indexY] {
+                for indexX in 0 ..< codeSize where codes[indexX][indexY] {
                     // CTM-90
                     let indexXCTM = indexY
                     let indexYCTM = codeSize - indexX - 1
@@ -561,7 +561,7 @@ public class EFQRCodeGenerator: NSObject {
         // BGColor
         if let tryColor = colorBack {
             context.setFillColor(tryColor)
-            context.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
+            context.fill(CGRect(origin: .zero, size: size))
         }
         if allowTransparent {
             guard let codes = generateCodes() else {
@@ -573,7 +573,7 @@ public class EFQRCodeGenerator: NSObject {
                 colorFront: getForegroundColor(),
                 size: minSuitableSize
                 ) {
-                context.draw(tryCGImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                context.draw(tryCGImage, in: CGRect(origin: .zero, size: size))
             }
         }
         // Image
@@ -586,7 +586,7 @@ public class EFQRCodeGenerator: NSObject {
             finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: 0)
         case .bottomLeft:
             finalSize = imageSize
-            finalOrigin = CGPoint(x: 0, y: 0)
+            finalOrigin = .zero
         case .bottomRight:
             finalSize = imageSize
             finalOrigin = CGPoint(x: size.width - imageSize.width, y: 0)
@@ -649,6 +649,7 @@ public class EFQRCodeGenerator: NSObject {
         let otherPoints = [CGPoint(x: drawingRect.midX, y: drawingRect.maxY),
                       CGPoint(x: drawingRect.maxX, y: drawingRect.midY),
                       CGPoint(x: drawingRect.midX, y: drawingRect.minY)]
+        
         path.move(to: startPoint)
         for point in otherPoints {
             path.addQuadCurve(to: point, control: controlPoint)
@@ -656,7 +657,6 @@ public class EFQRCodeGenerator: NSObject {
         path.addQuadCurve(to: startPoint, control: controlPoint)
         context.addPath(path)
         context.fillPath()
-
     }
 
     private func drawPoint(context: CGContext, rect: CGRect, isStatic: Bool = false) {
@@ -702,14 +702,10 @@ public class EFQRCodeGenerator: NSObject {
 
     // Get QRCodes from pixels
     private func getCodes(pixels: [[EFUIntPixel]]) -> [[Bool]] {
-        var codes = [[Bool]]()
-        for indexY in 0 ..< pixels.count {
-            codes.append([Bool]())
-            for indexX in 0 ..< pixels[0].count {
+        let codes: [[Bool]] = pixels.indices.map { indexY in
+            pixels[0].indices.map { indexX in
                 let pixel = pixels[indexY][indexX]
-                codes[indexY].append(
-                    pixel.red == 0 && pixel.green == 0 && pixel.blue == 0
-                )
+                return pixel.red == 0 && pixel.green == 0 && pixel.blue == 0
             }
         }
         return codes
@@ -760,13 +756,12 @@ public class EFQRCodeGenerator: NSObject {
         }
 
         // Alignment Patterns
-        for point in APLPoints {
-            if x >= Int(point.x - 2) && x <= Int(point.x + 2) && y >= Int(point.y - 2) && y <= Int(point.y + 2) {
-                return true
-            }
+        return APLPoints.contains { point in
+            x >= Int(point.x - 2)
+                && x <= Int(point.x + 2)
+                && y >= Int(point.y - 2)
+                && y <= Int(point.y + 2)
         }
-
-        return false
     }
 
     // Alignment Pattern Locations
@@ -785,8 +780,8 @@ public class EFQRCodeGenerator: NSObject {
         var coords = [6]
 
         // divs-2 down to 0, inclusive
-        for i in 0...(divs - 2) {
-            coords.append(size - 7 - (divs - 2 - i) * step)
+        coords += ( 0...(divs - 2) ).lazy.map { i in
+            size - 7 - (divs - 2 - i) * step
         }
         return coords
     }
@@ -801,7 +796,7 @@ public class EFQRCodeGenerator: NSObject {
         return 17 + 4 * version
     }
 
-    // Recommand magnification
+    /// Recommand magnification
     public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
@@ -809,7 +804,7 @@ public class EFQRCodeGenerator: NSObject {
         let finalWatermark = watermark
 
         let baseMagnification = max(1, Int(size / CGFloat(codes.count)))
-        for offset in [0, 1, 2, 3] {
+        for offset in 0 ... 3 {
             let tempMagnification = baseMagnification + offset
             if CGFloat(Int(tempMagnification) * codes.count) >= size {
                 if finalWatermark == nil {
@@ -852,7 +847,7 @@ public class EFQRCodeGenerator: NSObject {
         }
 
         let baseSuitableSize = Int(size)
-        for offset in 0...codes.count {
+        for offset in codes.indices {
             let tempSuitableSize = baseSuitableSize + offset
             if tempSuitableSize % codes.count == 0 {
                 return tempSuitableSize

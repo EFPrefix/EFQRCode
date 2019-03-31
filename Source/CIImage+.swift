@@ -29,41 +29,39 @@ import CoreImage
 
 public extension CIImage {
     
-    // Convert CIImage To CGImage
-    // http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    public func toCGImage() -> CGImage? {
+    /// Convert CIImage To CGImage
+    /// http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
+    func toCGImage() -> CGImage? {
         return CIContext().createCGImage(self, from: extent)
     }
     
-    // Size
+    /// Size
     func size() -> CGSize {
-        return self.extent.size
+        return extent.size
     }
     
-    // Get QRCode from image
+    /// Get QRCode from image
     func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
         var result = [String]()
         let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)
         guard let features = detector?.features(in: self) else {
             return result
         }
-        for feature in features {
-            if let tryString = (feature as? CIQRCodeFeature)?.messageString {
-                result.append(tryString)
-            }
+        result = features.compactMap { feature in
+            (feature as? CIQRCodeFeature)?.messageString
         }
         return result
     }
     
-    // Create QR CIImage
+    /// Create QR CIImage
     static func generateQRCode(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
-        let stringData = string.data(using: String.Encoding.utf8)
-        if let qrFilter = CIFilter(name: "CIQRCodeGenerator") {
-            qrFilter.setValue(stringData, forKey: "inputMessage")
-            qrFilter.setValue(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue], forKey: "inputCorrectionLevel")
-            return qrFilter.outputImage
+        let stringData = string.data(using: .utf8)
+        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else {
+            return nil
         }
-        return nil
+        qrFilter.setValue(stringData, forKey: "inputMessage")
+        qrFilter.setValue(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue], forKey: "inputCorrectionLevel")
+        return qrFilter.outputImage
     }
 }
 #endif
