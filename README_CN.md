@@ -53,7 +53,7 @@
 
 EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 `iOS`、`macOS`、`watchOS` 和 `tvOS` 平台，并且支持通过 `CocoaPods`、`Carthage` 和 `Swift Package Manager` 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。
 
-> [English Introduction](/README.md)
+> [English Introduction](https://github.com/EFPrefix/EFQRCode/blob/master/README.md)
 
 ## 概述
 
@@ -91,10 +91,11 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; git submodule updat
 
 ## 环境
 
-| 版本    | 需求                                                             |
-|:--------|:----------------------------------------------------------------|
-| 1.x     | XCode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ |
-| 4.x     | XCode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ |
+| 版本     | 需求                                                             |
+|:--------|:-----------------------------------------------------------------|
+| 1.x     | XCode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+  |
+| 4.x     | XCode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+  |
+| 5.x     | XCode 10.0+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ |
 
 ## 安装
 
@@ -227,7 +228,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 #### 5. 接下来
 
-查看 [用户手册](/USERGUIDE_CN.md) 了解更多细节。
+查看 [用户手册](https://github.com/EFPrefix/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多细节。
 
 您也可以查看下列非官方的使用说明：
 
@@ -249,10 +250,6 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 备注的备注：好用的话可以给个`星星`，蟹蟹，QAQ...
 
-## 其它
-
-`watchOS` 平台的的原始二维码生成代码基于 [swift_qrcodejs](https://github.com/ApolloZhu/swift_qrcodejs) 实现，在此对原作者 [ApolloZhu](https://github.com/ApolloZhu) 所做的工作表示感谢。
-
 ## 其它平台／语言
 
 平台／语言|链接
@@ -265,11 +262,13 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 贡献者
 
-这个项目的存在多亏了所有贡献的人。 [[Contribute](/CONTRIBUTING.md)]
+这个项目的存在多亏了所有贡献的人。 [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/master/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
 </a>
+
+备注：`watchOS` 平台的的原始二维码生成代码基于 [swift_qrcodejs](https://github.com/ApolloZhu/swift_qrcodejs) 实现，在此对原作者 [ApolloZhu](https://github.com/ApolloZhu) 所做的工作表示感谢。
 
 ## 捐赠
 
@@ -322,34 +321,72 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 使用 EFQRCode 的应用
 
-<div class="space_for_appsight EFQRCode">
-    <a href="https://www.appsight.io/app/%E7%BA%A2%E8%A2%96%E8%AF%BB%E4%B9%A6" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/345/043/media/tiny.png?1551923326" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="红袖读书">
-    </a>
-    <a href="https://www.appsight.io/app/join" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/253/338/media/tiny.png?1530300113" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Join - Medical Communication">
-    </a>
-    <a href="https://www.appsight.io/app/826953" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/154/094/media/tiny.png?1523038915" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Coinomi Wallet">
-    </a>
-    <a href="https://www.appsight.io/app/mymk" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/142/715/media/tiny.png?1522686154" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="myMK">
-    </a>
-    <a href="https://www.appsight.io/app/mume-vpn" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/880/440/media/tiny.png?1507339273" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Mume VPN">
-    </a>
-    <a href="https://www.appsight.io/app/blizzard-battle-net" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/863/841/media/tiny.png?1506955529" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Blizzard Battle.net">
-    </a>
-    <a href="https://www.appsight.io/app/%E5%85%B3%E5%85%AB-%E5%85%A8%E6%B0%91%E5%A8%B1%E4%B9%90%E6%98%8E%E6%98%9F%E5%85%AB%E5%8D%A6%E5%A4%B4%E6%9D%A1%E6%96%B0%E9%97%BB%E8%B5%84%E8%AE%AF%E8%A7%86%E9%A2%91%E7%A4%BE%E5%8C%BA" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/613/969/media/tiny.png?1495232846" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="关八-最懂娱乐圈">
-    </a>
-    <a href="https://www.appsight.io/app/pilot-speech-translator" targer="_blank">
-        <img src="https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/531/486/media/tiny.png?1491242852" title="" style="margin: 2px;" data-toggle="tooltip" data-placement="top" data-original-title="Pilot Speech Translator">
-    </a>
-</div>
-
-[更多...](https://www.appsight.io/sdk/efqr-code)
+<table>
+    <tr>
+        <td>
+            <a href='https://www.appsight.io/app/blizzard-battle-net' title='Blizzard Battle.net'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/863/841/media/small.png?1506955529'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/brushfire' title='Brushfire'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/349/312/media/small.png?1552274504'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/826953' title='Coinomi Wallet'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/154/094/media/small.png?1523038915'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/join' title='Join - Medical Communication'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/253/338/media/small.png?1530300113'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/mume-vpn' title='Mume VPN'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/880/440/media/small.png?1507339273'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/mymk' title='myMK'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/142/715/media/small.png?1522686154'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/pilot-speech-translator' title='Pilot Speech Translator'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/531/486/media/small.png?1491242852'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/promgirl-shop' title='PromGirl Shop'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/327/819/media/small.png?1547953350'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/wifi-ch%C3%B9a' title='WiFi Chùa'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/282/599/media/small.png?1479441667'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/yamibuy-food-drinks-beauty-health-li' title='Yamibuy-Food&amp; Drinks, Beauty, Health, Li'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/324/148/media/small.png?1546987889'>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://www.appsight.io/app/%E5%85%B3%E5%85%AB-%E5%85%A8%E6%B0%91%E5%A8%B1%E4%B9%90%E6%98%8E%E6%98%9F%E5%85%AB%E5%8D%A6%E5%A4%B4%E6%9D%A1%E6%96%B0%E9%97%BB%E8%B5%84%E8%AE%AF%E8%A7%86%E9%A2%91%E7%A4%BE%E5%8C%BA' title='关八-最懂娱乐圈'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/613/969/media/small.png?1495232846'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/%E7%BA%A2%E8%A2%96%E8%AF%BB%E4%B9%A6' title='红袖读书'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/345/043/media/small.png?1551923326'>
+            </a>
+        </td>
+    </tr>
+</table>
 
 ## 联系
 
