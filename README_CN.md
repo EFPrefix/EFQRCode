@@ -81,7 +81,7 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 1. 利用 `git clone` 命令下载本仓库；
 2. 切换到仓库根目录下，执行 `git submodule update --init --recursive` 命令获取所有 submodule；
-3. `EFQRCode.xcworkspace` 工程中包含了所有的示例程序，用 XCode 打开它，选择对应平台 target 编译即可。
+3. `EFQRCode.xcworkspace` 工程中包含了所有的示例程序，用 Xcode 打开它，选择对应平台 target 编译即可。
 
 或执行以下命令：
 
@@ -93,9 +93,9 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; git submodule updat
 
 | 版本     | 需求                                                             |
 |:--------|:-----------------------------------------------------------------|
-| 1.x     | XCode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+  |
-| 4.x     | XCode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+  |
-| 5.x     | XCode 10.0+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ |
+| 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+  |
+| 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+  |
+| 5.x     | Xcode 10.0+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ |
 
 ## 安装
 
