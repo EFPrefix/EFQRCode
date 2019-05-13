@@ -31,8 +31,8 @@ import Foundation
 import CoreImage
 #endif
 
-@objc public enum EFQRCodeMode: Int {
-    case none           = 0
-    case grayscale      = 1
-    case binarization   = 2
+public enum EFQRCodeMode {
+    case none
+    case grayscale
+    case binarization(threshold: CGFloat)
 }

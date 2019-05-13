@@ -239,13 +239,17 @@ extension GeneratorController {
 
         let generator = EFQRCodeGenerator(content: content, size: size)
         generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
-        generator.setMode(mode: mode)
+        switch mode {
+        case .binarization(_):
+            generator.setMode(mode: EFQRCodeMode.binarization(threshold: binarizationThreshold))
+        default:
+            generator.setMode(mode: mode)
+        }
         generator.setMagnification(magnification: magnification)
         generator.setColors(backgroundColor: CIColor(color: backColor), foregroundColor: CIColor(color: frontColor))
         generator.setIcon(icon: UIImage2CGimage(icon), size: iconSize)
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowTransparent)
-        generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: pointShape)
 
         switch watermark {
@@ -757,9 +761,8 @@ extension GeneratorController {
                 UIAlertAction(title: modeName, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    if let mode = EFQRCodeMode(rawValue: index) {
-                        self.mode = mode
-                    }
+                    let mode: EFQRCodeMode = [EFQRCodeMode.none, EFQRCodeMode.grayscale, EFQRCodeMode.binarization(threshold: 0.5)][index]
+                    self.mode = mode
                     self.refresh()
                 }
             )
@@ -886,9 +889,19 @@ extension GeneratorController {
             "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
             "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"
             ][watermarkMode.rawValue]
+        let modeIndex: Int = {
+            switch mode {
+            case .none:
+                return 0
+            case .grayscale:
+                return 1
+            default:
+                return 2
+            }
+        }()
         let detailArray = [
             "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
-            "\(["none", "grayscale", "binarization"][mode.rawValue])",
+            "\(["none", "grayscale", "binarization"][modeIndex])",
             "\(size.width)x\(size.height)",
             magnificationString,
             "", // backgroundColor

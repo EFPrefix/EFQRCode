@@ -55,7 +55,6 @@ public class EFQRCode: NSObject {
         allowTransparent: Bool = true,
         pointShape: EFPointShape = .square,
         mode: EFQRCodeMode = .none,
-        binarizationThreshold: CGFloat = 0.5,
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
         ) -> CGImage? {
@@ -68,7 +67,6 @@ public class EFQRCode: NSObject {
         generator.setAllowTransparent(allowTransparent: allowTransparent)
         generator.setPointShape(pointShape: pointShape)
         generator.setMode(mode: mode)
-        generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setMagnification(magnification: magnification)
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         return generator.generate()
@@ -87,7 +85,6 @@ public class EFQRCode: NSObject {
         allowTransparent: Bool = true,
         pointShape: EFPointShape = .square,
         mode: EFQRCodeMode = .none,
-        binarizationThreshold: CGFloat = 0.5,
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
         ) -> Data? {
@@ -100,7 +97,6 @@ public class EFQRCode: NSObject {
         generator.setAllowTransparent(allowTransparent: allowTransparent)
         generator.setPointShape(pointShape: pointShape)
         generator.setMode(mode: mode)
-        generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setMagnification(magnification: magnification)
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         return EFQRCode.generateWithGIF(data: watermark, generator: generator)

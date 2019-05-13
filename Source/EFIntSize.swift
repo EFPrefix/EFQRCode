@@ -39,6 +39,11 @@ public class EFIntSize: NSObject {
         self.width = width
         self.height = height
     }
+    
+    public init(size: CGSize) {
+        self.width = Int(size.width)
+        self.height = Int(size.height)
+    }
 
     public func toCGSize() -> CGSize {
         return CGSize(width: width, height: height)

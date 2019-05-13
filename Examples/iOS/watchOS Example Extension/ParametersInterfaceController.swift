@@ -72,7 +72,8 @@ class ParametersInterfaceController: WKInterfaceController {
         }
     }
     @IBAction func pickedMode(_ value: Int) {
-        selectedMode = EFQRCodeMode(rawValue: value) ?? selectedMode
+        let mode: EFQRCodeMode = [EFQRCodeMode.none, EFQRCodeMode.grayscale, EFQRCodeMode.binarization(threshold: 0.5)][value]
+        selectedMode = mode
     }
     
     private var width = 1024
@@ -326,13 +327,18 @@ class ParametersInterfaceController: WKInterfaceController {
 
         let generator = EFQRCodeGenerator(content: link, size: EFIntSize(width: width, height: height))
         generator.setInputCorrectionLevel(inputCorrectionLevel: correctionLevel)
-        generator.setMode(mode: selectedMode)
+        switch selectedMode {
+        case .binarization(_):
+            let mode = EFQRCodeMode.binarization(threshold: binarizationThreshold)
+            generator.setMode(mode: mode)
+        default:
+            generator.setMode(mode: selectedMode)
+        }
         generator.setMagnification(magnification: EFIntSize(width: magnificationWidth, height: magnificationHeight))
         generator.setColors(backgroundColor: backgroundColor.toCGColor(), foregroundColor: foregroundColor.toCGColor())
         generator.setIcon(icon: icon?.toCGImage(), size: EFIntSize(width: iconWidth, height: iconHeight))
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowsTransparent)
-        generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: pointShape)
         
         switch watermark {

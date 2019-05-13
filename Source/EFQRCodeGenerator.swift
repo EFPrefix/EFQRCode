@@ -185,16 +185,6 @@ public class EFQRCodeGenerator: NSObject {
         self.pointShape = pointShape
     }
 
-    // Threshold for binarization (Only for mode binarization).
-    private var binarizationThreshold: CGFloat = 0.5 {
-        didSet {
-            imageQRCode = nil
-        }
-    }
-    public func setBinarizationThreshold(binarizationThreshold: CGFloat) {
-        self.binarizationThreshold = binarizationThreshold
-    }
-
     // Cache
     private var imageCodes: [[Bool]]?
     private var imageQRCode: CGImage?
@@ -318,9 +308,9 @@ public class EFQRCodeGenerator: NSObject {
             if let tryModeImage = result?.grayscale() {
                 result = tryModeImage
             }
-        case .binarization:
+        case .binarization(let threshold):
             if let tryModeImage = result?.binarization(
-                value: binarizationThreshold,
+                value: threshold,
                 foregroundColor: foregroundColor,
                 backgroundColor: backgroundColor
                 ) {
@@ -334,17 +324,21 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     private func getForegroundColor() -> CGColor {
-        if mode == .binarization {
+        switch mode {
+        case .binarization(_):
             return .EFBlack()
+        default:
+            return foregroundColor
         }
-        return foregroundColor
     }
 
     private func getBackgroundColor() -> CGColor {
-        if mode == .binarization {
+        switch mode {
+        case .binarization(_):
             return .EFWhite()
+        default:
+            return backgroundColor
         }
-        return backgroundColor
     }
 
     // Create Colorful QR Image
