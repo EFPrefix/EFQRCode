@@ -151,9 +151,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         #if os(iOS)
-        let text = ["Recognizer", "Generator"][indexPath.row]
+        let text = [NSLocalizedString("Recognizer", comment: "Menu option to QR code scanning page"),
+                    NSLocalizedString("Generator", comment: "Menu option to QR code generation page")][indexPath.row]
         #else
-        let text = "Generator"
+        let text = NSLocalizedString("Generator", comment: "Menu option to QR code generation page")
         #endif
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.textColor = .white
