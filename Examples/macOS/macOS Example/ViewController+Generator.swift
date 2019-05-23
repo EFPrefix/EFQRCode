@@ -54,15 +54,15 @@ extension ViewController: NSAlertDelegate {
 
         let tryCentredStyle = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
         tryCentredStyle?.alignment = .left
-        let centredStyle = tryCentredStyle ?? NSMutableParagraphStyle.default
+        let centredStyle = tryCentredStyle ?? .default
 
         generatorViewSave.wantsLayer = true
         generatorViewSave.layer?.cornerRadius = 5
         generatorViewSave.bezelStyle = .regularSquare
         generatorViewSave.attributedTitle = NSMutableAttributedString(
             string: "Save", attributes: [
-                NSAttributedString.Key.foregroundColor: NSColor.theme,
-                NSAttributedString.Key.paragraphStyle: centredStyle
+                .foregroundColor: NSColor.theme,
+                .paragraphStyle: centredStyle
             ]
         )
         generatorViewSave.action = #selector(generatorViewSaveClicked)
@@ -182,13 +182,17 @@ extension ViewController: NSAlertDelegate {
 
         let generator = EFQRCodeGenerator(content: content, size: size)
         generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
-        generator.setMode(mode: mode)
+        switch mode {
+        case .binarization:
+            generator.setMode(mode: .binarization(threshold: binarizationThreshold))
+        default:
+            generator.setMode(mode: mode)
+        }
         generator.setMagnification(magnification: magnification)
         generator.setColors(backgroundColor: backColor.toCIColor(), foregroundColor: frontColor.toCIColor())
         generator.setIcon(icon: icon?.toCGImage(), size: iconSize)
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowTransparent)
-        generator.setBinarizationThreshold(binarizationThreshold: binarizationThreshold)
         generator.setPointShape(pointShape: pointShape)
 
         switch watermark {
@@ -258,9 +262,19 @@ extension ViewController: NSAlertDelegate {
             "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
             "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"
             ][watermarkMode.rawValue]
+        let modeIndex: Int = {
+            switch mode {
+            case .none:
+                return 0
+            case .grayscale:
+                return 1
+            default:
+                return 2
+            }
+        }()
         let detailArray = [
             "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
-            "\(["none", "grayscale", "binarization"][mode.rawValue])",
+            "\(["none", "grayscale", "binarization"][modeIndex])",
             "\(size.width)x\(size.height)",
             magnificationString,
             "", // backgroundColor
@@ -352,23 +366,14 @@ extension ViewController: NSAlertDelegate {
     func chooseInputCorrectionLevel() {
         choose("inputCorrectionLevel", from: "L", "M", "Q", "H") {
             (self, response) in
-            self.inputCorrectionLevel = [
-                EFInputCorrectionLevel.l,
-                EFInputCorrectionLevel.m,
-                EFInputCorrectionLevel.q,
-                EFInputCorrectionLevel.h
-            ][response.rawValue - 1000]
+            self.inputCorrectionLevel = [.l, .m, .q, .h][response.rawValue - 1000]
         }
     }
 
     func chooseMode() {
         choose("mode", from: "none", "grayscale", "binarization") {
             (self, response) in
-            self.mode = [
-                EFQRCodeMode.none,
-                EFQRCodeMode.grayscale,
-                EFQRCodeMode.binarization
-            ][response.rawValue - 1000]
+            self.mode = [.none, .grayscale, .binarization(threshold: 0.5)][response.rawValue - 1000]
         }
     }
 
@@ -435,18 +440,9 @@ extension ViewController: NSAlertDelegate {
                "topLeft", "topRight", "bottomLeft", "bottomRight"
         ) { (self, response) in
             self.watermarkMode = [
-                EFWatermarkMode.scaleToFill,
-                EFWatermarkMode.scaleAspectFit,
-                EFWatermarkMode.scaleAspectFill,
-                EFWatermarkMode.center,
-                EFWatermarkMode.top,
-                EFWatermarkMode.bottom,
-                EFWatermarkMode.left,
-                EFWatermarkMode.right,
-                EFWatermarkMode.topLeft,
-                EFWatermarkMode.topRight,
-                EFWatermarkMode.bottomLeft,
-                EFWatermarkMode.bottomRight
+                .scaleToFill, .scaleAspectFit, .scaleAspectFill,
+                .center, .top, .bottom, .left, .right,
+                .topLeft, .topRight, .bottomLeft, .bottomRight
             ][response.rawValue - 1000]
         }
     }
@@ -479,7 +475,7 @@ extension ViewController: NSAlertDelegate {
     func chooseShape() {
         choose("shape", from: "square", "circle", "diamond") {
             (self, response) in
-            self.pointShape = [EFPointShape.square, EFPointShape.circle, EFPointShape.diamond][response.rawValue - 1000]
+            self.pointShape = [.square, .circle, .diamond][response.rawValue - 1000]
         }
     }
     

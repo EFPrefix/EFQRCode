@@ -194,7 +194,7 @@ public class EFQRCodeGenerator: NSObject {
     public init(
         content: String,
         size: EFIntSize = EFIntSize(width: 256, height: 256)
-        ) {
+    ) {
         self.content = content
         self.size = size
     }
@@ -225,7 +225,8 @@ public class EFQRCodeGenerator: NSObject {
         // If magnification is not nil, reset finalSize
         if let tryMagnification = magnification {
             finalSize = EFIntSize(
-                width: tryMagnification.width * codes.count, height: tryMagnification.height * codes.count
+                width: tryMagnification.width * codes.count,
+                height: tryMagnification.height * codes.count
             )
         }
 
@@ -253,8 +254,7 @@ public class EFQRCodeGenerator: NSObject {
                     codes: codes,
                     colorBack: finalBackgroundColor,
                     colorFront: finalForegroundColor,
-                    size: minSuitableSize
-                    ) {
+                    size: minSuitableSize) {
                     context.draw(tryFrontImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
                 }
             } else {
@@ -268,8 +268,7 @@ public class EFQRCodeGenerator: NSObject {
                     codes: codes,
                     colorBack: finalBackgroundColor,
                     colorFront: finalForegroundColor,
-                    size: minSuitableSize
-                    ) {
+                    size: minSuitableSize) {
                     context.draw(tryImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
                 }
             }
@@ -312,8 +311,7 @@ public class EFQRCodeGenerator: NSObject {
             if let tryModeImage = result?.binarization(
                 value: threshold,
                 foregroundColor: foregroundColor,
-                backgroundColor: backgroundColor
-                ) {
+                backgroundColor: backgroundColor) {
                 result = tryModeImage
             }
         case .none:
@@ -325,7 +323,7 @@ public class EFQRCodeGenerator: NSObject {
 
     private func getForegroundColor() -> CGColor {
         switch mode {
-        case .binarization(_):
+        case .binarization:
             return .EFBlack()
         default:
             return foregroundColor
@@ -334,7 +332,7 @@ public class EFQRCodeGenerator: NSObject {
 
     private func getBackgroundColor() -> CGColor {
         switch mode {
-        case .binarization(_):
+        case .binarization:
             return .EFWhite()
         default:
             return backgroundColor

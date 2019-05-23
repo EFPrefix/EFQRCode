@@ -231,7 +231,7 @@ extension GeneratorController {
     @objc func createCode() {
         // Lock user activity
         createButton.isEnabled = false
-        // Recove user activity
+        // Recover user activity
         defer { createButton.isEnabled = true }
 
         let content = textView.text ?? ""
@@ -240,8 +240,8 @@ extension GeneratorController {
         let generator = EFQRCodeGenerator(content: content, size: size)
         generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
         switch mode {
-        case .binarization(_):
-            generator.setMode(mode: EFQRCodeMode.binarization(threshold: binarizationThreshold))
+        case .binarization:
+            generator.setMode(mode: .binarization(threshold: binarizationThreshold))
         default:
             generator.setMode(mode: mode)
         }
@@ -315,16 +315,14 @@ extension GeneratorController {
             title: "Size", message: nil, preferredStyle: .alert
         )
         alert.addTextField {
-            [weak self] (textField) in
-            guard let self = self else { return }
+            [width = size.width] (textField) in
             textField.placeholder = "Width"
-            textField.text = "\(self.size.width)"
+            textField.text = "\(width)"
         }
         alert.addTextField {
-            [weak self] (textField) in
-            guard let self = self else { return }
+            [height = size.height] (textField) in
             textField.placeholder = "Height"
-            textField.text = "\(self.size.height)"
+            textField.text = "\(height)"
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default) {
             [weak self] _ in
@@ -342,7 +340,9 @@ extension GeneratorController {
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             self.present(alert, animated: true)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel)
+        )
         present(alert, animated: true)
     }
 
@@ -352,16 +352,14 @@ extension GeneratorController {
                 title: "Magnification", message: nil, preferredStyle: .alert
             )
             alert.addTextField {
-                [weak self] (textField) in
-                guard let self = self else { return }
+                [magnification = magnification] (textField) in
                 textField.placeholder = "Width"
-                textField.text = self.magnification == nil ? "" : "\(self.magnification?.width ?? 0)"
+                textField.text = magnification.map { "\($0.width)" } ?? ""
             }
             alert.addTextField {
-                [weak self] (textField) in
-                guard let self = self else { return }
+                [magnification = magnification] (textField) in
                 textField.placeholder = "Height"
-                textField.text = self.magnification == nil ? "" : "\(self.magnification?.height ?? 0)"
+                textField.text = magnification.map { "\($0.height)" } ?? ""
             }
             alert.addAction(UIAlertAction(title: "OK", style: .default) {
                 [weak self] _ in
@@ -552,16 +550,14 @@ extension GeneratorController {
                 title: "IconSize", message: nil, preferredStyle: .alert
             )
             alert.addTextField {
-                [weak self] (textField) in
-                guard let self = self else { return }
+                [iconSize = iconSize] (textField) in
                 textField.placeholder = "Width"
-                textField.text = self.iconSize == nil ? "" : "\(self.iconSize?.width ?? 0)"
+                textField.text = iconSize.map { "\($0.width)" } ?? ""
             }
             alert.addTextField {
-                [weak self] (textField) in
-                guard let self = self else { return }
+                [iconSize = iconSize] (textField) in
                 textField.placeholder = "Height"
-                textField.text = self.iconSize == nil ? "" : "\(self.iconSize?.height ?? 0)"
+                textField.text = iconSize.map { "\($0.height)" } ?? ""
             }
             alert.addAction(UIAlertAction(title: "OK", style: .default) {
                 [weak self] _ in
@@ -761,8 +757,7 @@ extension GeneratorController {
                 UIAlertAction(title: modeName, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    let mode: EFQRCodeMode = [EFQRCodeMode.none, EFQRCodeMode.grayscale, EFQRCodeMode.binarization(threshold: 0.5)][index]
-                    self.mode = mode
+                    self.mode = [.none, .grayscale, .binarization(threshold: 0.5)][index]
                     self.refresh()
                 }
             )

@@ -72,8 +72,7 @@ class ParametersInterfaceController: WKInterfaceController {
         }
     }
     @IBAction func pickedMode(_ value: Int) {
-        let mode: EFQRCodeMode = [EFQRCodeMode.none, EFQRCodeMode.grayscale, EFQRCodeMode.binarization(threshold: 0.5)][value]
-        selectedMode = mode
+        selectedMode = [.none, .grayscale, .binarization(threshold: 0.5)][value]
     }
     
     private var width = 1024
@@ -328,9 +327,8 @@ class ParametersInterfaceController: WKInterfaceController {
         let generator = EFQRCodeGenerator(content: link, size: EFIntSize(width: width, height: height))
         generator.setInputCorrectionLevel(inputCorrectionLevel: correctionLevel)
         switch selectedMode {
-        case .binarization(_):
-            let mode = EFQRCodeMode.binarization(threshold: binarizationThreshold)
-            generator.setMode(mode: mode)
+        case .binarization:
+            generator.setMode(mode: .binarization(threshold: binarizationThreshold))
         default:
             generator.setMode(mode: selectedMode)
         }
