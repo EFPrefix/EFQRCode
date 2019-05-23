@@ -35,6 +35,12 @@ script:
   - xcodebuild -version
   - xcodebuild -showsdks
 
+  # Fix known issues of Xcode 10.2.1
+  - if [ $RUN_TESTS == "YES" ]; then
+      sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 9.3.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift'
+      sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 9.0.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift'
+    fi
+
   # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
       xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES build test | xcpretty;
