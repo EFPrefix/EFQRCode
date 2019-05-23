@@ -37,6 +37,6 @@ class VersionDisplayInterfaceController: WKInterfaceController {
         }
     }
     @IBAction func showUnitTests() {
-        pushController(withName: "Tests", context: nil)
+        pushController(withName: NSLocalizedString("Tests", comment: "Menu to unit tests that ensures EFQRCode works"), context: nil)
     }
 }

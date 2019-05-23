@@ -51,6 +51,7 @@
 		1259BAAB219088D400E41FCD /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1259BA88219088D400E41FCD /* UILayoutSupport+Extensions.swift */; };
 		12664E8D1FA9B5BD00D56500 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E8C1FA9B5BD00D56500 /* CGFloat+.swift */; };
 		12A22D0222106B340063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22D0122106B340063EE1F /* StorageUserDefaults.swift */; };
+		528EFA8922965AE50026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA8222965AE50026663C /* Localized.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +174,7 @@
 		1259BA88219088D400E41FCD /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "../../3rd/SnapKit/Source/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		12664E8C1FA9B5BD00D56500 /* CGFloat+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+.swift"; path = "../../iOS/CGFloat+.swift"; sourceTree = "<group>"; };
 		12A22D0122106B340063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageUserDefaults.swift; path = ../../iOS/StorageUserDefaults.swift; sourceTree = "<group>"; };
+		528EFA8222965AE50026663C /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Localized.swift; path = ../../iOS/Localized.swift; sourceTree = "<group>"; };
 		52B3BFCB229625980035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				12A22D0122106B340063EE1F /* StorageUserDefaults.swift */,
+				528EFA8222965AE50026663C /* Localized.swift */,
 			);
 			name = Unit;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				1259BA98219088D400E41FCD /* ConstraintView+Extensions.swift in Sources */,
 				1215B7381EACA23E00DC5A86 /* AppDelegate.swift in Sources */,
 				1259BAA5219088D400E41FCD /* ConstraintOffsetTarget.swift in Sources */,
+				528EFA8922965AE50026663C /* Localized.swift in Sources */,
 				1259BAA2219088D400E41FCD /* ConstraintLayoutGuide.swift in Sources */,
 				1259BA94219088D400E41FCD /* Debugging.swift in Sources */,
 				1215B7341EAC9FD300DC5A86 /* ViewController.swift in Sources */,
