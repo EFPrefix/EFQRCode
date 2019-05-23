@@ -1,0 +1,138 @@
+
+/* Class = "WKInterfaceButton"; title = "3"; ObjectID = "0De-13-4Ar"; */
+"0De-13-4Ar.title" = "3";
+
+/* Class = "WKInterfaceLabel"; text = "Icon"; ObjectID = "0Ot-Gs-CxN"; */
+"0Ot-Gs-CxN.text" = "Icon";
+
+/* Class = "WKInterfaceButton"; title = "0"; ObjectID = "0tP-44-GIh"; */
+"0tP-44-GIh.title" = "0";
+
+/* Class = "WKInterfaceLabel"; text = "Point Shape"; ObjectID = "3Y5-pz-aKM"; */
+"3Y5-pz-aKM.text" = "Point Shape";
+
+/* Class = "WKInterfaceButton"; title = "2"; ObjectID = "6Jy-pE-fYR"; */
+"6Jy-pE-fYR.title" = "2";
+
+/* Class = "WKInterfaceLabel"; text = "Magnification\nWidth & Height"; ObjectID = "8j4-XA-kpD"; */
+"8j4-XA-kpD.text" = "Magnification\nWidth & Height";
+
+/* Class = "WKInterfaceLabel"; text = "Mode"; ObjectID = "A9e-1b-MIh"; */
+"A9e-1b-MIh.text" = "Mode";
+
+/* Class = "WKInterfaceButton"; title = "✅"; ObjectID = "ASC-4U-S90"; */
+"ASC-4U-S90.title" = "✅";
+
+/* Class = "WKInterfaceLabel"; text = "Binarization Threshold"; ObjectID = "BcI-AJ-ri0"; */
+"BcI-AJ-ri0.text" = "Binarization Threshold";
+
+/* Class = "WKInterfaceButton"; title = "128"; ObjectID = "BcR-4r-XTb"; */
+"BcR-4r-XTb.title" = "128";
+
+/* Class = "WKInterfaceButton"; title = "⏪"; ObjectID = "BeC-AW-Gbi"; */
+"BeC-AW-Gbi.title" = "⏪";
+
+/* Class = "WKInterfaceLabel"; text = "Width & Height"; ObjectID = "CJT-KQ-1aL"; */
+"CJT-KQ-1aL.text" = "Width & Height";
+
+/* Class = "WKInterfaceButton"; title = "128"; ObjectID = "Cnh-dl-KBY"; */
+"Cnh-dl-KBY.title" = "128";
+
+/* Class = "WKInterfaceButton"; title = "6"; ObjectID = "Eg8-dd-0gI"; */
+"Eg8-dd-0gI.title" = "6";
+
+/* Class = "WKInterfaceButton"; title = "Generate"; ObjectID = "FcX-tR-c93"; */
+"FcX-tR-c93.title" = "Generate";
+
+/* Class = "WKInterfaceLabel"; text = "EFQRCode"; ObjectID = "Fro-dS-7yC"; */
+"Fro-dS-7yC.text" = "EFQRCode";
+
+/* Class = "WKInterfaceButton"; title = "9"; ObjectID = "HHX-1E-4RW"; */
+"HHX-1E-4RW.title" = "9";
+
+/* Class = "WKInterfaceLabel"; text = "Testcase"; ObjectID = "HnN-v1-r3j"; */
+"HnN-v1-r3j.text" = "Testcase";
+
+/* Class = "WKInterfaceButton"; title = "8"; ObjectID = "N3g-aP-wFy"; */
+"N3g-aP-wFy.title" = "8";
+
+/* Class = "WKInterfaceLabel"; text = "Watermark Mode"; ObjectID = "N8w-sb-2bc"; */
+"N8w-sb-2bc.text" = "Watermark Mode";
+
+/* Class = "WKInterfaceSwitch"; title = "Allow Transparent"; ObjectID = "N9p-sO-zfZ"; */
+"N9p-sO-zfZ.title" = "Allow Transparent";
+
+/* Class = "WKInterfaceButton"; title = "5"; ObjectID = "OXL-Cy-cMP"; */
+"OXL-Cy-cMP.title" = "5";
+
+/* Class = "WKInterfaceButton"; title = "9"; ObjectID = "U6A-Ai-ZgN"; */
+"U6A-Ai-ZgN.title" = "9";
+
+/* Class = "WKInterfaceButton"; title = "Generate"; ObjectID = "UDk-vC-rXj"; */
+"UDk-vC-rXj.title" = "Generate";
+
+/* Class = "WKInterfaceButton"; title = "1024"; ObjectID = "XF9-rQ-Phv"; */
+"XF9-rQ-Phv.title" = "1024";
+
+/* Class = "WKInterfaceLabel"; text = "Testing"; ObjectID = "Z2h-16-bKr"; */
+"Z2h-16-bKr.text" = "Testing";
+
+/* Class = "WKInterfaceLabel"; text = "Input Correction Level"; ObjectID = "a4t-ug-YcG"; */
+"a4t-ug-YcG.text" = "Input Correction Level";
+
+/* Class = "WKInterfaceController"; title = "Unit Tests"; ObjectID = "bqn-P8-jul"; */
+"bqn-P8-jul.title" = "Unit Tests";
+
+/* Class = "WKInterfaceButton"; title = "7"; ObjectID = "brk-IV-KtD"; */
+"brk-IV-KtD.title" = "7";
+
+/* Class = "WKInterfaceLabel"; text = "Icon Width & Height"; ObjectID = "c96-UO-I1i"; */
+"c96-UO-I1i.text" = "Icon Width & Height";
+
+/* Class = "WKInterfaceButton"; title = "9"; ObjectID = "dIX-c1-Atv"; */
+"dIX-c1-Atv.title" = "9";
+
+/* Class = "WKInterfaceMenuItem"; title = "Unit Test"; ObjectID = "dxU-PU-Rmi"; */
+"dxU-PU-Rmi.title" = "Unit Test";
+
+/* Class = "WKInterfaceButton"; title = "1024"; ObjectID = "g5f-Nh-PEu"; */
+"g5f-Nh-PEu.title" = "1024";
+
+/* Class = "WKInterfaceButton"; title = "Change Content"; ObjectID = "hTq-XK-AZe"; */
+"hTq-XK-AZe.title" = "Change Content";
+
+/* Class = "WKInterfaceLabel"; text = "0"; ObjectID = "kqt-Cp-biJ"; */
+"kqt-Cp-biJ.text" = "0";
+
+/* Class = "WKInterfaceLabel"; text = "Ver."; ObjectID = "mRZ-AU-Ngn"; */
+"mRZ-AU-Ngn.text" = "Ver.";
+
+/* Class = "WKInterfaceLabel"; text = "Foreground Color"; ObjectID = "ngi-5C-3ro"; */
+"ngi-5C-3ro.text" = "Foreground Color";
+
+/* Class = "WKInterfaceButton"; title = "Generator"; ObjectID = "oDI-5t-GBk"; */
+"oDI-5t-GBk.title" = "Generator";
+
+/* Class = "WKInterfaceLabel"; text = "github.com/EFPrefix/EFQRCode"; ObjectID = "pSv-yw-I6b"; */
+"pSv-yw-I6b.text" = "github.com/EFPrefix/EFQRCode";
+
+/* Class = "WKInterfaceLabel"; text = "Foreground Point Offset"; ObjectID = "qcK-9t-ZZl"; */
+"qcK-9t-ZZl.text" = "Foreground Point Offset";
+
+/* Class = "WKInterfaceButton"; title = "1"; ObjectID = "rw2-1Q-OeY"; */
+"rw2-1Q-OeY.title" = "1";
+
+/* Class = "WKInterfaceLabel"; text = "github.com/EFPrefix/EFQRCode"; ObjectID = "sa0-VE-eaV"; */
+"sa0-VE-eaV.text" = "github.com/EFPrefix/EFQRCode";
+
+/* Class = "WKInterfaceButton"; title = "4"; ObjectID = "sf8-cl-KBf"; */
+"sf8-cl-KBf.title" = "4";
+
+/* Class = "WKInterfaceLabel"; text = "Watermark"; ObjectID = "vTy-54-msA"; */
+"vTy-54-msA.text" = "Watermark";
+
+/* Class = "WKInterfaceLabel"; text = "Background Color"; ObjectID = "wY4-5P-rXd"; */
+"wY4-5P-rXd.text" = "Background Color";
+
+/* Class = "WKInterfaceController"; title = "EFQRCode"; ObjectID = "x7r-oY-9um"; */
+"x7r-oY-9um.title" = "EFQRCode";

@@ -352,6 +352,8 @@
 		5282BD311FF4764100DFB36B /* UnitTestInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestInterfaceController.swift; sourceTree = "<group>"; };
 		5282BD381FF480EB00DFB36B /* UnitTestcaseRowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestcaseRowType.swift; sourceTree = "<group>"; };
 		5282BD3B1FF4819200DFB36B /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		52B3BFB6229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Resources/zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		52B3BFB7229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
 		F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -728,6 +730,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = F8111DFC19A951050040E7D1;
 			productRefGroup = F8111E0619A951050040E7D1 /* Products */;
@@ -1000,6 +1003,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				120B77FE1EA395EC00D34440 /* Base */,
+				52B3BFB6229625760035D5EC /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1008,6 +1012,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5282BCE61FF3AD9000DFB36B /* Base */,
+				52B3BFB7229625760035D5EC /* zh-Hans */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";

@@ -173,6 +173,7 @@
 		1259BA88219088D400E41FCD /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "../../3rd/SnapKit/Source/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		12664E8C1FA9B5BD00D56500 /* CGFloat+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+.swift"; path = "../../iOS/CGFloat+.swift"; sourceTree = "<group>"; };
 		12A22D0122106B340063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageUserDefaults.swift; path = ../../iOS/StorageUserDefaults.swift; sourceTree = "<group>"; };
+		52B3BFCB229625980035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +372,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 1215B6E61EAC956F00DC5A86;
 			productRefGroup = 1215B6F01EAC956F00DC5A86 /* Products */;
@@ -515,6 +517,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1215B6F71EAC956F00DC5A86 /* Base */,
+				52B3BFCB229625980035D5EC /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

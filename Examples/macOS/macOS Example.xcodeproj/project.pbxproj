@@ -180,6 +180,7 @@
 		12F3719D1EA8DE3A0049DE67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12F3719F1EA8DE3A0049DE67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12F371A61EA8DE740049DE67 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
+		52B3BFC4229625880035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +396,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 12F3718A1EA8DE3A0049DE67;
 			productRefGroup = 12F371941EA8DE3A0049DE67 /* Products */;
@@ -542,6 +544,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				12F3719D1EA8DE3A0049DE67 /* Base */,
+				52B3BFC4229625880035D5EC /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
