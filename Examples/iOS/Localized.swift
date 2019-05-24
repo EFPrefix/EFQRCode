@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 enum Localized {
     enum Title {
@@ -50,3 +51,86 @@ enum Localized {
     }
 }
 
+#if canImport(UIKit)
+import UIKit
+typealias Color = UIColor
+#else
+import Cocoa
+typealias Color = NSColor
+#endif
+
+extension Localized {
+    enum Parameters {
+        // Test data
+        struct NamedColor {
+            let color: Color
+            let name: String
+        }
+        
+        static let colors: [NamedColor] = {
+            let colorNameArray = [
+                NSLocalizedString("Black", comment: "Standard UIColor name"),
+                NSLocalizedString("White", comment: "Standard UIColor name"),
+                NSLocalizedString("Gray", comment: "Standard UIColor name"),
+                NSLocalizedString("Red", comment: "Standard UIColor name"),
+                NSLocalizedString("Blue", comment: "Standard UIColor name"),
+                Localized.LPD,
+                Localized.Miku,
+                Localized.Wille,
+                NSLocalizedString("Hearthstone", comment: "Name of the game"),
+                NSLocalizedString("Pikachu Red", comment: "Color of Pikachu's cheek"),
+                NSLocalizedString("3 Red", comment: "#84252B"),
+                NSLocalizedString("Cee", comment: "#2A2A98"),
+                NSLocalizedString("toto", comment: "#292C79"),
+            ]
+            let colorArray: [Color] = [
+                .black, .white, .gray, .red, .blue,
+                #colorLiteral(red: 0, green: 0.5450980392, blue: 0.9450980392, alpha: 1), #colorLiteral(red: 0.2235294118, green: 0.7725490196, blue: 0.7333333333, alpha: 1), #colorLiteral(red: 0.8156862745, green: 0.1333333333, blue: 0.3411764706, alpha: 1), #colorLiteral(red: 0.4901960784, green: 0.4392156863, blue: 0.3647058824, alpha: 1), #colorLiteral(red: 0.9137254902, green: 0.3019607843, blue: 0.2039215686, alpha: 1), #colorLiteral(red: 0.5176470588, green: 0.1450980392, blue: 0.168627451, alpha: 1), #colorLiteral(red: 0.1647058824, green: 0.1647058824, blue: 0.5960784314, alpha: 1), #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.4745098039, alpha: 1)
+            ]
+            return zip(colorArray, colorNameArray)
+                .map { NamedColor(color: $0, name: $1) }
+        }()
+        
+        static let iconNames = [
+            NSLocalizedString("EyreFree", comment: "Author of EFQRCode"),
+            NSLocalizedString("GitHub", comment: "Open source community"),
+            NSLocalizedString("Pikachu", comment: "Pokemon"),
+            NSLocalizedString("Swift", comment: "Programming language")
+        ]
+        
+        static let watermarkNames = [
+            NSLocalizedString("Beethoven", comment: "German composer and pianist"),
+            NSLocalizedString("Jobs", comment: "Co-founder of Apple Inc."),
+            Localized.Miku,
+            Localized.Wille,
+            NSLocalizedString("WWF", comment: "World Wide Fund for Nature")
+        ]
+        
+        static let watermarkModeNames: [String] = [
+            NSLocalizedString("Scale to Fill", comment: "Content fill mode"),
+            NSLocalizedString("Scale Aspect Fit", comment: "Content fill mode"),
+            NSLocalizedString("Scale Aspect Fill", comment: "Content fill mode"),
+            NSLocalizedString("Center", comment: "Content fill mode"),
+            NSLocalizedString("Top", comment: "Content fill mode"),
+            NSLocalizedString("Bottom", comment: "Content fill mode"),
+            NSLocalizedString("Left", comment: "Content fill mode"),
+            NSLocalizedString("Right", comment: "Content fill mode"),
+            NSLocalizedString("Top Left", comment: "Content fill mode"),
+            NSLocalizedString("Top Right", comment: "Content fill mode"),
+            NSLocalizedString("Bottom Left", comment: "Content fill mode"),
+            NSLocalizedString("Bottom Right", comment: "Content fill mode")
+        ]
+        
+        static let modeNames = [
+            Localized.none,
+            NSLocalizedString("Grayscale", comment: "Exclusively shades of gray"),
+            NSLocalizedString("Binarization", comment: "Only black and white")
+        ]
+        
+        static let shapeNames = [
+            NSLocalizedString("square", comment: "Default QR code point style"),
+            NSLocalizedString("circle", comment: "Each point is a circle"),
+            NSLocalizedString("diamond", comment: "Star-shaped 'points'")
+        ]
+    }
+}

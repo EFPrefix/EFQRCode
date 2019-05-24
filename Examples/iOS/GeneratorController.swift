@@ -84,13 +84,6 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     // MARK: Not commonly used
     var foregroundPointOffset: CGFloat = 0
     var allowTransparent: Bool = true
-
-    // Test data
-    struct NamedColor {
-        let color: UIColor
-        let name: String
-    }
-    var colorList = [NamedColor]()
 }
 
 extension GeneratorController {
@@ -107,27 +100,6 @@ extension GeneratorController {
 
     func setupViews() {
         let buttonHeight: CGFloat = 46
-
-        // MARK: Add test data
-        let colorNameArray = [
-            NSLocalizedString("Black", comment: "Standard UIColor name"),
-            NSLocalizedString("White", comment: "Standard UIColor name"),
-            NSLocalizedString("Gray", comment: "Standard UIColor name"),
-            NSLocalizedString("Red", comment: "Standard UIColor name"),
-            NSLocalizedString("Blue", comment: "Standard UIColor name"),
-            Localized.LPD,
-            Localized.Miku,
-            Localized.Wille,
-            NSLocalizedString("Hearthstone", comment: "Name of the game"),
-            NSLocalizedString("Pikachu Red", comment: "Color of Pikachu's cheek"),
-            NSLocalizedString("3 Red", comment: "#84252B"),
-            NSLocalizedString("Cee", comment: "#2A2A98"),
-            NSLocalizedString("toto", comment: "#292C79"),
-        ]
-        let colorArray: [UIColor] = [
-            .black, .white, .gray, .red, .blue, #colorLiteral(red: 0, green: 0.5450980392, blue: 0.9450980392, alpha: 1), #colorLiteral(red: 0.2235294118, green: 0.7725490196, blue: 0.7333333333, alpha: 1), #colorLiteral(red: 0.8156862745, green: 0.1333333333, blue: 0.3411764706, alpha: 1), #colorLiteral(red: 0.4901960784, green: 0.4392156863, blue: 0.3647058824, alpha: 1), #colorLiteral(red: 0.9137254902, green: 0.3019607843, blue: 0.2039215686, alpha: 1), #colorLiteral(red: 0.5176470588, green: 0.1450980392, blue: 0.168627451, alpha: 1), #colorLiteral(red: 0.1647058824, green: 0.1647058824, blue: 0.5960784314, alpha: 1), #colorLiteral(red: 0.1607843137, green: 0.1725490196, blue: 0.4745098039, alpha: 1)
-        ]
-        colorList = zip(colorArray, colorNameArray).map { NamedColor(color: $0, name: $1) }
 
         // MARK: Content
         textView = UITextView()
@@ -440,7 +412,7 @@ extension GeneratorController {
             }
         )
         #endif
-        for color in colorList {
+        for color in Localized.Parameters.colors {
             alert.addAction(
                 UIAlertAction(title: color.name, style: .default) {
                     [weak self] _ in
@@ -506,7 +478,7 @@ extension GeneratorController {
                 }
             )
         }
-        for color in colorList {
+        for color in Localized.Parameters.colors {
             alert.addAction(
                 UIAlertAction(title: color.name, style: .default) {
                     [weak self] _ in
@@ -546,12 +518,7 @@ extension GeneratorController {
             }
         )
         #endif
-        for (index, icon) in [
-            NSLocalizedString("EyreFree", comment: "Author of EFQRCode"),
-            NSLocalizedString("GitHub", comment: "Open source community"),
-            NSLocalizedString("Pikachu", comment: "Pokemon"),
-            NSLocalizedString("Swift", comment: "Programming language")
-        ].enumerated() {
+        for (index, icon) in Localized.Parameters.iconNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: icon, style: .default) {
                     [weak self] _ in
@@ -667,13 +634,7 @@ extension GeneratorController {
             }
         )
         #endif
-        for (index, localizedName) in [
-            NSLocalizedString("Beethoven", comment: "German composer and pianist"),
-            NSLocalizedString("Jobs", comment: "Co-founder of Apple Inc."),
-            Localized.Miku,
-            Localized.Wille,
-            NSLocalizedString("WWF", comment: "World Wide Fund for Nature")
-        ].enumerated() {
+        for (index, localizedName) in Localized.Parameters.watermarkNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: localizedName, style: .default) {
                     [weak self] _ in
@@ -687,20 +648,6 @@ extension GeneratorController {
         popActionSheet(alert: alert)
     }
 
-    static let localizedWatermarkModeNames: [String] = [
-        NSLocalizedString("Scale to Fill", comment: "Content fill mode"),
-        NSLocalizedString("Scale Aspect Fit", comment: "Content fill mode"),
-        NSLocalizedString("Scale Aspect Fill", comment: "Content fill mode"),
-        NSLocalizedString("Center", comment: "Content fill mode"),
-        NSLocalizedString("Top", comment: "Content fill mode"),
-        NSLocalizedString("Bottom", comment: "Content fill mode"),
-        NSLocalizedString("Left", comment: "Content fill mode"),
-        NSLocalizedString("Right", comment: "Content fill mode"),
-        NSLocalizedString("Top Left", comment: "Content fill mode"),
-        NSLocalizedString("Top Right", comment: "Content fill mode"),
-        NSLocalizedString("Bottom Left", comment: "Content fill mode"),
-        NSLocalizedString("Bottom Right", comment: "Content fill mode")
-    ]
     func chooseWatermarkMode() {
         let alert = UIAlertController(
             title: Localized.Title.watermarkMode,
@@ -712,7 +659,7 @@ extension GeneratorController {
             UIAlertAction(title: Localized.cancel, style: .cancel)
         )
 
-        for (index, modeName) in GeneratorController.localizedWatermarkModeNames.enumerated() {
+        for (index, modeName) in Localized.Parameters.watermarkModeNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: modeName, style: .default) {
                     [weak self] _ in
@@ -779,11 +726,6 @@ extension GeneratorController {
         popActionSheet(alert: alert)
     }
 
-    static let localizedModeNames = [
-        Localized.none,
-        NSLocalizedString("Grayscale", comment: "Exclusively shades of gray"),
-        NSLocalizedString("Binarization", comment: "Only black and white")
-    ]
     func chooseMode() {
         let alert = UIAlertController(
             title: Localized.Title.mode,
@@ -794,7 +736,7 @@ extension GeneratorController {
             UIAlertAction(title: Localized.cancel, style: .cancel)
         )
 
-        for (index, modeName) in GeneratorController.localizedModeNames.enumerated() {
+        for (index, modeName) in Localized.Parameters.modeNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: modeName, style: .default) {
                     [weak self] _ in
@@ -807,11 +749,6 @@ extension GeneratorController {
         popActionSheet(alert: alert)
     }
 
-    static let localizedShapeNames = [
-        NSLocalizedString("square", comment: "Default QR code point style"),
-        NSLocalizedString("circle", comment: "Each point is a circle"),
-        NSLocalizedString("diamond", comment: "Star-shaped 'points'")
-    ]
     func chooseShape() {
         let alert = UIAlertController(
             title: Localized.Title.pointShape,
@@ -822,7 +759,7 @@ extension GeneratorController {
             UIAlertAction(title: Localized.cancel, style: .cancel)
         )
 
-        for (index, shapeName) in GeneratorController.localizedShapeNames.enumerated() {
+        for (index, shapeName) in Localized.Parameters.shapeNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: shapeName, style: .default) {
                     [weak self] _ in
@@ -934,7 +871,7 @@ extension GeneratorController {
         ]
         let magnificationString = magnification.map { "\($0.width)x\($0.height)" } ?? Localized.none
         let iconSizeString = iconSize.map { "\($0.width)x\($0.height)" } ?? Localized.none
-        let watermarkModeName = GeneratorController.localizedWatermarkModeNames[watermarkMode.rawValue]
+        let watermarkModeName = Localized.Parameters.watermarkModeNames[watermarkMode.rawValue]
         let modeIndex: Int = {
             switch mode {
             case .none:
@@ -947,7 +884,7 @@ extension GeneratorController {
         }()
         let detailArray = [
             ["L", "M", "Q", "H"][inputCorrectionLevel.rawValue],
-            GeneratorController.localizedModeNames[modeIndex],
+            Localized.Parameters.modeNames[modeIndex],
             "\(size.width)x\(size.height)",
             magnificationString,
             "", // backgroundColor
@@ -959,7 +896,7 @@ extension GeneratorController {
             Localized.number(foregroundPointOffset),
             allowTransparent ? Localized.yes : Localized.no,
             Localized.number(binarizationThreshold),
-            GeneratorController.localizedShapeNames[pointShape.rawValue]
+            Localized.Parameters.shapeNames[pointShape.rawValue]
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)

@@ -64,7 +64,7 @@ class ParametersInterfaceController: WKInterfaceController {
     ]
     @IBOutlet var modePicker: WKInterfacePicker? {
         didSet {
-            modePicker?.setItems(mode.map {
+            modePicker?.setItems(Localized.Parameters.modeNames.map {
                 let item = WKPickerItem()
                 item.title = $0
                 return item
@@ -121,76 +121,48 @@ class ParametersInterfaceController: WKInterfaceController {
         }
     }
     
-    let colorNames = [
-        "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille",
-        "Hearth Stone", "Pikachu Red", "3 Red", "Cee", "toto"
-    ]
-    let colors: [UIColor] = [
-        .black, .white, .gray, .red, .blue, UIColor(
-            red: 0 / 255.0, green: 139.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0
-        ), UIColor(
-            red: 57.0 / 255.0, green: 197.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0
-        ), UIColor(
-            red: 208.0 / 255.0, green: 34.0 / 255.0, blue: 87.0 / 255.0, alpha: 1.0
-        ), UIColor(
-            red: 125.0 / 255.0, green: 112.0 / 255.0, blue: 93.0 / 255.0, alpha: 1.0
-        ), UIColor(
-            red: 233.0 / 255.0, green: 77.0 / 255.0, blue: 52.0 / 255.0, alpha: 1.0
-        ), UIColor(
-            red: 132.0 / 255.0, green: 37.0 / 255.0, blue: 43.0 / 255.0, alpha: 1.0
-        ), UIColor(
-            red: 42.0 / 255.0, green: 42.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0
-        ), UIColor(
-            red: 41.0 / 255.0, green: 44.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0
-        )
-    ]
-    
     var backgroundColor: UIColor = .white
     @IBOutlet var backgroundColorPicker: WKInterfacePicker? {
         didSet {
-            backgroundColorPicker?.setItems(colorNames.map {
+            backgroundColorPicker?.setItems(Localized.Parameters.colors.map {
                 let item = WKPickerItem()
-                item.title = $0
+                item.title = $0.name
                 return item
             })
             backgroundColorPicker?.setSelectedItemIndex(1)
         }
     }
     @IBAction func pickedBackgroundColor(_ value: Int) {
-        backgroundColor = colors[value]
+        backgroundColor = Localized.Parameters.colors[value].color
     }
     
     var foregroundColor: UIColor = .black
     @IBOutlet var foregroundColorPicker: WKInterfacePicker? {
         didSet {
-            foregroundColorPicker?.setItems(colorNames.map {
+            foregroundColorPicker?.setItems(Localized.Parameters.colors.map {
+                let item = WKPickerItem()
+                item.title = $0.name
+                return item
+            })
+        }
+    }
+    @IBAction func pickedForegroundColor(_ value: Int) {
+        foregroundColor = Localized.Parameters.colors[value].color
+    }
+    
+    var icon: UIImage? = nil
+    @IBOutlet var iconPicker: WKInterfacePicker? {
+        didSet {
+            iconPicker?.setItems(Localized.Parameters.iconNames.map {
                 let item = WKPickerItem()
                 item.title = $0
                 return item
             })
         }
     }
-    @IBAction func pickedForegroundColor(_ value: Int) {
-        foregroundColor = colors[value]
-    }
-    
-    var icon: UIImage? = nil
-    let icons = [nil, "EyreFree", "GitHub", "LPD", "Pikachu", "Swift"]
-    @IBOutlet var iconPicker: WKInterfacePicker? {
-        didSet {
-            iconPicker?.setItems(icons.map {
-                let item = WKPickerItem()
-                item.title = $0 ?? "nil"
-                return item
-            })
-        }
-    }
     @IBAction func pickedIcon(_ value: Int) {
-        if let name = icons[value] {
-            icon = UIImage(named: name)
-        } else {
-            icon = nil
-        }
+        icon = [nil, "EyreFree", "GitHub", "Pikachu", "Swift"][value]
+            .flatMap(UIImage.init(named:))
     }
     
     private var iconWidth = 128
@@ -217,38 +189,30 @@ class ParametersInterfaceController: WKInterfaceController {
     }
     
     var watermark: EFImage? = nil
-    let watermarks = [nil, "Beethoven", "Jobs", "Miku", "Wille", "WWF"]
     @IBOutlet var watermarkPicker: WKInterfacePicker? {
         didSet {
-            watermarkPicker?.setItems(watermarks.map {
+            watermarkPicker?.setItems(Localized.Parameters.watermarkNames.map {
                 let item = WKPickerItem()
-                item.title = $0 ?? "nil"
+                item.title = $0
                 return item
             })
         }
     }
     @IBAction func pickedWatermark(_ value: Int) {
-        if let name = watermarks[value],
-            let image = UIImage(named: name) {
-            watermark = .normal(image)
-        } else {
-            watermark = nil
-        }
+        watermark = [nil, "Beethoven", "Jobs", "Miku", "Wille", "WWF"][value]
+            .flatMap(UIImage.init(named:))
+            .map { .normal($0) }
     }
     
     private var watermarkMode = EFWatermarkMode.scaleAspectFill
-    let watermarkModeString = [
-        "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
-        "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"
-    ]
     @IBOutlet var watermarkModePicker: WKInterfacePicker? {
         didSet {
             guard let picker = watermarkModePicker else {
                 return
             }
-            picker.setItems(watermarkModeString.map {
+            picker.setItems(Localized.Parameters.watermarkModeNames.map {
                 let item = WKPickerItem()
-                item.title = "\($0)"
+                item.title = $0
                 return item
             })
             picker.setSelectedItemIndex(2)
@@ -267,7 +231,7 @@ class ParametersInterfaceController: WKInterfaceController {
             }
             picker.setItems(foregroundPointOffsets.map {
                 let item = WKPickerItem()
-                item.title = "\($0)"
+                item.title = Localized.number($0)
                 return item
             })
             picker.setSelectedItemIndex(2)
@@ -293,7 +257,7 @@ class ParametersInterfaceController: WKInterfaceController {
             }
             picker.setItems(binarizationThresholds.map {
                 let item = WKPickerItem()
-                item.title = "\($0)"
+                item.title = Localized.number($0)
                 return item
             })
             picker.setSelectedItemIndex(5)
@@ -304,13 +268,12 @@ class ParametersInterfaceController: WKInterfaceController {
     }
     
     private var pointShape = EFPointShape.square
-    private var pointShapeString = ["square", "circle", "diamond"]
     @IBOutlet var pointShapePicker: WKInterfacePicker! {
         didSet {
             guard let picker = pointShapePicker else {
                 return
             }
-            picker.setItems(pointShapeString.map {
+            picker.setItems(Localized.Parameters.shapeNames.map {
                 let item = WKPickerItem()
                 item.title = $0
                 return item

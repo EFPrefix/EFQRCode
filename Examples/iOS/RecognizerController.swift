@@ -157,7 +157,7 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
                     }
                 })
             }
-            alert.addAction(UIAlertAction(title: Localized.cancel, style: .cancel))
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             present(alert, animated: true)
         } else {
             let alert = UIAlertController(
