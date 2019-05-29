@@ -206,7 +206,7 @@ extension ViewController: NSAlertDelegate {
                 generatorViewImage.image = NSImage(data: afterData)
                 result = afterData
             } else {
-                messageBox("Create QRCode failed!")
+                messageBox(Localized.createQRCodeFailed)
             }
         case .normal(let image)?:
             generator.setWatermark(watermark: image.toCGImage(), mode: watermarkMode)
@@ -214,10 +214,11 @@ extension ViewController: NSAlertDelegate {
         case nil:
             if let tryCGImage = generator.generate() {
                 generatorViewImage.image = NSImage(
-                    cgImage: tryCGImage, size: NSSize(width: tryCGImage.width, height: tryCGImage.height)
+                    cgImage: tryCGImage,
+                    size: NSSize(width: tryCGImage.width, height: tryCGImage.height)
                 )
             } else {
-                messageBox("Create QRCode failed!")
+                messageBox(Localized.createQRCodeFailed)
             }
         }
     }
@@ -226,8 +227,13 @@ extension ViewController: NSAlertDelegate {
         guard let image = generatorViewImage.image else { return }
         let panel = NSSavePanel()
         panel.allowedFileTypes = ["png", "gif"]
-        panel.nameFieldStringValue = watermark?.isGIF == true ? "Untitle.gif" : "Untitle.png"
-        panel.message = "Choose the path to save the image"
+        let defaultFileName = NSLocalizedString("Untitled", comment: "Default file name")
+        let fileExtension = watermark?.isGIF == true ? "gif" : "png"
+        panel.nameFieldStringValue = "\(defaultFileName).\(fileExtension)"
+        panel.message = NSLocalizedString(
+            "Choose the location to save the image",
+            comment: "File saver prompt title"
+        )
         panel.allowsOtherFileTypes = true
         panel.isExtensionHidden = true
         panel.canCreateDirectories = true
@@ -241,12 +247,21 @@ extension ViewController: NSAlertDelegate {
             if url.absoluteString.lowercased().hasSuffix(".gif") {
                 do {
                     try self.result?.write(to: url)
-                    messageBox("GIF image saved.")
+                    messageBox(NSLocalizedString(
+                        "GIF image saved",
+                        comment: "Successfully export QR code image"
+                    ))
                 } catch {
-                    messageBox("GIF image saved failed!")
+                    messageBox(NSLocalizedString(
+                        "Failed to save GIF image",
+                        comment: "Failed to export QR code image"
+                    ))
                 }
             } else if image.pngWrite(to: url, options: .atomic) {
-                messageBox("Image saved.")
+                messageBox(NSLocalizedString(
+                    "Image saved",
+                    comment: "Successfully export QR code image"
+                ))
             }
         }
     }
@@ -254,17 +269,14 @@ extension ViewController: NSAlertDelegate {
     @objc func generatorViewOptionsClicked(button: NSButton) {
         [chooseInputCorrectionLevel, chooseMode, chooseSize, chooseMagnification,
          chooseBackColor, chooseFrontColor, chooseIcon, chooseIconSize,
-         chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset, chooseAllowTransparent,
-         chooseBinarizationThreshold, chooseShape][button.tag]()
+         chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset,
+         chooseAllowTransparent, chooseBinarizationThreshold, chooseShape][button.tag]()
     }
 
     func refresh() {
-        let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
-        let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
-        let watermarkModeString = [
-            "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
-            "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"
-            ][watermarkMode.rawValue]
+        let magnificationString = magnification.map { "\($0.width)x\($0.height)" } ?? Localized.none
+        let iconSizeString = iconSize.map { "\($0.width)x\($0.height)" } ?? Localized.none
+        let watermarkModeString = Localized.Parameters.watermarkModeNames[watermarkMode.rawValue]
         let modeIndex: Int = {
             switch mode {
             case .none:
@@ -276,8 +288,8 @@ extension ViewController: NSAlertDelegate {
             }
         }()
         let detailArray = [
-            "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
-            "\(["none", "grayscale", "binarization"][modeIndex])",
+            ["L", "M", "Q", "H"][inputCorrectionLevel.rawValue],
+            Localized.Parameters.modeNames[modeIndex],
             "\(size.width)x\(size.height)",
             magnificationString,
             "", // backgroundColor
@@ -286,10 +298,10 @@ extension ViewController: NSAlertDelegate {
             iconSizeString,
             "", // watermark
             watermarkModeString,
-            "\(foregroundPointOffset)",
-            "\(allowTransparent)",
-            "\(binarizationThreshold)",
-            "\(["square", "circle", "diamond"][pointShape.rawValue])"
+            Localized.number(foregroundPointOffset),
+            allowTransparent ? Localized.yes : Localized.no,
+            Localized.number(binarizationThreshold),
+            Localized.Parameters.shapeNames[pointShape.rawValue]
         ]
 
         for (index, button) in generatorViewOptions.enumerated() {
@@ -367,21 +379,21 @@ extension ViewController: NSAlertDelegate {
 
     // MARK: - param
     func chooseInputCorrectionLevel() {
-        choose("inputCorrectionLevel", from: "L", "M", "Q", "H") {
+        choose(Localized.Title.inputCorrectionLevel, from: ["L", "M", "Q", "H"]) {
             (self, response) in
             self.inputCorrectionLevel = [.l, .m, .q, .h][response.rawValue - 1000]
         }
     }
 
     func chooseMode() {
-        choose("mode", from: "none", "grayscale", "binarization") {
+        choose(Localized.Title.mode, from: Localized.Parameters.modeNames) {
             (self, response) in
             self.mode = [.none, .grayscale, .binarization(threshold: 0.5)][response.rawValue - 1000]
         }
     }
 
     func chooseSize() {
-        choose("size", from: "128x128", "256x256", "1024x1024", "2048x2048") {
+        choose(Localized.Title.size, from: [128, 256, 1024, 2048].map { "\($0)x\($0)" }) {
             (self, response) in
             let size = [128, 256, 1024, 2048][response.rawValue - 1000]
             self.size = EFIntSize(width: size, height: size)
@@ -389,7 +401,8 @@ extension ViewController: NSAlertDelegate {
     }
     
     func chooseMagnification() {
-        choose("magnification", from: "nil", "3x3", "9x9", "12x12", "30x30") {
+        let choices = [Localized.none] + [3, 9, 12, 30].map { "\($0)x\($0)" }
+        choose(Localized.Title.magnification, from: choices) {
             (self, response) in
             let size = [nil, 3, 9, 12, 30][response.rawValue - 1000]
             self.magnification = size.map { EFIntSize(width: $0, height: $0) }
@@ -420,7 +433,8 @@ extension ViewController: NSAlertDelegate {
     }
     
     func chooseIconSize() {
-        choose("iconSize", from: "nil", "32x32", "64x64", "128x128") {
+        let choices = [Localized.none] + [32, 64, 128].map { "\($0)x\($0)" }
+        choose(Localized.Title.iconSize, from: choices) {
             (self, response) in
             let size = [nil, 32, 64, 128][response.rawValue - 1000]
             self.iconSize = size.map { EFIntSize(width: $0, height: $0) }
@@ -437,37 +451,35 @@ extension ViewController: NSAlertDelegate {
     }
 
     func chooseWatermarkMode() {
-        choose("watermarkMode",
-               from: "scaleToFill", "scaleAspectFit", "scaleAspectFill",
-               "center", "top", "bottom", "left", "right",
-               "topLeft", "topRight", "bottomLeft", "bottomRight"
-        ) { (self, response) in
-            self.watermarkMode = [
-                .scaleToFill, .scaleAspectFit, .scaleAspectFill,
-                .center, .top, .bottom, .left, .right,
-                .topLeft, .topRight, .bottomLeft, .bottomRight
-            ][response.rawValue - 1000]
+        choose(Localized.Title.watermarkMode,
+               from: Localized.Parameters.watermarkModeNames) {
+                (self, response) in
+                self.watermarkMode = [
+                    .scaleToFill, .scaleAspectFit, .scaleAspectFill,
+                    .center, .top, .bottom, .left, .right,
+                    .topLeft, .topRight, .bottomLeft, .bottomRight
+                ][response.rawValue - 1000]
         }
     }
     
     func chooseForegroundPointOffset() {
-        choose("foregroundPointOffset",
-               from: "nil", "-0.5", "-0.25", "0", "0.25", "0.5"
-        ) { (self, response) in
+        let choices = [Localized.none] + [-0.5, -0.25, 0, 0.25, 0.5].map(Localized.number)
+        choose(Localized.Title.foregroundPointOffset, from: choices) {
+            (self, response) in
             self.foregroundPointOffset = [nil, CGFloat(-0.5), -0.25, 0, 0.25, 0.5][response.rawValue - 1000] ?? 0
         }
     }
 
     func chooseAllowTransparent() {
-        choose("allowTransparent", from: "true", "false") {
+        choose(Localized.Title.allowTransparent, from: [Localized.yes, Localized.no]) {
             (self, response) in
             self.allowTransparent = [true, false][response.rawValue - 1000]
         }
     }
 
     func chooseBinarizationThreshold() {
-        choose("binarizationThreshold",
-               from: "0", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1"
+        choose(Localized.Title.binarizationThreshold,
+               from: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1].map(Localized.number)
         ) { (self, response) in
             self.binarizationThreshold = CGFloat(
                 [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1][response.rawValue - 1000]
@@ -476,7 +488,7 @@ extension ViewController: NSAlertDelegate {
     }
     
     func chooseShape() {
-        choose("shape", from: "square", "circle", "diamond") {
+        choose(Localized.Title.pointShape, from: Localized.Parameters.shapeNames) {
             (self, response) in
             self.pointShape = [.square, .circle, .diamond][response.rawValue - 1000]
         }
@@ -484,7 +496,7 @@ extension ViewController: NSAlertDelegate {
     
     private func choose(
         _ configuration: String,
-        from options: String...,
+        from options: [String],
         processBeforeRefresh: @escaping (ViewController, NSApplication.ModalResponse) -> Void
     ) {
         guard let window = view.window else { return }

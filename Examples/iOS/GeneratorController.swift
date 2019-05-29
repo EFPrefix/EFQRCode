@@ -218,7 +218,7 @@ extension GeneratorController {
         func alertCreationFailure() {
             let alert = UIAlertController(
                 title: Localized.error,
-                message: NSLocalizedString("Create QRCode failed!", comment: "Explain failure reason"),
+                message: Localized.createQRCodeFailed,
                 preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             present(alert, animated: true)
@@ -308,7 +308,8 @@ extension GeneratorController {
             }
             let alert = UIAlertController(
                 title: Localized.warning,
-                message: NSLocalizedString("Not a valid size!", comment: "Explain misconfiguration"),
+                message: NSLocalizedString("Not a valid size!",
+                                           comment: "Explain misconfiguration"),
                 preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             self.present(alert, animated: true)
@@ -350,7 +351,8 @@ extension GeneratorController {
                 }
                 let alert = UIAlertController(
                     title: Localized.warning,
-                    message: NSLocalizedString("Not a valid magnification!", comment: "Explain misconfiguration"),
+                    message: NSLocalizedString("Not a valid magnification!",
+                                               comment: "Explain misconfiguration"),
                     preferredStyle: .alert
                 )
                 alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
@@ -562,7 +564,8 @@ extension GeneratorController {
                 }
                 let alert = UIAlertController(
                     title: Localized.warning,
-                    message: NSLocalizedString("Not a valid icon size!", comment: "Explain misconfiguration"),
+                    message: NSLocalizedString("Not a valid icon size!",
+                                               comment: "Explain misconfiguration"),
                     preferredStyle: .alert
                 )
                 alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
@@ -1068,7 +1071,7 @@ extension GeneratorController: UIImagePickerControllerDelegate {
             imageManager.requestImageData(for: asset, options: options) {
                 [weak self] (imageData, dataUTI, orientation, info) in
                 guard self != nil else { return }
-                print("dataUTI: \(dataUTI ?? "")")
+                print("dataUTI: \(dataUTI ?? Localized.none)")
 
                 let imageElement: Ref<EFImage?> = nil
 

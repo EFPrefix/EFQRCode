@@ -30,6 +30,8 @@ enum Localized {
     static let error = NSLocalizedString("Error", comment: "Generic serious issue alert title")
     static let warning = NSLocalizedString("Warning", comment: "Title for generation failure alert")
     static let errored = NSLocalizedString("Something went wrong", comment: "Generic error descripiton")
+    static let createQRCodeFailed = NSLocalizedString("Create QR code failed!",
+                                                        comment: "Explain failure reason")
     static let ok = NSLocalizedString("OK", comment: "Generic confirmation button title")
     static let cancel = NSLocalizedString("Cancel", comment: "Generic cancel button title")
     static let yes = NSLocalizedString("Yes", comment: "Positive")
