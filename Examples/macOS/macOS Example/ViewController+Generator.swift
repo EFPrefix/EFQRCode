@@ -60,7 +60,8 @@ extension ViewController: NSAlertDelegate {
         generatorViewSave.layer?.cornerRadius = 5
         generatorViewSave.bezelStyle = .regularSquare
         generatorViewSave.attributedTitle = NSMutableAttributedString(
-            string: "Save", attributes: [
+            string: Localized.save,
+            attributes: [
                 .foregroundColor: NSColor.theme,
                 .paragraphStyle: centredStyle
             ]
@@ -79,9 +80,10 @@ extension ViewController: NSAlertDelegate {
         generatorViewCreate.layer?.cornerRadius = 5
         generatorViewCreate.bezelStyle = .regularSquare
         generatorViewCreate.attributedTitle = NSMutableAttributedString(
-            string: "Create", attributes: [
-                NSAttributedString.Key.foregroundColor: NSColor.theme,
-                NSAttributedString.Key.paragraphStyle: centredStyle
+            string: NSLocalizedString("Create", comment: "Button to init generation"),
+            attributes: [
+                .foregroundColor: NSColor.theme,
+                .paragraphStyle: centredStyle
             ]
         )
         generatorViewCreate.action = #selector(generatorViewCreateClicked)
@@ -93,7 +95,7 @@ extension ViewController: NSAlertDelegate {
         }
 
         generatorViewImage.wantsLayer = true
-        generatorViewImage.layer?.backgroundColor = NSColor(calibratedRed: 0, green: 0, blue: 0, alpha: 0.08).cgColor
+        generatorViewImage.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.08).cgColor
         generatorViewImage.layer?.borderColor = NSColor.theme.cgColor
         generatorViewImage.layer?.borderWidth = 1
         generatorViewImage.layer?.cornerRadius = 5
@@ -107,9 +109,7 @@ extension ViewController: NSAlertDelegate {
         }
 
         generatorViewContent.wantsLayer = true
-        generatorViewContent.layer?.backgroundColor = NSColor(
-            calibratedRed: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 0.08
-            ).cgColor
+        generatorViewContent.layer?.backgroundColor = NSColor.theme.withAlphaComponent(0.08).cgColor
         generatorViewContent.layer?.borderColor = NSColor.theme.cgColor
         generatorViewContent.layer?.borderWidth = 1
         generatorViewContent.layer?.cornerRadius = 5
@@ -138,21 +138,23 @@ extension ViewController: NSAlertDelegate {
             generatorViewOptions[index].layer?.cornerRadius = 5
             generatorViewOptions[index].bezelStyle = .regularSquare
             generatorViewOptions[index].attributedTitle = NSMutableAttributedString(
-                string: titleArray[index], attributes: [
-                    NSAttributedString.Key.foregroundColor: NSColor.theme,
-                    NSAttributedString.Key.paragraphStyle: centredStyle
+                string: titleArray[index],
+                attributes: [
+                    .foregroundColor: NSColor.theme,
+                    .paragraphStyle: centredStyle
                 ]
             )
             generatorViewOptions[index].action = #selector(generatorViewOptionsClicked(button:))
             generatorViewTable.addSubview(generatorViewOptions[index])
             generatorViewOptions[index].snp.makeConstraints {
                 (make) in
-                if 1 == index % 2 {
+                
+                if index.isMultiple(of: 2) {
+                    make.leading.equalTo(0)
+                } else {
                     make.leading.equalTo(generatorViewOptions[index - 1].snp.trailing).offset(margin)
                     make.trailing.equalTo(0)
                     make.width.equalTo(generatorViewOptions[index - 1])
-                } else {
-                    make.leading.equalTo(0)
                 }
 
                 if index > 1 {
@@ -162,7 +164,8 @@ extension ViewController: NSAlertDelegate {
                     make.top.equalTo(0)
                 }
 
-                if generatorViewOptions.count - 1 == index || generatorViewOptions.count - 2 == index {
+                if generatorViewOptions.count - 1 == index
+                    || generatorViewOptions.count - 2 == index {
                     make.bottom.equalTo(0)
                 }
             }

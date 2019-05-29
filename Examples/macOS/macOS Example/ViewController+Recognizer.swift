@@ -56,9 +56,10 @@ extension ViewController {
         recognizerViewScan.layer?.cornerRadius = 5
         recognizerViewScan.bezelStyle = .regularSquare
         recognizerViewScan.attributedTitle = NSMutableAttributedString(
-            string: "Scan", attributes: [
-                NSAttributedString.Key.foregroundColor: NSColor.theme,
-                NSAttributedString.Key.paragraphStyle: centredStyle
+            string: NSLocalizedString("Scan", comment: "Button to init recognition"),
+            attributes: [
+                .foregroundColor: NSColor.theme,
+                .paragraphStyle: centredStyle
             ]
         )
         recognizerViewScan.action = #selector(recognizerViewScanClicked)
@@ -74,9 +75,10 @@ extension ViewController {
         recognizerViewPick.layer?.cornerRadius = 5
         recognizerViewPick.bezelStyle = .regularSquare
         recognizerViewPick.attributedTitle = NSMutableAttributedString(
-            string: "Choose image", attributes: [
-                NSAttributedString.Key.foregroundColor: NSColor.theme,
-                NSAttributedString.Key.paragraphStyle: centredStyle
+            string: Localized.chooseImage,
+            attributes: [
+                .foregroundColor: NSColor.theme,
+                .paragraphStyle: centredStyle
             ]
         )
         recognizerViewPick.action = #selector(recognizerViewPickClicked)
@@ -89,9 +91,7 @@ extension ViewController {
 
         recognizerViewResult.isEditable = false
         recognizerViewResult.wantsLayer = true
-        recognizerViewResult.layer?.backgroundColor = NSColor(
-            calibratedRed: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 0.08
-        ).cgColor
+        recognizerViewResult.layer?.backgroundColor = NSColor.theme.withAlphaComponent(0.08).cgColor
         recognizerViewResult.layer?.borderColor = NSColor.theme.cgColor
         recognizerViewResult.layer?.borderWidth = 1
         recognizerViewResult.layer?.cornerRadius = 5
@@ -122,8 +122,8 @@ extension ViewController {
         }
     }
 
+    /// https://gist.github.com/jlindsey/499215
     func selectImageFromDisk(process: @escaping (EFImage) -> Void) {
-        // https://gist.github.com/jlindsey/499215
         let panel = NSOpenPanel()
         panel.allowedFileTypes = NSImage.imageTypes
         panel.allowsMultipleSelection = false

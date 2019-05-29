@@ -510,7 +510,7 @@ extension GeneratorController {
         )
         #if os(iOS)
         alert.addAction(
-            UIAlertAction(title: Localized.selectFromPhotos, style: .default) {
+            UIAlertAction(title: Localized.chooseImage, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.chooseImageFromAlbum(title: Localized.Title.icon)
@@ -626,7 +626,7 @@ extension GeneratorController {
         )
         #if os(iOS)
         alert.addAction(
-            UIAlertAction(title: Localized.selectFromPhotos, style: .default) {
+            UIAlertAction(title: Localized.chooseImage, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.chooseImageFromAlbum(title: Localized.Title.watermark)

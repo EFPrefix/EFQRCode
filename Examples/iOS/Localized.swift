@@ -41,7 +41,7 @@ enum Localized {
     static let height = NSLocalizedString("Height", comment: "Generic label for size input")
     static let none = NSLocalizedString("None", comment: "Human-readable title representing 'nil'")
     static let custom = NSLocalizedString("Custom", comment: "Button title for 'custom input'")
-    static let selectFromPhotos = NSLocalizedString("Select from system album", comment: "Alert option to choose from photos")
+    static let chooseImage = NSLocalizedString("Choose image", comment: "Alert option to choose an image")
     static let Miku = NSLocalizedString("Miku", comment: "Short for Hatsune Miku")
     static let LPD = NSLocalizedString("LPD", comment: "Name of https://github.com/LPD-iOS")
     static let Wille = NSLocalizedString("Wille", comment: "Organization in Evangelion: 3.0 You Can (Not) Redo")
