@@ -61,7 +61,7 @@ final class Tests {
         generator.setColors(backgroundColor: CGColor.EFWhite(), foregroundColor: CGColor.EFBlack())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .h)
         generator.setMagnification(magnification: EFIntSize(width: 6, height: 6))
-        return generator.generate() == nil ? "testResult is nil!" : .passed
+        return generator.generate() == nil ? Localized.errored : .passed
 
         // EFQRCodeRecognizer test case not included.
     }
@@ -77,7 +77,7 @@ final class Tests {
         generator.setColors(backgroundColor: CGColor.EFWhite(), foregroundColor: CGColor.EFBlack())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .l)
         generator.setMagnification(magnification: nil)
-        return generator.generate() == nil ? "testResult is nil!" : .passed
+        return generator.generate() == nil ? Localized.errored : .passed
 
         // EFQRCodeRecognizer test case not included.
     }
@@ -93,7 +93,7 @@ final class Tests {
         generator.setColors(backgroundColor: UIColor.gray.toCGColor(), foregroundColor: CGColor.EFBlack())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
         generator.setMagnification(magnification: nil)
-        return generator.generate() == nil ? "testResult is nil!" : .passed
+        return generator.generate() == nil ? Localized.errored : .passed
 
         // EFQRCodeRecognizer test case not included.
     }
@@ -114,7 +114,7 @@ final class Tests {
         generator.setForegroundPointOffset(foregroundPointOffset: 0)
         generator.setAllowTransparent(allowTransparent: true)
         let testResult = generator.generate()
-        return testResult == nil ? "testResult is nil!" : .passed
+        return testResult == nil ? Localized.errored : .passed
     }
 
     // CGColor
@@ -135,6 +135,6 @@ final class Tests {
     // EFQRCode
     func testExampleEFQRCode() -> String? {
         let testResult = EFQRCode.generate(content: "https://github.com/EFPrefix/EFQRCode")
-        return testResult == nil ? "testResult is nil!" : .passed
+        return testResult == nil ? Localized.errored : .passed
     }
 }

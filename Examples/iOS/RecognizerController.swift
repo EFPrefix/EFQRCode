@@ -37,9 +37,9 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Scan"
+        title = NSLocalizedString("Scan", comment: "Title on recognizer")
         automaticallyAdjustsScrollViewInsets = false
-        view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
 
         setupViews()
     }
@@ -49,7 +49,7 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         if #available(iOS 11.0, *) {
             imageView.accessibilityIgnoresInvertColors = true
         }
-        imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.32)
+        imageView.backgroundColor = UIColor.white.withAlphaComponent(0.32)
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 1
@@ -64,7 +64,11 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         }
 
         chooseButton = UIButton(type: .system)
-        chooseButton.setTitle("Choose image", for: .normal)
+        chooseButton.setTitle(
+            NSLocalizedString(
+                "Choose QR code image",
+                comment: "Select QR code image from photos"),
+            for: .normal)
         chooseButton.setTitleColor(.white, for: .normal)
         chooseButton.layer.borderColor = UIColor.white.cgColor
         chooseButton.layer.borderWidth = 1
@@ -82,13 +86,9 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
 
         scanButton = UIButton(type: .system)
         scanButton.isEnabled = false
-        scanButton.setTitle("Scan", for: .normal)
-        scanButton.setTitleColor(
-            UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal
-        )
-        scanButton.setTitleColor(
-            UIColor(red: 1, green: 1, blue: 1, alpha: 0.32), for: .disabled
-        )
+        scanButton.setTitle(title, for: .normal)
+        scanButton.setTitleColor(#colorLiteral(red: 0.9647058824, green: 0.537254902, blue: 0.8705882353, alpha: 1), for: .normal)
+        scanButton.setTitleColor(UIColor.white.withAlphaComponent(0.32), for: .disabled)
         scanButton.layer.borderColor = UIColor.white.cgColor
         scanButton.layer.borderWidth = 1
         scanButton.layer.cornerRadius = 5
@@ -138,26 +138,36 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
     @objc func scanQRCode() {
         if let tryImage = UIImage2CGimage(imageView.image) {
             let codes = EFQRCodeRecognizer(image: tryImage).recognize() ?? []
-            let title = codes.isEmpty ? "Error" : "Success"
-            let result = codes.first ?? "Get QRCode from image failed!"
+            let title = codes.isEmpty ? Localized.error : Localized.success
+            let result = codes.first ?? NSLocalizedString(
+                "No QR code is found", comment: "Failed to get QRCode from image"
+            )
+            
             // for (index, code) in codes.enumerated() {
             //     result += "\(index): \(code)\n"
             // }
             let alert = UIAlertController(title: title, message: result, preferredStyle: .alert)
             if !codes.isEmpty {
-                alert.addAction(UIAlertAction(title: "Copy", style: .default) { [weak self] (action) in
+                alert.addAction(UIAlertAction(
+                    title: NSLocalizedString("Copy", comment: "Generic alert title"),
+                    style: .default
+                ) { [weak self] (action) in
                     if self != nil {
                         UIPasteboard.general.string = result
                     }
                 })
             }
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             present(alert, animated: true)
         } else {
             let alert = UIAlertController(
-                title: "Warning", message: "Please choose image first!", preferredStyle: .alert
+                title: Localized.warning,
+                message: NSLocalizedString(
+                    "Please choose image first!",
+                    comment: "Explain why scanning failed"),
+                preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             present(alert, animated: true)
         }
     }
@@ -173,11 +183,11 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
         } else if let tryImage = info[.originalImage] as? UIImage {
             imageView.image = tryImage
         } else {
-            print("Something went wrong")
+            print(Localized.errored)
         }
         scanButton.isEnabled = nil != imageView.image
         scanButton.backgroundColor = scanButton.isEnabled
-            ? UIColor(red: 1, green: 1, blue: 1, alpha: 0.32)
+            ? UIColor.white.withAlphaComponent(0.32)
             : .clear
         
         picker.dismiss(animated: true)

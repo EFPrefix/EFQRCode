@@ -83,6 +83,8 @@
 		5282BD321FF4764100DFB36B /* UnitTestInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD311FF4764100DFB36B /* UnitTestInterfaceController.swift */; };
 		5282BD391FF480EB00DFB36B /* UnitTestcaseRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD381FF480EB00DFB36B /* UnitTestcaseRowType.swift */; };
 		5282BD3C1FF4819200DFB36B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD3B1FF4819200DFB36B /* Tests.swift */; };
+		528EFA7422965AC80026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA7322965AC80026663C /* Localized.swift */; };
+		528EFA7522965AC80026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA7322965AC80026663C /* Localized.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,6 +354,9 @@
 		5282BD311FF4764100DFB36B /* UnitTestInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestInterfaceController.swift; sourceTree = "<group>"; };
 		5282BD381FF480EB00DFB36B /* UnitTestcaseRowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestcaseRowType.swift; sourceTree = "<group>"; };
 		5282BD3B1FF4819200DFB36B /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		528EFA7322965AC80026663C /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		52B3BFB6229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Resources/zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		52B3BFB7229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
 		F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -514,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */,
+				528EFA7322965AC80026663C /* Localized.swift */,
 			);
 			name = Unit;
 			sourceTree = "<group>";
@@ -728,6 +734,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = F8111DFC19A951050040E7D1;
 			productRefGroup = F8111E0619A951050040E7D1 /* Products */;
@@ -899,6 +906,7 @@
 				5282BD261FF4137F00DFB36B /* NumberPadInterfaceController.swift in Sources */,
 				5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */,
 				12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */,
+				528EFA7522965AC80026663C /* Localized.swift in Sources */,
 				5282BCF71FF3AD9100DFB36B /* ExtensionDelegate.swift in Sources */,
 				5282BD321FF4764100DFB36B /* UnitTestInterfaceController.swift in Sources */,
 				5282BD281FF41A8200DFB36B /* ParametersInterfaceController.swift in Sources */,
@@ -958,6 +966,7 @@
 				127B826C219084AD00B737E8 /* LayoutConstraint.swift in Sources */,
 				127B8264219084AD00B737E8 /* UILayoutSupport+Extensions.swift in Sources */,
 				127B82372190849900B737E8 /* EFColorComponentView.swift in Sources */,
+				528EFA7422965AC80026663C /* Localized.swift in Sources */,
 				127B8271219084AD00B737E8 /* LayoutConstraintItem.swift in Sources */,
 				127B8263219084AD00B737E8 /* ConstraintLayoutGuideDSL.swift in Sources */,
 				127B826D219084AD00B737E8 /* ConstraintLayoutGuide.swift in Sources */,
@@ -1000,6 +1009,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				120B77FE1EA395EC00D34440 /* Base */,
+				52B3BFB6229625760035D5EC /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1008,6 +1018,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5282BCE61FF3AD9000DFB36B /* Base */,
+				52B3BFB7229625760035D5EC /* zh-Hans */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";

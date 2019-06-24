@@ -54,6 +54,7 @@
 		12F371991EA8DE3A0049DE67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F371981EA8DE3A0049DE67 /* ViewController.swift */; };
 		12F3719B1EA8DE3A0049DE67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */; };
 		12F3719E1EA8DE3A0049DE67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719C1EA8DE3A0049DE67 /* Main.storyboard */; };
+		528EFA9122965AF90026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA8A22965AF90026663C /* Localized.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,8 @@
 		12F3719D1EA8DE3A0049DE67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12F3719F1EA8DE3A0049DE67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12F371A61EA8DE740049DE67 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
+		528EFA8A22965AF90026663C /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Localized.swift; path = ../../iOS/Localized.swift; sourceTree = "<group>"; };
+		52B3BFC4229625880035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				12A22CF6221069860063EE1F /* StorageUserDefaults.swift */,
+				528EFA8A22965AF90026663C /* Localized.swift */,
 			);
 			name = Unit;
 			sourceTree = "<group>";
@@ -395,6 +399,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 12F3718A1EA8DE3A0049DE67;
 			productRefGroup = 12F371941EA8DE3A0049DE67 /* Products */;
@@ -518,6 +523,7 @@
 				1259BA5C2190881900E41FCD /* ConstraintMakerEditable.swift in Sources */,
 				1259BA552190881900E41FCD /* ConstraintPriorityTarget.swift in Sources */,
 				1259BA422190881900E41FCD /* ConstraintMakerPriortizable.swift in Sources */,
+				528EFA9122965AF90026663C /* Localized.swift in Sources */,
 				1259BA5D2190881900E41FCD /* UILayoutSupport+Extensions.swift in Sources */,
 				1259BA442190881900E41FCD /* ConstraintDSL.swift in Sources */,
 				1259BA5B2190881900E41FCD /* ConstraintConfig.swift in Sources */,
@@ -542,6 +548,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				12F3719D1EA8DE3A0049DE67 /* Base */,
+				52B3BFC4229625880035D5EC /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

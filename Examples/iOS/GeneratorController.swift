@@ -84,13 +84,6 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     // MARK: Not commonly used
     var foregroundPointOffset: CGFloat = 0
     var allowTransparent: Bool = true
-
-    // Test data
-    struct colorData {
-        var color: UIColor
-        var name: String
-    }
-    var colorList = [colorData]()
 }
 
 extension GeneratorController {
@@ -98,9 +91,9 @@ extension GeneratorController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Create"
+        title = NSLocalizedString("Create", comment: "Title on generator")
         automaticallyAdjustsScrollViewInsets = false
-        view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
 
         setupViews()
     }
@@ -108,41 +101,13 @@ extension GeneratorController {
     func setupViews() {
         let buttonHeight: CGFloat = 46
 
-        // MARK: Add test data
-        let colorNameArray = [
-            "Black", "White", "Gray", "Red", "Blue", "LPD", "Miku", "Wille",
-            "Hearth Stone", "Pikachu Red", "3 Red", "Cee", "toto"
-        ]
-        let colorArray = [
-            UIColor.black, UIColor.white, UIColor.gray, UIColor.red, UIColor.blue, UIColor(
-                red: 0 / 255.0, green: 139.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0
-            ), UIColor(
-                red: 57.0 / 255.0, green: 197.0 / 255.0, blue: 187.0 / 255.0, alpha: 1.0
-            ), UIColor(
-                red: 208.0 / 255.0, green: 34.0 / 255.0, blue: 87.0 / 255.0, alpha: 1.0
-            ), UIColor(
-                red: 125.0 / 255.0, green: 112.0 / 255.0, blue: 93.0 / 255.0, alpha: 1.0
-            ), UIColor(
-                red: 233.0 / 255.0, green: 77.0 / 255.0, blue: 52.0 / 255.0, alpha: 1.0
-            ), UIColor(
-                red: 132.0 / 255.0, green: 37.0 / 255.0, blue: 43.0 / 255.0, alpha: 1.0
-            ), UIColor(
-                red: 42.0 / 255.0, green: 42.0 / 255.0, blue: 152.0 / 255.0, alpha: 1.0
-            ), UIColor(
-                red: 41.0 / 255.0, green: 44.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0
-            )
-        ]
-        for (index, colorName) in colorNameArray.enumerated() {
-            colorList.append(GeneratorController.colorData(color: colorArray[index], name: colorName))
-        }
-
         // MARK: Content
         textView = UITextView()
         textView.text = (lastContent.value as String?) ?? "https://github.com/EFPrefix/EFQRCode"
-        textView.tintColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
+        textView.tintColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
         textView.font = .systemFont(ofSize: 24)
         textView.textColor = .white
-        textView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.32)
+        textView.backgroundColor = UIColor.white.withAlphaComponent(0.32)
         textView.layer.borderColor = UIColor.white.cgColor
         textView.layer.borderWidth = 1
         textView.layer.cornerRadius = 5
@@ -180,11 +145,9 @@ extension GeneratorController {
         }
 
         createButton = UIButton(type: .system)
-        createButton.setTitle("Create", for: .normal)
-        createButton.setTitleColor(
-            UIColor(red: 246.0 / 255.0, green: 137.0 / 255.0, blue: 222.0 / 255.0, alpha: 1), for: .normal
-        )
-        createButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.32)
+        createButton.setTitle(title, for: .normal)
+        createButton.setTitleColor(#colorLiteral(red: 0.9647058824, green: 0.537254902, blue: 0.8705882353, alpha: 1), for: .normal)
+        createButton.backgroundColor = UIColor.white.withAlphaComponent(0.32)
         createButton.layer.borderColor = UIColor.white.cgColor
         createButton.layer.borderWidth = 1
         createButton.layer.cornerRadius = 5
@@ -251,6 +214,15 @@ extension GeneratorController {
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowTransparent)
         generator.setPointShape(pointShape: pointShape)
+        
+        func alertCreationFailure() {
+            let alert = UIAlertController(
+                title: Localized.error,
+                message: Localized.createQRCodeFailed,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
+            present(alert, animated: true)
+        }
 
         switch watermark {
         case .gif(let data)?: // GIF
@@ -259,21 +231,17 @@ extension GeneratorController {
             if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
                 present(ShowController(image: .gif(afterData)), animated: true)
             } else {
-                let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                present(alert, animated: true)
+                alertCreationFailure()
             }
         case .normal(let image)?:
             generator.setWatermark(watermark: UIImage2CGimage(image), mode: watermarkMode)
-            fallthrough // Other use UIImage
+            fallthrough // Create using UIImage with or without watermark
         case nil:
             if let tryCGImage = generator.generate() {
                 let tryImage = UIImage(cgImage: tryCGImage)
                 present(ShowController(image: .normal(tryImage)), animated: true)
             } else {
-                let alert = UIAlertController(title: "Warning", message: "Create QRCode failed!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                present(alert, animated: true)
+                alertCreationFailure()
             }
         }
     }
@@ -290,14 +258,14 @@ extension GeneratorController {
 
     func chooseInputCorrectionLevel() {
         let alert = UIAlertController(
-            title: "InputCorrectionLevel",
+            title: Localized.Title.inputCorrectionLevel,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
-        for (index, level) in ["l", "m", "q", "h"].enumerated() {
+        for (index, level) in ["L", "M", "Q", "H"].enumerated() {
             alert.addAction(
                 UIAlertAction(title: level, style: .default) {
                     [weak self] _ in
@@ -312,19 +280,21 @@ extension GeneratorController {
 
     func chooseSize() {
         let alert = UIAlertController(
-            title: "Size", message: nil, preferredStyle: .alert
+            title: Localized.Title.size,
+            message: nil,
+            preferredStyle: .alert
         )
         alert.addTextField {
             [width = size.width] (textField) in
-            textField.placeholder = "Width"
+            textField.placeholder = Localized.width
             textField.text = "\(width)"
         }
         alert.addTextField {
             [height = size.height] (textField) in
-            textField.placeholder = "Height"
+            textField.placeholder = Localized.height
             textField.text = "\(height)"
         }
-        alert.addAction(UIAlertAction(title: "OK", style: .default) {
+        alert.addAction(UIAlertAction(title: Localized.ok, style: .default) {
             [weak self] _ in
             guard let self = self else { return }
             if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -336,12 +306,16 @@ extension GeneratorController {
                 self.refresh()
                 return
             }
-            let alert = UIAlertController(title: "Warning", message: "Illegal input size!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            let alert = UIAlertController(
+                title: Localized.warning,
+                message: NSLocalizedString("Not a valid size!",
+                                           comment: "Explain misconfiguration"),
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             self.present(alert, animated: true)
         })
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         present(alert, animated: true)
     }
@@ -349,19 +323,21 @@ extension GeneratorController {
     func chooseMagnification() {
         func customInput() {
             let alert = UIAlertController(
-                title: "Magnification", message: nil, preferredStyle: .alert
+                title: Localized.Title.magnification,
+                message: nil,
+                preferredStyle: .alert
             )
             alert.addTextField {
                 [magnification = magnification] (textField) in
-                textField.placeholder = "Width"
+                textField.placeholder = Localized.width
                 textField.text = magnification.map { "\($0.width)" } ?? ""
             }
             alert.addTextField {
                 [magnification = magnification] (textField) in
-                textField.placeholder = "Height"
+                textField.placeholder = Localized.height
                 textField.text = magnification.map { "\($0.height)" } ?? ""
             }
-            alert.addAction(UIAlertAction(title: "OK", style: .default) {
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -374,25 +350,28 @@ extension GeneratorController {
                     return
                 }
                 let alert = UIAlertController(
-                    title: "Warning", message: "Illegal input magnification!", preferredStyle: .alert
+                    title: Localized.warning,
+                    message: NSLocalizedString("Not a valid magnification!",
+                                               comment: "Explain misconfiguration"),
+                    preferredStyle: .alert
                 )
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
                 self.present(alert, animated: true)
             })
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: Localized.cancel, style: .cancel))
             present(alert, animated: true)
         }
 
         let alert = UIAlertController(
-            title: "Magnification",
+            title: Localized.Title.magnification,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         alert.addAction(
-            UIAlertAction(title: "nil", style: .default) {
+            UIAlertAction(title: Localized.none, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.magnification = nil
@@ -408,7 +387,7 @@ extension GeneratorController {
             }
         )
         alert.addAction(
-            UIAlertAction(title: "custom", style: .default) {
+            UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
                 if self != nil {
                     customInput()
@@ -420,22 +399,22 @@ extension GeneratorController {
 
     func chooseBackColor() {
         let alert = UIAlertController(
-            title: "BackColor",
+            title: Localized.Title.backgroundColor,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         #if os(iOS)
         alert.addAction(
-            UIAlertAction(title: "Custom", style: .default) {
+            UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
                 self?.customColor(0)
             }
         )
         #endif
-        for color in colorList {
+        for color in Localized.Parameters.colors {
             alert.addAction(
                 UIAlertAction(title: color.name, style: .default) {
                     [weak self] _ in
@@ -450,16 +429,16 @@ extension GeneratorController {
 
     func chooseFrontColor() {
         let alert = UIAlertController(
-            title: "FrontColor",
+            title: Localized.Title.foregroundColor,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         #if os(iOS)
         alert.addAction(
-            UIAlertAction(title: "Custom", style: .default) {
+            UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
                 self?.customColor(1)
             }
@@ -467,7 +446,12 @@ extension GeneratorController {
         #endif
         if case let .normal(tryWaterMark)? = watermark {
             alert.addAction(
-                UIAlertAction(title: "Average of watermark", style: .default) {
+                UIAlertAction(
+                    title: NSLocalizedString(
+                        "Average of watermark",
+                        comment: "Use average color of watermark as front color"),
+                    style: .default
+                ) {
                     [weak self] _ in
                     guard let self = self else { return }
                     self.frontColor = tryWaterMark.avarageColor() ?? .black
@@ -475,7 +459,12 @@ extension GeneratorController {
                 }
             )
             alert.addAction(
-                UIAlertAction(title: "Average of watermark (Dacker)", style: .default) {
+                UIAlertAction(
+                    title: NSLocalizedString(
+                        "Average of watermark (Dacker)",
+                        comment: "Use darkened average color of watermark as front color"),
+                    style: .default
+                ) {
                     [weak self] _ in
                     guard let self = self else { return }
                     var xxxColor = tryWaterMark.avarageColor() ?? .black
@@ -491,7 +480,7 @@ extension GeneratorController {
                 }
             )
         }
-        for color in colorList {
+        for color in Localized.Parameters.colors {
             alert.addAction(
                 UIAlertAction(title: color.name, style: .default) {
                     [weak self] _ in
@@ -506,15 +495,15 @@ extension GeneratorController {
 
     func chooseIcon() {
         let alert = UIAlertController(
-            title: "Icon",
+            title: Localized.Title.icon,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         alert.addAction(
-            UIAlertAction(title: "nil", style: .default) {
+            UIAlertAction(title: Localized.none, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.icon = nil
@@ -523,20 +512,20 @@ extension GeneratorController {
         )
         #if os(iOS)
         alert.addAction(
-            UIAlertAction(title: "Select from system album", style: .default) {
+            UIAlertAction(title: Localized.chooseImage, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
-                self.chooseImageFromAlbum(title: "icon")
+                self.chooseImageFromAlbum(title: Localized.Title.icon)
                 self.refresh()
             }
         )
         #endif
-        for icon in ["EyreFree", "GitHub", "LPD", "Pikachu", "Swift"] {
+        for (index, icon) in Localized.Parameters.iconNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: icon, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    self.icon = UIImage(named: icon)
+                    self.icon = UIImage(named: ["EyreFree", "GitHub", "Pikachu", "Swift"][index])
                     self.refresh()
                 }
             )
@@ -547,19 +536,21 @@ extension GeneratorController {
     func chooseIconSize() {
         func customInput() {
             let alert = UIAlertController(
-                title: "IconSize", message: nil, preferredStyle: .alert
+                title: Localized.Title.iconSize,
+                message: nil,
+                preferredStyle: .alert
             )
             alert.addTextField {
                 [iconSize = iconSize] (textField) in
-                textField.placeholder = "Width"
+                textField.placeholder = Localized.width
                 textField.text = iconSize.map { "\($0.width)" } ?? ""
             }
             alert.addTextField {
                 [iconSize = iconSize] (textField) in
-                textField.placeholder = "Height"
+                textField.placeholder = Localized.height
                 textField.text = iconSize.map { "\($0.height)" } ?? ""
             }
-            alert.addAction(UIAlertAction(title: "OK", style: .default) {
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 if let widthString = alert.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -572,25 +563,28 @@ extension GeneratorController {
                     return
                 }
                 let alert = UIAlertController(
-                    title: "Warning", message: "Illegal input iconSize!", preferredStyle: .alert
+                    title: Localized.warning,
+                    message: NSLocalizedString("Not a valid icon size!",
+                                               comment: "Explain misconfiguration"),
+                    preferredStyle: .alert
                 )
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
                 self.present(alert, animated: true)
             })
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: Localized.cancel, style: .cancel))
             present(alert, animated: true)
         }
 
         let alert = UIAlertController(
-            title: "IconSize",
+            title: Localized.Title.iconSize,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         alert.addAction(
-            UIAlertAction(title: "nil", style: .default) {
+            UIAlertAction(title: Localized.none, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.iconSize = nil
@@ -606,7 +600,7 @@ extension GeneratorController {
             }
         )
         alert.addAction(
-            UIAlertAction(title: "custom", style: .default) {
+            UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
                 if self != nil {
                     customInput()
@@ -618,15 +612,15 @@ extension GeneratorController {
 
     func chooseWatermark() {
         let alert = UIAlertController(
-            title: "Watermark",
+            title: Localized.Title.watermark,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         alert.addAction(
-            UIAlertAction(title: "nil", style: .default) {
+            UIAlertAction(title: Localized.none, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.watermark = nil
@@ -635,20 +629,21 @@ extension GeneratorController {
         )
         #if os(iOS)
         alert.addAction(
-            UIAlertAction(title: "Select from system album", style: .default) {
+            UIAlertAction(title: Localized.chooseImage, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
-                self.chooseImageFromAlbum(title: "watermark")
+                self.chooseImageFromAlbum(title: Localized.Title.watermark)
                 self.refresh()
             }
         )
         #endif
-        for watermark in ["Beethoven", "Jobs", "Miku", "Wille", "WWF"] {
+        for (index, localizedName) in Localized.Parameters.watermarkNames.enumerated() {
             alert.addAction(
-                UIAlertAction(title: watermark, style: .default) {
+                UIAlertAction(title: localizedName, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    self.watermark = .normal(UIImage(named: watermark)!)
+                    let name = ["Beethoven", "Jobs", "Miku", "Wille", "WWF"][index]
+                    self.watermark = .normal(UIImage(named: name)!)
                     self.refresh()
                 }
             )
@@ -658,21 +653,16 @@ extension GeneratorController {
 
     func chooseWatermarkMode() {
         let alert = UIAlertController(
-            title: "WatermarkMode",
+            title: Localized.Title.watermarkMode,
             message: nil,
             preferredStyle: .actionSheet
         )
 
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
 
-        let modeNameArray = [
-            "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center",
-            "top", "bottom", "left", "right",
-            "topLeft", "topRight", "bottomLeft", "bottomRight"
-        ]
-        for (index, modeName) in modeNameArray.enumerated() {
+        for (index, modeName) in Localized.Parameters.watermarkModeNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: modeName, style: .default) {
                     [weak self] _ in
@@ -689,15 +679,15 @@ extension GeneratorController {
 
     func chooseForegroundPointOffset() {
         let alert = UIAlertController(
-            title: "ForegroundPointOffset",
+            title: Localized.Title.foregroundPointOffset,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         alert.addAction(
-            UIAlertAction(title: "nil", style: .default) {
+            UIAlertAction(title: Localized.none, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.magnification = nil
@@ -706,7 +696,7 @@ extension GeneratorController {
         )
         for foregroundPointOffset in [-0.5, -0.25, CGFloat(0), 0.25, 0.5] {
             alert.addAction(
-                UIAlertAction(title: "\(foregroundPointOffset)", style: .default) {
+                UIAlertAction(title: Localized.number(foregroundPointOffset), style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
                     self.foregroundPointOffset = foregroundPointOffset
@@ -719,16 +709,16 @@ extension GeneratorController {
 
     func chooseBinarizationThreshold() {
         let alert = UIAlertController(
-            title: "binarizationThreshold",
+            title: Localized.Title.binarizationThreshold,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         for binarizationThreshold in [CGFloat(0), 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0] {
             alert.addAction(
-                UIAlertAction(title: "\(binarizationThreshold)", style: .default) {
+                UIAlertAction(title: Localized.number(binarizationThreshold), style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
                     self.binarizationThreshold = binarizationThreshold
@@ -741,18 +731,15 @@ extension GeneratorController {
 
     func chooseMode() {
         let alert = UIAlertController(
-            title: "mode",
+            title: Localized.Title.mode,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
 
-        let modeNameArray = [
-            "none", "grayscale", "binarization"
-        ]
-        for (index, modeName) in modeNameArray.enumerated() {
+        for (index, modeName) in Localized.Parameters.modeNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: modeName, style: .default) {
                     [weak self] _ in
@@ -767,18 +754,15 @@ extension GeneratorController {
 
     func chooseShape() {
         let alert = UIAlertController(
-            title: "pointShape",
+            title: Localized.Title.pointShape,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
 
-        let shapeNameArray = [
-            "square", "circle", "diamond"
-        ]
-        for (index, shapeName) in shapeNameArray.enumerated() {
+        for (index, shapeName) in Localized.Parameters.shapeNames.enumerated() {
             alert.addAction(
                 UIAlertAction(title: shapeName, style: .default) {
                     [weak self] _ in
@@ -806,15 +790,15 @@ extension GeneratorController {
 
     func chooseAllowTransparent() {
         let alert = UIAlertController(
-            title: "AllowTransparent",
+            title: Localized.Title.allowTransparent,
             message: nil,
             preferredStyle: .actionSheet
         )
         alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel)
+            UIAlertAction(title: Localized.cancel, style: .cancel)
         )
         alert.addAction(
-            UIAlertAction(title: "True", style: .default) {
+            UIAlertAction(title: Localized.yes, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.allowTransparent = true
@@ -822,7 +806,7 @@ extension GeneratorController {
             }
         )
         alert.addAction(
-            UIAlertAction(title: "False", style: .default) {
+            UIAlertAction(title: Localized.no, style: .default) {
                 [weak self] _ in
                 guard let self = self else { return }
                 self.allowTransparent = false
@@ -872,18 +856,25 @@ extension GeneratorController {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let titleArray = [
-            "inputCorrectionLevel", "mode", "size", "magnification",
-            "backgroundColor", "foregroundColor", "icon", "iconSize",
-            "watermark", "watermarkMode", "foregroundPointOffset", "allowTransparent", "binarizationThreshold",
-            "pointShape"
+        let titles = [
+            Localized.Title.inputCorrectionLevel,
+            Localized.Title.mode,
+            Localized.Title.size,
+            Localized.Title.magnification,
+            Localized.Title.backgroundColor,
+            Localized.Title.foregroundColor,
+            Localized.Title.icon,
+            Localized.Title.iconSize,
+            Localized.Title.watermark,
+            Localized.Title.watermarkMode,
+            Localized.Title.foregroundPointOffset,
+            Localized.Title.allowTransparent,
+            Localized.Title.binarizationThreshold,
+            Localized.Title.pointShape
         ]
-        let magnificationString = "\(nil == magnification ? "nil" : "\(magnification?.width ?? 0)x\(magnification?.height ?? 0)")"
-        let iconSizeString = "\(nil == iconSize ? "nil" : "\(iconSize?.width ?? 0)x\(iconSize?.height ?? 0)")"
-        let watermarkModeString = [
-            "scaleToFill", "scaleAspectFit", "scaleAspectFill", "center", "top", "bottom",
-            "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"
-            ][watermarkMode.rawValue]
+        let magnificationString = magnification.map { "\($0.width)x\($0.height)" } ?? Localized.none
+        let iconSizeString = iconSize.map { "\($0.width)x\($0.height)" } ?? Localized.none
+        let watermarkModeName = Localized.Parameters.watermarkModeNames[watermarkMode.rawValue]
         let modeIndex: Int = {
             switch mode {
             case .none:
@@ -895,8 +886,8 @@ extension GeneratorController {
             }
         }()
         let detailArray = [
-            "\(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue])",
-            "\(["none", "grayscale", "binarization"][modeIndex])",
+            ["L", "M", "Q", "H"][inputCorrectionLevel.rawValue],
+            Localized.Parameters.modeNames[modeIndex],
             "\(size.width)x\(size.height)",
             magnificationString,
             "", // backgroundColor
@@ -904,20 +895,20 @@ extension GeneratorController {
             "", // icon
             iconSizeString,
             "", // watermark
-            watermarkModeString,
-            "\(foregroundPointOffset)",
-            "\(allowTransparent)",
-            "\(binarizationThreshold)",
-            "\(["square", "circle", "diamond"][pointShape.rawValue])"
+            watermarkModeName,
+            Localized.number(foregroundPointOffset),
+            allowTransparent ? Localized.yes : Localized.no,
+            Localized.number(binarizationThreshold),
+            Localized.Parameters.shapeNames[pointShape.rawValue]
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
         cell.textLabel?.textColor = .white
         cell.backgroundColor = .clear
-        cell.textLabel?.text = titleArray[indexPath.row]
+        cell.textLabel?.text = titles[indexPath.row]
         cell.detailTextLabel?.text = detailArray[indexPath.row]
         let backView = UIView()
-        backView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
+        backView.backgroundColor = UIColor.white.withAlphaComponent(0.64)
         cell.selectedBackgroundView = backView
 
         if detailArray[indexPath.row] == "" {
@@ -992,7 +983,7 @@ extension GeneratorController: UIPopoverPresentationControllerDelegate, EFColorS
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
-                title: NSLocalizedString("Done", comment: ""),
+                title: Localized.done,
                 style: .done,
                 target: self,
                 action: #selector(ef_dismissViewController(sender:))
@@ -1034,12 +1025,12 @@ extension GeneratorController: UIImagePickerControllerDelegate {
             finalImage = tryImage
         } else if let tryImage = info[.originalImage] as? UIImage {
             finalImage = tryImage
-        } else{
-            print("Something wrong")
+        } else {
+            print(Localized.errored)
         }
 
         switch titleCurrent {
-        case "watermark":
+        case Localized.Title.watermark:
             if let finalImage = finalImage {
                 watermark = .normal(finalImage)
             } else {
@@ -1054,7 +1045,7 @@ extension GeneratorController: UIImagePickerControllerDelegate {
             if let tryGIF = images.first(where: { $0.value?.isGIF == true }) {
                 watermark = tryGIF.value!
             }
-        case "icon":
+        case Localized.Title.icon:
             icon = finalImage
         default:
             break
@@ -1080,7 +1071,7 @@ extension GeneratorController: UIImagePickerControllerDelegate {
             imageManager.requestImageData(for: asset, options: options) {
                 [weak self] (imageData, dataUTI, orientation, info) in
                 guard self != nil else { return }
-                print("dataUTI: \(dataUTI ?? "")")
+                print("dataUTI: \(dataUTI ?? Localized.none)")
 
                 let imageElement: Ref<EFImage?> = nil
 
@@ -1143,7 +1134,7 @@ class ShowController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
         setupViews()
     }
 
@@ -1159,7 +1150,7 @@ class ShowController: UIViewController {
             imageView.accessibilityIgnoresInvertColors = true
         }
         #endif
-        imageView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.64)
+        imageView.backgroundColor = UIColor.white.withAlphaComponent(0.64)
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 1
@@ -1179,7 +1170,7 @@ class ShowController: UIViewController {
             imageView.image = nil
         }
         
-        backButton.setTitle("Back", for: .normal)
+        backButton.setTitle(Localized.back, for: .normal)
         backButton.setTitleColor(.white, for: .normal)
         backButton.layer.borderColor = UIColor.white.cgColor
         backButton.layer.borderWidth = 1
@@ -1188,7 +1179,7 @@ class ShowController: UIViewController {
         view.addSubview(backButton)
 
         #if os(iOS)
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle(Localized.save, for: .normal)
         saveButton.setTitleColor(UIColor.white, for: .normal)
         saveButton.layer.borderColor = UIColor.white.cgColor
         saveButton.layer.borderWidth = 1
@@ -1265,14 +1256,14 @@ class ShowController: UIViewController {
     @objc func saveToAlbum() {
         guard let tryImage = image else { return }
         CustomPhotoAlbum.save(image: tryImage) {
-            [weak self] (result) in
+            [weak self] (issue) in
             guard let self = self else { return }
             let alert = UIAlertController(
-                title: result == nil ? "Success" : "Error",
-                message: result ?? "Save finished.",
+                title: issue == nil ? Localized.success : Localized.error,
+                message: issue ?? NSLocalizedString("Save finished.", comment: "Image successfuly saved to photos"),
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             self.present(alert, animated: true)
         }
     }
@@ -1308,7 +1299,8 @@ enum CustomPhotoAlbum {
                     if success {
                         save(image: image, finish: finish)
                     } else {
-                        finish(error?.localizedDescription ?? "Can't create photo album")
+                        finish(error?.localizedDescription ??
+                            NSLocalizedString("Can't create photo album", comment: ""))
                     }
                 })
             }
@@ -1317,11 +1309,11 @@ enum CustomPhotoAlbum {
                 save(image: image, finish: finish)
             }
         case .restricted:
-            finish("You can't grant access to the photo library.")
+            finish(NSLocalizedString("You can't grant access to the photo library.", comment: ""))
         case .denied:
-            finish("You didn't grant access to the photo library.")
+            finish(NSLocalizedString("You didn't grant access to the photo library.", comment: ""))
         @unknown default:
-            finish("Unknown result.")
+            finish(Localized.errored)
         }
     }
     
@@ -1333,7 +1325,7 @@ enum CustomPhotoAlbum {
             switch image {
             case .gif:
                 guard let fileURL = EFQRCode.tempResultPath else {
-                    finish("EFQRCode.tempResultPath is nil!")
+                    finish(NSLocalizedString("Can't create a temporary gif file for export", comment: "EFQRCode.tempResultPath is nil"))
                     errored = true
                     return
                 }
@@ -1345,7 +1337,7 @@ enum CustomPhotoAlbum {
                 let albumChangeRequest = PHAssetCollectionChangeRequest(for: assetCollection)
                 albumChangeRequest?.addAssets([assetPlaceHolder] as NSFastEnumeration)
             } else {
-                finish("PlaceholderForCreatedAsset is nil!")
+                finish(NSLocalizedString("Can't create a placeholder to export gif to", comment: "PlaceholderForCreatedAsset is nil!"))
                 errored = true
             }
         }, completionHandler: { (success, error) in
@@ -1353,7 +1345,7 @@ enum CustomPhotoAlbum {
             if success {
                 finish(nil)
             } else {
-                finish(error?.localizedDescription ?? "Unknown error")
+                finish(error?.localizedDescription ?? Localized.error)
             }
         })
     }

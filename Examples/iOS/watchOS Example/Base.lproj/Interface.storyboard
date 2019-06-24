@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
     </dependencies>
     <scenes>
         <!--NumberPad-->
@@ -200,7 +200,7 @@
                 <controller title="EFQRCode" id="x7r-oY-9um" customClass="ParametersInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
                     <items>
                         <button width="1" alignment="left" title="Generate" id="FcX-tR-c93">
-                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleColor" red="0.96470588235294119" green="0.53725490196078429" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="AgC-eL-Hgc" kind="push" id="6xH-8Q-rON"/>
                             </connections>
@@ -334,7 +334,7 @@ Width &amp; Height</string>
                             </connections>
                         </picker>
                         <button width="1" alignment="left" title="Generate" id="UDk-vC-rXj">
-                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="titleColor" red="0.96470588235294119" green="0.53725490196078429" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="AgC-eL-Hgc" kind="push" id="nUc-7Q-ju6"/>
                             </connections>

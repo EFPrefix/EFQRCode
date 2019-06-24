@@ -78,10 +78,20 @@ class ViewController: NSViewController {
     var pointShape: EFPointShape = .square
 
     let titleArray = [
-        "inputCorrectionLevel", "mode", "size", "magnification",
-        "backgroundColor", "foregroundColor", "icon", "iconSize",
-        "watermark", "watermarkMode", "foregroundPointOffset", "allowTransparent",
-        "binarizationThreshold", "pointShape"
+        Localized.Title.inputCorrectionLevel,
+        Localized.Title.mode,
+        Localized.Title.size,
+        Localized.Title.magnification,
+        Localized.Title.backgroundColor,
+        Localized.Title.foregroundColor,
+        Localized.Title.icon,
+        Localized.Title.iconSize,
+        Localized.Title.watermark,
+        Localized.Title.watermarkMode,
+        Localized.Title.foregroundPointOffset,
+        Localized.Title.allowTransparent,
+        Localized.Title.binarizationThreshold,
+        Localized.Title.pointShape
     ]
 
     override func viewDidLoad() {
