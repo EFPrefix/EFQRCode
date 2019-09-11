@@ -34,6 +34,7 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
+  - sh Startup.sh
 
   # Fix known issues of Xcode 10.2.1
   - if [ $RUN_TESTS == "YES" ]; then

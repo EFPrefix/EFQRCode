@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		120AAA7F21932D0B00F0783B /* swift_qrcodejs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120AAA5421932C6600F0783B /* swift_qrcodejs.framework */; };
 		120B77D81EA3939F00D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		120B78651EA3B70D00D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		120B78661EA3B71500D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,6 +55,7 @@
 		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
+		12BC1A3B2328B8A500B6EB5A /* swift_qrcodejs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BC19E42328B6D400B6EB5A /* swift_qrcodejs.framework */; };
 		12C0B6F3219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
 		12C0B6F4219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
 		12C0B6F5219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
@@ -94,58 +94,58 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		120AAA4F21932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19DF2328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A9963F217C164300314AF8;
 			remoteInfo = "swift_qrcodejs-cli";
 		};
-		120AAA5121932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19E12328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A995E5217C11BB00314AF8;
 			remoteInfo = "swift_qrcodejs-iOS";
 		};
-		120AAA5321932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19E32328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A9959E217C0DF600314AF8;
 			remoteInfo = "swift_qrcodejs-watchOS";
 		};
-		120AAA5521932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19E52328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A995AB217C0F1E00314AF8;
 			remoteInfo = "swift_qrcodejs-tvOS";
 		};
-		120AAA5721932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19E72328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A995C7217C0F6500314AF8;
 			remoteInfo = "swift_qrcodejs-macOS";
 		};
-		120AAA5921932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19E92328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A995ED217C11BB00314AF8;
 			remoteInfo = "swift_qrcodejsTests-iOS";
 		};
-		120AAA5B21932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19EB2328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A995B3217C0F1F00314AF8;
 			remoteInfo = "swift_qrcodejsTests-tvOS";
 		};
-		120AAA5D21932C6600F0783B /* PBXContainerItemProxy */ = {
+		12BC19ED2328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 52A995CF217C0F6500314AF8;
 			remoteInfo = "swift_qrcodejsTests-macOS";
@@ -174,7 +174,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = swift_qrcodejs.xcodeproj; path = Examples/3rd/swift_qrcodejs/swift_qrcodejs.xcodeproj; sourceTree = "<group>"; };
 		120B77D71EA3939F00D34440 /* EFQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFQRCode.h; sourceTree = "<group>"; };
 		12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFWatermarkMode.swift; path = Source/EFWatermarkMode.swift; sourceTree = SOURCE_ROOT; };
 		12664E9E1FA9CED000D56500 /* CGColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGColor+.swift"; path = "Source/CGColor+.swift"; sourceTree = SOURCE_ROOT; };
@@ -194,6 +193,7 @@
 		127F871E1ECF56AC0002B554 /* EFQRCode.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EFQRCode.podspec; sourceTree = "<group>"; };
 		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
 		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = swift_qrcodejs.xcodeproj; path = Carthage/Checkouts/swift_qrcodejs/swift_qrcodejs.xcodeproj; sourceTree = "<group>"; };
 		12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeMode.swift; sourceTree = "<group>"; };
 		12C0B6F7219C0FA5000545C9 /* EFPointShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFPointShape.swift; sourceTree = "<group>"; };
 		12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFUIntPixel.swift; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120AAA7F21932D0B00F0783B /* swift_qrcodejs.framework in Frameworks */,
+				12BC1A3B2328B8A500B6EB5A /* swift_qrcodejs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,21 +310,6 @@
 			name = Extension;
 			sourceTree = "<group>";
 		};
-		120AAA4521932C6500F0783B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				120AAA5021932C6600F0783B /* swift_qrcodejs-cli */,
-				120AAA5221932C6600F0783B /* swift_qrcodejs.framework */,
-				120AAA5421932C6600F0783B /* swift_qrcodejs.framework */,
-				120AAA5621932C6600F0783B /* swift_qrcodejs.framework */,
-				120AAA5821932C6600F0783B /* swift_qrcodejs.framework */,
-				120AAA5A21932C6600F0783B /* swift_qrcodejsTests-iOS.xctest */,
-				120AAA5C21932C6600F0783B /* swift_qrcodejsTests-tvOS.xctest */,
-				120AAA5E21932C6600F0783B /* swift_qrcodejsTests-macOS.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		120AAA7A21932CD300F0783B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +325,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		12BC19D52328B6D400B6EB5A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				12BC19E02328B6D400B6EB5A /* swift_qrcodejs-cli */,
+				12BC19E22328B6D400B6EB5A /* swift_qrcodejs.framework */,
+				12BC19E42328B6D400B6EB5A /* swift_qrcodejs.framework */,
+				12BC19E62328B6D400B6EB5A /* swift_qrcodejs.framework */,
+				12BC19E82328B6D400B6EB5A /* swift_qrcodejs.framework */,
+				12BC19EA2328B6D400B6EB5A /* swift_qrcodejsTests-iOS.xctest */,
+				12BC19EC2328B6D400B6EB5A /* swift_qrcodejsTests-tvOS.xctest */,
+				12BC19EE2328B6D400B6EB5A /* swift_qrcodejsTests-macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F8111E2919A95C8B0040E7D1 = {
 			isa = PBXGroup;
 			children = (
@@ -350,7 +350,7 @@
 				F8111E3F19A95C8B0040E7D1 /* Tests */,
 				F8111E3419A95C8B0040E7D1 /* Products */,
 				120AAA7A21932CD300F0783B /* Frameworks */,
-				120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */,
+				12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -633,8 +633,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 120AAA4521932C6500F0783B /* Products */;
-					ProjectRef = 120AAA4421932C6500F0783B /* swift_qrcodejs.xcodeproj */;
+					ProductGroup = 12BC19D52328B6D400B6EB5A /* Products */;
+					ProjectRef = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -651,60 +651,60 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		120AAA5021932C6600F0783B /* swift_qrcodejs-cli */ = {
+		12BC19E02328B6D400B6EB5A /* swift_qrcodejs-cli */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = "swift_qrcodejs-cli";
-			remoteRef = 120AAA4F21932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19DF2328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		120AAA5221932C6600F0783B /* swift_qrcodejs.framework */ = {
+		12BC19E22328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = swift_qrcodejs.framework;
-			remoteRef = 120AAA5121932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19E12328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		120AAA5421932C6600F0783B /* swift_qrcodejs.framework */ = {
+		12BC19E42328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = swift_qrcodejs.framework;
-			remoteRef = 120AAA5321932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19E32328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		120AAA5621932C6600F0783B /* swift_qrcodejs.framework */ = {
+		12BC19E62328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = swift_qrcodejs.framework;
-			remoteRef = 120AAA5521932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19E52328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		120AAA5821932C6600F0783B /* swift_qrcodejs.framework */ = {
+		12BC19E82328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = swift_qrcodejs.framework;
-			remoteRef = 120AAA5721932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19E72328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		120AAA5A21932C6600F0783B /* swift_qrcodejsTests-iOS.xctest */ = {
+		12BC19EA2328B6D400B6EB5A /* swift_qrcodejsTests-iOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "swift_qrcodejsTests-iOS.xctest";
-			remoteRef = 120AAA5921932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19E92328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		120AAA5C21932C6600F0783B /* swift_qrcodejsTests-tvOS.xctest */ = {
+		12BC19EC2328B6D400B6EB5A /* swift_qrcodejsTests-tvOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "swift_qrcodejsTests-tvOS.xctest";
-			remoteRef = 120AAA5B21932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19EB2328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		120AAA5E21932C6600F0783B /* swift_qrcodejsTests-macOS.xctest */ = {
+		12BC19EE2328B6D400B6EB5A /* swift_qrcodejsTests-macOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "swift_qrcodejsTests-macOS.xctest";
-			remoteRef = 120AAA5D21932C6600F0783B /* PBXContainerItemProxy */;
+			remoteRef = 12BC19ED2328B6D400B6EB5A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1086,7 +1086,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -1117,7 +1117,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};

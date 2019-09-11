@@ -1,9 +1,0 @@
-[submodule "Examples/3rd/SnapKit"]
-	path = Examples/3rd/SnapKit
-	url = https://github.com/SnapKit/SnapKit.git
-[submodule "Examples/3rd/EFColorPicker"]
-	path = Examples/3rd/EFColorPicker
-	url = https://github.com/EFPrefix/EFColorPicker.git
-[submodule "Examples/3rd/swift_qrcodejs"]
-	path = Examples/3rd/swift_qrcodejs
-	url = https://github.com/ApolloZhu/swift_qrcodejs.git

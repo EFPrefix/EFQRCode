@@ -32,3 +32,13 @@ playground.xcworkspace
 # Carthage
 Carthage/Build
 Carthage/
+
+# Pods
+Examples/Pods
+Pods/
+Pods
+Examples/Dependency.xcworkspace
+Examples/Dependency.xcworkspace/
+Dependency.xcworkspace
+Dependency.xcworkspace/
+
