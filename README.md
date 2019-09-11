@@ -79,7 +79,7 @@ You can also click the `Mac App Store` button below to download demo for macOS:
 
 ### Manual
 
-To run the example project manually, clone the repo, demos are in the 'Examples' folder, remember run command `git submodule update --init --recursive` in terminal to get all `submodules` first, then open `EFQRCode.xcworkspace` with Xcode and select the target you want, run.
+To run the example project manually, clone the repo, demos are in the 'Examples' folder, remember run command `sh Startup.sh` in terminal to get all dependencies first, then open `EFQRCode.xcworkspace` with Xcode and select the target you want, run.
 
 Or you can run the following command in terminal:
 
@@ -103,7 +103,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'EFQRCode', '~> 5.0.0'
+pod 'EFQRCode', '~> 5.0.1'
 ```
 
 Then, run the following command:
@@ -126,7 +126,7 @@ $ brew install carthage
 To integrate EFQRCode into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "EFPrefix/EFQRCode" ~> 5.0.0
+github "EFPrefix/EFQRCode" ~> 5.0.1
 ```
 
 Run `carthage update` to build the framework and drag the built `EFQRCode.framework` into your Xcode project.
@@ -139,7 +139,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 0, 0))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 0, 1))
 ]
 ```
 

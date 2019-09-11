@@ -83,7 +83,7 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 ### 手动
 
 1. 利用 `git clone` 命令下载本仓库；
-2. 切换到仓库根目录下，执行 `git submodule update --init --recursive` 命令获取所有 submodule；
+2. 切换到仓库根目录下，执行 `sh Startup.sh` 命令获取所有依赖；
 3. `EFQRCode.xcworkspace` 工程中包含了所有的示例程序，用 Xcode 打开它，选择对应平台 target 编译即可。
 
 或执行以下命令：
@@ -107,7 +107,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; git submodule updat
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod 'EFQRCode', '~> 5.0.0'
+pod 'EFQRCode', '~> 5.0.1'
 ```
 
 然后，执行如下命令即可：
@@ -130,7 +130,7 @@ $ brew install carthage
 通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
 
 ```ogdl
-github "EFPrefix/EFQRCode" ~> 5.0.0
+github "EFPrefix/EFQRCode" ~> 5.0.1
 ```
 
 接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
@@ -143,7 +143,7 @@ github "EFPrefix/EFQRCode" ~> 5.0.0
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 0, 0))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 0, 1))
 ]
 ```
 
