@@ -1245,9 +1245,9 @@ class ShowController: UIViewController {
                 make.trailing.equalTo(view).offset(-right)
                 let total = left + right
                 make.height.lessThanOrEqualTo(view.snp.width).offset(-total)
-                make.height.lessThanOrEqualTo(view.snp.height).offset(
-                    -max(20, view.safeAreaInsets.bottom)-46-10-46-10-top
-                )
+                var height: CGFloat = -max(20, view.safeAreaInsets.bottom)
+                height = height - 46 - 10 - 46 - 10 - top
+                make.height.lessThanOrEqualTo(view.snp.height).offset(height)
             }
         }
         super.viewWillLayoutSubviews()

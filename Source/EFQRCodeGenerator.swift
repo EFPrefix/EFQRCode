@@ -185,6 +185,15 @@ public class EFQRCodeGenerator: NSObject {
         self.pointShape = pointShape
     }
 
+    private var ignoreTiming: Bool = false {
+        didSet {
+            imageQRCode = nil
+        }
+    }
+    public func setIgnoreTiming(ignoreTiming: Bool) {
+        self.ignoreTiming = ignoreTiming
+    }
+
     // Cache
     private var imageCodes: [[Bool]]?
     private var imageQRCode: CGImage?
@@ -742,9 +751,11 @@ public class EFQRCodeGenerator: NSObject {
             return true
         }
 
-        // Timing Patterns
-        if x == 7 || y == 7 {
-            return true
+        if !ignoreTiming {
+            // Timing Patterns
+            if x == 7 || y == 7 {
+                return true
+            }
         }
 
         // Alignment Patterns

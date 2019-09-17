@@ -2,6 +2,14 @@
 
 ---
 
+## [5.1.0](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.0) (2018-09-17)
+
+#### Add
+
+Add parameter `ignoreTiming`.
+
+---
+
 ## [5.0.1](https://github.com/EFPrefix/EFQRCode/releases/tag/5.0.1) (2018-09-11)
 
 #### Fix
