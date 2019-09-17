@@ -313,6 +313,14 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 Thanks for your support, 🙏
 
+## Thanks
+
+Thanks for the help from JetBrains's [Open Source Support Program](https://www.jetbrains.com/community/opensource/?from=EFQRCode).
+
+<a href="https://www.jetbrains.com/?from=EFQRCode">
+    <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/ce8982e1858d62ac8b9fecec96f5369d8b1b62c3/logo/jetbrains.svg?sanitize=true" width = "20%">
+</a>
+
 ## Apps using EFQRCode
 
 <table>
