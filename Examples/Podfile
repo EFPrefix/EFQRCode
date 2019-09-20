@@ -5,4 +5,5 @@ inhibit_all_warnings!
 target 'Dependency' do
   pod 'SnapKit', '5.0.1'
   pod 'EFColorPicker', '5.1.0'
+  pod 'EFFoundation', '0.8.2'
 end

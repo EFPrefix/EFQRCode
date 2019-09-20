@@ -932,14 +932,9 @@ extension GeneratorController {
             case 6:
                 rightImageView.image = icon
             case 8:
-                rightImageView.stopAnimating()
                 switch watermark {
                 case .gif(let dataGIF)?:
-                    guard let source = CGImageSourceCreateWithData(dataGIF as CFData, nil)
-                        else { break }
-                    let images = source.toCGImages().map(UIImage.init(cgImage:))
-                    rightImageView.animationImages = images
-                    rightImageView.startAnimating()
+                    rightImageView.loadGif(data: dataGIF)
                 case .normal(let image)?:
                     rightImageView.image = image
                 case nil:
@@ -1159,11 +1154,7 @@ class ShowController: UIViewController {
         view.addSubview(imageView)
         switch image {
         case .gif(let dataGIF)?:
-            guard let source = CGImageSourceCreateWithData(dataGIF as CFData, nil)
-                else { break }
-            let images = source.toCGImages().map(UIImage.init(cgImage:))
-            imageView.animationImages = images
-            imageView.startAnimating()
+            imageView.loadGif(data: dataGIF)
         case .normal(let uiImage)?:
             imageView.image = uiImage
         case nil:
@@ -1323,12 +1314,14 @@ enum CustomPhotoAlbum {
         PHPhotoLibrary.shared().performChanges({
             let assetChangeRequest: PHAssetChangeRequest?
             switch image {
-            case .gif:
-                guard let fileURL = EFQRCode.tempResultPath else {
-                    finish(NSLocalizedString("Can't create a temporary gif file for export", comment: "EFQRCode.tempResultPath is nil"))
-                    errored = true
-                    return
+            case .gif(let data):
+                guard let documentsDirectoryURL: URL? = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true),
+                    let fileURL: URL = documentsDirectoryURL?.appendingPathComponent("EFQRCode_temp.gif") else {
+                        finish(NSLocalizedString("Can't create a temporary gif file for export", comment: "FileURL is nil"))
+                        errored = true
+                        return
                 }
+                try? data.write(to: fileURL)
                 assetChangeRequest = .creationRequestForAssetFromImage(atFileURL: fileURL)
             case .normal(let image):
                 assetChangeRequest = .creationRequestForAsset(from: image)

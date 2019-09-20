@@ -37,7 +37,6 @@ import MobileCoreServices
 public extension EFQRCode {
 
     private static let framesPerSecond = 24
-    static var tempResultPath: URL?
 
     private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start: Int, end: Int) {
         for index in start ... end {
@@ -112,10 +111,8 @@ public extension EFQRCode {
                 }
             }
             
-            if let fileProperties = fileProperties, framePropertiesArray.count == frames.count,
-                let url = frames.saveToGIFFile(framePropertiesArray: framePropertiesArray,
-                                               fileProperties: fileProperties, url: pathToSave) {
-                return try? Data(contentsOf: url)
+            if let fileProperties = fileProperties, framePropertiesArray.count == frames.count {
+                return frames.toGifData(framePropertiesArray: framePropertiesArray, fileProperties: fileProperties)
             }
         }
         return nil
@@ -136,31 +133,14 @@ public extension CGImageSource {
 
 extension Array where Element: CGImage {
 
-    public func saveToGIFFile(framePropertiesArray: [CFDictionary], fileProperties: CFDictionary, url: URL? = nil) -> URL? {
-        var fileURL = url
-        if nil == fileURL {
-            let documentsDirectoryURL: URL? = try? FileManager.default.url(
-                for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true
-            )
-            // The URL to write to. If the URL already exists, the data at this location is overwritten.
-            fileURL = documentsDirectoryURL?.appendingPathComponent("EFQRCode_temp.gif")
-        }
-        EFQRCode.tempResultPath = fileURL
-
-        guard let url = fileURL as CFURL?,
-            let destination = CGImageDestinationCreateWithURL(url, kUTTypeGIF, count, nil)
-            else {
-                return nil // Can't create path
-        }
-
+    func toGifData(framePropertiesArray: [CFDictionary], fileProperties: CFDictionary) -> Data? {
+        guard let mutableData = CFDataCreateMutable(nil, 0) else { return nil }
+        guard let destination = CGImageDestinationCreateWithData(mutableData, kUTTypeGIF, count, nil) else { return nil }
         CGImageDestinationSetProperties(destination, fileProperties)
         for (index, image) in enumerated() {
             CGImageDestinationAddImage(destination, image, framePropertiesArray[index])
         }
-        guard CGImageDestinationFinalize(destination) else {
-            // Failed to finalize the image destination
-            return nil
-        }
-        return fileURL
+        guard CGImageDestinationFinalize(destination) else { return nil }
+        return mutableData as Data
     }
 }
