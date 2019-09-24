@@ -45,15 +45,15 @@ public class EFIntSize: NSObject {
         self.height = Int(size.height)
     }
 
-    public func toCGSize() -> CGSize {
+    public var cgSize: CGSize {
         return CGSize(width: width, height: height)
     }
 
-    public func widthCGFloat() -> CGFloat {
+    public var widthCGFloat: CGFloat {
         return CGFloat(width)
     }
 
-    public func heightCGFloat() -> CGFloat {
+    public var heightCGFloat: CGFloat {
         return CGFloat(height)
     }
 }

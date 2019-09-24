@@ -35,7 +35,7 @@ public extension UIImage {
 
     #if os(iOS) || os(tvOS)
     func toCIImage() -> CIImage? {
-        return CIImage(image: self)
+        return ciImage ?? CIImage(image: self)
     }
     #endif
 
@@ -43,7 +43,7 @@ public extension UIImage {
         #if os(watchOS)
         return cgImage
         #else
-        return toCIImage()?.toCGImage()
+        return cgImage ?? toCIImage()?.toCGImage()
         #endif
     }
 }
