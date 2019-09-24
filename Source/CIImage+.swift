@@ -32,6 +32,25 @@ public extension CIImage {
     /// Convert CIImage To CGImage
     /// http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     func toCGImage() -> CGImage? {
+        #if os(iOS)
+        if #available(iOS 10, *) {
+            if let cgImage = cgImage {
+                return cgImage
+            }
+        }
+        #elseif os(macOS)
+        if #available(macOS 10.12, *) {
+            if let cgImage = cgImage {
+                return cgImage
+            }
+        }
+        #elseif os(tvOS)
+        if #available(tvOS 10, *) {
+            if let cgImage = cgImage {
+                return cgImage
+            }
+        }
+        #endif
         return CIContext().createCGImage(self, from: extent)
     }
     

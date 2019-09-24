@@ -244,8 +244,8 @@ public class EFQRCodeGenerator: NSObject {
 
             // Cache size
             minSuitableSize = EFIntSize(
-                width: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.widthCGFloat()) ?? finalSize.width,
-                height: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.heightCGFloat()) ?? finalSize.height
+                width: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.widthCGFloat) ?? finalSize.width,
+                height: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.heightCGFloat) ?? finalSize.height
             )
 
             // Watermark
@@ -256,7 +256,7 @@ public class EFQRCodeGenerator: NSObject {
                     image: tryWatermark,
                     colorBack: finalBackgroundColor,
                     mode: finalWatermarkMode,
-                    size: finalSize.toCGSize()
+                    size: finalSize.cgSize
                 )
                 // Draw QR Code
                 if let tryFrontImage = createQRCodeImageTransparent(
@@ -264,13 +264,13 @@ public class EFQRCodeGenerator: NSObject {
                     colorBack: finalBackgroundColor,
                     colorFront: finalForegroundColor,
                     size: minSuitableSize) {
-                    context.draw(tryFrontImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
+                    context.draw(tryFrontImage, in: CGRect(origin: .zero, size: finalSize.cgSize))
                 }
             } else {
                 // Draw background without watermark
                 let colorCGBack = finalBackgroundColor
                 context.setFillColor(colorCGBack)
-                context.fill(CGRect(origin: .zero, size: finalSize.toCGSize()))
+                context.fill(CGRect(origin: .zero, size: finalSize.cgSize))
 
                 // Draw QR Code
                 if let tryImage = createQRCodeImage(
@@ -278,19 +278,19 @@ public class EFQRCodeGenerator: NSObject {
                     colorBack: finalBackgroundColor,
                     colorFront: finalForegroundColor,
                     size: minSuitableSize) {
-                    context.draw(tryImage, in: CGRect(origin: .zero, size: finalSize.toCGSize()))
+                    context.draw(tryImage, in: CGRect(origin: .zero, size: finalSize.cgSize))
                 }
             }
 
             // Add icon
             if let tryIcon = finalIcon {
-                var finalIconSizeWidth = finalSize.widthCGFloat() * 0.2
-                var finalIconSizeHeight = finalSize.heightCGFloat() * 0.2
+                var finalIconSizeWidth = finalSize.widthCGFloat * 0.2
+                var finalIconSizeHeight = finalSize.heightCGFloat * 0.2
                 if let tryFinalIconSize = finalIconSize {
-                    finalIconSizeWidth = tryFinalIconSize.widthCGFloat()
-                    finalIconSizeHeight = tryFinalIconSize.heightCGFloat()
+                    finalIconSizeWidth = tryFinalIconSize.widthCGFloat
+                    finalIconSizeHeight = tryFinalIconSize.heightCGFloat
                 }
-                let maxLength = [CGFloat(0.2), 0.3, 0.4, 0.5][inputCorrectionLevel.rawValue] * finalSize.widthCGFloat()
+                let maxLength = [CGFloat(0.2), 0.3, 0.4, 0.5][inputCorrectionLevel.rawValue] * finalSize.widthCGFloat
                 if finalIconSizeWidth > maxLength {
                     finalIconSizeWidth = maxLength
                     print("Warning: icon width too big, it has been changed.")
@@ -369,8 +369,8 @@ public class EFQRCodeGenerator: NSObject {
         size: EFIntSize) -> CGImage? {
         let codeSize = codes.count
         
-        let scaleX = size.widthCGFloat() / CGFloat(codeSize)
-        let scaleY = size.heightCGFloat() / CGFloat(codeSize)
+        let scaleX = size.widthCGFloat / CGFloat(codeSize)
+        let scaleY = size.heightCGFloat / CGFloat(codeSize)
         if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
@@ -441,8 +441,8 @@ public class EFQRCodeGenerator: NSObject {
         size: EFIntSize) -> CGImage? {
         let codeSize = codes.count
 
-        let scaleX = size.widthCGFloat() / CGFloat(codeSize)
-        let scaleY = size.heightCGFloat() / CGFloat(codeSize)
+        let scaleX = size.widthCGFloat / CGFloat(codeSize)
+        let scaleY = size.heightCGFloat / CGFloat(codeSize)
         if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
@@ -631,7 +631,7 @@ public class EFQRCodeGenerator: NSObject {
                     x: CGFloat(context.width - size.width) / 2.0,
                     y: CGFloat(context.height - size.height) / 2.0
                 ),
-                size: size.toCGSize()
+                size: size.cgSize
             )
         )
     }

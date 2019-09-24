@@ -32,7 +32,6 @@ import CoreImage
 import swift_qrcodejs
 #endif
 
-// EFInputCorrectionLevel
 @objc public enum EFInputCorrectionLevel: Int {
     case l = 0     // L 7%
     case m = 1     // M 15%

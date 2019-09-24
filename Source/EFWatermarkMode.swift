@@ -31,7 +31,6 @@ import Foundation
 import CoreImage
 #endif
 
-// Like UIViewContentMode
 @objc public enum EFWatermarkMode: Int {
     case scaleToFill        = 0
     case scaleAspectFit     = 1
