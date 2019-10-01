@@ -65,13 +65,13 @@ EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image
 
 ### App Store
 
-You can click the `App Store` button below to download demo, support iOS and tvOS:
+You can click the `App Store` button below to download demo, support `iOS`, `tvOS` and `watchOS`:
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
-You can also click the `Mac App Store` button below to download demo for macOS:
+You can also click the `Mac App Store` button below to download demo for `macOS`:
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
@@ -84,7 +84,7 @@ To run the example project manually, clone the repo, demos are in the 'Examples'
 Or you can run the following command in terminal:
 
 ```bash
-git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; git submodule update --init --recursive; open 'EFQRCode.xcworkspace'
+git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open 'EFQRCode.xcworkspace'
 ```
 
 ## Requirements
@@ -389,6 +389,10 @@ Thanks for the help from JetBrains's [Open Source Support Program](https://www.j
         </td>
     </tr>
 </table>
+
+## Other
+
+Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete.
 
 ## Contact
 

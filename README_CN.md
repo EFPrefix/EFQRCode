@@ -68,13 +68,13 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 ### 应用商店
 
-你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 iOS 和 tvOS：
+你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 `iOS`、`tvOS` 和 `watchOS`：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
 	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
-你也可以点击下方的 Mac App Store 按钮下载 macOS 示例程序：
+你也可以点击下方的 Mac App Store 按钮下载 `macOS` 示例程序：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
 	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
@@ -89,7 +89,7 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 或执行以下命令：
 
 ```bash
-git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; git submodule update --init --recursive; open 'EFQRCode.xcworkspace'
+git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open 'EFQRCode.xcworkspace'
 ```
 
 ## 环境
@@ -398,6 +398,10 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
         </td>
     </tr>
 </table>
+
+## 其他
+
+文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除。
 
 ## 联系
 
