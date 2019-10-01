@@ -27,7 +27,7 @@
 import Foundation
 import CoreGraphics
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #endif
 
@@ -35,7 +35,7 @@ import CoreImage
 public class EFQRCode: NSObject {
 
     // MARK: - Recognizer
-    #if os(iOS) || os(tvOS) || os(macOS)
+    #if canImport(CoreImage)
     public static func recognize(image: CGImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).recognize()
     }

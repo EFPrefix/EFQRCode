@@ -26,10 +26,6 @@
 
 import CoreGraphics
 
-#if os(iOS) || os(tvOS) || os(macOS)
-import CoreImage
-#endif
-
 public struct EFUIntPixel {
     public var red: UInt8 = 0
     public var green: UInt8 = 0

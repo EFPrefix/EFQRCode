@@ -27,10 +27,6 @@
 import CoreGraphics
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(macOS)
-import CoreImage
-#endif
-
 public enum EFQRCodeMode {
     case none
     case grayscale

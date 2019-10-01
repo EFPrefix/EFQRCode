@@ -26,7 +26,7 @@
 
 import CoreGraphics
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #endif
 
@@ -45,7 +45,7 @@ public extension CGColor {
         return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [red, green, blue, alpha])
     }
 
-    #if os(iOS) || os(tvOS) || os(macOS)
+    #if canImport(CoreImage)
     func toCIColor() -> CIColor {
         return CIColor(cgColor: self)
     }
