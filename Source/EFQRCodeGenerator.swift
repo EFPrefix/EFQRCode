@@ -24,11 +24,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(watchOS)
+#if canImport(CoreImage)
+import CoreImage
+#else
 import CoreGraphics
 import swift_qrcodejs
-#else
-import CoreImage
 #endif
 
 // EFQRCode+Create
@@ -106,7 +106,7 @@ public class EFQRCodeGenerator: NSObject {
             imageQRCode = nil
         }
     }
-    #if os(iOS) || os(tvOS) || os(macOS)
+    #if canImport(CoreImage)
     @nonobjc public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
         self.backgroundColor = backgroundColor.toCGColor() ?? .EFWhite()
         self.foregroundColor = foregroundColor.toCGColor() ?? .EFBlack()
@@ -348,8 +348,8 @@ public class EFQRCodeGenerator: NSObject {
         }
     }
 
-    // Create Colorful QR Image
-    #if os(iOS) || os(tvOS) || os(macOS)
+    #if canImport(CoreImage)
+    /// Create Colorful QR Image
     private func createQRCodeImage(
         codes: [[Bool]],
         colorBack: CIColor,
@@ -420,8 +420,8 @@ public class EFQRCodeGenerator: NSObject {
         return result
     }
 
-    // Create Colorful QR Image
-    #if os(iOS) || os(tvOS) || os(macOS)
+    #if canImport(CoreImage)
+    /// Create Colorful QR Image
     private func createQRCodeImageTransparent(
         codes: [[Bool]],
         colorBack: CIColor,
@@ -540,9 +540,10 @@ public class EFQRCodeGenerator: NSObject {
         }
         return finalImage
     }
-
-    // Pre
-    #if os(iOS) || os(tvOS) || os(macOS)
+    
+    // MARK: - Pre
+    
+    #if canImport(CoreImage)
     private func drawWatermarkImage(
         context: CGContext,
         image: CGImage,
@@ -683,8 +684,9 @@ public class EFQRCodeGenerator: NSObject {
         )
     }
 
-    #if os(iOS) || os(tvOS) || os(macOS)
     // MARK: - Data
+    
+    #if canImport(CoreImage)
     private func getPixels() -> [[EFUIntPixel]]? {
         guard let finalContent = content else {
             return nil
@@ -719,7 +721,7 @@ public class EFQRCodeGenerator: NSObject {
         }
 
         func fetchPixels() -> [[Bool]]? {
-            #if os(iOS) || os(macOS) || os(tvOS)
+            #if canImport(CoreImage)
             // Get pixels from image
             guard let tryQRImagePixels = getPixels() else {
                 return nil
@@ -728,10 +730,9 @@ public class EFQRCodeGenerator: NSObject {
             return getCodes(pixels: tryQRImagePixels)
             #else
             let level = inputCorrectionLevel.qrErrorCorrectLevel
-            if let finalContent = content {
-                return QRCode(finalContent, errorCorrectLevel: level, withBorder: true)?.imageCodes
+            return content.flatMap {
+                return QRCode($0, errorCorrectLevel: level, withBorder: true)?.imageCodes
             }
-            return nil
             #endif
         }
 

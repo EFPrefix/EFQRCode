@@ -26,13 +26,13 @@
 
 import CoreGraphics
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #endif
 
 public extension CGImage {
 
-    #if os(iOS) || os(tvOS) || os(macOS)
+    #if canImport(CoreImage)
     /// Convert UIImage to CIImage
     /// http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
     func toCIImage() -> CIImage {

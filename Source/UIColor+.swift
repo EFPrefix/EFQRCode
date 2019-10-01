@@ -24,12 +24,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if canImport(UIKit)
 import UIKit
 
 public extension UIColor {
 
-    #if os(iOS) || os(tvOS)
+    #if canImport(CoreImage)
     func toCIColor() -> CIColor {
         return cgColor.toCIColor()
     }

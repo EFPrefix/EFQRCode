@@ -26,7 +26,7 @@
 
 import CoreGraphics
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #else
 import swift_qrcodejs
@@ -40,9 +40,7 @@ import Foundation // weird we have to do this, but otherwise
     case q = 2     // Q 25%
     case h = 3     // H 30%
 
-    #if os(iOS) || os(tvOS) || os(macOS)
-
-    #else
+    #if !canImport(CoreImage)
     var qrErrorCorrectLevel: QRErrorCorrectLevel {
         switch self {
         case .h: return .H

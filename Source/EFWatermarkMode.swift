@@ -27,10 +27,6 @@
 import CoreGraphics
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(macOS)
-import CoreImage
-#endif
-
 @objc public enum EFWatermarkMode: Int {
     case scaleToFill        = 0
     case scaleAspectFit     = 1
