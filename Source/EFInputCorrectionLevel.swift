@@ -30,6 +30,8 @@ import CoreGraphics
 import CoreImage
 #else
 import swift_qrcodejs
+import Foundation // weird we have to do this, but otherwise
+// @objc attribute used without importing module 'Foundation'
 #endif
 
 @objc public enum EFInputCorrectionLevel: Int {
