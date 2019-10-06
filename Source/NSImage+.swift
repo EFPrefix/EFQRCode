@@ -27,7 +27,7 @@
 #if canImport(AppKit)
 import AppKit
 
-public extension NSImage {
+extension NSImage {
     
     func toCIImage() -> CIImage? {
         return tiffRepresentation(using: .none, factor: 0).flatMap(CIImage.init)

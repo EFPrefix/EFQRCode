@@ -30,7 +30,7 @@ import CoreGraphics
 import CoreImage
 #endif
 
-public extension CGImage {
+extension CGImage {
 
     #if canImport(CoreImage)
     /// Convert UIImage to CIImage

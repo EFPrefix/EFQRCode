@@ -27,7 +27,7 @@
 #if canImport(CoreImage)
 import CoreImage
 
-public extension CIImage {
+extension CIImage {
     
     /// Convert CIImage To CGImage
     /// http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage

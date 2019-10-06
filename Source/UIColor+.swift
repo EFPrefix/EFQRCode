@@ -27,7 +27,7 @@
 #if canImport(UIKit)
 import UIKit
 
-public extension UIColor {
+extension UIColor {
 
     #if canImport(CoreImage)
     func toCIColor() -> CIColor {

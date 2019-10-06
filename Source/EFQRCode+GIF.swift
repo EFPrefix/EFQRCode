@@ -119,7 +119,7 @@ public extension EFQRCode {
     }
 }
 
-public extension CGImageSource {
+extension CGImageSource {
 
     // GIF
     func toCGImages() -> [CGImage] {

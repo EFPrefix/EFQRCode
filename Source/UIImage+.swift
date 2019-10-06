@@ -30,7 +30,7 @@ import UIKit
 #if canImport(CoreImage)
 import CoreImage
 
-public extension UIImage {
+extension UIImage {
     func toCIImage() -> CIImage? {
         return ciImage ?? CIImage(image: self)
     }
@@ -40,7 +40,7 @@ public extension UIImage {
     }
 }
 #else
-public extension UIImage {
+extension UIImage {
     func toCGImage() -> CGImage? {
         return cgImage
     }

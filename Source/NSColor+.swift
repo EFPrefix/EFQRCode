@@ -27,7 +27,7 @@
 #if canImport(AppKit)
 import AppKit
 
-public extension NSColor {
+extension NSColor {
 
     func toCIColor() -> CIColor {
         return cgColor.toCIColor()

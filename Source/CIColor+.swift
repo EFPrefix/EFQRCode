@@ -27,7 +27,7 @@
 #if canImport(CoreImage)
 import CoreImage
 
-public extension CIColor {
+extension CIColor {
 
     static func EFWhite() -> CIColor {
         return CIColor(red: 1, green: 1, blue: 1)

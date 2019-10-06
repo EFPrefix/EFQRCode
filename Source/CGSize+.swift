@@ -26,7 +26,7 @@
 
 import CoreGraphics
 
-public extension CGSize {
+extension CGSize {
 
     func widthInt() -> Int {
         return Int(width)

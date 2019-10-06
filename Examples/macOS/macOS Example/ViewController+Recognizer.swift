@@ -116,7 +116,7 @@ extension ViewController {
 
     @objc func recognizerViewScanClicked() {
         recognizerViewResult.string = ""
-        if let image = recognizerViewImage.image?.toCGImage(),
+        if let image = recognizerViewImage.image?.cgImage(),
             let result = EFQRCode.recognize(image: image)?.first {
             recognizerViewResult.string = result
         }

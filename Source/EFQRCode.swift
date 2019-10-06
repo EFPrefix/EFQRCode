@@ -33,7 +33,7 @@ import CoreImage
 
 @objcMembers
 public class EFQRCode: NSObject {
-
+    
     // MARK: - Recognizer
     #if canImport(CoreImage)
     public static func recognize(image: CGImage) -> [String]? {

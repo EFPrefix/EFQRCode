@@ -15,3 +15,4 @@ fi
 cd Examples;
 pod repo update;
 pod install;
+cd ..;

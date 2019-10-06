@@ -30,13 +30,13 @@ import CoreGraphics
 import CoreImage
 #endif
 
-public extension CGColor {
+extension CGColor {
     
-    static func EFWhite() -> CGColor! {
+    public static func EFWhite() -> CGColor! {
         return fromRGB(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
     
-    static func EFBlack() -> CGColor! {
+    public static func EFBlack() -> CGColor! {
         return fromRGB(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
     }
 
