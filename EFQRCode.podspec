@@ -24,6 +24,7 @@ Pod::Spec.new do |s|
 	s.source_files = 'Source/**/*.{h,swift}'
 	
 	s.frameworks = 'ImageIO', 'CoreGraphics', 'Foundation'
+    s.dependency 'EFFoundation', '~> 1.0.0'
 	
 	s.default_subspec = 'Core'
 
@@ -34,6 +35,6 @@ Pod::Spec.new do |s|
   	s.subspec 'watchOS' do |watchos|
   		watchos.watchos.deployment_target = '2.0'
 
-  		s.dependency 'swift_qrcodejs', '~> 1.1.1'
+  		watchos.dependency 'swift_qrcodejs', '~> 1.1.1'
   	end
 end

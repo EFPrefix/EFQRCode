@@ -26,6 +26,7 @@
 
 import UIKit
 import EFQRCode
+import EFFoundation
 
 extension Optional where Wrapped == String {
     static let passed: String? = nil
@@ -58,7 +59,7 @@ final class Tests {
             size: EFIntSize(width: 256, height: 256)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CGColor.EFWhite(), foregroundColor: CGColor.EFBlack())
+        generator.setColors(backgroundColor: CGColor.white()!, foregroundColor: CGColor.black()!)
         generator.setInputCorrectionLevel(inputCorrectionLevel: .h)
         generator.setMagnification(magnification: EFIntSize(width: 6, height: 6))
         return generator.generate() == nil ? Localized.errored : .passed
@@ -74,7 +75,7 @@ final class Tests {
             size: EFIntSize(width: 999, height: 999)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CGColor.EFWhite(), foregroundColor: CGColor.EFBlack())
+        generator.setColors(backgroundColor: CGColor.white()!, foregroundColor: CGColor.black()!)
         generator.setInputCorrectionLevel(inputCorrectionLevel: .l)
         generator.setMagnification(magnification: nil)
         return generator.generate() == nil ? Localized.errored : .passed
@@ -90,7 +91,7 @@ final class Tests {
             size: EFIntSize(width: 1024, height: 1024)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: UIColor.gray.cgColor(), foregroundColor: CGColor.EFBlack())
+        generator.setColors(backgroundColor: UIColor.gray.cgColor(), foregroundColor: CGColor.black()!)
         generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
         generator.setMagnification(magnification: nil)
         return generator.generate() == nil ? Localized.errored : .passed
@@ -106,7 +107,7 @@ final class Tests {
             size: EFIntSize(width: 15, height: 15)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: UIColor.red.cgColor(), foregroundColor: CGColor.EFBlack())
+        generator.setColors(backgroundColor: UIColor.red.cgColor(), foregroundColor: CGColor.black()!)
         generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
         generator.setMagnification(magnification: nil)
         generator.setIcon(icon: getImage(name: "eyrefree"), size: nil)
@@ -119,8 +120,8 @@ final class Tests {
 
     // CGColor
     func testExampleCGColorExtension() -> String? {
-        guard CGColor.EFWhite() != nil else { return "CGColor.EFWhite() should not be nil!" }
-        guard CGColor.EFBlack() != nil else { return "CGColor.EFBlack() should not be nil!" }
+        guard CGColor.white() != nil else { return "CGColor.EFWhite() should not be nil!" }
+        guard CGColor.black() != nil else { return "CGColor.EFBlack() should not be nil!" }
         return .passed
     }
 

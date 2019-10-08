@@ -28,23 +28,7 @@
 import CoreImage
 
 extension CIImage {
-    
-    /// Convert CIImage To CGImage
-    /// http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    func toCGImage() -> CGImage? {
-        if #available(iOS 10, macOS 10.12, tvOS 10, *) {
-            if let cgImage = cgImage {
-                return cgImage
-            }
-        }
-        return CIContext().createCGImage(self, from: extent)
-    }
-    
-    /// Size
-    func size() -> CGSize {
-        return extent.size
-    }
-    
+
     /// Get QRCode from image
     func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
         var result = [String]()

@@ -158,7 +158,7 @@ import EFQRCode
 Get QR Codes from CGImage, maybe there are several codes in a image, so it will return an array:
 
 ```swift
-if let testImage = UIImage(named: "test.png")?.toCGImage() {
+if let testImage = UIImage(named: "test.png")?.cgImage() {
     if let tryCodes = EFQRCode.recognize(image: testImage) {
         if tryCodes.count > 0 {
             print("There are \(tryCodes.count) codes in testImage.")
@@ -189,7 +189,7 @@ Create QR Code image, quick usage:
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.toCGImage()
+    watermark: UIImage(named: "WWF")?.cgImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
 } else {

@@ -162,7 +162,7 @@ import EFQRCode
 获取图片中所包含的二维码，同一张图片中可能包含多个二维码，所以返回值是一个字符串数组：
 
 ```swift
-if let testImage = UIImage(named: "test.png")?.toCGImage() {
+if let testImage = UIImage(named: "test.png")?.cgImage() {
     if let tryCodes = EFQRCode.recognize(image: testImage) {
         if tryCodes.count > 0 {
             print("There are \(tryCodes.count) codes in testImage.")
@@ -193,7 +193,7 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.toCGImage()
+    watermark: UIImage(named: "WWF")?.cgImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
 } else {

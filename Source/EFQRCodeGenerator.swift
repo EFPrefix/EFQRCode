@@ -24,6 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+import EFFoundation
 #if canImport(CoreImage)
 import CoreImage
 #else
@@ -95,21 +96,21 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // backgroundColor
-    private var backgroundColor: CGColor = CGColor.EFWhite() {
+    private var backgroundColor: CGColor = CGColor.white()! {
         didSet {
             imageQRCode = nil
         }
     }
     // foregroundColor
-    private var foregroundColor: CGColor = CGColor.EFBlack() {
+    private var foregroundColor: CGColor = CGColor.black()! {
         didSet {
             imageQRCode = nil
         }
     }
     #if canImport(CoreImage)
     @nonobjc public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
-        self.backgroundColor = backgroundColor.toCGColor() ?? .EFWhite()
-        self.foregroundColor = foregroundColor.toCGColor() ?? .EFBlack()
+        self.backgroundColor = backgroundColor.cgColor() ?? CGColor.white()!
+        self.foregroundColor = foregroundColor.cgColor() ?? CGColor.black()!
     }
     #endif
 
@@ -244,8 +245,8 @@ public class EFQRCodeGenerator: NSObject {
 
             // Cache size
             minSuitableSize = EFIntSize(
-                width: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.widthCGFloat) ?? finalSize.width,
-                height: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.heightCGFloat) ?? finalSize.height
+                width: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.width.cgFloat) ?? finalSize.width,
+                height: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.height.cgFloat) ?? finalSize.height
             )
 
             // Watermark
@@ -284,13 +285,13 @@ public class EFQRCodeGenerator: NSObject {
 
             // Add icon
             if let tryIcon = finalIcon {
-                var finalIconSizeWidth = finalSize.widthCGFloat * 0.2
-                var finalIconSizeHeight = finalSize.heightCGFloat * 0.2
+                var finalIconSizeWidth = finalSize.width.cgFloat * 0.2
+                var finalIconSizeHeight = finalSize.height.cgFloat * 0.2
                 if let tryFinalIconSize = finalIconSize {
-                    finalIconSizeWidth = tryFinalIconSize.widthCGFloat
-                    finalIconSizeHeight = tryFinalIconSize.heightCGFloat
+                    finalIconSizeWidth = tryFinalIconSize.width.cgFloat
+                    finalIconSizeHeight = tryFinalIconSize.height.cgFloat
                 }
-                let maxLength = [CGFloat(0.2), 0.3, 0.4, 0.5][inputCorrectionLevel.rawValue] * finalSize.widthCGFloat
+                let maxLength = [CGFloat(0.2), 0.3, 0.4, 0.5][inputCorrectionLevel.rawValue] * finalSize.width.cgFloat
                 if finalIconSizeWidth > maxLength {
                     finalIconSizeWidth = maxLength
                     print("Warning: icon width too big, it has been changed.")
@@ -313,12 +314,12 @@ public class EFQRCodeGenerator: NSObject {
         // Mode apply
         switch mode {
         case .grayscale:
-            if let tryModeImage = result?.grayscale() {
+            if let tryModeImage = result?.grayscale {
                 result = tryModeImage
             }
         case .binarization(let threshold):
             if let tryModeImage = result?.binarization(
-                value: threshold,
+                threshold: threshold,
                 foregroundColor: foregroundColor,
                 backgroundColor: backgroundColor) {
                 result = tryModeImage
@@ -333,7 +334,7 @@ public class EFQRCodeGenerator: NSObject {
     private func getForegroundColor() -> CGColor {
         switch mode {
         case .binarization:
-            return .EFBlack()
+            return CGColor.black()!
         default:
             return foregroundColor
         }
@@ -342,7 +343,7 @@ public class EFQRCodeGenerator: NSObject {
     private func getBackgroundColor() -> CGColor {
         switch mode {
         case .binarization:
-            return .EFWhite()
+            return CGColor.white()!
         default:
             return backgroundColor
         }
@@ -355,7 +356,7 @@ public class EFQRCodeGenerator: NSObject {
         colorBack: CIColor,
         colorFront: CIColor,
         size: EFIntSize) -> CGImage? {
-        guard let colorCGFront = colorFront.toCGColor() else {
+        guard let colorCGFront = colorFront.cgColor() else {
             return nil
         }
         return createQRCodeImage(codes: codes, colorFront: colorCGFront, size: size)
@@ -369,8 +370,8 @@ public class EFQRCodeGenerator: NSObject {
         size: EFIntSize) -> CGImage? {
         let codeSize = codes.count
         
-        let scaleX = size.widthCGFloat / CGFloat(codeSize)
-        let scaleY = size.heightCGFloat / CGFloat(codeSize)
+        let scaleX = size.width.cgFloat / CGFloat(codeSize)
+        let scaleY = size.height.cgFloat / CGFloat(codeSize)
         if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
@@ -427,7 +428,7 @@ public class EFQRCodeGenerator: NSObject {
         colorBack: CIColor,
         colorFront: CIColor,
         size: EFIntSize) -> CGImage? {
-        guard let colorCGBack = colorBack.toCGColor(), let colorCGFront = colorFront.toCGColor() else {
+        guard let colorCGBack = colorBack.cgColor(), let colorCGFront = colorFront.cgColor() else {
             return nil
         }
         return createQRCodeImageTransparent(codes: codes, colorBack: colorCGBack, colorFront: colorCGFront, size: size)
@@ -441,8 +442,8 @@ public class EFQRCodeGenerator: NSObject {
         size: EFIntSize) -> CGImage? {
         let codeSize = codes.count
 
-        let scaleX = size.widthCGFloat / CGFloat(codeSize)
-        let scaleY = size.heightCGFloat / CGFloat(codeSize)
+        let scaleX = size.width.cgFloat / CGFloat(codeSize)
+        let scaleY = size.height.cgFloat / CGFloat(codeSize)
         if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
@@ -550,7 +551,7 @@ public class EFQRCodeGenerator: NSObject {
         colorBack: CIColor,
         mode: EFWatermarkMode,
         size: CGSize) {
-        drawWatermarkImage(context: context, image: image, colorBack: colorBack.toCGColor(), mode: mode, size: size)
+        drawWatermarkImage(context: context, image: image, colorBack: colorBack.cgColor(), mode: mode, size: size)
     }
     #endif
 
@@ -695,7 +696,7 @@ public class EFQRCodeGenerator: NSObject {
 
         guard let tryQRImagePixels = CIImage.generateQRCode(
             string: finalContent, inputCorrectionLevel: finalInputCorrectionLevel
-            )?.toCGImage()?.pixels() else {
+            )?.cgImage()?.pixels() else {
                 print("Warning: Content too large.")
                 return nil
         }

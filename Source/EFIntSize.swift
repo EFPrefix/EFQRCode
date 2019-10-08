@@ -48,12 +48,4 @@ public class EFIntSize: NSObject {
     public var cgSize: CGSize {
         return CGSize(width: width, height: height)
     }
-
-    public var widthCGFloat: CGFloat {
-        return CGFloat(width)
-    }
-
-    public var heightCGFloat: CGFloat {
-        return CGFloat(height)
-    }
 }
