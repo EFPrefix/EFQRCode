@@ -2,6 +2,21 @@
 
 ---
 
+## [5.1.1](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.1) (2019-10-09)
+
+#### Add
+
+- Add subspec `watchOS`.
+
+#### Change
+
+- Make extensions internal;
+- Update swift package;
+- Update gif generation;
+- Add dependency on `EFFoundation`.
+
+---
+
 ## [5.1.0](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.0) (2019-09-17)
 
 #### Add
