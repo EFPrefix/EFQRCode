@@ -1,26 +1,20 @@
 PODS:
   - EFColorPicker (5.1.0)
-  - EFFoundation (0.8.2):
-    - EFFoundation/Core (= 0.8.2)
-  - EFFoundation/Core (0.8.2)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - EFColorPicker (= 5.1.0)
-  - EFFoundation (= 0.8.2)
   - SnapKit (= 5.0.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - EFColorPicker
-    - EFFoundation
     - SnapKit
 
 SPEC CHECKSUMS:
   EFColorPicker: 6fa37bd9cde0f8dc58762698f1e9809f554dfe6c
-  EFFoundation: 9ca4a4f3fc6222a4255ad3a8b052ea2307aed5b2
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: b27516bc2fad10c028890a6fd13c68658c972545
+PODFILE CHECKSUM: dcdbcf0619146db8e26be75848200790107778e9
 
-COCOAPODS: 1.8.1
+COCOAPODS: 1.8.3

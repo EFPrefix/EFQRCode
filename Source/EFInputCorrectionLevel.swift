@@ -26,22 +26,21 @@
 
 import CoreGraphics
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #else
 import swift_qrcodejs
+import Foundation // weird we have to do this, but otherwise
+// @objc attribute used without importing module 'Foundation'
 #endif
 
-// EFInputCorrectionLevel
 @objc public enum EFInputCorrectionLevel: Int {
     case l = 0     // L 7%
     case m = 1     // M 15%
     case q = 2     // Q 25%
     case h = 3     // H 30%
 
-    #if os(iOS) || os(tvOS) || os(macOS)
-
-    #else
+    #if !canImport(CoreImage)
     var qrErrorCorrectLevel: QRErrorCorrectLevel {
         switch self {
         case .h: return .H

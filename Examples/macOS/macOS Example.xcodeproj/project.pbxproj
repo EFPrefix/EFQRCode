@@ -10,9 +10,9 @@
 		1215ADB41EAC908000F824B1 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B41EA8DE740049DE67 /* EFQRCode.framework */; };
 		1218B8241FBB2E8700560874 /* ViewController+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */; };
 		1218B82B1FBB2E9000560874 /* ViewController+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */; };
-		122BB03B1FBEFA1B00BBCA0B /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BB03A1FBEFA1B00BBCA0B /* NSImage+.swift */; };
+		122BB03B1FBEFA1B00BBCA0B /* NSImage+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BB03A1FBEFA1B00BBCA0B /* NSImage+Example.swift */; };
 		12409D681FC582D200719A02 /* EFDetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12409D671FC582D200719A02 /* EFDetailButton.swift */; };
-		125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125436EE1EABA98C00C46CC7 /* NSColor+.swift */; };
+		125436EF1EABA98C00C46CC7 /* NSColor+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125436EE1EABA98C00C46CC7 /* NSColor+Example.swift */; };
 		127948371FC81DE0002B056C /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B41EA8DE740049DE67 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		12A22CF7221069860063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CF6221069860063EE1F /* StorageUserDefaults.swift */; };
 		12BC1AC42328C13D00B6EB5A /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1AA02328C13A00B6EB5A /* ConstraintLayoutGuide+Extensions.swift */; };
@@ -136,9 +136,9 @@
 		1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Recognizer.swift"; sourceTree = "<group>"; };
 		1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Generator.swift"; sourceTree = "<group>"; };
 		122BB0391FBEF5E100BBCA0B /* EFQRCode.macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EFQRCode.macOS.entitlements; sourceTree = "<group>"; };
-		122BB03A1FBEFA1B00BBCA0B /* NSImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+.swift"; sourceTree = "<group>"; };
+		122BB03A1FBEFA1B00BBCA0B /* NSImage+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Example.swift"; sourceTree = "<group>"; };
 		12409D671FC582D200719A02 /* EFDetailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFDetailButton.swift; sourceTree = "<group>"; };
-		125436EE1EABA98C00C46CC7 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
+		125436EE1EABA98C00C46CC7 /* NSColor+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+Example.swift"; sourceTree = "<group>"; };
 		12A22CF6221069860063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageUserDefaults.swift; path = ../../iOS/StorageUserDefaults.swift; sourceTree = "<group>"; };
 		12BC1AA02328C13A00B6EB5A /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "../../Pods/SnapKit/Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
 		12BC1AA12328C13A00B6EB5A /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = ../../Pods/SnapKit/Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
@@ -203,8 +203,8 @@
 		125436E71EABA97900C46CC7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				125436EE1EABA98C00C46CC7 /* NSColor+.swift */,
-				122BB03A1FBEFA1B00BBCA0B /* NSImage+.swift */,
+				125436EE1EABA98C00C46CC7 /* NSColor+Example.swift */,
+				122BB03A1FBEFA1B00BBCA0B /* NSImage+Example.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -498,7 +498,7 @@
 				12BC1ACE2328C13D00B6EB5A /* ConstraintMaker.swift in Sources */,
 				12BC1AC62328C13D00B6EB5A /* ConstraintMakerEditable.swift in Sources */,
 				12BC1ADE2328C13D00B6EB5A /* ConstraintRelation.swift in Sources */,
-				122BB03B1FBEFA1B00BBCA0B /* NSImage+.swift in Sources */,
+				122BB03B1FBEFA1B00BBCA0B /* NSImage+Example.swift in Sources */,
 				12BC1AC92328C13D00B6EB5A /* LayoutConstraint.swift in Sources */,
 				12BC1AC82328C13D00B6EB5A /* ConstraintInsetTarget.swift in Sources */,
 				12BC1AD52328C13D00B6EB5A /* ConstraintItem.swift in Sources */,
@@ -522,7 +522,7 @@
 				12A22CF7221069860063EE1F /* StorageUserDefaults.swift in Sources */,
 				12BC1ACB2328C13D00B6EB5A /* ConstraintLayoutSupport.swift in Sources */,
 				12BC1ACA2328C13D00B6EB5A /* ConstraintPriority.swift in Sources */,
-				125436EF1EABA98C00C46CC7 /* NSColor+.swift in Sources */,
+				125436EF1EABA98C00C46CC7 /* NSColor+Example.swift in Sources */,
 				12BC1AD82328C13D00B6EB5A /* Debugging.swift in Sources */,
 				12BC1AD92328C13D00B6EB5A /* ConstraintMakerPriortizable.swift in Sources */,
 				12BC1AC72328C13D00B6EB5A /* ConstraintAttributes.swift in Sources */,

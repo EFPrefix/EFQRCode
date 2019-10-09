@@ -10,36 +10,19 @@
 		120B77D81EA3939F00D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		120B78651EA3B70D00D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		120B78661EA3B71500D34440 /* EFQRCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 120B77D71EA3939F00D34440 /* EFQRCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		12637624234CAAB500F87737 /* EFFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126375FB234CA75B00F87737 /* EFFoundation.framework */; };
+		1263762D234CAAC200F87737 /* EFFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126375FD234CA75B00F87737 /* EFFoundation.framework */; };
+		1263762E234CAAC700F87737 /* EFFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126375FF234CA75B00F87737 /* EFFoundation.framework */; };
+		1263762F234CAACE00F87737 /* EFFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12637601234CA75B00F87737 /* EFFoundation.framework */; };
 		12664E9B1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
 		12664E9C1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
 		12664E9D1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
-		12664EA71FA9CED100D56500 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9E1FA9CED000D56500 /* CGColor+.swift */; };
-		12664EA81FA9CED100D56500 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9E1FA9CED000D56500 /* CGColor+.swift */; };
-		12664EA91FA9CED100D56500 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9E1FA9CED000D56500 /* CGColor+.swift */; };
-		12664EAA1FA9CED100D56500 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9F1FA9CED000D56500 /* CIColor+.swift */; };
-		12664EAB1FA9CED100D56500 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9F1FA9CED000D56500 /* CIColor+.swift */; };
-		12664EAC1FA9CED100D56500 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9F1FA9CED000D56500 /* CIColor+.swift */; };
-		12664EAD1FA9CED100D56500 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA01FA9CED000D56500 /* NSImage+.swift */; };
-		12664EAE1FA9CED100D56500 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA01FA9CED000D56500 /* NSImage+.swift */; };
-		12664EAF1FA9CED100D56500 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA01FA9CED000D56500 /* NSImage+.swift */; };
 		12664EB01FA9CED100D56500 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
 		12664EB11FA9CED100D56500 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
 		12664EB21FA9CED100D56500 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
-		12664EB31FA9CED100D56500 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA21FA9CED000D56500 /* CGSize+.swift */; };
-		12664EB41FA9CED100D56500 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA21FA9CED000D56500 /* CGSize+.swift */; };
-		12664EB51FA9CED100D56500 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA21FA9CED000D56500 /* CGSize+.swift */; };
 		12664EB61FA9CED100D56500 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA31FA9CED000D56500 /* CIImage+.swift */; };
 		12664EB71FA9CED100D56500 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA31FA9CED000D56500 /* CIImage+.swift */; };
 		12664EB81FA9CED100D56500 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA31FA9CED000D56500 /* CIImage+.swift */; };
-		12664EB91FA9CED100D56500 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA41FA9CED100D56500 /* NSColor+.swift */; };
-		12664EBA1FA9CED100D56500 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA41FA9CED100D56500 /* NSColor+.swift */; };
-		12664EBB1FA9CED100D56500 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA41FA9CED100D56500 /* NSColor+.swift */; };
-		12664EBC1FA9CED100D56500 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA51FA9CED100D56500 /* UIImage+.swift */; };
-		12664EBD1FA9CED100D56500 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA51FA9CED100D56500 /* UIImage+.swift */; };
-		12664EBE1FA9CED100D56500 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA51FA9CED100D56500 /* UIImage+.swift */; };
-		12664EBF1FA9CED100D56500 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA61FA9CED100D56500 /* UIColor+.swift */; };
-		12664EC01FA9CED100D56500 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA61FA9CED100D56500 /* UIColor+.swift */; };
-		12664EC11FA9CED100D56500 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA61FA9CED100D56500 /* UIColor+.swift */; };
 		12664EC61FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */; };
 		12664EC71FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */; };
 		12664EC81FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */; };
@@ -81,11 +64,7 @@
 		4CF626F91BA7CB3E0011A099 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */; };
 		4CF627141BA7CC240011A099 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		5282BCB51FF3903D00DFB36B /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
-		5282BCB61FF3903D00DFB36B /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9E1FA9CED000D56500 /* CGColor+.swift */; };
 		5282BCB71FF3903D00DFB36B /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
-		5282BCB81FF3903D00DFB36B /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA21FA9CED000D56500 /* CGSize+.swift */; };
-		5282BCB91FF3903D00DFB36B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA61FA9CED100D56500 /* UIColor+.swift */; };
-		5282BCBA1FF3903D00DFB36B /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA51FA9CED100D56500 /* UIImage+.swift */; };
 		5282BCBB1FF3903D00DFB36B /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC51FA9CEDD00D56500 /* EFQRCode.swift */; };
 		5282BCBC1FF3903D00DFB36B /* EFQRCode+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */; };
 		5282BCBD1FF3903D00DFB36B /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */; };
@@ -94,6 +73,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		126375FA234CA75B00F87737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 126375F3234CA75B00F87737 /* EFFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
+			remoteInfo = "EFFoundation iOS";
+		};
+		126375FC234CA75B00F87737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 126375F3234CA75B00F87737 /* EFFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4DD67C0B1A5C55C900ED2280;
+			remoteInfo = "EFFoundation macOS";
+		};
+		126375FE234CA75B00F87737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 126375F3234CA75B00F87737 /* EFFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CF626EF1BA7CB3E0011A099;
+			remoteInfo = "EFFoundation tvOS";
+		};
+		12637600234CA75B00F87737 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 126375F3234CA75B00F87737 /* EFFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5282BCAD1FF38F8100DFB36B;
+			remoteInfo = "EFFoundation watchOS";
+		};
 		12BC19DF2328B6D400B6EB5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
@@ -175,16 +182,10 @@
 
 /* Begin PBXFileReference section */
 		120B77D71EA3939F00D34440 /* EFQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFQRCode.h; sourceTree = "<group>"; };
+		126375F3234CA75B00F87737 /* EFFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFFoundation.xcodeproj; path = Carthage/Checkouts/EFFoundation/EFFoundation.xcodeproj; sourceTree = "<group>"; };
 		12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFWatermarkMode.swift; path = Source/EFWatermarkMode.swift; sourceTree = SOURCE_ROOT; };
-		12664E9E1FA9CED000D56500 /* CGColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGColor+.swift"; path = "Source/CGColor+.swift"; sourceTree = SOURCE_ROOT; };
-		12664E9F1FA9CED000D56500 /* CIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CIColor+.swift"; path = "Source/CIColor+.swift"; sourceTree = SOURCE_ROOT; };
-		12664EA01FA9CED000D56500 /* NSImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSImage+.swift"; path = "Source/NSImage+.swift"; sourceTree = SOURCE_ROOT; };
 		12664EA11FA9CED000D56500 /* CGImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGImage+.swift"; path = "Source/CGImage+.swift"; sourceTree = SOURCE_ROOT; };
-		12664EA21FA9CED000D56500 /* CGSize+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGSize+.swift"; path = "Source/CGSize+.swift"; sourceTree = SOURCE_ROOT; };
 		12664EA31FA9CED000D56500 /* CIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CIImage+.swift"; path = "Source/CIImage+.swift"; sourceTree = SOURCE_ROOT; };
-		12664EA41FA9CED100D56500 /* NSColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSColor+.swift"; path = "Source/NSColor+.swift"; sourceTree = SOURCE_ROOT; };
-		12664EA51FA9CED100D56500 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+.swift"; path = "Source/UIImage+.swift"; sourceTree = SOURCE_ROOT; };
-		12664EA61FA9CED100D56500 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+.swift"; path = "Source/UIColor+.swift"; sourceTree = SOURCE_ROOT; };
 		12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFQRCodeRecognizer.swift; path = Source/EFQRCodeRecognizer.swift; sourceTree = SOURCE_ROOT; };
 		12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFQRCodeGenerator.swift; path = Source/EFQRCodeGenerator.swift; sourceTree = SOURCE_ROOT; };
 		12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "EFQRCode+GIF.swift"; path = "Source/EFQRCode+GIF.swift"; sourceTree = SOURCE_ROOT; };
@@ -218,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1263762E234CAAC700F87737 /* EFFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1263762D234CAAC200F87737 /* EFFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1263762F234CAACE00F87737 /* EFFoundation.framework in Frameworks */,
 				12BC1A3B2328B8A500B6EB5A /* swift_qrcodejs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12637624234CAAB500F87737 /* EFFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,15 +302,8 @@
 		12046B051F7A512B000154A8 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				12664E9E1FA9CED000D56500 /* CGColor+.swift */,
 				12664EA11FA9CED000D56500 /* CGImage+.swift */,
-				12664EA21FA9CED000D56500 /* CGSize+.swift */,
-				12664E9F1FA9CED000D56500 /* CIColor+.swift */,
 				12664EA31FA9CED000D56500 /* CIImage+.swift */,
-				12664EA41FA9CED100D56500 /* NSColor+.swift */,
-				12664EA01FA9CED000D56500 /* NSImage+.swift */,
-				12664EA61FA9CED100D56500 /* UIColor+.swift */,
-				12664EA51FA9CED100D56500 /* UIImage+.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -315,6 +313,17 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		126375F4234CA75B00F87737 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				126375FB234CA75B00F87737 /* EFFoundation.framework */,
+				126375FD234CA75B00F87737 /* EFFoundation.framework */,
+				126375FF234CA75B00F87737 /* EFFoundation.framework */,
+				12637601234CA75B00F87737 /* EFFoundation.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		126A1B581EAF225100EFBA1B /* Resources */ = {
@@ -351,6 +360,7 @@
 				F8111E3419A95C8B0040E7D1 /* Products */,
 				120AAA7A21932CD300F0783B /* Frameworks */,
 				12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */,
+				126375F3234CA75B00F87737 /* EFFoundation.xcodeproj */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -633,6 +643,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 126375F4234CA75B00F87737 /* Products */;
+					ProjectRef = 126375F3234CA75B00F87737 /* EFFoundation.xcodeproj */;
+				},
+				{
 					ProductGroup = 12BC19D52328B6D400B6EB5A /* Products */;
 					ProjectRef = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
 				},
@@ -651,6 +665,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		126375FB234CA75B00F87737 /* EFFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFFoundation.framework;
+			remoteRef = 126375FA234CA75B00F87737 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		126375FD234CA75B00F87737 /* EFFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFFoundation.framework;
+			remoteRef = 126375FC234CA75B00F87737 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		126375FF234CA75B00F87737 /* EFFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFFoundation.framework;
+			remoteRef = 126375FE234CA75B00F87737 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		12637601234CA75B00F87737 /* EFFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EFFoundation.framework;
+			remoteRef = 12637600234CA75B00F87737 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		12BC19E02328B6D400B6EB5A /* swift_qrcodejs-cli */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
@@ -788,23 +830,16 @@
 			files = (
 				12C0B6FA219C0FA5000545C9 /* EFPointShape.swift in Sources */,
 				12664ED11FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
-				12664EAF1FA9CED100D56500 /* NSImage+.swift in Sources */,
 				12664EB81FA9CED100D56500 /* CIImage+.swift in Sources */,
 				12C0B704219C102C000545C9 /* EFIntSize.swift in Sources */,
-				12664EB51FA9CED100D56500 /* CGSize+.swift in Sources */,
 				12C0B709219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
 				12664EC81FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */,
-				12664EBB1FA9CED100D56500 /* NSColor+.swift in Sources */,
-				12664EAC1FA9CED100D56500 /* CIColor+.swift in Sources */,
-				12664EA91FA9CED100D56500 /* CGColor+.swift in Sources */,
-				12664EBE1FA9CED100D56500 /* UIImage+.swift in Sources */,
 				12664EB21FA9CED100D56500 /* CGImage+.swift in Sources */,
 				12C0B6FF219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
 				12C0B6F5219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12664E9D1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
 				12664ECE1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
 				12664ECB1FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */,
-				12664EC11FA9CED100D56500 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,23 +857,16 @@
 			files = (
 				12C0B6F9219C0FA5000545C9 /* EFPointShape.swift in Sources */,
 				12664ED01FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
-				12664EAE1FA9CED100D56500 /* NSImage+.swift in Sources */,
 				12664EB71FA9CED100D56500 /* CIImage+.swift in Sources */,
 				12C0B703219C102C000545C9 /* EFIntSize.swift in Sources */,
-				12664EB41FA9CED100D56500 /* CGSize+.swift in Sources */,
 				12C0B708219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
 				12664EC71FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */,
-				12664EBA1FA9CED100D56500 /* NSColor+.swift in Sources */,
-				12664EAB1FA9CED100D56500 /* CIColor+.swift in Sources */,
-				12664EA81FA9CED100D56500 /* CGColor+.swift in Sources */,
-				12664EBD1FA9CED100D56500 /* UIImage+.swift in Sources */,
 				12664EB11FA9CED100D56500 /* CGImage+.swift in Sources */,
 				12C0B6FE219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
 				12C0B6F4219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12664E9C1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
 				12664ECD1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
 				12664ECA1FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */,
-				12664EC01FA9CED100D56500 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,13 +877,9 @@
 				12C0B6F6219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				5282BCBB1FF3903D00DFB36B /* EFQRCode.swift in Sources */,
 				5282BCBD1FF3903D00DFB36B /* EFQRCodeGenerator.swift in Sources */,
-				5282BCB81FF3903D00DFB36B /* CGSize+.swift in Sources */,
 				5282BCB51FF3903D00DFB36B /* EFWatermarkMode.swift in Sources */,
 				5282BCB71FF3903D00DFB36B /* CGImage+.swift in Sources */,
 				12C0B6FB219C0FA5000545C9 /* EFPointShape.swift in Sources */,
-				5282BCBA1FF3903D00DFB36B /* UIImage+.swift in Sources */,
-				5282BCB61FF3903D00DFB36B /* CGColor+.swift in Sources */,
-				5282BCB91FF3903D00DFB36B /* UIColor+.swift in Sources */,
 				12C0B70A219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
 				12C0B700219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
 				5282BCBC1FF3903D00DFB36B /* EFQRCode+GIF.swift in Sources */,
@@ -869,23 +893,16 @@
 			files = (
 				12C0B6F8219C0FA5000545C9 /* EFPointShape.swift in Sources */,
 				12664ECF1FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
-				12664EAD1FA9CED100D56500 /* NSImage+.swift in Sources */,
 				12664EB61FA9CED100D56500 /* CIImage+.swift in Sources */,
 				12C0B702219C102C000545C9 /* EFIntSize.swift in Sources */,
-				12664EB31FA9CED100D56500 /* CGSize+.swift in Sources */,
 				12C0B707219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
 				12664EC61FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */,
-				12664EB91FA9CED100D56500 /* NSColor+.swift in Sources */,
-				12664EAA1FA9CED100D56500 /* CIColor+.swift in Sources */,
-				12664EA71FA9CED100D56500 /* CGColor+.swift in Sources */,
-				12664EBC1FA9CED100D56500 /* UIImage+.swift in Sources */,
 				12664EB01FA9CED100D56500 /* CGImage+.swift in Sources */,
 				12C0B6FD219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
 				12C0B6F3219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12664E9B1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
 				12664ECC1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
 				12664EC91FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */,
-				12664EBF1FA9CED100D56500 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

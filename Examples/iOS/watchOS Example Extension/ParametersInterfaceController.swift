@@ -296,8 +296,8 @@ class ParametersInterfaceController: WKInterfaceController {
             generator.setMode(mode: selectedMode)
         }
         generator.setMagnification(magnification: EFIntSize(width: magnificationWidth, height: magnificationHeight))
-        generator.setColors(backgroundColor: backgroundColor.toCGColor(), foregroundColor: foregroundColor.toCGColor())
-        generator.setIcon(icon: icon?.toCGImage(), size: EFIntSize(width: iconWidth, height: iconHeight))
+        generator.setColors(backgroundColor: backgroundColor.cgColor(), foregroundColor: foregroundColor.cgColor())
+        generator.setIcon(icon: icon?.cgImage(), size: EFIntSize(width: iconWidth, height: iconHeight))
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowsTransparent)
         generator.setPointShape(pointShape: pointShape)
@@ -310,7 +310,7 @@ class ParametersInterfaceController: WKInterfaceController {
                 return EFImage.gif(afterData)
             }
         case .normal(let uiImage)?:
-            generator.setWatermark(watermark: uiImage.toCGImage(), mode: watermarkMode)
+            generator.setWatermark(watermark: uiImage.cgImage(), mode: watermarkMode)
             fallthrough // Other use UIImage
         case nil:
             if let tryCGImage = generator.generate() {

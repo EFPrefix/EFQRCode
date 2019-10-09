@@ -26,7 +26,7 @@
 
 import CoreGraphics
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #endif
 
@@ -45,15 +45,7 @@ public class EFIntSize: NSObject {
         self.height = Int(size.height)
     }
 
-    public func toCGSize() -> CGSize {
+    public var cgSize: CGSize {
         return CGSize(width: width, height: height)
-    }
-
-    public func widthCGFloat() -> CGFloat {
-        return CGFloat(width)
-    }
-
-    public func heightCGFloat() -> CGFloat {
-        return CGFloat(height)
     }
 }

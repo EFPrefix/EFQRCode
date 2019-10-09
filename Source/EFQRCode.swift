@@ -26,16 +26,17 @@
 
 import Foundation
 import CoreGraphics
+import EFFoundation
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #endif
 
 @objcMembers
 public class EFQRCode: NSObject {
-
+    
     // MARK: - Recognizer
-    #if os(iOS) || os(tvOS) || os(macOS)
+    #if canImport(CoreImage)
     public static func recognize(image: CGImage) -> [String]? {
         return EFQRCodeRecognizer(image: image).recognize()
     }
@@ -45,8 +46,8 @@ public class EFQRCode: NSObject {
     public static func generate(
         content: String,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CGColor = .EFWhite(),
-        foregroundColor: CGColor = .EFBlack(),
+        backgroundColor: CGColor = CGColor.white()!,
+        foregroundColor: CGColor = CGColor.black()!,
         watermark: CGImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleAspectFill,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
@@ -75,8 +76,8 @@ public class EFQRCode: NSObject {
     public static func generateWithGIF(
         content: String,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CGColor = .EFWhite(),
-        foregroundColor: CGColor = .EFBlack(),
+        backgroundColor: CGColor = CGColor.white()!,
+        foregroundColor: CGColor = CGColor.black()!,
         watermark: Data,
         watermarkMode: EFWatermarkMode = .scaleAspectFill,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,

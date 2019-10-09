@@ -107,7 +107,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod 'EFQRCode', '~> 5.1.0'
+pod 'EFQRCode', '~> 5.1.1'
 ```
 
 然后，执行如下命令即可：
@@ -130,7 +130,7 @@ $ brew install carthage
 通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
 
 ```ogdl
-github "EFPrefix/EFQRCode" ~> 5.1.0
+github "EFPrefix/EFQRCode" ~> 5.1.1
 ```
 
 接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
@@ -143,7 +143,7 @@ github "EFPrefix/EFQRCode" ~> 5.1.0
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 0))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 1))
 ]
 ```
 
@@ -162,7 +162,7 @@ import EFQRCode
 获取图片中所包含的二维码，同一张图片中可能包含多个二维码，所以返回值是一个字符串数组：
 
 ```swift
-if let testImage = UIImage(named: "test.png")?.toCGImage() {
+if let testImage = UIImage(named: "test.png")?.cgImage() {
     if let tryCodes = EFQRCode.recognize(image: testImage) {
         if tryCodes.count > 0 {
             print("There are \(tryCodes.count) codes in testImage.")
@@ -193,7 +193,7 @@ if let testImage = UIImage(named: "test.png")?.toCGImage() {
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.toCGImage()
+    watermark: UIImage(named: "WWF")?.cgImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
 } else {

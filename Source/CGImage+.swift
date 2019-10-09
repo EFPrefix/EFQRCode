@@ -25,20 +25,13 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
+import EFFoundation
 
-#if os(iOS) || os(tvOS) || os(macOS)
+#if canImport(CoreImage)
 import CoreImage
 #endif
 
-public extension CGImage {
-
-    #if os(iOS) || os(tvOS) || os(macOS)
-    /// Convert UIImage to CIImage
-    /// http://wiki.hawkguide.com/wiki/Swift:_Convert_between_CGImage,_CIImage_and_UIImage
-    func toCIImage() -> CIImage {
-        return CIImage(cgImage: self)
-    }
-    #endif
+extension CGImage {
 
     /// Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
@@ -69,87 +62,5 @@ public extension CGImage {
             }
         }
         return pixels
-    }
-
-    /// Get avarage color
-    func avarageColor() -> CGColor? {
-        let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
-        guard let context = CGContext(
-            data: rgba,
-            width: 1,
-            height: 1,
-            bitsPerComponent: 8,
-            bytesPerRow: 4,
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-            ) else {
-                return nil
-        }
-        context.draw(self, in: CGRect(x: 0, y: 0, width: 1, height: 1))
-
-        return CGColor.fromRGB(
-            red: CGFloat(rgba[0]) / 255.0,
-            green: CGFloat(rgba[1]) / 255.0,
-            blue: CGFloat(rgba[2]) / 255.0,
-            alpha: CGFloat(rgba[3]) / 255.0
-        )
-    }
-
-    /// Grayscale
-    /// http://stackoverflow.com/questions/1311014/convert-to-grayscale-too-slow
-    func grayscale() -> CGImage? {
-        guard let context = CGContext(
-            data: nil, width: width, height: height,
-            bitsPerComponent: 8, bytesPerRow: 4 * width,
-            space: CGColorSpaceCreateDeviceGray(),
-            bitmapInfo: CGImageAlphaInfo.none.rawValue
-            ) else {
-                return nil
-        }
-        context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: width, height: height)))
-        return context.makeImage()
-    }
-
-    /// Binarization
-    /// http://blog.sina.com.cn/s/blog_6b7ba99d0101js23.html
-    func binarization(
-        value: CGFloat = 0.5,
-        foregroundColor: CGColor = .EFWhite(),
-        backgroundColor: CGColor = .EFBlack()
-        ) -> CGImage? {
-        let dataSize = width * height * 4
-        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        guard let backgroundPixel = EFUIntPixel(color: backgroundColor),
-            let foregroundPixel = EFUIntPixel(color: foregroundColor),
-            let context = CGContext(
-                data: &pixelData,
-                width: width,
-                height: height,
-                bitsPerComponent: 8,
-                bytesPerRow: 4 * width,
-                space: colorSpace,
-                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-            ) else {
-                return nil
-        }
-
-        context.draw(self, in: CGRect(x: 0, y: 0, width: width, height: height))
-        for x in 0 ..< width {
-            for y in 0 ..< height {
-                let offset = 4 * (x + y * width)
-                // RGBA
-                let alpha = CGFloat(pixelData[offset + 3]) / 255.0
-                let intensity = (
-                    CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
-                    ) / 3.0 / 255.0 * alpha + (1.0 - alpha)
-                let finalPixel = intensity > value ? backgroundPixel : foregroundPixel
-                pixelData[offset + 0] = finalPixel.red
-                pixelData[offset + 1] = finalPixel.green
-                pixelData[offset + 2] = finalPixel.blue
-                pixelData[offset + 3] = finalPixel.alpha
-            }
-        }
-        return context.makeImage()
     }
 }

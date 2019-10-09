@@ -28,10 +28,10 @@ import Foundation
 import CoreGraphics
 import ImageIO
 
-#if os(macOS)
-import CoreServices
-#else
+#if canImport(MobileCoreServices)
 import MobileCoreServices
+#else
+import CoreServices
 #endif
 
 public extension EFQRCode {
@@ -119,7 +119,7 @@ public extension EFQRCode {
     }
 }
 
-public extension CGImageSource {
+extension CGImageSource {
 
     // GIF
     func toCGImages() -> [CGImage] {

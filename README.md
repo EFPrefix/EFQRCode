@@ -103,7 +103,7 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'EFQRCode', '~> 5.1.0'
+pod 'EFQRCode', '~> 5.1.1'
 ```
 
 Then, run the following command:
@@ -126,7 +126,7 @@ $ brew install carthage
 To integrate EFQRCode into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "EFPrefix/EFQRCode" ~> 5.1.0
+github "EFPrefix/EFQRCode" ~> 5.1.1
 ```
 
 Run `carthage update` to build the framework and drag the built `EFQRCode.framework` into your Xcode project.
@@ -139,7 +139,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 0))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 1))
 ]
 ```
 
@@ -158,7 +158,7 @@ import EFQRCode
 Get QR Codes from CGImage, maybe there are several codes in a image, so it will return an array:
 
 ```swift
-if let testImage = UIImage(named: "test.png")?.toCGImage() {
+if let testImage = UIImage(named: "test.png")?.cgImage() {
     if let tryCodes = EFQRCode.recognize(image: testImage) {
         if tryCodes.count > 0 {
             print("There are \(tryCodes.count) codes in testImage.")
@@ -189,7 +189,7 @@ Create QR Code image, quick usage:
 ```swift
 if let tryImage = EFQRCode.generate(
     content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.toCGImage()
+    watermark: UIImage(named: "WWF")?.cgImage()
 ) {
     print("Create QRCode image success: \(tryImage)")
 } else {
