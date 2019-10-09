@@ -2,6 +2,14 @@
 
 ---
 
+## [5.1.2](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.2) (2019-10-10)
+
+#### Fix
+
+- Fix `ciColor()` in extension of UIColor.
+
+---
+
 ## [5.1.1](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.1) (2019-10-09)
 
 #### Add
