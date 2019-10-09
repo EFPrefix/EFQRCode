@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name             = 'EFQRCode'
-	s.version          = '5.1.0'
+	s.version          = '5.1.1'
 	s.summary          = 'A better way to operate quick response code in Swift.'
 
 	s.description      = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 	s.source_files = 'Source/**/*.{h,swift}'
 	
 	s.frameworks = 'ImageIO', 'CoreGraphics', 'Foundation'
-    s.dependency 'EFFoundation', '~> 1.0.0'
+	s.dependency 'EFFoundation', '>= 1.0.0'
 	
 	s.default_subspec = 'Core'
 
@@ -35,6 +35,6 @@ Pod::Spec.new do |s|
   	s.subspec 'watchOS' do |watchos|
   		watchos.watchos.deployment_target = '2.0'
 
-  		watchos.dependency 'swift_qrcodejs', '~> 1.1.1'
+  		watchos.dependency 'swift_qrcodejs', '>= 1.1.1'
   	end
 end
