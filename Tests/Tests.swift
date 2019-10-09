@@ -107,7 +107,7 @@ class Tests: XCTestCase {
             #else
                 return UIColor.gray.ciColor()
             #endif
-        }(), foregroundColor: CIColor.EFBlack())
+        }(), foregroundColor: CIColor.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
         generator.setMagnification(magnification: nil)
         let testResult = generator.generate()
@@ -134,7 +134,7 @@ class Tests: XCTestCase {
             #else
                 return UIColor.red.ciColor()
             #endif
-        }(), foregroundColor: CIColor.EFBlack())
+        }(), foregroundColor: CIColor.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
         generator.setMagnification(magnification: nil)
         generator.setIcon(icon: getImage(name: "eyrefree"), size: nil)
@@ -143,31 +143,6 @@ class Tests: XCTestCase {
         generator.setAllowTransparent(allowTransparent: true)
         let testResult = generator.generate()
         XCTAssert(testResult != nil, "testResult is nil!")
-    }
-
-    // UI/NSColor
-    func testEFUIntPixelInitializer() {
-        #if os(macOS)
-        typealias Color = NSColor
-        #else
-        typealias Color = UIColor
-        #endif
-        let colors: [Color] = [
-            .black, .blue, .brown, .clear, .cyan,
-            .darkGray, .gray, .green, .lightGray, .magenta,
-            .orange, .purple, .red, .white, .yellow
-        ]
-        for color in colors {
-            XCTAssertNotNil(EFUIntPixel(color: color.cgColor),
-                            "\(color) should not be nil!")
-        }
-
-        let hsb = Color(hue: 0.1, saturation: 0.4, brightness: 0.5, alpha: 1)
-        XCTAssertNotNil(EFUIntPixel(color: hsb.cgColor), "HSB Failed")
-        #if os(macOS)
-        let cmyk = Color(deviceCyan: 0.2, magenta: 0.3, yellow: 0.6, black: 0.8, alpha: 1)
-        XCTAssertNotNil(EFUIntPixel(color: cmyk.cgColor), "CMYK Failed")
-        #endif
     }
 
     // CGColor

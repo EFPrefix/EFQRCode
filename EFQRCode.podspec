@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 	s.source_files = 'Source/**/*.{h,swift}'
 	
 	s.frameworks = 'ImageIO', 'CoreGraphics', 'Foundation'
-	s.dependency 'EFFoundation', '>= 1.0.0'
+	s.dependency 'EFFoundation', '>= 1.0.1'
 	
 	s.default_subspec = 'Core'
 
