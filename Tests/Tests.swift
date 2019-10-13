@@ -43,9 +43,9 @@ class Tests: XCTestCase {
     func getImage(name: String) -> CGImage? {
         if let filePath = Bundle.init(for: self.classForCoder).path(forResource: "eyrefree", ofType: "png") {
             #if os(macOS)
-                return NSImage(contentsOfFile: filePath)?.cgImage()
+            return NSImage(contentsOfFile: filePath)?.ef.cgImage
             #else
-                return UIImage(contentsOfFile: filePath)?.cgImage()
+            return UIImage(contentsOfFile: filePath)?.ef.cgImage
             #endif
         }
         return nil
@@ -59,7 +59,7 @@ class Tests: XCTestCase {
             size: EFIntSize(width: 256, height: 256)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CIColor.white(), foregroundColor: CIColor.black())
+        generator.setColors(backgroundColor: CIColor.EF.white(), foregroundColor: CIColor.EF.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .h)
         generator.setMagnification(magnification: EFIntSize(width: 6, height: 6))
         let testResult = generator.generate()
@@ -80,7 +80,7 @@ class Tests: XCTestCase {
             size: EFIntSize(width: 999, height: 999)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CIColor.white(), foregroundColor: CIColor.black())
+        generator.setColors(backgroundColor: CIColor.EF.white(), foregroundColor: CIColor.EF.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .l)
         generator.setMagnification(magnification: nil)
         let testResult = generator.generate()
@@ -103,11 +103,11 @@ class Tests: XCTestCase {
         generator.setMode(mode: .none)
         generator.setColors(backgroundColor: {
             #if os(macOS)
-                return NSColor.gray.ciColor()
+            return NSColor.gray.ef.ciColor
             #else
-                return UIColor.gray.ciColor()
+            return UIColor.gray.ef.ciColor
             #endif
-        }(), foregroundColor: CIColor.black())
+        }(), foregroundColor: CIColor.EF.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
         generator.setMagnification(magnification: nil)
         let testResult = generator.generate()
@@ -130,11 +130,11 @@ class Tests: XCTestCase {
         generator.setMode(mode: .none)
         generator.setColors(backgroundColor: {
             #if os(macOS)
-                return NSColor.gray.ciColor()
+            return NSColor.gray.ef.ciColor
             #else
-                return UIColor.red.ciColor()
+            return UIColor.red.ef.ciColor
             #endif
-        }(), foregroundColor: CIColor.black())
+        }(), foregroundColor: CIColor.EF.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
         generator.setMagnification(magnification: nil)
         generator.setIcon(icon: getImage(name: "eyrefree"), size: nil)
@@ -147,15 +147,15 @@ class Tests: XCTestCase {
 
     // CGColor
     func testExampleCGColorExtension() {
-        XCTAssert(CGColor.white() != nil, "CGColor.EFWhite() should not be nil!")
-        XCTAssert(CGColor.black() != nil, "CGColor.EFBlack() should not be nil!")
+        XCTAssert(CGColor.EF.white() != nil, "CGColor.EFWhite() should not be nil!")
+        XCTAssert(CGColor.EF.black() != nil, "CGColor.EFBlack() should not be nil!")
     }
 
     // CGSize
     func testExampleCGSizeExtension() {
         let size = CGSize(width: 111.1, height: 888.8)
-        XCTAssert(size.width.int == 111, "size.widthInt() should be 111!")
-        XCTAssert(size.height.int == 888, "size.heightInt() should be 888!")
+        XCTAssert(size.width.ef.int == 111, "size.widthInt() should be 111!")
+        XCTAssert(size.height.ef.int == 888, "size.heightInt() should be 888!")
     }
 
     // EFQRCode

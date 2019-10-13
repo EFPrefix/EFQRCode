@@ -46,8 +46,8 @@ public class EFQRCode: NSObject {
     public static func generate(
         content: String,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CGColor = CGColor.white()!,
-        foregroundColor: CGColor = CGColor.black()!,
+        backgroundColor: CGColor = CGColor.EF.white()!,
+        foregroundColor: CGColor = CGColor.EF.black()!,
         watermark: CGImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleAspectFill,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
@@ -76,8 +76,8 @@ public class EFQRCode: NSObject {
     public static func generateWithGIF(
         content: String,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CGColor = CGColor.white()!,
-        foregroundColor: CGColor = CGColor.black()!,
+        backgroundColor: CGColor = CGColor.EF.white()!,
+        foregroundColor: CGColor = CGColor.EF.black()!,
         watermark: Data,
         watermarkMode: EFWatermarkMode = .scaleAspectFill,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,

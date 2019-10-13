@@ -935,7 +935,7 @@ extension GeneratorController {
             case 8:
                 switch watermark {
                 case .gif(let dataGIF)?:
-                    rightImageView.loadGif(data: dataGIF)
+                    rightImageView.ef.loadGif(data: dataGIF)
                 case .normal(let image)?:
                     rightImageView.image = image
                 case nil:
@@ -1155,7 +1155,7 @@ class ShowController: UIViewController {
         view.addSubview(imageView)
         switch image {
         case .gif(let dataGIF)?:
-            imageView.loadGif(data: dataGIF)
+            imageView.ef.loadGif(data: dataGIF)
         case .normal(let uiImage)?:
             imageView.image = uiImage
         case nil:

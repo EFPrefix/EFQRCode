@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name             = 'EFQRCode'
-	s.version          = '5.1.2'
+	s.version          = '5.1.3'
 	s.summary          = 'A better way to operate quick response code in Swift.'
 
 	s.description      = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 	s.source_files = 'Source/**/*.{h,swift}'
 	
 	s.frameworks = 'ImageIO', 'CoreGraphics', 'Foundation'
-	s.dependency 'EFFoundation', '>= 1.0.1'
+	s.dependency 'EFFoundation', '>= 1.1.1'
 	
 	s.default_subspec = 'Core'
 
