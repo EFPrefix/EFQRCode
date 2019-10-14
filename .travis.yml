@@ -15,19 +15,19 @@ env:
   - TVOS_FRAMEWORK_SCHEME="EFQRCode tvOS"
   - EXAMPLE_SCHEME="iOS Example"
   matrix:
-    - DESTINATION="OS=12.0,name=iPhone XS"          SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"
-    - DESTINATION="OS=11.1,name=iPhone X"           SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
-    - DESTINATION="OS=10.2,name=iPad Air"           SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
-    - DESTINATION="OS=9.3,name=iPad Pro"            SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    #- DESTINATION="OS=12.0,name=iPhone XS"          SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"
+    - DESTINATION="OS=13.1,name=iPhone 8"                    SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    - DESTINATION="OS=13.1,name=iPad Pro (9.7-inch)"         SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    #- DESTINATION="OS=9.3,name=iPad Pro"            SCHEME="$IOS_FRAMEWORK_SCHEME"      RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
 
-    - DESTINATION="OS=4.0,name=Apple Watch - 42mm"  SCHEME="$WATCHOS_FRAMEWORK_SCHEME"  RUN_TESTS="NO"  BUILD_EXAMPLE="NO"  POD_LINT="NO"
-    - DESTINATION="OS=3.2,name=Apple Watch - 42mm"  SCHEME="$WATCHOS_FRAMEWORK_SCHEME"  RUN_TESTS="NO"  BUILD_EXAMPLE="NO"  POD_LINT="NO"
-    - DESTINATION="OS=2.2,name=Apple Watch - 42mm"  SCHEME="$WATCHOS_FRAMEWORK_SCHEME"  RUN_TESTS="NO"  BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    - DESTINATION="OS=6.0,name=Apple Watch Series 5 - 44mm"  SCHEME="$WATCHOS_FRAMEWORK_SCHEME"  RUN_TESTS="NO"  BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    #- DESTINATION="OS=3.2,name=Apple Watch - 42mm"  SCHEME="$WATCHOS_FRAMEWORK_SCHEME"  RUN_TESTS="NO"  BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    #- DESTINATION="OS=2.2,name=Apple Watch - 42mm"  SCHEME="$WATCHOS_FRAMEWORK_SCHEME"  RUN_TESTS="NO"  BUILD_EXAMPLE="NO"  POD_LINT="NO"
 
-    - DESTINATION="OS=10.2,name=Apple TV 1080p"     SCHEME="$TVOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
-    - DESTINATION="OS=9.0,name=Apple TV 1080p"      SCHEME="$TVOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    - DESTINATION="OS=13.0,name=Apple TV"                    SCHEME="$TVOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    #- DESTINATION="OS=9.0,name=Apple TV 1080p"      SCHEME="$TVOS_FRAMEWORK_SCHEME"     RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
 
-    - DESTINATION="arch=x86_64"                     SCHEME="$MACOS_FRAMEWORK_SCHEME"    RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
+    - DESTINATION="arch=x86_64"                              SCHEME="$MACOS_FRAMEWORK_SCHEME"    RUN_TESTS="YES" BUILD_EXAMPLE="NO"  POD_LINT="NO"
 before_install:
   - gem install cocoapods --pre --no-document --quiet
 script:
@@ -37,10 +37,10 @@ script:
   - sh Startup.sh
 
   # Fix known issues of Xcode 10.2.1
-  - if [ $RUN_TESTS == "YES" ]; then
-      sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 9.3.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
-      sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 9.0.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
-    fi
+  #- if [ $RUN_TESTS == "YES" ]; then
+  #    sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 9.3.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
+  #    sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 9.0.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
+  #  fi
 
   # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
