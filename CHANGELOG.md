@@ -2,6 +2,14 @@
 
 ---
 
+## [5.1.3](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.3) (2019-10-13)
+
+#### Fix
+
+- Fix conflicts with `SwifterSwift`.
+
+---
+
 ## [5.1.2](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.2) (2019-10-10)
 
 #### Fix

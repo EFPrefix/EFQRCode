@@ -192,8 +192,8 @@ extension ViewController: NSAlertDelegate {
             generator.setMode(mode: mode)
         }
         generator.setMagnification(magnification: magnification)
-        generator.setColors(backgroundColor: backColor.ciColor(), foregroundColor: frontColor.ciColor())
-        generator.setIcon(icon: icon?.cgImage(), size: iconSize)
+        generator.setColors(backgroundColor: backColor.ef.ciColor, foregroundColor: frontColor.ef.ciColor)
+        generator.setIcon(icon: icon?.ef.cgImage, size: iconSize)
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowTransparent)
         generator.setPointShape(pointShape: pointShape)
@@ -209,7 +209,7 @@ extension ViewController: NSAlertDelegate {
                 messageBox(Localized.createQRCodeFailed)
             }
         case .normal(let image)?:
-            generator.setWatermark(watermark: image.cgImage(), mode: watermarkMode)
+            generator.setWatermark(watermark: image.ef.cgImage, mode: watermarkMode)
             fallthrough // Other use UIImage
         case nil:
             if let tryCGImage = generator.generate() {
