@@ -143,7 +143,7 @@ github "EFPrefix/EFQRCode" ~> 5.1.3
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 2))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 3))
 ]
 ```
 
