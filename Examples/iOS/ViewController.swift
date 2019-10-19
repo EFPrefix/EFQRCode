@@ -108,7 +108,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @objc func openBlog() {
         if let tryUrl = URL(string: "https://github.com/EFPrefix/EFQRCode") {
-            UIApplication.shared.openURL(tryUrl)
+            UIApplication.shared.open(tryUrl)
         }
     }
 

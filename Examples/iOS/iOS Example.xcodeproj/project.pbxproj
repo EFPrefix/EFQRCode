@@ -85,6 +85,8 @@
 		5282BD3C1FF4819200DFB36B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD3B1FF4819200DFB36B /* Tests.swift */; };
 		528EFA7422965AC80026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA7322965AC80026663C /* Localized.swift */; };
 		528EFA7522965AC80026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA7322965AC80026663C /* Localized.swift */; };
+		D27FDFA5235AB5DB0033ACFF /* EFFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27FDFA4235AB5DB0033ACFF /* EFFoundation.framework */; };
+		D27FDFA6235AB5DB0033ACFF /* EFFoundation.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D27FDFA4235AB5DB0033ACFF /* EFFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +209,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D27FDFA6235AB5DB0033ACFF /* EFFoundation.framework in Copy Frameworks */,
 				120B785E1EA3AA1100D34440 /* EFQRCode.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -293,6 +296,7 @@
 		528EFA7322965AC80026663C /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		52B3BFB6229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Resources/zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		52B3BFB7229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
+		D27FDFA4235AB5DB0033ACFF /* EFFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EFFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -317,6 +321,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D27FDFA5235AB5DB0033ACFF /* EFFoundation.framework in Frameworks */,
 				120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +332,7 @@
 		120AAA922193323E00F0783B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D27FDFA4235AB5DB0033ACFF /* EFFoundation.framework */,
 				120AAA932193323E00F0783B /* swift_qrcodejs.framework */,
 			);
 			name = Frameworks;
