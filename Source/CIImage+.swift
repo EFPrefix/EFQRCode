@@ -26,9 +26,9 @@
 
 #if canImport(CoreImage)
 import CoreImage
+import CoreImage.CIFilterBuiltins
 
 extension CIImage {
-
     /// Get QRCode from image
     func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
         var result = [String]()
@@ -43,14 +43,26 @@ extension CIImage {
     }
     
     /// Create QR CIImage
-    static func generateQRCode(string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
-        let stringData = string.data(using: .utf8)
-        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else {
+    static func generateQRCode(_ string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
+        guard let stringData = string.data(using: .utf8) else {
             return nil
         }
-        qrFilter.setValue(stringData, forKey: "inputMessage")
-        qrFilter.setValue(["L", "M", "Q", "H"][inputCorrectionLevel.rawValue], forKey: "inputCorrectionLevel")
-        return qrFilter.outputImage
+        let correctionLevel = ["L", "M", "Q", "H"][inputCorrectionLevel.rawValue]
+        
+        if #available(iOS 13.0, tvOS 13.0, macOS 10.15, *) {
+            let qrFilter = CIFilter.qrCodeGenerator()
+            qrFilter.message = stringData
+            qrFilter.correctionLevel = correctionLevel
+            return qrFilter.outputImage
+        } else {
+            guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else {
+                return nil
+            }
+            qrFilter.setDefaults()
+            qrFilter.setValue(stringData, forKey: "inputMessage")
+            qrFilter.setValue(correctionLevel, forKey: "inputCorrectionLevel")
+            return qrFilter.outputImage
+        }
     }
 }
 #endif
