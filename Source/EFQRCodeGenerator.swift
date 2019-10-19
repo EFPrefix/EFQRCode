@@ -694,9 +694,9 @@ public class EFQRCodeGenerator: NSObject {
         }
         let finalInputCorrectionLevel = inputCorrectionLevel
 
-        guard let tryQRImagePixels = CIImage.generateQRCode(
-            string: finalContent, inputCorrectionLevel: finalInputCorrectionLevel
-            )?.ef.cgImage?.pixels() else {
+        guard let tryQRImagePixels = CIImage
+            .generateQRCode(finalContent, inputCorrectionLevel: finalInputCorrectionLevel)?
+            .ef.cgImage?.pixels() else {
                 print("Warning: Content too large.")
                 return nil
         }

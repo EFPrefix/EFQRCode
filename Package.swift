@@ -40,7 +40,9 @@ let package = Package(
                  .upToNextMinor(from: "1.1.1"))
     ],
     targets: [
-        .target(name: "EFQRCode", dependencies: ["swift_qrcodejs"], path: "Source")
+        .target(name: "EFQRCode",
+                dependencies: ["swift_qrcodejs", "EFFoundation"],
+                path: "Source")
     ],
     swiftLanguageVersions: [.v5]
 )
