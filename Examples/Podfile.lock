@@ -7,7 +7,7 @@ DEPENDENCIES:
   - SnapKit (= 5.0.1)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - EFColorPicker
     - SnapKit
 
@@ -15,6 +15,6 @@ SPEC CHECKSUMS:
   EFColorPicker: 6fa37bd9cde0f8dc58762698f1e9809f554dfe6c
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: dcdbcf0619146db8e26be75848200790107778e9
+PODFILE CHECKSUM: 9ac1b554b129dfd172a065296ff902bdfc5dfec2
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

@@ -103,8 +103,10 @@ EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'EFQRCode', '~> 5.1.3'
+pod 'EFQRCode', '~> 5.1.4'
 ```
+
+Try `pod 'EFQRCode/watchOS'` instead if you need to use it in watchOS.
 
 Then, run the following command:
 
@@ -126,7 +128,7 @@ $ brew install carthage
 To integrate EFQRCode into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "EFPrefix/EFQRCode" ~> 5.1.3
+github "EFPrefix/EFQRCode" ~> 5.1.4
 ```
 
 Run `carthage update` to build the framework and drag the built `EFQRCode.framework` into your Xcode project.
@@ -139,7 +141,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 3))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 4))
 ]
 ```
 

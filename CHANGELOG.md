@@ -2,6 +2,14 @@
 
 ---
 
+## [5.1.4](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.4) (2019-11-19)
+
+#### Fix
+
+- Fix issue [#83](https://github.com/EFPrefix/EFQRCode/issues/83).
+
+---
+
 ## [5.1.3](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.3) (2019-10-13)
 
 #### Fix
