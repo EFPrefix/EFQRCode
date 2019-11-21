@@ -1,10 +1,10 @@
 //
-//  EFQRCodeRecognizer.swift
+//  BinaryInteger+.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2019/11/20.
 //
-//  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
+//  Copyright © 2019 EyreFree. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,46 +24,64 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(CoreImage)
-import CoreImage
+import Foundation
+import CoreGraphics
 
-@objcMembers
-public class EFQRCodeRecognizer: NSObject {
+extension BinaryInteger {
 
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
-        }
-    }
-    public func setImage(image: CGImage?) {
-        self.image = image
+    var bool: Bool {
+        return 0 != self
     }
 
-    private var contentArray: [String]?
-
-    public init(image: CGImage) {
-        self.image = image
+    var cgFloat: CGFloat {
+        return CGFloat(self)
     }
 
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
+    var double: Double {
+        return Double(self)
     }
 
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = image else {
-            return nil
-        }
-        let result = finalImage.ciImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.isEmpty {
-            return finalImage.grayscale?.ciImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
+    var float: Float {
+        return Float(self)
+    }
+
+    var int: Int {
+        return Int(self)
+    }
+
+    var int8: Int8 {
+        return Int8(self)
+    }
+
+    var int16: Int16 {
+        return Int16(self)
+    }
+
+    var int32: Int32 {
+        return Int32(self)
+    }
+
+    var int64: Int64 {
+        return Int64(self)
+    }
+
+    var uInt: UInt {
+        return UInt(self)
+    }
+
+    var uInt8: UInt8 {
+        return UInt8(self)
+    }
+
+    var uInt16: UInt16 {
+        return UInt16(self)
+    }
+
+    var uInt32: UInt32 {
+        return UInt32(self)
+    }
+
+    var uInt64: UInt64 {
+        return UInt64(self)
     }
 }
-#endif

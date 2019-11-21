@@ -1,10 +1,10 @@
 //
-//  EFQRCodeRecognizer.swift
+//  NSImage+.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2019/11/21.
 //
-//  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
+//  Copyright © 2019 EyreFree. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,46 +24,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(CoreImage)
+#if canImport(AppKit)
+import AppKit
 import CoreImage
 
-@objcMembers
-public class EFQRCodeRecognizer: NSObject {
-
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
-        }
-    }
-    public func setImage(image: CGImage?) {
-        self.image = image
+extension NSImage {
+    
+    func ciImage() -> CIImage? {
+        return self.tiffRepresentation(using: .none, factor: 0).flatMap(CIImage.init)
     }
 
-    private var contentArray: [String]?
-
-    public init(image: CGImage) {
-        self.image = image
-    }
-
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
-    }
-
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = image else {
-            return nil
-        }
-        let result = finalImage.ciImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.isEmpty {
-            return finalImage.grayscale?.ciImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
+    func cgImage() -> CGImage? {
+        return self.cgImage(forProposedRect: nil, context: nil, hints: nil) ?? ciImage()?.cgImage()
     }
 }
 #endif

@@ -26,7 +26,6 @@
 
 import UIKit
 import EFQRCode
-import EFFoundation
 
 extension Optional where Wrapped == String {
     static let passed: String? = nil

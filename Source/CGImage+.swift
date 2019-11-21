@@ -25,14 +25,104 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
-import EFFoundation
 
 #if canImport(CoreImage)
 import CoreImage
 #endif
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 extension CGImage {
 
+    #if canImport(CoreImage)
+    func ciImage() -> CIImage {
+        return CIImage(cgImage: self)
+    }
+    #endif
+
+    #if canImport(UIKit)
+    func uiImage() -> UIImage {
+        return UIImage(cgImage: self)
+    }
+    #endif
+    
+    var avarageColor: CGColor? {
+        let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
+        guard let context = CGContext(
+            data: rgba,
+            width: 1,
+            height: 1,
+            bitsPerComponent: 8,
+            bytesPerRow: 4,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            ) else {
+                return nil
+        }
+        context.draw(self, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+
+        return CGColor.initWith(
+            red: CGFloat(rgba[0]) / 255.0,
+            green: CGFloat(rgba[1]) / 255.0,
+            blue: CGFloat(rgba[2]) / 255.0,
+            alpha: CGFloat(rgba[3]) / 255.0
+        )
+    }
+    
+    var grayscale: CGImage? {
+        guard let context = CGContext(
+            data: nil,
+            width: self.width,
+            height: self.height,
+            bitsPerComponent: 8,
+            bytesPerRow: 4 * self.width,
+            space: CGColorSpaceCreateDeviceGray(),
+            bitmapInfo: CGImageAlphaInfo.none.rawValue
+            ) else {
+                return nil
+        }
+        context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: self.width, height: self.height)))
+        return context.makeImage()
+    }
+    
+    func binarization(threshold: CGFloat = 0.5, foregroundColor: CGColor = CGColor.white()!, backgroundColor: CGColor = CGColor.black()!) -> CGImage? {
+        let dataSize = self.width * self.height * 4
+        var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        guard let backgroundPixel = backgroundColor.rgba,
+            let foregroundPixel = foregroundColor.rgba,
+            let context = CGContext(
+                data: &pixelData,
+                width: self.width,
+                height: self.height,
+                bitsPerComponent: 8,
+                bytesPerRow: 4 * self.width,
+                space: colorSpace,
+                bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+            ) else {
+                return nil
+        }
+
+        context.draw(self, in: CGRect(x: 0, y: 0, width: self.width, height: self.height))
+        for x in 0 ..< self.width {
+            for y in 0 ..< self.height {
+                let offset = 4 * (x + y * self.width)
+                // RGBA
+                let alpha: CGFloat = CGFloat(pixelData[offset + 3]) / 255.0
+                let rgb: CGFloat = CGFloat(pixelData[offset + 0]) + CGFloat(pixelData[offset + 1]) + CGFloat(pixelData[offset + 2])
+                let intensity = rgb / 3.0 / 255.0 * alpha + (1.0 - alpha)
+                let finalPixel = intensity > threshold ? backgroundPixel : foregroundPixel
+                pixelData[offset + 0] = finalPixel.red
+                pixelData[offset + 1] = finalPixel.green
+                pixelData[offset + 2] = finalPixel.blue
+                pixelData[offset + 3] = finalPixel.alpha
+            }
+        }
+        return context.makeImage()
+    }
+    
     /// Get pixels from CIImage
     func pixels() -> [[EFUIntPixel]]? {
         let dataSize = width * height * 4

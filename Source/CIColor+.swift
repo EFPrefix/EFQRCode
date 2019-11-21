@@ -1,10 +1,10 @@
 //
-//  EFQRCodeRecognizer.swift
+//  CIColor+.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2019/11/20.
 //
-//  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
+//  Copyright © 2019 EyreFree. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,43 +27,29 @@
 #if canImport(CoreImage)
 import CoreImage
 
-@objcMembers
-public class EFQRCodeRecognizer: NSObject {
+#if canImport(UIKit)
+import UIKit
+#endif
 
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
-        }
+extension CIColor {
+
+    #if canImport(UIKit)
+    func uiColor() -> UIColor {
+        return UIColor(ciColor: self)
     }
-    public func setImage(image: CGImage?) {
-        self.image = image
+    #endif
+    
+    func cgColor() -> CGColor? {
+        return CGColor(colorSpace: self.colorSpace, components: self.components)
     }
-
-    private var contentArray: [String]?
-
-    public init(image: CGImage) {
-        self.image = image
+    
+    static func white(white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CIColor {
+        return self.init(red: white, green: white, blue: white, alpha: alpha)
     }
-
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
-    }
-
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = image else {
-            return nil
-        }
-        let result = finalImage.ciImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.isEmpty {
-            return finalImage.grayscale?.ciImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
+    
+    static func black(black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CIColor {
+        let white: CGFloat = 1.0 - black
+        return self.init(red: white, green: white, blue: white, alpha: alpha)
     }
 }
 #endif

@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>5.1.3</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>EFPX</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSPrincipalClass</key>

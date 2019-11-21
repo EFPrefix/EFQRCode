@@ -21,12 +21,14 @@ Pod::Spec.new do |s|
 	s.swift_version = '5.0'
 	s.requires_arc = true
 	s.frameworks = 'ImageIO', 'CoreGraphics', 'Foundation'
+    s.ios.framework = 'CoreImage'
+    s.osx.framework = 'CoreImage'
+    s.tvos.framework = 'CoreImage'
 
 	s.default_subspec = 'Core'
 
 	s.subspec 'Core' do |core|
 		core.source_files = 'Source/**/*.{h,swift}'
-		core.dependency 'EFFoundation', '>= 1.1.1'
   	end
 
   	s.subspec 'watchOS' do |watchos|
@@ -36,7 +38,6 @@ Pod::Spec.new do |s|
   		watchos.watchos.deployment_target = '2.0'
   		
   		watchos.source_files = 'Source/**/*.{h,swift}'
-  		watchos.dependency 'EFFoundation', '>= 1.1.1'
   		watchos.dependency 'swift_qrcodejs', '>= 1.1.1'
   	end
 end

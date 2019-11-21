@@ -27,7 +27,6 @@
 import UIKit
 import Photos
 import EFQRCode
-import EFFoundation
 import MobileCoreServices
 
 enum EFImage {

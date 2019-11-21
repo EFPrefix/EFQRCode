@@ -1,10 +1,10 @@
 //
-//  EFQRCodeRecognizer.swift
+//  NSColor+.swift
 //  EFQRCode
 //
-//  Created by EyreFree on 2017/3/28.
+//  Created by EyreFree on 2019/11/21.
 //
-//  Copyright (c) 2017 EyreFree <eyrefree@eyrefree.org>
+//  Copyright © 2019 EyreFree. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,46 +24,26 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(CoreImage)
-import CoreImage
+#if canImport(AppKit)
+import AppKit
 
-@objcMembers
-public class EFQRCodeRecognizer: NSObject {
+extension NSColor {
 
-    private var image: CGImage? {
-        didSet {
-            contentArray = nil
-        }
-    }
-    public func setImage(image: CGImage?) {
-        self.image = image
+    func ciColor() -> CIColor {
+        return cgColor.ciColor()
     }
 
-    private var contentArray: [String]?
-
-    public init(image: CGImage) {
-        self.image = image
+    func cgColor() -> CGColor {
+        return self.cgColor
     }
-
-    public func recognize() -> [String]? {
-        if nil == contentArray {
-            contentArray = getQRString()
-        }
-        return contentArray
+    
+    static func white(white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> NSColor {
+        return self.init(white: white, alpha: alpha)
     }
-
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = image else {
-            return nil
-        }
-        let result = finalImage.ciImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.isEmpty {
-            return finalImage.grayscale?.ciImage().recognizeQRCode(
-                options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
-            )
-        }
-        return result
+    
+    static func black(black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> NSColor {
+        let white: CGFloat = 1.0 - black
+        return Self.white(white: white, alpha: alpha)
     }
 }
 #endif
