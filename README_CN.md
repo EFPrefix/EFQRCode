@@ -107,7 +107,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：
 
 ```ruby
-pod 'EFQRCode', '~> 5.1.5'
+pod 'EFQRCode', '~> 5.1.6'
 ```
 
 如果你需要在 watchOS 中使用的话，请使用 `pod 'EFQRCode/watchOS'`。
@@ -132,7 +132,7 @@ $ brew install carthage
 通过在你的 `Cartfile` 添加如下语句可以将 EFQRCode 引入你的项目：
 
 ```ogdl
-github "EFPrefix/EFQRCode" ~> 5.1.5
+github "EFPrefix/EFQRCode" ~> 5.1.6
 ```
 
 接下来执行 `carthage update` 命令生成 Framework 并且将生成的 `EFQRCode.framework` 拖入工程即可。
@@ -145,7 +145,7 @@ github "EFPrefix/EFQRCode" ~> 5.1.5
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 5))
+    .Package(url: "https://github.com/EFPrefix/EFQRCode.git", Version(5, 1, 6))
 ]
 ```
 

@@ -2,6 +2,14 @@
 
 ---
 
+## [5.1.6](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.6) (2019-11-21)
+
+#### Fix
+
+- Remove dependency `EFFoundation`.
+
+---
+
 ## [5.1.5](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.5) (2019-11-20)
 
 #### Fix
