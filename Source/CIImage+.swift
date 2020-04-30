@@ -66,7 +66,7 @@ extension CIImage {
     }
     
     /// Create QR CIImage
-    static func generateQRCode(_ string: String, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
+    static func generateQRCode(_ string: String, using contentEncoding: String.Encoding = .utf8, inputCorrectionLevel: EFInputCorrectionLevel = .m) -> CIImage? {
         guard let stringData = string.data(using: .utf8) else {
             return nil
         }
