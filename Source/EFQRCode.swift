@@ -76,6 +76,7 @@ public class EFQRCode: NSObject {
 
     public static func generateWithGIF(
         content: String,
+        contentEncoding: String.Encoding = .utf8,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
         backgroundColor: CGColor = CGColor.white()!,
         foregroundColor: CGColor = CGColor.black()!,
@@ -92,6 +93,7 @@ public class EFQRCode: NSObject {
         ) -> Data? {
 
         let generator = EFQRCodeGenerator(content: content, size: size)
+        generator.setContentEncoding(encoding: contentEncoding)
         generator.setWatermark(watermark: nil, mode: watermarkMode)
         generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
         generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
