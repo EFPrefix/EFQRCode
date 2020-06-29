@@ -1,3 +1,11 @@
+EFQRCode is being sponsored by the following tool; please help to support us by [taking a look](https://tracking.gitads.io/?repo=EFQRCode) and signing up to a free trial:
+
+<a href="https://tracking.gitads.io/?repo=EFQRCode">
+    <img src="https://images.gitads.io/EFQRCode" width = "100%">
+</a>
+
+---
+
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
@@ -317,7 +325,7 @@ Thanks for your support, 🙏
 
 ## Thanks
 
-Thanks for the help from JetBrains's [Open Source Support Program](https://www.jetbrains.com/community/opensource/?from=EFQRCode).
+- Thanks for the help from JetBrains's [Open Source Support Program](https://www.jetbrains.com/community/opensource/?from=EFQRCode).
 
 <a href="https://www.jetbrains.com/?from=EFQRCode">
     <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/ce8982e1858d62ac8b9fecec96f5369d8b1b62c3/logo/jetbrains.svg?sanitize=true" width = "20%">
