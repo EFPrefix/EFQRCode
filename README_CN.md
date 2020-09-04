@@ -1,11 +1,3 @@
-感谢 GitAds 对本项目的帮助，接下来的[推广内容](https://tracking.gitads.io/?repo=EFQRCode)来自 GitAds：
-
-<a href="https://tracking.gitads.io/?repo=EFQRCode">
-    <img src="https://images.gitads.io/EFQRCode" width = "100%">
-</a>
-
----
-
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
