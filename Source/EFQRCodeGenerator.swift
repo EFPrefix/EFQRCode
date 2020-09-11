@@ -47,6 +47,17 @@ public class EFQRCodeGenerator: NSObject {
     public func setContent(content: String) {
         self.content = content
     }
+    
+    // Encoding of the content
+    private var contentEncoding: String.Encoding = .utf8 {
+        didSet {
+            imageQRCode = nil
+            imageCodes = nil
+        }
+    }
+    public func setContentEncoding(encoding: String.Encoding) {
+        self.contentEncoding = encoding
+    }
 
     // Mode of QR Code
     private var mode: EFQRCodeMode = .none {
@@ -692,9 +703,10 @@ public class EFQRCodeGenerator: NSObject {
             return nil
         }
         let finalInputCorrectionLevel = inputCorrectionLevel
+        let finalContentEncoding = contentEncoding
 
         guard let tryQRImagePixels = CIImage
-            .generateQRCode(finalContent, inputCorrectionLevel: finalInputCorrectionLevel)?
+            .generateQRCode(finalContent, using: finalContentEncoding, inputCorrectionLevel: finalInputCorrectionLevel)?
             .cgImage()?.pixels() else {
                 print("Warning: Content too large.")
                 return nil
