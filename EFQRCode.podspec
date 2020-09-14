@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name             = 'EFQRCode'
-	s.version          = '5.1.6'
+	s.version          = '5.1.7'
 	s.summary          = 'A better way to operate quick response code in Swift.'
 
 	s.description      = <<-DESC
@@ -38,6 +38,6 @@ Pod::Spec.new do |s|
   		watchos.watchos.deployment_target = '2.0'
   		
   		watchos.source_files = 'Source/**/*.{h,swift}'
-  		watchos.dependency 'swift_qrcodejs', '>= 1.1.1'
+  		watchos.dependency 'swift_qrcodejs', '>= 1.1.4'
   	end
 end

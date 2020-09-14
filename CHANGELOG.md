@@ -2,6 +2,19 @@
 
 ---
 
+## [5.1.7](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.7) (2020-09-14)
+
+#### Add
+
+- Add a contentEncoding parameter [#90](https://github.com/EFPrefix/EFQRCode/pull/90);
+- Add compatibility with Catalyst dependencies [#88](https://github.com/EFPrefix/EFQRCode/pull/88).
+
+#### Fix
+
+- Update `swift_qrcodejs` to 1.1.4.
+
+---
+
 ## [5.1.6](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.6) (2019-11-21)
 
 #### Fix
