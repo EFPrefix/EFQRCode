@@ -2,21 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "EFFoundation",
-        "repositoryURL": "https://github.com/EFPrefix/EFFoundation.git",
-        "state": {
-          "branch": null,
-          "revision": "52d5533ad73ce365fae5e8e627284b0383a56179",
-          "version": "1.1.1"
-        }
-      },
-      {
         "package": "swift_qrcodejs",
         "repositoryURL": "https://github.com/ApolloZhu/swift_qrcodejs.git",
         "state": {
           "branch": null,
-          "revision": "2f8286e9e6e0f10d42bf4ac3e7b60111593499ff",
-          "version": "1.1.2"
+          "revision": "f3fe9fdd39fa48e45b501000194b43a3883f732f",
+          "version": "1.1.4"
         }
       }
     ]

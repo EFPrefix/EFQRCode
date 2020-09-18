@@ -29,7 +29,6 @@ import PackageDescription
 
 let package = Package(
     name: "EFQRCode",
-    platforms: [.iOS(.v8), .macOS(.v10_11), .tvOS(.v9), .watchOS(.v2)],
     products: [
         .library(name: "EFQRCode", targets: ["EFQRCode"])
     ],
