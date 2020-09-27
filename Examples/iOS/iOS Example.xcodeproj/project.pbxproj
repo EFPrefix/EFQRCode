@@ -67,6 +67,11 @@
 		12BC1A972328C0D900B6EB5A /* EFColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1A8C2328C0D900B6EB5A /* EFColorUtils.swift */; };
 		12BC1A982328C0D900B6EB5A /* EFColorComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1A8D2328C0D900B6EB5A /* EFColorComponentView.swift */; };
 		12BC1A992328C0D900B6EB5A /* EFColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1A8E2328C0D900B6EB5A /* EFColorSelectionView.swift */; };
+		12E3D6A02520581100A4062C /* appclipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3D69F2520581100A4062C /* appclipApp.swift */; };
+		12E3D6A22520581100A4062C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3D6A12520581100A4062C /* ContentView.swift */; };
+		12E3D6A42520581100A4062C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12E3D6A32520581100A4062C /* Assets.xcassets */; };
+		12E3D6A72520581100A4062C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12E3D6A62520581100A4062C /* Preview Assets.xcassets */; };
+		12E3D6AC2520581100A4062C /* appclip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 12E3D69D2520581000A4062C /* appclip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		12EE9E8323869BB600241C60 /* Int16+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E5D23869BB400241C60 /* Int16+.swift */; };
 		12EE9E8423869BB600241C60 /* UIGestureRecognizer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E5E23869BB400241C60 /* UIGestureRecognizer+.swift */; };
 		12EE9E8523869BB600241C60 /* UInt+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E5F23869BB400241C60 /* UInt+.swift */; };
@@ -182,6 +187,13 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = "EFQRCode iOS";
 		};
+		12E3D6AA2520581100A4062C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8111DFD19A951050040E7D1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12E3D69C2520581000A4062C;
+			remoteInfo = appclip;
+		};
 		5282BCF11FF3AD9100DFB36B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F8111DFD19A951050040E7D1 /* Project object */;
@@ -213,6 +225,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		12E3D6AD2520581100A4062C /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				12E3D6AC2520581100A4062C /* appclip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5282BD0B1FF3AD9100DFB36B /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,6 +292,7 @@
 		120B78091EA3977300D34440 /* UIImage+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Example.swift"; sourceTree = SOURCE_ROOT; };
 		120B78401EA39E1B00D34440 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
+		1226ABF92520803B00E282FF /* EFQRCode.iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EFQRCode.iOS.entitlements; sourceTree = "<group>"; };
 		12981D891F99F75D00156E1E /* CGFloat+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Example.swift"; sourceTree = SOURCE_ROOT; };
 		12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUserDefaults.swift; sourceTree = "<group>"; };
 		12BC1A3C2328C0B200B6EB5A /* ConstraintConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = ../Pods/SnapKit/Source/ConstraintConfig.swift; sourceTree = "<group>"; };
@@ -318,6 +342,13 @@
 		12BC1A8C2328C0D900B6EB5A /* EFColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFColorUtils.swift; path = ../Pods/EFColorPicker/EFColorPicker/Classes/EFColorUtils.swift; sourceTree = "<group>"; };
 		12BC1A8D2328C0D900B6EB5A /* EFColorComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFColorComponentView.swift; path = ../Pods/EFColorPicker/EFColorPicker/Classes/EFColorComponentView.swift; sourceTree = "<group>"; };
 		12BC1A8E2328C0D900B6EB5A /* EFColorSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFColorSelectionView.swift; path = ../Pods/EFColorPicker/EFColorPicker/Classes/EFColorSelectionView.swift; sourceTree = "<group>"; };
+		12E3D69D2520581000A4062C /* appclip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appclip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		12E3D69F2520581100A4062C /* appclipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appclipApp.swift; sourceTree = "<group>"; };
+		12E3D6A12520581100A4062C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		12E3D6A32520581100A4062C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		12E3D6A62520581100A4062C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		12E3D6A82520581100A4062C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12E3D6A92520581100A4062C /* appclip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appclip.entitlements; sourceTree = "<group>"; };
 		12EE9E5D23869BB400241C60 /* Int16+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int16+.swift"; path = "../Pods/EFFoundation/EFFoundation/Core/Int16+.swift"; sourceTree = "<group>"; };
 		12EE9E5E23869BB400241C60 /* UIGestureRecognizer+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+.swift"; path = "../Pods/EFFoundation/EFFoundation/Core/UIGestureRecognizer+.swift"; sourceTree = "<group>"; };
 		12EE9E5F23869BB400241C60 /* UInt+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UInt+.swift"; path = "../Pods/EFFoundation/EFFoundation/Core/UInt+.swift"; sourceTree = "<group>"; };
@@ -386,6 +417,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				120AAA942193323E00F0783B /* swift_qrcodejs.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12E3D69A2520581000A4062C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +578,27 @@
 			name = 3rd;
 			sourceTree = "<group>";
 		};
+		12E3D69E2520581100A4062C /* appclip */ = {
+			isa = PBXGroup;
+			children = (
+				12E3D69F2520581100A4062C /* appclipApp.swift */,
+				12E3D6A12520581100A4062C /* ContentView.swift */,
+				12E3D6A32520581100A4062C /* Assets.xcassets */,
+				12E3D6A82520581100A4062C /* Info.plist */,
+				12E3D6A92520581100A4062C /* appclip.entitlements */,
+				12E3D6A52520581100A4062C /* Preview Content */,
+			);
+			path = appclip;
+			sourceTree = "<group>";
+		};
+		12E3D6A52520581100A4062C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				12E3D6A62520581100A4062C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		12EE9E5723869B8600241C60 /* EFFoundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +709,7 @@
 				F8111E0719A951050040E7D1 /* iOS Example */,
 				5282BCE41FF3AD9000DFB36B /* watchOS Example */,
 				5282BCF31FF3AD9100DFB36B /* watchOS Example Extension */,
+				12E3D69E2520581100A4062C /* appclip */,
 				F8111E0619A951050040E7D1 /* Products */,
 				120AAA922193323E00F0783B /* Frameworks */,
 				120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */,
@@ -665,6 +725,7 @@
 				F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */,
 				5282BCE31FF3AD9000DFB36B /* watchOS Example.app */,
 				5282BCEF1FF3AD9100DFB36B /* watchOS Example Extension.appex */,
+				12E3D69D2520581000A4062C /* appclip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -672,6 +733,7 @@
 		F8111E0719A951050040E7D1 /* iOS Example */ = {
 			isa = PBXGroup;
 			children = (
+				1226ABF92520803B00E282FF /* EFQRCode.iOS.entitlements */,
 				120B78401EA39E1B00D34440 /* AppDelegate.swift */,
 				12C322351F80F192003E9BF4 /* 3rd */,
 				120B77FA1EA3951700D34440 /* Res */,
@@ -694,6 +756,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		12E3D69C2520581000A4062C /* appclip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12E3D6B52520581100A4062C /* Build configuration list for PBXNativeTarget "appclip" */;
+			buildPhases = (
+				12E3D6992520581000A4062C /* Sources */,
+				12E3D69A2520581000A4062C /* Frameworks */,
+				12E3D69B2520581000A4062C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = appclip;
+			productName = appclip;
+			productReference = 12E3D69D2520581000A4062C /* appclip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
 		5282BCE21FF3AD9000DFB36B /* watchOS Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5282BD0C1FF3AD9100DFB36B /* Build configuration list for PBXNativeTarget "watchOS Example" */;
@@ -740,12 +819,14 @@
 				F8111E0319A951050040E7D1 /* Resources */,
 				F818D0E519CA8D15006034B1 /* Copy Frameworks */,
 				5282BD0D1FF3AD9100DFB36B /* Embed Watch Content */,
+				12E3D6AD2520581100A4062C /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				120B785C1EA3A9F500D34440 /* PBXTargetDependency */,
 				5282BCFC1FF3AD9100DFB36B /* PBXTargetDependency */,
+				12E3D6AB2520581100A4062C /* PBXTargetDependency */,
 			);
 			name = "iOS Example";
 			productName = Alamofire;
@@ -758,10 +839,15 @@
 		F8111DFD19A951050040E7D1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = EyreFree;
 				TargetAttributes = {
+					12E3D69C2520581000A4062C = {
+						CreatedOnToolsVersion = 12.0;
+						DevelopmentTeam = P3X2725LYY;
+						ProvisioningStyle = Automatic;
+					};
 					5282BCE21FF3AD9000DFB36B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -800,6 +886,7 @@
 				F8111E0419A951050040E7D1 /* iOS Example */,
 				5282BCE21FF3AD9000DFB36B /* watchOS Example */,
 				5282BCEE1FF3AD9100DFB36B /* watchOS Example Extension */,
+				12E3D69C2520581000A4062C /* appclip */,
 			);
 		};
 /* End PBXProject section */
@@ -857,6 +944,15 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		12E3D69B2520581000A4062C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12E3D6A72520581100A4062C /* Preview Assets.xcassets in Resources */,
+				12E3D6A42520581100A4062C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5282BCE11FF3AD9000DFB36B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -887,6 +983,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		12E3D6992520581000A4062C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12E3D6A22520581100A4062C /* ContentView.swift in Sources */,
+				12E3D6A02520581100A4062C /* appclipApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5282BCEB1FF3AD9100DFB36B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1019,6 +1124,11 @@
 			name = "EFQRCode iOS";
 			targetProxy = 120B785B1EA3A9F500D34440 /* PBXContainerItemProxy */;
 		};
+		12E3D6AB2520581100A4062C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12E3D69C2520581000A4062C /* appclip */;
+			targetProxy = 12E3D6AA2520581100A4062C /* PBXContainerItemProxy */;
+		};
 		5282BCF21FF3AD9100DFB36B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5282BCEE1FF3AD9100DFB36B /* watchOS Example Extension */;
@@ -1058,6 +1168,74 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		12E3D6AE2520581100A4062C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = appclip/appclip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5.1.6.0;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"appclip/Preview Content\"";
+				DEVELOPMENT_TEAM = P3X2725LYY;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = appclip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 5.1.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		12E3D6AF2520581100A4062C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = appclip/appclip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 5.1.6.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"appclip/Preview Content\"";
+				DEVELOPMENT_TEAM = P3X2725LYY;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = appclip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 5.1.6;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5282BCFE1FF3AD9100DFB36B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1279,8 +1457,10 @@
 		F8111E2419A951050040E7D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EFQRCode.iOS.entitlements;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1296,8 +1476,10 @@
 		F8111E2519A951050040E7D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EFQRCode.iOS.entitlements;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1313,6 +1495,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		12E3D6B52520581100A4062C /* Build configuration list for PBXNativeTarget "appclip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12E3D6AE2520581100A4062C /* Debug */,
+				12E3D6AF2520581100A4062C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5282BD0A1FF3AD9100DFB36B /* Build configuration list for PBXNativeTarget "watchOS Example Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
