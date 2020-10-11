@@ -141,7 +141,7 @@ Once you have your Swift package set up, adding EFQRCode as a dependency is as e
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/EFPrefix/EFQRCode.git", .exact("5.1.8"))
+    .package(url: "https://github.com/EFPrefix/EFQRCode.git", .upToNextMinor(from: "5.1.8"))
 ]
 ```
 
