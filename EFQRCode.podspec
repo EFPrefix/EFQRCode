@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   	end
 
   	s.subspec 'watchOS' do |watchos|
-  		watchos.ios.deployment_target = '8.0'
+  		watchos.ios.deployment_target = '9.0'
 		watchos.osx.deployment_target = '10.11'
 		watchos.tvos.deployment_target = '9.0'
   		watchos.watchos.deployment_target = '2.0'
