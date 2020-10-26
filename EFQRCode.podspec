@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 	s.source           = { :git => 'https://github.com/EFPrefix/EFQRCode.git', :tag => s.version.to_s }
 	s.social_media_url = 'https://twitter.com/EyreFree777'
 
-	s.ios.deployment_target = '8.0'
+	s.ios.deployment_target = '9.0'
 	s.osx.deployment_target = '10.11'
 	s.tvos.deployment_target = '9.0'
 
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   	end
 
   	s.subspec 'watchOS' do |watchos|
-  		watchos.ios.deployment_target = '8.0'
+  		watchos.ios.deployment_target = '9.0'
 		watchos.osx.deployment_target = '10.11'
 		watchos.tvos.deployment_target = '9.0'
   		watchos.watchos.deployment_target = '2.0'
