@@ -38,6 +38,6 @@ Pod::Spec.new do |s|
   		watchos.watchos.deployment_target = '2.0'
   		
   		watchos.source_files = 'Source/**/*.{h,swift}'
-  		watchos.dependency 'swift_qrcodejs', '>= 1.1.4'
+  		watchos.dependency 'swift_qrcodejs', '1.1.4'
   	end
 end
