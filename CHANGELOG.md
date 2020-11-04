@@ -1,5 +1,18 @@
 # Change Log
 
+## [5.1.9](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.9) (2020-11-04)
+
+#### Add
+
+- Add Playgrounds with usage example [#98](https://github.com/EFPrefix/EFQRCode/pull/98).
+
+#### Fix
+
+- Fix SwiftPM syntax in README [#99](https://github.com/EFPrefix/EFQRCode/pull/99);
+- Fix GIF frame delay time setting [#104](https://github.com/EFPrefix/EFQRCode/issues/104);
+- Now generates QRCode with correct, specified content encoding on watchOS;
+- Pin `swift_qrcodejs` to 1.2.0, up to next minor [#102](https://github.com/EFPrefix/EFQRCode/pull/102).
+
 ---
 
 ## [5.1.8](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.8) (2020-09-18)
