@@ -1,5 +1,22 @@
 # Change Log
 
+## [6.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/6.0.0) (2020-11-04)
+
+#### Add
+
+- Add support to compile for macOS 10.10 using CocoaPods.
+
+#### Changed
+
+- `swift_qrcodejs` is now conditional dependency with Swift Package Manager 5.3+.
+
+#### Remove
+
+- Drop iOS 8 support from CocoaPods with Xcode 12 [#101](https://github.com/EFPrefix/EFQRCode/pull/101);
+- Remove `Core` and `watchOS` sub-specs [#100](https://github.com/EFPrefix/EFQRCode/issues/100).
+
+---
+
 ## [5.1.9](https://github.com/EFPrefix/EFQRCode/releases/tag/5.1.9) (2020-11-04)
 
 #### Add
