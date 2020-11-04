@@ -5,13 +5,11 @@ on:
     types: [ published ]
 
 jobs:
-  pod:
+  release:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Lint CocoaPods Spec
-        run: pod spec lint
-      - name: Publish to CocoaPods Trunk
+      - name: Lint and Publish to CocoaPods Trunk
         run: pod trunk push
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
