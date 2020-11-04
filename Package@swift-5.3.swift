@@ -42,7 +42,8 @@ let package = Package(
                     .product(name: "swift_qrcodejs", package: "swift_qrcodejs",
                              condition: .when(platforms: [.watchOS])),
                 ],
-                path: "Source")
+                path: "Source",
+                exclude: ["Info.plist", "Info-tvOS.plist"]),
     ],
     swiftLanguageVersions: [.v5]
 )
