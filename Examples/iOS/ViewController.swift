@@ -105,10 +105,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.width.equalTo(view)
         }
     }
-
+    
     @objc func openBlog() {
         if let tryUrl = URL(string: "https://github.com/EFPrefix/EFQRCode") {
-            UIApplication.shared.open(tryUrl)
+            if #available(iOS 10.0, tvOS 10.0, *) {
+                UIApplication.shared.open(tryUrl)
+            } else {
+                UIApplication.shared.openURL(tryUrl)
+            }
         }
     }
 

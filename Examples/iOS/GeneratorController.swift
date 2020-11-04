@@ -1280,7 +1280,7 @@ enum CustomPhotoAlbum {
 
     static func save(image: EFImage, finish: @escaping ((_ error: String?) -> Void)) {
         switch PHPhotoLibrary.authorizationStatus() {
-        case .authorized:
+        case .authorized, .limited:
             if let assetCollection = fetchAssetCollectionForAlbum() {
                 save(image: image, to: assetCollection, finish: finish)
             } else {
@@ -1315,12 +1315,16 @@ enum CustomPhotoAlbum {
             let assetChangeRequest: PHAssetChangeRequest?
             switch image {
             case .gif(let data):
-                guard let documentsDirectoryURL: URL? = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true),
-                    let fileURL: URL = documentsDirectoryURL?.appendingPathComponent("EFQRCode_temp.gif") else {
-                        finish(NSLocalizedString("Can't create a temporary gif file for export", comment: "FileURL is nil"))
+                guard let documentsDirectoryURL = try? FileManager.default
+                        .url(for: .documentDirectory, in: .userDomainMask,
+                             appropriateFor: nil, create: true)
+                else {
+                        finish(NSLocalizedString("Can't create a temporary gif file for export",
+                                                 comment: "FileURL is nil"))
                         errored = true
                         return
                 }
+                let fileURL = documentsDirectoryURL.appendingPathComponent("EFQRCode_temp.gif")
                 try? data.write(to: fileURL)
                 assetChangeRequest = .creationRequestForAssetFromImage(atFileURL: fileURL)
             case .normal(let image):
