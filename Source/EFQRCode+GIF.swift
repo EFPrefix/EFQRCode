@@ -61,6 +61,7 @@ public extension EFQRCode {
                     if var tempDict = value as? [String: Any] {
                         if var gifDict = tempDict[kCGImagePropertyGIFDictionary as String] as? [String: Any] {
                             gifDict.updateValue(delay, forKey: kCGImagePropertyGIFDelayTime as String)
+                            gifDict.updateValue(delay, forKey: kCGImagePropertyGIFUnclampedDelayTime as String)
                             tempDict.updateValue(gifDict, forKey: kCGImagePropertyGIFDictionary as String)
                         }
                         framePropertiesArray[index] = tempDict as CFDictionary
