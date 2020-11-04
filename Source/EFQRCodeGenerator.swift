@@ -743,7 +743,10 @@ public class EFQRCodeGenerator: NSObject {
             #else
             let level = inputCorrectionLevel.qrErrorCorrectLevel
             return content.flatMap {
-                return QRCode($0, errorCorrectLevel: level, withBorder: true)?.imageCodes
+                QRCode($0, encoding: contentEncoding,
+                       errorCorrectLevel: level, withBorder: true
+                )?
+                .imageCodes
             }
             #endif
         }
