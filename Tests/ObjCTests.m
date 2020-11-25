@@ -57,7 +57,7 @@
     [g withIcon:[self getImage] size:nil];
     [g withWatermark:[self getImage] mode: EFWatermarkModeBottom];
     [g withTransparentWatermark:YES];
-    [g withForegroundPointOffset: 0];
+    [g withPointOffset: 0];
     [g withStaticTiming: YES];
     CGImageRef testResult = [g generate];
     XCTAssertNotEqual(testResult, NULL);

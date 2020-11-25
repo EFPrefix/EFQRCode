@@ -53,9 +53,9 @@ public class EFQRCode {
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
         pointShape: EFPointShape = .square,
+        pointOffset: CGFloat = 0,
         mode: EFQRCodeMode? = nil,
-        magnification: EFIntSize? = nil,
-        foregroundPointOffset: CGFloat = 0
+        magnification: EFIntSize? = nil
     ) -> CGImage? {
         return EFQRCodeGenerator(content: content, encoding: encoding, size: size)
             .withWatermark(watermark, mode: watermarkMode)
@@ -66,7 +66,7 @@ public class EFQRCode {
             .withPointShape(pointShape)
             .withMode(mode)
             .withMagnification(magnification)
-            .withForegroundPointOffset(foregroundPointOffset)
+            .withPointOffset(pointOffset)
             .generate()
     }
 
@@ -83,9 +83,9 @@ public class EFQRCode {
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
         pointShape: EFPointShape = .square,
+        pointOffset: CGFloat = 0,
         mode: EFQRCodeMode? = nil,
-        magnification: EFIntSize? = nil,
-        foregroundPointOffset: CGFloat = 0
+        magnification: EFIntSize? = nil
     ) -> Data? {
         let generator = EFQRCodeGenerator(content: content, encoding: encoding, size: size)
             .withWatermark(nil, mode: watermarkMode)
@@ -96,7 +96,7 @@ public class EFQRCode {
             .withPointShape(pointShape)
             .withMode(mode)
             .withMagnification(magnification)
-            .withForegroundPointOffset(foregroundPointOffset)
+            .withPointOffset(pointOffset)
         return EFQRCode.generateGIF(using: generator, withIntputGIF: watermark)
     }
 }

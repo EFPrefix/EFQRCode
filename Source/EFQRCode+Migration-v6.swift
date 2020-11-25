@@ -21,7 +21,7 @@ extension EFQRCode {
     #endif
 
 
-    @available(*, deprecated, renamed: "generate(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointShape:mode:magnification:foregroundPointOffset:)")
+    @available(*, deprecated, renamed: "generate(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointShape:mode:magnification:pointOffset:)")
     public static func generate(
         content: String,
         contentEncoding: String.Encoding = .utf8,
@@ -39,10 +39,18 @@ extension EFQRCode {
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
         ) -> CGImage? {
-        return generate(for: content, encoding: contentEncoding, size: size, backgroundColor: backgroundColor, foregroundColor: foregroundColor, watermark: watermark, watermarkMode: watermarkMode, watermarkIsTransparent: allowTransparent, inputCorrectionLevel: inputCorrectionLevel, icon: icon, iconSize: iconSize, pointShape: pointShape, mode: mode, magnification: magnification, foregroundPointOffset: foregroundPointOffset)
+        return generate(
+            for: content, encoding: contentEncoding, size: size,
+            backgroundColor: backgroundColor, foregroundColor: foregroundColor,
+            watermark: watermark, watermarkMode: watermarkMode, watermarkIsTransparent: allowTransparent,
+            inputCorrectionLevel: inputCorrectionLevel,
+            icon: icon, iconSize: iconSize,
+            pointShape: pointShape, pointOffset: foregroundPointOffset,
+            mode: mode, magnification: magnification
+        )
     }
     
-    @available(*, deprecated, renamed: "generateGIF(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointShape:mode:magnification:foregroundPointOffset:)")
+    @available(*, deprecated, renamed: "generateGIF(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointShape:mode:magnification:pointOffset:)")
     public static func generateWithGIF(
         content: String,
         contentEncoding: String.Encoding = .utf8,
@@ -67,9 +75,8 @@ extension EFQRCode {
             watermark: watermark, watermarkMode: watermarkMode, watermarkIsTransparent: allowTransparent,
             inputCorrectionLevel: inputCorrectionLevel,
             icon: icon, iconSize: iconSize,
-            pointShape: pointShape,
-            mode: mode, magnification: magnification,
-            foregroundPointOffset: foregroundPointOffset
+            pointShape: pointShape, pointOffset: foregroundPointOffset,
+            mode: mode, magnification: magnification
         )
     }
 
@@ -127,9 +134,9 @@ extension EFQRCodeGenerator {
     public func setWatermark(watermark: CGImage?, mode: EFWatermarkMode? = nil) {
         withWatermark(watermark, mode: mode)
     }
-    @available(*, deprecated, renamed: "withForegroundPointOffset(_:)")
+    @available(*, deprecated, renamed: "withPointOffset(_:)")
     public func setForegroundPointOffset(foregroundPointOffset: CGFloat) {
-        withForegroundPointOffset(foregroundPointOffset)
+        withPointOffset(foregroundPointOffset)
     }
     @available(*, deprecated, renamed: "withTransparentWatermark(_:)")
     public func setAllowTransparent(allowTransparent: Bool) {

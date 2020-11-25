@@ -193,14 +193,14 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // Offset of foreground point
-    public var foregroundPointOffset: CGFloat = 0 {
+    public var pointOffset: CGFloat = 0 {
         didSet {
             imageQRCode = nil
         }
     }
     @discardableResult
-    public func withForegroundPointOffset(_ pointOffset: CGFloat) -> EFQRCodeGenerator {
-        self.foregroundPointOffset = pointOffset
+    public func withPointOffset(_ pointOffset: CGFloat) -> EFQRCodeGenerator {
+        self.pointOffset = pointOffset
         return self
     }
 
@@ -462,10 +462,10 @@ public class EFQRCodeGenerator: NSObject {
                     drawPoint(
                         context: context,
                         rect: CGRect(
-                            x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
-                            y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
-                            width: scaleX - 2 * foregroundPointOffset,
-                            height: scaleY - 2 * foregroundPointOffset
+                            x: CGFloat(indexXCTM) * scaleX + pointOffset,
+                            y: CGFloat(indexYCTM) * scaleY + pointOffset,
+                            width: scaleX - 2 * pointOffset,
+                            height: scaleY - 2 * pointOffset
                         ),
                         isStatic: isStaticPoint
                     )
@@ -573,10 +573,10 @@ public class EFQRCodeGenerator: NSObject {
                         drawPoint(
                             context: context,
                             rect: CGRect(
-                                x: CGFloat(indexXCTM) * scaleX + foregroundPointOffset,
-                                y: CGFloat(indexYCTM) * scaleY + foregroundPointOffset,
-                                width: pointWidthOriX - 2 * foregroundPointOffset,
-                                height: pointWidthOriY - 2 * foregroundPointOffset
+                                x: CGFloat(indexXCTM) * scaleX + pointOffset,
+                                y: CGFloat(indexYCTM) * scaleY + pointOffset,
+                                width: pointWidthOriX - 2 * pointOffset,
+                                height: pointWidthOriY - 2 * pointOffset
                             ),
                             isStatic: true
                         )
