@@ -254,7 +254,7 @@ public class EFQRCodeGenerator: NSObject {
 
     // MARK: - Init
     public init(
-        _ content: String, encoding: String.Encoding = .utf8,
+        content: String, encoding: String.Encoding = .utf8,
         size: EFIntSize = EFIntSize(width: 256, height: 256)
     ) {
         self.content = content

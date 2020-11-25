@@ -41,7 +41,7 @@ public class EFQRCode {
 
     // MARK: - Generator
     public static func generate(
-        _ content: String,
+        for content: String,
         encoding: String.Encoding = .utf8,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
         backgroundColor: CGColor = .white()!,
@@ -57,7 +57,7 @@ public class EFQRCode {
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
     ) -> CGImage? {
-        return EFQRCodeGenerator(content, encoding: encoding, size: size)
+        return EFQRCodeGenerator(content: content, encoding: encoding, size: size)
             .withWatermark(watermark, mode: watermarkMode)
             .withColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
             .withInputCorrectionLevel(inputCorrectionLevel)
@@ -71,7 +71,7 @@ public class EFQRCode {
     }
 
     public static func generateGIF(
-        _ content: String,
+        for content: String,
         encoding: String.Encoding = .utf8,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
         backgroundColor: CGColor = .white()!,
@@ -87,7 +87,7 @@ public class EFQRCode {
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
     ) -> Data? {
-        let generator = EFQRCodeGenerator(content, encoding: encoding, size: size)
+        let generator = EFQRCodeGenerator(content: content, encoding: encoding, size: size)
             .withWatermark(nil, mode: watermarkMode)
             .withColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
             .withInputCorrectionLevel(inputCorrectionLevel)

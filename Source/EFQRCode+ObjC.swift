@@ -11,12 +11,9 @@ import Foundation
 
 extension EFQRCodeGenerator {
     @available(swift, deprecated: 1.0)
-    public convenience init(
-        content: String,
-        encoding: UInt = String.Encoding.utf8.rawValue,
-        size: EFIntSize = EFIntSize(width: 256, height: 256)
-    ) {
-        self.init(content, encoding: String.Encoding(rawValue: encoding), size: size)
+    public convenience init(content: String, encoding: UInt, size: EFIntSize) {
+        let encoding = String.Encoding(rawValue: encoding)
+        self.init(content: content, encoding: encoding, size: size)
     }
 
     @discardableResult
