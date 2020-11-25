@@ -268,7 +268,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 贡献者
 
-这个项目的存在多亏了所有贡献的人。 [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/master/CONTRIBUTING.md)]
+这个项目的存在多亏了所有贡献的人。 [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/master/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
