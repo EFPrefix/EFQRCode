@@ -1,0 +1,22 @@
+name: Documentation
+
+on:
+  push:
+    branches:
+      - main
+      - docs
+
+jobs:
+  jazzy:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Jazzy
+        run: sudo gem install jazzy
+      - name: Generate Documentation
+        run: jazzy
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs

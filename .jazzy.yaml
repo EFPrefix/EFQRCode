@@ -6,8 +6,6 @@ author: EyreFree
 theme: fullwidth
 readme: README.md
 documentation: USERGUIDE.md
-output: ./docs
-swift_version: 5.0
 exclude:
   - ./*
 
