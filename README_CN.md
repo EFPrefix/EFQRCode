@@ -241,11 +241,6 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 - [不用请设计师，你也能做出个性二维码：EFQRCode](https://sspai.com/post/43211)
 - [想更优雅地分享 Wi-Fi 密码，只需一枚二维码](https://sspai.com/post/43097)
 
-## 待办
-
-- [x] 支持 GIF 动图
-- [ ] 支持更多样式
-
 ## 备注
 
 1. 请选用对比度较高的前景色和背景色组合；
@@ -268,7 +263,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 贡献者
 
-这个项目的存在多亏了所有贡献的人。 [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
+这个项目的存在多亏了所有贡献的人。[[参与贡献](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
@@ -282,7 +277,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ### 支持者
 
-感谢所有的支持者！ 🙏 [[Become a backer](https://opencollective.com/efqrcode#backer)]
+感谢所有的支持者！ 🙏 [[成为支持者](https://opencollective.com/efqrcode#backer)]
 
 <a href="https://opencollective.com/efqrcode#backers" target="_blank">
     <img src="https://opencollective.com/efqrcode/backers.svg?width=890">
@@ -290,7 +285,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ### 赞助商
 
-通过成为赞助商来支持这个项目，您的徽标将显示在这里并且链接到您的网站。 [[Become a sponsor](https://opencollective.com/efqrcode#sponsor)]
+通过成为赞助商来支持这个项目，您的徽标将显示在这里并且链接到您的网站。 [[成为赞助商](https://opencollective.com/efqrcode#sponsor)]
 
 <a href="https://opencollective.com/efqrcode/sponsor/0/website" target="_blank">
     <img src="https://opencollective.com/efqrcode/sponsor/0/avatar.svg">

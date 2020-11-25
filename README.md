@@ -232,11 +232,6 @@ You can get more information from the demo, result will like this:
 
 Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE.md).
 
-## Todo
-
-- [x] Support GIF
-- [ ] Support more styles
-
 ## PS
 
 1. Please select a high contrast foreground and background color combinations;
