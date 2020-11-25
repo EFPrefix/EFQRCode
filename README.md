@@ -5,7 +5,7 @@
         <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
     <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
-        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/master/graph/badge.svg">
+        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
     </a>
     <a href="https://efprefix.github.io/EFQRCode/">
         <img src="https://efprefix.github.io/EFQRCode/badge.svg">
@@ -28,7 +28,7 @@
     <a href="https://codebeat.co/projects/github-com-efprefix-efqrcode-master">
         <img src="https://codebeat.co/badges/c2ae977c-157a-4cb7-a476-76530e7f292b">
     </a>
-    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/master/LICENSE">
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/main/LICENSE">
         <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
     </a>
     <a href="https://gitter.im/EFQRCode/Lobby">
@@ -53,7 +53,7 @@
 
 EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on `CoreGraphics`, `CoreImage` and `ImageIO`. EFQRCode provides you a better way to operate QRCode in your app, it works on `iOS`, `macOS`, `watchOS` and `tvOS`, and it is available through `CocoaPods`, `Carthage` and `Swift Package Manager`. This project is inspired by [qrcode](https://github.com/sylnsfar/qrcode). 
 
-> [中文介绍](https://github.com/EFPrefix/EFQRCode/blob/master/README_CN.md)
+> [中文介绍](https://github.com/EFPrefix/EFQRCode/blob/main/README_CN.md)
 
 ## Overview
 
@@ -230,7 +230,7 @@ You can get more information from the demo, result will like this:
 
 #### 5. Next
 
-Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/master/USERGUIDE.md).
+Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE.md).
 
 ## Todo
 
@@ -259,7 +259,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/master/CONTRIBUTING.md)]
+This project exists thanks to all the people who contribute. [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
@@ -403,7 +403,7 @@ Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
 
 ## License
 
-<a href="https://github.com/EFPrefix/EFQRCode/blob/master/LICENSE">
+<a href="https://github.com/EFPrefix/EFQRCode/blob/main/LICENSE">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
 </a>
 

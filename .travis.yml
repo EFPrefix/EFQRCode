@@ -1,6 +1,5 @@
 language: objective-c
 osx_image: xcode12
-env: SWIFT_SNAPSHOT=5.0
 branches:
   only:
     - main
@@ -35,12 +34,6 @@ script:
   - xcodebuild -version
   - xcodebuild -showsdks
   - sh Startup.sh
-
-  # Fix known issues of Xcode 10.2.1
-  #- if [ $RUN_TESTS == "YES" ]; then
-  #    sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 9.3.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
-  #    sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/tvOS 9.0.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
-  #  fi
 
   # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then

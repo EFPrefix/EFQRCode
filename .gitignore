@@ -28,6 +28,7 @@ playground.xcworkspace
 
 # Swift Package Manager
 .build/
+.swiftpm/
 
 # Carthage
 Carthage/Build
@@ -42,3 +43,4 @@ Examples/Dependency.xcworkspace/
 Dependency.xcworkspace
 Dependency.xcworkspace/
 
+docs/
