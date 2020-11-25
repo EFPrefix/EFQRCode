@@ -146,9 +146,9 @@ extension EFQRCodeGenerator {
     public func setPointShape(pointShape: EFPointShape) {
         withPointShape(pointShape)
     }
-    @available(*, deprecated, renamed: "withoutStaticTiming(_:)")
-    public func setIgnoreTiming(ignoreTiming: Bool) {
-        withoutStaticTiming(!ignoreTiming)
+    @available(*, deprecated, renamed: "withStyledTimingPoint(_:)")
+    public func setIgnoreTiming(ignoreTiming isTimingStyled: Bool) {
+        withStyledTimingPoint(isTimingStyled)
     }
 }
 

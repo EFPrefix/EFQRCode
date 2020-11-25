@@ -58,7 +58,8 @@
     [g withWatermark:[self getImage] mode: EFWatermarkModeBottom];
     [g withTransparentWatermark:YES];
     [g withPointOffset: 0];
-    [g withStaticTiming: YES];
+    [g withStaticTimingPoint:YES];
+    [g withStyledTimingPoint:YES];
     CGImageRef testResult = [g generate];
     XCTAssertNotEqual(testResult, NULL);
 }

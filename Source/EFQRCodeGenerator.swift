@@ -232,19 +232,19 @@ public class EFQRCodeGenerator: NSObject {
         return self
     }
 
-    public var isTimingStatic: Bool = true {
+    public var isTimingPointStatic: Bool = true {
         didSet {
             imageQRCode = nil
         }
     }
     @discardableResult
-    public func withStaticTiming(_ isStatic: Bool = true) -> EFQRCodeGenerator {
-        self.isTimingStatic = isStatic
+    public func withStaticTimingPoint(_ isStatic: Bool = true) -> EFQRCodeGenerator {
+        self.isTimingPointStatic = isStatic
         return self
     }
     @discardableResult
-    public func withoutStaticTiming(_ ignoreTiming: Bool = true) -> EFQRCodeGenerator {
-        return withStaticTiming(!ignoreTiming)
+    public func withStyledTimingPoint(_ ignoreTiming: Bool = true) -> EFQRCodeGenerator {
+        return withStaticTimingPoint(!ignoreTiming)
     }
 
     // Cache
@@ -815,7 +815,7 @@ public class EFQRCodeGenerator: NSObject {
             return true
         }
 
-        if isTimingStatic {
+        if isTimingPointStatic {
             // Timing Patterns
             if x == 7 || y == 7 {
                 return true
@@ -863,8 +863,7 @@ public class EFQRCodeGenerator: NSObject {
         return 17 + 4 * version
     }
 
-    /// Recommand magnification
-    @available(*, deprecated)
+    /// Recommend magnification
     public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
