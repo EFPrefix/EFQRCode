@@ -27,9 +27,10 @@
 #if canImport(CoreImage)
 import CoreImage
 #else
-import CoreGraphics
 import swift_qrcodejs
 #endif
+import CoreGraphics
+import Foundation
 
 // EFQRCode+Create
 @objcMembers

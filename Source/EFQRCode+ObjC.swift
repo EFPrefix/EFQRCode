@@ -53,7 +53,7 @@ extension EFQRCodeGenerator {
     }
 
     @available(swift, obsoleted: 1.0)
-    public func generateGIFWithWatermark(_ data: Data, savingTo pathToSave: URL?, delay: Double?, loopCount: Int?, useMultipleThreads: Bool) -> Data? {
+    public func generateGIFWithWatermark(_ data: Data, savingTo pathToSave: URL, delay: Double, loopCount: Int, useMultipleThreads: Bool) -> Data? {
         return EFQRCode.generateGIF(
             using: self, withWatermark: data, savingTo: pathToSave,
             delay: delay, loopCount: loopCount,
