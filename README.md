@@ -19,8 +19,8 @@
     <a href="http://cocoapods.org/pods/EFQRCode">
         <img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat">
     </a>
-    <a href="http://cocoapods.org/pods/EFQRCode">
-        <img src="https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat">
+    <a href="https://swiftpackageindex.com/EFPrefix/EFQRCode">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dplatforms" alt="Compatible with all Platforms">
     </a>
     <a href="https://github.com/apple/swift">
         <img src="https://img.shields.io/badge/language-swift-orange.svg">
@@ -94,7 +94,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 | 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
 | 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
 | 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| 6.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+| 6.x     | Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
 
 ## Installation
 
@@ -107,8 +107,6 @@ it, simply add the following line to your Podfile:
 pod 'EFQRCode', '~> 6.0.0'
 ```
 
-Try `pod 'EFQRCode/watchOS'` instead if you need to use it in watchOS.
-
 Then, run the following command:
 
 ```bash
@@ -116,6 +114,8 @@ $ pod install
 ```
 
 ### Carthage
+
+> ***IMPORTANT***: this [workaround](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md) is necessary for Carthage to somewhat work in Xcode 12.
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 

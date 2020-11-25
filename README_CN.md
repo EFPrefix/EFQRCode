@@ -19,8 +19,8 @@
     <a href="http://cocoapods.org/pods/EFQRCode">
         <img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat">
     </a>
-    <a href="http://cocoapods.org/pods/EFQRCode">
-        <img src="https://img.shields.io/cocoapods/p/EFQRCode.svg?style=flat">
+    <a href="https://swiftpackageindex.com/EFPrefix/EFQRCode">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dplatforms" alt="支持所有平台">
     </a>
     <a href="https://github.com/apple/swift">
         <img src="https://img.shields.io/badge/language-swift-orange.svg">
@@ -99,7 +99,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 | 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
 | 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
 | 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| 6.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+| 6.x     | Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
 
 ## 安装
 
@@ -111,8 +111,6 @@ EFQRCode 可以通过 [CocoaPods](http://cocoapods.org) 进行获取。只需要
 pod 'EFQRCode', '~> 6.0.0'
 ```
 
-如果你需要在 watchOS 中使用的话，请使用 `pod 'EFQRCode/watchOS'`。
-
 然后，执行如下命令即可：
 
 ```bash
@@ -120,6 +118,8 @@ $ pod install
 ```
 
 ### Carthage
+
+> ***注意***：在 Xcode 12 中使用 Carthage 需要[这个半吊子的解决方案](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md)。
 
 [Carthage](https://github.com/Carthage/Carthage) 是一个去中心化的依赖管理器，它为我们构建依赖并通过提供二进制 Frameworks 的方式供我们使用。
 
@@ -249,7 +249,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 ## 备注
 
 1. 请选用对比度较高的前景色和背景色组合；
-2. 想要提高生成二维码的清晰度可以选择使用 `magnificatio` 替代 `size`，或适当提高它们的数值；
+2. 想要提高生成二维码的清晰度可以选择使用 `magnification` 替代 `size`，或适当提高它们的数值；
 3. 放大倍数过高／边长过大／二维码内容过多可能会导致生成失败；
 4. 建议对生成的二维码进行测试后投入使用，例如微信能够扫描成功并不代表支付宝也能成功扫描，请务必根据您的具体业务需要做有针对性的测试；
 5. 若有任何问题，期待得到您的反馈，`Issue` 和 `Pull request` 都是受欢迎的。
