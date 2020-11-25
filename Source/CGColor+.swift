@@ -71,12 +71,11 @@ extension CGColor {
 }
 
 public extension CGColor {
-    static func white(white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CGColor? {
+    static func white(_ white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CGColor? {
         return initWith(red: white, green: white, blue: white, alpha: alpha)
     }
     
-    static func black(black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CGColor? {
-        let white: CGFloat = 1.0 - black
-        return initWith(red: white, green: white, blue: white, alpha: alpha)
+    static func black(_ black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CGColor? {
+        return white(1.0 - black, alpha: alpha)
     }
 }

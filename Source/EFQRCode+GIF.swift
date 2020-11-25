@@ -35,7 +35,6 @@ import CoreServices
 #endif
 
 extension EFQRCode {
-
     private static let framesPerSecond = 24
 
     private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start: Int, end: Int) {
@@ -47,12 +46,11 @@ extension EFQRCode {
         }
     }
 
-    @available(*, deprecated, renamed: "generateGIF(withData:using:savingTo:delay:loopCount:useMultipleThreads:)")
-    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool = false) -> Data? {
-        generateGIF(withData: data, using: generator, savingTo: pathToSave, delay: delay, loopCount: loopCount, useMultipleThreads: useMultipleThread)
-    }
-
-    public static func generateGIF(withData data: Data, using generator: EFQRCodeGenerator, savingTo pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThreads:Bool = false) -> Data? {
+    public static func generateGIF(using generator: EFQRCodeGenerator,
+                                   withWatermark data: Data,
+                                   savingTo pathToSave: URL? = nil,
+                                   delay: Double? = nil, loopCount: Int? = nil,
+                                   useMultipleThreads:Bool = false) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
 
@@ -126,7 +124,6 @@ extension EFQRCode {
 }
 
 extension CGImageSource {
-
     // GIF
     func toCGImages() -> [CGImage] {
         let gifCount = CGImageSourceGetCount(self)
@@ -138,7 +135,6 @@ extension CGImageSource {
 }
 
 extension Array where Element: CGImage {
-
     func toGifData(framePropertiesArray: [CFDictionary], fileProperties: CFDictionary) -> Data? {
         guard let mutableData = CFDataCreateMutable(nil, 0) else { return nil }
         guard let destination = CGImageDestinationCreateWithData(mutableData, kUTTypeGIF, count, nil) else { return nil }

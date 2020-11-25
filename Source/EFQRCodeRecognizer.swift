@@ -29,14 +29,10 @@ import CoreImage
 
 @objcMembers
 public class EFQRCodeRecognizer: NSObject {
-
-    private var image: CGImage? {
+    public var image: CGImage? {
         didSet {
             contentArray = nil
         }
-    }
-    public func setImage(image: CGImage?) {
-        self.image = image
     }
 
     private var contentArray: [String]?

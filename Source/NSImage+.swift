@@ -29,7 +29,6 @@ import AppKit
 import CoreImage
 
 extension NSImage {
-    
     func ciImage() -> CIImage? {
         return self.tiffRepresentation(using: .none, factor: 0).flatMap(CIImage.init)
     }

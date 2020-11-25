@@ -28,7 +28,6 @@
 import AppKit
 
 extension NSColor {
-
     func ciColor() -> CIColor {
         return cgColor.ciColor()
     }
@@ -37,13 +36,12 @@ extension NSColor {
         return self.cgColor
     }
     
-    static func white(white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> NSColor {
+    static func white(_ white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> NSColor {
         return self.init(white: white, alpha: alpha)
     }
     
-    static func black(black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> NSColor {
-        let white: CGFloat = 1.0 - black
-        return Self.white(white: white, alpha: alpha)
+    static func black(_ black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> NSColor {
+        return white(1.0 - black, alpha: alpha)
     }
 }
 #endif
