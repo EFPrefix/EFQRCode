@@ -34,20 +34,25 @@ import MobileCoreServices
 import CoreServices
 #endif
 
-public extension EFQRCode {
+extension EFQRCode {
 
     private static let framesPerSecond = 24
 
     private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start: Int, end: Int) {
         for index in start ... end {
-            generator.setWatermark(watermark: frames[index])
+            generator.withWatermark(frames[index])
             if let frameWithCode = generator.generate() {
                 frames[index] = frameWithCode
             }
         }
     }
-    
-    static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool = false) -> Data? {
+
+    @available(*, deprecated, renamed: "generateGIF(withData:using:savingTo:delay:loopCount:useMultipleThreads:)")
+    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool = false) -> Data? {
+        generateGIF(withData: data, using: generator, savingTo: pathToSave, delay: delay, loopCount: loopCount, useMultipleThreads: useMultipleThread)
+    }
+
+    public static func generateGIF(withData data: Data, using generator: EFQRCodeGenerator, savingTo pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThreads:Bool = false) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
 
@@ -78,7 +83,7 @@ public extension EFQRCode {
                 fileProperties = tempDict as CFDictionary
             }
 
-            if useMultipleThread {
+            if useMultipleThreads {
                 let group = DispatchGroup()
 
                 let threshold = frames.count / framesPerSecond
@@ -105,7 +110,7 @@ public extension EFQRCode {
             } else {
                 // Clear watermark
                 for (index, frame) in frames.enumerated() {
-                    generator.setWatermark(watermark: frame)
+                    generator.withWatermark(frame)
                     if let frameWithCode = generator.generate() {
                         frames[index] = frameWithCode
                     }

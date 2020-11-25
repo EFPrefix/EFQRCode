@@ -46,34 +46,65 @@ public class EFQRCode: NSObject {
         content: String,
         contentEncoding: String.Encoding = .utf8,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
-        backgroundColor: CGColor = CGColor.white()!,
-        foregroundColor: CGColor = CGColor.black()!,
+        backgroundColor: CGColor = .white()!,
+        foregroundColor: CGColor = .black()!,
         watermark: CGImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleAspectFill,
+        watermarkIsTransparent isWatermarkTransparent: Bool = true,
         inputCorrectionLevel: EFInputCorrectionLevel = .h,
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
-        allowTransparent: Bool = true,
         pointShape: EFPointShape = .square,
-        mode: EFQRCodeMode = .none,
+        mode: EFQRCodeMode? = nil,
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
-        ) -> CGImage? {
+    ) -> CGImage? {
 
-        let generator = EFQRCodeGenerator(content: content, size: size)
-        generator.setContentEncoding(encoding: contentEncoding)
-        generator.setWatermark(watermark: watermark, mode: watermarkMode)
-        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
-        generator.setIcon(icon: icon, size: iconSize ?? EFIntSize(width: size.width / 5, height: size.height / 5))
-        generator.setAllowTransparent(allowTransparent: allowTransparent)
-        generator.setPointShape(pointShape: pointShape)
-        generator.setMode(mode: mode)
-        generator.setMagnification(magnification: magnification)
-        generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
-        return generator.generate()
+        return EFQRCodeGenerator(content: content, encoding: contentEncoding, size: size)
+            .withWatermark(watermark, mode: watermarkMode)
+            .withColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
+            .withInputCorrectionLevel(inputCorrectionLevel)
+            .withIcon(icon, size: iconSize ?? EFIntSize(width: size.width / 5, height: size.height / 5))
+            .withTransparentWatermark(isWatermarkTransparent)
+            .withPointShape(pointShape)
+            .withMode(mode)
+            .withMagnification(magnification)
+            .withForegroundPointOffset(foregroundPointOffset)
+            .generate()
     }
 
+    public static func generateGIF(
+        content: String,
+        encoding: String.Encoding = .utf8,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
+        backgroundColor: CGColor = .white()!,
+        foregroundColor: CGColor = .black()!,
+        watermark: Data,
+        watermarkMode: EFWatermarkMode = .scaleAspectFill,
+        watermarkIsTransparent isWatermarkTransparent: Bool = true,
+        inputCorrectionLevel: EFInputCorrectionLevel = .h,
+        icon: CGImage? = nil,
+        iconSize: EFIntSize? = nil,
+        pointShape: EFPointShape = .square,
+        mode: EFQRCodeMode? = nil,
+        magnification: EFIntSize? = nil,
+        foregroundPointOffset: CGFloat = 0
+    ) -> Data? {
+
+        let generator = EFQRCodeGenerator(content: content, encoding: encoding, size: size)
+            .withWatermark(nil, mode: watermarkMode)
+            .withColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
+            .withInputCorrectionLevel(inputCorrectionLevel)
+            .withIcon(icon, size: iconSize ?? EFIntSize(width: size.width / 5, height: size.height / 5))
+            .withTransparentWatermark(isWatermarkTransparent)
+            .withPointShape(pointShape)
+            .withMode(mode)
+            .withMagnification(magnification)
+            .withForegroundPointOffset(foregroundPointOffset)
+        return EFQRCode.generateGIF(withData: watermark, using: generator)
+    }
+
+    @available(*, deprecated, renamed: "generateGIF(content:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointShape:mode:magnification:foregroundPointOffset:)")
     public static func generateWithGIF(
         content: String,
         contentEncoding: String.Encoding = .utf8,
@@ -90,19 +121,17 @@ public class EFQRCode: NSObject {
         mode: EFQRCodeMode = .none,
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
-        ) -> Data? {
-
-        let generator = EFQRCodeGenerator(content: content, size: size)
-        generator.setContentEncoding(encoding: contentEncoding)
-        generator.setWatermark(watermark: nil, mode: watermarkMode)
-        generator.setColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
-        generator.setIcon(icon: icon, size: iconSize ?? EFIntSize(width: size.width / 5, height: size.height / 5))
-        generator.setAllowTransparent(allowTransparent: allowTransparent)
-        generator.setPointShape(pointShape: pointShape)
-        generator.setMode(mode: mode)
-        generator.setMagnification(magnification: magnification)
-        generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
-        return EFQRCode.generateWithGIF(data: watermark, generator: generator)
+    ) -> Data? {
+        return generateGIF(
+            content: content, encoding: contentEncoding,
+            size: size,
+            backgroundColor: backgroundColor, foregroundColor: foregroundColor,
+            watermark: watermark, watermarkMode: watermarkMode, watermarkIsTransparent: allowTransparent,
+            inputCorrectionLevel: inputCorrectionLevel,
+            icon: icon, iconSize: iconSize,
+            pointShape: pointShape,
+            mode: mode, magnification: magnification,
+            foregroundPointOffset: foregroundPointOffset
+        )
     }
 }
