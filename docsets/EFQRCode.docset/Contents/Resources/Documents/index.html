@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EFQRCode  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="EFQRCode  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          EFQRCode 6.0.0 Docs
+        </a>
+         (0% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">EFQRCode Reference</a>
+      <img class="carat" src="img/carat.png" />
+      EFQRCode  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="userguide.html">USERGUIDE</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg" alt=""></p>
+
+<p align="center">
+    <a href="https://travis-ci.org/EFPrefix/EFQRCode">
+        <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
+    </a>
+    <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
+        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/master/graph/badge.svg">
+    </a>
+    <a href="https://efprefix.github.io/EFQRCode/">
+        <img src="https://efprefix.github.io/EFQRCode/badge.svg">
+    </a>
+    <a href="https://github.com/Carthage/Carthage/">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
+    </a>
+    <a href="https://swift.org/package-manager/">
+        <img src="https://img.shields.io/badge/SPM-ready-orange.svg">
+    </a>
+    <a href="http://cocoapods.org/pods/EFQRCode">
+        <img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat">
+    </a>
+    <a href="https://swiftpackageindex.com/EFPrefix/EFQRCode">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dplatforms" alt="Compatible with all Platforms">
+    </a>
+    <a href="https://github.com/apple/swift">
+        <img src="https://img.shields.io/badge/language-swift-orange.svg">
+    </a>
+    <a href="https://codebeat.co/projects/github-com-efprefix-efqrcode-master">
+        <img src="https://codebeat.co/badges/c2ae977c-157a-4cb7-a476-76530e7f292b">
+    </a>
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/master/LICENSE">
+        <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
+    </a>
+    <a href="https://gitter.im/EFQRCode/Lobby">
+        <img src="https://img.shields.io/gitter/room/EFPrefix/EFQRCode.svg">
+    </a>
+    <a href="#backers" alt="sponsors on Open Collective">
+        <img src="https://opencollective.com/EFQRCode/backers/badge.svg" />
+    </a>
+    <a href="#sponsors" alt="Sponsors on Open Collective">
+        <img src="https://opencollective.com/EFQRCode/sponsors/badge.svg" />
+    </a>
+    <a href="https://twitter.com/EyreFree777">
+        <img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat">
+    </a>
+    <a href="http://weibo.com/eyrefree777">
+        <img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat">
+    </a>
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/MadeWith%3C3.png">
+        <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
+    </a>
+</p>
+
+<p>EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on <code>CoreGraphics</code>, <code>CoreImage</code> and <code>ImageIO</code>. EFQRCode provides you a better way to operate QRCode in your app, it works on <code>iOS</code>, <code>macOS</code>, <code>watchOS</code> and <code>tvOS</code>, and it is available through <code>CocoaPods</code>, <code>Carthage</code> and <code>Swift Package Manager</code>. This project is inspired by <a href="https://github.com/sylnsfar/qrcode">qrcode</a>. </p>
+
+<blockquote>
+<p><a href="https://github.com/EFPrefix/EFQRCode/blob/master/README_CN.md">中文介绍</a></p>
+</blockquote>
+<h2 id='overview' class='heading'>Overview</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg" alt=""></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg" alt=""></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg" alt=""></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg" alt=""></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF1.gif" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF2.gif" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF7.gif" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF8.gif" alt=""></td>
+</tr>
+</tbody></table>
+<h2 id='demo' class='heading'>Demo</h2>
+<h3 id='app-store' class='heading'>App Store</h3>
+
+<p>You can click the <code>App Store</code> button below to download demo, support <code>iOS</code>, <code>tvOS</code> and <code>watchOS</code>:</p>
+
+<p><a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
+</a></p>
+
+<p>You can also click the <code>Mac App Store</code> button below to download demo for <code>macOS</code>:</p>
+
+<p><a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
+</a></p>
+<h3 id='manual' class='heading'>Manual</h3>
+
+<p>To run the example project manually, clone the repo, demos are in the &lsquo;Examples&rsquo; folder, remember run command <code>sh Startup.sh</code> in terminal to get all dependencies first, then open <code>EFQRCode.xcworkspace</code> with Xcode and select the target you want, run.</p>
+
+<p>Or you can run the following command in terminal:</p>
+<pre class="highlight shell"><code>git clone git@github.com:EFPrefix/EFQRCode.git; <span class="nb">cd </span>EFQRCode; sh Startup.sh; open <span class="s1">'EFQRCode.xcworkspace'</span>
+</code></pre>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Version</th>
+<th style="text-align: left">Needs</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">1.x</td>
+<td style="text-align: left">Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+</td>
+</tr>
+<tr>
+<td style="text-align: left">4.x</td>
+<td style="text-align: left">Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+</td>
+</tr>
+<tr>
+<td style="text-align: left">5.x</td>
+<td style="text-align: left">Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+</td>
+</tr>
+<tr>
+<td style="text-align: left">6.x</td>
+<td style="text-align: left">Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+</td>
+</tr>
+</tbody></table>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>EFQRCode is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
+it, simply add the following line to your Podfile:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'EFQRCode'</span><span class="p">,</span> <span class="s1">'~&gt; 6.0.0'</span>
+</code></pre>
+
+<p>Then, run the following command:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>pod install
+</code></pre>
+<h3 id='carthage' class='heading'>Carthage</h3>
+
+<blockquote>
+<p><strong><em>IMPORTANT</em></strong>: this <a href="https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md">workaround</a> is necessary for Carthage to somewhat work in Xcode 12.</p>
+</blockquote>
+
+<p><a href="https://github.com/Carthage/Carthage">Carthage</a> is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.</p>
+
+<p>You can install Carthage with <a href="http://brew.sh/">Homebrew</a> using the following command:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>brew update
+<span class="gp">$ </span>brew install carthage
+</code></pre>
+
+<p>To integrate EFQRCode into your Xcode project using Carthage, specify it in your <code>Cartfile</code>:</p>
+<pre class="highlight plaintext"><code>github "EFPrefix/EFQRCode" ~&gt; 6.0.0
+</code></pre>
+
+<p>Run <code>carthage update</code> to build the framework and drag the built <code>EFQRCode.framework</code> into your Xcode project.</p>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>The <a href="https://swift.org/package-manager/">Swift Package Manager</a> is a tool for automating the distribution of Swift code and is integrated into the <code>swift</code> compiler.</p>
+
+<p>Once you have your Swift package set up, adding EFQRCode as a dependency is as easy as adding it to the <code>dependencies</code> value of your <code>Package.swift</code>.</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/EFPrefix/EFQRCode.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"6.0.0"</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre>
+<h2 id='quick-start' class='heading'>Quick Start</h2>
+<h4 id='1-import-efqrcode' class='heading'>1. Import EFQRCode</h4>
+
+<p>Import EFQRCode module where you want to use it:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">EFQRCode</span>
+</code></pre>
+<h4 id='2-recognition' class='heading'>2. Recognition</h4>
+
+<p>Get QR Codes from CGImage, maybe there are several codes in a image, so it will return an array:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">testImage</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"test.png"</span><span class="p">)?</span><span class="o">.</span><span class="nf">cgImage</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">tryCodes</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">recognize</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="n">testImage</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">tryCodes</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"There are </span><span class="se">\(</span><span class="n">tryCodes</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> codes in testImage."</span><span class="p">)</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span> <span class="k">in</span> <span class="n">tryCodes</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nf">print</span><span class="p">(</span><span class="s">"The content of </span><span class="se">\(</span><span class="n">index</span><span class="se">)</span><span class="s"> QR Code is: </span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"There is no QR Codes in testImage."</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"Recognize failed, check your input image!"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='3-generation' class='heading'>3. Generation</h4>
+
+<p>Create QR Code image, quick usage:</p>
+<pre class="highlight swift"><code><span class="c1">//                    content: Content of QR Code</span>
+<span class="c1">//            size (Optional): Width and height of image</span>
+<span class="c1">// backgroundColor (Optional): Background color of QRCode</span>
+<span class="c1">// foregroundColor (Optional): Foreground color of QRCode</span>
+<span class="c1">//       watermark (Optional): Background image of QRCode</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">tryImage</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generate</span><span class="p">(</span>
+    <span class="nv">content</span><span class="p">:</span> <span class="s">"https://github.com/EFPrefix/EFQRCode"</span><span class="p">,</span>
+    <span class="nv">watermark</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"WWF"</span><span class="p">)?</span><span class="o">.</span><span class="nf">cgImage</span><span class="p">()</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success: </span><span class="se">\(</span><span class="n">tryImage</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image failed!"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Result: </p>
+
+<p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/></p>
+<h4 id='4-generation-from-gif' class='heading'>4. Generation from GIF</h4>
+
+<p>You can create GIF QRCode with function <code>generateWithGIF</code> of class <code>EFQRCode</code>, for example:</p>
+<pre class="highlight swift"><code><span class="c1">//                  data: Data of input GIF</span>
+<span class="c1">//             generator: An object of EFQRCodeGenerator, use for setting</span>
+<span class="c1">// pathToSave (Optional): Path to save the output GIF, default is temp path</span>
+<span class="c1">//      delay (Optional): Output QRCode GIF delay, default is same as input GIF</span>
+<span class="c1">//  loopCount (Optional): Output QRCode GIF loopCount, default is same as input GIF</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">qrcodeData</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generateWithGIF</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="nv">generator</span><span class="p">:</span> <span class="n">generator</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success."</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image failed!"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>You can get more information from the demo, result will like this:</p>
+
+<p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/></p>
+<h4 id='5-next' class='heading'>5. Next</h4>
+
+<p>Learn more from <a href="https://github.com/EFPrefix/EFQRCode/blob/master/USERGUIDE.md">User Guide</a>.</p>
+<h2 id='todo' class='heading'>Todo</h2>
+
+<ul>
+<li>[x] Support GIF</li>
+<li>[ ] Support more styles</li>
+</ul>
+<h2 id='ps' class='heading'>PS</h2>
+
+<ol>
+<li>Please select a high contrast foreground and background color combinations;</li>
+<li>You should use <code>magnification</code> instead of <code>size</code> if you want to improve the definition of QRCode image, you can also increase the value of them;</li>
+<li>Magnification too high／Size too long／Content too much may cause failure;</li>
+<li>It is recommended to test the QRCode image before put it into use;</li>
+<li>You can contact me if there is any problem, both <code>Issue</code> and <code>Pull request</code> are welcome.</li>
+</ol>
+
+<p>PS of PS: I wish you can click the <code>Star</code> button if this tool is useful for you, thanks, QAQ&hellip;</p>
+<h2 id='other-platforms-languages' class='heading'>Other Platforms/Languages</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Platforms/Languages</th>
+<th style="text-align: left">Link</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">Objective-C</td>
+<td style="text-align: left"><a href="https://github.com/z624821876/YSQRCode">https://github.com/z624821876/YSQRCode</a></td>
+</tr>
+<tr>
+<td style="text-align: left">Java</td>
+<td style="text-align: left"><a href="https://github.com/SumiMakito/AwesomeQRCode">https://github.com/SumiMakito/AwesomeQRCode</a></td>
+</tr>
+<tr>
+<td style="text-align: left">JavaScript</td>
+<td style="text-align: left"><a href="https://github.com/SumiMakito/Awesome-qr.js">https://github.com/SumiMakito/Awesome-qr.js</a></td>
+</tr>
+<tr>
+<td style="text-align: left">Kotlin</td>
+<td style="text-align: left"><a href="https://github.com/SumiMakito/AwesomeQRCode-Kotlin">https://github.com/SumiMakito/AwesomeQRCode-Kotlin</a></td>
+</tr>
+<tr>
+<td style="text-align: left">Python</td>
+<td style="text-align: left"><a href="https://github.com/sylnsfar/qrcode">https://github.com/sylnsfar/qrcode</a></td>
+</tr>
+</tbody></table>
+<h2 id='contributors' class='heading'>Contributors</h2>
+
+<p>This project exists thanks to all the people who contribute. [<a href="https://github.com/EFPrefix/EFQRCode/blob/master/CONTRIBUTING.md">Contribute</a>]</p>
+
+<p><a href="https://opencollective.com/efqrcode#contributors">
+    <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
+</a></p>
+
+<p>PS: The original generation code of QRCode in <code>watchOS</code> is based on <a href="https://github.com/ApolloZhu/swift_qrcodejs">swift_qrcodejs</a>, thanks for <a href="https://github.com/ApolloZhu">ApolloZhu</a>&rsquo;s work.</p>
+<h2 id='donations' class='heading'>Donations</h2>
+
+<p>If you think this project has brought you help, you can buy me a cup of coffee. If you like this project and are willing to provide further support for it&rsquo;s development, you can choose to become <code>Backer</code> or <code>Sponsor</code> in <a href="https://opencollective.com/efqrcode">Open Collective</a>.</p>
+<h3 id='backers' class='heading'>Backers</h3>
+
+<p>Thank you to all our backers! 🙏 [<a href="https://opencollective.com/efqrcode#backer">Become a backer</a>]</p>
+
+<p><a href="https://opencollective.com/efqrcode#backers" target="_blank">
+    <img src="https://opencollective.com/efqrcode/backers.svg?width=890">
+</a></p>
+<h3 id='sponsors' class='heading'>Sponsors</h3>
+
+<p>Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [<a href="https://opencollective.com/efqrcode#sponsor">Become a sponsor</a>]</p>
+
+<p><a href="https://opencollective.com/efqrcode/sponsor/0/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/0/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/1/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/1/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/2/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/2/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/3/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/3/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/4/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/4/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/5/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/5/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/6/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/6/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/7/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/7/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/8/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/8/avatar.svg">
+</a>
+<a href="https://opencollective.com/efqrcode/sponsor/9/website" target="_blank">
+    <img src="https://opencollective.com/efqrcode/sponsor/9/avatar.svg">
+</a></p>
+
+<p>Thanks for your support, 🙏</p>
+<h2 id='thanks' class='heading'>Thanks</h2>
+
+<ul>
+<li>Thanks for the help from JetBrains&rsquo;s <a href="https://www.jetbrains.com/community/opensource/?from=EFQRCode">Open Source Support Program</a>.</li>
+</ul>
+
+<p><a href="https://www.jetbrains.com/?from=EFQRCode">
+    <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/ce8982e1858d62ac8b9fecec96f5369d8b1b62c3/logo/jetbrains.svg?sanitize=true" width = "20%">
+</a></p>
+<h2 id='apps-using-efqrcode' class='heading'>Apps using EFQRCode</h2>
+
+<table>
+    <tr>
+        <td>
+            <a href='https://www.appsight.io/app/blizzard-battle-net' title='Blizzard Battle.net'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/863/841/media/small.png?1506955529'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/brushfire' title='Brushfire'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/349/312/media/small.png?1552274504'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/826953' title='Coinomi Wallet'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/154/094/media/small.png?1523038915'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/join' title='Join - Medical Communication'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/253/338/media/small.png?1530300113'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/mume-vpn' title='Mume VPN'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/880/440/media/small.png?1507339273'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/mymk' title='myMK'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/142/715/media/small.png?1522686154'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/pilot-speech-translator' title='Pilot Speech Translator'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/531/486/media/small.png?1491242852'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/promgirl-shop' title='PromGirl Shop'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/327/819/media/small.png?1547953350'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/wifi-ch%C3%B9a' title='WiFi Chùa'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/282/599/media/small.png?1479441667'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/yamibuy-food-drinks-beauty-health-li' title='Yamibuy-Food&amp; Drinks, Beauty, Health, Li'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/324/148/media/small.png?1546987889'>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://www.appsight.io/app/%E5%85%B3%E5%85%AB-%E5%85%A8%E6%B0%91%E5%A8%B1%E4%B9%90%E6%98%8E%E6%98%9F%E5%85%AB%E5%8D%A6%E5%A4%B4%E6%9D%A1%E6%96%B0%E9%97%BB%E8%B5%84%E8%AE%AF%E8%A7%86%E9%A2%91%E7%A4%BE%E5%8C%BA' title='关八-最懂娱乐圈'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/613/969/media/small.png?1495232846'>
+            </a>
+        </td>
+        <td>
+            <a href='https://www.appsight.io/app/%E7%BA%A2%E8%A2%96%E8%AF%BB%E4%B9%A6' title='红袖读书'>
+                <img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/345/043/media/small.png?1551923326'>
+            </a>
+        </td>
+    </tr>
+</table>
+<h2 id='other' class='heading'>Other</h2>
+
+<p>Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete.</p>
+<h2 id='contact' class='heading'>Contact</h2>
+
+<p>Email: <a href="mailto:eyrefree@eyrefree.org">eyrefree@eyrefree.org</a>   </p>
+<h2 id='license' class='heading'>License</h2>
+
+<p><a href="https://github.com/EFPrefix/EFQRCode/blob/master/LICENSE">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
+</a></p>
+
+<p>EFQRCode is available under the MIT license. See the LICENSE file for more info.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2020 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external">EyreFree</a>. All rights reserved. (Last updated: 2020-11-25)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
