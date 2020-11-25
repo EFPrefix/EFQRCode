@@ -5,7 +5,7 @@
         <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
     <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
-        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/master/graph/badge.svg">
+        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
     </a>
     <a href="https://efprefix.github.io/EFQRCode/">
         <img src="https://efprefix.github.io/EFQRCode/badge.svg">
@@ -28,7 +28,7 @@
     <a href="https://codebeat.co/projects/github-com-efprefix-efqrcode-master">
         <img src="https://codebeat.co/badges/c2ae977c-157a-4cb7-a476-76530e7f292b">
     </a>
-    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/master/LICENSE">
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/main/LICENSE">
         <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
     </a>
     <a href="https://gitter.im/EFQRCode/Lobby">
@@ -56,7 +56,7 @@
 
 EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 `iOS`、`macOS`、`watchOS` 和 `tvOS` 平台，并且支持通过 `CocoaPods`、`Carthage` 和 `Swift Package Manager` 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。
 
-> [English Introduction](https://github.com/EFPrefix/EFQRCode/blob/master/README.md)
+> [English Introduction](https://github.com/EFPrefix/EFQRCode/blob/main/README.md)
 
 ## 概述
 
@@ -234,7 +234,7 @@ if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
 
 #### 5. 接下来
 
-查看 [用户手册](https://github.com/EFPrefix/EFQRCode/blob/master/USERGUIDE_CN.md) 了解更多细节。
+查看 [用户手册](https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE_CN.md) 了解更多细节。
 
 您也可以查看下列非官方的使用说明：
 
@@ -268,7 +268,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 贡献者
 
-这个项目的存在多亏了所有贡献的人。 [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/master/.github/CONTRIBUTING.md)]
+这个项目的存在多亏了所有贡献的人。 [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
@@ -413,7 +413,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 协议
 
-<a href="https://github.com/EFPrefix/EFQRCode/blob/master/LICENSE">
+<a href="https://github.com/EFPrefix/EFQRCode/blob/main/LICENSE">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
 </a>
 

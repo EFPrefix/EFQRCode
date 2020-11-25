@@ -6,10 +6,9 @@ title: ''
 ---
 
 ### Check List
+<!-- Thanks for considering to open an issue. Before you submit your issue, please confirm these boxes are checked. -->
 
-Thanks for considering to open an issue. Before you submit your issue, please confirm these boxes are checked.
-
-- [ ] I have read the [README.md](https://github.com/EFPrefix/EFQRCode/blob/master/README.md), but information I need is not there.
+- [ ] I have read the [README.md](https://github.com/EFPrefix/EFQRCode/blob/main/README.md), but the information I need is not there.
 - [ ] I have searched in [existing issues](https://github.com/EFPrefix/EFQRCode/issues?utf8=%E2%9C%93&q=is%3Aissue), but did not find a similar one.
 
 ### Issue Description
