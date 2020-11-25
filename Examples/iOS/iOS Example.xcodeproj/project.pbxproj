@@ -259,7 +259,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		120AAA932193323E00F0783B /* swift_qrcodejs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = swift_qrcodejs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		120B77FE1EA395EC00D34440 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		120B78001EA3960D00D34440 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = Resources/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		120B78021EA3968700D34440 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -375,12 +374,6 @@
 		528EFA7322965AC80026663C /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		52B3BFB6229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Resources/zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		52B3BFB7229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
-		D21D361C2552A465006E45E8 /* swift_qrcodejs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = swift_qrcodejs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D21D361D2552A465006E45E8 /* swift_qrcodejs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = swift_qrcodejs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D21D36232552A48A006E45E8 /* swift_qrcodejs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = swift_qrcodejs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D21D36252552A495006E45E8 /* swift_qrcodejs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = swift_qrcodejs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D21D36272552A4B8006E45E8 /* swift_qrcodejs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = swift_qrcodejs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D27FDFA4235AB5DB0033ACFF /* EFFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EFFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -414,13 +407,6 @@
 		120AAA922193323E00F0783B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D21D36272552A4B8006E45E8 /* swift_qrcodejs.framework */,
-				D21D36252552A495006E45E8 /* swift_qrcodejs.framework */,
-				D21D36232552A48A006E45E8 /* swift_qrcodejs.framework */,
-				D21D361C2552A465006E45E8 /* swift_qrcodejs.framework */,
-				D21D361D2552A465006E45E8 /* swift_qrcodejs.framework */,
-				D27FDFA4235AB5DB0033ACFF /* EFFoundation.framework */,
-				120AAA932193323E00F0783B /* swift_qrcodejs.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

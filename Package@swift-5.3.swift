@@ -34,12 +34,12 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ApolloZhu/swift_qrcodejs.git",
-                 .upToNextMinor(from: "1.2.0"))
+                 .upToNextMinor(from: "2.2.2"))
     ],
     targets: [
         .target(name: "EFQRCode",
                 dependencies: [
-                    .product(name: "swift_qrcodejs", package: "swift_qrcodejs",
+                    .product(name: "QRCodeSwift", package: "swift_qrcodejs",
                              condition: .when(platforms: [.watchOS])),
                 ],
                 path: "Source",

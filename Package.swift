@@ -34,11 +34,11 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ApolloZhu/swift_qrcodejs.git",
-                 .upToNextMinor(from: "1.2.0"))
+                 .upToNextMinor(from: "2.2.2"))
     ],
     targets: [
         .target(name: "EFQRCode",
-                dependencies: ["swift_qrcodejs"],
+                dependencies: ["QRCodeSwift"],
                 path: "Source")
     ],
     swiftLanguageVersions: [.v5]
