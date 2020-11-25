@@ -97,6 +97,6 @@ public class EFQRCode {
             .withMode(mode)
             .withMagnification(magnification)
             .withForegroundPointOffset(foregroundPointOffset)
-        return EFQRCode.generateGIF(using: generator, withWatermark: watermark)
+        return EFQRCode.generateGIF(using: generator, withIntputGIF: watermark)
     }
 }

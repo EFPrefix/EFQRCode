@@ -47,7 +47,7 @@ extension EFQRCode {
     }
 
     public static func generateGIF(using generator: EFQRCodeGenerator,
-                                   withWatermark data: Data,
+                                   withIntputGIF data: Data,
                                    savingTo pathToSave: URL? = nil,
                                    delay: Double? = nil, loopCount: Int? = nil,
                                    useMultipleThreads:Bool = false) -> Data? {
