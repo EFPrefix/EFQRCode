@@ -71,7 +71,11 @@ extension EFQRCode {
     }
 
     @available(*, deprecated, renamed: "generateGIF(withIntputGIF:using:savingTo:delay:loopCount:useMultipleThreads:)")
-    public static func generateWithGIF(data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil, delay: Double? = nil, loopCount: Int? = nil, useMultipleThread:Bool = false) -> Data? {
+    public static func generateWithGIF(
+        data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil,
+        delay: Double? = nil, loopCount: Int? = nil,
+        useMultipleThread:Bool = false
+    ) -> Data? {
         return generateGIF(using: generator, withIntputGIF: data,
                            savingTo: pathToSave,
                            delay: delay, loopCount: loopCount,
@@ -132,6 +136,15 @@ extension EFQRCodeGenerator {
     @available(*, deprecated, renamed: "withStyledTimingPoint(_:)")
     public func setIgnoreTiming(ignoreTiming isTimingStyled: Bool) {
         withStyledTimingPoint(isTimingStyled)
+    }
+
+    @available(*, deprecated, renamed: "minMagnification(greaterThanOrEqualTo:)")
+    public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> Int? {
+        return minMagnification(greaterThanOrEqualTo: size)
+    }
+    @available(*, deprecated, renamed: "maxMagnification(lessThanOrEqualTo:)")
+    public func maxMagnificationLessThanOrEqualTo(size: CGFloat) -> Int? {
+        return maxMagnification(lessThanOrEqualTo: size)
     }
 }
 

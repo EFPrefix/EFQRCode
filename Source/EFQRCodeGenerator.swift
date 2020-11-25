@@ -298,8 +298,8 @@ public class EFQRCodeGenerator: NSObject {
 
             // Cache size
             minSuitableSize = EFIntSize(
-                width: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.width.cgFloat) ?? finalSize.width,
-                height: minSuitableSizeGreaterThanOrEqualTo(size: finalSize.height.cgFloat) ?? finalSize.height
+                width: minSuitableSize(greaterThanOrEqualTo: finalSize.width.cgFloat) ?? finalSize.width,
+                height: minSuitableSize(greaterThanOrEqualTo: finalSize.height.cgFloat) ?? finalSize.height
             )
 
             // Watermark
@@ -863,8 +863,9 @@ public class EFQRCodeGenerator: NSObject {
         return 17 + 4 * version
     }
 
-    /// Recommend magnification
-    public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> Int? {
+    // MARK: - Recommend magnification
+    
+    public func minMagnification(greaterThanOrEqualTo size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
         }
@@ -884,7 +885,7 @@ public class EFQRCodeGenerator: NSObject {
         return nil
     }
 
-    public func maxMagnificationLessThanOrEqualTo(size: CGFloat) -> Int? {
+    public func maxMagnification(lessThanOrEqualTo size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
         }
@@ -908,7 +909,7 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // Calculate suitable size
-    private func minSuitableSizeGreaterThanOrEqualTo(size: CGFloat) -> Int? {
+    private func minSuitableSize(greaterThanOrEqualTo size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
         }

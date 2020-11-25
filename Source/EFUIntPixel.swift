@@ -25,8 +25,8 @@
 //  THE SOFTWARE.
 
 struct EFUIntPixel {
-    public var red: UInt8 = 0
-    public var green: UInt8 = 0
-    public var blue: UInt8 = 0
-    public var alpha: UInt8 = 0
+    var red: UInt8 = 0
+    var green: UInt8 = 0
+    var blue: UInt8 = 0
+    var alpha: UInt8 = 0
 }
