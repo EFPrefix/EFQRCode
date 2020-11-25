@@ -34,7 +34,6 @@
 		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
-		12BC1A3B2328B8A500B6EB5A /* swift_qrcodejs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BC19E42328B6D400B6EB5A /* swift_qrcodejs.framework */; };
 		12C0B6F3219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
 		12C0B6F4219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
 		12C0B6F5219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
@@ -100,72 +99,32 @@
 		5282BCBC1FF3903D00DFB36B /* EFQRCode+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */; };
 		5282BCBD1FF3903D00DFB36B /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */; };
 		8035DB621BAB492500466CB3 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */; };
+		D2483DE5256E2F7E005899D8 /* QRCodeSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2483C94256E14C0005899D8 /* QRCodeSwift.framework */; };
+		D2483DE6256E2F7E005899D8 /* QRCodeSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2483C94256E14C0005899D8 /* QRCodeSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F829C6B81A7A94F100A2CD59 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		12BC19DF2328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A9963F217C164300314AF8;
-			remoteInfo = "swift_qrcodejs-cli";
-		};
-		12BC19E12328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A995E5217C11BB00314AF8;
-			remoteInfo = "swift_qrcodejs-iOS";
-		};
-		12BC19E32328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A9959E217C0DF600314AF8;
-			remoteInfo = "swift_qrcodejs-watchOS";
-		};
-		12BC19E52328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A995AB217C0F1E00314AF8;
-			remoteInfo = "swift_qrcodejs-tvOS";
-		};
-		12BC19E72328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A995C7217C0F6500314AF8;
-			remoteInfo = "swift_qrcodejs-macOS";
-		};
-		12BC19E92328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A995ED217C11BB00314AF8;
-			remoteInfo = "swift_qrcodejsTests-iOS";
-		};
-		12BC19EB2328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A995B3217C0F1F00314AF8;
-			remoteInfo = "swift_qrcodejsTests-tvOS";
-		};
-		12BC19ED2328B6D400B6EB5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 52A995CF217C0F6500314AF8;
-			remoteInfo = "swift_qrcodejsTests-macOS";
-		};
 		4CF626FA1BA7CB3E0011A099 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F8111E2A19A95C8B0040E7D1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4CF626EE1BA7CB3E0011A099;
 			remoteInfo = "Alamofire tvOS";
+		};
+		D2483BC3256DFCE9005899D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "swift_qrcodejs::QRCodeSwift::Product";
+			remoteInfo = QRCodeSwift;
+		};
+		D2483BC5256DFCE9005899D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = "swift_qrcodejs::QRCodeSwiftTests::Product";
+			remoteInfo = QRCodeSwiftTests;
 		};
 		F8111E6519A967880040E7D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -182,6 +141,20 @@
 			remoteInfo = "Alamofire OSX";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2483DE7256E2F7E005899D8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D2483DE6256E2F7E005899D8 /* QRCodeSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		120B77D71EA3939F00D34440 /* EFQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFQRCode.h; sourceTree = "<group>"; };
@@ -218,6 +191,7 @@
 		4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282BCAD1FF38F8100DFB36B /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72998D721BF26173006D3F69 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
+		D2483C94256E14C0005899D8 /* QRCodeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRCodeSwift.framework; path = ../swift_qrcodejs/Carthage/Build/watchOS/QRCodeSwift.framework; sourceTree = "<group>"; };
 		F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8111E3E19A95C8B0040E7D1 /* EFQRCode iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EFQRCode iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,7 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12BC1A3B2328B8A500B6EB5A /* swift_qrcodejs.framework in Frameworks */,
+				D2483DE5256E2F7E005899D8 /* QRCodeSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +301,7 @@
 		120AAA7A21932CD300F0783B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2483C94256E14C0005899D8 /* QRCodeSwift.framework */,
 				12EE9E4B2386963D00241C60 /* CoreImage.framework */,
 			);
 			name = Frameworks;
@@ -343,14 +318,8 @@
 		12BC19D52328B6D400B6EB5A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				12BC19E02328B6D400B6EB5A /* swift_qrcodejs-cli */,
-				12BC19E22328B6D400B6EB5A /* swift_qrcodejs.framework */,
-				12BC19E42328B6D400B6EB5A /* swift_qrcodejs.framework */,
-				12BC19E62328B6D400B6EB5A /* swift_qrcodejs.framework */,
-				12BC19E82328B6D400B6EB5A /* swift_qrcodejs.framework */,
-				12BC19EA2328B6D400B6EB5A /* swift_qrcodejsTests-iOS.xctest */,
-				12BC19EC2328B6D400B6EB5A /* swift_qrcodejsTests-tvOS.xctest */,
-				12BC19EE2328B6D400B6EB5A /* swift_qrcodejsTests-macOS.xctest */,
+				D2483BC4256DFCE9005899D8 /* QRCodeSwift.framework */,
+				D2483BC6256DFCE9005899D8 /* QRCodeSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,6 +494,7 @@
 				5282BCA91FF38F8100DFB36B /* Frameworks */,
 				5282BCAA1FF38F8100DFB36B /* Headers */,
 				5282BCAB1FF38F8100DFB36B /* Resources */,
+				D2483DE7256E2F7E005899D8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -666,60 +636,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		12BC19E02328B6D400B6EB5A /* swift_qrcodejs-cli */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = "swift_qrcodejs-cli";
-			remoteRef = 12BC19DF2328B6D400B6EB5A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		12BC19E22328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
+		D2483BC4256DFCE9005899D8 /* QRCodeSwift.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = swift_qrcodejs.framework;
-			remoteRef = 12BC19E12328B6D400B6EB5A /* PBXContainerItemProxy */;
+			path = QRCodeSwift.framework;
+			remoteRef = D2483BC3256DFCE9005899D8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		12BC19E42328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = swift_qrcodejs.framework;
-			remoteRef = 12BC19E32328B6D400B6EB5A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		12BC19E62328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = swift_qrcodejs.framework;
-			remoteRef = 12BC19E52328B6D400B6EB5A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		12BC19E82328B6D400B6EB5A /* swift_qrcodejs.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = swift_qrcodejs.framework;
-			remoteRef = 12BC19E72328B6D400B6EB5A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		12BC19EA2328B6D400B6EB5A /* swift_qrcodejsTests-iOS.xctest */ = {
+		D2483BC6256DFCE9005899D8 /* QRCodeSwiftTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "swift_qrcodejsTests-iOS.xctest";
-			remoteRef = 12BC19E92328B6D400B6EB5A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		12BC19EC2328B6D400B6EB5A /* swift_qrcodejsTests-tvOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "swift_qrcodejsTests-tvOS.xctest";
-			remoteRef = 12BC19EB2328B6D400B6EB5A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		12BC19EE2328B6D400B6EB5A /* swift_qrcodejsTests-macOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "swift_qrcodejsTests-macOS.xctest";
-			remoteRef = 12BC19ED2328B6D400B6EB5A /* PBXContainerItemProxy */;
+			path = QRCodeSwiftTests.xctest;
+			remoteRef = D2483BC5256DFCE9005899D8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

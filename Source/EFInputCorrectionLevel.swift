@@ -29,7 +29,7 @@ import CoreGraphics
 #if canImport(CoreImage)
 import CoreImage
 #else
-import swift_qrcodejs
+import QRCodeSwift
 import Foundation // weird we have to do this, but otherwise
 // @objc attribute used without importing module 'Foundation'
 #endif
