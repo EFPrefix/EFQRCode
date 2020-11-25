@@ -28,7 +28,7 @@
 import CoreImage
 #else
 import CoreGraphics
-import swift_qrcodejs
+import QRCodeSwift
 #endif
 
 // EFQRCode+Create
@@ -743,9 +743,9 @@ public class EFQRCodeGenerator: NSObject {
             #else
             let level = inputCorrectionLevel.qrErrorCorrectLevel
             return content.flatMap {
-                QRCode($0, encoding: contentEncoding,
+                try? QRCode($0, encoding: contentEncoding,
                        errorCorrectLevel: level, withBorder: true
-                )?
+                )
                 .imageCodes
             }
             #endif
