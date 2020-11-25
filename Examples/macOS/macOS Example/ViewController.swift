@@ -76,6 +76,7 @@ class ViewController: NSViewController {
     var allowTransparent = true
     var binarizationThreshold: CGFloat = 0.5
     var pointShape: EFPointShape = .square
+    var ignoreTiming = false
 
     let titleArray = [
         Localized.Title.inputCorrectionLevel,
@@ -91,7 +92,8 @@ class ViewController: NSViewController {
         Localized.Title.foregroundPointOffset,
         Localized.Title.allowTransparent,
         Localized.Title.binarizationThreshold,
-        Localized.Title.pointShape
+        Localized.Title.pointShape,
+        Localized.Title.ignoreTiming,
     ]
 
     override func viewDidLoad() {
@@ -121,8 +123,8 @@ class ViewController: NSViewController {
         backgroundView.snp.makeConstraints {
             (make) in
             make.top.leading.trailing.bottom.equalTo(0)
-            make.width.equalTo(800)
-            make.height.equalTo(380)
+            make.width.equalTo(840)
+            make.height.equalTo(440)
         }
 
         backgroundView.addSubview(leftBarView)

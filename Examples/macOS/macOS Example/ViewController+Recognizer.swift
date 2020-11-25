@@ -96,6 +96,7 @@ extension ViewController {
         recognizerViewResult.layer?.borderWidth = 1
         recognizerViewResult.layer?.cornerRadius = 5
         recognizerView.addSubview(recognizerViewResult)
+        recognizerViewResult.setContentHuggingPriority(.defaultLow, for: .vertical)
         recognizerViewResult.snp.makeConstraints {
             (make) in
             make.top.equalTo(10)
@@ -123,7 +124,7 @@ extension ViewController {
     }
 
     /// https://gist.github.com/jlindsey/499215
-    func selectImageFromDisk(process: @escaping (EFImage) -> Void) {
+    func selectImageFromDisk(process: @escaping (EFImage?) -> Void) {
         let panel = NSOpenPanel()
         panel.allowedFileTypes = NSImage.imageTypes
         panel.allowsMultipleSelection = false
@@ -138,17 +139,20 @@ extension ViewController {
             [weak self] (result) in
             guard self != nil else { return }
             guard result.rawValue == NSFileHandlingPanelOKButton else {
-                return panel.close()
+                panel.close()
+                return process(nil)
             }
             // We aren't allowing multiple selection,
             // but NSOpenPanel still returns an array with a single element.
-            guard let imagePath = panel.urls.first else { return }
+            guard let imagePath = panel.urls.first else {
+                return process(nil)
+            }
             if imagePath.absoluteString.lowercased().hasSuffix(".gif"),
-                let image = try? Data(contentsOf: imagePath) {
+               let image = try? Data(contentsOf: imagePath) {
                 return process(.gif(image))
             }
             if let image = NSImage(contentsOf: imagePath) {
-                process(.normal(image))
+                return process(.normal(image))
             }
         }
     }

@@ -25,6 +25,7 @@ enum Localized {
         static let allowTransparent = NSLocalizedString("Allow Transparent", comment: "Configuration prompt title")
         static let binarizationThreshold = NSLocalizedString("Binarization Threshold", comment: "Configuration prompt title")
         static let pointShape = NSLocalizedString("Point Shape", comment: "Configuration prompt title")
+        static let ignoreTiming = NSLocalizedString("Style Timing Pattern", comment: "Configuration prompt title")
     }
     static let success = NSLocalizedString("Success", comment: "Generic success alert title")
     static let error = NSLocalizedString("Error", comment: "Generic serious issue alert title")

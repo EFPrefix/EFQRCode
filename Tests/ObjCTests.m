@@ -56,6 +56,7 @@
     [g withMagnification:nil];
     [g withIcon:[self getImage] size:nil];
     [g withWatermark:[self getImage] mode: EFWatermarkModeBottom];
+    [g withOpaqueWatermark:YES];
     [g withTransparentWatermark:YES];
     [g withPointOffset: 0];
     [g withStaticTimingPoint:YES];
