@@ -6,21 +6,10 @@
 //  Copyright © 2020 EyreFree. All rights reserved.
 //
 
-#if canImport(CoreImage)
-import CoreImage
-#endif
 import CoreGraphics
 import Foundation
 
 extension EFQRCode {
-    #if canImport(CoreImage)
-    @available(*, deprecated, renamed: "recognize(_:)")
-    public static func recognize(image: CGImage) -> [String]? {
-        return recognize(image)
-    }
-    #endif
-
-
     @available(*, deprecated, renamed: "generate(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointShape:mode:magnification:pointOffset:)")
     public static func generate(
         content: String,
@@ -38,15 +27,16 @@ extension EFQRCode {
         mode: EFQRCodeMode = .none,
         magnification: EFIntSize? = nil,
         foregroundPointOffset: CGFloat = 0
-        ) -> CGImage? {
+    ) -> CGImage? {
         return generate(
-            for: content, encoding: contentEncoding, size: size,
+            for: content, encoding: contentEncoding,
+            inputCorrectionLevel: inputCorrectionLevel,
+            size: size, magnification: magnification,
             backgroundColor: backgroundColor, foregroundColor: foregroundColor,
             watermark: watermark, watermarkMode: watermarkMode, watermarkIsTransparent: allowTransparent,
-            inputCorrectionLevel: inputCorrectionLevel,
             icon: icon, iconSize: iconSize,
             pointShape: pointShape, pointOffset: foregroundPointOffset,
-            mode: mode, magnification: magnification
+            mode: mode
         )
     }
     
@@ -70,13 +60,13 @@ extension EFQRCode {
     ) -> Data? {
         return generateGIF(
             for: content, encoding: contentEncoding,
-            size: size,
+            inputCorrectionLevel: inputCorrectionLevel,
+            size: size, magnification: magnification,
             backgroundColor: backgroundColor, foregroundColor: foregroundColor,
             watermark: watermark, watermarkMode: watermarkMode, watermarkIsTransparent: allowTransparent,
-            inputCorrectionLevel: inputCorrectionLevel,
             icon: icon, iconSize: iconSize,
             pointShape: pointShape, pointOffset: foregroundPointOffset,
-            mode: mode, magnification: magnification
+            mode: mode
         )
     }
 
@@ -114,13 +104,6 @@ extension EFQRCodeGenerator {
     public func setMagnification(magnification: EFIntSize?) {
         withMagnification(magnification)
     }
-    #if canImport(CoreImage)
-    @nonobjc
-    @available(*, deprecated, renamed: "withColors(backgroundColor:foregroundColor:)")
-    public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
-        withColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
-    }
-    #endif
     @available(*, deprecated, renamed: "withColors(backgroundColor:foregroundColor:)")
     public func setColors(backgroundColor: CGColor, foregroundColor: CGColor) {
         withColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
@@ -153,10 +136,27 @@ extension EFQRCodeGenerator {
 }
 
 #if canImport(CoreImage)
+import CoreImage
+
+extension EFQRCode {
+    @available(*, deprecated, renamed: "recognize(_:)")
+    public static func recognize(image: CGImage) -> [String]? {
+        return recognize(image)
+    }
+}
+
 extension EFQRCodeRecognizer {
     @available(*, deprecated, message: "Set `image` property directly.")
     public func setImage(image: CGImage?) {
         self.image = image
+    }
+}
+
+extension EFQRCodeGenerator {
+    @nonobjc
+    @available(*, deprecated, renamed: "withColors(backgroundColor:foregroundColor:)")
+    public func setColors(backgroundColor: CIColor, foregroundColor: CIColor) {
+        withColors(backgroundColor: backgroundColor, foregroundColor: foregroundColor)
     }
 }
 #endif

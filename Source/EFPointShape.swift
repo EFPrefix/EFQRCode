@@ -24,12 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreGraphics
 import Foundation
-
-#if canImport(CoreImage)
-import CoreImage
-#endif
 
 @objc public enum EFPointShape: Int {
     case square         = 0

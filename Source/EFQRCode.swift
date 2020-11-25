@@ -43,19 +43,20 @@ public class EFQRCode {
     public static func generate(
         for content: String,
         encoding: String.Encoding = .utf8,
+        inputCorrectionLevel: EFInputCorrectionLevel = .h,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
+        magnification: EFIntSize? = nil,
         backgroundColor: CGColor = .white()!,
         foregroundColor: CGColor = .black()!,
         watermark: CGImage? = nil,
         watermarkMode: EFWatermarkMode = .scaleAspectFill,
         watermarkIsTransparent isWatermarkTransparent: Bool = true,
-        inputCorrectionLevel: EFInputCorrectionLevel = .h,
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
         pointShape: EFPointShape = .square,
         pointOffset: CGFloat = 0,
-        mode: EFQRCodeMode? = nil,
-        magnification: EFIntSize? = nil
+        isTimingPointStyled: Bool = false,
+        mode: EFQRCodeMode? = nil
     ) -> CGImage? {
         return EFQRCodeGenerator(content: content, encoding: encoding, size: size)
             .withWatermark(watermark, mode: watermarkMode)
@@ -67,25 +68,27 @@ public class EFQRCode {
             .withMode(mode)
             .withMagnification(magnification)
             .withPointOffset(pointOffset)
+            .withStyledTimingPoint(isTimingPointStyled)
             .generate()
     }
 
     public static func generateGIF(
         for content: String,
         encoding: String.Encoding = .utf8,
+        inputCorrectionLevel: EFInputCorrectionLevel = .h,
         size: EFIntSize = EFIntSize(width: 600, height: 600),
+        magnification: EFIntSize? = nil,
         backgroundColor: CGColor = .white()!,
         foregroundColor: CGColor = .black()!,
         watermark: Data,
         watermarkMode: EFWatermarkMode = .scaleAspectFill,
         watermarkIsTransparent isWatermarkTransparent: Bool = true,
-        inputCorrectionLevel: EFInputCorrectionLevel = .h,
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
         pointShape: EFPointShape = .square,
         pointOffset: CGFloat = 0,
-        mode: EFQRCodeMode? = nil,
-        magnification: EFIntSize? = nil
+        isTimingPointStyled: Bool = false,
+        mode: EFQRCodeMode? = nil
     ) -> Data? {
         let generator = EFQRCodeGenerator(content: content, encoding: encoding, size: size)
             .withWatermark(nil, mode: watermarkMode)
@@ -97,6 +100,7 @@ public class EFQRCode {
             .withMode(mode)
             .withMagnification(magnification)
             .withPointOffset(pointOffset)
+            .withStyledTimingPoint(isTimingPointStyled)
         return EFQRCode.generateGIF(using: generator, withIntputGIF: watermark)
     }
 }
