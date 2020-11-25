@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 加入 QQ 群
+    url: http://shang.qq.com/wpa/qunwpa?idkey=d0f732585dcb0c6f2eb26bc9e0327f6305d18260eeba89ed26a201b520c572c0
+    about: 但报 bug 应该还是 issue 回复快一些？
+  - name: Chat on Gitter
+    url: https://gitter.im/EFQRCode/Lobby
+    about: Not sure if anyone uses this?
