@@ -232,6 +232,8 @@
 		D22654B5256E965300920D11 /* ObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
 		D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Migration-v6.swift"; sourceTree = "<group>"; };
 		D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+ObjC.swift"; sourceTree = "<group>"; };
+		D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "European SEPA Money Transfer + Watermark.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D2DF1DB8256EC4CF00EB6012 /* Basic B&W QR Code.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Basic B&W QR Code.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8111E3E19A95C8B0040E7D1 /* EFQRCode iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EFQRCode iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -371,6 +373,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D2DF1DB5256EC4CF00EB6012 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				D2DF1DB6256EC4CF00EB6012 /* Generate */,
+			);
+			path = Playgrounds;
+			sourceTree = "<group>";
+		};
+		D2DF1DB6256EC4CF00EB6012 /* Generate */ = {
+			isa = PBXGroup;
+			children = (
+				D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */,
+				D2DF1DB8256EC4CF00EB6012 /* Basic B&W QR Code.playground */,
+			);
+			path = Generate;
+			sourceTree = "<group>";
+		};
 		F8111E2919A95C8B0040E7D1 = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +398,7 @@
 				127F871E1ECF56AC0002B554 /* EFQRCode.podspec */,
 				F8111E3519A95C8B0040E7D1 /* Source */,
 				F8111E3F19A95C8B0040E7D1 /* Tests */,
+				D2DF1DB5256EC4CF00EB6012 /* Playgrounds */,
 				F8111E3419A95C8B0040E7D1 /* Products */,
 				120AAA7A21932CD300F0783B /* Frameworks */,
 				12BC19D42328B6D400B6EB5A /* swift_qrcodejs.xcodeproj */,
