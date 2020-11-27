@@ -44,6 +44,16 @@ let package = Package(
                 ],
                 path: "Source",
                 exclude: ["Info.plist", "Info-tvOS.plist"]),
+        .testTarget(name: "EFQRCodeSwiftTests",
+                    dependencies: ["EFQRCode"],
+                    path: "Tests",
+                    exclude: ["Info.plist", "ObjCTests.m"],
+                    resources: [.process("Resources")]),
+        .testTarget(name: "EFQRCodeObjCTests",
+                    dependencies: ["EFQRCode"],
+                    path: "Tests",
+                    exclude: ["Info.plist", "Tests.swift"],
+                    resources: [.process("Resources")]),
     ],
     swiftLanguageVersions: [.v5]
 )

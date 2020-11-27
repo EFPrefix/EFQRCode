@@ -27,27 +27,25 @@
 import XCTest
 @testable import EFQRCode
 
+#if canImport(UIKit)
+import UIKit
+typealias EFImage = UIImage
+typealias EFColor = UIColor
+#else
+import AppKit
+typealias EFImage = NSImage
+typealias EFColor = NSColor
+#endif
+
 class Tests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func getImage(name: String) -> CGImage? {
-        if let filePath = Bundle.init(for: self.classForCoder).path(forResource: "eyrefree", ofType: "png") {
-            #if os(macOS)
-            return NSImage(contentsOfFile: filePath)?.cgImage()
-            #else
-            return UIImage(contentsOfFile: filePath)?.cgImage()
-            #endif
-        }
-        return nil
+    func getImage(named name: String = "eyrefree") -> CGImage {
+        #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+        #else
+        let bundle = Bundle(for: type(of: self))
+        #endif
+        let filePath = bundle.path(forResource: name, ofType: "png")!
+        return EFImage(contentsOfFile: filePath)!.cgImage()!
     }
 
     func testExample1() {
@@ -58,17 +56,18 @@ class Tests: XCTestCase {
             size: EFIntSize(width: 256, height: 256)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CIColor.white(), foregroundColor: CIColor.black())
+        generator.setColors(backgroundColor: CIColor.white(),
+                            foregroundColor: CIColor.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .h)
         generator.setMagnification(magnification: EFIntSize(width: 6, height: 6))
         let testResult = generator.generate()
-        XCTAssert(testResult != nil, "testResult is nil!")
+        XCTAssertNotNil(testResult, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
         let testResultArray = EFQRCode.recognize(image: testResult!)
-        XCTAssert(testResultArray != nil, "testResultArray is nil!")
-        XCTAssert(testResultArray!.count > 0, "testResultArray has no result!")
-        XCTAssert(testResultArray![0] == content, "testResultArray is wrong!")
+        XCTAssertNotNil(testResultArray, "testResultArray is nil!")
+        XCTAssertFalse(testResultArray!.isEmpty, "testResultArray has no result!")
+        XCTAssertEqual(testResultArray![0], content, "testResultArray is wrong!")
     }
 
     func testExample2() {
@@ -79,17 +78,18 @@ class Tests: XCTestCase {
             size: EFIntSize(width: 999, height: 999)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CIColor.white(), foregroundColor: CIColor.black())
+        generator.setColors(backgroundColor: CIColor.white(),
+                            foregroundColor: CIColor.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .l)
         generator.setMagnification(magnification: nil)
         let testResult = generator.generate()
-        XCTAssert(testResult != nil, "testResult is nil!")
+        XCTAssertNotNil(testResult, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
         let testResultArray = EFQRCode.recognize(image: testResult!)
-        XCTAssert(testResultArray != nil, "testResultArray is nil!")
-        XCTAssert(testResultArray!.count > 0, "testResultArray has no result!")
-        XCTAssert(testResultArray![0] == content, "testResultArray is wrong!")
+        XCTAssertNotNil(testResultArray, "testResultArray is nil!")
+        XCTAssertFalse(testResultArray!.isEmpty, "testResultArray has no result!")
+        XCTAssertEqual(testResultArray![0], content, "testResultArray is wrong!")
     }
 
     func testExample3() {
@@ -100,23 +100,18 @@ class Tests: XCTestCase {
             size: EFIntSize(width: 1024, height: 1024)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: {
-            #if os(macOS)
-            return NSColor.gray.ciColor()
-            #else
-            return UIColor.gray.ciColor()
-            #endif
-        }(), foregroundColor: CIColor.black())
+        generator.setColors(backgroundColor: EFColor.gray.ciColor(),
+                            foregroundColor: CIColor.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
         generator.setMagnification(magnification: nil)
         let testResult = generator.generate()
-        XCTAssert(testResult != nil, "testResult is nil!")
+        XCTAssertNotNil(testResult, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
         let testResultArray = EFQRCode.recognize(image: testResult!)
-        XCTAssert(testResultArray != nil, "testResultArray is nil!")
-        XCTAssert(testResultArray!.count > 0, "testResultArray has no result!")
-        XCTAssert(testResultArray![0] == content, "testResultArray is wrong!")
+        XCTAssertNotNil(testResultArray, "testResultArray is nil!")
+        XCTAssertFalse(testResultArray!.isEmpty, "testResultArray has no result!")
+        XCTAssertEqual(testResultArray![0], content, "testResultArray is wrong!")
     }
 
     func testExample4() {
@@ -127,39 +122,34 @@ class Tests: XCTestCase {
             size: EFIntSize(width: 15, height: 15)
         )
         generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: {
-            #if os(macOS)
-            return NSColor.gray.ciColor()
-            #else
-            return UIColor.red.ciColor()
-            #endif
-        }(), foregroundColor: CIColor.black())
+        generator.setColors(backgroundColor: EFColor.gray.ciColor(),
+                            foregroundColor: CIColor.black())
         generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
         generator.setMagnification(magnification: nil)
-        generator.setIcon(icon: getImage(name: "eyrefree"), size: nil)
-        generator.setWatermark(watermark: getImage(name: "eyrefree"), mode: .bottom)
+        generator.setIcon(icon: getImage(), size: nil)
+        generator.setWatermark(watermark: getImage(), mode: .bottom)
         generator.setForegroundPointOffset(foregroundPointOffset: 0)
         generator.setAllowTransparent(allowTransparent: true)
         let testResult = generator.generate()
-        XCTAssert(testResult != nil, "testResult is nil!")
+        XCTAssertNotNil(testResult, "testResult is nil!")
     }
 
     // CGColor
     func testExampleCGColorExtension() {
-        XCTAssert(CGColor.white() != nil, "CGColor.EFWhite() should not be nil!")
-        XCTAssert(CGColor.black() != nil, "CGColor.EFBlack() should not be nil!")
+        XCTAssertNotNil(CGColor.white(), "CGColor.EFWhite() should not be nil!")
+        XCTAssertNotNil(CGColor.black(), "CGColor.EFBlack() should not be nil!")
     }
 
     // CGSize
     func testExampleCGSizeExtension() {
         let size = CGSize(width: 111.1, height: 888.8)
-        XCTAssert(size.width.int == 111, "size.widthInt() should be 111!")
-        XCTAssert(size.height.int == 888, "size.heightInt() should be 888!")
+        XCTAssertEqual(size.width.int, 111, "size.widthInt() should be 111!")
+        XCTAssertEqual(size.height.int, 888, "size.heightInt() should be 888!")
     }
 
     // EFQRCode
     func testExampleEFQRCode() {
         let testResult = EFQRCode.generate(content: "https://github.com/EFPrefix/EFQRCode")
-        XCTAssert(testResult != nil, "testResult is nil!")
+        XCTAssertNotNil(testResult, "testResult is nil!")
     }
 }

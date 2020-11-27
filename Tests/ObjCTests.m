@@ -13,6 +13,16 @@
 @import AppKit;
 #define EFColor NSColor
 #define EFImage NSImage
+@interface NSImage (EFQRCode)
+-(CGImageRef) CGImage;
+@end
+
+@implementation NSImage (EFQRCode)
+-(CGImageRef) CGImage {
+    CGImageSourceRef source = CGImageSourceCreateWithData((CFDataRef)[self TIFFRepresentation], NULL);
+    return CGImageSourceCreateImageAtIndex(source, 0, NULL);
+}
+@end
 #else
 @import UIKit;
 #define EFColor UIColor
@@ -24,17 +34,16 @@
 @end
 
 @implementation ObjCTests
-
 - (CGImageRef) getImage {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"eyrefree" ofType:@"png"];
-    EFImage *image = [[EFImage alloc] initWithContentsOfFile:path];
-#if TARGET_OS_OSX
-    CGImageSourceRef source = CGImageSourceCreateWithData((CFDataRef)[image TIFFRepresentation], NULL);
-    return CGImageSourceCreateImageAtIndex(source, 0, NULL);
+#if SWIFT_PACKAGE
+    NSBundle *bundle = SWIFTPM_MODULE_BUNDLE;
 #else
-    return [image CGImage];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 #endif
+    NSString *path = [bundle pathForResource:@"eyrefree" ofType:@"png"];
+    XCTAssertNotNil(path);
+    EFImage *image = [[EFImage alloc] initWithContentsOfFile:path];
+    return [image CGImage];
 }
 
 - (void)testGenerator {
