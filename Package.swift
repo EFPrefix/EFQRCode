@@ -39,7 +39,8 @@ let package = Package(
     targets: [
         .target(name: "EFQRCode",
                 dependencies: ["QRCodeSwift"],
-                path: "Source")
+                path: "Source",
+                exclude: ["Info.plist", "Info-tvOS.plist"]),
     ],
     swiftLanguageVersions: [.v5]
 )
