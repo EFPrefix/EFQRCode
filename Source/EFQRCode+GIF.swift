@@ -39,7 +39,7 @@ extension EFQRCode {
 
     private static func batchWatermark(frames: inout [CGImage], generator: EFQRCodeGenerator, start: Int, end: Int) {
         for index in start ... end {
-            generator.withWatermark(frames[index])
+            generator.watermark = frames[index]
             if let frameWithCode = generator.generate() {
                 frames[index] = frameWithCode
             }
@@ -108,7 +108,7 @@ extension EFQRCode {
             } else {
                 // Clear watermark
                 for (index, frame) in frames.enumerated() {
-                    generator.withWatermark(frame)
+                    generator.watermark = frame
                     if let frameWithCode = generator.generate() {
                         frames[index] = frameWithCode
                     }
