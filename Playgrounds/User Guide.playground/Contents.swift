@@ -1,91 +1,102 @@
-## User Guide
+//: ## User Guide
+import EFQRCode
+import UIKit
+/*: ### 1. Recognition
 
-### 1. Recognition
+ There are two equivalent ways:
 
-There are two equivalent ways:
+ ```swift
+ EFQRCode.recognize(CGImage)
+ ```
+*/
 
-```swift
-EFQRCode.recognize(image: CGImage)
-```
+/*:
+ ```
+ EFQRCodeRecognizer(image: CGImage).recognize()
+ ```
+*/
 
-or
+//: Because of the possibility that more than one QR code exist in the same image, the return value is `[String]`. If the returned array is empty, we could not recognize/didn't find any QR code in the image.
 
-```swift
-EFQRCodeRecognizer(image: CGImage).recognize()
-```
+/*:---
+ ### 2. Generation
 
-Because of the possibility that more than one QR code exist in the same image, the return value is `[String]`. If the returned array is empty, we could not recognize/didn't find any QR code in the image.
+ Again, there are two equivalent ways of doing this:
 
-### 2. Generation
+ ```swift
+ EFQRCode.generate(
+     for: String, encoding: String.Encoding,
+     inputCorrectionLevel: EFInputCorrectionLevel,
+     size: EFIntSize, magnification: EFIntSize?,
+     backgroundColor: CGColor, foregroundColor: CGColor,
+     watermark: CGImage?, watermarkMode: EFWatermarkMode,
+     watermarkIsTransparent: Bool,
+     icon: CGImage?, iconSize: EFIntSize?,
+     pointShape: EFPointShape, pointOffset: CGFloat,
+     isTimingPointStyled: Bool,
+     mode: EFQRCodeMode?
+ )
+ ```
+*/
 
-Again, there are two equivalent ways of doing this:
+/*:
+ ```swift
+ let generator = EFQRCodeGenerator(
+     content: String, encoding: String.Encoding,
+     size: EFIntSize
+ )
+ generator.withMode(EFQRCodeMode)
+ generator.withInputCorrectionLevel(EFInputCorrectionLevel)
+ generator.withSize(EFIntSize)
+ generator.withMagnification(EFIntSize?)
+ generator.withColors(backgroundColor: CGColor, foregroundColor: CGColor)
+ generator.withIcon(CGImage?, size: EFIntSize?)
+ generator.withWatermark(CGImage?, mode: EFWatermarkMode?)
+ generator.withPointOffset(CGFloat)
+ generator.withTransparentWatermark(Bool)
+ generator.withPointShape(EFPointShape)
+ // Lastly, get the final two-dimensional code image
+ generator.generate()
+ ```
+*/
 
-```swift
-EFQRCode.generate(
-    for: String, encoding: String.Encoding,
-    inputCorrectionLevel: EFInputCorrectionLevel,
-    size: EFIntSize, magnification: EFIntSize?,
-    backgroundColor: CGColor, foregroundColor: CGColor,
-    watermark: CGImage?, watermarkMode: EFWatermarkMode,
-    watermarkIsTransparent: Bool,
-    icon: CGImage?, iconSize: EFIntSize?,
-    pointShape: EFPointShape, pointOffset: CGFloat,
-    isTimingPointStyled: Bool,
-    mode: EFQRCodeMode?
-)
-```
+//: The return value is of type `CGImage?`. If it is `nil`, something went wrong during generation.
 
-or
+/*:
+ #### Parameters Explained
+ ##### content: String?
 
-```swift
-let generator = EFQRCodeGenerator(
-    content: String, encoding: String.Encoding,
-    size: EFIntSize
-)
-generator.withMode(EFQRCodeMode)
-generator.withInputCorrectionLevel(EFInputCorrectionLevel)
-generator.withSize(EFIntSize)
-generator.withMagnification(EFIntSize?)
-generator.withColors(backgroundColor: CGColor, foregroundColor: CGColor)
-generator.withIcon(CGImage?, size: EFIntSize?)
-generator.withWatermark(CGImage?, mode: EFWatermarkMode?)
-generator.withPointOffset(CGFloat)
-generator.withTransparentWatermark(Bool)
-generator.withPointShape(EFPointShape)
+ Content is a required parameter, with its capacity limited at 1273 characters. The density of the QR-lattice increases with the increases of the content length. Here's an example of 10 vs. 250 characters:
+*/
+EFQRCodeGenerator(content: "abcdefghij").generate()
+EFQRCodeGenerator(content: "abcdefghij" * 25).generate()
 
-// Lastly, get the final two-dimensional code image
-generator.generate()
-```
-
-The return value is of type `CGImage?`. If it is `nil`, something went wrong during generation.
-
-#### Parameters Explained
-
-##### content: String?
-
-Content is a required parameter, with its capacity limited at 1273 characters. The density of the QR-lattice increases with the increases of the content length. For example:
-
-10 characters | 250 characters
-:-------------------------:|:-------------------------:
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent2.jpg)
-
+/*:
 ##### mode: EFQRCodeMode
+Let's see a few examples
+*/
+let content = "https://github.com/EyreFree/EFQRCode"
+let watermark = #imageLiteral(resourceName: "eyrefree.png").cgImage
+//: - Experiment: mode none (`nil`)
+EFQRCodeGenerator(content: content)
+    .withWatermark(watermark)
+    .withMode(nil)
+    .generate()
+//: - Experiment: grayscale mode
+EFQRCodeGenerator(content: content)
+    .withWatermark(watermark)
+    .withMode(.grayscale)
+    .generate()
+//: - Experiment: binarization mode
+EFQRCodeGenerator(content: content)
+    .withWatermark(watermark)
+    .with(\.backgroundColor, #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1).cgColor)
+    .withMode(.binarization(threshold: 0.1))
+    .generate()
 
-Mode of QR Code is defined as `EFQRCodeMode`:
 
-```swift
-public enum EFQRCodeMode: Int {
-    // case none        use `nil` instead
-    case grayscale      = 1;
-    case binarization   = 2;
-}
-```
-
-`nil` | grayscale | binarization
-:-------------------------:|:-------------------------:|:-------------------------:
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode2.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode3.jpg)
-
-##### inputCorrectionLevel: EFInputCorrectionLevel
+/*:
+* **inputCorrectionLevel: EFInputCorrectionLevel**
 
 Error-tolerant rate, optional, 4 different level, L: 7% / M 15% / Q 25% / H 30%, default is H, the definition of EFInputCorrectionLevel:
 
@@ -182,7 +193,7 @@ BackgroundColor, optional, default is white.
 
 ForegroundColor, optional, color of code point, default is black.
 
-  ForegroundColor set to red | BackgroundColor set to gray  
+  ForegroundColor set to red | BackgroundColor set to gray
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundcolor.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareBackgroundcolor.jpg)
 
@@ -192,17 +203,17 @@ Icon image in the center of code image, optional, default is nil.
 
 * **iconSize: CGFloat?**
 
-Size of icon image, optional, default is 20% of size: 
+Size of icon image, optional, default is 20% of size:
 
-  Default 20% size | Set to 64  
+  Default 20% size | Set to 64
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareIcon.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareIconSize.jpg)
 
 * **watermark: CGImage?**
 
-Watermark image, optional, default is nil, for example: 
+Watermark image, optional, default is nil, for example:
 
-  1 | 2  
+  1 | 2
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareWatermark1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareWatermark2.jpg)
 
@@ -232,7 +243,7 @@ public enum EFWatermarkMode: Int {
 
 Foreground point offset, optional, default is 0, is not recommended to use, may make the two-dimensional code broken:
 
-0 | 0.5 
+0 | 0.5
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset2.jpg)
 
@@ -297,3 +308,4 @@ You can get more information from the demo, result will like this:
 
 3. Now you can get the complete data of output QRCode GIF, next we can save it to local path / system photo library / upload to server or some other things you want to do;
 4. Emmmmmm, note that the `tempResultPath` of `EFQRcode` is the path of data of GIF of last generation.
+*/

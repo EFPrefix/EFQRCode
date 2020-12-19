@@ -12,66 +12,72 @@ EFQRCode.recognize(image: CGImage)
 EFQRCodeRecognizer(image: CGImage).recognize()
 ```
 
-以上两种写法是完全相等的，因为传入的图片中可能包好多个二维码，所以返回值为 `[String]?`，若返回 nil 则表示传入数据有误或为空，若返回数组为空则表示图片上未识别到二维码。
+以上两种写法是完全相等的。因为传入的图片中可能包好多个二维码，所以返回值为 `[String]`，若返回数组为空则表示未识别到图片上的二维码。
 
 ### 2. 二维码生成
 
 ```swift
 EFQRCode.generate(
-    content: String,
-    size: EFIntSize,
-    backgroundColor: CIColor,
-    foregroundColor: CIColor,
-    watermark: CGImage?
+    for: String, encoding: String.Encoding,
+    inputCorrectionLevel: EFInputCorrectionLevel,
+    size: EFIntSize, magnification: EFIntSize?,
+    backgroundColor: CGColor, foregroundColor: CGColor,
+    watermark: CGImage?, watermarkMode: EFWatermarkMode,
+    watermarkIsTransparent: Bool,
+    icon: CGImage?, iconSize: EFIntSize?,
+    pointShape: EFPointShape, pointOffset: CGFloat,
+    isTimingPointStyled: Bool,
+    mode: EFQRCodeMode?
 )
 ```
 
 或
 
 ```swift
-let generator = EFQRCodeGenerator(content: String, size: EFIntSize)
-generator.setContent(content: String)
-generator.setMode(mode: EFQRCodeMode)
-generator.setInputCorrectionLevel(inputCorrectionLevel: EFInputCorrectionLevel)
-generator.setSize(size: EFIntSize)
-generator.setMagnification(magnification: EFIntSize?)
-generator.setColors(backgroundColor: CIColor, foregroundColor: CIColor)
-generator.setIcon(icon: CGImage?, size: EFIntSize?)
-generator.setWatermark(watermark: CGImage?, mode: EFWatermarkMode)
-generator.setForegroundPointOffset(foregroundPointOffset: CGFloat)
-generator.setAllowTransparent(allowTransparent: Bool)
-generator.setPointShape(pointShape: EFPointShape)
-generator.setBinarizationThreshold(binarizationThreshold: CGFloat)
+let generator = EFQRCodeGenerator(
+    content: String, encoding: String.Encoding,
+    size: EFIntSize
+)
+generator.withMode(EFQRCodeMode)
+generator.withInputCorrectionLevel(EFInputCorrectionLevel)
+generator.withSize(EFIntSize)
+generator.withMagnification(EFIntSize?)
+generator.withColors(backgroundColor: CGColor, foregroundColor: CGColor)
+generator.withIcon(CGImage?, size: EFIntSize?)
+generator.withWatermark(CGImage?, mode: EFWatermarkMode?)
+generator.withPointOffset(CGFloat)
+generator.withTransparentWatermark(Bool)
+generator.withPointShape(EFPointShape)
 
 // 最终生成的二维码
 generator.generate()
 ```
 
-以上两种写法是完全相等的，返回值为 `CGImage?`，若返回 nil 则表示生成失败。
+以上两种写法是完全相等的，返回值为 `CGImage?`。若返回 `nil` 则表示生成失败。
 
 #### 参数说明
 
-* **content: String?**
+##### content: String?
 
-二维码内容，必填，有容量限制，最大为 424 个汉字（或 1273 个英文字母），二维码点阵越密集程度随内容增加而提高。不同容量对比如下：
+二维码内容，必填。有容量限制，最大为 424 个汉字（或 1273 个英文字母）。二维码点阵密集程度随内容增加而提高。不同容量对比如下：
 
 10 个字母 | 250 个字母
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent2.jpg)
 
-* **mode: EFQRCodeMode**
+##### mode: EFQRCodeMode
 
-二维码样式，EFQRCodeMode 定义如下：
+二维码样式。`EFQRCodeMode` 定义如下：
 
 ```swift
 public enum EFQRCodeMode: Int {
-    case none           = 0;
+    // case none        使用 `nil` 表示
     case grayscale      = 1;
     case binarization   = 2;
 }
 ```
 
-none | grayscale | binarization
+`nil` | grayscale | binarization
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode2.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode3.jpg)
 
