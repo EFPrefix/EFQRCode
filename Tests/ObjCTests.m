@@ -81,7 +81,7 @@
                                                              encoding: NSUTF8StringEncoding
                                                                  size: size];
     NSData *watermark = [content dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [g generateGIFWithInputGIF: watermark];
+    NSData *data = [g generateGIFWithWatermarkGIF: watermark];
 #warning TODO: Generate Actual GIF
     NSLog(@"%@", data);
 }
