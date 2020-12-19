@@ -81,12 +81,11 @@ public enum EFQRCodeMode {
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode2.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode3.jpg)
 
-* **inputCorrectionLevel: EFInputCorrectionLevel**
+#### inputCorrectionLevel: EFInputCorrectionLevel
 
-容错率，可选值，有四个等级，L：7%／M 15%／Q 25%／H 30%，默认值为最高容错等级 H，枚举类型 EFInputCorrectionLevel 定义如下：
+容错率有四个等级：L7%／M 15%／Q 25%／H 30%，默认值为最高容错等级 H。枚举类型 EFInputCorrectionLevel 定义如下：
 
 ```swift
-// EFInputCorrectionLevel
 public enum EFInputCorrectionLevel: Int {
     case l = 0;     // L 7%
     case m = 1;     // M 15%

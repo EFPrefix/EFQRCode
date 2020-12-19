@@ -69,7 +69,9 @@ import UIKit
  Content is a required parameter, with its capacity limited at 1273 characters. The density of the QR-lattice increases with the increases of the content length. Here's an example of 10 vs. 250 characters:
 */
 EFQRCodeGenerator(content: "abcdefghij").generate()
-EFQRCodeGenerator(content: "abcdefghij" * 25).generate()
+
+let longString = "abcdefghij" * 25
+EFQRCodeGenerator(content: longString).generate()
 
 /*:
 ##### mode: EFQRCodeMode
@@ -94,28 +96,36 @@ EFQRCodeGenerator(content: content)
     .withMode(.binarization(threshold: 0.1))
     .generate()
 
+/*:
+ ##### inputCorrectionLevel: EFInputCorrectionLevel
+
+ Percent of tolerance has 4 different levels:
+
+ - L: 7%
+ - M: 15%
+ - Q: 25%
+ - H: 30%
+
+ and the default is `EFInputCorrectionLevel.h`.
+*/
+//: - Experiment: L: 7%
+EFQRCodeGenerator(content: longString)
+    .withInputCorrectionLevel(.l)
+    .generate()
+//: - Experiment: M 15%
+EFQRCodeGenerator(content: longString)
+    .withInputCorrectionLevel(.m)
+    .generate()
+//: - Experiment: Q: 25%
+EFQRCodeGenerator(content: longString)
+    .withInputCorrectionLevel(.q)
+    .generate()
+//: - Experiment: H: 30%
+EFQRCodeGenerator(content: longString)
+    .withInputCorrectionLevel(.h)
+    .generate()
 
 /*:
-* **inputCorrectionLevel: EFInputCorrectionLevel**
-
-Error-tolerant rate, optional, 4 different level, L: 7% / M 15% / Q 25% / H 30%, default is H, the definition of EFInputCorrectionLevel:
-
-```swift
-// EFInputCorrectionLevel
-public enum EFInputCorrectionLevel: Int {
-    case l = 0;     // L 7%
-    case m = 1;     // M 15%
-    case q = 2;     // Q 25%
-    case h = 3;     // H 30%
-}
-```
-
-Comparison of different inputCorrectionLevel:
-
-L | M | Q | H
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel2.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel3.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel4.jpg)
-
 * **size: EFIntSize**
 
 Two-dimensional code length, optional, default is 256 (PS: if magnification is not nil, size will be ignored), the definition of EFIntSize:

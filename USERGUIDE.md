@@ -85,12 +85,11 @@ public enum EFQRCodeMode {
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode2.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode3.jpg)
 
-* **inputCorrectionLevel: EFInputCorrectionLevel**
+#### inputCorrectionLevel: EFInputCorrectionLevel
 
-Error-tolerant rate, optional, 4 different level, L: 7% / M 15% / Q 25% / H 30%, default is H, the definition of EFInputCorrectionLevel:
+Percent of tolerance has 4 different levels: L 7% / M 15% / Q 25% / H 30%, which we default to H. `EFInputCorrectionLevel` is defined as:
 
 ```swift
-// EFInputCorrectionLevel
 public enum EFInputCorrectionLevel: Int {
     case l = 0;     // L 7%
     case m = 1;     // M 15%
@@ -99,7 +98,7 @@ public enum EFInputCorrectionLevel: Int {
 }
 ```
 
-Comparison of different inputCorrectionLevel:
+Comparison of different inputCorrectionLevel (generating for the same content):
 
 L | M | Q | H
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
