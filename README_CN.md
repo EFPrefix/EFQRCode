@@ -182,20 +182,20 @@ if let testImage = UIImage(named: "test.png")?.cgImage {
 
 根据所输入参数创建各种艺术二维码图片，快速使用方式如下:
 
-```swift
-//                    content: 二维码内容
-//            size (Optional): 二维码宽高
-// backgroundColor (Optional): 二维码背景色
-// foregroundColor (Optional): 二维码前景色
-//       watermark (Optional): 水印图
-```
+|参数|作用描述|
+|-:|:-|
+|content|[**必填**] 二维码内容|
+|size|二维码宽高|
+|backgroundColor|二维码背景色|
+|foregroundColor|二维码前景色|
+|watermark|背景水印图|
 
 ```swift
-if let tryImage = EFQRCode.generate(
-    content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.cgImage()
+if let image = EFQRCode.generate(
+    for: "https://github.com/EFPrefix/EFQRCode",
+    watermark: UIImage(named: "WWF")?.cgImage
 ) {
-    print("Create QRCode image success: \(tryImage)")
+    print("Create QRCode image success \(image)")
 } else {
     print("Create QRCode image failed!")
 }
@@ -209,16 +209,18 @@ if let tryImage = EFQRCode.generate(
 
 可通过 EFQRCode 的类方法 generateWithGIF 来创建 GIF 二维码，使用方式如下：
 
-```swift
-//                  data: 输入的 GIF 图片的数据
-//             generator: 一个用来获取设置的 EFQRCodeGenerator 对象
-// pathToSave (Optional): 用来存储 GIF 的路径，默认不填的话会存储在临时路径
-//      delay (Optional): 输出的动态 QRCode 的帧间延时，默认不填的话从输入的 GIF 图片获取
-//  loopCount (Optional): 输出的动态 QRCode 的循环次数，默认不填的话从输入的 GIF 图片获取
-```
+|参数|作用描述|
+|-:|:-|
+|generator|[**必填**] 一个用来获取设置的 EFQRCodeGenerator 对象|
+|data|[**必填**] 输入的 GIF 图片的数据|
+|pathToSave|用来存储 GIF 的路径，默认会存储在临时路径|
+|delay|输出的动态 QRCode 的帧间延时，默认从输入的 GIF 图片获取|
+|loopCount|输出的动态 QRCode 的循环次数，默认从输入的 GIF 图片获取|
 
 ```swift
-if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+if let qrCodeData = EFQRCode.generateGIF(
+    using: generator, withWatermarkGIF: data
+) {
     print("Create QRCode image success.")
 } else {
     print("Create QRCode image failed!")

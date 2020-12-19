@@ -176,22 +176,22 @@ if let testImage = UIImage(named: "test.png")?.cgImage {
 
 #### 3. Generation
 
-Create QR Code image, quick usage:
+Create QR Code image, basic usage:
+
+|Parameter|Description|
+|-:|:-|
+|content|***REQUIRED***, content of QR Code|
+|size|Width and height of image|
+|backgroundColor|Background color of QRCode|
+|foregroundColor|Foreground color of QRCode|
+|watermark|Background image of QRCode|
 
 ```swift
-//                    content: Content of QR Code
-//            size (Optional): Width and height of image
-// backgroundColor (Optional): Background color of QRCode
-// foregroundColor (Optional): Foreground color of QRCode
-//       watermark (Optional): Background image of QRCode
-```
-
-```swift
-if let tryImage = EFQRCode.generate(
-    content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.cgImage()
+if let image = EFQRCode.generate(
+    for: "https://github.com/EFPrefix/EFQRCode",
+    watermark: UIImage(named: "WWF")?.cgImage
 ) {
-    print("Create QRCode image success: \(tryImage)")
+    print("Create QRCode image success \(image)")
 } else {
     print("Create QRCode image failed!")
 }
@@ -203,18 +203,20 @@ Result:
 
 #### 4. Generation from GIF
 
-You can create GIF QRCode with function `generateWithGIF` of class `EFQRCode`, for example:
+Use `EFQRCode.generateGIF` to create GIF QRCode.
+
+|参数|作用描述|
+|-:|:-|
+|generator|***REQUIRED***, an `EFQRCodeGenerator` instance with other settings|
+|data|***REQUIRED***, encoded input GIF|
+|pathToSave|Where to save the output GIF, default to some temporary path|
+|delay|Output QRCode GIF delay, emitted means no change|
+|loopCount|Times looped in GIF, emitted means no change|
 
 ```swift
-//                  data: Data of input GIF
-//             generator: An object of EFQRCodeGenerator, use for setting
-// pathToSave (Optional): Path to save the output GIF, default is temp path
-//      delay (Optional): Output QRCode GIF delay, default is same as input GIF
-//  loopCount (Optional): Output QRCode GIF loopCount, default is same as input GIF
-```
-
-```swift
-if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+if let qrCodeData = EFQRCode.generateGIF(
+    using: generator, withWatermarkGIF: data
+) {
     print("Create QRCode image success.")
 } else {
     print("Create QRCode image failed!")
@@ -229,11 +231,11 @@ You can get more information from the demo, result will like this:
 
 Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE.md).
 
-## PS
+## Recommendations
 
 1. Please select a high contrast foreground and background color combinations;
-2. You should use `magnification` instead of `size` if you want to improve the definition of QRCode image, you can also increase the value of them;
-3. Magnification too high／Size too long／Content too much may cause failure;
+2. To improve the definition of QRCode images, increase `size`, or scale up using `magnification` (instead);
+3. Magnification too high／size too large／contents too long may cause failure;
 4. It is recommended to test the QRCode image before put it into use;
 5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome.
 
