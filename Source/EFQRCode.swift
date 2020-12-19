@@ -34,7 +34,7 @@ import CoreImage
 public enum EFQRCode {
     // MARK: - Recognizer
     #if canImport(CoreImage)
-    public static func recognize(_ image: CGImage) -> [String]? {
+    public static func recognize(_ image: CGImage) -> [String] {
         return EFQRCodeRecognizer(image: image).recognize()
     }
     #endif
