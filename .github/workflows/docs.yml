@@ -13,8 +13,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Jazzy
         run: sudo gem install jazzy
-      - name: Generate Documentation
+      - name: Preprocess User Guides
+        run: |
+          cp USERGUIDE.md 'User Guide.md'
+          cp USERGUIDE_CN.md '用户指南.md'
+      - name: Generate en-US Documentation
         run: jazzy
+      - name: Generate zh-Hans Documentation
+        run: jazzy --config .jazzy_CN.yaml
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
         with:
