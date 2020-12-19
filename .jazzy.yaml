@@ -1,11 +1,10 @@
 # EFQRCode Jazzy config
 module: EFQRCode
-
 author: EyreFree
-
 theme: fullwidth
 readme: README.md
-documentation: USERGUIDE.md
-
-include:
-  - ./Source/*.swift
+documentation: User Guide.md
+root_url: https://efprefix.github.io/EFQRCode
+github_url: https://github.com/EFPrefix/EFQRCode
+github_file_prefix: https://github.com/EFPrefix/EFQRCode/blob/main
+dash_url: https://efprefix.github.io/EFQRCode/docsets/EFQRCode.xml
