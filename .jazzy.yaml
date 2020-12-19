@@ -6,9 +6,6 @@ author: EyreFree
 theme: fullwidth
 readme: README.md
 documentation: USERGUIDE.md
-exclude:
-  - ./*
 
 include:
   - ./Source/*.swift
-# xcodebuild_arguments: [SWIFT_VRSION=4.2]
