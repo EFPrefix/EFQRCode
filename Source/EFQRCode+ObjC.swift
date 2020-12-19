@@ -10,14 +10,14 @@ import CoreGraphics
 import Foundation
 
 extension EFQRCodeGenerator {
-    @available(swift, deprecated: 1.0)
+    @available(swift, obsoleted: 1.0)
     public convenience init(content: String, encoding: UInt, size: EFIntSize) {
         let encoding = String.Encoding(rawValue: encoding)
         self.init(content: content, encoding: encoding, size: size)
     }
 
     @discardableResult
-    @available(swift, deprecated: 1.0)
+    @available(swift, obsoleted: 1.0)
     public func withContent(_ content: String, encoding: UInt) -> EFQRCodeGenerator {
         return withContent(content, encoding: String.Encoding(rawValue: encoding))
     }
