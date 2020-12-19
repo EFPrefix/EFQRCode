@@ -1,6 +1,6 @@
-## 用户指南
+# 用户指南
 
-### 1. 二维码识别
+## 1. 二维码识别
 
 ```swift
 EFQRCode.recognize(image: CGImage)
@@ -14,7 +14,7 @@ EFQRCodeRecognizer(image: CGImage).recognize()
 
 以上两种写法是完全相等的。因为传入的图片中可能包好多个二维码，所以返回值为 `[String]`，若返回数组为空则表示未识别到图片上的二维码。
 
-### 2. 二维码生成
+## 2. 二维码生成
 
 ```swift
 EFQRCode.generate(
@@ -55,9 +55,9 @@ generator.generate()
 
 以上两种写法是完全相等的，返回值为 `CGImage?`。若返回 `nil` 则表示生成失败。
 
-#### 参数说明
+### 参数说明
 
-##### content: String?
+#### content: String?
 
 二维码内容，必填。有容量限制，最大为 424 个汉字（或 1273 个英文字母）。二维码点阵密集程度随内容增加而提高。不同容量对比如下：
 
@@ -65,7 +65,7 @@ generator.generate()
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent2.jpg)
 
-##### mode: EFQRCodeMode
+#### mode: EFQRCodeMode
 
 二维码样式。`EFQRCodeMode` 定义如下：
 

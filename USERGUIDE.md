@@ -1,6 +1,6 @@
-## User Guide
+# User Guide
 
-### 1. Recognition
+## 1. Recognition
 
 There are two equivalent ways:
 
@@ -16,7 +16,7 @@ EFQRCodeRecognizer(image: CGImage).recognize()
 
 Because of the possibility that more than one QR code exist in the same image, the return value is `[String]`. If the returned array is empty, we could not recognize/didn't find any QR code in the image.
 
-### 2. Generation
+## 2. Generation
 
 Again, there are two equivalent ways of doing this:
 
@@ -59,9 +59,9 @@ generator.generate()
 
 The return value is of type `CGImage?`. If it is `nil`, something went wrong during generation.
 
-#### Parameters Explained
+### Parameters Explained
 
-##### content: String?
+#### content: String?
 
 Content is a required parameter, with its capacity limited at 1273 characters. The density of the QR-lattice increases with the increases of the content length. For example:
 
@@ -69,7 +69,7 @@ Content is a required parameter, with its capacity limited at 1273 characters. T
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent2.jpg)
 
-##### mode: EFQRCodeMode
+#### mode: EFQRCodeMode
 
 Mode of QR Code is defined as `EFQRCodeMode`:
 
@@ -85,7 +85,7 @@ public enum EFQRCodeMode: Int {
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode2.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode3.jpg)
 
-##### inputCorrectionLevel: EFInputCorrectionLevel
+* **inputCorrectionLevel: EFInputCorrectionLevel**
 
 Error-tolerant rate, optional, 4 different level, L: 7% / M 15% / Q 25% / H 30%, default is H, the definition of EFInputCorrectionLevel:
 
