@@ -34,6 +34,11 @@ import CoreImage
 public enum EFQRCode {
     // MARK: - Recognizer
     #if canImport(CoreImage)
+
+    /// Recognizes and returns the contents of a QR code `image`.
+    /// - Parameter image: a QR code to recognize.
+    /// - Returns: an array of contents recognized from `image`.
+    /// - Note: If the returned array is empty, there's no recognizable content in the QR code `image`.
     public static func recognize(_ image: CGImage) -> [String] {
         return EFQRCodeRecognizer(image: image).recognize()
     }

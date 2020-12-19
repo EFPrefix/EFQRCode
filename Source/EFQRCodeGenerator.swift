@@ -32,13 +32,13 @@ import QRCodeSwift
 import CoreGraphics
 import Foundation
 
-// EFQRCode+Create
+/// Class for generating QR code images.
 @objcMembers
 public class EFQRCodeGenerator: NSObject {
     /// Update the property specified the `keyPath` to have `newValue`.
     /// - Parameters:
-    ///   - keyPath: a property to update.
-    ///   - newValue: the new value for the specified property.
+    ///   - keyPath: A property to update.
+    ///   - newValue: The new value for the specified property.
     /// - Returns: `self`, allowing chaining.
     @inlinable
     @discardableResult
@@ -50,13 +50,20 @@ public class EFQRCodeGenerator: NSObject {
 
     // MARK: - Parameters
 
-    /// Content of QR Code
+    /// Content to include in the generated QR Code.
+    /// - Important: Limited to at most 1273 characters.
+    /// - Note: The density of the QR-lattice increases with the increases of the content length.
     public var content: String? {
         didSet {
             imageQRCode = nil
             imageCodes = nil
         }
     }
+    /// Sets the generator to generate for `content` using the specified `encoding`.
+    /// - Parameters:
+    ///   - content: The new content to generate QR code for.
+    ///   - encoding: The encoding to use for generating data from `content`.
+    /// - Returns: `self`.
     @discardableResult
     public func withContent(_ content: String, encoding: String.Encoding? = nil) -> EFQRCodeGenerator {
         self.content = content
@@ -66,24 +73,30 @@ public class EFQRCodeGenerator: NSObject {
         return self
     }
 
-    /// Encoding of the content
+    /// Encoding for `content`.
     public var contentEncoding: String.Encoding = .utf8 {
         didSet {
             imageQRCode = nil
             imageCodes = nil
         }
     }
+    /// Sets the generator to use the specified `encoding`.
+    /// - Parameter encoding: The encoding to use for generating data from `content`.
+    /// - Returns: `self`.
     @discardableResult
     public func withContentEncoding(_ encoding: String.Encoding) -> EFQRCodeGenerator {
         return with(\.contentEncoding, encoding)
     }
 
-    /// Mode of QR Code
+    /// Color mode of QR Code.
     public var mode: EFQRCodeMode? = nil {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Sets the generator to use the specified coloring `mode`.
+    /// - Parameter mode: The new coloring mode to use.
+    /// - Returns: `self`.
     @discardableResult
     public func withMode(_ mode: EFQRCodeMode? = nil) -> EFQRCodeGenerator {
         return with(\.mode, mode)
