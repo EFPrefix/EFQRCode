@@ -46,13 +46,13 @@ extension EFQRCodeGenerator {
 
     @available(swift, obsoleted: 1.0)
     public func generateGIF(inputGIF data: Data) -> Data? {
-        return EFQRCode.generateGIF(using: self, withIntputGIF: data)
+        return EFQRCode.generateGIF(using: self, withWatermarkGIF: data)
     }
 
     @available(swift, obsoleted: 1.0)
     public func generateGIF(inputGIF data: Data, savingTo pathToSave: URL, delay: Double, loopCount: Int, useMultipleThreads: Bool) -> Data? {
         return EFQRCode.generateGIF(
-            using: self, withIntputGIF: data, savingTo: pathToSave,
+            using: self, withWatermarkGIF: data, savingTo: pathToSave,
             delay: delay, loopCount: loopCount,
             useMultipleThreads: useMultipleThreads
         )

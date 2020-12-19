@@ -70,13 +70,13 @@ extension EFQRCode {
         )
     }
 
-    @available(*, deprecated, renamed: "generateGIF(withIntputGIF:using:savingTo:delay:loopCount:useMultipleThreads:)")
+    @available(*, deprecated, renamed: "generateGIF(withWatermarkGIF:using:savingTo:delay:loopCount:useMultipleThreads:)")
     public static func generateWithGIF(
         data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil,
         delay: Double? = nil, loopCount: Int? = nil,
         useMultipleThread:Bool = false
     ) -> Data? {
-        return generateGIF(using: generator, withIntputGIF: data,
+        return generateGIF(using: generator, withWatermarkGIF: data,
                            savingTo: pathToSave,
                            delay: delay, loopCount: loopCount,
                            useMultipleThreads: useMultipleThread)

@@ -101,6 +101,6 @@ public enum EFQRCode {
             .withMagnification(magnification)
             .withPointOffset(pointOffset)
             .withStyledTimingPoint(isTimingPointStyled)
-        return EFQRCode.generateGIF(using: generator, withIntputGIF: watermark)
+        return EFQRCode.generateGIF(using: generator, withWatermarkGIF: watermark)
     }
 }
