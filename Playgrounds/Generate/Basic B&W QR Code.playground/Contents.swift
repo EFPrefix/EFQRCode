@@ -1,8 +1,3 @@
-import EFQRCode
-import CoreImage
-import UIKit
-import PlaygroundSupport
-
 /*:
  ## Generate - Basic B&W QR code
  
@@ -11,13 +6,13 @@ import PlaygroundSupport
  contentEncoding: utf8,
  size: 600 x 600,
   */
+import EFQRCode
 
-if let tryImage = EFQRCode.generate(
-    content: "https://github.com/EFPrefix/EFQRCode"
-) {
-    print("Create QRCode image success: \(tryImage)")
-    _ = tryImage
+let content = "https://github.com/EFPrefix/EFQRCode"
+
+if let tryImage = EFQRCode.generate(for: content) {
+    print("Create QRCode image success")
+    tryImage
 } else {
     print("Create QRCode image failed!")
 }
-
