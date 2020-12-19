@@ -29,7 +29,7 @@ import CoreImage
 
 @objcMembers
 public class EFQRCodeRecognizer: NSObject {
-    public var image: CGImage? {
+    public var image: CGImage {
         didSet {
             contentArray = nil
         }
@@ -41,21 +41,20 @@ public class EFQRCodeRecognizer: NSObject {
         self.image = image
     }
 
-    public func recognize() -> [String]? {
+    public func recognize() -> [String] {
         if nil == contentArray {
             contentArray = getQRString()
         }
-        return contentArray
+        return contentArray!
     }
 
-    // Get QRCodes from image
-    private func getQRString() -> [String]? {
-        guard let finalImage = image else {
-            return nil
-        }
-        let result = finalImage.ciImage().recognizeQRCode(options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
-        if result.isEmpty {
-            return finalImage.grayscale?.ciImage().recognizeQRCode(
+    /// Get QRCodes from image
+    private func getQRString() -> [String] {
+        let result = image.ciImage().recognizeQRCode(
+            options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+        )
+        if result.isEmpty, let grayscaleImage = image.grayscale {
+            return grayscaleImage.ciImage().recognizeQRCode(
                 options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
             )
         }

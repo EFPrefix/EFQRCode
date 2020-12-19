@@ -160,7 +160,7 @@ extension EFQRCode {
 
 extension EFQRCodeRecognizer {
     @available(*, deprecated, message: "Set `image` property directly.")
-    public func setImage(image: CGImage?) {
+    public func setImage(image: CGImage) {
         self.image = image
     }
 }
