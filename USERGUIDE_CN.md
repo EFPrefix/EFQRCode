@@ -70,10 +70,10 @@ generator.generate()
 二维码样式。`EFQRCodeMode` 定义如下：
 
 ```swift
-public enum EFQRCodeMode: Int {
-    // case none        使用 `nil` 表示
-    case grayscale      = 1;
-    case binarization   = 2;
+public enum EFQRCodeMode {
+    // case none        // 使用 `nil` 表示
+    case grayscale
+    case binarization(threshold: CGFloat)
 }
 ```
 

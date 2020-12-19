@@ -74,10 +74,10 @@ Content is a required parameter, with its capacity limited at 1273 characters. T
 Mode of QR Code is defined as `EFQRCodeMode`:
 
 ```swift
-public enum EFQRCodeMode: Int {
-    // case none        use `nil` instead
-    case grayscale      = 1;
-    case binarization   = 2;
+public enum EFQRCodeMode {
+    // case none     // use `nil` instead
+    case grayscale
+    case binarization(threshold: CGFloat)
 }
 ```
 

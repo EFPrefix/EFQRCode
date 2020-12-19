@@ -900,7 +900,7 @@ public class EFQRCodeGenerator: NSObject {
         return 17 + 4 * version
     }
 
-    // MARK: - Recommend magnification
+    // MARK: - Recommended Magnification
     
     public func minMagnification(greaterThanOrEqualTo size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {

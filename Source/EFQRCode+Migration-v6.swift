@@ -9,6 +9,7 @@
 import CoreGraphics
 import Foundation
 
+// MARK: - Deprecated
 extension EFQRCode {
     @available(*, deprecated, renamed: "generate(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointShape:mode:magnification:pointOffset:)")
     public static func generate(

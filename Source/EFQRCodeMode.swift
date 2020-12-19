@@ -29,6 +29,7 @@ import CoreGraphics
 /// The coloring modes.
 public enum EFQRCodeMode {
     /// Use original colors.
+    /// - Important: Use `nil` instead.
     @available(*, deprecated, message: "Use `nil` instead.")
     case none
     /// Black and white only.
