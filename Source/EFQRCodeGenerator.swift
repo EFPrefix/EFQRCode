@@ -85,7 +85,7 @@ public class EFQRCodeGenerator: NSObject {
         }
     }
     @discardableResult
-    public func withMode(_ mode: EFQRCodeMode? = nil) -> EFQRCodeGenerator {
+    public func withMode(_ mode: EFQRCodeMode?) -> EFQRCodeGenerator {
         return with(\.mode, mode)
     }
 
