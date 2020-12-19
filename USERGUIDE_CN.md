@@ -3,7 +3,7 @@
 ## 1. 二维码识别
 
 ```swift
-EFQRCode.recognize(image: CGImage)
+EFQRCode.recognize(CGImage)
 ```
 
 或

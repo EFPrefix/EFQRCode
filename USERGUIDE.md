@@ -5,7 +5,7 @@
 There are two equivalent ways:
 
 ```swift
-EFQRCode.recognize(image: CGImage)
+EFQRCode.recognize(CGImage)
 ```
 
 or

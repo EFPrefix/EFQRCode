@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://travis-ci.org/EFPrefix/EFQRCode">
-        <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
+        <img src="https://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
     <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
         <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
@@ -165,18 +165,15 @@ import EFQRCode
 获取图片中所包含的二维码，同一张图片中可能包含多个二维码，所以返回值是一个字符串数组：
 
 ```swift
-if let testImage = UIImage(named: "test.png")?.cgImage() {
-    if let tryCodes = EFQRCode.recognize(image: testImage) {
-        if tryCodes.count > 0 {
-            print("There are \(tryCodes.count) codes in testImage.")
-            for (index, code) in tryCodes.enumerated() {
-                print("The content of \(index) QR Code is: \(code).")
-            }
-        } else {
-            print("There is no QR Codes in testImage.")
+if let testImage = UIImage(named: "test.png")?.cgImage {
+    let codes = EFQRCode.recognize(testImage)
+    if !codes.isEmpty {
+        print("There are \(codes.count) codes")
+        for (index, code) in codes.enumerated() {
+            print("The content of QR Code \(index) is \(code).")
         }
     } else {
-        print("Recognize failed, check your input image!")
+        print("There is no QR Codes in testImage.")
     }
 }
 ```
