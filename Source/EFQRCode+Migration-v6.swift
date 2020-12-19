@@ -153,7 +153,8 @@ import CoreImage
 
 extension EFQRCode {
     @available(*, deprecated, renamed: "recognize(_:)")
-    public static func recognize(image: CGImage) -> [String]? {
+    public static func recognize(image: CGImage?) -> [String]? {
+        guard let image = image else { return nil }
         return recognize(image)
     }
 }
