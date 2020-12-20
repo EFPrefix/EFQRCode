@@ -148,13 +148,16 @@ extension ViewController: NSAlertDelegate {
             generatorViewTable.addSubview(generatorViewOptions[index])
             generatorViewOptions[index].snp.makeConstraints {
                 (make) in
+
+                if index > 0 {
+                    make.width.equalTo(generatorViewOptions[index-1])
+                }
                 
                 if index.isMultiple(of: 2) {
                     make.leading.equalTo(0)
                 } else {
                     make.leading.equalTo(generatorViewOptions[index - 1].snp.trailing).offset(margin)
                     make.trailing.equalTo(0)
-                    make.width.equalTo(generatorViewOptions[index - 1])
                 }
 
                 if index > 1 {
@@ -164,9 +167,14 @@ extension ViewController: NSAlertDelegate {
                     make.top.equalTo(0)
                 }
 
-                if generatorViewOptions.count - 1 == index
-                    || generatorViewOptions.count - 2 == index {
+                if generatorViewOptions.count - 1 == index {
                     make.bottom.equalTo(0)
+                } else if generatorViewOptions.count - 2 == index {
+                    if generatorViewOptions.count.isMultiple(of: 2) {
+                        make.bottom.equalTo(0)
+                    } else {
+                        make.bottom.equalTo(generatorViewOptions[index-1])
+                    }
                 }
             }
         }
@@ -197,6 +205,7 @@ extension ViewController: NSAlertDelegate {
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowTransparent)
         generator.setPointShape(pointShape: pointShape)
+        generator.setIgnoreTiming(ignoreTiming: ignoreTiming)
 
         switch watermark {
         case .gif(let data)?: // GIF
@@ -267,10 +276,22 @@ extension ViewController: NSAlertDelegate {
     }
 
     @objc func generatorViewOptionsClicked(button: NSButton) {
+        var state: Bool? {
+            switch button.state {
+            case .on where button.title.isEmpty:
+                return true
+            case .off where button.title.isEmpty:
+                return false
+            default:
+                return nil
+            }
+        }
         [chooseInputCorrectionLevel, chooseMode, chooseSize, chooseMagnification,
          chooseBackColor, chooseFrontColor, chooseIcon, chooseIconSize,
          chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset,
-         chooseAllowTransparent, chooseBinarizationThreshold, chooseShape][button.tag]()
+         { self.chooseAllowTransparent(state) }, chooseBinarizationThreshold,
+         chooseShape, { self.chooseTimingPatternStyle(state) }
+        ][button.tag]()
     }
 
     func refresh() {
@@ -287,25 +308,26 @@ extension ViewController: NSAlertDelegate {
                 return 2
             }
         }()
-        let detailArray = [
+        let detailArray: [Any?] = [
             ["L", "M", "Q", "H"][inputCorrectionLevel.rawValue],
             Localized.Parameters.modeNames[modeIndex],
             "\(size.width)x\(size.height)",
             magnificationString,
-            "", // backgroundColor
-            "", // foregroundColor
-            "", // icon
+            nil, // backgroundColor
+            nil, // foregroundColor
+            nil, // icon
             iconSizeString,
-            "", // watermark
+            nil, // watermark
             watermarkModeString,
             Localized.number(foregroundPointOffset),
-            allowTransparent ? Localized.yes : Localized.no,
+            allowTransparent,
             Localized.number(binarizationThreshold),
-            Localized.Parameters.shapeNames[pointShape.rawValue]
+            Localized.Parameters.shapeNames[pointShape.rawValue],
+            ignoreTiming,
         ]
 
         for (index, button) in generatorViewOptions.enumerated() {
-            if !detailArray[index].isEmpty {
+            func makeTextField() {
                 if nil == button.detailView {
                     let label = NSTextField()
                     label.isBezeled = false
@@ -320,11 +342,36 @@ extension ViewController: NSAlertDelegate {
                         make.leading.centerY.equalTo(button)
                         make.trailing.equalTo(-10)
                     }
-
                     button.detailView = label
                 }
-                (button.detailView as? NSTextField)?.stringValue = detailArray[index]
-            } else {
+            }
+            func makeCheckbox() {
+                if nil == button.detailView {
+                    if #available(macOS 10.12, *) {
+                        let toggle = NSButton(checkboxWithTitle: "", target: self, action: #selector(generatorViewOptionsClicked))
+                        toggle.allowsMixedState = false
+                        button.addSubview(toggle)
+                        toggle.snp.makeConstraints {
+                            (make) in
+                            make.centerY.equalTo(button)
+                            make.trailing.equalTo(-10)
+                        }
+                        toggle.tag = index
+                        button.detailView = toggle
+                    } else {
+                        makeTextField()
+                    }
+                }
+            }
+            switch detailArray[index] {
+            case let detail as Bool:
+                makeCheckbox()
+                (button.detailView as? NSButton)?.state = detail ? .on : .off
+                (button.detailView as? NSTextField)?.stringValue = detail ? Localized.yes : Localized.no
+            case let detail as String:
+                makeTextField()
+                (button.detailView as? NSTextField)?.stringValue = detail
+            case nil:
                 if nil == button.detailView {
                     let rightImageView = NSImageView()
                     rightImageView.imageAlignment = .alignCenter
@@ -363,6 +410,8 @@ extension ViewController: NSAlertDelegate {
                 default:
                     break
                 }
+            default:
+                break
             }
         }
     }
@@ -470,10 +519,15 @@ extension ViewController: NSAlertDelegate {
         }
     }
 
-    func chooseAllowTransparent() {
-        choose(Localized.Title.allowTransparent, from: [Localized.yes, Localized.no]) {
-            (self, response) in
-            self.allowTransparent = [true, false][response.rawValue - 1000]
+    func chooseAllowTransparent(_ allowTransparent: Bool? = nil) {
+        switch allowTransparent {
+        case nil:
+            choose(Localized.Title.allowTransparent, from: [Localized.yes, Localized.no]) {
+                (self, response) in
+                self.allowTransparent = [true, false][response.rawValue - 1000]
+            }
+        case let .some(x):
+            self.allowTransparent = x
         }
     }
 
@@ -492,6 +546,19 @@ extension ViewController: NSAlertDelegate {
             (self, response) in
             self.pointShape = [.square, .circle, .diamond][response.rawValue - 1000]
         }
+    }
+
+    func chooseTimingPatternStyle(_ shouldIgnore: Bool? = nil) {
+        switch shouldIgnore {
+        case nil:
+            choose(Localized.Title.ignoreTiming, from: [Localized.yes, Localized.no]) {
+                (self, response) in
+                self.ignoreTiming = [true, false][response.rawValue - 1000]
+            }
+        case let .some(x):
+            self.ignoreTiming = x
+        }
+
     }
     
     private func choose(

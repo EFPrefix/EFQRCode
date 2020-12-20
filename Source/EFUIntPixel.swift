@@ -24,18 +24,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import CoreGraphics
-
-public struct EFUIntPixel {
-    public var red: UInt8 = 0
-    public var green: UInt8 = 0
-    public var blue: UInt8 = 0
-    public var alpha: UInt8 = 0
-
-    init(red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8) {
-        self.red = red
-        self.green = green
-        self.blue = blue
-        self.alpha = alpha
-    }
+struct EFUIntPixel {
+    var red: UInt8 = 0
+    var green: UInt8 = 0
+    var blue: UInt8 = 0
+    var alpha: UInt8 = 0
 }

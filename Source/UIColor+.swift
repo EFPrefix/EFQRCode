@@ -48,7 +48,6 @@ extension UIColor {
 }
 
 extension UIColor {
-
     #if canImport(CoreImage)
     func ciColor() -> CIColor {
         return CIColor(color: self)
@@ -59,13 +58,12 @@ extension UIColor {
         return self.cgColor
     }
     
-    static func white(white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> UIColor {
+    static func white(_ white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> UIColor {
         return self.init(white: white, alpha: alpha)
     }
     
-    static func black(black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> UIColor {
-        let white: CGFloat = 1.0 - black
-        return Self.white(white: white, alpha: alpha)
+    static func black(_ black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> UIColor {
+        return white(1.0 - black, alpha: alpha)
     }
 }
 #endif

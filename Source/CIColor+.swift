@@ -32,7 +32,6 @@ import UIKit
 #endif
 
 extension CIColor {
-
     #if canImport(UIKit)
     func uiColor() -> UIColor {
         return UIColor(ciColor: self)

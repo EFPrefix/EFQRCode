@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17700" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
+    <device id="watch38"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
     </dependencies>
     <scenes>
         <!--NumberPad-->
@@ -219,12 +217,6 @@
                                 <action selector="changeInputCorrectionLevel:" destination="x7r-oY-9um" id="Q26-Vi-WCv"/>
                             </connections>
                         </slider>
-                        <label width="1" alignment="left" text="Mode" textAlignment="center" minimumScaleFactor="0.5" id="A9e-1b-MIh"/>
-                        <picker height="40" alignment="left" focusStyle="stack" id="a6K-zF-snE">
-                            <connections>
-                                <action selector="pickedMode:" destination="x7r-oY-9um" id="REW-xT-DS1"/>
-                            </connections>
-                        </picker>
                         <label width="1" alignment="left" text="Width &amp; Height" textAlignment="center" minimumScaleFactor="0.5" id="CJT-KQ-1aL"/>
                         <group width="1" alignment="left" id="S0W-4O-EuA">
                             <items>
@@ -309,28 +301,40 @@ Width &amp; Height</string>
                                 <action selector="pickedWatermarkMode:" destination="x7r-oY-9um" id="svk-PR-LoN"/>
                             </connections>
                         </picker>
-                        <label width="1" alignment="left" text="Foreground Point Offset" textAlignment="center" minimumScaleFactor="0.5" id="qcK-9t-ZZl"/>
-                        <picker height="40" alignment="left" focusStyle="stack" id="U0M-Ic-fIA">
-                            <connections>
-                                <action selector="pickedForegroundPointOffset:" destination="x7r-oY-9um" id="3N4-P5-tjZ"/>
-                            </connections>
-                        </picker>
                         <switch width="1" alignment="left" value="YES" title="Allow Transparent" numberOfLines="1" minimumScaleFactor="0.5" id="N9p-sO-zfZ">
                             <color key="tintColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="allowTransparent:" destination="x7r-oY-9um" id="Ye1-aq-yKY"/>
                             </connections>
                         </switch>
-                        <label width="1" alignment="left" text="Binarization Threshold" textAlignment="center" minimumScaleFactor="0.5" id="BcI-AJ-ri0"/>
-                        <picker height="40" alignment="left" focusStyle="stack" id="lmO-o0-84w">
+                        <label width="1" alignment="left" text="Point Offset" textAlignment="center" minimumScaleFactor="0.5" id="qcK-9t-ZZl"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="U0M-Ic-fIA">
                             <connections>
-                                <action selector="pickedBinarizationThreshold:" destination="x7r-oY-9um" id="zMm-2H-NTd"/>
+                                <action selector="pickedForegroundPointOffset:" destination="x7r-oY-9um" id="3N4-P5-tjZ"/>
                             </connections>
                         </picker>
                         <label width="1" alignment="left" text="Point Shape" textAlignment="center" id="3Y5-pz-aKM"/>
                         <picker height="40" alignment="left" focusStyle="stack" id="xtz-td-Dau">
                             <connections>
                                 <action selector="pickedPointShape:" destination="x7r-oY-9um" id="vfw-z9-TVU"/>
+                            </connections>
+                        </picker>
+                        <switch width="1" alignment="left" title="Style Timing Point" numberOfLines="1" minimumScaleFactor="0.5" id="odq-ce-Wgw">
+                            <color key="tintColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="ignoreTiming:" destination="x7r-oY-9um" id="xlC-Nd-Pm4"/>
+                            </connections>
+                        </switch>
+                        <label width="1" alignment="left" text="Mode" textAlignment="center" minimumScaleFactor="0.5" id="A9e-1b-MIh"/>
+                        <picker height="40" alignment="left" focusStyle="stack" id="a6K-zF-snE">
+                            <connections>
+                                <action selector="pickedMode:" destination="x7r-oY-9um" id="REW-xT-DS1"/>
+                            </connections>
+                        </picker>
+                        <label width="1" alignment="left" hidden="YES" text="Binarization Threshold" textAlignment="center" minimumScaleFactor="0.5" id="BcI-AJ-ri0"/>
+                        <picker height="40" alignment="left" hidden="YES" focusStyle="stack" id="lmO-o0-84w">
+                            <connections>
+                                <action selector="pickedBinarizationThreshold:" destination="x7r-oY-9um" id="zMm-2H-NTd"/>
                             </connections>
                         </picker>
                         <button width="1" alignment="left" title="Generate" id="UDk-vC-rXj">
@@ -342,7 +346,8 @@ Width &amp; Height</string>
                     </items>
                     <connections>
                         <outlet property="backgroundColorPicker" destination="7Px-Vg-gTE" id="mG3-mf-mHG"/>
-                        <outlet property="binarizationThresholdPicker" destination="lmO-o0-84w" id="Kz5-ea-YzO"/>
+                        <outlet property="binarizationThresholdLabel" destination="BcI-AJ-ri0" id="Tmb-cx-K0c"/>
+                        <outlet property="binarizationThresholdPicker" destination="lmO-o0-84w" id="FrP-o2-Dje"/>
                         <outlet property="contentDisplay" destination="pSv-yw-I6b" id="RVw-tK-to0"/>
                         <outlet property="foregroundColorPicker" destination="LB4-rc-W90" id="r7v-dV-pMY"/>
                         <outlet property="foregroundPointOffsetPicker" destination="U0M-Ic-fIA" id="eD3-DU-lgl"/>

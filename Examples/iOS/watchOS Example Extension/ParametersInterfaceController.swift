@@ -73,7 +73,16 @@ class ParametersInterfaceController: WKInterfaceController {
     }
     @IBAction func pickedMode(_ value: Int) {
         selectedMode = [.none, .grayscale, .binarization(threshold: 0.5)][value]
+        if case .binarization = selectedMode {
+            binarizationThresholdLabel.setHidden(false)
+            binarizationThresholdPicker?.setHidden(false)
+        } else {
+            binarizationThresholdLabel.setHidden(true)
+            binarizationThresholdPicker?.setHidden(true)
+        }
     }
+
+    @IBOutlet var binarizationThresholdLabel: WKInterfaceLabel!
     
     private var width = 1024
     @IBOutlet var widthButton: WKInterfaceButton?
@@ -153,7 +162,7 @@ class ParametersInterfaceController: WKInterfaceController {
     var icon: UIImage? = nil
     @IBOutlet var iconPicker: WKInterfacePicker? {
         didSet {
-            iconPicker?.setItems(Localized.Parameters.iconNames.map {
+            iconPicker?.setItems(([Localized.none] + Localized.Parameters.iconNames).map {
                 let item = WKPickerItem()
                 item.title = $0
                 return item
@@ -191,7 +200,7 @@ class ParametersInterfaceController: WKInterfaceController {
     var watermark: EFImage? = nil
     @IBOutlet var watermarkPicker: WKInterfacePicker? {
         didSet {
-            watermarkPicker?.setItems(Localized.Parameters.watermarkNames.map {
+            watermarkPicker?.setItems(([Localized.none] + Localized.Parameters.watermarkNames).map {
                 let item = WKPickerItem()
                 item.title = $0
                 return item
@@ -283,6 +292,11 @@ class ParametersInterfaceController: WKInterfaceController {
     @IBAction func pickedPointShape(_ value: Int) {
         pointShape = EFPointShape(rawValue: value) ?? pointShape
     }
+
+    private var ignoreTiming = false
+    @IBAction func ignoreTiming(_ value: Bool) {
+        ignoreTiming = value
+    }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         ParametersInterfaceController.lastContent.value = link as NSString
@@ -301,6 +315,7 @@ class ParametersInterfaceController: WKInterfaceController {
         generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
         generator.setAllowTransparent(allowTransparent: allowsTransparent)
         generator.setPointShape(pointShape: pointShape)
+        generator.setIgnoreTiming(ignoreTiming: ignoreTiming)
         
         switch watermark {
         case .gif(let data)?: // GIF

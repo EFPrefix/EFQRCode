@@ -26,23 +26,19 @@
 
 import CoreGraphics
 
-#if canImport(CoreImage)
-import CoreImage
-#endif
-
 @objcMembers
-public class EFIntSize: NSObject {
-    public private(set) var width: Int = 0
-    public private(set) var height: Int = 0
-
-    public init(width: Int, height: Int) {
+public final class EFIntSize: NSObject {
+    public let width: Int
+    public let height: Int
+    
+    public init(width: Int = 0, height: Int = 0) {
         self.width = width
         self.height = height
     }
     
-    public init(size: CGSize) {
-        self.width = Int(size.width)
-        self.height = Int(size.height)
+    public convenience init(size: CGSize) {
+        self.init(width: Int(size.width),
+                  height: Int(size.height))
     }
 
     public var cgSize: CGSize {

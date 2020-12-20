@@ -25,9 +25,9 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
-import Foundation
 
 public enum EFQRCodeMode {
+    @available(*, deprecated, message: "Use `nil` instead.")
     case none
     case grayscale
     case binarization(threshold: CGFloat)
