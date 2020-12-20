@@ -74,10 +74,9 @@ extension EFQRCode {
     public static func generateWithGIF(
         data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil,
         delay: Double? = nil, loopCount: Int? = nil,
-        useMultipleThread:Bool = false
+        useMultipleThread: Bool = false
     ) -> Data? {
         return generateGIF(using: generator, withWatermarkGIF: data,
-                           savingTo: pathToSave,
                            delay: delay, loopCount: loopCount,
                            useMultipleThreads: useMultipleThread)
     }

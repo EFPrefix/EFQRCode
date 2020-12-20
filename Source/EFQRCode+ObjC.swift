@@ -50,9 +50,11 @@ extension EFQRCodeGenerator {
     }
 
     @available(swift, obsoleted: 1.0)
-    public func generateGIF(watermarkGIF data: Data, savingTo pathToSave: URL, delay: Double, loopCount: Int, useMultipleThreads: Bool) -> Data? {
+    public func generateGIF(watermarkGIF data: Data,
+                            delay: Double, loopCount: Int,
+                            useMultipleThreads: Bool) -> Data? {
         return EFQRCode.generateGIF(
-            using: self, withWatermarkGIF: data, savingTo: pathToSave,
+            using: self, withWatermarkGIF: data,
             delay: delay, loopCount: loopCount,
             useMultipleThreads: useMultipleThreads
         )

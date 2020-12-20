@@ -48,7 +48,6 @@ extension EFQRCode {
 
     public static func generateGIF(using generator: EFQRCodeGenerator,
                                    withWatermarkGIF data: Data,
-                                   savingTo pathToSave: URL? = nil,
                                    delay: Double? = nil, loopCount: Int? = nil,
                                    useMultipleThreads:Bool = false) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
