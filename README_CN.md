@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://travis-ci.org/EFPrefix/EFQRCode">
-        <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
+        <img src="https://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
     <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
         <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
@@ -54,7 +54,7 @@
     </a>
 </p>
 
-EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 `iOS`、`macOS`、`watchOS` 和 `tvOS` 平台，并且支持通过 `CocoaPods`、`Carthage` 和 `Swift Package Manager` 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。
+EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 iOS、macOS、watchOS 和 tvOS 平台，并且支持通过 CocoaPods、Carthage 和 Swift Package Manager 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。
 
 > [English Introduction](https://github.com/EFPrefix/EFQRCode/blob/main/README.md)
 
@@ -99,7 +99,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 | 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
 | 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
 | 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| 6.x     | Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+| **6.x** | Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
 
 ## 安装
 
@@ -140,7 +140,7 @@ github "EFPrefix/EFQRCode" ~> 6.0.0
 
 ### Swift Package Manager
 
-[Swift Package Manager](https://swift.org/package-manager/) 是一个集成在 `swift` 编译器中的用来进行 Swift 代码自动化发布的工具。
+[Swift Package Manager](https://swift.org/package-manager/) 是一个集成在 Swift 编译器中的用来进行 Swift 代码自动化发布的工具。
 
 如果你已经建立了你的 Swift 包，将 EFQRCode 加入依赖是十分容易的，只需要将其添加到你的 `Package.swift` 文件的 `dependencies` 项中即可：
 
@@ -165,18 +165,15 @@ import EFQRCode
 获取图片中所包含的二维码，同一张图片中可能包含多个二维码，所以返回值是一个字符串数组：
 
 ```swift
-if let testImage = UIImage(named: "test.png")?.cgImage() {
-    if let tryCodes = EFQRCode.recognize(image: testImage) {
-        if tryCodes.count > 0 {
-            print("There are \(tryCodes.count) codes in testImage.")
-            for (index, code) in tryCodes.enumerated() {
-                print("The content of \(index) QR Code is: \(code).")
-            }
-        } else {
-            print("There is no QR Codes in testImage.")
+if let testImage = UIImage(named: "test.png")?.cgImage {
+    let codes = EFQRCode.recognize(testImage)
+    if !codes.isEmpty {
+        print("There are \(codes.count) codes")
+        for (index, code) in codes.enumerated() {
+            print("The content of QR Code \(index) is \(code).")
         }
     } else {
-        print("Recognize failed, check your input image!")
+        print("There is no QR Codes in testImage.")
     }
 }
 ```
@@ -185,20 +182,20 @@ if let testImage = UIImage(named: "test.png")?.cgImage() {
 
 根据所输入参数创建各种艺术二维码图片，快速使用方式如下:
 
-```swift
-//                    content: 二维码内容
-//            size (Optional): 二维码宽高
-// backgroundColor (Optional): 二维码背景色
-// foregroundColor (Optional): 二维码前景色
-//       watermark (Optional): 水印图
-```
+|参数|作用描述|
+|-:|:-|
+|`content`|[**必填**] 二维码内容|
+|`size`|二维码宽高|
+|`backgroundColor`|二维码背景色|
+|`foregroundColor`|二维码前景色|
+|`watermark`|背景水印图|
 
 ```swift
-if let tryImage = EFQRCode.generate(
-    content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.cgImage()
+if let image = EFQRCode.generate(
+    for: "https://github.com/EFPrefix/EFQRCode",
+    watermark: UIImage(named: "WWF")?.cgImage
 ) {
-    print("Create QRCode image success: \(tryImage)")
+    print("Create QRCode image success \(image)")
 } else {
     print("Create QRCode image failed!")
 }
@@ -210,18 +207,19 @@ if let tryImage = EFQRCode.generate(
 
 #### 4. 动态二维码
 
-可通过 EFQRCode 的类方法 generateWithGIF 来创建 GIF 二维码，使用方式如下：
+可通过 EFQRCode 的类方法 `generateWithGIF` 来创建 GIF 二维码，使用方式如下：
+
+|参数|作用描述|
+|-:|:-|
+|`generator`|[**必填**] 一个用来获取设置的 `EFQRCodeGenerator` 对象|
+|`data`|[**必填**] 输入的 GIF 图片的数据|
+|`delay`|输出的动态 QRCode 的帧间延时，默认从输入的 GIF 图片获取|
+|`loopCount`|输出的动态 QRCode 的循环次数，默认从输入的 GIF 图片获取|
 
 ```swift
-//                  data: 输入的 GIF 图片的数据
-//             generator: 一个用来获取设置的 EFQRCodeGenerator 对象
-// pathToSave (Optional): 用来存储 GIF 的路径，默认不填的话会存储在临时路径
-//      delay (Optional): 输出的动态 QRCode 的帧间延时，默认不填的话从输入的 GIF 图片获取
-//  loopCount (Optional): 输出的动态 QRCode 的循环次数，默认不填的话从输入的 GIF 图片获取
-```
-
-```swift
-if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+if let qrCodeData = EFQRCode.generateGIF(
+    using: generator, withWatermarkGIF: data
+) {
     print("Create QRCode image success.")
 } else {
     print("Create QRCode image failed!")
