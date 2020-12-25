@@ -14,7 +14,7 @@ jobs:
       - name: Install Jazzy
         run: sudo gem install jazzy
       - name: Generate Documentation
-        run: jazzy
+        run: ./docs.sh
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
         with:

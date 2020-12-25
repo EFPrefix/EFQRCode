@@ -1,0 +1,8 @@
+# EFQRCode Jazzy 设置
+module: EFQRCode
+author: EyreFree
+theme: fullwidth
+readme: README_CN.md
+documentation: 用户指南.md
+exclude: ./*
+output: docs/zh
