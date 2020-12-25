@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://travis-ci.org/EFPrefix/EFQRCode">
-        <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
+        <img src="https://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
     <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
         <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
@@ -51,17 +51,17 @@
     </a>
 </p>
 
-EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on `CoreGraphics`, `CoreImage` and `ImageIO`. EFQRCode provides you a better way to operate QRCode in your app, it works on `iOS`, `macOS`, `watchOS` and `tvOS`, and it is available through `CocoaPods`, `Carthage` and `Swift Package Manager`. This project is inspired by [qrcode](https://github.com/sylnsfar/qrcode). 
+EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images, inspired by [qrcode](https://github.com/sylnsfar/qrcode). Based on `CoreGraphics`, `CoreImage`, and `ImageIO`, EFQRCode provides you a better way to handle QRCode in your app, no matter if it is on iOS, macOS, watchOS, and/or tvOS. You can integrate EFQRCode through CocoaPods, Carthage, and/or Swift Package Manager.
 
 > [中文介绍](https://github.com/EFPrefix/EFQRCode/blob/main/README_CN.md)
 
-## Overview
+## Examples
 
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF8.gif)  
 
-## Demo
+## Demo Projects
 
 ### App Store
 
@@ -77,7 +77,7 @@ You can also click the `Mac App Store` button below to download demo for `macOS`
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
 </a>
 
-### Manual
+### Compile Demo Manually
 
 To run the example project manually, clone the repo, demos are in the 'Examples' folder, remember run command `sh Startup.sh` in terminal to get all dependencies first, then open `EFQRCode.xcworkspace` with Xcode and select the target you want, run.
 
@@ -94,7 +94,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 | 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
 | 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
 | 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| 6.x     | Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+| **6.x** | Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
 
 ## Installation
 
@@ -136,7 +136,7 @@ Run `carthage update` to build the framework and drag the built `EFQRCode.framew
 
 ### Swift Package Manager
 
-The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler.
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the Swift compiler.
 
 Once you have your Swift package set up, adding EFQRCode as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
 
@@ -158,43 +158,40 @@ import EFQRCode
 
 #### 2. Recognition
 
-Get QR Codes from CGImage, maybe there are several codes in a image, so it will return an array:
+A String Array is returned as there might be several QR Codes in a single `CGImage`:
 
 ```swift
-if let testImage = UIImage(named: "test.png")?.cgImage() {
-    if let tryCodes = EFQRCode.recognize(image: testImage) {
-        if tryCodes.count > 0 {
-            print("There are \(tryCodes.count) codes in testImage.")
-            for (index, code) in tryCodes.enumerated() {
-                print("The content of \(index) QR Code is: \(code).")
-            }
-        } else {
-            print("There is no QR Codes in testImage.")
+if let testImage = UIImage(named: "test.png")?.cgImage {
+    let codes = EFQRCode.recognize(testImage)
+    if !codes.isEmpty {
+        print("There are \(codes.count) codes")
+        for (index, code) in codes.enumerated() {
+            print("The content of QR Code \(index) is \(code).")
         }
     } else {
-        print("Recognize failed, check your input image!")
+        print("There is no QR Codes in testImage.")
     }
 }
 ```
 
 #### 3. Generation
 
-Create QR Code image, quick usage:
+Create QR Code image, basic usage:
+
+|Parameter|Description|
+|-:|:-|
+|`content`|***REQUIRED***, content of QR Code|
+|`size`|Width and height of image|
+|`backgroundColor`|Background color of QRCode|
+|`foregroundColor`|Foreground color of QRCode|
+|`watermark`|Background image of QRCode|
 
 ```swift
-//                    content: Content of QR Code
-//            size (Optional): Width and height of image
-// backgroundColor (Optional): Background color of QRCode
-// foregroundColor (Optional): Foreground color of QRCode
-//       watermark (Optional): Background image of QRCode
-```
-
-```swift
-if let tryImage = EFQRCode.generate(
-    content: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.cgImage()
+if let image = EFQRCode.generate(
+    for: "https://github.com/EFPrefix/EFQRCode",
+    watermark: UIImage(named: "WWF")?.cgImage
 ) {
-    print("Create QRCode image success: \(tryImage)")
+    print("Create QRCode image success \(image)")
 } else {
     print("Create QRCode image failed!")
 }
@@ -206,18 +203,19 @@ Result:
 
 #### 4. Generation from GIF
 
-You can create GIF QRCode with function `generateWithGIF` of class `EFQRCode`, for example:
+Use `EFQRCode.generateGIF` to create GIF QRCode.
+
+|Parameter|Description|
+|-:|:-|
+|`generator`|***REQUIRED***, an `EFQRCodeGenerator` instance with other settings|
+|`data`|***REQUIRED***, encoded input GIF|
+|`delay`|Output QRCode GIF delay, emitted means no change|
+|`loopCount`|Times looped in GIF, emitted means no change|
 
 ```swift
-//                  data: Data of input GIF
-//             generator: An object of EFQRCodeGenerator, use for setting
-// pathToSave (Optional): Path to save the output GIF, default is temp path
-//      delay (Optional): Output QRCode GIF delay, default is same as input GIF
-//  loopCount (Optional): Output QRCode GIF loopCount, default is same as input GIF
-```
-
-```swift
-if let qrcodeData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+if let qrCodeData = EFQRCode.generateGIF(
+    using: generator, withWatermarkGIF: data
+) {
     print("Create QRCode image success.")
 } else {
     print("Create QRCode image failed!")
@@ -232,11 +230,11 @@ You can get more information from the demo, result will like this:
 
 Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE.md).
 
-## PS
+## Recommendations
 
 1. Please select a high contrast foreground and background color combinations;
-2. You should use `magnification` instead of `size` if you want to improve the definition of QRCode image, you can also increase the value of them;
-3. Magnification too high／Size too long／Content too much may cause failure;
+2. To improve the definition of QRCode images, increase `size`, or scale up using `magnification` (instead);
+3. Magnification too high／size too large／contents too long may cause failure;
 4. It is recommended to test the QRCode image before put it into use;
 5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome.
 
