@@ -26,9 +26,14 @@
 
 import CoreGraphics
 
+/// The color rendering modes.
 public enum EFQRCodeMode {
+    /// Use original colors.
+    /// - Important: Use `nil` instead.
     @available(*, deprecated, message: "Use `nil` instead.")
     case none
+    /// Black and white only.
     case grayscale
+    /// Use only background and foreground color.
     case binarization(threshold: CGFloat)
 }

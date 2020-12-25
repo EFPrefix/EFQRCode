@@ -26,8 +26,12 @@
 
 import Foundation
 
+/// Shapes of foreground code points.
 @objc public enum EFPointShape: Int {
+    /// Classical QR code look and feel 🔳.
     case square         = 0
+    /// More well rounded 🔘.
     case circle         = 1
+    /// Sparkling ✨.
     case diamond        = 2
 }

@@ -30,17 +30,22 @@ import CoreGraphics
 import CoreImage
 #else
 import QRCodeSwift
-import Foundation // weird we have to do this, but otherwise
-// @objc attribute used without importing module 'Foundation'
+import Foundation // @objc attribute depends on this.
 #endif
 
+/// Levels of tolerance.
 @objc public enum EFInputCorrectionLevel: Int {
-    case l = 0     // L 7%
-    case m = 1     // M 15%
-    case q = 2     // Q 25%
-    case h = 3     // H 30%
+    /// L 7%.
+    case l = 0
+    /// M 15%.
+    case m = 1
+    /// Q 25%.
+    case q = 2
+    /// H 30%.
+    case h = 3
 
     #if !canImport(CoreImage)
+    /// Representation of `self` in QRCodeSwift.
     var qrErrorCorrectLevel: QRErrorCorrectLevel {
         switch self {
         case .h: return .H

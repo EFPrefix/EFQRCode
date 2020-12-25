@@ -27,20 +27,28 @@
 #if canImport(CoreImage)
 import CoreImage
 
+/// Class for recognizing QR code contents from images.
 @objcMembers
 public class EFQRCodeRecognizer: NSObject {
+    /// The QR code to recognize.
     public var image: CGImage {
         didSet {
             contentArray = nil
         }
     }
 
+    /// Recognized QR code content cache.
     private var contentArray: [String]?
 
+    /// Initialize a QR code recognizer to recognize the specified `image`.
+    /// - Parameter image: a QR code to recognize.
     public init(image: CGImage) {
         self.image = image
     }
 
+    /// Recognizes and returns the contents of the current QR code `image`.
+    /// - Returns: an array of contents recognized from `image`.
+    /// - Note: If the returned array is empty, there's no recognizable content in the QR code `image`.
     public func recognize() -> [String] {
         if nil == contentArray {
             contentArray = getQRString()
