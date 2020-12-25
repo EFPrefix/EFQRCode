@@ -32,13 +32,13 @@ import QRCodeSwift
 import CoreGraphics
 import Foundation
 
-// EFQRCode+Create
+/// Class for generating QR code images.
 @objcMembers
 public class EFQRCodeGenerator: NSObject {
-    /// Update the property specified the `keyPath` to have `newValue`.
+    /// Update the property specified the key path to have a new value.
     /// - Parameters:
-    ///   - keyPath: a property to update.
-    ///   - newValue: the new value for the specified property.
+    ///   - keyPath: A property to update.
+    ///   - newValue: The new value for the specified property.
     /// - Returns: `self`, allowing chaining.
     @inlinable
     @discardableResult
@@ -50,13 +50,20 @@ public class EFQRCodeGenerator: NSObject {
 
     // MARK: - Parameters
 
-    /// Content of QR Code
+    /// Content to include in the generated QR Code.
+    /// - Important: Limited to at most 1273 characters.
+    /// - Note: The density of the QR-lattice increases with the increases of the content length.
     public var content: String? {
         didSet {
             imageQRCode = nil
             imageCodes = nil
         }
     }
+    /// Sets the generator to generate for content using the specified encoding.
+    /// - Parameters:
+    ///   - content: The new content to generate QR code for.
+    ///   - encoding: The encoding to use for generating data from `content`.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withContent(_ content: String, encoding: String.Encoding? = nil) -> EFQRCodeGenerator {
         self.content = content
@@ -66,30 +73,36 @@ public class EFQRCodeGenerator: NSObject {
         return self
     }
 
-    /// Encoding of the content
+    /// Encoding for `content`.
     public var contentEncoding: String.Encoding = .utf8 {
         didSet {
             imageQRCode = nil
             imageCodes = nil
         }
     }
+    /// Sets the generator to use the specified encoding.
+    /// - Parameter encoding: The encoding to use for generating data from `content`.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withContentEncoding(_ encoding: String.Encoding) -> EFQRCodeGenerator {
         return with(\.contentEncoding, encoding)
     }
 
-    /// Mode of QR Code
+    /// Color mode of QR Code, defaults to `nil`.
     public var mode: EFQRCodeMode? = nil {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Sets the generator to use the specified coloring `mode`.
+    /// - Parameter mode: The new coloring mode to use.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withMode(_ mode: EFQRCodeMode?) -> EFQRCodeGenerator {
         return with(\.mode, mode)
     }
 
-    /// Error-tolerant rate
+    /// Level of error tolerance.
     ///
     /// - L 7%
     /// - M 15%
@@ -101,47 +114,96 @@ public class EFQRCodeGenerator: NSObject {
             imageCodes = nil
         }
     }
+    /// Sets the generator to use the specified input correction level.
+    /// - Parameter inputCorrectionLevel: level of error-tolerant rate.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withInputCorrectionLevel(_ inputCorrectionLevel: EFInputCorrectionLevel) -> EFQRCodeGenerator {
         return with(\.inputCorrectionLevel, inputCorrectionLevel)
     }
 
-    /// Size of QR Code
+    /// Size of the QR code, defaults to 256 by 256.
+    ///
+    /// - Note: Will be overridden by non-`nil` `magnification` parameter.
     public var size: EFIntSize = EFIntSize(width: 256, height: 256) {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Sets the generator to use the specified size.
+    /// - Parameter size: The width and height desired.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withSize(_ size: EFIntSize) -> EFQRCodeGenerator {
         return with(\.size, size)
     }
 
-    /// Magnification of QRCode compare with the minimum size,
-    /// (Parameter size will be ignored if magnification is not nil).
+    /// The ratio of actual size to the smallest possible size, defaults to `nil`.
+    ///
+    /// - Note: Any non-`nil` value overrides the `size` parameter.
+    /// If you already have a desired size in mind, we have two helpers methods at your disposal to
+    /// calculate the magnification that results in the closet dimension:
+    /// - `maxMagnification(lessThanOrEqualTo:)`
+    /// - `minMagnification(greaterThanOrEqualTo:)`
+    ///
+    /// ```
+    /// let generator = EFQRCodeGenerator(...)
+    ///
+    /// // get max magnification where size ≤ desired size
+    /// if let maxMagnification = generator
+    ///     .maxMagnification(lessThanOrEqualTo: desiredSize) {
+    ///     generator.magnification = EFIntSize(
+    ///         width: maxMagnification,
+    ///         height: maxMagnification
+    ///     )
+    /// }
+    /// // or get min magnification where size ≥ desired size
+    /// if let minMagnification = generator
+    ///     .minMagnification(greaterThanOrEqualTo: desiredSize) {
+    ///     generator.magnification = EFIntSize(
+    ///         width: minMagnification,
+    ///         height: minMagnification
+    ///     )
+    /// }
+    ///
+    /// // then generate
+    /// generator.generate()
+    /// ```
     public var magnification: EFIntSize? {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Sets the generator to use the specified magnification.
+    /// - Parameter magnification: The desired scale factor in comparison to the intrinsic size.
+    ///     See `magnification` for more details on how to translate your desired size to the
+    ///     closest magnification.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withMagnification(_ magnification: EFIntSize?) -> EFQRCodeGenerator {
         return with(\.magnification, magnification)
     }
 
-    /// backgroundColor
+    /// Background color, defaults to white.
     public var backgroundColor: CGColor = CGColor.white()! {
         didSet {
             imageQRCode = nil
         }
     }
-    /// foregroundColor
+    /// Foreground color (for code points), defaults to black.
     public var foregroundColor: CGColor = CGColor.black()! {
         didSet {
             imageQRCode = nil
         }
     }
     #if canImport(CoreImage)
+    /// Sets the generator to use the specified `CIColor`s.
+    /// - Parameters:
+    ///   - backgroundColor: The background `CIColor`.
+    ///     If conversion to `CGColor` fails, will use white instead.
+    ///   - foregroundColor: The foreground `CIColor` for code points.
+    ///     If conversion to `CGColor` fails, will use black instead.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     @objc(withCIColorsForBackgroundColor:foregroundColor:)
     public func withColors(backgroundColor: CIColor, foregroundColor: CIColor) -> EFQRCodeGenerator {
@@ -150,6 +212,11 @@ public class EFQRCodeGenerator: NSObject {
     }
     #endif
 
+    /// Sets the generator to use the specified `CGColor`s.
+    /// - Parameters:
+    ///   - backgroundColor: The background `CGColor`.
+    ///   - foregroundColor: The foreground `CGColor` for code points.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     @objc(withCGColorsForBackgroundColor:foregroundColor:)
     public func withColors(backgroundColor: CGColor, foregroundColor: CGColor) -> EFQRCodeGenerator {
@@ -158,18 +225,23 @@ public class EFQRCodeGenerator: NSObject {
             .with(\.foregroundColor, foregroundColor)
     }
 
-    /// Icon in the middle of QR Code
+    /// Icon image in the center of QR code image, defaults to `nil`.
     public var icon: CGImage? = nil {
         didSet {
             imageQRCode = nil
         }
     }
-    /// Size of icon
+    /// Size of the icon image, defaults to 20% of `size` if `nil`.
     public var iconSize: EFIntSize? = nil {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Sets the generator to use the specified icon in the specified size.
+    /// - Parameters:
+    ///   - icon: Icon image in the center of QR code.
+    ///   - size: Size of the icon image, `nil` means to 20% of QR code size.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withIcon(_ icon: CGImage?, size: EFIntSize?) -> EFQRCodeGenerator {
         return self
@@ -177,18 +249,24 @@ public class EFQRCodeGenerator: NSObject {
             .with(\.iconSize, size)
     }
 
-    /// Watermark
+    /// Background watermark image, defaults to `nil`.
     public var watermark: CGImage? = nil {
         didSet {
             imageQRCode = nil
         }
     }
-    /// Mode of watermark
+    /// How to position and size the watermark, defaults to `EFWatermarkMode.scaleAspectFill`.
     public var watermarkMode: EFWatermarkMode = .scaleAspectFill {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Sets the generator to use the specified watermark (and mode).
+    /// - Parameters:
+    ///   - watermark: The background watermark image.
+    ///   - mode: How to position and size the watermark,
+    ///     `nil` (the default) means use the current `watermarkMode`.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withWatermark(_ watermark: CGImage?, mode: EFWatermarkMode? = nil) -> EFQRCodeGenerator {
         self.watermark = watermark
@@ -199,63 +277,93 @@ public class EFQRCodeGenerator: NSObject {
         return self
     }
 
-    // Offset of foreground point
+    /// Foreground point offset, defaults to 0.
+    ///
+    /// - Important: Generated QR code might be hard to recognize with non-zero values.
     public var pointOffset: CGFloat = 0 {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Sets the generator to use the specified point offset.
+    /// - Parameter pointOffset: Foreground point offset.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withPointOffset(_ pointOffset: CGFloat) -> EFQRCodeGenerator {
         return with(\.pointOffset, pointOffset)
     }
 
-    /// If false (default), area of watermark will be transparent with alpha 0.
+    /// If `false` (default), area of watermark where alpha is 0 will be transparent.
     public var isWatermarkOpaque: Bool = false {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Set generator to treat watermark image as opaque (or not).
+    /// - Parameter isWatermarkOpaque: Should ignore alpha channel or not, defaults to `true`.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withOpaqueWatermark(_ isWatermarkOpaque: Bool = true) -> EFQRCodeGenerator {
         return with(\.isWatermarkOpaque, isWatermarkOpaque)
     }
+    /// Set generator to treat watermark image as transparent (or not).
+    /// - Parameter isTransparent: Should use alpha channel or not, defaults to `true`.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withTransparentWatermark(_ isTransparent: Bool = true) -> EFQRCodeGenerator {
         return withOpaqueWatermark(!isTransparent)
     }
 
-    // Shape of foreground point
+    /// Shape of foreground code points, defaults to `EFPointShape.square`.
     public var pointShape: EFPointShape = .square {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Set generator to use the specified foreground point shape.
+    /// - Parameter pointShape: Shape of foreground code points.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withPointShape(_ pointShape: EFPointShape) -> EFQRCodeGenerator {
         return with(\.pointShape, pointShape)
     }
 
+    /// If `true` (default), points for timing pattern will be squares.
     public var isTimingPointStatic: Bool = true {
         didSet {
             imageQRCode = nil
         }
     }
+    /// Set generator to use un-styled points for timing pattern (or not).
+    /// - Parameter isStatic: Wether or not to use square shape for timing pattern points,
+    ///     defaults to `true`.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withStaticTimingPoint(_ isStatic: Bool = true) -> EFQRCodeGenerator {
         return with(\.isTimingPointStatic, isStatic)
     }
+    /// Set generator to use styled points for timing pattern (or not).
+    /// - Parameter ignoreTiming: Wether or not to use current `pointShape`
+    ///     for timing pattern points, defaults to `true`.
+    /// - Returns: `self`, allowing chaining.
     @discardableResult
     public func withStyledTimingPoint(_ ignoreTiming: Bool = true) -> EFQRCodeGenerator {
         return withStaticTimingPoint(!ignoreTiming)
     }
 
-    // Cache
+    // MARK: - Cache
     private var imageCodes: [[Bool]]?
     private var imageQRCode: CGImage?
     private var minSuitableSize: EFIntSize!
 
     // MARK: - Init
+
+    /// Initialize a QR code generator to generate a QR code of specified of size
+    /// for some content with appropriate encoding.
+    /// - Parameters:
+    ///   - content: Information to convey in the generated QR code.
+    ///   - encoding: Text encoding for generating data from `content`.
+    ///   - size: The width and height of the generated QR code.
     public init(
         content: String, encoding: String.Encoding = .utf8,
         size: EFIntSize = EFIntSize(width: 256, height: 256)
@@ -265,7 +373,8 @@ public class EFQRCodeGenerator: NSObject {
         self.size = size
     }
 
-    /// Final QRCode image
+    /// Fetches the final QR code image.
+    /// - Returns: the generated QR code, or `nil` if failed.
     public func generate() -> CGImage? {
         if nil == imageQRCode {
             imageQRCode = createImageQRCode()
@@ -786,7 +895,7 @@ public class EFQRCodeGenerator: NSObject {
     }
     #endif
 
-    // Get QRCodes from pixels
+    /// Get QRCodes from pixels.
     private func getCodes(pixels: [[EFUIntPixel]]) -> [[Bool]] {
         let codes: [[Bool]] = pixels.indices.map { indexY in
             pixels[0].indices.map { indexX in
@@ -797,7 +906,7 @@ public class EFQRCodeGenerator: NSObject {
         return codes
     }
 
-    // Get QRCodes from pixels
+    /// Get QRCodes from pixels.
     private func generateCodes() -> [[Bool]]? {
         if let tryImageCodes = imageCodes {
             return tryImageCodes
@@ -826,7 +935,7 @@ public class EFQRCodeGenerator: NSObject {
         return imageCodes
     }
 
-    // Special Points of QRCode
+    /// Special Points of QRCode
     private func isStatic(x: Int, y: Int, size: Int, APLPoints: [CGPoint]) -> Bool {
         // Empty border
         if x == 0 || y == 0 || x == (size - 1) || y == (size - 1) {
@@ -877,18 +986,21 @@ public class EFQRCodeGenerator: NSObject {
         return coords
     }
 
-    /// QRCode version
+    /// QRCode version.
     private func getVersion(size: Int) -> Int {
         return (size - 21) / 4 + 1
     }
 
-    /// QRCode size
+    /// QRCode size.
     private func getSize(version: Int) -> Int {
         return 17 + 4 * version
     }
 
-    // MARK: - Recommend magnification
-    
+    // MARK: - Recommended Magnification
+
+    /// Calculates and returns the magnification such that multiplied to intrinsic size  >= the given size.
+    /// - Parameter size: Desired final size of generated QR code.
+    /// - Returns: The recommended value to set as a side of `magnification`.
     public func minMagnification(greaterThanOrEqualTo size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
@@ -909,6 +1021,9 @@ public class EFQRCodeGenerator: NSObject {
         return nil
     }
 
+    /// Calculates and returns the magnification such that multiplied to intrinsic size  <= the given size.
+    /// - Parameter size: Desired final size of generated QR code.
+    /// - Returns: The recommended value to set as a side of `magnification`.
     public func maxMagnification(lessThanOrEqualTo size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil
@@ -932,7 +1047,7 @@ public class EFQRCodeGenerator: NSObject {
         return nil
     }
 
-    // Calculate suitable size
+    /// Calculate suitable size.
     private func minSuitableSize(greaterThanOrEqualTo size: CGFloat) -> Int? {
         guard let codes = generateCodes() else {
             return nil

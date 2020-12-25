@@ -46,10 +46,19 @@ extension EFQRCode {
         }
     }
 
+    /// Generates an animated QR code GIF with a `generator` specifying other parameters.
+    /// - Parameters:
+    ///   - generator: An `EFQRCodeGenerator` providing other QR code generation settings.
+    ///   - data: The data of the watermark GIF.
+    ///   - delay: Output QRCode GIF delay, emitted means no change.
+    ///   - loopCount: Times looped in GIF, emitted means no change.
+    ///   - useMultipleThreads: Wether to use multiple threads for better performance,
+    ///                         defaults to `false`.
+    /// - Returns: The generated QR code GIF.
     public static func generateGIF(using generator: EFQRCodeGenerator,
                                    withWatermarkGIF data: Data,
                                    delay: Double? = nil, loopCount: Int? = nil,
-                                   useMultipleThreads:Bool = false) -> Data? {
+                                   useMultipleThreads: Bool = false) -> Data? {
         if let source = CGImageSourceCreateWithData(data as CFData, nil) {
             var frames = source.toCGImages()
 

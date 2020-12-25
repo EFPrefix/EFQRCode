@@ -71,10 +71,20 @@ extension CGColor {
 }
 
 public extension CGColor {
+    /// Creates a white color in the RGB color space.
+    /// - Parameters:
+    ///   - white: how bright the color is, on a scale from 0 through 1.
+    ///   - alpha: transparency, on a scale from 0 through 1.
+    /// - Returns: the specified white color.
     static func white(_ white: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CGColor? {
         return initWith(red: white, green: white, blue: white, alpha: alpha)
     }
-    
+
+    /// Creates a black color in the RGB color space.
+    /// - Parameters:
+    ///   - black: how dark the color is, on a scale from 0 through 1.
+    ///   - alpha: transparency, on a scale from 0 through 1.
+    /// - Returns: `white(1 - black, alpha: alpha)`.
     static func black(_ black: CGFloat = 1.0, alpha: CGFloat = 1.0) -> CGColor? {
         return white(1.0 - black, alpha: alpha)
     }
