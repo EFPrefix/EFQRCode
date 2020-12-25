@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='rendered' buildActiveScheme='true'>
+    <pages>
+        <page name='0. Welcome'/>
+        <page name='1. Recognition'/>
+        <page name='2. Generation'/>
+        <page name='2.1. Parameters Explained'/>
+        <page name='3. Generation from GIF'/>
+        <page name='4. Final Remarks'/>
+    </pages>
+</playground>
