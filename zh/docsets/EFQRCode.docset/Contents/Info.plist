@@ -16,7 +16,5 @@
       <true/>
     <key>DashDocSetFamily</key>
       <string>dashtoc</string>
-    <key>DashDocSetFallbackURL</key>
-      <string>https://efprefix.github.io/EFQRCode/</string>
   </dict>
 </plist>

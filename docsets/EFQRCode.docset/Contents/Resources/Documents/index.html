@@ -22,7 +22,7 @@
         <a class="header-link" href="index.html">
           EFQRCode 6.0.0 Docs
         </a>
-         (0% documented)
+         (100% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -31,7 +31,19 @@
         </form>
       </p>
     
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/EFPrefix/EFQRCode">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
     
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fefprefix.github.io%2FEFQRCode%2Fdocsets%2FEFQRCode.xml">
+            <img class="header-icon" src="img/dash.png"/>
+            Install in Dash
+          </a>
+        </p>
     </header>
 
     <p class="breadcrumbs">
@@ -47,7 +59,49 @@
             <a class="nav-group-name-link" href="Guides.html">Guides</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="userguide.html">USERGUIDE</a>
+                <a class="nav-group-task-link" href="user-guide.html">User Guide</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFIntSize.html">EFIntSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFQRCodeGenerator.html">EFQRCodeGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFQRCodeRecognizer.html">EFQRCodeRecognizer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFInputCorrectionLevel.html">EFInputCorrectionLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFPointShape.html">EFPointShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFQRCode.html">EFQRCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFQRCodeMode.html">EFQRCodeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFWatermarkMode.html">EFWatermarkMode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/CGColor.html">CGColor</a>
               </li>
             </ul>
           </li>
@@ -62,7 +116,7 @@
 
 <p align="center">
     <a href="https://travis-ci.org/EFPrefix/EFQRCode">
-        <img src="http://img.shields.io/travis/EFPrefix/EFQRCode.svg">
+        <img src="https://img.shields.io/travis/EFPrefix/EFQRCode.svg">
     </a>
     <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
         <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
@@ -111,12 +165,12 @@
     </a>
 </p>
 
-<p>EFQRCode is a lightweight, pure-Swift library for generating pretty QRCode image with input watermark or icon and recognizing QRCode from image, it is based on <code>CoreGraphics</code>, <code>CoreImage</code> and <code>ImageIO</code>. EFQRCode provides you a better way to operate QRCode in your app, it works on <code>iOS</code>, <code>macOS</code>, <code>watchOS</code> and <code>tvOS</code>, and it is available through <code>CocoaPods</code>, <code>Carthage</code> and <code>Swift Package Manager</code>. This project is inspired by <a href="https://github.com/sylnsfar/qrcode">qrcode</a>. </p>
+<p>EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images, inspired by <a href="https://github.com/sylnsfar/qrcode">qrcode</a>. Based on <code>CoreGraphics</code>, <code>CoreImage</code>, and <code>ImageIO</code>, EFQRCode provides you a better way to handle QRCode in your app, no matter if it is on iOS, macOS, watchOS, and/or tvOS. You can integrate EFQRCode through CocoaPods, Carthage, and/or Swift Package Manager.</p>
 
 <blockquote>
 <p><a href="https://github.com/EFPrefix/EFQRCode/blob/main/README_CN.md">中文介绍</a></p>
 </blockquote>
-<h2 id='overview' class='heading'>Overview</h2>
+<h2 id='examples' class='heading'>Examples</h2>
 
 <table><thead>
 <tr>
@@ -133,7 +187,7 @@
 <td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF8.gif" alt=""></td>
 </tr>
 </tbody></table>
-<h2 id='demo' class='heading'>Demo</h2>
+<h2 id='demo-projects' class='heading'>Demo Projects</h2>
 <h3 id='app-store' class='heading'>App Store</h3>
 
 <p>You can click the <code>App Store</code> button below to download demo, support <code>iOS</code>, <code>tvOS</code> and <code>watchOS</code>:</p>
@@ -147,7 +201,7 @@
 <p><a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
 </a></p>
-<h3 id='manual' class='heading'>Manual</h3>
+<h3 id='compile-demo-manually' class='heading'>Compile Demo Manually</h3>
 
 <p>To run the example project manually, clone the repo, demos are in the &lsquo;Examples&rsquo; folder, remember run command <code>sh Startup.sh</code> in terminal to get all dependencies first, then open <code>EFQRCode.xcworkspace</code> with Xcode and select the target you want, run.</p>
 
@@ -175,7 +229,7 @@
 <td style="text-align: left">Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+</td>
 </tr>
 <tr>
-<td style="text-align: left">6.x</td>
+<td style="text-align: left"><strong>6.x</strong></td>
 <td style="text-align: left">Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+</td>
 </tr>
 </tbody></table>
@@ -210,7 +264,7 @@ it, simply add the following line to your Podfile:</p>
 <p>Run <code>carthage update</code> to build the framework and drag the built <code>EFQRCode.framework</code> into your Xcode project.</p>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
-<p>The <a href="https://swift.org/package-manager/">Swift Package Manager</a> is a tool for automating the distribution of Swift code and is integrated into the <code>swift</code> compiler.</p>
+<p>The <a href="https://swift.org/package-manager/">Swift Package Manager</a> is a tool for automating the distribution of Swift code and is integrated into the Swift compiler.</p>
 
 <p>Once you have your Swift package set up, adding EFQRCode as a dependency is as easy as adding it to the <code>dependencies</code> value of your <code>Package.swift</code>.</p>
 <pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
@@ -225,36 +279,55 @@ it, simply add the following line to your Podfile:</p>
 </code></pre>
 <h4 id='2-recognition' class='heading'>2. Recognition</h4>
 
-<p>Get QR Codes from CGImage, maybe there are several codes in a image, so it will return an array:</p>
-<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">testImage</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"test.png"</span><span class="p">)?</span><span class="o">.</span><span class="nf">cgImage</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="k">let</span> <span class="nv">tryCodes</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">recognize</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="n">testImage</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="n">tryCodes</span><span class="o">.</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-            <span class="nf">print</span><span class="p">(</span><span class="s">"There are </span><span class="se">\(</span><span class="n">tryCodes</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> codes in testImage."</span><span class="p">)</span>
-            <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span> <span class="k">in</span> <span class="n">tryCodes</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">()</span> <span class="p">{</span>
-                <span class="nf">print</span><span class="p">(</span><span class="s">"The content of </span><span class="se">\(</span><span class="n">index</span><span class="se">)</span><span class="s"> QR Code is: </span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nf">print</span><span class="p">(</span><span class="s">"There is no QR Codes in testImage."</span><span class="p">)</span>
+<p>A String Array is returned as there might be several QR Codes in a single <code>CGImage</code>:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">testImage</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"test.png"</span><span class="p">)?</span><span class="o">.</span><span class="n">cgImage</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">codes</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">recognize</span><span class="p">(</span><span class="n">testImage</span><span class="p">)</span>
+    <span class="k">if</span> <span class="o">!</span><span class="n">codes</span><span class="o">.</span><span class="n">isEmpty</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"There are </span><span class="se">\(</span><span class="n">codes</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> codes"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span> <span class="k">in</span> <span class="n">codes</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"The content of QR Code </span><span class="se">\(</span><span class="n">index</span><span class="se">)</span><span class="s"> is </span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nf">print</span><span class="p">(</span><span class="s">"Recognize failed, check your input image!"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"There is no QR Codes in testImage."</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 <h4 id='3-generation' class='heading'>3. Generation</h4>
 
-<p>Create QR Code image, quick usage:</p>
-<pre class="highlight swift"><code><span class="c1">//                    content: Content of QR Code</span>
-<span class="c1">//            size (Optional): Width and height of image</span>
-<span class="c1">// backgroundColor (Optional): Background color of QRCode</span>
-<span class="c1">// foregroundColor (Optional): Foreground color of QRCode</span>
-<span class="c1">//       watermark (Optional): Background image of QRCode</span>
-</code></pre>
-<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">tryImage</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generate</span><span class="p">(</span>
-    <span class="nv">content</span><span class="p">:</span> <span class="s">"https://github.com/EFPrefix/EFQRCode"</span><span class="p">,</span>
-    <span class="nv">watermark</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"WWF"</span><span class="p">)?</span><span class="o">.</span><span class="nf">cgImage</span><span class="p">()</span>
+<p>Create QR Code image, basic usage:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Parameter</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right"><code>content</code></td>
+<td style="text-align: left"><strong><em>REQUIRED</em></strong>, content of QR Code</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>size</code></td>
+<td style="text-align: left">Width and height of image</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>backgroundColor</code></td>
+<td style="text-align: left">Background color of QRCode</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>foregroundColor</code></td>
+<td style="text-align: left">Foreground color of QRCode</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>watermark</code></td>
+<td style="text-align: left">Background image of QRCode</td>
+</tr>
+</tbody></table>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generate</span><span class="p">(</span>
+    <span class="nv">for</span><span class="p">:</span> <span class="s">"https://github.com/EFPrefix/EFQRCode"</span><span class="p">,</span>
+    <span class="nv">watermark</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"WWF"</span><span class="p">)?</span><span class="o">.</span><span class="n">cgImage</span>
 <span class="p">)</span> <span class="p">{</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success: </span><span class="se">\(</span><span class="n">tryImage</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success </span><span class="se">\(</span><span class="n">image</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image failed!"</span><span class="p">)</span>
 <span class="p">}</span>
@@ -265,14 +338,34 @@ it, simply add the following line to your Podfile:</p>
 <p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/></p>
 <h4 id='4-generation-from-gif' class='heading'>4. Generation from GIF</h4>
 
-<p>You can create GIF QRCode with function <code>generateWithGIF</code> of class <code>EFQRCode</code>, for example:</p>
-<pre class="highlight swift"><code><span class="c1">//                  data: Data of input GIF</span>
-<span class="c1">//             generator: An object of EFQRCodeGenerator, use for setting</span>
-<span class="c1">// pathToSave (Optional): Path to save the output GIF, default is temp path</span>
-<span class="c1">//      delay (Optional): Output QRCode GIF delay, default is same as input GIF</span>
-<span class="c1">//  loopCount (Optional): Output QRCode GIF loopCount, default is same as input GIF</span>
-</code></pre>
-<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">qrcodeData</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generateWithGIF</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="nv">generator</span><span class="p">:</span> <span class="n">generator</span><span class="p">)</span> <span class="p">{</span>
+<p>Use <code>EFQRCode.generateGIF</code> to create GIF QRCode.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Parameter</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right"><code>generator</code></td>
+<td style="text-align: left"><strong><em>REQUIRED</em></strong>, an <code><a href="Classes/EFQRCodeGenerator.html">EFQRCodeGenerator</a></code> instance with other settings</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>data</code></td>
+<td style="text-align: left"><strong><em>REQUIRED</em></strong>, encoded input GIF</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>delay</code></td>
+<td style="text-align: left">Output QRCode GIF delay, emitted means no change</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>loopCount</code></td>
+<td style="text-align: left">Times looped in GIF, emitted means no change</td>
+</tr>
+</tbody></table>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">qrCodeData</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generateGIF</span><span class="p">(</span>
+    <span class="nv">using</span><span class="p">:</span> <span class="n">generator</span><span class="p">,</span> <span class="nv">withWatermarkGIF</span><span class="p">:</span> <span class="n">data</span>
+<span class="p">)</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success."</span><span class="p">)</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image failed!"</span><span class="p">)</span>
@@ -285,12 +378,12 @@ it, simply add the following line to your Podfile:</p>
 <h4 id='5-next' class='heading'>5. Next</h4>
 
 <p>Learn more from <a href="https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE.md">User Guide</a>.</p>
-<h2 id='ps' class='heading'>PS</h2>
+<h2 id='recommendations' class='heading'>Recommendations</h2>
 
 <ol>
 <li>Please select a high contrast foreground and background color combinations;</li>
-<li>You should use <code>magnification</code> instead of <code>size</code> if you want to improve the definition of QRCode image, you can also increase the value of them;</li>
-<li>Magnification too high／Size too long／Content too much may cause failure;</li>
+<li>To improve the definition of QRCode images, increase <code>size</code>, or scale up using <code>magnification</code> (instead);</li>
+<li>Magnification too high／size too large／contents too long may cause failure;</li>
 <li>It is recommended to test the QRCode image before put it into use;</li>
 <li>You can contact me if there is any problem, both <code>Issue</code> and <code>Pull request</code> are welcome.</li>
 </ol>
@@ -478,7 +571,7 @@ it, simply add the following line to your Podfile:</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2020 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external">EyreFree</a>. All rights reserved. (Last updated: 2020-12-20)</p>
+      <p>&copy; 2020 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external">EyreFree</a>. All rights reserved. (Last updated: 2020-12-26)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
