@@ -139,7 +139,7 @@ final public class EFIntSize : NSObject {
 
  Magnification is defined as the ratio of actual size to the smallest possible size, and defaults to `nil`.
 
- Directly setting the `size` parameter results in low resolution QR code images, so setting the `magnification` is recommended instead. If you already have a desired size in mind, we have two helpers methods at your disposal to calculate the magnification that results in the closet dimension: `maxMagnification(lessThanOrEqualTo: CGFloat)` and `minMagnification(greaterThanOrEqualTo: CGFloat)`:
+ Directly setting the `size` parameter results in low resolution QR code images, so setting the `magnification` is recommended instead. If you already have a desired size in mind, we have two helpers methods at your disposal to calculate the magnification that results in the closet dimension: `EFQRCodeGenerator.maxMagnification(lessThanOrEqualTo:)` and `EFQRCodeGenerator.minMagnification(greaterThanOrEqualTo:)`.
 
 ```swift
 let generator = EFQRCodeGenerator(...)
@@ -203,7 +203,7 @@ Background watermark image, defaults to `nil`.
 
 #### watermarkMode: EFWatermarkMode
 
-Position of watermark in the QR code, defaults to `scaleAspectFill`. Think of the generated QR code like `UIImageView` and `EFWatermarkMode` as `UIView.ContentMode`.
+Position of watermark in the QR code, defaults to `EFWatermarkMode.scaleAspectFill`. Think of the generated QR code like `UIImageView` and `EFWatermarkMode` as `UIView.ContentMode`.
 
 ```swift
 public enum EFWatermarkMode: Int {
@@ -242,7 +242,7 @@ Foreground point offset, defaults to 0.
 
 #### pointShape: EFPointShape
 
-Shape of foreground code points, defaults to `square`.
+Shape of foreground code points, defaults to `EFPointShape.square`.
 
 ```swift
 public enum EFPointShape: Int {
@@ -262,7 +262,7 @@ First you should get the complete `Data` of a GIF file
 
 > **NOTE**: You shall not get `Data` from `UIImage` as it only provides the first frame.
 
-Then you can create GIF QRCode with `EFQRCode.generateWithGIF`:
+Then you can create GIF QRCode with `EFQRCode.generateGIF`:
 
 |Parameter|Description|
 |-:|:-|

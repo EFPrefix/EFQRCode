@@ -68,13 +68,13 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 ### 应用商店
 
-你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 `iOS`、`tvOS` 和 `watchOS`：
+你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 iOS、tvOS 和 watchOS：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
 	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
-你也可以点击下方的 Mac App Store 按钮下载 `macOS` 示例程序：
+你也可以点击下方的 Mac App Store 按钮下载 macOS 示例程序：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
 	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
@@ -207,7 +207,7 @@ if let image = EFQRCode.generate(
 
 #### 4. 动态二维码
 
-可通过 EFQRCode 的类方法 `generateWithGIF` 来创建 GIF 二维码，使用方式如下：
+可通过 EFQRCode 的类方法 `generateGIF` 来创建 GIF 二维码，使用方式如下：
 
 |参数|作用描述|
 |-:|:-|
@@ -267,7 +267,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
 </a>
 
-备注：`watchOS` 平台的的原始二维码生成代码基于 [swift_qrcodejs](https://github.com/ApolloZhu/swift_qrcodejs) 实现，在此对原作者 [ApolloZhu](https://github.com/ApolloZhu) 所做的工作表示感谢。
+备注：watchOS 平台的的原始二维码生成代码基于 [QRCodeSwift](https://github.com/ApolloZhu/swift_qrcodejs) 实现，在此对原作者 [ApolloZhu](https://github.com/ApolloZhu) 所做的工作表示感谢。
 
 ## 捐赠
 

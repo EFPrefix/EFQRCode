@@ -257,7 +257,7 @@ square | circle | diamond
 
 > **注意**：不能通过 `UIImage` 来获取，不然的话只能取到 GIF 的第一帧。
 
-然后可以通过 EFQRCode 的类方法 `generateWithGIF` 来创建 GIF 二维码，使用方式如下：
+然后可以通过 EFQRCode 的类方法 `generateGIF` 来创建 GIF 二维码，使用方式如下：
 
 |参数|作用描述|
 |-:|:-|
@@ -274,7 +274,7 @@ if let qrcodeData = EFQRCode.generateGIF(using: generator, withWatermarkGIF: dat
 }
 ```
 
-这里的 generator 是一个 EFQRCodeGenerator 类型的对象，用来对 GIF 中的每一帧进行处理，详细用法参考上文。你也可以通过查看 Demo 代码的方式来获取更多信息。结果预览：
+这里的 generator 是一个 `EFQRCodeGenerator` 类型的对象，用来对 GIF 中的每一帧进行处理，详细用法参考上文。你也可以通过查看 Demo 代码的方式来获取更多信息。结果预览：
 
 <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/>
 

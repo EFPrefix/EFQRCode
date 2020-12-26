@@ -13,7 +13,7 @@ import EFQRCode
 let data = Data() // TODO: get actual GIF data
 //: 2. Then, configure however you like just like before.
 let generator = EFQRCodeGenerator(content: "https://github.com/EyreFree/EFQRCode")
-//: 3. Now you can create GIF QR code with `EFQRCode.generateWithGIF` and get its data:
+//: 3. Now you can create GIF QR code with `EFQRCode.generateGIF` and get its data:
 let qrcodeData = EFQRCode.generateGIF(using: generator, withWatermarkGIF: data)
 //: 4. Next we can save it to local path / system photo library / upload to server or some other things you want to do;
 

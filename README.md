@@ -65,13 +65,13 @@ EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode ima
 
 ### App Store
 
-You can click the `App Store` button below to download demo, support `iOS`, `tvOS` and `watchOS`:
+You can click the `App Store` button below to download demo, support iOS, tvOS and watchOS:
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
-You can also click the `Mac App Store` button below to download demo for `macOS`:
+You can also click the `Mac App Store` button below to download demo for macOS:
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
@@ -258,7 +258,7 @@ This project exists thanks to all the people who contribute. [[Contribute](https
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
 </a>
 
-PS: The original generation code of QRCode in `watchOS` is based on [swift_qrcodejs](https://github.com/ApolloZhu/swift_qrcodejs), thanks for [ApolloZhu](https://github.com/ApolloZhu)'s work.
+PS: We use [QRCodeSwift](https://github.com/ApolloZhu/swift_qrcodejs) to generate QR code on watchOS, thanks to [ApolloZhu](https://github.com/ApolloZhu).
 
 ## Donations
 
