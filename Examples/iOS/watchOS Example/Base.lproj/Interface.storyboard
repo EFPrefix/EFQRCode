@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17700" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CRb-ZU-aKh">
     <device id="watch38"/>
     <dependencies>
         <deployment identifier="watchOS"/>
@@ -10,7 +10,7 @@
         <!--NumberPad-->
         <scene sceneID="xDD-Gb-LOX">
             <objects>
-                <controller identifier="NumberPad" fullScreen="YES" id="i87-te-Kf6" customClass="NumberPadInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
+                <controller identifier="NumberPad" id="i87-te-Kf6" customClass="NumberPadInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
                     <items>
                         <group width="1" height="0.20000000000000001" alignment="left" id="Mkx-Zv-Roj">
                             <items>
@@ -119,7 +119,7 @@
         <!--Version Display Interface Controller-->
         <scene sceneID="O0f-3r-sKj">
             <objects>
-                <controller fullScreen="YES" id="CRb-ZU-aKh" customClass="VersionDisplayInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
+                <controller id="CRb-ZU-aKh" customClass="VersionDisplayInterfaceController" customModule="watchOS_Example" customModuleProvider="target">
                     <items>
                         <label width="1" alignment="left" text="EFQRCode" textAlignment="center" id="Fro-dS-7yC">
                             <color key="textColor" red="0.38039215686274508" green="0.81176470588235294" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -133,6 +133,7 @@
                         </label>
                         <button width="1" alignment="left" verticalAlignment="bottom" title="Generator" id="oDI-5t-GBk">
                             <color key="titleColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
                             <connections>
                                 <segue destination="x7r-oY-9um" kind="push" id="N9T-5z-QPm"/>
                             </connections>
@@ -369,7 +370,7 @@ Width &amp; Height</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6xH-8Q-rON"/>
+        <segue reference="nUc-7Q-ju6"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.3803921569" green="0.81176470590000005" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

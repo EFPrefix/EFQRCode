@@ -27,16 +27,15 @@
 import WatchKit
 
 class VersionDisplayInterfaceController: WKInterfaceController {
-    @IBOutlet var label: WKInterfaceLabel! {
-        didSet {
-            guard let label = label else {
-                return
-            }
-            let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-            label.setText(version)
-        }
+    @IBOutlet var label: WKInterfaceLabel!
+
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        label.setText(version)
     }
+
     @IBAction func showUnitTests() {
-        pushController(withName: NSLocalizedString("Tests", comment: "Menu to unit tests that ensures EFQRCode works"), context: nil)
+        pushController(withName: "Tests", context: nil)
     }
 }

@@ -46,8 +46,8 @@ final class Tests {
         ("testExampleEFQRCode", shared.testExampleEFQRCode)
     ]
 
-    func getImage(name: String) -> CGImage? {
-        return UIImage(named: "eyrefree")?.ef.cgImage
+    func getImage(named name: String = "eyrefree") -> CGImage? {
+        return UIImage(named: name)?.ef.cgImage
     }
 
     func testExample1() -> String? {
@@ -109,8 +109,8 @@ final class Tests {
         generator.setColors(backgroundColor: UIColor.red.ef.cgColor, foregroundColor: CGColor.EF.black()!)
         generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
         generator.setMagnification(magnification: nil)
-        generator.setIcon(icon: getImage(name: "eyrefree"), size: nil)
-        generator.setWatermark(watermark: getImage(name: "eyrefree"), mode: .bottom)
+        generator.setIcon(icon: getImage(), size: nil)
+        generator.setWatermark(watermark: getImage(), mode: .bottom)
         generator.setForegroundPointOffset(foregroundPointOffset: 0)
         generator.setAllowTransparent(allowTransparent: true)
         let testResult = generator.generate()
@@ -119,16 +119,16 @@ final class Tests {
 
     // CGColor
     func testExampleCGColorExtension() -> String? {
-        guard CGColor.EF.white() != nil else { return "CGColor.EFWhite() should not be nil!" }
-        guard CGColor.EF.black() != nil else { return "CGColor.EFBlack() should not be nil!" }
+        guard CGColor.white() != nil else { return "CGColor.EFWhite() should not be nil!" }
+        guard CGColor.black() != nil else { return "CGColor.EFBlack() should not be nil!" }
         return .passed
     }
 
     // CGSize
     func testExampleCGSizeExtension() -> String? {
-        let size = CGSize(width: 111.1, height: 888.8)
-        guard size.width.ef.int == 111 else { return "size.widthInt() should be 111!" }
-        guard size.height.ef.int == 888 else { return "size.heightInt() should be 888!" }
+        let size = EFIntSize(size: CGSize(width: 111.1, height: 888.8))
+        guard size.width == 111 else { return "size.width should be 111!" }
+        guard size.height == 888 else { return "size.height should be 888!" }
         return .passed
     }
 

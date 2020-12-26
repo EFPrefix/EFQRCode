@@ -29,7 +29,8 @@ import WatchKit
 typealias NumberInputHandler = (Int) -> Void
 
 extension WKInterfaceController {
-    func presentNumberInputController(withDefault default: Int, completion handler: @escaping NumberInputHandler) {
+    func presentNumberInputController(withDefault default: Int,
+                                      completion handler: @escaping NumberInputHandler) {
         presentController(withName: "NumberPad", context: (abs(`default`), handler))
     }
 }

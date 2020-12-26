@@ -28,16 +28,15 @@ import WatchKit
 import EFQRCode
 
 class UnitTestInterfaceController: WKInterfaceController {
-    @IBOutlet var table: WKInterfaceTable? {
-        didSet {
-            guard let table = table else { return }
-            let tests = Tests.allTests
-            table.setNumberOfRows(tests.count, withRowType: "UnitTestcaseRowType")
-            for (i, test) in tests.enumerated() {
-                if let row = table.rowController(at: i) as? UnitTestcaseRowType {
-                    row.test = test
-                }
-            }
+    @IBOutlet var table: WKInterfaceTable!
+
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+        let tests = Tests.allTests
+        table.setNumberOfRows(tests.count, withRowType: "UnitTestcaseRowType")
+        for i in tests.indices {
+            let row = table.rowController(at: i) as! UnitTestcaseRowType
+            row.test = tests[i]
         }
     }
 }
