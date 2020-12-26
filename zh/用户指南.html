@@ -393,7 +393,7 @@
 <p><strong>注意</strong>：不能通过 <code>UIImage</code> 来获取，不然的话只能取到 GIF 的第一帧。</p>
 </blockquote>
 
-<p>然后可以通过 EFQRCode 的类方法 <code>generateWithGIF</code> 来创建 GIF 二维码，使用方式如下：</p>
+<p>然后可以通过 EFQRCode 的类方法 <code>generateGIF</code> 来创建 GIF 二维码，使用方式如下：</p>
 
 <table><thead>
 <tr>
@@ -425,7 +425,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>这里的 generator 是一个 EFQRCodeGenerator 类型的对象，用来对 GIF 中的每一帧进行处理，详细用法参考上文。你也可以通过查看 Demo 代码的方式来获取更多信息。结果预览：</p>
+<p>这里的 generator 是一个 <code>EFQRCodeGenerator</code> 类型的对象，用来对 GIF 中的每一帧进行处理，详细用法参考上文。你也可以通过查看 Demo 代码的方式来获取更多信息。结果预览：</p>
 
 <p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/></p>
 

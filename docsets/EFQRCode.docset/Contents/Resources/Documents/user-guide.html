@@ -285,7 +285,7 @@
 
 <p>Magnification is defined as the ratio of actual size to the smallest possible size, and defaults to <code>nil</code>.</p>
 
-<p>Directly setting the <code>size</code> parameter results in low resolution QR code images, so setting the <code>magnification</code> is recommended instead. If you already have a desired size in mind, we have two helpers methods at your disposal to calculate the magnification that results in the closet dimension: <code>maxMagnification(lessThanOrEqualTo: CGFloat)</code> and <code>minMagnification(greaterThanOrEqualTo: CGFloat)</code>:</p>
+<p>Directly setting the <code>size</code> parameter results in low resolution QR code images, so setting the <code>magnification</code> is recommended instead. If you already have a desired size in mind, we have two helpers methods at your disposal to calculate the magnification that results in the closet dimension: <code><a href="Classes/EFQRCodeGenerator.html#/s:8EFQRCode0A9GeneratorC16maxMagnification17lessThanOrEqualToSiSg12CoreGraphics7CGFloatV_tF">EFQRCodeGenerator.maxMagnification(lessThanOrEqualTo:)</a></code> and <code><a href="Classes/EFQRCodeGenerator.html#/s:8EFQRCode0A9GeneratorC16minMagnification20greaterThanOrEqualToSiSg12CoreGraphics7CGFloatV_tF">EFQRCodeGenerator.minMagnification(greaterThanOrEqualTo:)</a></code>.</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">generator</span> <span class="o">=</span> <span class="kt">EFQRCodeGenerator</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 
 <span class="c1">// get max magnification where size ≤ desired size</span>
@@ -373,7 +373,7 @@
 </tbody></table>
 <h4 id='watermarkmode-efwatermarkmode' class='heading'>watermarkMode: EFWatermarkMode</h4>
 
-<p>Position of watermark in the QR code, defaults to <code>scaleAspectFill</code>. Think of the generated QR code like <code>UIImageView</code> and <code><a href="Enums/EFWatermarkMode.html">EFWatermarkMode</a></code> as <code>UIView.ContentMode</code>.</p>
+<p>Position of watermark in the QR code, defaults to <code><a href="Enums/EFWatermarkMode.html#/c:@M@EFQRCode@E@EFWatermarkMode@EFWatermarkModeScaleAspectFill">EFWatermarkMode.scaleAspectFill</a></code>. Think of the generated QR code like <code>UIImageView</code> and <code><a href="Enums/EFWatermarkMode.html">EFWatermarkMode</a></code> as <code>UIView.ContentMode</code>.</p>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EFWatermarkMode</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
     <span class="k">case</span> <span class="n">scaleToFill</span>        <span class="o">=</span> <span class="mi">0</span>
     <span class="k">case</span> <span class="n">scaleAspectFit</span>     <span class="o">=</span> <span class="mi">1</span>
@@ -425,7 +425,7 @@
 </tbody></table>
 <h4 id='pointshape-efpointshape' class='heading'>pointShape: EFPointShape</h4>
 
-<p>Shape of foreground code points, defaults to <code>square</code>.</p>
+<p>Shape of foreground code points, defaults to <code><a href="Enums/EFPointShape.html#/c:@M@EFQRCode@E@EFPointShape@EFPointShapeSquare">EFPointShape.square</a></code>.</p>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EFPointShape</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
     <span class="k">case</span> <span class="n">square</span>  <span class="o">=</span> <span class="mi">0</span>
     <span class="k">case</span> <span class="n">circle</span>  <span class="o">=</span> <span class="mi">1</span>
@@ -454,7 +454,7 @@
 <p><strong>NOTE</strong>: You shall not get <code>Data</code> from <code>UIImage</code> as it only provides the first frame.</p>
 </blockquote>
 
-<p>Then you can create GIF QRCode with <code>EFQRCode.generateWithGIF</code>:</p>
+<p>Then you can create GIF QRCode with <code>EFQRCode.generateGIF</code>:</p>
 
 <table><thead>
 <tr>
