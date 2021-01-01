@@ -71,7 +71,7 @@ class ParametersInterfaceController: WKInterfaceController {
             correctionLevel = level
         }
     }
-    private var selectedMode = EFQRCodeMode.none
+    private var selectedMode: EFQRCodeMode? = nil
     private let mode = [
         "none", "grayscale", "binarization"
     ]
@@ -84,7 +84,7 @@ class ParametersInterfaceController: WKInterfaceController {
         })
     }
     @IBAction func pickedMode(_ value: Int) {
-        selectedMode = [.none, .grayscale, .binarization(threshold: 0.5)][value]
+        selectedMode = [nil, .grayscale, .binarization(threshold: 0.5)][value]
         if case .binarization = selectedMode {
             binarizationThresholdLabel.setHidden(false)
             binarizationThresholdPicker?.setHidden(false)
@@ -294,30 +294,30 @@ class ParametersInterfaceController: WKInterfaceController {
         ParametersInterfaceController.lastContent.value = link as NSString
 
         let generator = EFQRCodeGenerator(content: link, size: EFIntSize(width: width, height: height))
-        generator.setInputCorrectionLevel(inputCorrectionLevel: correctionLevel)
+        generator.withInputCorrectionLevel(correctionLevel)
         switch selectedMode {
         case .binarization:
-            generator.setMode(mode: .binarization(threshold: binarizationThreshold))
+            generator.withMode(.binarization(threshold: binarizationThreshold))
         default:
-            generator.setMode(mode: selectedMode)
+            generator.withMode(selectedMode)
         }
-        generator.setMagnification(magnification: EFIntSize(width: magnificationWidth, height: magnificationHeight))
-        generator.setColors(backgroundColor: backgroundColor.ef.cgColor, foregroundColor: foregroundColor.ef.cgColor)
-        generator.setIcon(icon: icon?.ef.cgImage, size: EFIntSize(width: iconWidth, height: iconHeight))
-        generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
-        generator.setAllowTransparent(allowTransparent: allowsTransparent)
-        generator.setPointShape(pointShape: pointShape)
-        generator.setIgnoreTiming(ignoreTiming: ignoreTiming)
+        generator.withMagnification(EFIntSize(width: magnificationWidth, height: magnificationHeight))
+        generator.withColors(backgroundColor: backgroundColor.ef.cgColor, foregroundColor: foregroundColor.ef.cgColor)
+        generator.withIcon(icon?.ef.cgImage, size: EFIntSize(width: iconWidth, height: iconHeight))
+        generator.withPointOffset(foregroundPointOffset)
+        generator.withTransparentWatermark(allowsTransparent)
+        generator.withPointShape(pointShape)
+        generator.withStyledTimingPoint(ignoreTiming)
         
         switch watermark {
         case .gif(let data)?: // GIF
             // TODO: Confirm if possible to even have this case on watchOS
-            generator.setWatermark(watermark: nil, mode: watermarkMode)
-            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+            generator.withWatermark(nil, mode: watermarkMode)
+            if let afterData = EFQRCode.generateGIF(using: generator, withWatermarkGIF: data) {
                 return EFImage.gif(afterData)
             }
         case .normal(let uiImage)?:
-            generator.setWatermark(watermark: uiImage.ef.cgImage, mode: watermarkMode)
+            generator.withWatermark(uiImage.ef.cgImage, mode: watermarkMode)
             fallthrough // Other use UIImage
         case nil:
             if let tryCGImage = generator.generate() {
