@@ -63,7 +63,7 @@ class ViewController: NSViewController {
 
     // Param
     var inputCorrectionLevel = EFInputCorrectionLevel.h
-    var mode: EFQRCodeMode = .none
+    var mode: EFQRCodeMode? = nil
     var size = EFIntSize(width: 1024, height: 1024)
     var magnification: EFIntSize? = EFIntSize(width: 9, height: 9)
     var backColor = NSColor.white
