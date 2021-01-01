@@ -33,9 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-func UIImage2CGimage(_ image: UIImage?) -> CGImage? {
-    if let tryImage = image, let tryCIImage = CIImage(image: tryImage) {
-        return CIContext().createCGImage(tryCIImage, from: tryCIImage.extent)
+func UIImage2CGImage(_ image: UIImage?) -> CGImage? {
+    guard let image = image else { return nil }
+    if let cgImage = image.cgImage {
+        return cgImage
+    }
+    if let ciImage = CIImage(image: image) {
+        return CIContext().createCGImage(ciImage, from: ciImage.extent)
     }
     return nil
 }

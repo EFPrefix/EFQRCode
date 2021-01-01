@@ -76,7 +76,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     var icon: UIImage? = nil
     var iconSize: EFIntSize? = nil
     var watermarkMode = EFWatermarkMode.scaleAspectFill
-    var mode: EFQRCodeMode = .none
+    var mode: EFQRCodeMode? = nil
     var binarizationThreshold: CGFloat = 0.5
     var pointShape: EFPointShape = .square
     var watermark: EFImage? = nil
@@ -201,19 +201,19 @@ extension GeneratorController {
         lastContent.value = content as NSString
 
         let generator = EFQRCodeGenerator(content: content, size: size)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
+        generator.withInputCorrectionLevel(inputCorrectionLevel)
         switch mode {
         case .binarization:
-            generator.setMode(mode: .binarization(threshold: binarizationThreshold))
+            generator.withMode(.binarization(threshold: binarizationThreshold))
         default:
-            generator.setMode(mode: mode)
+            generator.withMode(mode)
         }
-        generator.setMagnification(magnification: magnification)
-        generator.setColors(backgroundColor: CIColor(color: backColor), foregroundColor: CIColor(color: frontColor))
-        generator.setIcon(icon: UIImage2CGimage(icon), size: iconSize)
-        generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
-        generator.setAllowTransparent(allowTransparent: allowTransparent)
-        generator.setPointShape(pointShape: pointShape)
+        generator.withMagnification(magnification)
+        generator.withColors(backgroundColor: CIColor(color: backColor), foregroundColor: CIColor(color: frontColor))
+        generator.withIcon(UIImage2CGImage(icon), size: iconSize)
+        generator.withPointOffset(foregroundPointOffset)
+        generator.withTransparentWatermark(allowTransparent)
+        generator.withPointShape(pointShape)
         
         func alertCreationFailure() {
             let alert = UIAlertController(
@@ -226,15 +226,15 @@ extension GeneratorController {
 
         switch watermark {
         case .gif(let data)?: // GIF
-            generator.setWatermark(watermark: nil, mode: watermarkMode)
+            generator.withWatermark(nil, mode: watermarkMode)
             
-            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+            if let afterData = EFQRCode.generateGIF(using: generator, withWatermarkGIF: data) {
                 present(ShowController(image: .gif(afterData)), animated: true)
             } else {
                 alertCreationFailure()
             }
         case .normal(let image)?:
-            generator.setWatermark(watermark: UIImage2CGimage(image), mode: watermarkMode)
+            generator.withWatermark(UIImage2CGImage(image), mode: watermarkMode)
             fallthrough // Create using UIImage with or without watermark
         case nil:
             if let tryCGImage = generator.generate() {
@@ -744,7 +744,7 @@ extension GeneratorController {
                 UIAlertAction(title: modeName, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    self.mode = [.none, .grayscale, .binarization(threshold: 0.5)][index]
+                    self.mode = [nil, .grayscale, .binarization(threshold: 0.5)][index]
                     self.refresh()
                 }
             )
@@ -877,11 +877,11 @@ extension GeneratorController {
         let watermarkModeName = Localized.Parameters.watermarkModeNames[watermarkMode.rawValue]
         let modeIndex: Int = {
             switch mode {
-            case .none:
+            case nil, EFQRCodeMode.none?:
                 return 0
             case .grayscale:
                 return 1
-            default:
+            case .binarization:
                 return 2
             }
         }()
