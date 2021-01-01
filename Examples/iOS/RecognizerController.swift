@@ -136,8 +136,8 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     @objc func scanQRCode() {
-        if let tryImage = UIImage2CGimage(imageView.image) {
-            let codes = EFQRCodeRecognizer(image: tryImage).recognize() ?? []
+        if let tryImage = UIImage2CGImage(imageView.image) {
+            let codes = EFQRCodeRecognizer(image: tryImage).recognize()
             let title = codes.isEmpty ? Localized.error : Localized.success
             let result = codes.first ?? NSLocalizedString(
                 "No QR code is found", comment: "Failed to get QRCode from image"
