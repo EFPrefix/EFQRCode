@@ -192,33 +192,33 @@ extension ViewController: NSAlertDelegate {
         lastContent.value = content as NSString
 
         let generator = EFQRCodeGenerator(content: content, size: size)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: inputCorrectionLevel)
+        generator.withInputCorrectionLevel(inputCorrectionLevel)
         switch mode {
         case .binarization:
-            generator.setMode(mode: .binarization(threshold: binarizationThreshold))
+            generator.withMode(.binarization(threshold: binarizationThreshold))
         default:
-            generator.setMode(mode: mode)
+            generator.withMode(mode)
         }
-        generator.setMagnification(magnification: magnification)
-        generator.setColors(backgroundColor: backColor.ef.ciColor, foregroundColor: frontColor.ef.ciColor)
-        generator.setIcon(icon: icon?.ef.cgImage, size: iconSize)
-        generator.setForegroundPointOffset(foregroundPointOffset: foregroundPointOffset)
-        generator.setAllowTransparent(allowTransparent: allowTransparent)
-        generator.setPointShape(pointShape: pointShape)
-        generator.setIgnoreTiming(ignoreTiming: ignoreTiming)
+        generator.withMagnification(magnification)
+        generator.withColors(backgroundColor: backColor.ef.ciColor, foregroundColor: frontColor.ef.ciColor)
+        generator.withIcon(icon?.ef.cgImage, size: iconSize)
+        generator.withPointOffset(foregroundPointOffset)
+        generator.withTransparentWatermark(allowTransparent)
+        generator.withPointShape(pointShape)
+        generator.withStyledTimingPoint(ignoreTiming)
 
         switch watermark {
         case .gif(let data)?: // GIF
-            generator.setWatermark(watermark: nil, mode: watermarkMode)
+            generator.withWatermark(nil, mode: watermarkMode)
             
-            if let afterData = EFQRCode.generateWithGIF(data: data, generator: generator) {
+            if let afterData = EFQRCode.generateGIF(using: generator, withWatermarkGIF: data) {
                 generatorViewImage.image = NSImage(data: afterData)
                 result = afterData
             } else {
                 messageBox(Localized.createQRCodeFailed)
             }
         case .normal(let image)?:
-            generator.setWatermark(watermark: image.ef.cgImage, mode: watermarkMode)
+            generator.withWatermark(image.ef.cgImage, mode: watermarkMode)
             fallthrough // Other use UIImage
         case nil:
             if let tryCGImage = generator.generate() {
@@ -300,11 +300,11 @@ extension ViewController: NSAlertDelegate {
         let watermarkModeString = Localized.Parameters.watermarkModeNames[watermarkMode.rawValue]
         let modeIndex: Int = {
             switch mode {
-            case .none:
+            case nil, EFQRCodeMode.none?:
                 return 0
             case .grayscale:
                 return 1
-            default:
+            case .binarization:
                 return 2
             }
         }()
@@ -437,7 +437,7 @@ extension ViewController: NSAlertDelegate {
     func chooseMode() {
         choose(Localized.Title.mode, from: Localized.Parameters.modeNames) {
             (self, response) in
-            self.mode = [.none, .grayscale, .binarization(threshold: 0.5)][response.rawValue - 1000]
+            self.mode = [nil, .grayscale, .binarization(threshold: 0.5)][response.rawValue - 1000]
         }
     }
 
