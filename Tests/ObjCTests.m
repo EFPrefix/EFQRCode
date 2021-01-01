@@ -100,7 +100,6 @@
     EFQRCodeRecognizer *r = [[EFQRCodeRecognizer alloc] initWithImage:testResult];
     r.image = testResult;
     NSArray<NSString *> *testResultArray = [r recognize];
-    XCTAssertNotNil(testResultArray, "testResultArray is nil!");
     XCTAssertGreaterThan([testResultArray count], 0, "testResultArray has no result!");
     XCTAssertEqualObjects(testResultArray[0], content, "testResultArray is wrong!");
 }

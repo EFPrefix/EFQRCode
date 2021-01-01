@@ -55,19 +55,18 @@ class Tests: XCTestCase {
             content: content,
             size: EFIntSize(width: 256, height: 256)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CIColor.white(),
+        generator.withMode(nil)
+        generator.withColors(backgroundColor: CIColor.white(),
                             foregroundColor: CIColor.black())
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .h)
-        generator.setMagnification(magnification: EFIntSize(width: 6, height: 6))
+        generator.withInputCorrectionLevel(.h)
+        generator.withMagnification(EFIntSize(width: 6, height: 6))
         let testResult = generator.generate()
         XCTAssertNotNil(testResult, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
-        let testResultArray = EFQRCode.recognize(image: testResult!)
-        XCTAssertNotNil(testResultArray, "testResultArray is nil!")
-        XCTAssertFalse(testResultArray!.isEmpty, "testResultArray has no result!")
-        XCTAssertEqual(testResultArray![0], content, "testResultArray is wrong!")
+        let testResultArray = EFQRCode.recognize(testResult!)
+        XCTAssertFalse(testResultArray.isEmpty, "testResultArray has no result!")
+        XCTAssertEqual(testResultArray[0], content, "testResultArray is wrong!")
     }
 
     func testExample2() {
@@ -77,19 +76,18 @@ class Tests: XCTestCase {
             content: content,
             size: EFIntSize(width: 999, height: 999)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CIColor.white(),
+        generator.withMode(nil)
+        generator.withColors(backgroundColor: CIColor.white(),
                             foregroundColor: CIColor.black())
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .l)
-        generator.setMagnification(magnification: nil)
+        generator.withInputCorrectionLevel(.l)
+        generator.withMagnification(nil)
         let testResult = generator.generate()
         XCTAssertNotNil(testResult, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
-        let testResultArray = EFQRCode.recognize(image: testResult!)
-        XCTAssertNotNil(testResultArray, "testResultArray is nil!")
-        XCTAssertFalse(testResultArray!.isEmpty, "testResultArray has no result!")
-        XCTAssertEqual(testResultArray![0], content, "testResultArray is wrong!")
+        let testResultArray = EFQRCode.recognize(testResult!)
+        XCTAssertFalse(testResultArray.isEmpty, "testResultArray has no result!")
+        XCTAssertEqual(testResultArray[0], content, "testResultArray is wrong!")
     }
 
     func testExample3() {
@@ -99,19 +97,18 @@ class Tests: XCTestCase {
             content: content,
             size: EFIntSize(width: 1024, height: 1024)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: EFColor.gray.ciColor(),
+        generator.withMode(nil)
+        generator.withColors(backgroundColor: EFColor.gray.ciColor(),
                             foregroundColor: CIColor.black())
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
-        generator.setMagnification(magnification: nil)
+        generator.withInputCorrectionLevel(.m)
+        generator.withMagnification(nil)
         let testResult = generator.generate()
         XCTAssertNotNil(testResult, "testResult is nil!")
 
         // This is an example of EFQRCodeRecognizer test case.
-        let testResultArray = EFQRCode.recognize(image: testResult!)
-        XCTAssertNotNil(testResultArray, "testResultArray is nil!")
-        XCTAssertFalse(testResultArray!.isEmpty, "testResultArray has no result!")
-        XCTAssertEqual(testResultArray![0], content, "testResultArray is wrong!")
+        let testResultArray = EFQRCode.recognize(testResult!)
+        XCTAssertFalse(testResultArray.isEmpty, "testResultArray has no result!")
+        XCTAssertEqual(testResultArray[0], content, "testResultArray is wrong!")
     }
 
     func testExample4() {
@@ -121,15 +118,15 @@ class Tests: XCTestCase {
             content: content,
             size: EFIntSize(width: 15, height: 15)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: EFColor.gray.ciColor(),
-                            foregroundColor: CIColor.black())
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
-        generator.setMagnification(magnification: nil)
-        generator.setIcon(icon: getImage(), size: nil)
-        generator.setWatermark(watermark: getImage(), mode: .bottom)
-        generator.setForegroundPointOffset(foregroundPointOffset: 0)
-        generator.setAllowTransparent(allowTransparent: true)
+        .withMode(nil)
+        .withColors(backgroundColor: EFColor.gray.ciColor(),
+                   foregroundColor: CIColor.black())
+        .withInputCorrectionLevel(.q)
+        .withMagnification(nil)
+        .withIcon(getImage(), size: nil)
+        .withWatermark(getImage(), mode: .bottom)
+        .withPointOffset(0)
+        .withTransparentWatermark(true)
         let testResult = generator.generate()
         XCTAssertNotNil(testResult, "testResult is nil!")
     }
@@ -149,7 +146,7 @@ class Tests: XCTestCase {
 
     // EFQRCode
     func testExampleEFQRCode() {
-        let testResult = EFQRCode.generate(content: "https://github.com/EFPrefix/EFQRCode")
+        let testResult = EFQRCode.generate(for: "https://github.com/EFPrefix/EFQRCode")
         XCTAssertNotNil(testResult, "testResult is nil!")
     }
 }
