@@ -57,10 +57,10 @@ final class Tests {
             content: content,
             size: EFIntSize(width: 256, height: 256)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CGColor.EF.white()!, foregroundColor: CGColor.EF.black()!)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .h)
-        generator.setMagnification(magnification: EFIntSize(width: 6, height: 6))
+        generator.withMode(nil)
+        generator.withColors(backgroundColor: CGColor.EF.white()!, foregroundColor: CGColor.EF.black()!)
+        generator.withInputCorrectionLevel(.h)
+        generator.withMagnification(EFIntSize(width: 6, height: 6))
         return generator.generate() == nil ? Localized.errored : .passed
 
         // EFQRCodeRecognizer test case not included.
@@ -73,10 +73,10 @@ final class Tests {
             content: content,
             size: EFIntSize(width: 999, height: 999)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: CGColor.EF.white()!, foregroundColor: CGColor.EF.black()!)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .l)
-        generator.setMagnification(magnification: nil)
+        generator.withMode(nil)
+        generator.withColors(backgroundColor: CGColor.EF.white()!, foregroundColor: CGColor.EF.black()!)
+        generator.withInputCorrectionLevel(.l)
+        generator.withMagnification(nil)
         return generator.generate() == nil ? Localized.errored : .passed
 
         // EFQRCodeRecognizer test case not included.
@@ -89,10 +89,10 @@ final class Tests {
             content: content,
             size: EFIntSize(width: 1024, height: 1024)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: UIColor.gray.ef.cgColor, foregroundColor: CGColor.EF.black()!)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .m)
-        generator.setMagnification(magnification: nil)
+        generator.withMode(nil)
+        generator.withColors(backgroundColor: UIColor.gray.ef.cgColor, foregroundColor: CGColor.EF.black()!)
+        generator.withInputCorrectionLevel(.m)
+        generator.withMagnification(nil)
         return generator.generate() == nil ? Localized.errored : .passed
 
         // EFQRCodeRecognizer test case not included.
@@ -105,14 +105,14 @@ final class Tests {
             content: content,
             size: EFIntSize(width: 15, height: 15)
         )
-        generator.setMode(mode: .none)
-        generator.setColors(backgroundColor: UIColor.red.ef.cgColor, foregroundColor: CGColor.EF.black()!)
-        generator.setInputCorrectionLevel(inputCorrectionLevel: .q)
-        generator.setMagnification(magnification: nil)
-        generator.setIcon(icon: getImage(), size: nil)
-        generator.setWatermark(watermark: getImage(), mode: .bottom)
-        generator.setForegroundPointOffset(foregroundPointOffset: 0)
-        generator.setAllowTransparent(allowTransparent: true)
+        generator.withMode(nil)
+        generator.withColors(backgroundColor: UIColor.red.ef.cgColor, foregroundColor: CGColor.EF.black()!)
+        generator.withInputCorrectionLevel(.q)
+        generator.withMagnification(nil)
+        generator.withIcon(getImage(), size: nil)
+        generator.withWatermark(getImage(), mode: .bottom)
+        generator.withPointOffset(0)
+        generator.withTransparentWatermark(true)
         let testResult = generator.generate()
         return testResult == nil ? Localized.errored : .passed
     }
@@ -134,7 +134,7 @@ final class Tests {
 
     // EFQRCode
     func testExampleEFQRCode() -> String? {
-        let testResult = EFQRCode.generate(content: "https://github.com/EFPrefix/EFQRCode")
+        let testResult = EFQRCode.generate(for: "https://github.com/EFPrefix/EFQRCode")
         return testResult == nil ? Localized.errored : .passed
     }
 }
