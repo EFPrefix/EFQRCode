@@ -122,6 +122,7 @@ extension EFQRCode {
                     }
                 }
             }
+            generator.clearCache()
             
             if let fileProperties = fileProperties, framePropertiesArray.count == frames.count {
                 return frames.toGifData(framePropertiesArray: framePropertiesArray, fileProperties: fileProperties)
