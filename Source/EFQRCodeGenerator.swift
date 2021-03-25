@@ -352,10 +352,24 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // MARK: - Cache
-    private var imageCodes: [[Bool]]?
+    private var imageCodes: [[Bool]]? {
+        didSet {
+            frontTransparentQRCodeImage = nil
+            frontQRCodeImage = nil
+        }
+    }
+    private var frontTransparentQRCodeImage: CGImage?
+    private var frontQRCodeImage: CGImage?
+    
     private var imageQRCode: CGImage?
     private var minSuitableSize: EFIntSize!
-
+    
+    /// Clear cache.
+    public func clearCache() {
+        imageCodes = nil
+        imageQRCode = nil
+    }
+    
     // MARK: - Init
 
     /// Initialize a QR code generator to generate a QR code of specified of size
@@ -424,32 +438,42 @@ public class EFQRCodeGenerator: NSObject {
                     mode: finalWatermarkMode,
                     size: finalSize.cgSize
                 )
-                // Draw QR Code
-                if let tryFrontImage = createTransparentQRCodeImage(
-                    from: codes,
-                    colorBack: finalBackgroundColor,
-                    colorFront: finalForegroundColor,
-                    size: minSuitableSize
-                ) {
-                    context.draw(tryFrontImage, in: CGRect(origin: .zero, size: finalSize.cgSize))
-                }
             } else {
                 // Draw background without watermark
                 let colorCGBack = finalBackgroundColor
                 context.setFillColor(colorCGBack)
                 context.fill(CGRect(origin: .zero, size: finalSize.cgSize))
-
-                // Draw QR Code
-                if let tryImage = createQRCodeImage(
-                    codes: codes,
-                    colorBack: finalBackgroundColor,
-                    colorFront: finalForegroundColor,
-                    size: minSuitableSize
-                ) {
-                    context.draw(tryImage, in: CGRect(origin: .zero, size: finalSize.cgSize))
-                }
             }
-
+            
+            // Draw QR Code
+            if let tryFrontImage = { () -> CGImage? in
+                if let _ = finalWatermark {
+                    if let tryFrontTransparentQRCodeImage = frontTransparentQRCodeImage {
+                        return tryFrontTransparentQRCodeImage
+                    }
+                    frontTransparentQRCodeImage = createTransparentQRCodeImage(
+                        from: codes,
+                        colorBack: finalBackgroundColor,
+                        colorFront: finalForegroundColor,
+                        size: minSuitableSize
+                    )
+                    return frontTransparentQRCodeImage
+                } else {
+                    if let tryFrontQRCodeImage = frontQRCodeImage {
+                        return tryFrontQRCodeImage
+                    }
+                    frontQRCodeImage = createQRCodeImage(
+                        codes: codes,
+                        colorBack: finalBackgroundColor,
+                        colorFront: finalForegroundColor,
+                        size: minSuitableSize
+                    )
+                    return frontQRCodeImage
+                }
+            }() {
+                context.draw(tryFrontImage, in: CGRect(origin: .zero, size: finalSize.cgSize))
+            }
+            
             // Add icon
             if let tryIcon = finalIcon {
                 var finalIconSizeWidth = finalSize.width.cgFloat * 0.2
