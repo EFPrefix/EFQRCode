@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 import Foundation
+import CoreGraphics
 
 /// Options to specify how watermark position and size for QR code.
 @objc public enum EFWatermarkMode: Int {
@@ -52,4 +53,61 @@ import Foundation
     case bottomLeft         = 10
     /// The option to align the watermark in the bottom-right corner of the QR code.
     case bottomRight        = 11
+    
+    /// Calculate the image rect in canvas when using given mode
+    public func calculateRectInCanvas(canvasSize size: CGSize, imageSize: CGSize) -> CGRect {
+        var finalSize: CGSize = size
+        var finalOrigin: CGPoint = CGPoint.zero
+        let imageSize: CGSize = imageSize
+        switch self {
+        case .bottom:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: 0)
+        case .bottomLeft:
+            finalSize = imageSize
+            finalOrigin = .zero
+        case .bottomRight:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: size.width - imageSize.width, y: 0)
+        case .center:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0,
+                                  y: (size.height - imageSize.height) / 2.0)
+        case .left:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: 0, y: (size.height - imageSize.height) / 2.0)
+        case .right:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: size.width - imageSize.width,
+                                  y: (size.height - imageSize.height) / 2.0)
+        case .top:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0,
+                                  y: size.height - imageSize.height)
+        case .topLeft:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: 0, y: size.height - imageSize.height)
+        case .topRight:
+            finalSize = imageSize
+            finalOrigin = CGPoint(x: size.width - imageSize.width,
+                                  y: size.height - imageSize.height)
+        case .scaleAspectFill:
+            let scale = max(size.width / imageSize.width,
+                            size.height / imageSize.height)
+            finalSize = CGSize(width: imageSize.width * scale,
+                               height: imageSize.height * scale)
+            finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0,
+                                  y: (size.height - finalSize.height) / 2.0)
+        case .scaleAspectFit:
+            let scale = max(imageSize.width / size.width,
+                            imageSize.height / size.height)
+            finalSize = CGSize(width: imageSize.width / scale,
+                               height: imageSize.height / scale)
+            finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0,
+                                  y: (size.height - finalSize.height) / 2.0)
+        case .scaleToFill:
+            break
+        }
+        return CGRect(origin: finalOrigin, size: finalSize)
+    }
 }

@@ -779,59 +779,11 @@ public class EFQRCodeGenerator: NSObject {
             }
         }
         // Image
-        var finalSize = size
-        var finalOrigin = CGPoint.zero
-        let imageSize = CGSize(width: image.width, height: image.height)
-        switch mode {
-        case .bottom:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0, y: 0)
-        case .bottomLeft:
-            finalSize = imageSize
-            finalOrigin = .zero
-        case .bottomRight:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: size.width - imageSize.width, y: 0)
-        case .center:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0,
-                                  y: (size.height - imageSize.height) / 2.0)
-        case .left:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: 0, y: (size.height - imageSize.height) / 2.0)
-        case .right:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: size.width - imageSize.width,
-                                  y: (size.height - imageSize.height) / 2.0)
-        case .top:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: (size.width - imageSize.width) / 2.0,
-                                  y: size.height - imageSize.height)
-        case .topLeft:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: 0, y: size.height - imageSize.height)
-        case .topRight:
-            finalSize = imageSize
-            finalOrigin = CGPoint(x: size.width - imageSize.width,
-                                  y: size.height - imageSize.height)
-        case .scaleAspectFill:
-            let scale = max(size.width / imageSize.width,
-                            size.height / imageSize.height)
-            finalSize = CGSize(width: imageSize.width * scale,
-                               height: imageSize.height * scale)
-            finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0,
-                                  y: (size.height - finalSize.height) / 2.0)
-        case .scaleAspectFit:
-            let scale = max(imageSize.width / size.width,
-                            imageSize.height / size.height)
-            finalSize = CGSize(width: imageSize.width / scale,
-                               height: imageSize.height / scale)
-            finalOrigin = CGPoint(x: (size.width - finalSize.width) / 2.0,
-                                  y: (size.height - finalSize.height) / 2.0)
-        case .scaleToFill:
-            break
-        }
-        context.draw(image, in: CGRect(origin: finalOrigin, size: finalSize))
+        let imageRect: CGRect = mode.calculateRectInCanvas(
+            canvasSize: size,
+            imageSize: CGSize(width: image.width, height: image.height)
+        )
+        context.draw(image, in: imageRect)
     }
 
     private func drawIcon(context: CGContext, icon: CGImage, size: EFIntSize) {
