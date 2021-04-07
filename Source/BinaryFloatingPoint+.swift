@@ -4,7 +4,7 @@
 //
 //  Created by EyreFree on 2019/11/20.
 //
-//  Copyright © 2019 EyreFree. All rights reserved.
+//  Copyright (c) 2017-2021 EyreFree <eyrefree@eyrefree.org>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

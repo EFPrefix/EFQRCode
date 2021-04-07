@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 	s.homepage         = 'https://github.com/EFPrefix/EFQRCode'
 	s.screenshots      = 'https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg'
 	s.license          = { :type => 'MIT', :file => 'LICENSE' }
-	s.author           = { 'EyreFree' => 'eyrefree@eyrefree.org', 'ApolloZhu' => 'public-apollonian@outlook.com' }
+	s.authors          = { 'EyreFree' => 'eyrefree@eyrefree.org', 'ApolloZhu' => 'public-apollonian@outlook.com' }
 	s.source           = { :git => 'https://github.com/EFPrefix/EFQRCode.git', :tag => s.version.to_s }
 	s.social_media_url = 'https://twitter.com/EyreFree777'
 	s.documentation_url = 'https://efprefix.github.io/EFQRCode'
