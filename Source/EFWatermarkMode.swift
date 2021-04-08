@@ -53,9 +53,17 @@ import CoreGraphics
     case bottomLeft         = 10
     /// The option to align the watermark in the bottom-right corner of the QR code.
     case bottomRight        = 11
-    
-    /// Calculate the image rect in canvas when using given mode
-    public func calculateRectInCanvas(canvasSize size: CGSize, imageSize: CGSize) -> CGRect {
+
+    // MARK: - Utilities
+
+    /// Calculates and returns the area in canvas where the image is going to be in this mode.
+    /// - Parameters:
+    ///   - imageSize: size of the watermark image to place in the canvas.
+    ///   - canvasSize: size of the canvas to place the image in.
+    /// - Returns: the area where the image is going to be according to the watermark mode.
+    public func rectForImage(ofSize imageSize: CGSize,
+                             inCanvasOfSize canvasSize: CGSize) -> CGRect {
+        let size = canvasSize
         var finalSize: CGSize = size
         var finalOrigin: CGPoint = CGPoint.zero
         let imageSize: CGSize = imageSize

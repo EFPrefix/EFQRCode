@@ -48,15 +48,14 @@ public class EFQRCodeGenerator: NSObject {
         return self
     }
 
-    // MARK: - Parameters
+    // MARK: - Content Parameters
 
     /// Content to include in the generated QR Code.
     /// - Important: Limited to at most 1273 characters.
     /// - Note: The density of the QR-lattice increases with the increases of the content length.
     public var content: String? {
         didSet {
-            imageQRCode = nil
-            imageCodes = nil
+            clearCache()
         }
     }
     /// Sets the generator to generate for content using the specified encoding.
@@ -76,8 +75,7 @@ public class EFQRCodeGenerator: NSObject {
     /// Encoding for `content`.
     public var contentEncoding: String.Encoding = .utf8 {
         didSet {
-            imageQRCode = nil
-            imageCodes = nil
+            clearCache()
         }
     }
     /// Sets the generator to use the specified encoding.
@@ -87,6 +85,27 @@ public class EFQRCodeGenerator: NSObject {
     public func withContentEncoding(_ encoding: String.Encoding) -> EFQRCodeGenerator {
         return with(\.contentEncoding, encoding)
     }
+
+    /// Level of error tolerance.
+    ///
+    /// - L 7%
+    /// - M 15%
+    /// - Q 25%
+    /// - H 30%(Default)
+    public var inputCorrectionLevel: EFInputCorrectionLevel = .h {
+        didSet {
+            clearCache()
+        }
+    }
+    /// Sets the generator to use the specified input correction level.
+    /// - Parameter inputCorrectionLevel: level of error-tolerant rate.
+    /// - Returns: `self`, allowing chaining.
+    @discardableResult
+    public func withInputCorrectionLevel(_ inputCorrectionLevel: EFInputCorrectionLevel) -> EFQRCodeGenerator {
+        return with(\.inputCorrectionLevel, inputCorrectionLevel)
+    }
+
+    // MARK: - Style Parameters
 
     /// Color mode of QR Code, defaults to `nil`.
     public var mode: EFQRCodeMode? = nil {
@@ -100,26 +119,6 @@ public class EFQRCodeGenerator: NSObject {
     @discardableResult
     public func withMode(_ mode: EFQRCodeMode?) -> EFQRCodeGenerator {
         return with(\.mode, mode)
-    }
-
-    /// Level of error tolerance.
-    ///
-    /// - L 7%
-    /// - M 15%
-    /// - Q 25%
-    /// - H 30%(Default)
-    public var inputCorrectionLevel: EFInputCorrectionLevel = .h {
-        didSet {
-            imageQRCode = nil
-            imageCodes = nil
-        }
-    }
-    /// Sets the generator to use the specified input correction level.
-    /// - Parameter inputCorrectionLevel: level of error-tolerant rate.
-    /// - Returns: `self`, allowing chaining.
-    @discardableResult
-    public func withInputCorrectionLevel(_ inputCorrectionLevel: EFInputCorrectionLevel) -> EFQRCodeGenerator {
-        return with(\.inputCorrectionLevel, inputCorrectionLevel)
     }
 
     /// Size of the QR code, defaults to 256 by 256.
@@ -352,19 +351,34 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     // MARK: - Cache
+
+    /*
+     The 3 layers that constitutes the final imageQRCode (from top to bottom):
+
+     [                    icon (or none)                    ]
+     [ frontTransparentQRCodeImage ]     [ frontQRCodeImage ]
+     [       watermark image       ]     [       none       ]
+     */
+
+    /// The code points.
     private var imageCodes: [[Bool]]? {
         didSet {
             frontTransparentQRCodeImage = nil
             frontQRCodeImage = nil
         }
     }
+    /// The code points layer if background watermark is provided.
     private var frontTransparentQRCodeImage: CGImage?
+    /// The code points layer if background watermark is nil.
     private var frontQRCodeImage: CGImage?
-    
+    /// The final result.
     private var imageQRCode: CGImage?
+    /// Cache of the actual QRCode content size.
     private var minSuitableSize: EFIntSize!
     
-    /// Clear cache.
+    /// Clears the cache.
+    ///
+    /// - Note: You do not need to call this except for reducing memory usage.
     public func clearCache() {
         imageCodes = nil
         imageQRCode = nil
@@ -447,7 +461,7 @@ public class EFQRCodeGenerator: NSObject {
             
             // Draw QR Code
             if let tryFrontImage = { () -> CGImage? in
-                if let _ = finalWatermark {
+                if finalWatermark != nil {
                     if let tryFrontTransparentQRCodeImage = frontTransparentQRCodeImage {
                         return tryFrontTransparentQRCodeImage
                     }
@@ -779,9 +793,9 @@ public class EFQRCodeGenerator: NSObject {
             }
         }
         // Image
-        let imageRect: CGRect = mode.calculateRectInCanvas(
-            canvasSize: size,
-            imageSize: CGSize(width: image.width, height: image.height)
+        let imageRect: CGRect = mode.rectForImage(
+            ofSize: CGSize(width: image.width, height: image.height),
+            inCanvasOfSize: size
         )
         context.draw(image, in: imageRect)
     }
