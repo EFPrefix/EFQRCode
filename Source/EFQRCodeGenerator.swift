@@ -793,7 +793,7 @@ public class EFQRCodeGenerator: NSObject {
             }
         }
         // Image
-        let imageRect: CGRect = mode.rectForImage(
+        let imageRect: CGRect = mode.rectForWatermark(
             ofSize: CGSize(width: image.width, height: image.height),
             inCanvasOfSize: size
         )

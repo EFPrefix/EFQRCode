@@ -61,8 +61,8 @@ import CoreGraphics
     ///   - imageSize: size of the watermark image to place in the canvas.
     ///   - canvasSize: size of the canvas to place the image in.
     /// - Returns: the area where the image is going to be according to the watermark mode.
-    public func rectForImage(ofSize imageSize: CGSize,
-                             inCanvasOfSize canvasSize: CGSize) -> CGRect {
+    public func rectForWatermark(ofSize imageSize: CGSize,
+                                 inCanvasOfSize canvasSize: CGSize) -> CGRect {
         let size = canvasSize
         var finalSize: CGSize = size
         var finalOrigin: CGPoint = CGPoint.zero
