@@ -1,5 +1,38 @@
 # Change Log
 
+## [6.1.0](https://github.com/EFPrefix/EFQRCode/releases/tag/6.1.0) (2021-04-08)
+
+## Add
+
+- Supports chaining `EFQRCodeGenerator` configuration methods.
+- `EFQRCodeGenerator` properties are now public.
+- `EFQRCodeGenerator.clearCache` can be used to free up memories used for caching results.
+- English documentation is now available through Xcode quick help.
+- Swift: `EFWatermarkMode.rectForWatermark(ofSize:inCanvasOfSize:)` can be used to calculate the frame for watermark image in a canvas.
+- Objective-C: New tests to ensure APIs are available in Objective-C.
+
+## Change
+
+- Renamed `EFQRCodeGenerator` configuration methods to be more consistent.
+   - Renamed `EFQRCode` and reordered convenience generate function arguments to be consistent with generator methods.
+- `EFQRCodeGenerator` now caches more generated contents to improve performance.
+- `EFQRCodeRecognizer` expects non-nil image and returns non-nil array of results. The returned array may still be empty.
+- `EFIntSize` is now an immutable, final class.
+- Renamed `CGColor` extensions `white` and `black` to omit first argument label.
+- Objective-C: `EFQRCodeGenerator` and `EFQRCodeRecognizer` is now fully available to configure/use in Objective-C.
+
+## Deprecate
+
+- `EFQRCodeMode.none` is now deprecated. Use `nil` and `EFQRCodeMode?` instead.
+
+## Remove
+
+- `EFUIntPixel` is no longer a part of the public interface.
+- GIF generation no longer takes `pathToSave` parameter.
+- Objective-C: `EFQRCode` is no longer available in Objective-C. Use `EFQRCodeGenerator` and `EFQRCodeRecognizer` instead.
+
+---
+
 ## [6.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/6.0.0) (2020-11-04)
 
 #### Add
