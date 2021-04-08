@@ -887,13 +887,9 @@ public class EFQRCodeGenerator: NSObject {
 
     /// Get QRCodes from pixels.
     private func getCodes(pixels: [[EFUIntPixel]]) -> [[Bool]] {
-        let codes: [[Bool]] = pixels.indices.map { indexY in
-            pixels[0].indices.map { indexX in
-                let pixel = pixels[indexY][indexX]
-                return pixel.red == 0 && pixel.green == 0 && pixel.blue == 0
-            }
-        }
-        return codes
+        return pixels.map { $0.map { pixel in
+            pixel.red == 0 && pixel.green == 0 && pixel.blue == 0
+        } }
     }
 
     /// Get QRCodes from pixels.
@@ -914,7 +910,7 @@ public class EFQRCodeGenerator: NSObject {
             let level = inputCorrectionLevel.qrErrorCorrectLevel
             return content.flatMap {
                 try? QRCode($0, encoding: contentEncoding,
-                       errorCorrectLevel: level, withBorder: true
+                            errorCorrectLevel: level, withBorder: true
                 )
                 .imageCodes
             }
