@@ -13,7 +13,7 @@
 - ``generate(content:contentEncoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:allowTransparent:pointShape:mode:magnification:foregroundPointOffset:)``
 
 
-### Generate Animated
+### Generate Animated QRCode
 
 - ``generateGIF(for:encoding:inputCorrectionLevel:size:magnification:backgroundColor:foregroundColor:watermark:watermarkMode:watermarkIsTransparent:icon:iconSize:pointShape:pointOffset:isTimingPointStyled:mode:)``
 - ``generateWithGIF(content:contentEncoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:allowTransparent:pointShape:mode:magnification:foregroundPointOffset:)``
