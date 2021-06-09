@@ -139,7 +139,8 @@ public class EFQRCodeGenerator: NSObject {
 
     /// The ratio of actual size to the smallest possible size, defaults to `nil`.
     ///
-    /// - Note: Any non-`nil` value overrides the ``size`` parameter.
+    /// - Important: Any non-`nil` value overrides the ``size`` parameter.
+    ///
     /// If you already have a desired size in mind, we have two helpers methods at your disposal to
     /// calculate the magnification that results in the closet dimension:
     /// - ``maxMagnification(lessThanOrEqualTo:)``

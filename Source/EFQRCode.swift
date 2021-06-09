@@ -52,16 +52,16 @@ public enum EFQRCode {
     ///   - encoding: The encoding to use for `content`.
     ///   - inputCorrectionLevel: The level of error tolerance percentage.
     ///   - size: The size of the output image, ignored if `magnification` is set.
-    ///   - magnification: The ratio of final size to smallest possible size
+    ///   - magnification: The ratio of final size to smallest possible size. See ``EFQRCodeGenerator/magnification`` for more discussions.
     ///   - backgroundColor: Background color of the QR code, defaults to white.
-    ///   - foregroundColor: Toreground color for code points, defaults to black.
+    ///   - foregroundColor: Foreground color for code points, defaults to black.
     ///   - watermark: The background image to use, if any.
     ///   - watermarkMode: How to position the `watermark`, defaults to aspect fill.
     ///   - isWatermarkTransparent: Wether to use the alpha channel in watermark image.
     ///   - icon: The icon that appears in the center of QR code image, if any.
     ///   - iconSize: Size of the `icon`, defaults to 20% of `size`.
     ///   - pointShape: Foreground code point shapes, defaults to square.
-    ///   - pointOffset: How much are foregorund points shifted.
+    ///   - pointOffset: How much are foreground points shifted.
     ///   - isTimingPointStyled: Wether the timing points should be styled (or remain square).
     ///   - mode: The color rendering mode, defaults to original colors.
     /// - Returns: The generated QR code image.
@@ -103,7 +103,7 @@ public enum EFQRCode {
     ///   - encoding: The encoding to use for `content`.
     ///   - inputCorrectionLevel: The level of error tolerance percentage.
     ///   - size: The size of the output image, ignored if `magnification` is set.
-    ///   - magnification: The ratio of final size to smallest possible size
+    ///   - magnification: The ratio of final size to smallest possible size. See ``EFQRCodeGenerator/magnification`` for more discussions.
     ///   - backgroundColor: Background color of the QR code, defaults to white.
     ///   - foregroundColor: Foreground color for code points, defaults to black.
     ///   - watermark: The data of background GIF to use.
@@ -112,7 +112,7 @@ public enum EFQRCode {
     ///   - icon: The icon that appears in the center of QR code image, if any.
     ///   - iconSize: Size of the `icon`, defaults to 20% of `size`.
     ///   - pointShape: Foreground code point shapes, defaults to square.
-    ///   - pointOffset: How much are foregorund points shifted.
+    ///   - pointOffset: How much are foreground points shifted.
     ///   - isTimingPointStyled: Wether the timing points should be styled (or remain square).
     ///   - mode: The color rendering mode, defaults to original colors.
     /// - Returns: The generated QR code GIF.
