@@ -235,7 +235,7 @@ Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/main/USER
 1. Please select a high contrast foreground and background color combinations;
 2. To improve the definition of QRCode images, increase `size`, or scale up using `magnification` (instead);
 3. Magnification too high／size too large／contents too long may cause failure;
-4. It is recommended to test the QRCode image before put it into use;
+4. It is recommended to test the QRCode image before putting it into use;
 5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome.
 
 PS of PS: I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...

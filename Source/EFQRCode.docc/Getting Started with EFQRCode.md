@@ -62,3 +62,10 @@ if let qrCodeData = EFQRCode.generateGIF(
 ```
 
 ![Animated QRCode](EFQRCode-GIF.gif)
+
+### Recommendations
+
+1. Please select a high contrast foreground and background color combinations;
+2. To improve the definition of QRCode images, increase `size`, or scale up using `magnification` (instead);
+3. Magnification too high／size too large／contents too long may cause failure;
+4. It is recommended to test the QRCode image before putting it into use.

@@ -110,6 +110,10 @@
 		D2265577256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
 		D2265578256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
 		D2483E82256E3D7F005899D8 /* QRCodeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D2483E81256E3D7F005899D8 /* QRCodeSwift */; };
+		D24ED66D267132EE0029465D /* EFQRCode.docc in Sources */ = {isa = PBXBuildFile; fileRef = D24ED66C267132EE0029465D /* EFQRCode.docc */; };
+		D24ED66E267132EE0029465D /* EFQRCode.docc in Sources */ = {isa = PBXBuildFile; fileRef = D24ED66C267132EE0029465D /* EFQRCode.docc */; };
+		D24ED66F267132EE0029465D /* EFQRCode.docc in Sources */ = {isa = PBXBuildFile; fileRef = D24ED66C267132EE0029465D /* EFQRCode.docc */; };
+		D24ED670267132EE0029465D /* EFQRCode.docc in Sources */ = {isa = PBXBuildFile; fileRef = D24ED66C267132EE0029465D /* EFQRCode.docc */; };
 		F829C6B81A7A94F100A2CD59 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +178,7 @@
 		D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Migration-v6.swift"; sourceTree = "<group>"; };
 		D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+ObjC.swift"; sourceTree = "<group>"; };
 		D2483C94256E14C0005899D8 /* QRCodeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRCodeSwift.framework; path = ../swift_qrcodejs/Carthage/Build/watchOS/QRCodeSwift.framework; sourceTree = "<group>"; };
+		D24ED66C267132EE0029465D /* EFQRCode.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = EFQRCode.docc; sourceTree = "<group>"; };
 		D2B2741C258DBB8900E6FFC8 /* User Guide.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "User Guide.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2B27435258DEC3000E6FFC8 /* README.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = README.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "European SEPA Money Transfer + Watermark.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -365,6 +370,7 @@
 		F8111E3619A95C8B0040E7D1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D24ED66C267132EE0029465D /* EFQRCode.docc */,
 				120B77D71EA3939F00D34440 /* EFQRCode.h */,
 				F8111E3719A95C8B0040E7D1 /* Info.plist */,
 				72998D721BF26173006D3F69 /* Info-tvOS.plist */,
@@ -726,6 +732,7 @@
 				12EE9E292385999A00241C60 /* CIColor+.swift in Sources */,
 				12C0B6F5219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12EE9E49238651F800241C60 /* UIColor+.swift in Sources */,
+				D24ED66F267132EE0029465D /* EFQRCode.docc in Sources */,
 				12664E9D1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
 				12EE9E3323859A5D00241C60 /* BinaryInteger+.swift in Sources */,
 				12664ECE1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
@@ -764,6 +771,7 @@
 				12EE9E282385999A00241C60 /* CIColor+.swift in Sources */,
 				12C0B6F4219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12EE9E48238651F800241C60 /* UIColor+.swift in Sources */,
+				D24ED66E267132EE0029465D /* EFQRCode.docc in Sources */,
 				12664E9C1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
 				12EE9E3223859A5D00241C60 /* BinaryInteger+.swift in Sources */,
 				12664ECD1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
@@ -793,6 +801,7 @@
 				12EE9E2A2385999A00241C60 /* CIColor+.swift in Sources */,
 				12C0B700219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
 				12EE9E4A238651F800241C60 /* UIColor+.swift in Sources */,
+				D24ED670267132EE0029465D /* EFQRCode.docc in Sources */,
 				5282BCBC1FF3903D00DFB36B /* EFQRCode+GIF.swift in Sources */,
 				12EE9E3423859A5D00241C60 /* BinaryInteger+.swift in Sources */,
 				12C0B705219C102C000545C9 /* EFIntSize.swift in Sources */,
@@ -822,6 +831,7 @@
 				12EE9E272385999A00241C60 /* CIColor+.swift in Sources */,
 				12C0B6F3219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12EE9E47238651F800241C60 /* UIColor+.swift in Sources */,
+				D24ED66D267132EE0029465D /* EFQRCode.docc in Sources */,
 				12664E9B1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
 				12EE9E3123859A5D00241C60 /* BinaryInteger+.swift in Sources */,
 				12664ECC1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
@@ -888,6 +898,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -917,6 +928,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -993,6 +1005,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1022,6 +1035,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1055,6 +1069,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1091,6 +1106,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1247,6 +1263,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1275,6 +1292,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				RUN_DOCUMENTATION_COMPILER = YES;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};

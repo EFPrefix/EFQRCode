@@ -2,6 +2,11 @@
 
 A lightweight cross-platform Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images.
 
+## Overview
+
+> Experiment: Try out some Playgrounds demonstrating how to use ``EFQRCode`` by downloading them from [here](https://github.com/EFPrefix/EFQRCode/tree/main/Playgrounds).
+
+
 ## Topics
 
 ### Quick Start 
