@@ -45,7 +45,7 @@ import Foundation // @objc attribute depends on this.
     case h = 3
 
     #if !canImport(CoreImage)
-    /// Representation of `self` in QRCodeSwift.
+    /// Representation of `self` in `QRCodeSwift`.
     var qrErrorCorrectLevel: QRErrorCorrectLevel {
         switch self {
         case .h: return .H

@@ -46,7 +46,7 @@ public final class EFIntSize: NSObject {
         self.height = height
     }
 
-    /// Converts `CGSize` to `EFIntSize`.
+    /// Converts `CGSize` to ``EFIntSize``.
     /// - Parameter size: the `CGSize` to convert.
     /// - Note: `width` and `height` will be truncated to `Int`.
     public convenience init(size: CGSize) {

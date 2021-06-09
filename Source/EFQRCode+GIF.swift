@@ -48,7 +48,7 @@ extension EFQRCode {
 
     /// Generates an animated QR code GIF with a `generator` specifying other parameters.
     /// - Parameters:
-    ///   - generator: An `EFQRCodeGenerator` providing other QR code generation settings.
+    ///   - generator: An ``EFQRCodeGenerator`` providing other QR code generation settings.
     ///   - data: The data of the watermark GIF.
     ///   - delay: Output QRCode GIF delay, emitted means no change.
     ///   - loopCount: Times looped in GIF, emitted means no change.
