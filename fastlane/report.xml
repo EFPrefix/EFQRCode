@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000318">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: Switch to ios update_build_number lane" time="0.000161">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: update_info_plist" time="0.073523">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: update_info_plist" time="0.019633">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: update_info_plist" time="0.025547">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: Switch to ios build lane" time="0.000148">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: build_app" time="6.861133">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
