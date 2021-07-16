@@ -2,7 +2,7 @@ name: deploy
 
 on:
   push:
-    branches: [ actions ]
+    branches: [ main ]
     tags: [ v* ]
 
 jobs:
