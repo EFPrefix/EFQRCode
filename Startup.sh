@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 if ! command -v carthage > /dev/null; then
 	printf 'Carthage is not installed.\n'
-	printf 'See https://github.com/Carthage/Carthage for install instructions.\n'
-	exit 1
+	# printf 'See https://github.com/Carthage/Carthage for install instructions.\n'
+	printf 'Try: brew install carthage\n'
+	brew install carthage
 fi
 ./carthage.sh update --platform iOS,macOS,tvOS,watchOS --no-use-binaries
 ./carthage.sh build --platform iOS,macOS,tvOS,watchOS --no-skip-current
