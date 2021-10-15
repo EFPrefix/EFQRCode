@@ -150,7 +150,8 @@ extension Localized {
         static let shapeNames = [
             NSLocalizedString("square", comment: "Default QR code point style"),
             NSLocalizedString("circle", comment: "Each point is a circle"),
-            NSLocalizedString("diamond", comment: "Star-shaped 'points'")
+            NSLocalizedString("diamond", comment: "Star-shaped 'points'"),
+            NSLocalizedString("custom", comment: "Custom test")
         ]
     }
 }

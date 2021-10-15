@@ -249,8 +249,11 @@ public enum EFPointShape: Int {
     case square  = 0
     case circle  = 1
     case diamond = 2
+    case custom  = 3
 }
 ```
+
+If `pointShape` is `custom`, the `customPointShapeFillRect` should be set to draw custom point shape, see Example for detail。
 
 square | circle | diamond
 :-------------------------:|:-------------------------:|:-------------------------:
