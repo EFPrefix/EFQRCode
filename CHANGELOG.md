@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.1.1](https://github.com/EFPrefix/EFQRCode/releases/tag/6.1.1) (2021-10-15)
+
+## Add
+
+- Add `custom` to `EFPointShape`.
+
+---
+
 ## [6.1.0](https://github.com/EFPrefix/EFQRCode/releases/tag/6.1.0) (2021-04-08)
 
 ## Add

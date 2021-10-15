@@ -327,6 +327,17 @@ public class EFQRCodeGenerator: NSObject {
         return with(\.pointShape, pointShape)
     }
 
+    /// If `pointShape` is `EFPointShape.custom`, this will work.
+    public var customPointShapeFillRect: CustomPointShapeFillRect?
+    
+    /// Set generator to use the specified foreground point shape.
+    /// - Parameter customPointShapeFillRect: Custom point shape fill rect function.
+    /// - Returns: `self`, allowing chaining.
+    @discardableResult
+    public func withCustomPointShapeFillRect(_ customPointShapeFillRect: CustomPointShapeFillRect?) -> EFQRCodeGenerator {
+        return with(\.customPointShapeFillRect, customPointShapeFillRect)
+    }
+    
     /// If `true` (default), points for timing pattern will be squares.
     public var isTimingPointStatic: Bool = true {
         didSet {
@@ -813,42 +824,11 @@ public class EFQRCodeGenerator: NSObject {
         )
     }
     
-    private func fillDiamond(context: CGContext, rect: CGRect) {
-        // shrink rect edge
-        let drawingRect = rect.insetBy(dx: -2, dy: -2)
-        
-        // create path
-        let path = CGMutablePath()
-        // Bezier Control Point
-        let controlPoint = CGPoint(x: drawingRect.midX , y: drawingRect.midY)
-        // Bezier Start Point
-        let startPoint = CGPoint(x: drawingRect.minX, y: drawingRect.midY)
-        // the other point of diamond
-        let otherPoints = [CGPoint(x: drawingRect.midX, y: drawingRect.maxY),
-                           CGPoint(x: drawingRect.maxX, y: drawingRect.midY),
-                           CGPoint(x: drawingRect.midX, y: drawingRect.minY)]
-        
-        path.move(to: startPoint)
-        for point in otherPoints {
-            path.addQuadCurve(to: point, control: controlPoint)
-        }
-        path.addQuadCurve(to: startPoint, control: controlPoint)
-        context.addPath(path)
-        context.fillPath()
-    }
-
     private func drawPoint(context: CGContext, rect: CGRect, isStatic: Bool = false) {
-        switch pointShape {
-        case .circle:
-            context.fillEllipse(in: rect)
-        case .diamond:
-            if isStatic {
-                context.fill(rect)
-            } else {
-                fillDiamond(context: context, rect: rect)
-            }
-        case .square:
-            context.fill(rect)
+        if case .custom = pointShape {
+            customPointShapeFillRect?(context, rect, isStatic)
+        } else {
+            pointShape.fillRect(context: context, rect: rect, isStatic: isStatic)
         }
     }
 

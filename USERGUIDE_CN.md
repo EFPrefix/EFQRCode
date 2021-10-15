@@ -244,8 +244,11 @@ public enum EFPointShape: Int {
     case square  = 0
     case circle  = 1
     case diamond = 2
+    case custom  = 3
 }
 ```
+
+如果 `pointShape` 设为 `custom`，则需要同时设置 `customPointShapeFillRect` 参数，用于绘制自定义图形，详情可参考 Example。
 
 square | circle | diamond
 :-------------------------:|:-------------------------:|:-------------------------:

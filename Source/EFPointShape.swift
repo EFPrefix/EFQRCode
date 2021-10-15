@@ -25,6 +25,9 @@
 //  THE SOFTWARE.
 
 import Foundation
+import CoreGraphics
+
+public typealias CustomPointShapeFillRect = (/*context*/ CGContext, /*rect*/ CGRect, /*isStatic*/ Bool) -> Void
 
 /// Shapes of foreground code points.
 @objc public enum EFPointShape: Int {
@@ -34,4 +37,48 @@ import Foundation
     case circle         = 1
     /// Sparkling ✨.
     case diamond        = 2
+    /// Custom
+    case custom         = 3
+    
+    /// Fill rect according to enumeration style
+    public func fillRect(context: CGContext, rect: CGRect, isStatic: Bool = false) {
+        switch self {
+        case .circle:
+            context.fillEllipse(in: rect)
+        case .diamond:
+            if isStatic {
+                context.fill(rect)
+            } else {
+                fillDiamond(context: context, rect: rect)
+            }
+        case .square:
+            context.fill(rect)
+        case .custom:
+            break
+        }
+    }
+    
+    private func fillDiamond(context: CGContext, rect: CGRect) {
+        // shrink rect edge
+        let drawingRect = rect.insetBy(dx: -2, dy: -2)
+        
+        // create path
+        let path = CGMutablePath()
+        // Bezier Control Point
+        let controlPoint = CGPoint(x: drawingRect.midX , y: drawingRect.midY)
+        // Bezier Start Point
+        let startPoint = CGPoint(x: drawingRect.minX, y: drawingRect.midY)
+        // the other point of diamond
+        let otherPoints = [CGPoint(x: drawingRect.midX, y: drawingRect.maxY),
+                           CGPoint(x: drawingRect.maxX, y: drawingRect.midY),
+                           CGPoint(x: drawingRect.midX, y: drawingRect.minY)]
+        
+        path.move(to: startPoint)
+        for point in otherPoints {
+            path.addQuadCurve(to: point, control: controlPoint)
+        }
+        path.addQuadCurve(to: startPoint, control: controlPoint)
+        context.addPath(path)
+        context.fillPath()
+    }
 }
