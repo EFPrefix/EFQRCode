@@ -334,23 +334,6 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
     <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/ce8982e1858d62ac8b9fecec96f5369d8b1b62c3/logo/jetbrains.svg?sanitize=true" width = "20%">
 </a>
 
-## 推荐
-
-<table>
-    <tr>
-        <td>
-            <a href='https://en.freedownloadmanager.org/Mac-OS/EFQRCode-FREE.html' title='Free Download Manager'>
-                <img src='https://github.com/EFPrefix/EFQRCode/blob/assets/FDM.png' width='120' height='120'>
-            </a>
-        </td>
-        <td>
-            <a href='https://macdownload.informer.com/efqrcode/' title='Mac Informer'>
-                <img src='https://github.com/EFPrefix/EFQRCode/blob/assets/MacInformer.png' width='155.828655' height='120'>
-            </a>
-        </td>
-    </tr>
-</table>
-
 ## 使用 EFQRCode 的应用
 
 <table>
