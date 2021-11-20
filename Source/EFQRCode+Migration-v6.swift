@@ -88,7 +88,73 @@ extension EFQRCode {
             mode: mode
         )
     }
-
+    
+    @available(*, deprecated, renamed: "generate(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointStyle:mode:magnification:pointOffset:)")
+    public static func generate(
+        for content: String,
+        encoding: String.Encoding = .utf8,
+        inputCorrectionLevel: EFInputCorrectionLevel = .h,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
+        magnification: EFIntSize? = nil,
+        backgroundColor: CGColor = .white()!,
+        foregroundColor: CGColor = .black()!,
+        watermark: CGImage? = nil,
+        watermarkMode: EFWatermarkMode = .scaleAspectFill,
+        watermarkIsTransparent isWatermarkTransparent: Bool = true,
+        icon: CGImage? = nil,
+        iconSize: EFIntSize? = nil,
+        pointShape: EFPointShape,
+        pointOffset: CGFloat = 0,
+        isTimingPointStyled: Bool = false,
+        mode: EFQRCodeMode? = nil
+    ) -> CGImage? {
+        return generate(
+            for: content, encoding: encoding,
+            inputCorrectionLevel: inputCorrectionLevel,
+            size: size, magnification: magnification,
+            backgroundColor: backgroundColor, foregroundColor: foregroundColor,
+            watermark: watermark, watermarkMode: watermarkMode,
+            watermarkIsTransparent: isWatermarkTransparent,
+            icon: icon, iconSize: iconSize,
+            pointStyle: pointShape.efPointStyle, pointOffset: pointOffset,
+            isTimingPointStyled: isTimingPointStyled,
+            mode: mode
+        )
+    }
+    
+    @available(*, deprecated, renamed: "generateGIF(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointStyle:mode:magnification:pointOffset:)")
+    public static func generateGIF(
+        for content: String,
+        encoding: String.Encoding = .utf8,
+        inputCorrectionLevel: EFInputCorrectionLevel = .h,
+        size: EFIntSize = EFIntSize(width: 600, height: 600),
+        magnification: EFIntSize? = nil,
+        backgroundColor: CGColor = .white()!,
+        foregroundColor: CGColor = .black()!,
+        watermark: Data,
+        watermarkMode: EFWatermarkMode = .scaleAspectFill,
+        watermarkIsTransparent isWatermarkTransparent: Bool = true,
+        icon: CGImage? = nil,
+        iconSize: EFIntSize? = nil,
+        pointShape: EFPointShape,
+        pointOffset: CGFloat = 0,
+        isTimingPointStyled: Bool = false,
+        mode: EFQRCodeMode? = nil
+    ) -> Data? {
+        return generateGIF(
+            for: content, encoding: encoding,
+            inputCorrectionLevel: inputCorrectionLevel,
+            size: size, magnification: magnification,
+            backgroundColor: backgroundColor, foregroundColor: foregroundColor,
+            watermark: watermark, watermarkMode: watermarkMode,
+            watermarkIsTransparent: isWatermarkTransparent,
+            icon: icon, iconSize: iconSize,
+            pointStyle: pointShape.efPointStyle, pointOffset: pointOffset,
+            isTimingPointStyled: isTimingPointStyled,
+            mode: mode
+        )
+    }
+    
     @available(*, deprecated, renamed: "generateGIF(withWatermarkGIF:using:savingTo:delay:loopCount:useMultipleThreads:)")
     public static func generateWithGIF(
         data: Data, generator: EFQRCodeGenerator, pathToSave: URL? = nil,
@@ -155,7 +221,6 @@ extension EFQRCodeGenerator {
     public func setIgnoreTiming(ignoreTiming isTimingStyled: Bool) {
         withStyledTimingPoint(isTimingStyled)
     }
-
     @available(*, deprecated, renamed: "minMagnification(greaterThanOrEqualTo:)")
     public func minMagnificationGreaterThanOrEqualTo(size: CGFloat) -> Int? {
         return minMagnification(greaterThanOrEqualTo: size)
@@ -202,5 +267,50 @@ extension CGColor {
     @available(*, deprecated, renamed: "black(_:alpha:)")
     static func black(black: CGFloat, alpha: CGFloat = 1.0) -> CGColor? {
         return CGColor.black(black, alpha: alpha)
+    }
+}
+
+/// Shapes of foreground code points.
+@available(*, deprecated, message: "Use EFPointStyle instead.")
+@objc public enum EFPointShape: Int {
+    /// Classical QR code look and feel 🔳.
+    case square         = 0
+    /// More well rounded 🔘.
+    case circle         = 1
+    /// Sparkling ✨.
+    case diamond        = 2
+    
+    fileprivate var efPointStyle: EFPointStyle {
+        switch self {
+        case .square: return .square
+        case .circle: return .circle
+        case .diamond: return .diamond
+        }
+    }
+}
+
+extension EFQRCodeGenerator {
+    /// Shape of foreground code points, defaults to `EFPointShape.square`.
+    @available(*, deprecated, renamed: "pointStyle")
+    public var pointShape: EFPointShape {
+        get {
+            switch pointStyle {
+            case is EFSquarePointStyle: return .square
+            case is EFCirclePointStyle: return .circle
+            case is EFDiamondPointStyle: return .diamond
+            default: fatalError("Custom pointStyle not supported in pointShape API")
+            }
+        }
+        set {
+            pointStyle = newValue.efPointStyle
+        }
+    }
+    /// Set generator to use the specified foreground point shape.
+    /// - Parameter pointShape: Shape of foreground code points.
+    /// - Returns: `self`, allowing chaining.
+    @available(*, deprecated, renamed: "withPointStyle(_:)")
+    @discardableResult
+    public func withPointShape(_ pointShape: EFPointShape) -> EFQRCodeGenerator {
+        return with(\.pointShape, pointShape)
     }
 }
