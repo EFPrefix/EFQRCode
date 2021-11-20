@@ -1,10 +1,14 @@
 # Change Log
 
-## [6.1.1](https://github.com/EFPrefix/EFQRCode/releases/tag/6.1.1) (2021-10-15)
+## [6.2.0](https://github.com/EFPrefix/EFQRCode/releases/tag/6.2.0) (2021-11-21)
 
 ## Add
 
-- Add `custom` to `EFPointShape`.
+- Add `EFPointStyle` protocol to allow customizing foreground point style.
+
+## Deprecate
+
+- `EFPointShape` is deprecated. Use `EFPointStyle` instead.
 
 ---
 

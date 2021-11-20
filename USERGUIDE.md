@@ -31,7 +31,7 @@ EFQRCode.generate(
     watermark: CGImage?, watermarkMode: EFWatermarkMode,
     watermarkIsTransparent: Bool,
     icon: CGImage?, iconSize: EFIntSize?,
-    pointShape: EFPointShape, pointOffset: CGFloat,
+    pointStyle: EFPointStyle, pointOffset: CGFloat,
     isTimingPointStyled: Bool,
     mode: EFQRCodeMode?
 )
@@ -54,7 +54,7 @@ generator.withIcon(CGImage?, size: EFIntSize?)
 generator.withWatermark(CGImage?, mode: EFWatermarkMode?)
 generator.withPointOffset(CGFloat)
 generator.withTransparentWatermark(Bool)
-generator.withPointShape(EFPointShape)
+generator.withPointStyle(EFPointStyle)
 
 // Lastly, get the final two-dimensional code image
 generator.generate()
@@ -240,20 +240,19 @@ Foreground point offset, defaults to 0.
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset2.jpg)
 
-#### pointShape: EFPointShape
+#### pointStyle: EFPointStyle
 
-Shape of foreground code points, defaults to `EFPointShape.square`.
+Shape of foreground code points, defaults to `EFPointStyle.square`. Other built-in styles are `EFPointStyle.circle` and `EFPointStyle.diamond`.
+
+To draw custom point shapes, implement a new type that conforms to the `EFPointStyle` protocol and set an instance of it as the `pointStyle`.
 
 ```swift
-public enum EFPointShape: Int {
-    case square  = 0
-    case circle  = 1
-    case diamond = 2
-    case custom  = 3
+public protocol EFPointStyle {
+    func fillRect(context: CGContext, rect: CGRect, isStatic: Bool)
 }
 ```
 
-If `pointShape` is `custom`, the `customPointShapeFillRect` should be set to draw custom point shape, see Example for detail。
+> See `StarPointStyle` in the Example app for more details.
 
 square | circle | diamond
 :-------------------------:|:-------------------------:|:-------------------------:
