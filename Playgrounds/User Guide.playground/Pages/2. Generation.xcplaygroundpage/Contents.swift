@@ -23,7 +23,7 @@ EFQRCode.generate(for: "Hello World" * 200)
      watermark: CGImage?, watermarkMode: EFWatermarkMode,
      watermarkIsTransparent: Bool,
      icon: CGImage?, iconSize: EFIntSize?,
-     pointShape: EFPointShape, pointOffset: CGFloat,
+     pointStyle: EFPointStyle, pointOffset: CGFloat,
      isTimingPointStyled: Bool,
      mode: EFQRCodeMode?
  )
@@ -36,7 +36,7 @@ EFQRCode.generate(
     backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).cgColor, foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor,
     watermark: #imageLiteral(resourceName: "eyrefree.png").cgImage, watermarkMode: .left, watermarkIsTransparent: false,
     icon: #imageLiteral(resourceName: "eyrefree.png").cgImage, iconSize: EFIntSize(width: 30, height: 30),
-    pointShape: .circle, pointOffset: 3, isTimingPointStyled: true,
+    pointStyle: .circle, pointOffset: 3, isTimingPointStyled: true,
     mode: .binarization(threshold: 0.1)
 )
 //: ---
@@ -57,7 +57,7 @@ EFQRCode.generate(
  generator.withWatermark(CGImage?, mode: EFWatermarkMode?)
  generator.withPointOffset(CGFloat)
  generator.withTransparentWatermark(Bool)
- generator.withPointShape(EFPointShape)
+ generator.withPointStyle(EFPointStyle)
  // Lastly, get the final two-dimensional code image
  generator.generate()
  ```
@@ -70,7 +70,7 @@ let generator = EFQRCodeGenerator(
 .withColors(backgroundColor: #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1).cgColor, foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor)
 .withWatermark(#imageLiteral(resourceName: "eyrefree.png").cgImage, mode: .left)
 .withIcon(#imageLiteral(resourceName: "eyrefree.png").cgImage, size: EFIntSize(width: 30, height: 30))
-.withPointShape(.circle)
+.withPointStyle(.circle)
 .withPointOffset(3)
 .withStyledTimingPoint()
 .withMode(.binarization(threshold: 0.1))

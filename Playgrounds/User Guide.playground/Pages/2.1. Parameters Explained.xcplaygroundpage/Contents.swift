@@ -209,18 +209,18 @@ EFQRCodeGenerator(content: urlForEFQRCode)
     .generate()
 
 /*:
- ##### pointShape: EFPointShape
+ ##### pointStyle: EFPointStyle
 
  Shape of foreground code points, defaults to `square`.
 
  - Experiment: See how different point shapes look like.
  */
 //: - Example: Circle
-EFQRCode.generate(for: urlForEFQRCode, pointShape: .circle)
+EFQRCode.generate(for: urlForEFQRCode, pointStyle: .circle)
 //: - Example: Diamond
-EFQRCode.generate(for: urlForEFQRCode, pointShape: .diamond)
+EFQRCode.generate(for: urlForEFQRCode, pointStyle: .diamond)
 //: - Example: Diamond everything!
 EFQRCode.generate(for: urlForEFQRCode,
-                  pointShape: .diamond, isTimingPointStyled: true)
+                  pointStyle: .diamond, isTimingPointStyled: true)
 
 //: [2. Generation](@previous) | [3. Generation from GIF](@next)
