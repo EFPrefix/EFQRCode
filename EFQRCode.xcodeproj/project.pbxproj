@@ -38,10 +38,6 @@
 		12C0B6F4219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
 		12C0B6F5219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
 		12C0B6F6219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
-		12C0B6F8219C0FA5000545C9 /* EFPointShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F7219C0FA5000545C9 /* EFPointShape.swift */; };
-		12C0B6F9219C0FA5000545C9 /* EFPointShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F7219C0FA5000545C9 /* EFPointShape.swift */; };
-		12C0B6FA219C0FA5000545C9 /* EFPointShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F7219C0FA5000545C9 /* EFPointShape.swift */; };
-		12C0B6FB219C0FA5000545C9 /* EFPointShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F7219C0FA5000545C9 /* EFPointShape.swift */; };
 		12C0B6FD219C0FD3000545C9 /* EFUIntPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */; };
 		12C0B6FE219C0FD3000545C9 /* EFUIntPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */; };
 		12C0B6FF219C0FD3000545C9 /* EFUIntPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */; };
@@ -110,6 +106,10 @@
 		D2265577256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
 		D2265578256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
 		D2483E82256E3D7F005899D8 /* QRCodeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D2483E81256E3D7F005899D8 /* QRCodeSwift */; };
+		D2FAEBB82749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
+		D2FAEBB92749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
+		D2FAEBBA2749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
+		D2FAEBBB2749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
 		F829C6B81A7A94F100A2CD59 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */; };
 /* End PBXBuildFile section */
 
@@ -151,7 +151,6 @@
 		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
 		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeMode.swift; sourceTree = "<group>"; };
-		12C0B6F7219C0FA5000545C9 /* EFPointShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFPointShape.swift; sourceTree = "<group>"; };
 		12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFUIntPixel.swift; sourceTree = "<group>"; };
 		12C0B701219C102C000545C9 /* EFIntSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFIntSize.swift; sourceTree = "<group>"; };
 		12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFInputCorrectionLevel.swift; sourceTree = "<group>"; };
@@ -178,6 +177,7 @@
 		D2B27435258DEC3000E6FFC8 /* README.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = README.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "European SEPA Money Transfer + Watermark.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2DF1DB8256EC4CF00EB6012 /* Basic B&W QR Code.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Basic B&W QR Code.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFPointStyle.swift; sourceTree = "<group>"; };
 		F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8111E3E19A95C8B0040E7D1 /* EFQRCode iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EFQRCode iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,7 +260,7 @@
 			children = (
 				12C0B701219C102C000545C9 /* EFIntSize.swift */,
 				12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */,
-				12C0B6F7219C0FA5000545C9 /* EFPointShape.swift */,
+				D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */,
 				12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */,
 				12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */,
 				12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */,
@@ -709,7 +709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12EE9E55238696E700241C60 /* NSImage+.swift in Sources */,
-				12C0B6FA219C0FA5000545C9 /* EFPointShape.swift in Sources */,
+				D2FAEBBA2749720F00DFA959 /* EFPointStyle.swift in Sources */,
 				12EE9E2E23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
 				12EE9E212385970A00241C60 /* CGColor+.swift in Sources */,
 				D2265577256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
@@ -747,7 +747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12EE9E54238696E700241C60 /* NSImage+.swift in Sources */,
-				12C0B6F9219C0FA5000545C9 /* EFPointShape.swift in Sources */,
+				D2FAEBB92749720F00DFA959 /* EFPointStyle.swift in Sources */,
 				12EE9E2D23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
 				12EE9E202385970A00241C60 /* CGColor+.swift in Sources */,
 				D2265576256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
@@ -777,6 +777,7 @@
 			files = (
 				12EE9E56238696E700241C60 /* NSImage+.swift in Sources */,
 				12C0B6F6219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
+				D2FAEBBB2749720F00DFA959 /* EFPointStyle.swift in Sources */,
 				12EE9E2F23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
 				5282BCBB1FF3903D00DFB36B /* EFQRCode.swift in Sources */,
 				D2265578256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
@@ -785,7 +786,6 @@
 				12EE9E512386968F00241C60 /* NSColor+.swift in Sources */,
 				5282BCB51FF3903D00DFB36B /* EFWatermarkMode.swift in Sources */,
 				5282BCB71FF3903D00DFB36B /* CGImage+.swift in Sources */,
-				12C0B6FB219C0FA5000545C9 /* EFPointShape.swift in Sources */,
 				12EE9E242385973300241C60 /* EFQRCodeRecognizer.swift in Sources */,
 				12EE9E222385970A00241C60 /* CGColor+.swift in Sources */,
 				12C0B70A219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
@@ -805,7 +805,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12EE9E53238696E700241C60 /* NSImage+.swift in Sources */,
-				12C0B6F8219C0FA5000545C9 /* EFPointShape.swift in Sources */,
+				D2FAEBB82749720F00DFA959 /* EFPointStyle.swift in Sources */,
 				12EE9E2C23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
 				12EE9E1F2385970A00241C60 /* CGColor+.swift in Sources */,
 				D2265575256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,

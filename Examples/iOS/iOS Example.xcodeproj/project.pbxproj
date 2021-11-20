@@ -129,6 +129,8 @@
 		5282BD3C1FF4819200DFB36B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD3B1FF4819200DFB36B /* Tests.swift */; };
 		528EFA7422965AC80026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA7322965AC80026663C /* Localized.swift */; };
 		528EFA7522965AC80026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA7322965AC80026663C /* Localized.swift */; };
+		D2FAEBD12749731F00DFA959 /* PointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBD02749731F00DFA959 /* PointStyle.swift */; };
+		D2FAEBD22749731F00DFA959 /* PointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBD02749731F00DFA959 /* PointStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -374,6 +376,7 @@
 		528EFA7322965AC80026663C /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		52B3BFB6229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Resources/zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		52B3BFB7229625760035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
+		D2FAEBD02749731F00DFA959 /* PointStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointStyle.swift; sourceTree = "<group>"; };
 		F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EFQRCode.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -638,9 +641,19 @@
 			name = "Unit Tests";
 			sourceTree = "<group>";
 		};
+		D2FAEBBC274972E800DFA959 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D2FAEBD02749731F00DFA959 /* PointStyle.swift */,
+			);
+			name = Shared;
+			path = ../Shared;
+			sourceTree = "<group>";
+		};
 		F8111DFC19A951050040E7D1 = {
 			isa = PBXGroup;
 			children = (
+				D2FAEBBC274972E800DFA959 /* Shared */,
 				F8111E0719A951050040E7D1 /* iOS Example */,
 				5282BCE41FF3AD9000DFB36B /* watchOS Example */,
 				5282BCF31FF3AD9100DFB36B /* watchOS Example Extension */,
@@ -896,6 +909,7 @@
 				12EE9EAB23869C1500241C60 /* EFFoundation.swift in Sources */,
 				5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */,
 				12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */,
+				D2FAEBD22749731F00DFA959 /* PointStyle.swift in Sources */,
 				528EFA7522965AC80026663C /* Localized.swift in Sources */,
 				5282BCF71FF3AD9100DFB36B /* ExtensionDelegate.swift in Sources */,
 				5282BD321FF4764100DFB36B /* UnitTestInterfaceController.swift in Sources */,
@@ -979,6 +993,7 @@
 				12BC1A6D2328C0B500B6EB5A /* ConstraintView+Extensions.swift in Sources */,
 				120B78071EA396A000D34440 /* GeneratorController.swift in Sources */,
 				12EE9E9E23869BB600241C60 /* UInt8+.swift in Sources */,
+				D2FAEBD12749731F00DFA959 /* PointStyle.swift in Sources */,
 				12BC1A832328C0B500B6EB5A /* ConstraintMultiplierTarget.swift in Sources */,
 				12BC1A922328C0D900B6EB5A /* EFControl.swift in Sources */,
 				12EE9E8B23869BB600241C60 /* NSColor+.swift in Sources */,

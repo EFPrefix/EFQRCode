@@ -272,7 +272,7 @@ class ParametersInterfaceController: WKInterfaceController {
         binarizationThreshold = binarizationThresholds[value]
     }
     
-    private var pointShape = EFPointShape.square
+    private var pointStyle = PointStyle.square
     @IBOutlet var pointShapePicker: WKInterfacePicker!
     func initPointShapePicker() {
         pointShapePicker.setItems(Localized.Parameters.shapeNames.map {
@@ -282,7 +282,7 @@ class ParametersInterfaceController: WKInterfaceController {
         })
     }
     @IBAction func pickedPointShape(_ value: Int) {
-        pointShape = EFPointShape(rawValue: value) ?? pointShape
+        pointStyle = PointStyle(rawValue: value) ?? pointStyle
     }
 
     private var ignoreTiming = false
@@ -306,7 +306,7 @@ class ParametersInterfaceController: WKInterfaceController {
         generator.withIcon(icon?.ef.cgImage, size: EFIntSize(width: iconWidth, height: iconHeight))
         generator.withPointOffset(foregroundPointOffset)
         generator.withTransparentWatermark(allowsTransparent)
-        generator.withPointShape(pointShape)
+        generator.withPointStyle(pointStyle.efPointStyle)
         generator.withStyledTimingPoint(ignoreTiming)
         
         switch watermark {
