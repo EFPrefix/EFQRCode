@@ -87,6 +87,7 @@
     [g withPointOffset: 0];
     [g withStaticTimingPoint:YES];
     [g withStyledTimingPoint:YES];
+    [g withPointStyle:[EFDiamondPointStyle new]];
     CGImageRef testResult = [g generate];
     XCTAssertNotEqual(testResult, NULL);
 }
