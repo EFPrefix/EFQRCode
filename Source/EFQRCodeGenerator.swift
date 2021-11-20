@@ -326,7 +326,7 @@ public class EFQRCodeGenerator: NSObject {
     public func withPointStyle(_ pointStyle: EFPointStyle) -> EFQRCodeGenerator {
         return with(\.pointStyle, pointStyle)
     }
-    
+
     /// If `true` (default), points for timing pattern will be squares.
     public var isTimingPointStatic: Bool = true {
         didSet {
@@ -342,7 +342,7 @@ public class EFQRCodeGenerator: NSObject {
         return with(\.isTimingPointStatic, isStatic)
     }
     /// Set generator to use styled points for timing pattern (or not).
-    /// - Parameter ignoreTiming: Wether or not to use current `pointShape`
+    /// - Parameter ignoreTiming: Wether or not to use current `pointStyle`
     ///     for timing pattern points, defaults to `true`.
     /// - Returns: `self`, allowing chaining.
     @discardableResult
