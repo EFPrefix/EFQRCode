@@ -25,7 +25,7 @@ EFQRCode.generate(
     watermark: CGImage?, watermarkMode: EFWatermarkMode,
     watermarkIsTransparent: Bool,
     icon: CGImage?, iconSize: EFIntSize?,
-    pointShape: EFPointShape, pointOffset: CGFloat,
+    pointStyle: EFPointStyle, pointOffset: CGFloat,
     isTimingPointStyled: Bool,
     mode: EFQRCodeMode?
 )
@@ -48,7 +48,7 @@ generator.withIcon(CGImage?, size: EFIntSize?)
 generator.withWatermark(CGImage?, mode: EFWatermarkMode?)
 generator.withPointOffset(CGFloat)
 generator.withTransparentWatermark(Bool)
-generator.withPointShape(EFPointShape)
+generator.withPointStyle(EFPointStyle)
 
 // 最终生成的二维码
 generator.generate()
@@ -235,20 +235,19 @@ public enum EFWatermarkMode: Int {
 :-------------------------:|:-------------------------:
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset1.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset2.jpg)
 
-#### pointShape: EFPointShape
+#### pointStyle: EFPointStyle
 
-二维码码点形状，默认是方形 `square`，定义如下：
+二维码码点形状，默认是方形 `square`，并提供了 `circle` 和 `diamond` 共三种内置样式。
+
+如果想要绘制自定义图形，可以编写实现 `EFPointStyle` 协议的新类型作为 pointStyle。
 
 ```swift
-public enum EFPointShape: Int {
-    case square  = 0
-    case circle  = 1
-    case diamond = 2
-    case custom  = 3
+public protocol EFPointStyle {
+    func fillRect(context: CGContext, rect: CGRect, isStatic: Bool)
 }
 ```
 
-如果 `pointShape` 设为 `custom`，则需要同时设置 `customPointShapeFillRect` 参数，用于绘制自定义图形，详情可参考 Example。
+> 详情可参考 Example 中的 `StarPointStyle`。
 
 square | circle | diamond
 :-------------------------:|:-------------------------:|:-------------------------:
