@@ -313,29 +313,18 @@ public class EFQRCodeGenerator: NSObject {
         return withOpaqueWatermark(!isTransparent)
     }
 
-    /// Shape of foreground code points, defaults to `EFPointShape.square`.
-    public var pointShape: EFPointShape = .square {
+    /// Style of foreground code points, defaults to `EFPointStyle.square`.
+    public var pointStyle: EFPointStyle = .square {
         didSet {
             imageQRCode = nil
         }
     }
-    /// Set generator to use the specified foreground point shape.
-    /// - Parameter pointShape: Shape of foreground code points.
+    /// Set generator to use the specified foreground point style.
+    /// - Parameter pointStyle: Style of foreground code points.
     /// - Returns: `self`, allowing chaining.
     @discardableResult
-    public func withPointShape(_ pointShape: EFPointShape) -> EFQRCodeGenerator {
-        return with(\.pointShape, pointShape)
-    }
-
-    /// If `pointShape` is `EFPointShape.custom`, this will work.
-    public var customPointShapeFillRect: CustomPointShapeFillRect?
-    
-    /// Set generator to use the specified foreground point shape.
-    /// - Parameter customPointShapeFillRect: Custom point shape fill rect function.
-    /// - Returns: `self`, allowing chaining.
-    @discardableResult
-    public func withCustomPointShapeFillRect(_ customPointShapeFillRect: CustomPointShapeFillRect?) -> EFQRCodeGenerator {
-        return with(\.customPointShapeFillRect, customPointShapeFillRect)
+    public func withPointStyle(_ pointStyle: EFPointStyle) -> EFQRCodeGenerator {
+        return with(\.pointStyle, pointStyle)
     }
     
     /// If `true` (default), points for timing pattern will be squares.
@@ -825,11 +814,7 @@ public class EFQRCodeGenerator: NSObject {
     }
     
     private func drawPoint(context: CGContext, rect: CGRect, isStatic: Bool = false) {
-        if case .custom = pointShape {
-            customPointShapeFillRect?(context, rect, isStatic)
-        } else {
-            pointShape.fillRect(context: context, rect: rect, isStatic: isStatic)
-        }
+        pointStyle.fillRect(context: context, rect: rect, isStatic: isStatic)
     }
 
     private func createContext(size: EFIntSize) -> CGContext? {

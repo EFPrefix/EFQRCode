@@ -54,14 +54,14 @@ public enum EFQRCode {
     ///   - size: The size of the output image, ignored if `magnification` is set.
     ///   - magnification: The ratio of final size to smallest possible size
     ///   - backgroundColor: Background color of the QR code, defaults to white.
-    ///   - foregroundColor: Toreground color for code points, defaults to black.
+    ///   - foregroundColor: Foreground color for code points, defaults to black.
     ///   - watermark: The background image to use, if any.
     ///   - watermarkMode: How to position the `watermark`, defaults to aspect fill.
     ///   - isWatermarkTransparent: Wether to use the alpha channel in watermark image.
     ///   - icon: The icon that appears in the center of QR code image, if any.
     ///   - iconSize: Size of the `icon`, defaults to 20% of `size`.
-    ///   - pointShape: Foreground code point shapes, defaults to square.
-    ///   - pointOffset: How much are foregorund points shifted.
+    ///   - pointStyle: Foreground code point style, defaults to square.
+    ///   - pointOffset: How much are foreground points shifted.
     ///   - isTimingPointStyled: Wether the timing points should be styled (or remain square).
     ///   - mode: The color rendering mode, defaults to original colors.
     /// - Returns: The generated QR code image.
@@ -78,7 +78,7 @@ public enum EFQRCode {
         watermarkIsTransparent isWatermarkTransparent: Bool = true,
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
-        pointShape: EFPointShape = .square,
+        pointStyle: EFPointStyle = .square,
         pointOffset: CGFloat = 0,
         isTimingPointStyled: Bool = false,
         mode: EFQRCodeMode? = nil
@@ -89,7 +89,7 @@ public enum EFQRCode {
             .withInputCorrectionLevel(inputCorrectionLevel)
             .withIcon(icon, size: iconSize ?? EFIntSize(width: size.width / 5, height: size.height / 5))
             .withTransparentWatermark(isWatermarkTransparent)
-            .withPointShape(pointShape)
+            .withPointStyle(pointStyle)
             .withMode(mode)
             .withMagnification(magnification)
             .withPointOffset(pointOffset)
@@ -111,8 +111,8 @@ public enum EFQRCode {
     ///   - isWatermarkTransparent: Wether to use the alpha channel in watermark image.
     ///   - icon: The icon that appears in the center of QR code image, if any.
     ///   - iconSize: Size of the `icon`, defaults to 20% of `size`.
-    ///   - pointShape: Foreground code point shapes, defaults to square.
-    ///   - pointOffset: How much are foregorund points shifted.
+    ///   - pointStyle: Foreground code point style, defaults to square.
+    ///   - pointOffset: How much are foreground points shifted.
     ///   - isTimingPointStyled: Wether the timing points should be styled (or remain square).
     ///   - mode: The color rendering mode, defaults to original colors.
     /// - Returns: The generated QR code GIF.
@@ -129,7 +129,7 @@ public enum EFQRCode {
         watermarkIsTransparent isWatermarkTransparent: Bool = true,
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
-        pointShape: EFPointShape = .square,
+        pointStyle: EFPointStyle = .square,
         pointOffset: CGFloat = 0,
         isTimingPointStyled: Bool = false,
         mode: EFQRCodeMode? = nil
@@ -140,7 +140,7 @@ public enum EFQRCode {
             .withInputCorrectionLevel(inputCorrectionLevel)
             .withIcon(icon, size: iconSize ?? EFIntSize(width: size.width / 5, height: size.height / 5))
             .withTransparentWatermark(isWatermarkTransparent)
-            .withPointShape(pointShape)
+            .withPointStyle(pointStyle)
             .withMode(mode)
             .withMagnification(magnification)
             .withPointOffset(pointOffset)
