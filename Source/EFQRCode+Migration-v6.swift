@@ -89,7 +89,7 @@ extension EFQRCode {
         )
     }
     
-    @available(*, deprecated, renamed: "generate(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointStyle:mode:magnification:pointOffset:)")
+    @available(*, deprecated, renamed: "generate(for:encoding:inputCorrectionLevel:size:magnification:backgroundColor:foregroundColor:watermark:watermarkMode:watermarkIsTransparent:icon:iconSize:pointStyle:pointOffset:isTimingPointStyled:mode:)")
     public static func generate(
         for content: String,
         encoding: String.Encoding = .utf8,
@@ -122,7 +122,7 @@ extension EFQRCode {
         )
     }
     
-    @available(*, deprecated, renamed: "generateGIF(for:encoding:size:backgroundColor:foregroundColor:watermark:watermarkMode:inputCorrectionLevel:icon:iconSize:watermarkIsTransparent:pointStyle:mode:magnification:pointOffset:)")
+    @available(*, deprecated, renamed: "generateGIF(for:encoding:inputCorrectionLevel:size:magnification:backgroundColor:foregroundColor:watermark:watermarkMode:watermarkIsTransparent:icon:iconSize:pointStyle:pointOffset:isTimingPointStyled:mode:)")
     public static func generateGIF(
         for content: String,
         encoding: String.Encoding = .utf8,
