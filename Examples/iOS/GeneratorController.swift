@@ -78,7 +78,7 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     var watermarkMode = EFWatermarkMode.scaleAspectFill
     var mode: EFQRCodeMode? = nil
     var binarizationThreshold: CGFloat = 0.5
-    var pointShape: EFPointShape = .square
+    var pointStyle: PointStyle = .square
     var watermark: EFImage? = nil
 
     // MARK: Not commonly used
@@ -213,28 +213,7 @@ extension GeneratorController {
         generator.withIcon(UIImage2CGImage(icon), size: iconSize)
         generator.withPointOffset(foregroundPointOffset)
         generator.withTransparentWatermark(allowTransparent)
-        generator.withPointShape(pointShape)
-        generator.customPointShapeFillRect = { [weak self] (context, rect, isStatic) in
-            guard let _ = self else { return }
-            
-            // draw star
-            let path = CGMutablePath()
-            var points: [CGPoint] = []
-            let radius = Float(rect.width / 2)
-            let angel = Double.pi * 2 / 5
-            for i in 1...5 {
-                let x = Float(rect.width / 2) - sinf(Float(i) * Float(angel)) * radius + Float(rect.origin.x)
-                let y = Float(rect.height / 2) - cosf(Float(i) * Float(angel)) * radius + Float(rect.origin.y)
-                points.append(CGPoint(x: CGFloat(x), y: CGFloat(y)))
-            }
-            path.move(to: points.first!)
-            for i in 1...5 {
-                let index = (2 * i) % 5
-                path.addLine(to: points[index])
-            }
-            context.addPath(path)
-            context.fillPath()
-        }
+        generator.withPointStyle(pointStyle.efPointStyle)
         
         func alertCreationFailure() {
             let alert = UIAlertController(
@@ -788,8 +767,8 @@ extension GeneratorController {
                 UIAlertAction(title: shapeName, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    if let shape = EFPointShape(rawValue: index) {
-                        self.pointShape = shape
+                    if let style = PointStyle(rawValue: index) {
+                        self.pointStyle = style
                     }
                     self.refresh()
                 }
@@ -920,7 +899,7 @@ extension GeneratorController {
             Localized.number(foregroundPointOffset),
             allowTransparent ? Localized.yes : Localized.no,
             Localized.number(binarizationThreshold),
-            Localized.Parameters.shapeNames[pointShape.rawValue]
+            Localized.Parameters.shapeNames[pointStyle.rawValue]
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)

@@ -94,6 +94,7 @@
 		12F3719B1EA8DE3A0049DE67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */; };
 		12F3719E1EA8DE3A0049DE67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719C1EA8DE3A0049DE67 /* Main.storyboard */; };
 		528EFA9122965AF90026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA8A22965AF90026663C /* Localized.swift */; };
+		D2FAEBD6274975B700DFA959 /* PointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBD5274975B700DFA959 /* PointStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +262,7 @@
 		12F371A61EA8DE740049DE67 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
 		528EFA8A22965AF90026663C /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Localized.swift; path = ../../iOS/Localized.swift; sourceTree = "<group>"; };
 		52B3BFC4229625880035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		D2FAEBD5274975B700DFA959 /* PointStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,6 +422,7 @@
 		12F3718A1EA8DE3A0049DE67 = {
 			isa = PBXGroup;
 			children = (
+				D2FAEBC2274972FE00DFA959 /* Shared */,
 				12F371951EA8DE3A0049DE67 /* macOS Example */,
 				12F371941EA8DE3A0049DE67 /* Products */,
 				12F371A61EA8DE740049DE67 /* EFQRCode.xcodeproj */,
@@ -471,6 +474,15 @@
 				1259BA162190880100E41FCD /* SnapKit */,
 			);
 			name = 3rd;
+			sourceTree = "<group>";
+		};
+		D2FAEBC2274972FE00DFA959 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D2FAEBD5274975B700DFA959 /* PointStyle.swift */,
+			);
+			name = Shared;
+			path = ../Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
