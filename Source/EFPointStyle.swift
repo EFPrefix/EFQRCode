@@ -27,7 +27,13 @@
 import Foundation
 import CoreGraphics
 
+/// Collection of foreground point renderer capabilities.
 @objc public protocol EFPointStyle {
+    /// Fills a code point satisfying this style.
+    /// - Parameters:
+    ///   - context: the context to draw in.
+    ///   - rect: the boundaries of the point to draw.
+    ///   - isStatic: true if it is recommended to use a square instead of current style.
     func fillRect(context: CGContext, rect: CGRect, isStatic: Bool)
 }
 
