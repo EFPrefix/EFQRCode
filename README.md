@@ -102,7 +102,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 | 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
 | 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
 | 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| **6.x** | Xcode 12.0+<br>Swift 5.1+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+| **6.x** | Xcode 12.0+<br>[![latest Swift](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/EFPrefix/EFQRCode)<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
 
 ## Installation
 
