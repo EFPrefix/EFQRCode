@@ -204,7 +204,7 @@ extension ViewController: NSAlertDelegate {
         generator.withIcon(icon?.ef.cgImage, size: iconSize)
         generator.withPointOffset(foregroundPointOffset)
         generator.withTransparentWatermark(allowTransparent)
-        generator.withPointShape(pointShape)
+        generator.withPointStyle(pointStyle.efPointStyle)
         generator.withStyledTimingPoint(ignoreTiming)
 
         switch watermark {
@@ -322,7 +322,7 @@ extension ViewController: NSAlertDelegate {
             Localized.number(foregroundPointOffset),
             allowTransparent,
             Localized.number(binarizationThreshold),
-            Localized.Parameters.shapeNames[pointShape.rawValue],
+            Localized.Parameters.shapeNames[pointStyle.rawValue],
             ignoreTiming,
         ]
 
@@ -544,7 +544,7 @@ extension ViewController: NSAlertDelegate {
     func chooseShape() {
         choose(Localized.Title.pointShape, from: Localized.Parameters.shapeNames) {
             (self, response) in
-            self.pointShape = [.square, .circle, .diamond][response.rawValue - 1000]
+            self.pointStyle = PointStyle.allCases[response.rawValue - 1000]
         }
     }
 

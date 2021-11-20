@@ -91,6 +91,7 @@
 		12EE9F5423869D2400241C60 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9F2F23869D2400241C60 /* Double+.swift */; };
 		12EE9F5523869D2400241C60 /* NSString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9F3023869D2400241C60 /* NSString+.swift */; };
 		528EFA8922965AE50026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA8222965AE50026663C /* Localized.swift */; };
+		D2FAEBD4274975A500DFA959 /* PointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBD3274975A500DFA959 /* PointStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +255,7 @@
 		12EE9F3023869D2400241C60 /* NSString+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSString+.swift"; path = "../../Pods/EFFoundation/EFFoundation/Core/NSString+.swift"; sourceTree = "<group>"; };
 		528EFA8222965AE50026663C /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Localized.swift; path = ../../iOS/Localized.swift; sourceTree = "<group>"; };
 		52B3BFCB229625980035D5EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		D2FAEBD3274975A500DFA959 /* PointStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 		1215B6E61EAC956F00DC5A86 = {
 			isa = PBXGroup;
 			children = (
+				D2FAEBC92749730700DFA959 /* Shared */,
 				1215B6F11EAC956F00DC5A86 /* tvOS Example */,
 				1215B6F01EAC956F00DC5A86 /* Products */,
 				1215B7031EAC95AE00DC5A86 /* EFQRCode.xcodeproj */,
@@ -454,6 +457,15 @@
 			name = EFFoundation;
 			sourceTree = "<group>";
 		};
+		D2FAEBC92749730700DFA959 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D2FAEBD3274975A500DFA959 /* PointStyle.swift */,
+			);
+			name = Shared;
+			path = ../Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -623,6 +635,7 @@
 				12BC1B1E2328C17100B6EB5A /* ConstraintView+Extensions.swift in Sources */,
 				12BC1B302328C17100B6EB5A /* ConstraintInsets.swift in Sources */,
 				12EE9F5123869D2400241C60 /* UIColor+.swift in Sources */,
+				D2FAEBD4274975A500DFA959 /* PointStyle.swift in Sources */,
 				12BC1B1D2328C17100B6EB5A /* ConstraintInsetTarget.swift in Sources */,
 				12EE9F3D23869D2400241C60 /* UInt16+.swift in Sources */,
 				12BC1B352328C17100B6EB5A /* ConstraintDirectionalInsets.swift in Sources */,

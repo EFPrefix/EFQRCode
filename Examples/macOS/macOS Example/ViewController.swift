@@ -75,7 +75,7 @@ class ViewController: NSViewController {
     var foregroundPointOffset: CGFloat = 0
     var allowTransparent = true
     var binarizationThreshold: CGFloat = 0.5
-    var pointShape: EFPointShape = .square
+    var pointStyle: PointStyle = .square
     var ignoreTiming = false
 
     let titleArray = [
