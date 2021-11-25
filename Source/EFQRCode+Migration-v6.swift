@@ -282,9 +282,9 @@ extension CGColor {
     
     fileprivate var efPointStyle: EFPointStyle {
         switch self {
-        case .square: return .square
-        case .circle: return .circle
-        case .diamond: return .diamond
+        case .square: return EFSquarePointStyle.square
+        case .circle: return EFCirclePointStyle.circle
+        case .diamond: return EFDiamondPointStyle.diamond
         }
     }
 }

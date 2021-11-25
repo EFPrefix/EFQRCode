@@ -78,7 +78,7 @@ public enum EFQRCode {
         watermarkIsTransparent isWatermarkTransparent: Bool = true,
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
-        pointStyle: EFPointStyle = .square,
+        pointStyle: EFPointStyle = EFSquarePointStyle.square,
         pointOffset: CGFloat = 0,
         isTimingPointStyled: Bool = false,
         mode: EFQRCodeMode? = nil
@@ -129,7 +129,7 @@ public enum EFQRCode {
         watermarkIsTransparent isWatermarkTransparent: Bool = true,
         icon: CGImage? = nil,
         iconSize: EFIntSize? = nil,
-        pointStyle: EFPointStyle = .square,
+        pointStyle: EFPointStyle = EFSquarePointStyle.square,
         pointOffset: CGFloat = 0,
         isTimingPointStyled: Bool = false,
         mode: EFQRCodeMode? = nil

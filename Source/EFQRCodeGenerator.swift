@@ -314,7 +314,7 @@ public class EFQRCodeGenerator: NSObject {
     }
 
     /// Style of foreground code points, defaults to `EFPointStyle.square`.
-    public var pointStyle: EFPointStyle = .square {
+    public var pointStyle: EFPointStyle = EFSquarePointStyle.square {
         didSet {
             imageQRCode = nil
         }
