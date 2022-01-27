@@ -28,7 +28,7 @@ import CoreGraphics
 
 /// A structure that contains width and height values.
 ///
-/// - Note: This is like `CGSize`, but with `Int` instead of `CGFloat`.
+/// - Note: This is like [CGSize](https://developer.apple.com/documentation/coregraphics/cgsize), but with [Int](https://developer.apple.com/documentation/swift/int) instead of [CGFloat](https://developer.apple.com/documentation/coregraphics/cgfloat).
 @objcMembers
 public final class EFIntSize: NSObject {
     /// A width value.
@@ -46,15 +46,15 @@ public final class EFIntSize: NSObject {
         self.height = height
     }
 
-    /// Converts `CGSize` to ``EFIntSize``.
-    /// - Parameter size: the `CGSize` to convert.
-    /// - Note: `width` and `height` will be truncated to `Int`.
+    /// Converts [CGSize](https://developer.apple.com/documentation/coregraphics/cgsize) to ``EFIntSize``.
+    /// - Parameter size: the [CGSize](https://developer.apple.com/documentation/coregraphics/cgsize) to convert.
+    /// - Note: width and height will be truncated to [Int](https://developer.apple.com/documentation/swift/int).
     public convenience init(size: CGSize) {
         self.init(width: Int(size.width),
                   height: Int(size.height))
     }
 
-    /// Representation as `CGSize`.
+    /// Representation as [CGSize](https://developer.apple.com/documentation/coregraphics/cgsize).
     public var cgSize: CGSize {
         return CGSize(width: width, height: height)
     }
