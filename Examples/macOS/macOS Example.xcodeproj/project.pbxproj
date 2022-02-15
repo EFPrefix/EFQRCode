@@ -94,6 +94,7 @@
 		12F3719B1EA8DE3A0049DE67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719A1EA8DE3A0049DE67 /* Assets.xcassets */; };
 		12F3719E1EA8DE3A0049DE67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12F3719C1EA8DE3A0049DE67 /* Main.storyboard */; };
 		528EFA9122965AF90026663C /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528EFA8A22965AF90026663C /* Localized.swift */; };
+		D26C9B4D27BBB1610088E238 /* PointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBD5274975B700DFA959 /* PointStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -677,6 +678,7 @@
 				12BC1ACB2328C13D00B6EB5A /* ConstraintLayoutSupport.swift in Sources */,
 				12BC1ACA2328C13D00B6EB5A /* ConstraintPriority.swift in Sources */,
 				125436EF1EABA98C00C46CC7 /* NSColor+Example.swift in Sources */,
+				D26C9B4D27BBB1610088E238 /* PointStyle.swift in Sources */,
 				12EE9F0323869CEE00241C60 /* CGFloat+.swift in Sources */,
 				12BC1AD82328C13D00B6EB5A /* Debugging.swift in Sources */,
 				12BC1AD92328C13D00B6EB5A /* ConstraintMakerPriortizable.swift in Sources */,
