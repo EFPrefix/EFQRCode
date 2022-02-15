@@ -47,7 +47,11 @@ import CoreGraphics
 /// Drawing rounded foreground points 🔘.
 @objc public class EFCirclePointStyle: NSObject, EFPointStyle {
     public func fillRect(context: CGContext, rect: CGRect, isStatic: Bool) {
-        context.fillEllipse(in: rect)
+        if isStatic {
+            context.fill(rect)
+        } else {
+            context.fillEllipse(in: rect)
+        }
     }
 }
 
