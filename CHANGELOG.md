@@ -1,12 +1,20 @@
 # Change Log
 
+## [6.2.1](https://github.com/EFPrefix/EFQRCode/releases/tag/6.2.1) (2021-02-16)
+
+#### Fix
+
+- Fix `EFCirclePointStyle` to respect `isTimingPointStyled` settings.
+
+---
+
 ## [6.2.0](https://github.com/EFPrefix/EFQRCode/releases/tag/6.2.0) (2021-11-21)
 
-## Add
+#### Add
 
 - Add `EFPointStyle` protocol to allow customizing foreground point style.
 
-## Deprecate
+#### Deprecate
 
 - `EFPointShape` is deprecated. Use `EFPointStyle` instead.
 
@@ -14,7 +22,7 @@
 
 ## [6.1.0](https://github.com/EFPrefix/EFQRCode/releases/tag/6.1.0) (2021-04-08)
 
-## Add
+#### Add
 
 - Supports chaining `EFQRCodeGenerator` configuration methods.
 - `EFQRCodeGenerator` properties are now public.
@@ -23,7 +31,7 @@
 - Swift: `EFWatermarkMode.rectForWatermark(ofSize:inCanvasOfSize:)` can be used to calculate the frame for watermark image in a canvas.
 - Objective-C: New tests to ensure APIs are available in Objective-C.
 
-## Change
+#### Change
 
 - Renamed `EFQRCodeGenerator` configuration methods to be more consistent.
    - Renamed `EFQRCode` and reordered convenience generate function arguments to be consistent with generator methods.
@@ -33,11 +41,11 @@
 - Renamed `CGColor` extensions `white` and `black` to omit first argument label.
 - Objective-C: `EFQRCodeGenerator` and `EFQRCodeRecognizer` is now fully available to configure/use in Objective-C.
 
-## Deprecate
+#### Deprecate
 
 - `EFQRCodeMode.none` is now deprecated. Use `nil` and `EFQRCodeMode?` instead.
 
-## Remove
+#### Remove
 
 - `EFUIntPixel` is no longer a part of the public interface.
 - GIF generation no longer takes `pathToSave` parameter.
