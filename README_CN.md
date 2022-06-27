@@ -79,13 +79,19 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 iOS、tvOS 和 watchOS：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
-	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
 你也可以点击下方的 Mac App Store 按钮下载 macOS 示例程序：
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
 	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
+</a>
+
+你也可以点击下方的 App Store 按钮从应用商店购买我们基于本库开发的专业版产品，支持 iOS 平台：
+
+<a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCoder/id1242936516?mt=8'>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
 ### 手动
