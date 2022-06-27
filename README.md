@@ -75,14 +75,20 @@ You can click the `TestFlight` button below to download demo with TestFlight:
 
 You can click the `App Store` button below to download demo, support iOS, tvOS and watchOS:
 
-<a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
+<a target='_blank' href='https://itunes.apple.com/app/EFQRCode/id1242337058?mt=8'>
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
 You can also click the `Mac App Store` button below to download demo for macOS:
 
-<a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
+<a target='_blank' href='https://itunes.apple.com/app/EFQRCode/id1306793539?mt=8'>
     <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
+</a>
+
+You can also purchase the professional version of our product based on this library from the App Store by clicking on the App Store button below, support iOS:
+
+<a target='_blank' href='https://itunes.apple.com/app/EFQRCoder/id1242936516?mt=8'>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
 ### Compile Demo Manually
