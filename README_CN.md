@@ -31,6 +31,9 @@
     <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/main/LICENSE">
         <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
     </a>
+    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode?ref=badge_shield">
+        <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode.svg?type=shield">
+    </a>
     <a href="https://gitter.im/EFQRCode/Lobby">
         <img src="https://img.shields.io/gitter/room/EFPrefix/EFQRCode.svg">
     </a>
@@ -39,12 +42,6 @@
     </a>
     <a href="#sponsors" alt="Sponsors on Open Collective">
         <img src="https://opencollective.com/EFQRCode/sponsors/badge.svg" />
-    </a>
-    <a href="https://twitter.com/EyreFree777">
-        <img src="https://img.shields.io/badge/twitter-@EyreFree777-blue.svg?style=flat">
-    </a>
-    <a href="http://weibo.com/eyrefree777">
-        <img src="https://img.shields.io/badge/weibo-@EyreFree-red.svg?style=flat">
     </a>
     <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/MadeWith%3C3.png">
         <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
