@@ -34,21 +34,6 @@
     <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode?ref=badge_shield">
         <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode.svg?type=shield">
     </a>
-    <a href="https://gitter.im/EFQRCode/Lobby">
-        <img src="https://img.shields.io/gitter/room/EFPrefix/EFQRCode.svg">
-    </a>
-    <a href="#backers" alt="sponsors on Open Collective">
-        <img src="https://opencollective.com/EFQRCode/backers/badge.svg" />
-    </a>
-    <a href="#sponsors" alt="Sponsors on Open Collective">
-        <img src="https://opencollective.com/EFQRCode/sponsors/badge.svg" />
-    </a>
-    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/MadeWith%3C3.png">
-        <img src="https://img.shields.io/badge/made%20with-%3C3-orange.svg">
-    </a>
-    <a href="http://shang.qq.com/wpa/qunwpa?idkey=d0f732585dcb0c6f2eb26bc9e0327f6305d18260eeba89ed26a201b520c572c0">
-        <img src="https://img.shields.io/badge/Q群-769966374-32befc.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAA4VBMVEUAAAAAAAAAAAD3rwgAAAAAAADpICBuTQNUDAwAAAAAAAAAAAAAAADnICAAAAAAAACbFRUAAAD5rgkfFgEAAADHGxu1GBhGOyQ6LhMPCgAAAAB0UQRbDAziHh7hHh5HRUEAAAAPAgIQCwEQEBAdBAQgICAvIQIvLy8+LAJAQEBJCgpWRBpbW1tfX19gYGBqZVptTARvb299VwSAgICEhISHh4ePhnGbbAWgoKCseAawsLC7gwbAwMDExMTFrKzLjgfoHx/powfqpAjvZGTw8PDxcnLxenrzj4/5rgj5x8f///9y6ONcAAAAIHRSTlMAECAgMEBQVlhggZGhobHBwdHR3eHh4+fp7/Hx9/f5+3tefS0AAACkSURBVHjaNc1FAsJAEAXRDj64BAv2IbgEd2s0gfsfiJkAtXurIpkWMQBd0K8O3KZfhWEeW9YB8LnUYY2Gi6WJqJIHwKo7GAMpRT/aV0d2BhRD/Xp7tt9OGs2yYoy5mpUxc0BOc/yvkiQSwJPZtu3XCdAoDtjMb5k8C9KN1utx+zFChsD97bYzRII0Ss2/7IUliILFjZKV8ZLM61xK+V6tsHbSRB+BYB6Vhuib7wAAAABJRU5ErkJggg==">
-    </a>
 </p>
 
 EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 iOS、macOS、watchOS 和 tvOS 平台，并且支持通过 CocoaPods、Carthage 和 Swift Package Manager 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。
@@ -83,12 +68,6 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 <a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
 	<img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
-</a>
-
-你也可以点击下方的 App Store 按钮从应用商店购买我们基于本库开发的专业版产品，支持 iOS 平台：
-
-<a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCoder/id1242936516?mt=8'>
-    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
 </a>
 
 ### 手动
@@ -278,58 +257,21 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
 </a>
 
-备注：watchOS 平台的的原始二维码生成代码基于 [QRCodeSwift](https://github.com/ApolloZhu/swift_qrcodejs) 实现，在此对原作者 [ApolloZhu](https://github.com/ApolloZhu) 所做的工作表示感谢。
-
 ## 捐赠
 
-如果你认为这个项目给你带来了帮助，你可以给我买杯咖啡。如果你喜欢这个项目，并愿意为它的发展提供进一步的支持，你可以选择在 [Open Collective](https://opencollective.com/efqrcode) 上成为 `支持者` 或 `赞助商`。
-
-### 支持者
-
-感谢所有的支持者！ 🙏 [[成为支持者](https://opencollective.com/efqrcode#backer)]
+如果你认为这个项目给你带来了帮助，你可以给我买杯咖啡。如果你喜欢这个项目，并愿意为它的发展提供进一步的支持，你可以选择在 [Open Collective](https://opencollective.com/efqrcode) 上成为 `支持者`。感谢所有的支持者！ 🙏 [[成为支持者](https://opencollective.com/efqrcode#backer)]
 
 <a href="https://opencollective.com/efqrcode#backers" target="_blank">
     <img src="https://opencollective.com/efqrcode/backers.svg?width=890">
 </a>
 
-### 赞助商
+## 赞助商
 
-通过成为赞助商来支持这个项目，您的徽标将显示在这里并且链接到您的网站。 [[成为赞助商](https://opencollective.com/efqrcode#sponsor)]
+- 感谢 MacStadium 的 [开源计划](https://www.macstadium.com/opensource?from=EFQRCode) 对本项目的帮助。
 
-<a href="https://opencollective.com/efqrcode/sponsor/0/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/0/avatar.svg">
+<a href="https://macstadium.com/?from=EFQRCode">
+    <img src="https://uploads-ssl.webflow.com/5ac3c046c82724970fc60918/5c019d917bba312af7553b49_MacStadium-developerlogo.png" width = "46%">
 </a>
-<a href="https://opencollective.com/efqrcode/sponsor/1/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/1/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/2/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/2/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/3/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/3/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/4/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/4/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/5/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/5/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/6/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/6/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/7/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/7/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/8/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/8/avatar.svg">
-</a>
-<a href="https://opencollective.com/efqrcode/sponsor/9/website" target="_blank">
-    <img src="https://opencollective.com/efqrcode/sponsor/9/avatar.svg">
-</a>
-
-感谢您的支援，🙏
-
-## 感谢
 
 - 感谢 JetBrains 的 [开源支持计划](https://www.jetbrains.com/community/opensource/?from=EFQRCode) 对本项目的帮助。
 
@@ -339,28 +281,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 使用 EFQRCode 的应用
 
-<table>
-    <tr>
-        <td><a href='https://www.appsight.io/app/blizzard-battle-net' title='Blizzard Battle.net'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/863/841/media/small.png?1506955529'></a></td>
-        <td><a href='https://www.appsight.io/app/brushfire' title='Brushfire'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/349/312/media/small.png?1552274504'></a></td>
-        <td><a href='https://www.appsight.io/app/826953' title='Coinomi Wallet'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/154/094/media/small.png?1523038915'></a></td>
-        <td><a href='https://www.appsight.io/app/join' title='Join - Medical Communication'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/253/338/media/small.png?1530300113'></a></td>
-        <td><a href='https://www.appsight.io/app/korean-air-my' title='Korean Air My'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/405/909/media/small.png?1631208327'></a></td>
-        <td><a href='https://www.appsight.io/app/mume-vpn' title='Mume VPN'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/880/440/media/small.png?1507339273'></a></td>
-        <td><a href='https://www.appsight.io/app/mymk' title='myMK'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/142/715/media/small.png?1522686154'></a></td>
-        <td><a href='https://www.appsight.io/app/pilot-speech-translator' title='Pilot Speech Translator'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/531/486/media/small.png?1491242852'></a></td>
-        <td><a href='https://www.appsight.io/app/print-master' title='Print Master'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/403/413/media/small.png?1628845063'></a></td>
-        <td><a href='https://www.appsight.io/app/promgirl-shop' title='PromGirl Shop'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/327/819/media/small.png?1547953350'></a></td>
-    </tr>
-    <tr>
-        <td><a href='https://www.appsight.io/app/qr-code-reader-and-scanner' title='QR Code Reader &amp; Code Scanner'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/402/590/media/small.png?1628791147'></a></td>
-        <td><a href='https://www.appsight.io/app/rta-cle' title='RTA CLE'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/405/850/media/small.png?1631207179'></a></td>
-        <td><a href='https://www.appsight.io/app/wifi-ch%C3%B9a' title='WiFi Chùa'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/282/599/media/small.png?1479441667'></a></td>
-        <td><a href='https://www.appsight.io/app/yamibuy-food-drinks-beauty-health-li' title='Yamibuy-Food&amp; Drinks, Beauty, Health, Li'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/324/148/media/small.png?1546987889'></a></td>
-        <td><a href='https://www.appsight.io/app/%E5%85%B3%E5%85%AB-%E5%85%A8%E6%B0%91%E5%A8%B1%E4%B9%90%E6%98%8E%E6%98%9F%E5%85%AB%E5%8D%A6%E5%A4%B4%E6%9D%A1%E6%96%B0%E9%97%BB%E8%B5%84%E8%AE%AF%E8%A7%86%E9%A2%91%E7%A4%BE%E5%8C%BA' title='关八-最懂娱乐圈'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/613/969/media/small.png?1495232846'></a></td>
-        <td><a href='https://www.appsight.io/app/%E7%BA%A2%E8%A2%96%E8%AF%BB%E4%B9%A6' title='红袖读书'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/378/223/media/small.png?1555531907'></a></td>
-    </tr>
-</table>
+<table><tr><td><a href='https://www.appsight.io/app/blizzard-battle-net' title='Blizzard Battle.net'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/863/841/media/small.png?1506955529'></a></td><td><a href='https://www.appsight.io/app/brushfire' title='Brushfire'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/349/312/media/small.png?1552274504'></a></td><td><a href='https://www.appsight.io/app/826953' title='Coinomi Wallet'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/154/094/media/small.png?1523038915'></a></td><td><a href='https://www.appsight.io/app/join' title='Join - Medical Communication'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/253/338/media/small.png?1530300113'></a></td><td><a href='https://www.appsight.io/app/korean-air-my' title='Korean Air My'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/405/909/media/small.png?1631208327'></a></td><td><a href='https://www.appsight.io/app/mume-vpn' title='Mume VPN'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/880/440/media/small.png?1507339273'></a></td><td><a href='https://www.appsight.io/app/mymk' title='myMK'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/142/715/media/small.png?1522686154'></a></td><td><a href='https://www.appsight.io/app/pilot-speech-translator' title='Pilot Speech Translator'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/531/486/media/small.png?1491242852'></a></td><td><a href='https://www.appsight.io/app/print-master' title='Print Master'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/403/413/media/small.png?1628845063'></a></td><td><a href='https://www.appsight.io/app/promgirl-shop' title='PromGirl Shop'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/327/819/media/small.png?1547953350'></a></td></tr><tr><td><a href='https://www.appsight.io/app/qr-code-reader-and-scanner' title='QR Code Reader &amp; Code Scanner'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/402/590/media/small.png?1628791147'></a></td><td><a href='https://www.appsight.io/app/rta-cle' title='RTA CLE'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/405/850/media/small.png?1631207179'></a></td><td><a href='https://www.appsight.io/app/wifi-ch%C3%B9a' title='WiFi Chùa'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/282/599/media/small.png?1479441667'></a></td><td><a href='https://www.appsight.io/app/yamibuy-food-drinks-beauty-health-li' title='Yamibuy-Food&amp; Drinks, Beauty, Health, Li'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/324/148/media/small.png?1546987889'></a></td><td><a href='https://www.appsight.io/app/%E5%85%B3%E5%85%AB-%E5%85%A8%E6%B0%91%E5%A8%B1%E4%B9%90%E6%98%8E%E6%98%9F%E5%85%AB%E5%8D%A6%E5%A4%B4%E6%9D%A1%E6%96%B0%E9%97%BB%E8%B5%84%E8%AE%AF%E8%A7%86%E9%A2%91%E7%A4%BE%E5%8C%BA' title='关八-最懂娱乐圈'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/000/613/969/media/small.png?1495232846'></a></td><td><a href='https://www.appsight.io/app/%E7%BA%A2%E8%A2%96%E8%AF%BB%E4%B9%A6' title='红袖读书'><img src='https://d3ixtyf8ei2pcx.cloudfront.net/icons/001/378/223/media/small.png?1555531907'></a></td></tr></table>
 
 ## 其他
 
@@ -368,8 +289,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
 ## 联系
 
-邮箱：[eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   
-技术交流群：[769966374](http://shang.qq.com/wpa/qunwpa?idkey=d0f732585dcb0c6f2eb26bc9e0327f6305d18260eeba89ed26a201b520c572c0)
+邮箱：[eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
 
 ## 协议
 
