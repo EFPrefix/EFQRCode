@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 import CoreGraphics
+import Foundation
 
 /// A structure that contains width and height values.
 ///
