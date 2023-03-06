@@ -860,7 +860,7 @@
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 6.2.1;
+				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
 				PRODUCT_MODULE_NAME = EFQRCode_Module;
 				PRODUCT_NAME = EFQRCode;
@@ -881,7 +881,7 @@
 				INFOPLIST_FILE = "macOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 6.2.1;
+				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
 				PRODUCT_MODULE_NAME = EFQRCode_Module;
 				PRODUCT_NAME = EFQRCode;

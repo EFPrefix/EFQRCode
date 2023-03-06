@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.2.2](https://github.com/EFPrefix/EFQRCode/releases/tag/6.2.2) (2023-03-06)
+
+#### Fix
+
+- Fix compiler error when compiled using Xcode 14.3 [#153](https://github.com/EFPrefix/EFQRCode/pull/153)
+
 ## [6.2.1](https://github.com/EFPrefix/EFQRCode/releases/tag/6.2.1) (2022-03-03)
 
 #### Fix
