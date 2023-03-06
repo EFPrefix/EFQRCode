@@ -1,6 +1,6 @@
 # Change Log
 
-## [6.2.1](https://github.com/EFPrefix/EFQRCode/releases/tag/6.2.1) (2021-02-16)
+## [6.2.1](https://github.com/EFPrefix/EFQRCode/releases/tag/6.2.1) (2022-03-03)
 
 #### Fix
 
