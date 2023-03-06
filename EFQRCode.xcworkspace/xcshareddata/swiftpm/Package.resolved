@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "swift_qrcodejs",
-        "repositoryURL": "https://github.com/ApolloZhu/swift_qrcodejs",
-        "state": {
-          "branch": null,
-          "revision": "374dc7f7b9e76c6aeb393f6a84590c6d387e1ecb",
-          "version": "2.2.2"
-        }
+  "pins" : [
+    {
+      "identity" : "swift_qrcodejs",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ApolloZhu/swift_qrcodejs",
+      "state" : {
+        "revision" : "374dc7f7b9e76c6aeb393f6a84590c6d387e1ecb",
+        "version" : "2.2.2"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }
