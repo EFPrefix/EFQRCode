@@ -27,7 +27,7 @@
 import UIKit
 
 extension UIImage {
-
+    
     // Get avarage color
     func avarageColor() -> UIColor? {
         let rgba = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
@@ -39,18 +39,28 @@ extension UIImage {
             bytesPerRow: 4,
             space: CGColorSpaceCreateDeviceRGB(),
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
-            ) else {
-                return nil
+        ) else {
+            return nil
         }
         if let cgImage = self.cgImage {
             context.draw(cgImage, in: CGRect(x: 0, y: 0, width: 1, height: 1))
-
+            
             return UIColor(
                 red: CGFloat(rgba[0]) / 255.0,
                 green: CGFloat(rgba[1]) / 255.0,
                 blue: CGFloat(rgba[2]) / 255.0,
                 alpha: CGFloat(rgba[3]) / 255.0
             )
+        }
+        return nil
+    }
+    
+    static var appIcon: UIImage? {
+        if let icons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
+           let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
+           let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
+           let lastIcon = iconFiles.last {
+            return UIImage(named: lastIcon)
         }
         return nil
     }

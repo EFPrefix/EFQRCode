@@ -59,4 +59,18 @@ extension CGFloat {
         // debugPrint("tabBar: 0")
         return 0
     }
+    
+    static func bottomSafeArea() -> CGFloat {
+        if #available(iOS 11.0, *) {
+            var window: UIWindow? = UIApplication.shared.keyWindow
+            if #available(iOS 13.0, *) {
+                window = UIApplication.shared.windows.first
+            }
+            if let window = window {
+                return window.safeAreaInsets.bottom
+            }
+        }
+        // debugPrint("tabBar: 0")
+        return 0
+    }
 }

@@ -25,6 +25,7 @@
 //  THE SOFTWARE.
 
 import UIKit
+import SafariServices
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -32,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
 
         automaticallyAdjustsScrollViewInsets = false
-        view.backgroundColor = UIColor(red: 97.0 / 255.0, green: 207.0 / 255.0, blue: 199.0 / 255.0, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
 
         setupViews()
     }
@@ -51,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func setupViews() {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-
+        
         let titleLabel = UILabel()
         titleLabel.font = .boldSystemFont(ofSize: 48)
         titleLabel.textColor = .white
@@ -90,39 +91,69 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
         let bottomLabel = UIButton(type: .system)
-        bottomLabel.titleLabel?.font = .systemFont(ofSize: 16)
+        bottomLabel.titleLabel?.font = .systemFont(ofSize: 20)
         bottomLabel.setTitleColor(.white, for: .normal)
-        bottomLabel.setTitle("https://github.com/EFPrefix/EFQRCode", for: .normal)
+        bottomLabel.setTitle("https://www.efqrcode.com/", for: .normal)
         #if os(iOS)
-        bottomLabel.addTarget(self, action: #selector(openBlog), for: .touchDown)
+        bottomLabel.addTarget(self, action: #selector(openWeb), for: .touchDown)
         #endif
         view.addSubview(bottomLabel)
         bottomLabel.snp.makeConstraints {
             (make) in
             make.leading.equalTo(0)
-            make.bottom.equalTo(-20)
-            make.height.equalTo(20)
+            make.bottom.equalTo(-CGFloat.bottomSafeArea() - 20)
             make.width.equalTo(view)
         }
     }
     
-    @objc func openBlog() {
-        if let tryUrl = URL(string: "https://github.com/EFPrefix/EFQRCode") {
-            if #available(iOS 10.0, tvOS 10.0, *) {
-                UIApplication.shared.open(tryUrl)
-            } else {
-                UIApplication.shared.openURL(tryUrl)
-            }
+    @objc func openWeb() {
+        if let tryUrl = URL(string: "https://www.efqrcode.com/") {
+            openURLWithSafari(tryUrl, controller: self)
         }
     }
+    
+    func openURLWithSafari(_ url: URL, title: String? = nil, controller: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
+        let safariController: SFSafariViewController = SFSafariViewController(url: url)
+        if let title = title {
+            safariController.title = title
+        }
+        if #available(iOS 11.0, *) {
+            safariController.dismissButtonStyle = SFSafariViewController.DismissButtonStyle.close
+        }
+        if #available(iOS 10.0, *) {
+            safariController.preferredBarTintColor = UIColor.white
+            safariController.preferredControlTintColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
+        } else {
+            safariController.view.tintColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
+        }
+        controller.present(safariController, animated: animated, completion: completion)
+    }
 
+    lazy var titles: [String] = {
+        #if os(iOS)
+        return [
+            NSLocalizedString("Recognizer", comment: "Menu option to QR code scanning page"),
+            NSLocalizedString("Generator", comment: "Menu option to QR code generation page"),
+            NSLocalizedString("More", comment: "Menu option to more page")
+        ]
+        #else
+        return [
+            NSLocalizedString("Generator", comment: "Menu option to QR code generation page")
+        ]
+        #endif
+    }()
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
         #if os(iOS)
         navigationController?.pushViewController(
-            [RecognizerController.self, GeneratorController.self][indexPath.row].init(), animated: true
+            [
+                RecognizerController.self,
+                GeneratorController.self,
+                MoreViewController.self
+            ][indexPath.row].init(), animated: true
         )
         #else
         navigationController?.pushViewController(GeneratorController(), animated: true)
@@ -134,11 +165,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        #if os(iOS)
-        return 2
-        #else
-        return 1
-        #endif
+        titles.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -154,12 +181,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        #if os(iOS)
-        let text = [NSLocalizedString("Recognizer", comment: "Menu option to QR code scanning page"),
-                    NSLocalizedString("Generator", comment: "Menu option to QR code generation page")][indexPath.row]
-        #else
-        let text = NSLocalizedString("Generator", comment: "Menu option to QR code generation page")
-        #endif
+        let text = titles[indexPath.row]
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.textColor = .white
         cell.backgroundColor = .clear
@@ -177,7 +199,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     #if os(iOS)
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if !UIDevice.current.model.contains("iPad") {
-            if 1 == indexPath.row {
+            if titles.count - 1 == indexPath.row {
                 cell.separatorInset = UIEdgeInsets(
                     top: 15, left: 0, bottom: 0, right: max(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
                 )
