@@ -1090,7 +1090,7 @@
 				INFOPLIST_FILE = "watchOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 6.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.newwatchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1122,7 +1122,7 @@
 				INFOPLIST_FILE = "watchOS Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 6.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.newwatchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS.watchkitapp";
 				SDKROOT = watchos;
@@ -1151,7 +1151,7 @@
 				INFOPLIST_FILE = "watchOS Example Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 6.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.newwatchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1181,7 +1181,7 @@
 				INFOPLIST_FILE = "watchOS Example Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 6.2.2;
-				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.newwatchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS.watchkitapp.watchkitextension";
 				SDKROOT = watchos;
