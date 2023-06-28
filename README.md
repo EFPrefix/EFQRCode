@@ -48,14 +48,6 @@ EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode ima
 
 ## Demo Projects
 
-### TestFlight
-
-You can click the `TestFlight` button below to download demo with TestFlight:
-
-<a target='_blank' href='https://testflight.apple.com/join/LixgpwWt'>
-    <img src='https://testflight.apple.com/images/testflight-128x128_2x_27.png' width='128' height='128'/>
-</a>
-
 ### App Store
 
 You can click the `App Store` button below to download demo, support iOS, tvOS and watchOS:

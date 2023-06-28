@@ -48,14 +48,6 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 ## 示例
 
-### TestFlight
-
-你可以点击下方的 `TestFlight` 按钮下载示例程序：
-
-<a target='_blank' href='https://testflight.apple.com/join/LixgpwWt'>
-    <img src='https://testflight.apple.com/images/testflight-128x128_2x_27.png' width='128' height='128'/>
-</a>
-
 ### 应用商店
 
 你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 iOS、tvOS 和 watchOS：
