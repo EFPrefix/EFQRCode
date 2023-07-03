@@ -61,9 +61,9 @@ extension CGFloat {
     }
     
     static func bottomSafeArea() -> CGFloat {
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, tvOS 11.0, *) {
             var window: UIWindow? = UIApplication.shared.keyWindow
-            if #available(iOS 13.0, *) {
+            if #available(iOS 13.0, tvOS 13.0, *) {
                 window = UIApplication.shared.windows.first
             }
             if let window = window {

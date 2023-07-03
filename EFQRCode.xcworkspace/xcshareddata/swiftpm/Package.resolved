@@ -1,15 +1,31 @@
 {
-  "originHash" : "69bdc03441e6dcf98a784130ca8edfd713d9489312b445b8eda35e9598bdc90a",
   "pins" : [
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "c51ba84499268ea3020e6aee9e229c0f56b9d924",
+        "version" : "5.16.0"
+      }
+    },
+    {
+      "identity" : "sdwebimagesvgcoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSVGCoder.git",
+      "state" : {
+        "revision" : "950167445ab703740569869c8b7510efc9d09a26",
+        "version" : "1.7.0"
+      }
+    },
     {
       "identity" : "swift_qrcodejs",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/EFPrefix/swift_qrcodejs.git",
       "state" : {
-        "revision" : "817ba220a2eba840bae888e7eeb11207bec05f8c",
-        "version" : "2.3.0"
+        "revision" : "0b504067933381616058a951382b226d6b3f47f7"
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

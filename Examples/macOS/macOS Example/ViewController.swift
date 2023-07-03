@@ -26,6 +26,7 @@
 
 import Cocoa
 import EFQRCode
+import WebKit
 
 class ViewController: NSViewController {
 
@@ -50,6 +51,7 @@ class ViewController: NSViewController {
     // ViewController+Generator
     let generatorView = NSView()
     let generatorViewImage = NSImageView()
+    let generatorWebViewImage = WKWebView()
     let generatorViewCreate = NSButton()
     let generatorViewSave = NSButton()
     let generatorViewContent = NSTextView()
@@ -60,40 +62,43 @@ class ViewController: NSViewController {
 
     var result: Data?
     let lastContent = StorageUserDefaults<NSString>(key: "lastContent")
-
+    var generatorSVG: String?
+    var efImageIcon: EFImage?
+    var efImageWatermark: EFImage?
+    
     // Param
-    var inputCorrectionLevel = EFInputCorrectionLevel.h
-    var mode: EFQRCodeMode? = nil
-    var size = EFIntSize(width: 1024, height: 1024)
-    var magnification: EFIntSize? = EFIntSize(width: 9, height: 9)
-    var backColor = NSColor.white
-    var frontColor = NSColor.black
-    var icon: NSImage? = nil
-    var iconSize: EFIntSize? = nil
-    var watermark: EFImage? = nil
-    var watermarkMode = EFWatermarkMode.scaleAspectFill
-    var foregroundPointOffset: CGFloat = 0
-    var allowTransparent = true
-    var binarizationThreshold: CGFloat = 0.5
-    var pointStyle: PointStyle = .square
-    var ignoreTiming = false
+    var inputCorrectionLevel: EFCorrectionLevel = .h
+    var image: EFStyleParamImage? = nil
+    var imageAlpha: CGFloat = 1
+    var dataStyle: EFStyleImageParamsDataStyle = .rectangle
+    var dataDarkColor: NSColor = NSColor.black
+    var dataLightColor: NSColor = NSColor.white
+    var dataAlpha: CGFloat = 1
+    var dataThickness: CGFloat = 0.33
+    var positionStyle: EFStyleImageParamsPositionStyle = .rectangle
+    var positionColor: NSColor = NSColor.black
+    var alignStyle: EFStyleParamAlignStyle = .none
+    var timingStyle: EFStyleParamTimingStyle = .none
+    var icon: EFStyleParamImage? = nil
+    var iconScale: CGFloat = 0.22
+    var iconAlpha: CGFloat = 1
 
     let titleArray = [
         Localized.Title.inputCorrectionLevel,
-        Localized.Title.mode,
-        Localized.Title.size,
-        Localized.Title.magnification,
-        Localized.Title.backgroundColor,
-        Localized.Title.foregroundColor,
-        Localized.Title.icon,
-        Localized.Title.iconSize,
         Localized.Title.watermark,
-        Localized.Title.watermarkMode,
-        Localized.Title.foregroundPointOffset,
-        Localized.Title.allowTransparent,
-        Localized.Title.binarizationThreshold,
-        Localized.Title.pointShape,
-        Localized.Title.ignoreTiming,
+        Localized.Title.watermarkAlpha,
+        Localized.Title.dataStyle,
+        Localized.Title.dataDarkColor,
+        Localized.Title.dataLightColor,
+        Localized.Title.dataAlpha,
+        Localized.Title.dataThickness,
+        Localized.Title.positionStyle,
+        Localized.Title.positionColor,
+        Localized.Title.alignStyle,
+        Localized.Title.timingStyle,
+        Localized.Title.icon,
+        Localized.Title.iconScale,
+        Localized.Title.iconAlpha,
     ]
 
     override func viewDidLoad() {

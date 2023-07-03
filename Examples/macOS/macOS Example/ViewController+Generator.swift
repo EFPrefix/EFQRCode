@@ -37,13 +37,34 @@ enum EFImage {
         case .gif: return true
         }
     }
+    
+    var styleParamImage: EFStyleParamImage? {
+        switch self {
+        case .normal(let image):
+            if let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                return EFStyleParamImage.static(image: cgImage)
+            }
+            return nil
+        case .gif(let data):
+            if let animatedImage = AnimatedImage(data: data, format: .gif) {
+                let frames = animatedImage.frames.compactMap { return $0 }
+                let duration = animatedImage.duration
+                return .animated(images: frames, duration: duration)
+            }
+            return nil
+        }
+    }
 }
 
-class EFBackColorPicker: NSColorPanel {
+class EFDataDarkColorPicker: NSColorPanel {
 
 }
 
-class EFFrontColorPicker: NSColorPanel {
+class EFDataLightColorPicker: NSColorPanel {
+
+}
+
+class EFPositionColorPicker: NSColorPanel {
 
 }
 
@@ -51,6 +72,7 @@ extension ViewController: NSAlertDelegate {
 
     func addControlGenerator() {
         generatorView.addSubview(generatorViewImage)
+        generatorView.addSubview(generatorWebViewImage)
 
         let tryCentredStyle = NSMutableParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
         tryCentredStyle?.alignment = .left
@@ -94,6 +116,7 @@ extension ViewController: NSAlertDelegate {
             make.leading.trailing.height.equalTo(generatorViewSave)
         }
 
+        generatorViewImage.isHidden = true
         generatorViewImage.wantsLayer = true
         generatorViewImage.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.08).cgColor
         generatorViewImage.layer?.borderColor = NSColor.theme.cgColor
@@ -103,6 +126,17 @@ extension ViewController: NSAlertDelegate {
         generatorViewImage.imageScaling = .scaleProportionallyUpOrDown
         generatorViewImage.snp.makeConstraints {
             (make) in
+            make.leading.top.equalTo(10)
+            make.bottom.equalTo(generatorViewCreate.snp.top).offset(-10)
+            make.width.equalTo(generatorViewImage.snp.height)
+        }
+        
+        generatorWebViewImage.wantsLayer = true
+        generatorWebViewImage.layer?.backgroundColor = NSColor.black.withAlphaComponent(0.08).cgColor
+        generatorWebViewImage.layer?.borderColor = NSColor.theme.cgColor
+        generatorWebViewImage.layer?.borderWidth = 1
+        generatorWebViewImage.layer?.cornerRadius = 5
+        generatorWebViewImage.snp.makeConstraints { make in
             make.leading.top.equalTo(10)
             make.bottom.equalTo(generatorViewCreate.snp.top).offset(-10)
             make.width.equalTo(generatorViewImage.snp.height)
@@ -191,53 +225,59 @@ extension ViewController: NSAlertDelegate {
         let content = generatorViewContent.string
         lastContent.value = content as NSString
 
-        let generator = EFQRCodeGenerator(content: content, size: size)
-        generator.withInputCorrectionLevel(inputCorrectionLevel)
-        switch mode {
-        case .binarization:
-            generator.withMode(.binarization(threshold: binarizationThreshold))
-        default:
-            generator.withMode(mode)
-        }
-        generator.withMagnification(magnification)
-        generator.withColors(backgroundColor: backColor.ef.ciColor, foregroundColor: frontColor.ef.ciColor)
-        generator.withIcon(icon?.ef.cgImage, size: iconSize)
-        generator.withPointOffset(foregroundPointOffset)
-        generator.withTransparentWatermark(allowTransparent)
-        generator.withPointStyle(pointStyle.efPointStyle)
-        generator.withStyledTimingPoint(ignoreTiming)
-
-        switch watermark {
-        case .gif(let data)?: // GIF
-            generator.withWatermark(nil, mode: watermarkMode)
-            
-            if let afterData = EFQRCode.generateGIF(using: generator, withWatermarkGIF: data) {
-                generatorViewImage.image = NSImage(data: afterData)
-                result = afterData
-            } else {
-                messageBox(Localized.createQRCodeFailed)
+        let paramIcon: EFStyleParamIcon? = {
+            if let icon = self.icon {
+                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha)
             }
-        case .normal(let image)?:
-            generator.withWatermark(image.ef.cgImage, mode: watermarkMode)
-            fallthrough // Other use UIImage
-        case nil:
-            if let tryCGImage = generator.generate() {
-                generatorViewImage.image = NSImage(
-                    cgImage: tryCGImage,
-                    size: NSSize(width: tryCGImage.width, height: tryCGImage.height)
+            return nil
+        }()
+        
+        let paramWatermark: EFStyleImageParamsImage? = {
+            if let image = self.image {
+                return EFStyleImageParamsImage(image: image, alpha: imageAlpha)
+            }
+            return nil
+        }()
+        
+        do {
+            let generator = try EFQRCode.Generator(
+                content,
+                encoding: .utf8,
+                errorCorrectLevel: inputCorrectionLevel,
+                style: EFQRCodeStyle.image(
+                    params: EFStyleImageParams(
+                        icon: paramIcon,
+                        alignStyle: alignStyle,
+                        timingStyle: timingStyle,
+                        position: EFStyleImageParamsPosition(
+                            style: positionStyle,
+                            color: positionColor.cgColor
+                        ),
+                        data: EFStyleImageParamsData(
+                            style: dataStyle,
+                            scale: dataThickness,
+                            alpha: dataAlpha,
+                            colorDark: dataDarkColor.cgColor,
+                            colorLight: dataLightColor.cgColor
+                        ),
+                        image: paramWatermark
+                    )
                 )
-            } else {
-                messageBox(Localized.createQRCodeFailed)
-            }
+            )
+            let svg = try generator.generateSVG()
+            self.generatorSVG = svg
+            generatorWebViewImage.loadHTMLString(svg, baseURL: nil)
+        } catch {
+            messageBox(Localized.createQRCodeFailed)
         }
     }
 
     @objc func generatorViewSaveClicked() {
-        guard let image = generatorViewImage.image else { return }
+        guard let svgString = self.generatorSVG else { return }
         let panel = NSSavePanel()
-        panel.allowedFileTypes = ["png", "gif"]
+        panel.allowedFileTypes = ["svg"]
         let defaultFileName = NSLocalizedString("Untitled", comment: "Default file name")
-        let fileExtension = watermark?.isGIF == true ? "gif" : "png"
+        let fileExtension = "svg"
         panel.nameFieldStringValue = "\(defaultFileName).\(fileExtension)"
         panel.message = NSLocalizedString(
             "Choose the location to save the image",
@@ -249,27 +289,20 @@ extension ViewController: NSAlertDelegate {
         panel.begin {
             [weak self] (result) in
             guard let self = self,
-                result.rawValue == NSFileHandlingPanelOKButton,
+                result.rawValue == NSApplication.ModalResponse.OK.rawValue,
                 let url = panel.url
                 else { return }
             // [@"onecodego" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            if url.absoluteString.lowercased().hasSuffix(".gif") {
-                do {
-                    try self.result?.write(to: url)
-                    messageBox(NSLocalizedString(
-                        "GIF image saved",
-                        comment: "Successfully export QR code image"
-                    ))
-                } catch {
-                    messageBox(NSLocalizedString(
-                        "Failed to save GIF image",
-                        comment: "Failed to export QR code image"
-                    ))
-                }
-            } else if image.pngWrite(to: url, options: .atomic) {
+            do {
+                try svgString.data(using: .utf8)?.write(to: url)
                 messageBox(NSLocalizedString(
-                    "Image saved",
+                    "SVG image saved",
                     comment: "Successfully export QR code image"
+                ))
+            } catch {
+                messageBox(NSLocalizedString(
+                    "Failed to save SVG image",
+                    comment: "Failed to export QR code image"
                 ))
             }
         }
@@ -286,44 +319,42 @@ extension ViewController: NSAlertDelegate {
                 return nil
             }
         }
-        [chooseInputCorrectionLevel, chooseMode, chooseSize, chooseMagnification,
-         chooseBackColor, chooseFrontColor, chooseIcon, chooseIconSize,
-         chooseWatermark, chooseWatermarkMode, chooseForegroundPointOffset,
-         { self.chooseAllowTransparent(state) }, chooseBinarizationThreshold,
-         chooseShape, { self.chooseTimingPatternStyle(state) }
+        [
+            chooseInputCorrectionLevel,
+            chooseWatermark,
+            chooseWatermarkAlpha,
+            chooseDataStyle,
+            chooseDataDarkColor,
+            chooseDataLightColor,
+            chooseDataAlpha,
+            chooseDataThickness,
+            choosePositionStyle,
+            choosePositionColor,
+            chooseAlignStyle,
+            chooseTimingStyle,
+            chooseIcon,
+            chooseIconScale,
+            chooseIconAlpha,
         ][button.tag]()
     }
 
     func refresh() {
-        let magnificationString = magnification.map { "\($0.width)x\($0.height)" } ?? Localized.none
-        let iconSizeString = iconSize.map { "\($0.width)x\($0.height)" } ?? Localized.none
-        let watermarkModeString = Localized.Parameters.watermarkModeNames[watermarkMode.rawValue]
-        let modeIndex: Int = {
-            switch mode {
-            case nil, EFQRCodeMode.none?:
-                return 0
-            case .grayscale:
-                return 1
-            case .binarization:
-                return 2
-            }
-        }()
         let detailArray: [Any?] = [
-            ["L", "M", "Q", "H"][inputCorrectionLevel.rawValue],
-            Localized.Parameters.modeNames[modeIndex],
-            "\(size.width)x\(size.height)",
-            magnificationString,
-            nil, // backgroundColor
-            nil, // foregroundColor
-            nil, // icon
-            iconSizeString,
+            "\(inputCorrectionLevel)",
             nil, // watermark
-            watermarkModeString,
-            Localized.number(foregroundPointOffset),
-            allowTransparent,
-            Localized.number(binarizationThreshold),
-            Localized.Parameters.shapeNames[pointStyle.rawValue],
-            ignoreTiming,
+            "\(imageAlpha)",
+            "\(dataStyle)",
+            nil, // dataDarkColor
+            nil, // dataLightColor
+            "\(dataAlpha)",
+            "\(dataThickness)",
+            "\(positionStyle)",
+            nil, // positionColor
+            "\(alignStyle)",
+            "\(timingStyle)",
+            nil, // icon
+            "\(iconScale)",
+            "\(iconAlpha)"
         ]
 
         for (index, button) in generatorViewOptions.enumerated() {
@@ -393,13 +424,22 @@ extension ViewController: NSAlertDelegate {
                 let rightImageView = (button.detailView as? NSImageView)
                 switch index {
                 case 4:
-                    rightImageView?.layer?.backgroundColor = backColor.cgColor
+                    rightImageView?.layer?.backgroundColor = dataDarkColor.cgColor
                 case 5:
-                    rightImageView?.layer?.backgroundColor = frontColor.cgColor
-                case 6:
-                    rightImageView?.image = icon
-                case 8:
-                    switch watermark {
+                    rightImageView?.layer?.backgroundColor = dataLightColor.cgColor
+                case 9:
+                    rightImageView?.layer?.backgroundColor = positionColor.cgColor
+                case 12:
+                    switch efImageIcon {
+                    case .gif(let dataGIF)?:
+                        rightImageView?.image = NSImage(data: dataGIF)
+                    case .normal(let nsImage)?:
+                        rightImageView?.image = nsImage
+                    case nil:
+                        rightImageView?.image = nil
+                    }
+                case 1:
+                    switch efImageWatermark {
                     case .gif(let dataGIF)?:
                         rightImageView?.image = NSImage(data: dataGIF)
                     case .normal(let nsImage)?:
@@ -416,77 +456,56 @@ extension ViewController: NSAlertDelegate {
         }
     }
 
-    @objc func backColorChanged(colorPanel: NSColorPanel) {
-        backColor = colorPanel.color
+    @objc func dataDarkColorChanged(colorPanel: NSColorPanel) {
+        dataDarkColor = colorPanel.color
         refresh()
     }
 
-    @objc func frontColorChanged(colorPanel: NSColorPanel) {
-        frontColor = colorPanel.color
+    @objc func dataLightColorChanged(colorPanel: NSColorPanel) {
+        dataLightColor = colorPanel.color
+        refresh()
+    }
+    
+    @objc func positionColorChanged(colorPanel: NSColorPanel) {
+        positionColor = colorPanel.color
         refresh()
     }
 
     // MARK: - param
     func chooseInputCorrectionLevel() {
-        choose(Localized.Title.inputCorrectionLevel, from: ["L", "M", "Q", "H"]) {
-            (self, response) in
-            self.inputCorrectionLevel = [.l, .m, .q, .h][response.rawValue - 1000]
+        chooseFromEnum(title: Localized.Title.inputCorrectionLevel, type: EFCorrectionLevel.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.inputCorrectionLevel = result
+            self.refresh()
         }
     }
 
-    func chooseMode() {
-        choose(Localized.Title.mode, from: Localized.Parameters.modeNames) {
-            (self, response) in
-            self.mode = [nil, .grayscale, .binarization(threshold: 0.5)][response.rawValue - 1000]
-        }
+    func chooseDataDarkColor() {
+        EFDataDarkColorPicker.shared.setAction(#selector(dataDarkColorChanged(colorPanel:)))
+        EFDataDarkColorPicker.shared.setTarget(self)
+        EFDataDarkColorPicker.shared.makeKeyAndOrderFront(self)
     }
 
-    func chooseSize() {
-        choose(Localized.Title.size, from: [128, 256, 1024, 2048].map { "\($0)x\($0)" }) {
-            (self, response) in
-            let size = [128, 256, 1024, 2048][response.rawValue - 1000]
-            self.size = EFIntSize(width: size, height: size)
-        }
+    func chooseDataLightColor() {
+        EFDataLightColorPicker.shared.setAction(#selector(dataLightColorChanged(colorPanel:)))
+        EFDataLightColorPicker.shared.setTarget(self)
+        EFDataLightColorPicker.shared.makeKeyAndOrderFront(self)
     }
     
-    func chooseMagnification() {
-        let choices = [Localized.none] + [3, 9, 12, 30].map { "\($0)x\($0)" }
-        choose(Localized.Title.magnification, from: choices) {
-            (self, response) in
-            let size = [nil, 3, 9, 12, 30][response.rawValue - 1000]
-            self.magnification = size.map { EFIntSize(width: $0, height: $0) }
-        }
-    }
-
-    func chooseBackColor() {
-        EFBackColorPicker.shared.setAction(#selector(backColorChanged(colorPanel:)))
-        EFBackColorPicker.shared.setTarget(self)
-        EFBackColorPicker.shared.makeKeyAndOrderFront(self)
-    }
-
-    func chooseFrontColor() {
-        EFFrontColorPicker.shared.setAction(#selector(frontColorChanged(colorPanel:)))
-        EFFrontColorPicker.shared.setTarget(self)
-        EFFrontColorPicker.shared.makeKeyAndOrderFront(self)
+    func choosePositionColor() {
+        EFPositionColorPicker.shared.setAction(#selector(positionColorChanged(colorPanel:)))
+        EFPositionColorPicker.shared.setTarget(self)
+        EFPositionColorPicker.shared.makeKeyAndOrderFront(self)
     }
 
     func chooseIcon() {
         selectImageFromDisk {
             [weak self] (image) in
-            guard let self = self,
-                case let .normal(nsImage) = image
-                else { return }
-            self.icon = nsImage
+            guard let self = self else { return }
+            self.efImageIcon = image
+            self.icon = image?.styleParamImage
             self.refresh()
-        }
-    }
-    
-    func chooseIconSize() {
-        let choices = [Localized.none] + [32, 64, 128].map { "\($0)x\($0)" }
-        choose(Localized.Title.iconSize, from: choices) {
-            (self, response) in
-            let size = [nil, 32, 64, 128][response.rawValue - 1000]
-            self.iconSize = size.map { EFIntSize(width: $0, height: $0) }
         }
     }
 
@@ -494,71 +513,91 @@ extension ViewController: NSAlertDelegate {
         selectImageFromDisk {
             [weak self] (image) in
             guard let self = self else { return }
-            self.watermark = image
+            self.efImageWatermark = image
+            self.image = image?.styleParamImage
             self.refresh()
         }
     }
 
-    func chooseWatermarkMode() {
-        choose(Localized.Title.watermarkMode,
-               from: Localized.Parameters.watermarkModeNames) {
-                (self, response) in
-                self.watermarkMode = [
-                    .scaleToFill, .scaleAspectFit, .scaleAspectFill,
-                    .center, .top, .bottom, .left, .right,
-                    .topLeft, .topRight, .bottomLeft, .bottomRight
-                ][response.rawValue - 1000]
+    func chooseDataThickness() {
+        chooseFromList(title: Localized.Title.dataThickness, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataThickness = result
+            self.refresh()
         }
     }
     
-    func chooseForegroundPointOffset() {
-        let choices = [Localized.none] + [-0.5, -0.25, 0, 0.25, 0.5].map(Localized.number)
-        choose(Localized.Title.foregroundPointOffset, from: choices) {
-            (self, response) in
-            self.foregroundPointOffset = [nil, CGFloat(-0.5), -0.25, 0, 0.25, 0.5][response.rawValue - 1000] ?? 0
-        }
-    }
-
-    func chooseAllowTransparent(_ allowTransparent: Bool? = nil) {
-        switch allowTransparent {
-        case nil:
-            choose(Localized.Title.allowTransparent, from: [Localized.yes, Localized.no]) {
-                (self, response) in
-                self.allowTransparent = [true, false][response.rawValue - 1000]
-            }
-        case let .some(x):
-            self.allowTransparent = x
-        }
-    }
-
-    func chooseBinarizationThreshold() {
-        choose(Localized.Title.binarizationThreshold,
-               from: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1].map(Localized.number)
-        ) { (self, response) in
-            self.binarizationThreshold = CGFloat(
-                [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1][response.rawValue - 1000]
-            )
+    func choosePositionStyle() {
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleImageParamsPositionStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionStyle = result
+            self.refresh()
         }
     }
     
-    func chooseShape() {
-        choose(Localized.Title.pointShape, from: Localized.Parameters.shapeNames) {
-            (self, response) in
-            self.pointStyle = PointStyle.allCases[response.rawValue - 1000]
+    func chooseWatermarkAlpha() {
+        chooseFromList(title: Localized.Title.watermarkAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.imageAlpha = result
+            self.refresh()
         }
     }
-
-    func chooseTimingPatternStyle(_ shouldIgnore: Bool? = nil) {
-        switch shouldIgnore {
-        case nil:
-            choose(Localized.Title.ignoreTiming, from: [Localized.yes, Localized.no]) {
-                (self, response) in
-                self.ignoreTiming = [true, false][response.rawValue - 1000]
-            }
-        case let .some(x):
-            self.ignoreTiming = x
+    
+    func chooseDataStyle() {
+        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleImageParamsDataStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataStyle = result
+            self.refresh()
         }
-
+    }
+    
+    func chooseAlignStyle() {
+        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleParamAlignStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.alignStyle = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTimingStyle() {
+        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleParamTimingStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.timingStyle = result
+            self.refresh()
+        }
+    }
+    
+    func chooseDataAlpha() {
+        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseIconScale() {
+        chooseFromList(title: Localized.Title.iconScale, items: [0, 0.11, 0.22, 0.33]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconScale = result
+            self.refresh()
+        }
+    }
+    
+    func chooseIconAlpha() {
+        chooseFromList(title: Localized.Title.iconAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconAlpha = result
+            self.refresh()
+        }
     }
     
     private func choose(
@@ -577,6 +616,41 @@ extension ViewController: NSAlertDelegate {
             [weak self] (response) in
             guard let self = self else { return }
             processBeforeRefresh(self, response)
+            self.refresh()
+        }
+    }
+    
+    func chooseFromEnum<T: CaseIterable>(title: String, type: T.Type, completion: ((T) -> Void)?) {
+        guard let window = view.window else { return }
+        let alert = NSAlert()
+        alert.messageText = title
+        let allCases = Array(type.allCases)
+        let names: [String] = allCases.map{ "\($0)" }
+        for modeName in names {
+            alert.addButton(withTitle: modeName)
+        }
+        alert.delegate = self
+        alert.beginSheetModal(for: window) {
+            [weak self] (response) in
+            guard let self = self else { return }
+            completion?(allCases[response.rawValue - 1000])
+            self.refresh()
+        }
+    }
+    
+    func chooseFromList<T>(title: String, items: [T], completion: ((T) -> Void)?) {
+        guard let window = view.window else { return }
+        let alert = NSAlert()
+        alert.messageText = title
+        let names: [String] = items.map{ "\($0)" }
+        for modeName in names {
+            alert.addButton(withTitle: modeName)
+        }
+        alert.delegate = self
+        alert.beginSheetModal(for: window) {
+            [weak self] (response) in
+            guard let self = self else { return }
+            completion?(items[response.rawValue - 1000])
             self.refresh()
         }
     }

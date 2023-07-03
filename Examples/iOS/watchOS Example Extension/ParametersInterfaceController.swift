@@ -40,15 +40,15 @@ class ParametersInterfaceController: WKInterfaceController {
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        initModePicker()
-        initBackgroundColorPicker()
+        // initModePicker()
+        // initBackgroundColorPicker()
         initForegroundColorPicker()
         initIconPicker()
         initWatermarkPicker()
-        initWatermarkModePicker()
-        initForegroundPointOffsetPicker()
-        initBinarizationThresholdPicker()
-        initPointShapePicker()
+        // initWatermarkModePicker()
+        // initForegroundPointOffsetPicker()
+        // initBinarizationThresholdPicker()
+        // initPointShapePicker()
     }
 
     private static let lastContent = StorageUserDefaults<NSString>(key: "lastContent")
@@ -65,11 +65,10 @@ class ParametersInterfaceController: WKInterfaceController {
         }
     }
     
-    private var correctionLevel = EFInputCorrectionLevel.h
+    private var correctionLevel = EFCorrectionLevel.h
     @IBAction func changeInputCorrectionLevel(_ value: Float) {
-        if let level = EFInputCorrectionLevel(rawValue: Int(value)) {
-            correctionLevel = level
-        }
+        let level = [EFCorrectionLevel.l, .m, .q, .h][Int(value)]
+        correctionLevel = level
     }
     private var selectedMode: EFQRCodeMode? = nil
     private let mode = [
@@ -293,37 +292,61 @@ class ParametersInterfaceController: WKInterfaceController {
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         ParametersInterfaceController.lastContent.value = link as NSString
 
-        let generator = EFQRCodeGenerator(content: link, size: EFIntSize(width: width, height: height))
-        generator.withInputCorrectionLevel(correctionLevel)
-        switch selectedMode {
-        case .binarization:
-            generator.withMode(.binarization(threshold: binarizationThreshold))
-        default:
-            generator.withMode(selectedMode)
-        }
-        generator.withMagnification(EFIntSize(width: magnificationWidth, height: magnificationHeight))
-        generator.withColors(backgroundColor: backgroundColor.ef.cgColor, foregroundColor: foregroundColor.ef.cgColor)
-        generator.withIcon(icon?.ef.cgImage, size: EFIntSize(width: iconWidth, height: iconHeight))
-        generator.withPointOffset(foregroundPointOffset)
-        generator.withTransparentWatermark(allowsTransparent)
-        generator.withPointStyle(pointStyle.efPointStyle)
-        generator.withStyledTimingPoint(ignoreTiming)
+        let paramIcon: EFStyleParamIcon? = {
+            if let icon = self.icon?.cgImage {
+                return EFStyleParamIcon(image: EFStyleParamImage.static(image: icon), percentage: 0.25, alpha: 1)
+            }
+            return nil
+        }()
         
-        switch watermark {
-        case .gif(let data)?: // GIF
-            // TODO: Confirm if possible to even have this case on watchOS
-            generator.withWatermark(nil, mode: watermarkMode)
-            if let afterData = EFQRCode.generateGIF(using: generator, withWatermarkGIF: data) {
-                return EFImage.gif(afterData)
+        let paramWatermark: EFStyleImageParamsImage? = {
+            if let watermark = self.watermark {
+                let image: EFStyleParamImage? = {
+                    switch watermark {
+                    case .normal(let image):
+                        return EFStyleParamImage.static(image: image.cgImage!)
+                    case .gif(_):
+                        // No gif in watchos demo, ignore
+                        return nil
+                    }
+                }()
+                if let image = image {
+                    return EFStyleImageParamsImage(image: image, alpha: 1)
+                }
+                return nil
             }
-        case .normal(let uiImage)?:
-            generator.withWatermark(uiImage.ef.cgImage, mode: watermarkMode)
-            fallthrough // Other use UIImage
-        case nil:
-            if let tryCGImage = generator.generate() {
-                return EFImage.normal(UIImage(cgImage: tryCGImage))
-            }
+            return nil
+        }()
+        
+        do {
+            let generator = try EFQRCode.Generator(
+                link,
+                encoding: .utf8,
+                errorCorrectLevel: correctionLevel,
+                style: EFQRCodeStyle.image(
+                    params: EFStyleImageParams(
+                        icon: paramIcon,
+                        alignStyle: .rectangle,
+                        timingStyle: .rectangle,
+                        position: EFStyleImageParamsPosition(
+                            style: .rectangle,
+                            color: foregroundColor.cgColor
+                        ),
+                        data: EFStyleImageParamsData(
+                            style: .rectangle,
+                            scale: 0.3,
+                            alpha: 1,
+                            colorDark: foregroundColor.cgColor,
+                            colorLight: UIColor.white.cgColor
+                        ),
+                        image: paramWatermark
+                    )
+                )
+            )
+            let svg = try generator.generateSVG()
+            return svg
+        } catch {
+            return nil
         }
-        return nil
     }
 }

@@ -49,12 +49,12 @@ class MoreViewController: UIViewController {
             make.top.equalTo(iconImageView.snp.bottom).offset(8)
         }
         
-        let downloadButtonHeight: CGFloat = 64
+        let downloadButtonHeight: CGFloat = 56
         let downloadButton: UIButton = UIButton(type: .custom)
         downloadButton.setTitle("Download", for: .normal)
         downloadButton.setTitleColor(UIColor.white, for: .normal)
-        downloadButton.titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: .bold)
-        downloadButton.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(openDownload)))
+        downloadButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        downloadButton.addTarget(self, action: #selector(openDownload), for: .touchUpInside)
         downloadButton.layer.borderColor = UIColor.white.cgColor
         downloadButton.layer.borderWidth = 1
         downloadButton.layer.cornerRadius = downloadButtonHeight / 2
@@ -62,7 +62,7 @@ class MoreViewController: UIViewController {
         downloadButton.snp.makeConstraints { (make) in
             make.left.equalTo(36)
             make.right.equalTo(-36)
-            make.bottom.equalTo(-CGFloat.bottomSafeArea() - 36)
+            make.bottom.equalTo(-CGFloat.bottomSafeArea())
             make.height.equalTo(downloadButtonHeight)
         }
         
@@ -72,7 +72,8 @@ class MoreViewController: UIViewController {
         labelTip.textAlignment = .left
         labelTip.backgroundColor = UIColor.clear
         labelTip.alwaysBounceVertical = true
-        labelTip.text = "We recommend you to try our pro version - EFQRCoder, you can get the following content:\n\n- Support more kinds of barcode & 2D code;\n- More user-friendly scanner;\n- Support recognition history;\n- More beautiful user interface;\n- Multi-language adaptation;\n- More recognition and generation options;\n- More timely customer support;\n- Support the development of EFQRCode;\n- Etc.\n\nAnyway, thank you very much for using our products!"
+        labelTip.isEditable = false
+        labelTip.text = "We recommend you to try our pro version - EFQRCoder, you can get the following:\n\n- Support more kinds of barcode & 2D code;\n- More user-friendly scanner;\n- Support recognition history;\n- More beautiful user interface;\n- Multi-language adaptation;\n- More recognition and generation options;\n- More timely customer support;\n- Support the development of EFQRCode;\n- Etc.\n\nAnyway, thank you very much for using our products!"
         self.view.addSubview(labelTip)
         labelTip.snp.makeConstraints { (make) in
             make.left.equalTo(20)
