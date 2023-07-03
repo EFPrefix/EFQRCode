@@ -25,12 +25,25 @@
 //  THE SOFTWARE.
 
 import UIKit
+#if os(tvOS)
+import SDWebImageSVGCoder
+import SDWebImage
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    #if os(tvOS)
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        let SVGCoder = SDImageSVGCoder.shared
+        SDImageCodersManager.shared.addCoder(SVGCoder)
+        
+        return true
+    }
+    #endif
 }
 
 func UIImage2CGImage(_ image: UIImage?) -> CGImage? {

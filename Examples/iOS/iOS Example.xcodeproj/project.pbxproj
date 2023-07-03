@@ -3,20 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		120B77FF1EA395EC00D34440 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 120B77FD1EA395EC00D34440 /* Main.storyboard */; };
 		120B78011EA3960D00D34440 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120B78001EA3960D00D34440 /* LaunchScreen.xib */; };
 		120B78031EA3968700D34440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78021EA3968700D34440 /* ViewController.swift */; };
-		120B78051EA3969600D34440 /* RecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78041EA3969600D34440 /* RecognizerController.swift */; };
-		120B78071EA396A000D34440 /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78061EA396A000D34440 /* GeneratorController.swift */; };
 		120B780A1EA3977300D34440 /* UIImage+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78091EA3977300D34440 /* UIImage+Example.swift */; };
 		120B78411EA39E1B00D34440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78401EA39E1B00D34440 /* AppDelegate.swift */; };
 		120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; };
 		120B785E1EA3AA1100D34440 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		122A6D072A5CD9AA00EE18B1 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 122A6D062A5CD9AA00EE18B1 /* SDWebImageSVGCoder */; };
 		12399E642A4389F400BB789F /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12399E632A4389F400BB789F /* MoreViewController.swift */; };
+		125E59F42A561B4A00B508F2 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59F32A561B4A00B508F2 /* StyleViewController.swift */; };
+		125E59FD2A56A06400B508F2 /* BasicGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */; };
+		125E5A042A56CA5F00B508F2 /* ShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E5A032A56CA5F00B508F2 /* ShowController.swift */; };
 		12981D8A1F99F75D00156E1E /* CGFloat+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12981D891F99F75D00156E1E /* CGFloat+Example.swift */; };
 		12A22CEB2210656D0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
 		12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
@@ -67,6 +69,18 @@
 		12BC1A972328C0D900B6EB5A /* EFColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1A8C2328C0D900B6EB5A /* EFColorUtils.swift */; };
 		12BC1A982328C0D900B6EB5A /* EFColorComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1A8D2328C0D900B6EB5A /* EFColorComponentView.swift */; };
 		12BC1A992328C0D900B6EB5A /* EFColorSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1A8E2328C0D900B6EB5A /* EFColorSelectionView.swift */; };
+		12DCAC942A56E946009B5414 /* AnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCAC932A56E946009B5414 /* AnimatedImage.swift */; };
+		12DCAC952A56E946009B5414 /* AnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCAC932A56E946009B5414 /* AnimatedImage.swift */; };
+		12DCAC972A581B6B009B5414 /* BubbleGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCAC962A581B6B009B5414 /* BubbleGeneratorController.swift */; };
+		12DCAC9A2A58282D009B5414 /* DSJGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCAC992A58282D009B5414 /* DSJGeneratorController.swift */; };
+		12DCAC9D2A582FA2009B5414 /* LineGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCAC9C2A582FA2009B5414 /* LineGeneratorController.swift */; };
+		12DCACA02A583F11009B5414 /* FunctionGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCAC9F2A583F11009B5414 /* FunctionGeneratorController.swift */; };
+		12DCACA22A58EA98009B5414 /* RandomRectangleGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACA12A58EA98009B5414 /* RandomRectangleGeneratorController.swift */; };
+		12DCACA42A58F000009B5414 /* ResampleImageGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACA32A58F000009B5414 /* ResampleImageGeneratorController.swift */; };
+		12DCACA62A596006009B5414 /* ImageGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACA52A596006009B5414 /* ImageGeneratorController.swift */; };
+		12DCACA82A5A32B9009B5414 /* ImageFillGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACA72A5A32B9009B5414 /* ImageFillGeneratorController.swift */; };
+		12DCACAA2A5A6F5F009B5414 /* D25GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACA92A5A6F5F009B5414 /* D25GeneratorController.swift */; };
+		12DCACAC2A5BCB28009B5414 /* RecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACAB2A5BCB28009B5414 /* RecognizerController.swift */; };
 		12EE9E8323869BB600241C60 /* Int16+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E5D23869BB400241C60 /* Int16+.swift */; };
 		12EE9E8423869BB600241C60 /* UIGestureRecognizer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E5E23869BB400241C60 /* UIGestureRecognizer+.swift */; };
 		12EE9E8523869BB600241C60 /* UInt+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E5F23869BB400241C60 /* UInt+.swift */; };
@@ -265,12 +279,13 @@
 		120B77FE1EA395EC00D34440 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		120B78001EA3960D00D34440 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = Resources/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		120B78021EA3968700D34440 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = SOURCE_ROOT; };
-		120B78041EA3969600D34440 /* RecognizerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizerController.swift; sourceTree = SOURCE_ROOT; };
-		120B78061EA396A000D34440 /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorController.swift; sourceTree = SOURCE_ROOT; };
 		120B78091EA3977300D34440 /* UIImage+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Example.swift"; sourceTree = SOURCE_ROOT; };
 		120B78401EA39E1B00D34440 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
 		12399E632A4389F400BB789F /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
+		125E59F32A561B4A00B508F2 /* StyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
+		125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGeneratorController.swift; sourceTree = "<group>"; };
+		125E5A032A56CA5F00B508F2 /* ShowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowController.swift; sourceTree = "<group>"; };
 		12981D891F99F75D00156E1E /* CGFloat+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Example.swift"; sourceTree = SOURCE_ROOT; };
 		12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUserDefaults.swift; sourceTree = "<group>"; };
 		12BC1A3C2328C0B200B6EB5A /* ConstraintConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = ../Pods/SnapKit/Source/ConstraintConfig.swift; sourceTree = "<group>"; };
@@ -320,6 +335,17 @@
 		12BC1A8C2328C0D900B6EB5A /* EFColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFColorUtils.swift; path = ../Pods/EFColorPicker/EFColorPicker/Classes/EFColorUtils.swift; sourceTree = "<group>"; };
 		12BC1A8D2328C0D900B6EB5A /* EFColorComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFColorComponentView.swift; path = ../Pods/EFColorPicker/EFColorPicker/Classes/EFColorComponentView.swift; sourceTree = "<group>"; };
 		12BC1A8E2328C0D900B6EB5A /* EFColorSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFColorSelectionView.swift; path = ../Pods/EFColorPicker/EFColorPicker/Classes/EFColorSelectionView.swift; sourceTree = "<group>"; };
+		12DCAC932A56E946009B5414 /* AnimatedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedImage.swift; sourceTree = "<group>"; };
+		12DCAC962A581B6B009B5414 /* BubbleGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleGeneratorController.swift; sourceTree = "<group>"; };
+		12DCAC992A58282D009B5414 /* DSJGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSJGeneratorController.swift; sourceTree = "<group>"; };
+		12DCAC9C2A582FA2009B5414 /* LineGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineGeneratorController.swift; sourceTree = "<group>"; };
+		12DCAC9F2A583F11009B5414 /* FunctionGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionGeneratorController.swift; sourceTree = "<group>"; };
+		12DCACA12A58EA98009B5414 /* RandomRectangleGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomRectangleGeneratorController.swift; sourceTree = "<group>"; };
+		12DCACA32A58F000009B5414 /* ResampleImageGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResampleImageGeneratorController.swift; sourceTree = "<group>"; };
+		12DCACA52A596006009B5414 /* ImageGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGeneratorController.swift; sourceTree = "<group>"; };
+		12DCACA72A5A32B9009B5414 /* ImageFillGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFillGeneratorController.swift; sourceTree = "<group>"; };
+		12DCACA92A5A6F5F009B5414 /* D25GeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = D25GeneratorController.swift; sourceTree = "<group>"; };
+		12DCACAB2A5BCB28009B5414 /* RecognizerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizerController.swift; sourceTree = "<group>"; };
 		12EE9E5D23869BB400241C60 /* Int16+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int16+.swift"; path = "../Pods/EFFoundation/EFFoundation/Core/Int16+.swift"; sourceTree = "<group>"; };
 		12EE9E5E23869BB400241C60 /* UIGestureRecognizer+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+.swift"; path = "../Pods/EFFoundation/EFFoundation/Core/UIGestureRecognizer+.swift"; sourceTree = "<group>"; };
 		12EE9E5F23869BB400241C60 /* UInt+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UInt+.swift"; path = "../Pods/EFFoundation/EFFoundation/Core/UInt+.swift"; sourceTree = "<group>"; };
@@ -395,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5282BD1E1FF3FD8A00DFB36B /* EFQRCode.framework in Frameworks */,
+				122A6D072A5CD9AA00EE18B1 /* SDWebImageSVGCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,10 +446,12 @@
 		120B77F81EA394FB00D34440 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				125E59FB2A56A04D00B508F2 /* Generator */,
 				120B78021EA3968700D34440 /* ViewController.swift */,
-				120B78041EA3969600D34440 /* RecognizerController.swift */,
-				120B78061EA396A000D34440 /* GeneratorController.swift */,
+				12DCACAB2A5BCB28009B5414 /* RecognizerController.swift */,
+				125E59F32A561B4A00B508F2 /* StyleViewController.swift */,
 				12399E632A4389F400BB789F /* MoreViewController.swift */,
+				125E5A032A56CA5F00B508F2 /* ShowController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -458,6 +487,23 @@
 				5282BD091FF3AD9100DFB36B /* EFQRCode.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		125E59FB2A56A04D00B508F2 /* Generator */ = {
+			isa = PBXGroup;
+			children = (
+				125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */,
+				12DCAC962A581B6B009B5414 /* BubbleGeneratorController.swift */,
+				12DCAC992A58282D009B5414 /* DSJGeneratorController.swift */,
+				12DCAC9C2A582FA2009B5414 /* LineGeneratorController.swift */,
+				12DCAC9F2A583F11009B5414 /* FunctionGeneratorController.swift */,
+				12DCACA12A58EA98009B5414 /* RandomRectangleGeneratorController.swift */,
+				12DCACA32A58F000009B5414 /* ResampleImageGeneratorController.swift */,
+				12DCACA52A596006009B5414 /* ImageGeneratorController.swift */,
+				12DCACA72A5A32B9009B5414 /* ImageFillGeneratorController.swift */,
+				12DCACA92A5A6F5F009B5414 /* D25GeneratorController.swift */,
+			);
+			path = Generator;
 			sourceTree = "<group>";
 		};
 		127B82272190846C00B737E8 /* EFColorPicker */ = {
@@ -526,6 +572,7 @@
 			children = (
 				12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */,
 				528EFA7322965AC80026663C /* Localized.swift */,
+				12DCAC932A56E946009B5414 /* AnimatedImage.swift */,
 			);
 			name = Unit;
 			sourceTree = "<group>";
@@ -737,6 +784,9 @@
 				5282BD211FF3FD8A00DFB36B /* PBXTargetDependency */,
 			);
 			name = "watchOS Example Extension";
+			packageProductDependencies = (
+				122A6D062A5CD9AA00EE18B1 /* SDWebImageSVGCoder */,
+			);
 			productName = "watchOS Example Extension";
 			productReference = 5282BCEF1FF3AD9100DFB36B /* watchOS Example Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -758,6 +808,8 @@
 				5282BCFC1FF3AD9100DFB36B /* PBXTargetDependency */,
 			);
 			name = "iOS Example";
+			packageProductDependencies = (
+			);
 			productName = Alamofire;
 			productReference = F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -797,6 +849,9 @@
 				"zh-Hans",
 			);
 			mainGroup = F8111DFC19A951050040E7D1;
+			packageReferences = (
+				122A6CFE2A5CD69900EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
+			);
 			productRefGroup = F8111E0619A951050040E7D1 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -909,6 +964,7 @@
 				5282BD261FF4137F00DFB36B /* NumberPadInterfaceController.swift in Sources */,
 				12EE9EB123869C8300241C60 /* UIView+.swift in Sources */,
 				12EE9EB023869C5200241C60 /* UIImageView+.swift in Sources */,
+				12DCAC952A56E946009B5414 /* AnimatedImage.swift in Sources */,
 				12EE9EAB23869C1500241C60 /* EFFoundation.swift in Sources */,
 				5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */,
 				12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */,
@@ -942,11 +998,13 @@
 				12BC1A982328C0D900B6EB5A /* EFColorComponentView.swift in Sources */,
 				12BC1A712328C0B500B6EB5A /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				12EE9EA723869BB600241C60 /* UIViewController+.swift in Sources */,
+				12DCACA02A583F11009B5414 /* FunctionGeneratorController.swift in Sources */,
 				12BC1A822328C0B500B6EB5A /* ConstraintDirectionalInsets.swift in Sources */,
 				12BC1A682328C0B500B6EB5A /* ConstraintMakerEditable.swift in Sources */,
 				12BC1A972328C0D900B6EB5A /* EFColorUtils.swift in Sources */,
+				12DCAC942A56E946009B5414 /* AnimatedImage.swift in Sources */,
 				12EE9E8423869BB600241C60 /* UIGestureRecognizer+.swift in Sources */,
-				120B78051EA3969600D34440 /* RecognizerController.swift in Sources */,
+				12DCAC972A581B6B009B5414 /* BubbleGeneratorController.swift in Sources */,
 				12EE9E8A23869BB600241C60 /* Int64+.swift in Sources */,
 				12EE9E8923869BB600241C60 /* CIColor+.swift in Sources */,
 				12EE9E9223869BB600241C60 /* CIImage+.swift in Sources */,
@@ -954,21 +1012,25 @@
 				120B780A1EA3977300D34440 /* UIImage+Example.swift in Sources */,
 				12BC1A702328C0B500B6EB5A /* ConstraintInsetTarget.swift in Sources */,
 				12EE9E8C23869BB600241C60 /* CGSize+.swift in Sources */,
+				12DCAC9D2A582FA2009B5414 /* LineGeneratorController.swift in Sources */,
 				12BC1A752328C0B500B6EB5A /* ConstraintRelatableTarget.swift in Sources */,
 				12BC1A6F2328C0B500B6EB5A /* ConstraintItem.swift in Sources */,
 				12EE9EA023869BB600241C60 /* UITableView+.swift in Sources */,
+				12DCACAA2A5A6F5F009B5414 /* D25GeneratorController.swift in Sources */,
 				12BC1A7B2328C0B500B6EB5A /* ConstraintDirectionalInsetTarget.swift in Sources */,
 				12BC1A7D2328C0B500B6EB5A /* ConstraintMakerPriortizable.swift in Sources */,
 				12EE9E9623869BB600241C60 /* CGColor+.swift in Sources */,
 				12EE9E8623869BB600241C60 /* Array+.swift in Sources */,
 				12BC1A952328C0D900B6EB5A /* EFSliderView.swift in Sources */,
 				12BC1A622328C0B500B6EB5A /* LayoutConstraint.swift in Sources */,
+				12DCACA22A58EA98009B5414 /* RandomRectangleGeneratorController.swift in Sources */,
 				12BC1A6B2328C0B500B6EB5A /* ConstraintMakerExtendable.swift in Sources */,
 				12BC1A6C2328C0B500B6EB5A /* Typealiases.swift in Sources */,
 				12EE9E9723869BB600241C60 /* Int8+.swift in Sources */,
 				12BC1A762328C0B500B6EB5A /* LayoutConstraintItem.swift in Sources */,
 				12BC1A742328C0B500B6EB5A /* Debugging.swift in Sources */,
 				12EE9EA123869BB600241C60 /* NSImage+.swift in Sources */,
+				125E5A042A56CA5F00B508F2 /* ShowController.swift in Sources */,
 				12EE9E9523869BB600241C60 /* EFFoundation.swift in Sources */,
 				12EE9EA423869BB600241C60 /* UInt16+.swift in Sources */,
 				12BC1A942328C0D900B6EB5A /* EFRGBView.swift in Sources */,
@@ -983,7 +1045,11 @@
 				12BC1A6E2328C0B500B6EB5A /* UILayoutSupport+Extensions.swift in Sources */,
 				12EE9E9B23869BB600241C60 /* UIColor+.swift in Sources */,
 				120B78411EA39E1B00D34440 /* AppDelegate.swift in Sources */,
+				12DCAC9A2A58282D009B5414 /* DSJGeneratorController.swift in Sources */,
+				12DCACA62A596006009B5414 /* ImageGeneratorController.swift in Sources */,
+				12DCACA82A5A32B9009B5414 /* ImageFillGeneratorController.swift in Sources */,
 				12EE9E9A23869BB600241C60 /* UIControl+.swift in Sources */,
+				125E59F42A561B4A00B508F2 /* StyleViewController.swift in Sources */,
 				12981D8A1F99F75D00156E1E /* CGFloat+Example.swift in Sources */,
 				12BC1A722328C0B500B6EB5A /* ConstraintMaker.swift in Sources */,
 				12BC1A7C2328C0B500B6EB5A /* ConstraintMakerFinalizable.swift in Sources */,
@@ -994,8 +1060,8 @@
 				12EE9E9D23869BB600241C60 /* CGFloat+.swift in Sources */,
 				12BC1A902328C0D900B6EB5A /* EFColorWheelView.swift in Sources */,
 				12BC1A6D2328C0B500B6EB5A /* ConstraintView+Extensions.swift in Sources */,
-				120B78071EA396A000D34440 /* GeneratorController.swift in Sources */,
 				12EE9E9E23869BB600241C60 /* UInt8+.swift in Sources */,
+				125E59FD2A56A06400B508F2 /* BasicGeneratorController.swift in Sources */,
 				D2FAEBD12749731F00DFA959 /* PointStyle.swift in Sources */,
 				12BC1A832328C0B500B6EB5A /* ConstraintMultiplierTarget.swift in Sources */,
 				12BC1A922328C0D900B6EB5A /* EFControl.swift in Sources */,
@@ -1006,11 +1072,13 @@
 				12BC1A662328C0B500B6EB5A /* ConstraintInsets.swift in Sources */,
 				12EE9E8E23869BB600241C60 /* UInt64+.swift in Sources */,
 				12EE9EA623869BB600241C60 /* String+.swift in Sources */,
+				12DCACA42A58F000009B5414 /* ResampleImageGeneratorController.swift in Sources */,
 				528EFA7422965AC80026663C /* Localized.swift in Sources */,
 				12EE9E9F23869BB600241C60 /* UIWindow+.swift in Sources */,
 				12EE9E8723869BB600241C60 /* UIFont+.swift in Sources */,
 				12BC1A612328C0B500B6EB5A /* ConstraintViewDSL.swift in Sources */,
 				12EE9EA323869BB600241C60 /* UINavigationController+.swift in Sources */,
+				12DCACAC2A5BCB28009B5414 /* RecognizerController.swift in Sources */,
 				12EE9E8F23869BB600241C60 /* UIView+.swift in Sources */,
 				12EE9E8D23869BB600241C60 /* Int+.swift in Sources */,
 				12BC1A7F2328C0B500B6EB5A /* ConstraintPriorityTarget.swift in Sources */,
@@ -1088,7 +1156,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = watchOS_Example_Extension;
 				INFOPLIST_FILE = "watchOS Example/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1097,7 +1168,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -1120,17 +1191,21 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = watchOS_Example_Extension;
 				INFOPLIST_FILE = "watchOS Example/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS.watchkitapp";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
@@ -1149,7 +1224,11 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "watchOS Example Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1158,7 +1237,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -1179,17 +1258,22 @@
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "watchOS Example Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS.watchkitapp.watchkitextension";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
@@ -1315,8 +1399,11 @@
 				CURRENT_PROJECT_VERSION = 1687385679;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
@@ -1336,13 +1423,17 @@
 				CURRENT_PROJECT_VERSION = 1687385679;
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
 				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1388,6 +1479,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		122A6CFE2A5CD69900EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSVGCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		122A6D062A5CD9AA00EE18B1 /* SDWebImageSVGCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 122A6CFE2A5CD69900EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
+			productName = SDWebImageSVGCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F8111DFD19A951050040E7D1 /* Project object */;
 }

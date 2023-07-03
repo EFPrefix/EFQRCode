@@ -25,7 +25,10 @@
 //  THE SOFTWARE.
 
 import UIKit
+#if canImport(SafariServices)
 import SafariServices
+#endif
+import EFQRCode
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -108,10 +111,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc func openWeb() {
         if let tryUrl = URL(string: "https://www.efqrcode.com/") {
+            #if canImport(SafariServices)
             openURLWithSafari(tryUrl, controller: self)
+            #else
+            if #available(iOS 10.0, tvOS 10.0, *) {
+                UIApplication.shared.open(tryUrl)
+            } else {
+                UIApplication.shared.openURL(tryUrl)
+            }
+            #endif
         }
     }
     
+#if canImport(SafariServices)
     func openURLWithSafari(_ url: URL, title: String? = nil, controller: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         let safariController: SFSafariViewController = SFSafariViewController(url: url)
         if let title = title {
@@ -128,6 +140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         controller.present(safariController, animated: animated, completion: completion)
     }
+    #endif
 
     lazy var titles: [String] = {
         #if os(iOS)
@@ -151,7 +164,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationController?.pushViewController(
             [
                 RecognizerController.self,
-                GeneratorController.self,
+                StyleViewController.self,
                 MoreViewController.self
             ][indexPath.row].init(), animated: true
         )

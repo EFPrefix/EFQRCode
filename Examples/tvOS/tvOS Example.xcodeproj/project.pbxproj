@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,7 @@
 		1215B72A1EAC96FB00DC5A86 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1215B7151EAC95AE00DC5A86 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1215B7341EAC9FD300DC5A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7311EAC9FD300DC5A86 /* ViewController.swift */; };
 		1215B7381EACA23E00DC5A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7371EACA23E00DC5A86 /* AppDelegate.swift */; };
-		122D54881ED1D7020055969D /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122D54871ED1D7020055969D /* GeneratorController.swift */; };
+		122A6CE22A5CC38F00EE18B1 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 122A6CE12A5CC38F00EE18B1 /* SDWebImageSVGCoder */; };
 		12A22D0222106B340063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22D0122106B340063EE1F /* StorageUserDefaults.swift */; };
 		12BC1B122328C17100B6EB5A /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1AEE2328C16F00B6EB5A /* ConstraintViewDSL.swift */; };
 		12BC1B132328C17100B6EB5A /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1AEF2328C16F00B6EB5A /* ConstraintConfig.swift */; };
@@ -53,6 +53,8 @@
 		12BC1B352328C17100B6EB5A /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BC1B112328C17100B6EB5A /* ConstraintDirectionalInsets.swift */; };
 		12D0B9BF234A491200ECCAD5 /* UIImage+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0B9BD234A491200ECCAD5 /* UIImage+Example.swift */; };
 		12D0B9C0234A491200ECCAD5 /* CGFloat+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0B9BE234A491200ECCAD5 /* CGFloat+Example.swift */; };
+		12DCACB42A5BCB3A009B5414 /* GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACB32A5BCB3A009B5414 /* GeneratorController.swift */; };
+		12DCACB62A5BDBCC009B5414 /* ShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACB52A5BDBCC009B5414 /* ShowController.swift */; };
 		12EE9F3123869D2400241C60 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9F0B23869D2300241C60 /* UIImageView+.swift */; };
 		12EE9F3223869D2400241C60 /* UInt64+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9F0C23869D2300241C60 /* UInt64+.swift */; };
 		12EE9F3323869D2400241C60 /* CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9F0D23869D2300241C60 /* CGImage.swift */; };
@@ -175,7 +177,6 @@
 		1215B7031EAC95AE00DC5A86 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
 		1215B7311EAC9FD300DC5A86 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../iOS/ViewController.swift; sourceTree = "<group>"; };
 		1215B7371EACA23E00DC5A86 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../iOS/AppDelegate.swift; sourceTree = "<group>"; };
-		122D54871ED1D7020055969D /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneratorController.swift; path = ../../iOS/GeneratorController.swift; sourceTree = "<group>"; };
 		12A22D0122106B340063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageUserDefaults.swift; path = ../../iOS/StorageUserDefaults.swift; sourceTree = "<group>"; };
 		12BC1AEE2328C16F00B6EB5A /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = ../../Pods/SnapKit/Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		12BC1AEF2328C16F00B6EB5A /* ConstraintConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = ../../Pods/SnapKit/Source/ConstraintConfig.swift; sourceTree = "<group>"; };
@@ -215,6 +216,8 @@
 		12BC1B112328C17100B6EB5A /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = ../../Pods/SnapKit/Source/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
 		12D0B9BD234A491200ECCAD5 /* UIImage+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Example.swift"; path = "../../iOS/UIImage+Example.swift"; sourceTree = "<group>"; };
 		12D0B9BE234A491200ECCAD5 /* CGFloat+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+Example.swift"; path = "../../iOS/CGFloat+Example.swift"; sourceTree = "<group>"; };
+		12DCACB32A5BCB3A009B5414 /* GeneratorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorController.swift; sourceTree = "<group>"; };
+		12DCACB52A5BDBCC009B5414 /* ShowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowController.swift; path = ../../iOS/ShowController.swift; sourceTree = "<group>"; };
 		12EE9F0B23869D2300241C60 /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+.swift"; path = "../../Pods/EFFoundation/EFFoundation/Core/UIImageView+.swift"; sourceTree = "<group>"; };
 		12EE9F0C23869D2300241C60 /* UInt64+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UInt64+.swift"; path = "../../Pods/EFFoundation/EFFoundation/Core/UInt64+.swift"; sourceTree = "<group>"; };
 		12EE9F0D23869D2300241C60 /* CGImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGImage.swift; path = ../../Pods/EFFoundation/EFFoundation/Core/CGImage.swift; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1215B7231EAC96DD00DC5A86 /* EFQRCode.framework in Frameworks */,
+				122A6CE22A5CC38F00EE18B1 /* SDWebImageSVGCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,8 +341,9 @@
 		1215B71F1EAC967F00DC5A86 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				12DCACB52A5BDBCC009B5414 /* ShowController.swift */,
+				12DCACB32A5BCB3A009B5414 /* GeneratorController.swift */,
 				1215B7311EAC9FD300DC5A86 /* ViewController.swift */,
-				122D54871ED1D7020055969D /* GeneratorController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -484,6 +489,9 @@
 				1215B7221EAC96D800DC5A86 /* PBXTargetDependency */,
 			);
 			name = "tvOS Example";
+			packageProductDependencies = (
+				122A6CE12A5CC38F00EE18B1 /* SDWebImageSVGCoder */,
+			);
 			productName = "tvOS Example";
 			productReference = 1215B6EF1EAC956F00DC5A86 /* EFQRCode.tvOS.app */;
 			productType = "com.apple.product-type.application";
@@ -515,6 +523,9 @@
 				"zh-Hans",
 			);
 			mainGroup = 1215B6E61EAC956F00DC5A86;
+			packageReferences = (
+				122A6CE02A5CC38F00EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
+			);
 			productRefGroup = 1215B6F01EAC956F00DC5A86 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -633,6 +644,7 @@
 				1215B7341EAC9FD300DC5A86 /* ViewController.swift in Sources */,
 				12EE9F4923869D2400241C60 /* NSImage+.swift in Sources */,
 				12BC1B1E2328C17100B6EB5A /* ConstraintView+Extensions.swift in Sources */,
+				12DCACB62A5BDBCC009B5414 /* ShowController.swift in Sources */,
 				12BC1B302328C17100B6EB5A /* ConstraintInsets.swift in Sources */,
 				12EE9F5123869D2400241C60 /* UIColor+.swift in Sources */,
 				D2FAEBD4274975A500DFA959 /* PointStyle.swift in Sources */,
@@ -649,6 +661,7 @@
 				12BC1B2C2328C17100B6EB5A /* Typealiases.swift in Sources */,
 				12EE9F4A23869D2400241C60 /* UIGestureRecognizer+.swift in Sources */,
 				12BC1B342328C17100B6EB5A /* ConstraintOffsetTarget.swift in Sources */,
+				12DCACB42A5BCB3A009B5414 /* GeneratorController.swift in Sources */,
 				12BC1B2A2328C17100B6EB5A /* ConstraintView.swift in Sources */,
 				12BC1B1C2328C17100B6EB5A /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				12BC1B1A2328C17100B6EB5A /* ConstraintDSL.swift in Sources */,
@@ -668,7 +681,6 @@
 				12EE9F5223869D2400241C60 /* UIViewController+.swift in Sources */,
 				12EE9F4723869D2400241C60 /* Int16+.swift in Sources */,
 				12EE9F4023869D2400241C60 /* UInt32+.swift in Sources */,
-				122D54881ED1D7020055969D /* GeneratorController.swift in Sources */,
 				12BC1B122328C17100B6EB5A /* ConstraintViewDSL.swift in Sources */,
 				12BC1B192328C17100B6EB5A /* ConstraintMaker.swift in Sources */,
 				12A22D0222106B340063EE1F /* StorageUserDefaults.swift in Sources */,
@@ -812,7 +824,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = appletvos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				VALIDATE_PRODUCT = YES;
@@ -827,12 +840,15 @@
 				CURRENT_PROJECT_VERSION = 6.2.2.0;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "tvOS Example/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.tvOS;
 				SWIFT_VERSION = 5.0;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Debug;
 		};
@@ -844,12 +860,15 @@
 				CURRENT_PROJECT_VERSION = 6.2.2.0;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "tvOS Example/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 6.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.tvOS;
 				SWIFT_VERSION = 5.0;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Release;
 		};
@@ -875,6 +894,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		122A6CE02A5CC38F00EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSVGCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		122A6CE12A5CC38F00EE18B1 /* SDWebImageSVGCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 122A6CE02A5CC38F00EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
+			productName = SDWebImageSVGCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1215B6E71EAC956F00DC5A86 /* Project object */;
 }

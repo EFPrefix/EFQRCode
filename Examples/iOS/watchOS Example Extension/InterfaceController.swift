@@ -26,19 +26,33 @@
 
 import WatchKit
 import EFQRCode
+import SDWebImage
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet var qrcodeImage: WKInterfaceImage!
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        guard let image = context as? EFImage else {
+        guard let svg = context as? String else {
             return dismiss()
         }
-        switch image {
-        case .gif(let data):
-            qrcodeImage.setImageData(data)
-        case .normal(let uiImage):
-            qrcodeImage.setImage(uiImage)
+        if let svgURL = saveSvgStringToTemporaryFile(svgString: svg) {
+            let bitmapSize = CGSize(width: 512, height: 512)
+            qrcodeImage.sd_setImage(with: svgURL, placeholderImage: nil, options: [], context: [.imageThumbnailPixelSize : bitmapSize])
+        }
+    }
+    
+    func saveSvgStringToTemporaryFile(svgString: String) -> URL? {
+        guard let data = svgString.data(using: .utf8) else {
+            return nil
+        }
+        let temporaryDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+        let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("svg")
+        do {
+            try data.write(to: temporaryFileURL, options: [])
+            return temporaryFileURL
+        } catch {
+            print("Save SVG error: \(error)")
+            return nil
         }
     }
 }
