@@ -14,31 +14,30 @@
 		122A6CD22A5C41A900EE18B1 /* QRCodeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 122A6CD12A5C41A900EE18B1 /* QRCodeSwift */; };
 		122A6CD42A5C41B100EE18B1 /* QRCodeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 122A6CD32A5C41B100EE18B1 /* QRCodeSwift */; };
 		122A6CD62A5C41B600EE18B1 /* QRCodeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 122A6CD52A5C41B600EE18B1 /* QRCodeSwift */; };
+		122A6D132A5D558400EE18B1 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D122A5D558400EE18B1 /* EFQRCode.swift */; };
+		122A6D142A5D558400EE18B1 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D122A5D558400EE18B1 /* EFQRCode.swift */; };
+		122A6D152A5D558400EE18B1 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D122A5D558400EE18B1 /* EFQRCode.swift */; };
+		122A6D162A5D558400EE18B1 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D122A5D558400EE18B1 /* EFQRCode.swift */; };
+		122A6D182A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D172A5D55E400EE18B1 /* BinaryFloatingPoint+.swift */; };
+		122A6D192A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D172A5D55E400EE18B1 /* BinaryFloatingPoint+.swift */; };
+		122A6D1A2A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D172A5D55E400EE18B1 /* BinaryFloatingPoint+.swift */; };
+		122A6D1B2A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D172A5D55E400EE18B1 /* BinaryFloatingPoint+.swift */; };
+		122A6D1D2A5D560300EE18B1 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D1C2A5D560300EE18B1 /* BinaryInteger+.swift */; };
+		122A6D1E2A5D560300EE18B1 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D1C2A5D560300EE18B1 /* BinaryInteger+.swift */; };
+		122A6D1F2A5D560300EE18B1 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D1C2A5D560300EE18B1 /* BinaryInteger+.swift */; };
+		122A6D202A5D560300EE18B1 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D1C2A5D560300EE18B1 /* BinaryInteger+.swift */; };
+		122A6D222A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */; };
+		122A6D232A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */; };
+		122A6D242A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */; };
+		122A6D252A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */; };
+		122A6D272A5D5C7500EE18B1 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+.swift */; };
+		122A6D282A5D5C7500EE18B1 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+.swift */; };
+		122A6D292A5D5C7500EE18B1 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+.swift */; };
+		122A6D2A2A5D5C7500EE18B1 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+.swift */; };
 		125E59FF2A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */; };
 		125E5A002A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */; };
 		125E5A012A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */; };
 		125E5A022A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */; };
-		12664E9B1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
-		12664E9C1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
-		12664E9D1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
-		12664EB01FA9CED100D56500 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
-		12664EB11FA9CED100D56500 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
-		12664EB21FA9CED100D56500 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
-		12664EB61FA9CED100D56500 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA31FA9CED000D56500 /* CIImage+.swift */; };
-		12664EB71FA9CED100D56500 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA31FA9CED000D56500 /* CIImage+.swift */; };
-		12664EB81FA9CED100D56500 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA31FA9CED000D56500 /* CIImage+.swift */; };
-		12664EC61FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */; };
-		12664EC71FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */; };
-		12664EC81FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */; };
-		12664EC91FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */; };
-		12664ECA1FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */; };
-		12664ECB1FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */; };
-		12664ECC1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */; };
-		12664ECD1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */; };
-		12664ECE1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */; };
-		12664ECF1FA9CEDD00D56500 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC51FA9CEDD00D56500 /* EFQRCode.swift */; };
-		12664ED01FA9CEDD00D56500 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC51FA9CEDD00D56500 /* EFQRCode.swift */; };
-		12664ED11FA9CEDD00D56500 /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC51FA9CEDD00D56500 /* EFQRCode.swift */; };
 		126A1B5A1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5B1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
 		126A1B5C1EAF225100EFBA1B /* eyrefree.png in Resources */ = {isa = PBXBuildFile; fileRef = 126A1B591EAF225100EFBA1B /* eyrefree.png */; };
@@ -74,22 +73,6 @@
 		128013CF2A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */; };
 		128013D02A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */; };
 		128013D12A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */; };
-		12C0B6F3219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
-		12C0B6F4219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
-		12C0B6F5219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
-		12C0B6F6219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */; };
-		12C0B6FD219C0FD3000545C9 /* EFUIntPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */; };
-		12C0B6FE219C0FD3000545C9 /* EFUIntPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */; };
-		12C0B6FF219C0FD3000545C9 /* EFUIntPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */; };
-		12C0B700219C0FD3000545C9 /* EFUIntPixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */; };
-		12C0B702219C102C000545C9 /* EFIntSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B701219C102C000545C9 /* EFIntSize.swift */; };
-		12C0B703219C102C000545C9 /* EFIntSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B701219C102C000545C9 /* EFIntSize.swift */; };
-		12C0B704219C102C000545C9 /* EFIntSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B701219C102C000545C9 /* EFIntSize.swift */; };
-		12C0B705219C102C000545C9 /* EFIntSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B701219C102C000545C9 /* EFIntSize.swift */; };
-		12C0B707219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */; };
-		12C0B708219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */; };
-		12C0B709219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */; };
-		12C0B70A219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */; };
 		12D66CB42A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB52A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB62A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
@@ -106,18 +89,18 @@
 		12D66CC92A50A167007F2770 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CC72A50A167007F2770 /* Utils.swift */; };
 		12D66CCA2A50A167007F2770 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CC72A50A167007F2770 /* Utils.swift */; };
 		12D66CCB2A50A167007F2770 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CC72A50A167007F2770 /* Utils.swift */; };
-		12D66CD92A51751E007F2770 /* CGColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor++.swift */; };
-		12D66CDA2A51751E007F2770 /* CGColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor++.swift */; };
-		12D66CDB2A51751E007F2770 /* CGColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor++.swift */; };
-		12D66CDC2A51751E007F2770 /* CGColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor++.swift */; };
+		12D66CD92A51751E007F2770 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor+.swift */; };
+		12D66CDA2A51751E007F2770 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor+.swift */; };
+		12D66CDB2A51751E007F2770 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor+.swift */; };
+		12D66CDC2A51751E007F2770 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor+.swift */; };
 		12D66CE82A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
 		12D66CE92A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
 		12D66CEA2A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
 		12D66CEB2A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
-		12D66CED2A521FEC007F2770 /* CGImage++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage++.swift */; };
-		12D66CEE2A521FEC007F2770 /* CGImage++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage++.swift */; };
-		12D66CEF2A521FEC007F2770 /* CGImage++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage++.swift */; };
-		12D66CF02A521FEC007F2770 /* CGImage++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage++.swift */; };
+		12D66CED2A521FEC007F2770 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage+.swift */; };
+		12D66CEE2A521FEC007F2770 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage+.swift */; };
+		12D66CEF2A521FEC007F2770 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage+.swift */; };
+		12D66CF02A521FEC007F2770 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage+.swift */; };
 		12D66CF22A5222FD007F2770 /* EFQRCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */; };
 		12D66CF32A5222FD007F2770 /* EFQRCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */; };
 		12D66CF42A5222FD007F2770 /* EFQRCodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */; };
@@ -126,65 +109,14 @@
 		12D66CF82A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CF62A525D5E007F2770 /* EFQRCodeStyleLine.swift */; };
 		12D66CF92A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CF62A525D5E007F2770 /* EFQRCodeStyleLine.swift */; };
 		12D66CFA2A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CF62A525D5E007F2770 /* EFQRCodeStyleLine.swift */; };
-		12EE9E1F2385970A00241C60 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E1E2385970A00241C60 /* CGColor+.swift */; };
-		12EE9E202385970A00241C60 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E1E2385970A00241C60 /* CGColor+.swift */; };
-		12EE9E212385970A00241C60 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E1E2385970A00241C60 /* CGColor+.swift */; };
-		12EE9E222385970A00241C60 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E1E2385970A00241C60 /* CGColor+.swift */; };
-		12EE9E232385972000241C60 /* CIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA31FA9CED000D56500 /* CIImage+.swift */; };
-		12EE9E242385973300241C60 /* EFQRCodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */; };
-		12EE9E272385999A00241C60 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E262385999A00241C60 /* CIColor+.swift */; };
-		12EE9E282385999A00241C60 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E262385999A00241C60 /* CIColor+.swift */; };
-		12EE9E292385999A00241C60 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E262385999A00241C60 /* CIColor+.swift */; };
-		12EE9E2A2385999A00241C60 /* CIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E262385999A00241C60 /* CIColor+.swift */; };
-		12EE9E2C23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E2B23859A4B00241C60 /* BinaryFloatingPoint+.swift */; };
-		12EE9E2D23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E2B23859A4B00241C60 /* BinaryFloatingPoint+.swift */; };
-		12EE9E2E23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E2B23859A4B00241C60 /* BinaryFloatingPoint+.swift */; };
-		12EE9E2F23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E2B23859A4B00241C60 /* BinaryFloatingPoint+.swift */; };
-		12EE9E3123859A5D00241C60 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3023859A5D00241C60 /* BinaryInteger+.swift */; };
-		12EE9E3223859A5D00241C60 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3023859A5D00241C60 /* BinaryInteger+.swift */; };
-		12EE9E3323859A5D00241C60 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3023859A5D00241C60 /* BinaryInteger+.swift */; };
-		12EE9E3423859A5D00241C60 /* BinaryInteger+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3023859A5D00241C60 /* BinaryInteger+.swift */; };
-		12EE9E3A23863D6E00241C60 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3923863D6E00241C60 /* UIImage+.swift */; };
-		12EE9E3B23863D6E00241C60 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3923863D6E00241C60 /* UIImage+.swift */; };
-		12EE9E3C23863D6E00241C60 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3923863D6E00241C60 /* UIImage+.swift */; };
-		12EE9E3D23863D6E00241C60 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E3923863D6E00241C60 /* UIImage+.swift */; };
-		12EE9E47238651F800241C60 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E46238651F800241C60 /* UIColor+.swift */; };
-		12EE9E48238651F800241C60 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E46238651F800241C60 /* UIColor+.swift */; };
-		12EE9E49238651F800241C60 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E46238651F800241C60 /* UIColor+.swift */; };
-		12EE9E4A238651F800241C60 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E46238651F800241C60 /* UIColor+.swift */; };
-		12EE9E4E2386968F00241C60 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E4D2386968F00241C60 /* NSColor+.swift */; };
-		12EE9E4F2386968F00241C60 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E4D2386968F00241C60 /* NSColor+.swift */; };
-		12EE9E502386968F00241C60 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E4D2386968F00241C60 /* NSColor+.swift */; };
-		12EE9E512386968F00241C60 /* NSColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E4D2386968F00241C60 /* NSColor+.swift */; };
-		12EE9E53238696E700241C60 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E52238696E700241C60 /* NSImage+.swift */; };
-		12EE9E54238696E700241C60 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E52238696E700241C60 /* NSImage+.swift */; };
-		12EE9E55238696E700241C60 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E52238696E700241C60 /* NSImage+.swift */; };
-		12EE9E56238696E700241C60 /* NSImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EE9E52238696E700241C60 /* NSImage+.swift */; };
 		4C256A531B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4C256A541B096C770065714F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		4CF626F91BA7CB3E0011A099 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */; };
 		4CF627141BA7CC240011A099 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
-		5282BCB51FF3903D00DFB36B /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */; };
-		5282BCB71FF3903D00DFB36B /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EA11FA9CED000D56500 /* CGImage+.swift */; };
-		5282BCBB1FF3903D00DFB36B /* EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC51FA9CEDD00D56500 /* EFQRCode.swift */; };
-		5282BCBC1FF3903D00DFB36B /* EFQRCode+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */; };
-		5282BCBD1FF3903D00DFB36B /* EFQRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */; };
 		8035DB621BAB492500466CB3 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */; };
 		D22654B6256E965300920D11 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22654B5256E965300920D11 /* ObjCTests.m */; };
 		D22654B7256E965300920D11 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22654B5256E965300920D11 /* ObjCTests.m */; };
 		D22654B8256E965300920D11 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22654B5256E965300920D11 /* ObjCTests.m */; };
-		D2265504256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */; };
-		D2265505256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */; };
-		D2265506256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */; };
-		D2265507256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */; };
-		D2265575256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
-		D2265576256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
-		D2265577256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
-		D2265578256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */; };
-		D2FAEBB82749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
-		D2FAEBB92749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
-		D2FAEBBA2749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
-		D2FAEBBB2749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
 		F829C6B81A7A94F100A2CD59 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */; };
 /* End PBXBuildFile section */
 
@@ -214,14 +146,12 @@
 
 /* Begin PBXFileReference section */
 		120B77D71EA3939F00D34440 /* EFQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFQRCode.h; sourceTree = "<group>"; };
+		122A6D122A5D558400EE18B1 /* EFQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCode.swift; sourceTree = "<group>"; };
+		122A6D172A5D55E400EE18B1 /* BinaryFloatingPoint+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BinaryFloatingPoint+.swift"; sourceTree = "<group>"; };
+		122A6D1C2A5D560300EE18B1 /* BinaryInteger+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+.swift"; sourceTree = "<group>"; };
+		122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Recognizer.swift"; sourceTree = "<group>"; };
+		122A6D262A5D5C7500EE18B1 /* CIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+.swift"; sourceTree = "<group>"; };
 		125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFCorrectionLevel.swift; sourceTree = "<group>"; };
-		12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFWatermarkMode.swift; path = Source/EFWatermarkMode.swift; sourceTree = SOURCE_ROOT; };
-		12664EA11FA9CED000D56500 /* CGImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGImage+.swift"; path = "Source/CGImage+.swift"; sourceTree = SOURCE_ROOT; };
-		12664EA31FA9CED000D56500 /* CIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CIImage+.swift"; path = "Source/CIImage+.swift"; sourceTree = SOURCE_ROOT; };
-		12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFQRCodeRecognizer.swift; path = Source/EFQRCodeRecognizer.swift; sourceTree = SOURCE_ROOT; };
-		12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFQRCodeGenerator.swift; path = Source/EFQRCodeGenerator.swift; sourceTree = SOURCE_ROOT; };
-		12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "EFQRCode+GIF.swift"; path = "Source/EFQRCode+GIF.swift"; sourceTree = SOURCE_ROOT; };
-		12664EC51FA9CEDD00D56500 /* EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EFQRCode.swift; path = Source/EFQRCode.swift; sourceTree = SOURCE_ROOT; };
 		126A1B591EAF225100EFBA1B /* eyrefree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyrefree.png; sourceTree = "<group>"; };
 		127F871E1ECF56AC0002B554 /* EFQRCode.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EFQRCode.podspec; sourceTree = "<group>"; };
 		128013AA2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleRandomRectangle.swift; sourceTree = "<group>"; };
@@ -234,27 +164,15 @@
 		128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleResampleImage.swift; sourceTree = "<group>"; };
 		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
 		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeMode.swift; sourceTree = "<group>"; };
-		12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFUIntPixel.swift; sourceTree = "<group>"; };
-		12C0B701219C102C000545C9 /* EFIntSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFIntSize.swift; sourceTree = "<group>"; };
-		12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFInputCorrectionLevel.swift; sourceTree = "<group>"; };
 		12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyle.swift; sourceTree = "<group>"; };
 		12D66CBD2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleBasic.swift; sourceTree = "<group>"; };
 		12D66CC22A4FC47C007F2770 /* EFQRCode+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Generator.swift"; sourceTree = "<group>"; };
 		12D66CC72A50A167007F2770 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		12D66CD82A51751E007F2770 /* CGColor++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor++.swift"; sourceTree = "<group>"; };
+		12D66CD82A51751E007F2770 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
 		12D66CE72A521DD0007F2770 /* EFSVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFSVG.swift; sourceTree = "<group>"; };
-		12D66CEC2A521FEC007F2770 /* CGImage++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage++.swift"; sourceTree = "<group>"; };
+		12D66CEC2A521FEC007F2770 /* CGImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+.swift"; sourceTree = "<group>"; };
 		12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeError.swift; sourceTree = "<group>"; };
 		12D66CF62A525D5E007F2770 /* EFQRCodeStyleLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleLine.swift; sourceTree = "<group>"; };
-		12EE9E1E2385970A00241C60 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
-		12EE9E262385999A00241C60 /* CIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIColor+.swift"; sourceTree = "<group>"; };
-		12EE9E2B23859A4B00241C60 /* BinaryFloatingPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryFloatingPoint+.swift"; sourceTree = "<group>"; };
-		12EE9E3023859A5D00241C60 /* BinaryInteger+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+.swift"; sourceTree = "<group>"; };
-		12EE9E3923863D6E00241C60 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
-		12EE9E46238651F800241C60 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
-		12EE9E4D2386968F00241C60 /* NSColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+.swift"; sourceTree = "<group>"; };
-		12EE9E52238696E700241C60 /* NSImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+.swift"; sourceTree = "<group>"; };
 		4C0E02681BF99A18004E7F18 /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-tvOS.plist"; path = "Source/Info-tvOS.plist"; sourceTree = SOURCE_ROOT; };
 		4C256A501B096C2C0065714F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,14 +181,11 @@
 		5282BCAD1FF38F8100DFB36B /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72998D721BF26173006D3F69 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 		D22654B5256E965300920D11 /* ObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
-		D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Migration-v6.swift"; sourceTree = "<group>"; };
-		D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+ObjC.swift"; sourceTree = "<group>"; };
 		D2483C94256E14C0005899D8 /* QRCodeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRCodeSwift.framework; path = ../swift_qrcodejs/Carthage/Build/watchOS/QRCodeSwift.framework; sourceTree = "<group>"; };
 		D2B2741C258DBB8900E6FFC8 /* User Guide.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "User Guide.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2B27435258DEC3000E6FFC8 /* README.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = README.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "European SEPA Money Transfer + Watermark.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2DF1DB8256EC4CF00EB6012 /* Basic B&W QR Code.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Basic B&W QR Code.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFPointStyle.swift; sourceTree = "<group>"; };
 		F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8111E3E19A95C8B0040E7D1 /* EFQRCode iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EFQRCode iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,49 +253,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		12046AFF1F7A512B000154A8 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				12664EC51FA9CEDD00D56500 /* EFQRCode.swift */,
-				12664EC41FA9CEDD00D56500 /* EFQRCode+GIF.swift */,
-				12664EC31FA9CEDD00D56500 /* EFQRCodeGenerator.swift */,
-				12664EC21FA9CEDD00D56500 /* EFQRCodeRecognizer.swift */,
-				D2265503256E9BFF00920D11 /* EFQRCode+Migration-v6.swift */,
-				D2265574256EA35600920D11 /* EFQRCode+ObjC.swift */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		12046B031F7A512B000154A8 /* Define */ = {
-			isa = PBXGroup;
-			children = (
-				12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */,
-				12C0B701219C102C000545C9 /* EFIntSize.swift */,
-				D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */,
-				12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */,
-				12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */,
-				12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */,
-			);
-			name = Define;
-			sourceTree = "<group>";
-		};
-		12046B051F7A512B000154A8 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				12EE9E2B23859A4B00241C60 /* BinaryFloatingPoint+.swift */,
-				12EE9E3023859A5D00241C60 /* BinaryInteger+.swift */,
-				12664EA11FA9CED000D56500 /* CGImage+.swift */,
-				12664EA31FA9CED000D56500 /* CIImage+.swift */,
-				12EE9E1E2385970A00241C60 /* CGColor+.swift */,
-				12EE9E262385999A00241C60 /* CIColor+.swift */,
-				12EE9E3923863D6E00241C60 /* UIImage+.swift */,
-				12EE9E46238651F800241C60 /* UIColor+.swift */,
-				12EE9E4D2386968F00241C60 /* NSColor+.swift */,
-				12EE9E52238696E700241C60 /* NSImage+.swift */,
-			);
-			name = Extension;
-			sourceTree = "<group>";
-		};
 		120AAA7A21932CD300F0783B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,18 +267,6 @@
 				126A1B591EAF225100EFBA1B /* eyrefree.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		12D66CB12A4F2F6F007F2770 /* New */ = {
-			isa = PBXGroup;
-			children = (
-				12D66CD22A51077E007F2770 /* Type */,
-				12D66CCC2A50FF15007F2770 /* Extension */,
-				12D66CB22A4F9F33007F2770 /* Styles */,
-				12D66CC22A4FC47C007F2770 /* EFQRCode+Generator.swift */,
-				12D66CC72A50A167007F2770 /* Utils.swift */,
-			);
-			path = New;
 			sourceTree = "<group>";
 		};
 		12D66CB22A4F9F33007F2770 /* Styles */ = {
@@ -430,8 +290,11 @@
 		12D66CCC2A50FF15007F2770 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				12D66CD82A51751E007F2770 /* CGColor++.swift */,
-				12D66CEC2A521FEC007F2770 /* CGImage++.swift */,
+				122A6D1C2A5D560300EE18B1 /* BinaryInteger+.swift */,
+				122A6D172A5D55E400EE18B1 /* BinaryFloatingPoint+.swift */,
+				12D66CD82A51751E007F2770 /* CGColor+.swift */,
+				12D66CEC2A521FEC007F2770 /* CGImage+.swift */,
+				122A6D262A5D5C7500EE18B1 /* CIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -499,10 +362,13 @@
 		F8111E3519A95C8B0040E7D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				12D66CB12A4F2F6F007F2770 /* New */,
-				12046B031F7A512B000154A8 /* Define */,
-				12046B051F7A512B000154A8 /* Extension */,
-				12046AFF1F7A512B000154A8 /* Core */,
+				12D66CD22A51077E007F2770 /* Type */,
+				12D66CCC2A50FF15007F2770 /* Extension */,
+				12D66CB22A4F9F33007F2770 /* Styles */,
+				12D66CC22A4FC47C007F2770 /* EFQRCode+Generator.swift */,
+				122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */,
+				122A6D122A5D558400EE18B1 /* EFQRCode.swift */,
+				12D66CC72A50A167007F2770 /* Utils.swift */,
 				F8111E3619A95C8B0040E7D1 /* Supporting Files */,
 			);
 			path = Source;
@@ -864,45 +730,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				128013C62A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
-				12EE9E55238696E700241C60 /* NSImage+.swift in Sources */,
-				D2FAEBBA2749720F00DFA959 /* EFPointStyle.swift in Sources */,
-				12EE9E2E23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
-				12EE9E212385970A00241C60 /* CGColor+.swift in Sources */,
-				D2265577256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
-				12EE9E3C23863D6E00241C60 /* UIImage+.swift in Sources */,
-				12664ED11FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
 				12D66CF92A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
-				12EE9E502386968F00241C60 /* NSColor+.swift in Sources */,
 				12D66CC52A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
-				12664EB81FA9CED100D56500 /* CIImage+.swift in Sources */,
 				128013B72A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CCA2A50A167007F2770 /* Utils.swift in Sources */,
-				12C0B704219C102C000545C9 /* EFIntSize.swift in Sources */,
 				128013C12A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
-				12C0B709219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
-				12664EC81FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */,
-				12D66CDB2A51751E007F2770 /* CGColor++.swift in Sources */,
+				122A6D152A5D558400EE18B1 /* EFQRCode.swift in Sources */,
+				12D66CDB2A51751E007F2770 /* CGColor+.swift in Sources */,
 				128013B22A52E6640033B45B /* EFQRCodeStyle25D.swift in Sources */,
 				12D66CC02A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift in Sources */,
-				12664EB21FA9CED100D56500 /* CGImage+.swift in Sources */,
-				12C0B6FF219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
-				D2265506256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */,
+				122A6D292A5D5C7500EE18B1 /* CIImage+.swift in Sources */,
 				125E5A012A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
-				12EE9E292385999A00241C60 /* CIColor+.swift in Sources */,
+				122A6D1F2A5D560300EE18B1 /* BinaryInteger+.swift in Sources */,
+				122A6D1A2A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */,
 				128013BC2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB62A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
 				128013D02A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */,
 				128013AD2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
-				12D66CEF2A521FEC007F2770 /* CGImage++.swift in Sources */,
+				12D66CEF2A521FEC007F2770 /* CGImage+.swift in Sources */,
+				122A6D242A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF42A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12C0B6F5219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12D66CEA2A521DD0007F2770 /* EFSVG.swift in Sources */,
-				12EE9E49238651F800241C60 /* UIColor+.swift in Sources */,
 				128013CB2A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
-				12664E9D1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
-				12EE9E3323859A5D00241C60 /* BinaryInteger+.swift in Sources */,
-				12664ECE1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
-				12664ECB1FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,45 +769,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				128013C52A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
-				12EE9E54238696E700241C60 /* NSImage+.swift in Sources */,
-				D2FAEBB92749720F00DFA959 /* EFPointStyle.swift in Sources */,
-				12EE9E2D23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
-				12EE9E202385970A00241C60 /* CGColor+.swift in Sources */,
-				D2265576256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
-				12EE9E3B23863D6E00241C60 /* UIImage+.swift in Sources */,
-				12664ED01FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
 				12D66CF82A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
-				12EE9E4F2386968F00241C60 /* NSColor+.swift in Sources */,
 				12D66CC42A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
-				12664EB71FA9CED100D56500 /* CIImage+.swift in Sources */,
 				128013B62A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CC92A50A167007F2770 /* Utils.swift in Sources */,
-				12C0B703219C102C000545C9 /* EFIntSize.swift in Sources */,
 				128013C02A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
-				12C0B708219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
-				12664EC71FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */,
-				12D66CDA2A51751E007F2770 /* CGColor++.swift in Sources */,
+				122A6D142A5D558400EE18B1 /* EFQRCode.swift in Sources */,
+				12D66CDA2A51751E007F2770 /* CGColor+.swift in Sources */,
 				128013B12A52E6640033B45B /* EFQRCodeStyle25D.swift in Sources */,
 				12D66CBF2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift in Sources */,
-				12664EB11FA9CED100D56500 /* CGImage+.swift in Sources */,
-				12C0B6FE219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
-				D2265505256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */,
+				122A6D282A5D5C7500EE18B1 /* CIImage+.swift in Sources */,
 				125E5A002A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
-				12EE9E282385999A00241C60 /* CIColor+.swift in Sources */,
+				122A6D1E2A5D560300EE18B1 /* BinaryInteger+.swift in Sources */,
+				122A6D192A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */,
 				128013BB2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB52A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
 				128013CF2A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */,
 				128013AC2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
-				12D66CEE2A521FEC007F2770 /* CGImage++.swift in Sources */,
+				12D66CEE2A521FEC007F2770 /* CGImage+.swift in Sources */,
+				122A6D232A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF32A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12C0B6F4219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12D66CE92A521DD0007F2770 /* EFSVG.swift in Sources */,
-				12EE9E48238651F800241C60 /* UIColor+.swift in Sources */,
 				128013CA2A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
-				12664E9C1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
-				12EE9E3223859A5D00241C60 /* BinaryInteger+.swift in Sources */,
-				12664ECD1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
-				12664ECA1FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,45 +799,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				128013C72A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
-				12EE9E56238696E700241C60 /* NSImage+.swift in Sources */,
-				12C0B6F6219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
-				D2FAEBBB2749720F00DFA959 /* EFPointStyle.swift in Sources */,
-				12EE9E2F23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
-				5282BCBB1FF3903D00DFB36B /* EFQRCode.swift in Sources */,
-				D2265578256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
-				12EE9E3D23863D6E00241C60 /* UIImage+.swift in Sources */,
 				12D66CFA2A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
-				5282BCBD1FF3903D00DFB36B /* EFQRCodeGenerator.swift in Sources */,
 				12D66CC62A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
-				12EE9E512386968F00241C60 /* NSColor+.swift in Sources */,
 				128013B82A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CCB2A50A167007F2770 /* Utils.swift in Sources */,
-				5282BCB51FF3903D00DFB36B /* EFWatermarkMode.swift in Sources */,
 				128013C22A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
-				5282BCB71FF3903D00DFB36B /* CGImage+.swift in Sources */,
-				12EE9E242385973300241C60 /* EFQRCodeRecognizer.swift in Sources */,
-				12D66CDC2A51751E007F2770 /* CGColor++.swift in Sources */,
+				122A6D162A5D558400EE18B1 /* EFQRCode.swift in Sources */,
+				12D66CDC2A51751E007F2770 /* CGColor+.swift in Sources */,
 				128013B32A52E6640033B45B /* EFQRCodeStyle25D.swift in Sources */,
 				12D66CC12A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift in Sources */,
-				12EE9E222385970A00241C60 /* CGColor+.swift in Sources */,
-				12C0B70A219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
-				D2265507256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */,
+				122A6D2A2A5D5C7500EE18B1 /* CIImage+.swift in Sources */,
 				125E5A022A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
-				12EE9E2A2385999A00241C60 /* CIColor+.swift in Sources */,
+				122A6D202A5D560300EE18B1 /* BinaryInteger+.swift in Sources */,
+				122A6D1B2A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */,
 				128013BD2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB72A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
 				128013D12A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */,
 				128013AE2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
-				12D66CF02A521FEC007F2770 /* CGImage++.swift in Sources */,
+				12D66CF02A521FEC007F2770 /* CGImage+.swift in Sources */,
+				122A6D252A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF52A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12C0B700219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
 				12D66CEB2A521DD0007F2770 /* EFSVG.swift in Sources */,
-				12EE9E4A238651F800241C60 /* UIColor+.swift in Sources */,
 				128013CC2A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
-				5282BCBC1FF3903D00DFB36B /* EFQRCode+GIF.swift in Sources */,
-				12EE9E3423859A5D00241C60 /* BinaryInteger+.swift in Sources */,
-				12C0B705219C102C000545C9 /* EFIntSize.swift in Sources */,
-				12EE9E232385972000241C60 /* CIImage+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,45 +829,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				128013C42A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
-				12EE9E53238696E700241C60 /* NSImage+.swift in Sources */,
-				D2FAEBB82749720F00DFA959 /* EFPointStyle.swift in Sources */,
-				12EE9E2C23859A4B00241C60 /* BinaryFloatingPoint+.swift in Sources */,
-				12EE9E1F2385970A00241C60 /* CGColor+.swift in Sources */,
-				D2265575256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
-				12EE9E3A23863D6E00241C60 /* UIImage+.swift in Sources */,
-				12664ECF1FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
 				12D66CF72A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
-				12EE9E4E2386968F00241C60 /* NSColor+.swift in Sources */,
 				12D66CC32A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
-				12664EB61FA9CED100D56500 /* CIImage+.swift in Sources */,
 				128013B52A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CC82A50A167007F2770 /* Utils.swift in Sources */,
-				12C0B702219C102C000545C9 /* EFIntSize.swift in Sources */,
 				128013BF2A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
-				12C0B707219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
-				12664EC61FA9CEDD00D56500 /* EFQRCodeRecognizer.swift in Sources */,
-				12D66CD92A51751E007F2770 /* CGColor++.swift in Sources */,
+				122A6D132A5D558400EE18B1 /* EFQRCode.swift in Sources */,
+				12D66CD92A51751E007F2770 /* CGColor+.swift in Sources */,
 				128013B02A52E6640033B45B /* EFQRCodeStyle25D.swift in Sources */,
 				12D66CBE2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift in Sources */,
-				12664EB01FA9CED100D56500 /* CGImage+.swift in Sources */,
-				12C0B6FD219C0FD3000545C9 /* EFUIntPixel.swift in Sources */,
-				D2265504256E9BFF00920D11 /* EFQRCode+Migration-v6.swift in Sources */,
+				122A6D272A5D5C7500EE18B1 /* CIImage+.swift in Sources */,
 				125E59FF2A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
-				12EE9E272385999A00241C60 /* CIColor+.swift in Sources */,
+				122A6D1D2A5D560300EE18B1 /* BinaryInteger+.swift in Sources */,
+				122A6D182A5D55E400EE18B1 /* BinaryFloatingPoint+.swift in Sources */,
 				128013BA2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB42A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
 				128013CE2A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */,
 				128013AB2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
-				12D66CED2A521FEC007F2770 /* CGImage++.swift in Sources */,
+				12D66CED2A521FEC007F2770 /* CGImage+.swift in Sources */,
+				122A6D222A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF22A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12C0B6F3219C0F7D000545C9 /* EFQRCodeMode.swift in Sources */,
 				12D66CE82A521DD0007F2770 /* EFSVG.swift in Sources */,
-				12EE9E47238651F800241C60 /* UIColor+.swift in Sources */,
 				128013C92A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
-				12664E9B1FA9CEAB00D56500 /* EFWatermarkMode.swift in Sources */,
-				12EE9E3123859A5D00241C60 /* BinaryInteger+.swift in Sources */,
-				12664ECC1FA9CEDD00D56500 /* EFQRCode+GIF.swift in Sources */,
-				12664EC91FA9CEDD00D56500 /* EFQRCodeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,12 @@
 
 import Foundation
 import ImageIO
+#if canImport(UniformTypeIdentifiers)
 import UniformTypeIdentifiers
+#endif
+#if canImport(MobileCoreServices)
+import MobileCoreServices
+#endif
 
 class AnimatedImage {
     private let frameDelayThreshold = 0.02

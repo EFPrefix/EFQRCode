@@ -27,7 +27,7 @@
 import EFQRCode
 import CoreGraphics
 
-class StarPointStyle: EFPointStyle {
+/*class StarPointStyle: EFPointStyle {
     func fillRect(context: CGContext, rect: CGRect, isStatic: Bool) {
         let path = CGMutablePath()
         var points: [CGPoint] = []
@@ -46,7 +46,7 @@ class StarPointStyle: EFPointStyle {
         context.addPath(path)
         context.fillPath()
     }
-}
+}*/
 
 enum PointStyle: Int, CaseIterable {
     case square
@@ -54,12 +54,12 @@ enum PointStyle: Int, CaseIterable {
     case diamond
     case star
 
-    var efPointStyle: EFPointStyle {
+    /*var efPointStyle: EFPointStyle {
         switch self {
         case .square: return EFSquarePointStyle.square
         case .circle: return EFCirclePointStyle.circle
         case .diamond: return EFDiamondPointStyle.diamond
         case .star: return StarPointStyle()
         }
-    }
+    }*/
 }

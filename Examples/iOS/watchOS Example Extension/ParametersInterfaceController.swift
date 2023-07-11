@@ -70,7 +70,7 @@ class ParametersInterfaceController: WKInterfaceController {
         let level = [EFCorrectionLevel.l, .m, .q, .h][Int(value)]
         correctionLevel = level
     }
-    private var selectedMode: EFQRCodeMode? = nil
+    // private var selectedMode: EFQRCodeMode? = nil
     private let mode = [
         "none", "grayscale", "binarization"
     ]
@@ -83,14 +83,14 @@ class ParametersInterfaceController: WKInterfaceController {
         })
     }
     @IBAction func pickedMode(_ value: Int) {
-        selectedMode = [nil, .grayscale, .binarization(threshold: 0.5)][value]
+        /*selectedMode = [nil, .grayscale, .binarization(threshold: 0.5)][value]
         if case .binarization = selectedMode {
             binarizationThresholdLabel.setHidden(false)
             binarizationThresholdPicker?.setHidden(false)
         } else {
             binarizationThresholdLabel.setHidden(true)
             binarizationThresholdPicker?.setHidden(true)
-        }
+        }*/
     }
 
     @IBOutlet var binarizationThresholdLabel: WKInterfaceLabel!
@@ -220,7 +220,7 @@ class ParametersInterfaceController: WKInterfaceController {
             .map { .normal($0) }
     }
     
-    private var watermarkMode = EFWatermarkMode.scaleAspectFill
+    // private var watermarkMode = EFWatermarkMode.scaleAspectFill
     @IBOutlet var watermarkModePicker: WKInterfacePicker!
     func initWatermarkModePicker() {
         watermarkModePicker.setItems(Localized.Parameters.watermarkModeNames.map {
@@ -231,7 +231,7 @@ class ParametersInterfaceController: WKInterfaceController {
         watermarkModePicker.setSelectedItemIndex(2)
     }
     @IBAction func pickedWatermarkMode(_ value: Int) {
-        watermarkMode = EFWatermarkMode(rawValue: value) ?? watermarkMode
+        // watermarkMode = EFWatermarkMode(rawValue: value) ?? watermarkMode
     }
     
     var foregroundPointOffset: CGFloat = 0
