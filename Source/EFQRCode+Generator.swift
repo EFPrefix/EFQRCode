@@ -11,6 +11,7 @@ import QRCodeSwift
 
 public extension EFQRCode {
     
+    @objcMembers
     class Generator {
         private let qrcode: QRCode
         private let style: EFQRCodeStyle
