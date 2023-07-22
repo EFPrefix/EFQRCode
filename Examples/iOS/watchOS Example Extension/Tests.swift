@@ -46,9 +46,9 @@ final class Tests {
         //("testExampleEFQRCode", shared.testExampleEFQRCode)
     ]
 
-    func getImage(named name: String = "eyrefree") -> CGImage? {
-        return UIImage(named: name)?.ef.cgImage
-    }
+    /*func getImage(named name: String = "eyrefree") -> CGImage? {
+        return UIImage(named: name)?.cgImage()
+    }*/
 
     /*func testExample1() -> String? {
         // This is an example of EFQRCodeGenerator test case.

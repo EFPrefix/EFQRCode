@@ -25,6 +25,8 @@
 //  THE SOFTWARE.
 
 import UIKit
+import SnapKit
+import SnapKit
 import EFQRCode
 
 class RecognizerController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {

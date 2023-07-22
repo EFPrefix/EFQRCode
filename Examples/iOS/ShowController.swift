@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EFFoundation
 import UIKit
 import Photos
 #if os(tvOS)
@@ -52,7 +53,7 @@ class ShowController: UIViewController {
             
             switch image {
             case .gif(let dataGIF):
-                imageView.ef.loadGif(data: dataGIF)
+                imageView.loadGif(data: dataGIF)
             case .normal(let uiImage):
                 imageView.image = uiImage
             }

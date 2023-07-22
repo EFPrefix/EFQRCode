@@ -26,6 +26,8 @@
 
 import Cocoa
 import EFQRCode
+import SnapKit
+import EFFoundation
 
 extension ViewController {
 
@@ -117,7 +119,7 @@ extension ViewController {
 
     @objc func recognizerViewScanClicked() {
         recognizerViewResult.string = ""
-        if let image = recognizerViewImage.image?.ef.cgImage,
+        if let image = recognizerViewImage.image?.cgImage(),
            let result = EFQRCode.Recognizer(image: image).recognize().first {
             recognizerViewResult.string = result
         }
