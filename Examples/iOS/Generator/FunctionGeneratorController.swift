@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SnapKit
 import Photos
 import EFQRCode
+import EFColorPicker
 import MobileCoreServices
 
 class FunctionGeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {

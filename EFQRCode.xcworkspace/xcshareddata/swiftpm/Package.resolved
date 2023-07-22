@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "efcolorpicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EFPrefix/EFColorPicker.git",
+      "state" : {
+        "revision" : "706c8412c38df821d5bff2751e8961bc5fdd4154",
+        "version" : "5.2.2"
+      }
+    },
+    {
+      "identity" : "effoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EFPrefix/EFFoundation.git",
+      "state" : {
+        "revision" : "afb22ded5e2dfd8b375b9e4236ea9c20ecd5815f",
+        "version" : "1.7.1"
+      }
+    },
+    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
@@ -16,6 +34,15 @@
       "state" : {
         "revision" : "950167445ab703740569869c8b7510efc9d09a26",
         "version" : "1.7.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
       }
     },
     {

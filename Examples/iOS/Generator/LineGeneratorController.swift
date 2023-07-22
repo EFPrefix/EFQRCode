@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import SnapKit
 import Photos
 import EFQRCode
+import EFColorPicker
 import MobileCoreServices
 
 class LineGeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {

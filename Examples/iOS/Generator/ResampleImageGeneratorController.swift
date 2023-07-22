@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import EFQRCode
+import EFColorPicker
 import MobileCoreServices
 
 class ResampleImageGeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
