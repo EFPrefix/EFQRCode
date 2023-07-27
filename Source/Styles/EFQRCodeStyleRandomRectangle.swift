@@ -45,10 +45,10 @@ public class EFQRCodeStyleRandomRectangle: EFQRCodeStyleBase {
             let row = randArr[index].0
             let col = randArr[index].1
             
-            let rgba = params.color.rgba
-            let redValue: Double = rgba?.red.double ?? 20
-            let greenValue: Double = rgba?.green.double ?? 170
-            let blueValue: Double = rgba?.blue.double ?? 60
+            let rgba = try params.color.rgba()
+            let redValue: Double = rgba.red.double// ?? 20
+            let greenValue: Double = rgba.green.double// ?? 170
+            let blueValue: Double = rgba.blue.double// ?? 60
             
             if qrcode.model.isDark(row, col) {
                 let tempRand = Double.random(in: 0.8...1.3)

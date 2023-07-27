@@ -335,7 +335,6 @@ class ParametersInterfaceController: WKInterfaceController {
                         data: EFStyleImageParamsData(
                             style: .rectangle,
                             scale: 0.3,
-                            alpha: 1,
                             colorDark: foregroundColor.cgColor,
                             colorLight: UIColor.white.cgColor
                         ),

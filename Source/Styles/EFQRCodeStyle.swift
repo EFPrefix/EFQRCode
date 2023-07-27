@@ -86,25 +86,6 @@ public class EFStyleParamIcon {
         id += 1
         return pointList
     }
-    
-    static func generateKeyTimes(for numberOfFrames: Int) -> String? {
-        if numberOfFrames <= 0 {
-            return nil
-        }
-        
-        let frameDuration = 1.0 / Double(numberOfFrames)
-        var keyTimes: [String] = []
-        
-        for i in 0..<numberOfFrames {
-            let keyTime = String(format: "%.2f", Double(i) * frameDuration)
-            keyTimes.append(keyTime)
-        }
-        
-        // Add 1.0 as the last key time
-        keyTimes.append("1")
-        
-        return keyTimes.joined(separator: ";")
-    }
 }
 
 public enum EFStyleParamImage {

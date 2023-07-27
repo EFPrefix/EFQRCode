@@ -25,12 +25,10 @@ public class EFStyleBasicParamsData {
     let style: EFStyleBasicParamsDataStyle
     let color: CGColor
     let scale: CGFloat
-    let alpha: CGFloat
     
-    public init(style: EFStyleBasicParamsDataStyle, scale: CGFloat, alpha: CGFloat, color: CGColor) {
+    public init(style: EFStyleBasicParamsDataStyle, scale: CGFloat, color: CGColor) {
         self.color = color
         self.scale = scale
-        self.alpha = alpha
         self.style = style
     }
 }
@@ -68,7 +66,7 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
         
         let type: EFStyleBasicParamsDataStyle = params.data.style
         let size: CGFloat = max(0, params.data.scale)
-        let opacity: CGFloat = max(0, params.data.alpha)
+        let opacity: CGFloat = max(0, try params.data.color.alpha())
         let posType: EFStyleBasicParamsPositionStyle = params.position.style
         var id: Int = 0
         let otherColor: String = try params.data.color.hexString()
