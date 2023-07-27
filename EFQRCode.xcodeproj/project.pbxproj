@@ -261,6 +261,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		120D325A2A71523B001DB858 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				12D66CC72A50A167007F2770 /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		126A1B581EAF225100EFBA1B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,13 +370,13 @@
 		F8111E3519A95C8B0040E7D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				120D325A2A71523B001DB858 /* Utils */,
 				12D66CD22A51077E007F2770 /* Type */,
 				12D66CCC2A50FF15007F2770 /* Extension */,
 				12D66CB22A4F9F33007F2770 /* Styles */,
 				12D66CC22A4FC47C007F2770 /* EFQRCode+Generator.swift */,
 				122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */,
 				122A6D122A5D558400EE18B1 /* EFQRCode.swift */,
-				12D66CC72A50A167007F2770 /* Utils.swift */,
 				F8111E3619A95C8B0040E7D1 /* Supporting Files */,
 			);
 			path = Source;

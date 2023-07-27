@@ -171,9 +171,8 @@ extension FunctionGeneratorController {
                         icon: paramIcon,
                         position: EFStyleFunctionParamsPosition(style: positionStyle, color: positionColor.cgColor),
                         data: EFStyleFunctionParamsData(
-                            function: dataFunction == 0 ? .fade(dataColor: dataColor.cgColor) : .circle(dataColor: dataColor.cgColor, circleColor: circleColor.cgColor) ,
-                            style: dataStyle,
-                            alpha: dataAlpha
+                            function: dataFunction == 0 ? .fade(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor) : .circle(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor, circleColor: circleColor.withAlphaComponent(dataAlpha).cgColor) ,
+                            style: dataStyle
                         )
                     )
                 )

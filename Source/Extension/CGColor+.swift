@@ -28,8 +28,13 @@ extension CGColor {
         guard let components = rgbaColor.components, components.count >= 3 else {
             throw EFQRCodeError.invalidCGColorComponents
         }
-        let alpha = components[3]
-        return alpha / 255.0
+        let alpha: CGFloat = {
+            if components.count > 3 {
+                return components[3]
+            }
+            return 1
+        }()
+        return alpha
     }
     
     func rgbaColor() throws -> CGColor {
@@ -43,20 +48,17 @@ extension CGColor {
         return rgbColor
     }
     
-    var rgba: (red: UInt8, green: UInt8, blue: UInt8, alpha: UInt8)? {
-        var color = self
-        if color.colorSpace?.model != .rgb, #available(iOS 9.0, macOS 10.11, tvOS 9.0, watchOS 2.0, *) {
-            color = color.converted(to: CGColorSpaceCreateDeviceRGB(), intent: .defaultIntent, options: nil) ?? color
-        }
-        if let components = color.components, 4 == color.numberOfComponents {
+    func rgba() throws -> (red: UInt8, green: UInt8, blue: UInt8, alpha: CGFloat) {
+        let rgbaColor: CGColor = try self.rgbaColor()
+        if let components = rgbaColor.components, components.count >= 3 {
             return(
                 red: UInt8(components[0] * 255.0),
                 green: UInt8(components[1] * 255.0),
                 blue: UInt8(components[2] * 255.0),
-                alpha: UInt8(components[3] * 255.0)
+                alpha: components.count > 3 ? components[3] : 1
             )
         } else {
-            return nil
+            throw EFQRCodeError.invalidCGColorComponents
         }
     }
 }

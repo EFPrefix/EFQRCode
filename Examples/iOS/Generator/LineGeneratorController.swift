@@ -170,7 +170,7 @@ extension LineGeneratorController {
                     params: EFStyleLineParams(
                         icon: paramIcon,
                         position: EFStyleLineParamsPosition(style: positionStyle, color: positionColor.cgColor),
-                        line: EFStyleLineParamsLine(direction: dataStyle, thickness: dataScale, alpha: dataAlpha, color: dataColor.cgColor)
+                        line: EFStyleLineParamsLine(direction: dataStyle, thickness: dataScale, color: dataColor.withAlphaComponent(dataAlpha).cgColor)
                     )
                 )
             )
