@@ -169,7 +169,7 @@ extension BasicGeneratorController {
                     params: EFStyleBasicParams(
                         icon: paramIcon,
                         position: EFStyleBasicParamsPosition(style: positionStyle, color: positionColor.cgColor),
-                        data: EFStyleBasicParamsData(style: dataStyle, scale: dataScale, alpha: dataAlpha, color: dataColor.cgColor)
+                        data: EFStyleBasicParamsData(style: dataStyle, scale: dataScale, color: dataColor.withAlphaComponent(dataAlpha).cgColor)
                     )
                 )
             )

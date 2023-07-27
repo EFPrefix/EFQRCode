@@ -190,9 +190,8 @@ extension ImageGeneratorController {
                         data: EFStyleImageParamsData(
                             style: dataStyle,
                             scale: dataThickness,
-                            alpha: dataAlpha,
-                            colorDark: dataDarkColor.cgColor,
-                            colorLight: dataLightColor.cgColor
+                            colorDark: dataDarkColor.withAlphaComponent(dataAlpha).cgColor,
+                            colorLight: dataLightColor.withAlphaComponent(dataAlpha).cgColor
                         ),
                         image: paramWatermark
                     )

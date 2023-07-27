@@ -180,10 +180,7 @@ extension ResampleImageGeneratorController {
                         alignStyle: alignStyle,
                         timingStyle: timingStyle,
                         positionColor: positionColor.cgColor,
-                        data: EFStyleResampleImageParamsData(
-                            alpha: dataAlpha,
-                            color: dataColor.cgColor
-                        )
+                        dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor
                     )
                 )
             )

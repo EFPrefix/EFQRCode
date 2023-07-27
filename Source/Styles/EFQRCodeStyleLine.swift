@@ -28,13 +28,11 @@ public class EFStyleLineParamsPosition: EFStyleBasicParamsPosition {
 public class EFStyleLineParamsLine {
     let direction: EFStyleLineParamsLineDirection
     let thickness: CGFloat // (0-1]
-    let alpha: CGFloat // (0-1]
     let color: CGColor
     
-    public init(direction: EFStyleLineParamsLineDirection, thickness: CGFloat, alpha: CGFloat, color: CGColor) {
+    public init(direction: EFStyleLineParamsLineDirection, thickness: CGFloat, color: CGColor) {
         self.direction = direction
         self.thickness = thickness
-        self.alpha = alpha
         self.color = color
     }
 }
@@ -66,7 +64,7 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
         
         let type: EFStyleLineParamsLineDirection = params.line.direction
         let size: CGFloat = max(0, params.line.thickness)
-        let opacity: CGFloat = max(0, params.line.alpha)
+        let opacity: CGFloat = max(0, try params.line.color.alpha())
         let posType: EFStyleBasicParamsPositionStyle = params.position.style
         var id: Int = 0
         let otherColor: String = try params.line.color.hexString()

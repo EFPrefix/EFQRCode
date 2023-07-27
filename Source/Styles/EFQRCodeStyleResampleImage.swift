@@ -15,14 +15,14 @@ public class EFStyleResampleImageParams: EFStyleParams {
     let alignStyle: EFStyleResampleImageParamAlignStyle
     let timingStyle: EFStyleResampleImageParamTimingStyle
     let positionColor: CGColor
-    let data: EFStyleResampleImageParamsData
+    let dataColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, image: EFStyleResampleImageParamsImage? = nil, alignStyle: EFStyleResampleImageParamAlignStyle, timingStyle: EFStyleResampleImageParamTimingStyle, positionColor: CGColor, data: EFStyleResampleImageParamsData) {
+    public init(icon: EFStyleParamIcon? = nil, image: EFStyleResampleImageParamsImage? = nil, alignStyle: EFStyleResampleImageParamAlignStyle, timingStyle: EFStyleResampleImageParamTimingStyle, positionColor: CGColor, dataColor: CGColor) {
         self.image = image
         self.alignStyle = alignStyle
         self.timingStyle = timingStyle
         self.positionColor = positionColor
-        self.data = data
+        self.dataColor = dataColor
         super.init(icon: icon)
     }
 }
@@ -37,16 +37,6 @@ public enum EFStyleResampleImageParamTimingStyle: CaseIterable {
     case none
     case white
     case whiteAndBlack
-}
-
-public class EFStyleResampleImageParamsData {
-    let alpha: CGFloat // (0-1]
-    let color: CGColor
-    
-    public init(alpha: CGFloat, color: CGColor) {
-        self.alpha = alpha
-        self.color = color
-    }
 }
 
 public class EFStyleResampleImageParamsImage {
@@ -202,8 +192,8 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
     }
     
     override func generateSVG(qrcode: QRCode) throws -> String {
-        let otherOpacity: CGFloat = max(0, params.data.alpha)
-        let otherColor: String = try params.data.color.hexString()
+        let otherOpacity: CGFloat = max(0, try params.dataColor.alpha())
+        let otherColor: String = try params.dataColor.hexString()
         let size: Int = qrcode.model.moduleCount
         return "<svg className=\"Qr-item-svg\" width=\"100%\" height=\"100%\" viewBox=\"\(viewBox(qrcode: qrcode))\" fill=\"white\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">"
         + "<defs>"

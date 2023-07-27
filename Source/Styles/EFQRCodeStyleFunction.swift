@@ -28,12 +28,10 @@ public class EFStyleFunctionParamsPosition: EFStyleBasicParamsPosition {
 public class EFStyleFunctionParamsData {
     let function: EFStyleFunctionParamsDataFunction
     let style: EFStyleFunctionParamsDataStyle
-    let alpha: CGFloat
     
-    public init(function: EFStyleFunctionParamsDataFunction, style: EFStyleFunctionParamsDataStyle, alpha: CGFloat) {
+    public init(function: EFStyleFunctionParamsDataFunction, style: EFStyleFunctionParamsDataStyle) {
         self.function = function
         self.style = style
-        self.alpha = alpha
     }
 }
 
@@ -62,7 +60,8 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
         var pointList: [String] = []
         
         let type: EFStyleFunctionParamsDataStyle = params.data.style
-        let opacity: CGFloat = max(0, params.data.alpha)
+        var opacity: CGFloat = 1
+        var opacity2: CGFloat = 1
         let funcType: EFStyleFunctionParamsDataFunction = params.data.function
         let posType: EFStyleBasicParamsPositionStyle = params.position.style
         var id: Int = 0
@@ -72,10 +71,13 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
         switch funcType {
         case .fade(let dataColor):
             otherColor = try dataColor.hexString()
+            opacity = max(0, try dataColor.alpha())
             break
         case .circle(let dataColor, let circleColor):
             otherColor = try dataColor.hexString()
+            opacity = max(0, try dataColor.alpha())
             otherColor2 = try circleColor.hexString()
+            opacity2 = max(0, try circleColor.alpha())
             break
         }
         let posColor: String = try params.position.color.hexString()
@@ -85,7 +87,7 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
         
         if case .circle(_, _) = funcType {
             if type == .round {
-                pointList.append("<circle opacity=\"\(opacity)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(nCount.cgFloat / 15.0)\" stroke=\"\(otherColor2)\"  cx=\"\(nCount.cgFloat/2.0)\" cy=\"\(nCount.cgFloat/2.0)\" r=\"\(nCount.cgFloat / 2.0 * sqrt(2) * 13.0 / 40.0)\" />")
+                pointList.append("<circle opacity=\"\(opacity2)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(nCount.cgFloat / 15.0)\" stroke=\"\(otherColor2)\"  cx=\"\(nCount.cgFloat/2.0)\" cy=\"\(nCount.cgFloat/2.0)\" r=\"\(nCount.cgFloat / 2.0 * sqrt(2) * 13.0 / 40.0)\" />")
                 id += 1
             }
         }
@@ -155,11 +157,13 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
                         break
                     case .circle(_, _):
                         var sizeF: CGFloat = 0.0
+                        var opacityF: CGFloat = opacity
                         var colorF: String = otherColor
                         var pointVisible: Bool = qrcode.model.isDark(x, y)
                         if dist > 5.0 / 20.0 && dist < 8.0 / 20.0 {
                             sizeF = 5.0 / 10.0
                             colorF = otherColor2
+                            opacityF = opacity2
                             pointVisible = true
                         } else {
                             sizeF = 1 / 4.0
@@ -172,20 +176,20 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
                             case .rectangle:
                                 let sizeF = 2 * sizeF + 0.1
                                 if qrcode.model.isDark(x, y) {
-                                    pointList.append("<rect opacity=\"\(opacity)\" width=\"\(sizeF)\" height=\"\(sizeF)\" key=\"\(id)\" fill=\"\(colorF)\" x=\"\(x.cgFloat + (1 - sizeF) / 2.0)\" y=\"\(y.cgFloat + (1 - sizeF) / 2.0)\"/>")
+                                    pointList.append("<rect opacity=\"\(opacityF)\" width=\"\(sizeF)\" height=\"\(sizeF)\" key=\"\(id)\" fill=\"\(colorF)\" x=\"\(x.cgFloat + (1 - sizeF) / 2.0)\" y=\"\(y.cgFloat + (1 - sizeF) / 2.0)\"/>")
                                     id += 1
                                 } else {
                                     let sizeF = sizeF - 0.1
-                                    pointList.append("<rect opacity=\"\(opacity)\" width=\"\(sizeF)\" height=\"\(sizeF)\" key=\"\(id)\" stroke=\"\(colorF)\" stroke-width=\"\(0.1)\" fill=\"white\" x=\"\(x.cgFloat + (1 - sizeF) / 2.0)\" y=\"\(y.cgFloat + (1 - sizeF) / 2.0)\"/>")
+                                    pointList.append("<rect opacity=\"\(opacityF)\" width=\"\(sizeF)\" height=\"\(sizeF)\" key=\"\(id)\" stroke=\"\(colorF)\" stroke-width=\"\(0.1)\" fill=\"white\" x=\"\(x.cgFloat + (1 - sizeF) / 2.0)\" y=\"\(y.cgFloat + (1 - sizeF) / 2.0)\"/>")
                                     id += 1
                                 }
                                 break
                             case .round:
                                 if qrcode.model.isDark(x, y) {
-                                    pointList.append("<circle opacity=\"\(opacity)\" r=\"\(sizeF)\" key=\"\(id)\" fill=\"\(colorF)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                                    pointList.append("<circle opacity=\"\(opacityF)\" r=\"\(sizeF)\" key=\"\(id)\" fill=\"\(colorF)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                                     id += 1
                                 } else {
-                                    pointList.append("<circle opacity=\"\(opacity)\" r=\"\(sizeF)\" key=\"\(id)\" stroke=\"\(colorF)\" stroke-width=\"\(0.1)\" fill=\"white\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                                    pointList.append("<circle opacity=\"\(opacityF)\" r=\"\(sizeF)\" key=\"\(id)\" stroke=\"\(colorF)\" stroke-width=\"\(0.1)\" fill=\"white\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                                     id += 1
                                 }
                                 break
