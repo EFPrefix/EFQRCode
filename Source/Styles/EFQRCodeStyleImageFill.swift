@@ -11,16 +11,15 @@ import CoreGraphics
 import QRCodeSwift
 
 public class EFStyleImageFillParams: EFStyleParams {
+    
     let backgroundColor: CGColor
     let image: EFStyleImageFillParamsImage?
     let maskColor: CGColor
-    let maskAlpha: CGFloat
     
-    public init(icon: EFStyleParamIcon? = nil, backgroundColor: CGColor, image: EFStyleImageFillParamsImage?, maskColor: CGColor, maskAlpha: CGFloat) {
+    public init(icon: EFStyleParamIcon? = nil, backgroundColor: CGColor, image: EFStyleImageFillParamsImage?, maskColor: CGColor) {
         self.backgroundColor = backgroundColor
         self.image = image
         self.maskColor = maskColor
-        self.maskAlpha = maskAlpha
         super.init(icon: icon)
     }
 }
@@ -49,11 +48,12 @@ public class EFQRCodeStyleImageFill: EFQRCodeStyleBase {
         var pointList: [String] = []
         
         let bgColor: String = try params.backgroundColor.hexString()
+        let bgOpacity: CGFloat = max(0, try params.backgroundColor.alpha())
         let color: String = try params.maskColor.hexString()
-        let opacity: CGFloat = max(0, params.maskAlpha)
+        let opacity: CGFloat = max(0, try params.maskColor.alpha())
         var id: Int = 0
         
-        pointList.append("<rect key=\"\(id)\" x=\"0\" y=\"0\" width=\"\(nCount.cgFloat)\" height=\"\(nCount.cgFloat)\" fill=\"\(bgColor)\"/>")
+        pointList.append("<rect opacity=\"\(bgOpacity)\" key=\"\(id)\" x=\"0\" y=\"0\" width=\"\(nCount.cgFloat)\" height=\"\(nCount.cgFloat)\" fill=\"\(bgColor)\"/>")
         id += 1
         if let image = params.image?.image, let alpha = params.image?.alpha {
             let imageOpacity: CGFloat = max(0, alpha)
@@ -67,7 +67,7 @@ public class EFQRCodeStyleImageFill: EFQRCodeStyleBase {
         for x in 0..<nCount {
             for y in 0..<nCount {
                 if !qrcode.model.isDark(x, y) {
-                    pointList.append("<rect width=\"1.02\" height=\"1.02\" key=\"\(id)\" fill=\"#FFF\" x=\"\(x.cgFloat - 0.01)\" y=\"\(y.cgFloat - 0.01)\"/>")
+                    pointList.append("<rect opacity=\"\(bgOpacity)\" width=\"1.02\" height=\"1.02\" key=\"\(id)\" fill=\"\(bgColor)\" x=\"\(x.cgFloat - 0.01)\" y=\"\(y.cgFloat - 0.01)\"/>")
                     id += 1
                 }
             }

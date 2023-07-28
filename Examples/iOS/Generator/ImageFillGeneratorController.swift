@@ -31,9 +31,9 @@ class ImageFillGeneratorController: UIViewController, UITextViewDelegate, UITabl
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var image: EFStyleParamImage? = nil
     var imageAlpha: CGFloat = 1
-    var backgroundColor: UIColor = UIColor.black
+    var backgroundColor: UIColor = UIColor.white
     var maskColor: UIColor = UIColor.black
-    var maskAlpha: CGFloat = 0
+    var maskAlpha: CGFloat = 0.5
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
@@ -155,7 +155,7 @@ extension ImageFillGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha)
+                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
             }
             return nil
         }()
@@ -177,8 +177,7 @@ extension ImageFillGeneratorController {
                         icon: paramIcon,
                         backgroundColor: backgroundColor.cgColor,
                         image: paramWatermark,
-                        maskColor: maskColor.cgColor,
-                        maskAlpha: maskAlpha
+                        maskColor: maskColor.withAlphaComponent(maskAlpha).cgColor
                     )
                 )
             )

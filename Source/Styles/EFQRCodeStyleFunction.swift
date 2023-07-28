@@ -124,7 +124,7 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
                     case .roundedRectangle:
                         pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
                         id += 1
-                        pointList.append("<path key=\"\(id)\" d=\"\(EFSVG.sq25)\" stroke=\"\(posColor)\" stroke-width=\"\(100.0/6.0 * (1 - (1 - 0.8) * 0.75))\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5), \(y.cgFloat - 2.5)) scale(\(6.0/100.0), \(6.0/100.0))\" />")
+                        pointList.append("<path key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(posColor)\" stroke-width=\"\(100.0/6.0 * (1 - (1 - 0.8) * 0.75))\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5), \(y.cgFloat - 2.5)) scale(\(6.0/100.0), \(6.0/100.0))\" />")
                         id += 1
                         break
                     }

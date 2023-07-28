@@ -45,7 +45,7 @@ public extension EFQRCode {
             let result = image.ciImage().recognizeQRCode(
                 options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]
             )
-            if result.isEmpty, let grayscaleImage = image.grayscale {
+            if result.isEmpty, let grayscaleImage = try? image.grayscale() {
                 return grayscaleImage.ciImage().recognizeQRCode(
                     options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
                 )

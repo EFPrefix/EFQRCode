@@ -46,7 +46,7 @@ extension CGImage {
         return "data:image/png;base64," + (try pngData().base64EncodedString())
     }
     
-    var grayscale: CGImage? {
+    func grayscale() throws -> CGImage? {
         guard let context = CGContext(
             data: nil,
             width: self.width,
@@ -56,7 +56,7 @@ extension CGImage {
             space: CGColorSpaceCreateDeviceGray(),
             bitmapInfo: CGImageAlphaInfo.none.rawValue
         ) else {
-            return nil
+            throw EFQRCodeError.cannotCreateCGContext
         }
         context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: self.width, height: self.height)))
         return context.makeImage()
