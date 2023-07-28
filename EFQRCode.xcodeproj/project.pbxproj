@@ -93,10 +93,6 @@
 		12D66CDA2A51751E007F2770 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor+.swift */; };
 		12D66CDB2A51751E007F2770 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor+.swift */; };
 		12D66CDC2A51751E007F2770 /* CGColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CD82A51751E007F2770 /* CGColor+.swift */; };
-		12D66CE82A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
-		12D66CE92A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
-		12D66CEA2A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
-		12D66CEB2A521DD0007F2770 /* EFSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CE72A521DD0007F2770 /* EFSVG.swift */; };
 		12D66CED2A521FEC007F2770 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage+.swift */; };
 		12D66CEE2A521FEC007F2770 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage+.swift */; };
 		12D66CEF2A521FEC007F2770 /* CGImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CEC2A521FEC007F2770 /* CGImage+.swift */; };
@@ -169,7 +165,6 @@
 		12D66CC22A4FC47C007F2770 /* EFQRCode+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Generator.swift"; sourceTree = "<group>"; };
 		12D66CC72A50A167007F2770 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		12D66CD82A51751E007F2770 /* CGColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGColor+.swift"; sourceTree = "<group>"; };
-		12D66CE72A521DD0007F2770 /* EFSVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFSVG.swift; sourceTree = "<group>"; };
 		12D66CEC2A521FEC007F2770 /* CGImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+.swift"; sourceTree = "<group>"; };
 		12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeError.swift; sourceTree = "<group>"; };
 		12D66CF62A525D5E007F2770 /* EFQRCodeStyleLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleLine.swift; sourceTree = "<group>"; };
@@ -310,7 +305,6 @@
 		12D66CD22A51077E007F2770 /* Type */ = {
 			isa = PBXGroup;
 			children = (
-				12D66CE72A521DD0007F2770 /* EFSVG.swift */,
 				12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */,
 				125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */,
 			);
@@ -758,7 +752,6 @@
 				12D66CEF2A521FEC007F2770 /* CGImage+.swift in Sources */,
 				122A6D242A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF42A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12D66CEA2A521DD0007F2770 /* EFSVG.swift in Sources */,
 				128013CB2A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,7 +790,6 @@
 				12D66CEE2A521FEC007F2770 /* CGImage+.swift in Sources */,
 				122A6D232A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF32A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12D66CE92A521DD0007F2770 /* EFSVG.swift in Sources */,
 				128013CA2A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,7 +819,6 @@
 				12D66CF02A521FEC007F2770 /* CGImage+.swift in Sources */,
 				122A6D252A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF52A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12D66CEB2A521DD0007F2770 /* EFSVG.swift in Sources */,
 				128013CC2A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,7 +848,6 @@
 				12D66CED2A521FEC007F2770 /* CGImage+.swift in Sources */,
 				122A6D222A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
 				12D66CF22A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
-				12D66CE82A521DD0007F2770 /* EFSVG.swift in Sources */,
 				128013C92A53FFA60033B45B /* EFQRCodeStyleImageFill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

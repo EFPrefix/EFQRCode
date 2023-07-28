@@ -294,7 +294,7 @@ class ParametersInterfaceController: WKInterfaceController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon?.cgImage {
-                return EFStyleParamIcon(image: EFStyleParamImage.static(image: icon), percentage: 0.25, alpha: 1)
+                return EFStyleParamIcon(image: EFStyleParamImage.static(image: icon), percentage: 0.25, alpha: 1, borderColor: UIColor.white.cgColor)
             }
             return nil
         }()

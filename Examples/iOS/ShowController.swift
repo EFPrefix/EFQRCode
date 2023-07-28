@@ -28,7 +28,7 @@ extension ShowController {
         self.init()
         self.svg = svg
         
-        // print(svg!)
+        print(svg!)
     }
 }
 

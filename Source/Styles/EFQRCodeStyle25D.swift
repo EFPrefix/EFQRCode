@@ -35,7 +35,7 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let matrixX = [sqrt(3.0) / 2, 0.5]
         let matrixY = [-sqrt(3.0) / 2, 0.5]
         let matrixZ = [0.0, 0.0]
-        return "matrix(\(matrixX[0]), \(matrixX[1]), \(matrixY[0]), \(matrixY[1]), \(matrixZ[0]), \(matrixZ[1]))"
+        return "matrix(\(matrixX[0]),\(matrixX[1]),\(matrixY[0]),\(matrixY[1]),\(matrixZ[0]),\(matrixZ[1]))"
     }()
     
     public init(params: EFStyle25DParams) {
@@ -49,13 +49,16 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let typeTable: [[QRPointType]] = qrcode.model.getTypeTable()
         var pointList: [String] = []
         
-        let size: CGFloat = 1.001
-        let size2: CGFloat = 1.001
+        let size: CGFloat = 1
+        let size2: CGFloat = 1
         let height: CGFloat = max(0, params.dataHeight)
         let height2: CGFloat = max(0, params.positionHeight)
         let upColor: String = try params.topColor.hexString()
+        let upOpacity: CGFloat = max(0, try params.topColor.alpha())
         let leftColor: String = try params.leftColor.hexString()
+        let leftOpacity: CGFloat = max(0, try params.leftColor.alpha())
         let rightColor: String = try params.rightColor.hexString()
+        let rightOpacity: CGFloat = max(0, try params.rightColor.alpha())
         var id: Int = 0
         
         for x in 0..<nCount {
@@ -63,18 +66,18 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
                 if qrcode.model.isDark(x, y) == false {
                     continue
                 } else if (typeTable[x][y] == QRPointType.posOther || typeTable[x][y] == QRPointType.posCenter) {
-                    pointList.append("<rect width=\"\(size2)\" height=\"\(size2)\" key=\"\(id)\" fill=\"\(upColor)\" x=\"\(x.cgFloat + (1.0 - size2) / 2.0)\" y=\"\(y.cgFloat + (1.0 - size2) / 2.0)\" transform=\"\(matrixString)\"/>");
+                    pointList.append("<rect opacity=\"\(upOpacity)\" width=\"\(size2)\" height=\"\(size2)\" key=\"\(id)\" fill=\"\(upColor)\" x=\"\(x.cgFloat + (1.0 - size2) / 2.0)\" y=\"\(y.cgFloat + (1.0 - size2) / 2.0)\" transform=\"\(matrixString)\"/>");
                     id += 1
-                    pointList.append("<rect width=\"\(height2)\" height=\"\(size2)\" key=\"\(id)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size2) / 2 + size2),\(y.cgFloat + (1 - size2) / 2)) skewY(45)\"/>");
+                    pointList.append("<rect opacity=\"\(leftOpacity)\" width=\"\(height2)\" height=\"\(size2)\" key=\"\(id)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size2) / 2 + size2),\(y.cgFloat + (1 - size2) / 2)) skewY(45)\"/>");
                     id += 1
-                    pointList.append("<rect width=\"\(size2)\" height=\"\(height2)\" key=\"\(id)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size2) / 2),\(y.cgFloat + size2 + (1 - size2) / 2)) skewX(45)\"/>");
+                    pointList.append("<rect opacity=\"\(rightOpacity)\" width=\"\(size2)\" height=\"\(height2)\" key=\"\(id)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size2) / 2),\(y.cgFloat + size2 + (1 - size2) / 2)) skewX(45)\"/>");
                     id += 1
                 } else {
-                    pointList.append("<rect width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(upColor)\" x=\"\(x.cgFloat + (1 - size)/2)\" y=\"\(y.cgFloat + (1 - size)/2)\" transform=\"\(matrixString)\"/>");
+                    pointList.append("<rect opacity=\"\(upOpacity)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(upColor)\" x=\"\(x.cgFloat + (1 - size)/2)\" y=\"\(y.cgFloat + (1 - size)/2)\" transform=\"\(matrixString)\"/>");
                     id += 1
-                    pointList.append("<rect width=\"\(height)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size) / 2 + size),\(y.cgFloat + (1 - size) / 2)) skewY(45)\"/>");
+                    pointList.append("<rect opacity=\"\(leftOpacity)\" width=\"\(height)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size) / 2 + size),\(y.cgFloat + (1 - size) / 2)) skewY(45)\"/>");
                     id += 1
-                    pointList.append("<rect width=\"\(size)\" height=\"\(height)\" key=\"\(id)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size) / 2),\(y.cgFloat + size + (1 - size) / 2)) skewX(45)\"/>");
+                    pointList.append("<rect opacity=\"\(rightOpacity)\" width=\"\(size)\" height=\"\(height)\" key=\"\(id)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size) / 2),\(y.cgFloat + size + (1 - size) / 2)) skewX(45)\"/>");
                     id += 1
                 }
             }
@@ -96,14 +99,14 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let iconSize: CGFloat = nCount.cgFloat * scale
         let iconXY: CGFloat = (nCount.cgFloat - iconSize) / 2
         
-        let randomIdDefs: String = EFSVG.getIdNum()
-        let randomIdClips: String = EFSVG.getIdNum()
+        let randomIdDefs: String = EFStyleParamIcon.getIdNum()
+        let randomIdClips: String = EFStyleParamIcon.getIdNum()
         
-        pointList.append("<g transform=\"\(matrixString)\"><path d=\"\(EFSVG.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100/iconSize * 1)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></g>")
+        pointList.append("<g transform=\"\(matrixString)\"><path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100/iconSize * 1)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></g>")
         pointList.append("<g key=\"\(id)\" transform=\"\(matrixString)\">")
         id += 1
         pointList.append(
-            "<defs><path id=\"defs-path\(randomIdDefs)\" d=\"\(EFSVG.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize/100),\(iconSize/100))\" /></defs>"
+            "<defs><path id=\"defs-path\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize/100),\(iconSize/100))\" /></defs>"
             + "<clipPath id=\"clip-path\(randomIdClips)\">"
             + "<use xlink:href=\"#defs-path\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"
