@@ -32,8 +32,8 @@ class D25GeneratorController: UIViewController, UITextViewDelegate, UITableViewD
     var topColor: UIColor = UIColor.black
     var leftColor: UIColor = UIColor.lightGray
     var rightColor: UIColor = UIColor.white
-    var dataHeight: CGFloat = 0.5
-    var positionHeight: CGFloat = 0.5
+    var dataHeight: CGFloat = 2
+    var positionHeight: CGFloat = 2
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
@@ -155,7 +155,7 @@ extension D25GeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha)
+                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
             }
             return nil
         }()
@@ -298,7 +298,7 @@ extension D25GeneratorController {
     }
 
     func chooseDataHeight() {
-        chooseFromList(title: Localized.Title.maskAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+        chooseFromList(title: Localized.Title.dataHeight, items: [0, 1, 2, 3, 4, 5]) { [weak self] result in
             guard let self = self else { return }
             
             self.dataHeight = result
@@ -307,7 +307,7 @@ extension D25GeneratorController {
     }
     
     func choosePositionHeight() {
-        chooseFromList(title: Localized.Title.maskAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+        chooseFromList(title: Localized.Title.positionHeight, items: [0, 1, 2, 3, 4, 5]) { [weak self] result in
             guard let self = self else { return }
             
             self.positionHeight = result

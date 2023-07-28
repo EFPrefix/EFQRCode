@@ -49,11 +49,13 @@ public class EFStyleParamIcon {
     let image: EFStyleParamImage
     let percentage: CGFloat
     let alpha: CGFloat
+    let borderColor: CGColor
     
-    public init(image: EFStyleParamImage, percentage: CGFloat, alpha: CGFloat) {
+    public init(image: EFStyleParamImage, percentage: CGFloat, alpha: CGFloat, borderColor: CGColor) {
         self.image = image
         self.percentage = percentage
         self.alpha = alpha
+        self.borderColor = borderColor
     }
     
     func write(qrcode: QRCode) throws -> [String] {
@@ -67,14 +69,17 @@ public class EFStyleParamIcon {
         let iconSize: CGFloat = nCount.cgFloat * scale
         let iconXY: CGFloat = (nCount.cgFloat - iconSize) / 2
         
-        let randomIdDefs: String = EFSVG.getIdNum()
-        let randomIdClips: String = EFSVG.getIdNum()
+        let bdColor: String = try borderColor.hexString()
+        let bdOpacity: CGFloat = max(0, try borderColor.alpha())
         
-        pointList.append("<path d=\"\(EFSVG.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100/iconSize * 1)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" />")
+        let randomIdDefs: String = EFStyleParamIcon.getIdNum()
+        let randomIdClips: String = EFStyleParamIcon.getIdNum()
+        
+        pointList.append("<path opacity=\"\(bdOpacity)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100/iconSize * 1)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" />")
         pointList.append("<g key=\"\(id)\">")
         id += 1
         pointList.append(
-            "<defs><path id=\"defs-path\(randomIdDefs)\" d=\"\(EFSVG.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize/100),\(iconSize/100))\" /></defs>"
+            "<defs><path opacity=\"\(bdOpacity)\" id=\"defs-path\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></defs>"
             + "<clipPath id=\"clip-path\(randomIdClips)\">"
             + "<use xlink:href=\"#defs-path\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"
@@ -85,6 +90,12 @@ public class EFStyleParamIcon {
         )
         id += 1
         return pointList
+    }
+    
+    private static var idNum: Int = 0
+    static func getIdNum() -> String {
+        idNum += 1
+        return "\(idNum)"
     }
 }
 

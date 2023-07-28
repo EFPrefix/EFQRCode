@@ -146,14 +146,14 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         let iconSize: CGFloat = nCount.cgFloat * scale * 3
         let iconXY: CGFloat = (nCount.cgFloat * 3 - iconSize) / 2
         
-        let randomIdDefs: String = EFSVG.getIdNum()
-        let randomIdClips: String = EFSVG.getIdNum()
+        let randomIdDefs: String = EFStyleParamIcon.getIdNum()
+        let randomIdClips: String = EFStyleParamIcon.getIdNum()
         
-        pointList.append("<path d=\"\(EFSVG.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100 / iconSize * 3)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" />")
+        pointList.append("<path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100 / iconSize * 3)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" />")
         pointList.append("<g key=\"\(id)\">")
         id += 1
         pointList.append(
-            "<defs><path id=\"defs-path\(randomIdDefs)\" d=\"\(EFSVG.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></defs>"
+            "<defs><path id=\"defs-path\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></defs>"
             + "<clipPath id=\"clip-path\(randomIdClips)\">"
             + "<use xlink:href=\"#defs-path\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"
