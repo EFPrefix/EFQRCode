@@ -12,11 +12,13 @@ import QRCodeSwift
 
 public class EFStyleImageFillParams: EFStyleParams {
     
+    public static let defaultMaskColor: CGColor = CGColor.createWith(rgb: 0x000000, alpha: 0.1)!
+    
     let backgroundColor: CGColor
     let image: EFStyleImageFillParamsImage?
     let maskColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, backgroundColor: CGColor, image: EFStyleImageFillParamsImage?, maskColor: CGColor) {
+    public init(icon: EFStyleParamIcon? = nil, backgroundColor: CGColor = CGColor.white, image: EFStyleImageFillParamsImage?, maskColor: CGColor = EFStyleImageFillParams.defaultMaskColor) {
         self.backgroundColor = backgroundColor
         self.image = image
         self.maskColor = maskColor
@@ -28,7 +30,7 @@ public class EFStyleImageFillParamsImage {
     let image: EFStyleParamImage
     let alpha: CGFloat
     
-    public init(image: EFStyleParamImage, alpha: CGFloat) {
+    public init(image: EFStyleParamImage, alpha: CGFloat = 1) {
         self.image = image
         self.alpha = alpha
     }
@@ -48,9 +50,9 @@ public class EFQRCodeStyleImageFill: EFQRCodeStyleBase {
         var pointList: [String] = []
         
         let bgColor: String = try params.backgroundColor.hexString()
-        let bgOpacity: CGFloat = max(0, try params.backgroundColor.alpha())
+        let bgOpacity: CGFloat = try params.backgroundColor.alpha()
         let color: String = try params.maskColor.hexString()
-        let opacity: CGFloat = max(0, try params.maskColor.alpha())
+        let opacity: CGFloat = try params.maskColor.alpha()
         var id: Int = 0
         
         pointList.append("<rect opacity=\"\(bgOpacity)\" key=\"\(id)\" x=\"0\" y=\"0\" width=\"\(nCount.cgFloat)\" height=\"\(nCount.cgFloat)\" fill=\"\(bgColor)\"/>")

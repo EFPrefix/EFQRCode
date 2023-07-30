@@ -11,13 +11,18 @@ import CoreGraphics
 import QRCodeSwift
 
 public class EFStyle25DParams: EFStyleParams {
+    
+    public static let defaultTopColor: CGColor = CGColor.createWith(rgb: 0x000000)!
+    public static let defaultLeftColor: CGColor = CGColor.createWith(rgb: 0x000000, alpha: 0.2)!
+    public static let defaultRightColor: CGColor = CGColor.createWith(rgb: 0x000000, alpha: 0.6)!
+    
     let dataHeight: CGFloat
     let positionHeight: CGFloat
     let topColor: CGColor
     let leftColor: CGColor
     let rightColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, dataHeight: CGFloat, positionHeight: CGFloat, topColor: CGColor, leftColor: CGColor, rightColor: CGColor) {
+    public init(icon: EFStyleParamIcon? = nil, dataHeight: CGFloat = 1, positionHeight: CGFloat = 1, topColor: CGColor = EFStyle25DParams.defaultTopColor, leftColor: CGColor = EFStyle25DParams.defaultLeftColor, rightColor: CGColor = EFStyle25DParams.defaultRightColor) {
         self.dataHeight = dataHeight
         self.positionHeight = positionHeight
         self.topColor = topColor
@@ -54,11 +59,11 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let height: CGFloat = max(0, params.dataHeight)
         let height2: CGFloat = max(0, params.positionHeight)
         let upColor: String = try params.topColor.hexString()
-        let upOpacity: CGFloat = max(0, try params.topColor.alpha())
+        let upOpacity: CGFloat = try params.topColor.alpha()
         let leftColor: String = try params.leftColor.hexString()
-        let leftOpacity: CGFloat = max(0, try params.leftColor.alpha())
+        let leftOpacity: CGFloat = try params.leftColor.alpha()
         let rightColor: String = try params.rightColor.hexString()
-        let rightOpacity: CGFloat = max(0, try params.rightColor.alpha())
+        let rightOpacity: CGFloat = try params.rightColor.alpha()
         var id: Int = 0
         
         for x in 0..<nCount {

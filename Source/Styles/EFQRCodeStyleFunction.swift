@@ -63,7 +63,7 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
         var opacity: CGFloat = 1
         var opacity2: CGFloat = 1
         let funcType: EFStyleFunctionParamsDataFunction = params.data.function
-        let posType: EFStyleBasicParamsPositionStyle = params.position.style
+        let posType: EFStyleParamsPositionStyle = params.position.style
         var id: Int = 0
         
         var otherColor: String = "#000000"
@@ -81,9 +81,6 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
             break
         }
         let posColor: String = try params.position.color.hexString()
-        
-        let vw: [CGFloat] = [3, -3]
-        let vh: [CGFloat] = [3, -3]
         
         if case .circle(_, _) = funcType {
             if type == .round {
@@ -112,12 +109,12 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
                         id += 1
                         pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(posColor)\"  cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
                         id += 1
-                        for w in 0..<vw.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + vw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
+                        for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
+                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
                             id += 1
                         }
-                        for h in 0..<vh.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + vh[h] + 0.5)\" r=\"0.5\" />")
+                        for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
+                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"0.5\" />")
                             id += 1
                         }
                         break
@@ -126,6 +123,8 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
                         id += 1
                         pointList.append("<path key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(posColor)\" stroke-width=\"\(100.0/6.0 * (1 - (1 - 0.8) * 0.75))\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5), \(y.cgFloat - 2.5)) scale(\(6.0/100.0), \(6.0/100.0))\" />")
                         id += 1
+                        break
+                    case .dsj:
                         break
                     }
                 } else if qrcode.model.isDark(x, y) && typeTable[x][y] == QRPointType.posOther {

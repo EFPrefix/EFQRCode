@@ -21,8 +21,15 @@ public class EFStyleParams {
 public enum EFStyleParamAlignStyle: CaseIterable {
     case none
     case rectangle
-    //case round
-    //case roundedRectangle
+    case round
+    case roundedRectangle
+}
+
+public enum EFStyleParamTimingStyle: CaseIterable {
+    case none
+    case rectangle
+    case round
+    case roundedRectangle
 }
 
 public enum EFStyleParamsDataStyle: CaseIterable {
@@ -31,18 +38,12 @@ public enum EFStyleParamsDataStyle: CaseIterable {
     case roundedRectangle
 }
 
-public enum EFStyleBasicParamsPositionStyle: CaseIterable {
+public enum EFStyleParamsPositionStyle: CaseIterable {
     case rectangle
     case round
-    case planets
     case roundedRectangle
-}
-
-public enum EFStyleParamTimingStyle: CaseIterable {
-    case none
-    case rectangle
-    //case round
-    //case roundedRectangle
+    case planets
+    case dsj
 }
 
 public class EFStyleParamIcon {
@@ -109,10 +110,14 @@ public enum EFStyleParamImage {
         }
         switch self {
         case .static(let image):
-            let pngBase64EncodedString = try image.pngBase64EncodedString()
+            let imageCliped: CGImage = image.clipImageToSquare() ?? image
+            let pngBase64EncodedString = try imageCliped.pngBase64EncodedString()
             return "<image key=\"\(id)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\" />"
         case .animated(let images, let duration):
-            let pngBase64EncodedStrings = try images.map { try $0.pngBase64EncodedString() }
+            let pngBase64EncodedStrings = try images.map {
+                let imageCliped: CGImage = $0.clipImageToSquare() ?? $0
+                return try imageCliped.pngBase64EncodedString()
+            }
             if pngBase64EncodedStrings.isEmpty { return "" }
             Anchor.uniqueMark += 1
             let framePrefix: String = "\(Anchor.uniqueMark)fm"

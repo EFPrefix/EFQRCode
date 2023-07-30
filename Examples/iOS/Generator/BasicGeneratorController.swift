@@ -32,7 +32,7 @@ class BasicGeneratorController: UIViewController, UITextViewDelegate, UITableVie
     var dataColor: UIColor = UIColor.black
     var dataScale: CGFloat = 1
     var dataAlpha: CGFloat = 1
-    var positionStyle: EFStyleBasicParamsPositionStyle = .rectangle
+    var positionStyle: EFStyleParamsPositionStyle = .rectangle
     var positionColor: UIColor = UIColor.black
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
@@ -168,7 +168,7 @@ extension BasicGeneratorController {
                 style: EFQRCodeStyle.basic(
                     params: EFStyleBasicParams(
                         icon: paramIcon,
-                        position: EFStyleBasicParamsPosition(style: positionStyle, color: positionColor.cgColor),
+                        position: EFStyleBasicParamsPosition(style: positionStyle, color: positionColor.cgColor, size: 1),
                         data: EFStyleBasicParamsData(style: dataStyle, scale: dataScale, color: dataColor.withAlphaComponent(dataAlpha).cgColor)
                     )
                 )
@@ -353,7 +353,7 @@ extension BasicGeneratorController {
     }
     
     func choosePositionStyle() {
-        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleBasicParamsPositionStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.positionStyle = result

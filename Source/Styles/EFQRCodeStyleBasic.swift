@@ -34,12 +34,14 @@ public class EFStyleBasicParamsData {
 }
 
 public class EFStyleBasicParamsPosition {
-    let style: EFStyleBasicParamsPositionStyle
+    let style: EFStyleParamsPositionStyle
     let color: CGColor
+    let size: CGFloat
     
-    public init(style: EFStyleBasicParamsPositionStyle, color: CGColor) {
+    public init(style: EFStyleParamsPositionStyle, color: CGColor, size: CGFloat) {
         self.color = color
         self.style = style
+        self.size = size
     }
 }
 
@@ -54,6 +56,8 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
     let params: EFStyleBasicParams
     
     static let sq25: String = "M32.048565,-1.29480038e-15 L67.951435,1.29480038e-15 C79.0954192,-7.52316311e-16 83.1364972,1.16032014 87.2105713,3.3391588 C91.2846454,5.51799746 94.4820025,8.71535463 96.6608412,12.7894287 C98.8396799,16.8635028 100,20.9045808 100,32.048565 L100,67.951435 C100,79.0954192 98.8396799,83.1364972 96.6608412,87.2105713 C94.4820025,91.2846454 91.2846454,94.4820025 87.2105713,96.6608412 C83.1364972,98.8396799 79.0954192,100 67.951435,100 L32.048565,100 C20.9045808,100 16.8635028,98.8396799 12.7894287,96.6608412 C8.71535463,94.4820025 5.51799746,91.2846454 3.3391588,87.2105713 C1.16032014,83.1364972 5.01544207e-16,79.0954192 -8.63200256e-16,67.951435 L8.63200256e-16,32.048565 C-5.01544207e-16,20.9045808 1.16032014,16.8635028 3.3391588,12.7894287 C5.51799746,8.71535463 8.71535463,5.51799746 12.7894287,3.3391588 C16.8635028,1.16032014 20.9045808,7.52316311e-16 32.048565,-1.29480038e-15 Z"
+    static let planetsVw: [CGFloat] = [3, -3]
+    static let planetsVh: [CGFloat] = [3, -3]
     
     public init(params: EFStyleBasicParams) {
         self.params = params
@@ -69,13 +73,12 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
         let type: EFStyleBasicParamsDataStyle = params.data.style
         let size: CGFloat = max(0, params.data.scale)
         let opacity: CGFloat = max(0, try params.data.color.alpha())
-        let posType: EFStyleBasicParamsPositionStyle = params.position.style
+        let posType: EFStyleParamsPositionStyle = params.position.style
+        let posSize: CGFloat = max(0, params.position.size)
         var id: Int = 0
         let otherColor: String = try params.data.color.hexString()
         let posColor: String = try params.position.color.hexString()
-        
-        let vw: [CGFloat] = [3, -3]
-        let vh: [CGFloat] = [3, -3]
+        let posAlpha: CGFloat = try params.position.color.alpha()
         
         for x in 0..<nCount {
             for y in 0..<nCount {
@@ -110,31 +113,56 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
                         pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"1\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
                         id += 1
                         break
-                    case .planets:
-                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
-                        id += 1
-                        pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
-                        id += 1
-                        for w in 0..<vw.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + vw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
-                            id += 1
-                        }
-                        for h in 0..<vh.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + vh[h] + 0.5)\" r=\"0.5\" />")
-                            id += 1
-                        }
-                        break
                     case .roundedRectangle:
                         pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
                         id += 1
                         pointList.append("<path key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(posColor)\" stroke-width=\"\(100.cgFloat / 6 * (1 - (1 - size) * 0.75))\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\" />")
                         id += 1
                         break
+                    case .planets:
+                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        id += 1
+                        pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
+                        id += 1
+                        for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
+                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
+                            id += 1
+                        }
+                        for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
+                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"0.5\" />")
+                            id += 1
+                        }
+                        break
+                    case .dsj:
+                        let width3: CGFloat = posSize
+                        let positionAlpha: CGFloat = posAlpha
+                        let positionColor: String = posColor
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - width3))\" height=\"\(3 - (1 - width3))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - width3)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(width3)\" height=\"\(3 - (1 - width3))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 3 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - width3)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(width3)\" height=\"\(3 - (1 - width3))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat + 3 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - width3)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - width3))\" height=\"\(width3)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 3 + (1 - width3)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - width3))\" height=\"\(width3)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - width3)/2.0)\" y=\"\(y.cgFloat + 3 + (1 - width3)/2.0)\"/>");
+                        id += 1
+                        break
                     }
                 } else if typeTable[x][y] == QRPointType.posOther {
-                    if posType == .rectangle {
+                    switch posType {
+                    case .rectangle:
                         pointList.append("<rect width=\"1\" height=\"1\" key=\"\(id)\" fill=\"\(posColor)\" x=\"\(x)\" y=\"\(y)\" />")
                         id += 1
+                        break
+                    case .round:
+                        break
+                    case .roundedRectangle:
+                        break
+                    case .planets:
+                        break
+                    case .dsj:
+                        break
                     }
                 } else {
                     switch type {
