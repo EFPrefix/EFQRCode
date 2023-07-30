@@ -11,32 +11,68 @@ import CoreGraphics
 import QRCodeSwift
 
 public class EFStyleResampleImageParams: EFStyleParams {
+    
+    public static let defaultAlign: EFStyleResampleImageParamsAlign = EFStyleResampleImageParamsAlign()
+    public static let defaultTiming: EFStyleResampleImageParamsTiming = EFStyleResampleImageParamsTiming()
+    public static let defaultPosition: EFStyleResampleImageParamsPosition = EFStyleResampleImageParamsPosition()
+    
     let image: EFStyleResampleImageParamsImage?
-    let alignStyle: EFStyleResampleImageParamAlignStyle
-    let timingStyle: EFStyleResampleImageParamTimingStyle
-    let positionColor: CGColor
+    let align: EFStyleResampleImageParamsAlign
+    let timing: EFStyleResampleImageParamsTiming
+    let position: EFStyleResampleImageParamsPosition
     let dataColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, image: EFStyleResampleImageParamsImage? = nil, alignStyle: EFStyleResampleImageParamAlignStyle, timingStyle: EFStyleResampleImageParamTimingStyle, positionColor: CGColor, dataColor: CGColor) {
+    public init(icon: EFStyleParamIcon? = nil, image: EFStyleResampleImageParamsImage?, align: EFStyleResampleImageParamsAlign = EFStyleResampleImageParams.defaultAlign, timing: EFStyleResampleImageParamsTiming = EFStyleResampleImageParams.defaultTiming, position: EFStyleResampleImageParamsPosition = EFStyleResampleImageParams.defaultPosition, dataColor: CGColor = CGColor.black) {
         self.image = image
-        self.alignStyle = alignStyle
-        self.timingStyle = timingStyle
-        self.positionColor = positionColor
+        self.align = align
+        self.timing = timing
+        self.position = position
         self.dataColor = dataColor
         super.init(icon: icon)
     }
 }
 
-public enum EFStyleResampleImageParamAlignStyle: CaseIterable {
-    case none
-    case white
-    case whiteAndBlack
+public class EFStyleResampleImageParamsAlign {
+    
+    let style: EFStyleParamAlignStyle
+    let onlyWhite: Bool
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamAlignStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = CGColor.black) {
+        self.style = style
+        self.onlyWhite = onlyWhite
+        self.size = size
+        self.color = color
+    }
 }
 
-public enum EFStyleResampleImageParamTimingStyle: CaseIterable {
-    case none
-    case white
-    case whiteAndBlack
+public class EFStyleResampleImageParamsTiming {
+    
+    let style: EFStyleParamTimingStyle
+    let onlyWhite: Bool
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamTimingStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = CGColor.black) {
+        self.style = style
+        self.onlyWhite = onlyWhite
+        self.size = size
+        self.color = color
+    }
+}
+
+public class EFStyleResampleImageParamsPosition {
+    
+    let style: EFStyleParamsPositionStyle
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 0.925, color: CGColor = CGColor.black) {
+        self.style = style
+        self.size = size
+        self.color = color
+    }
 }
 
 public class EFStyleResampleImageParamsImage {
@@ -44,7 +80,7 @@ public class EFStyleResampleImageParamsImage {
     let contrast: CGFloat
     let exposure: CGFloat
     
-    public init(image: EFStyleParamImage, contrast: CGFloat, exposure: CGFloat) {
+    public init(image: EFStyleParamImage, contrast: CGFloat = 0, exposure: CGFloat = 0) {
         self.image = image
         self.contrast = contrast
         self.exposure = exposure
@@ -64,9 +100,14 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         let nCount: Int = qrcode.model.moduleCount
         let typeTable: [[QRPointType]] = qrcode.model.getTypeTable()
         var pointList: [String] = []
-        let alignType: EFStyleResampleImageParamAlignStyle = params.alignStyle
-        let timingType: EFStyleResampleImageParamTimingStyle = params.timingStyle
-        let posColor: String = try params.positionColor.hexString()
+        let alignType: EFStyleParamAlignStyle = params.align.style
+        let alignOnlyWhite: Bool = params.align.onlyWhite
+        let timingType: EFStyleParamTimingStyle = params.timing.style
+        let timingOnlyWhite: Bool = params.timing.onlyWhite
+        let positionType: EFStyleParamsPositionStyle = params.position.style
+        let positionColor: String = try params.position.color.hexString()
+        let positionAlpha: CGFloat = try params.position.color.alpha()
+        let positionSize: CGFloat = params.position.size
         var id: Int = 0
         
         for x in 0..<nCount {
@@ -75,11 +116,11 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                 let posY: CGFloat = 3 * y.cgFloat
                 if typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther {
                     if (qrcode.model.isDark(x, y)) {
-                        if alignType == .whiteAndBlack {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-black\" x=\"\(posX - 0.03)\" y=\"\(posY - 0.03)\"/>")
+                        if alignType != .none && alignOnlyWhite == false {
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-align-black\" x=\"\(posX - 0.02)\" y=\"\(posY - 0.02)\"/>")
                             id += 1
                         } else {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#S-black\" x=\"\(posX + 1 - 0.01)\" y=\"\(posY + 1 - 0.01)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#S-align-black\" x=\"\(posX + 1 - 0.01)\" y=\"\(posY + 1 - 0.01)\"/>")
                             id += 1
                         }
                     } else {
@@ -87,17 +128,17 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                             pointList.append("<use key=\"\(id)\" xlink:href=\"#S-white\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         } else {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-white\" x=\"\(posX - 0.03)\" y=\"\(posY - 0.03)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-white\" x=\"\(posX - 0.02)\" y=\"\(posY - 0.02)\"/>")
                             id += 1
                         }
                     }
                 } else if typeTable[x][y] == QRPointType.timing {
                     if (qrcode.model.isDark(x, y)) {
-                        if timingType == .whiteAndBlack {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-black\" x=\"\(posX - 0.03)\" y=\"\(posY - 0.03)\"/>")
+                        if timingType != .none && timingOnlyWhite == false {
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-timing-black\" x=\"\(posX - 0.02)\" y=\"\(posY - 0.02)\"/>")
                             id += 1
                         } else {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#S-black\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#S-timing-black\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         }
                     } else {
@@ -105,23 +146,67 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                             pointList.append("<use key=\"\(id)\" xlink:href=\"#S-white\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         } else {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-white\" x=\"\(posX - 0.03)\" y=\"\(posY - 0.03)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#B-white\" x=\"\(posX - 0.02)\" y=\"\(posY - 0.02)\"/>")
                             id += 1
                         }
                     }
                 } else if typeTable[x][y] == QRPointType.posCenter {
-                    if (qrcode.model.isDark(x, y)) {
-                        pointList.append("<use key=\"\(id)\" fill=\"\(posColor)\" xlink:href=\"#B\" x=\"\(posX - 0.03)\" y=\"\(posY - 0.03)\"/>")
+                    var markArr: [CGFloat] = [-3, -3]
+                    if x > y {
+                        markArr = [0, -3]
+                    } else if x < y {
+                        markArr = [-3, 0]
+                    }
+                    pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"24\" height=\"24\" key=\"\(id)\" fill=\"#FFFFFF\" x=\"\(posX - 12 - markArr[0])\" y=\"\(posY - 12 - markArr[1])\"/>");
+                    id += 1
+                    switch positionType {
+                    case .rectangle:
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"9\" height=\"9\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(posX - 3)\" y=\"\(posY - 3)\"/>");
                         id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(3 * positionSize)\" stroke=\"\(positionColor)\" x=\"\(posX - 7.5)\" y=\"\(posY - 7.5)\" width=\"18\" height=\"18\"/>")
+                        id += 1
+                        break
+                    case .round:
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"4.5\"/>")
+                        id += 1
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(3 * positionSize)\" stroke=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"9\"/>")
+                        id += 1
+                        break
+                    case .roundedRectangle:
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"4.5\" />")
+                        id += 1
+                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * positionSize)\" fill=\"none\" transform=\"translate(\(posX - 7.5),\(posY - 7.5)) scale(\(18.cgFloat / 100),\(18.cgFloat / 100))\" />")
+                        id += 1
+                        break
+                    case .planets:
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"4.5\" />")
+                        id += 1
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.45\" stroke-dasharray=\"1.5,1.5\" stroke=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"9\" />")
+                        id += 1
+                        for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 3 * EFQRCodeStyleBasic.planetsVw[w] + 1.5)\" cy=\"\(posY + 1.5)\" r=\"\(1.5 * positionSize)\" />")
+                            id += 1
+                        }
+                        for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 3 * EFQRCodeStyleBasic.planetsVh[h] + 1.5)\" r=\"\(1.5 * positionSize)\" />")
+                            id += 1
+                        }
+                        break
+                    case .dsj:
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(9 - 3 * (1 - positionSize))\" height=\"\(9 - 3 * (1 - positionSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(posX - 3 + 3 * (1 - positionSize)/2.0)\" y=\"\(posY - 3 + 3 * (1 - positionSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 * positionSize)\" height=\"\(9 - 3 * (1 - positionSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(posX - 9 + 3 * (1 - positionSize)/2.0)\" y=\"\(posY - 3 + 3 * (1 - positionSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 * positionSize)\" height=\"\(9 - 3 * (1 - positionSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(posX + 9 + 3 * (1 - positionSize)/2.0)\" y=\"\(posY - 3 + 3 * (1 - positionSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(9 - 3 * (1 - positionSize))\" height=\"\(3 * positionSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(posX - 3 + 3 * (1 - positionSize)/2.0)\" y=\"\(posY - 9 + 3 * (1 - positionSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(9 - 3 * (1 - positionSize))\" height=\"\(3 * positionSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(posX - 3 + 3 * (1 - positionSize)/2.0)\" y=\"\(posY + 9 + 3 * (1 - positionSize)/2.0)\"/>");
+                        id += 1
+                        break
                     }
                 } else if typeTable[x][y] == QRPointType.posOther {
-                    if (qrcode.model.isDark(x, y)) {
-                        pointList.append("<use key=\"\(id)\" fill=\"\(posColor)\" xlink:href=\"#B\" x=\"\(posX - 0.03)\" y=\"\(posY - 0.03)\"/>")
-                        id += 1
-                    } else {
-                        pointList.append("<use key=\"\(id)\" xlink:href=\"#B-white\" x=\"\(posX - 0.03)\" y=\"\(posY - 0.03)\"/>")
-                        id += 1
-                    }
+                    continue
                 } else {
                     if (qrcode.model.isDark(x, y)) {
                         pointList.append("<use key=\"\(id)\" xlink:href=\"#S-black\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
@@ -192,17 +277,57 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
     }
     
     override func generateSVG(qrcode: QRCode) throws -> String {
+        let alignType: EFStyleParamAlignStyle = params.align.style
+        let alignColor: String = try params.align.color.hexString()
+        let alignAlpha: CGFloat = try params.align.color.alpha()
+        let alignSize: CGFloat = params.align.size
+        let timingType: EFStyleParamTimingStyle = params.timing.style
+        let timingColor: String = try params.timing.color.hexString()
+        let timingAlpha: CGFloat = try params.timing.color.alpha()
+        let timingSize: CGFloat = params.timing.size
         let otherOpacity: CGFloat = max(0, try params.dataColor.alpha())
         let otherColor: String = try params.dataColor.hexString()
         let size: Int = qrcode.model.moduleCount
+        
+        let alignElement: String = {
+            switch alignType {
+            case .none:
+                return "<rect opacity=\"\(alignAlpha)\" id=\"B-align-black\" fill=\"\(alignColor)\" width=\"\(1.02 * alignSize)\" height=\"\(1.02 * alignSize)\"/>"
+            case .rectangle:
+                return "<rect opacity=\"\(alignAlpha)\" id=\"B-align-black\" fill=\"\(alignColor)\" width=\"\(3.02 * alignSize)\" height=\"\(3.02 * alignSize)\"/>"
+            case .round:
+                let roundR: CGFloat = 3.02 * alignSize / 2
+                return "<circle opacity=\"\(alignAlpha)\" id=\"B-align-black\" fill=\"\(alignColor)\" cx=\"\(roundR)\" cy=\"\(roundR)\" r=\"\(roundR)\"/>"
+            case .roundedRectangle:
+                let cd: CGFloat = 3.02 * alignSize / 4.0
+                return "<rect opacity=\"\(alignAlpha)\" id=\"B-align-black\" fill=\"\(alignColor)\" width=\"\(3.02 * alignSize)\" height=\"\(3.02 * alignSize)\"/ rx=\"\(cd)\" ry=\"\(cd)\">"
+            }
+        }()
+        let timingElement: String = {
+            switch timingType {
+            case .none:
+                return "<rect opacity=\"\(timingAlpha)\" id=\"B-timing-black\" fill=\"\(timingColor)\" width=\"\(1.02 * timingSize)\" height=\"\(1.02 * timingSize)\"/>"
+            case .rectangle:
+                return "<rect opacity=\"\(timingAlpha)\" id=\"B-timing-black\" fill=\"\(timingColor)\" width=\"\(3.02 * timingSize)\" height=\"\(3.02 * timingSize)\"/>"
+            case .round:
+                let roundR: CGFloat = 3.02 * timingSize / 2.0
+                return "<circle opacity=\"\(timingAlpha)\" id=\"B-timing-black\" fill=\"\(timingColor)\" cx=\"\(roundR)\" cy=\"\(roundR)\" r=\"\(roundR)\"/>"
+            case .roundedRectangle:
+                let cd: CGFloat = 3.02 * timingSize / 4.0
+                return "<rect opacity=\"\(timingAlpha)\" id=\"B-timing-black\" fill=\"\(timingColor)\" width=\"\(3.02 * timingSize)\" height=\"\(3.02 * timingSize)\"/ rx=\"\(cd)\" ry=\"\(cd)\">"
+            }
+        }()
+        
         return "<svg className=\"Qr-item-svg\" width=\"100%\" height=\"100%\" viewBox=\"\(viewBox(qrcode: qrcode))\" fill=\"white\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">"
         + "<defs>"
-        + "<rect opacity=\"\(otherOpacity)\" id=\"B-black\" fill=\"\(otherColor)\" width=\"3.08\" height=\"3.08\"/>"
-        + "<rect id=\"B-white\" fill=\"white\" width=\"3.08\" height=\"3.08\"/>"
+        + alignElement
+        + "<rect opacity=\"\(alignAlpha)\" id=\"S-align-black\" fill=\"\(alignColor)\" width=\"\(1.02 * alignSize)\" height=\"\(1.02 * alignSize)\"/>"
+        + timingElement
+        + "<rect opacity=\"\(timingAlpha)\" id=\"S-timing-black\" fill=\"\(timingColor)\" width=\"\(1.02 * timingSize)\" height=\"\(1.02 * timingSize)\"/>"
+        + "<rect opacity=\"\(otherOpacity)\" id=\"B-black\" fill=\"\(otherColor)\" width=\"3.02\" height=\"3.02\"/>"
         + "<rect opacity=\"\(otherOpacity)\" id=\"S-black\" fill=\"\(otherColor)\" width=\"1.02\" height=\"1.02\"/>"
+        + "<rect id=\"B-white\" fill=\"white\" width=\"3.02\" height=\"3.02\"/>"
         + "<rect id=\"S-white\" fill=\"white\" width=\"1.02\" height=\"1.02\"/>"
-        + "<rect id=\"B\" width=\"3.08\" height=\"3.08\"/>"
-        + "<rect id=\"S\" width=\"1.02\" height=\"1.02\"/>"
         + "</defs>"
         + (try writeResImage(image: params.image, newWidth: size * 3, newHeight: size * 3, color: "#S-black"))
         + (try writeQRCode(qrcode: qrcode)).joined()

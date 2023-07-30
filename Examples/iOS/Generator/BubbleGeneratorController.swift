@@ -166,8 +166,7 @@ extension BubbleGeneratorController {
                 style: EFQRCodeStyle.bubble(
                     params: EFStyleBubbleParams(
                         icon: paramIcon,
-                        dataColor: dataColor.cgColor,
-                        dataAlpha: dataAlpha,
+                        dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor,
                         positionColor: positionColor.cgColor
                     )
                 )
