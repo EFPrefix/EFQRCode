@@ -11,13 +11,15 @@ import CoreGraphics
 import QRCodeSwift
 
 public class EFStyleBubbleParams: EFStyleParams {
+    
+    public static let defaultDataColor: CGColor = CGColor.createWith(rgb: 0x8ED1FC)!
+    public static let defaultPositionColor: CGColor = CGColor.createWith(rgb: 0x0693E3)!
+    
     let dataColor: CGColor
-    let dataAlpha: CGFloat
     let positionColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, dataColor: CGColor, dataAlpha: CGFloat, positionColor: CGColor) {
+    public init(icon: EFStyleParamIcon? = nil, dataColor: CGColor = EFStyleBubbleParams.defaultDataColor, positionColor: CGColor = EFStyleBubbleParams.defaultPositionColor) {
         self.dataColor = dataColor
-        self.dataAlpha = dataAlpha
         self.positionColor = positionColor
         super.init(icon: icon)
     }
@@ -42,8 +44,9 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
         var id: Int = 0
         
         let otherColor = try params.dataColor.hexString()
-        let otherOpacity: CGFloat = max(0, params.dataAlpha)
+        let otherOpacity: CGFloat = try params.dataColor.alpha()
         let posColor = try params.positionColor.hexString()
+        let posOpacity: CGFloat = try params.positionColor.alpha()
         
         var available: [[Bool]] = Array(repeating: Array(repeating: true, count: nCount), count: nCount)
         var ava2: [[Bool]] = Array(repeating: Array(repeating: true, count: nCount), count: nCount)
@@ -52,12 +55,12 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
             for x in 0..<nCount {
                 
                 if qrcode.model.isDark(x, y) && typeTable[x][y] == .posCenter {
-                    pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                    pointList.append("<circle opacity=\"\(posOpacity)\" key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                     id += 1
-                    pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"1\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
+                    pointList.append("<circle opacity=\"\(posOpacity)\" key=\"\(id)\" fill=\"none\" stroke-width=\"1\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
                     id += 1
                 } else if qrcode.model.isDark(x, y) && typeTable[x][y] == .posOther {
-                    // Nothing
+                    continue
                 } else {
                     if available[x][y] && ava2[x][y] && x < nCount - 2 && y < nCount - 2 {
                         var ctn = true

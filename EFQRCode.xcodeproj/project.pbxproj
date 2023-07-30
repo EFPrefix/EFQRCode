@@ -275,17 +275,17 @@
 		12D66CB22A4F9F33007F2770 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */,
+				128013C82A53FFA60033B45B /* EFQRCodeStyleImageFill.swift */,
 				128013AF2A52E6640033B45B /* EFQRCodeStyle25D.swift */,
-				12D66CBD2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift */,
 				128013B42A5371670033B45B /* EFQRCodeStyleBubble.swift */,
+				128013AA2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift */,
 				128013B92A538CAA0033B45B /* EFQRCodeStyleDSJ.swift */,
+				128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */,
+				12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */,
+				12D66CBD2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift */,
 				128013BE2A53BA6B0033B45B /* EFQRCodeStyleFunction.swift */,
 				128013C32A53EDB40033B45B /* EFQRCodeStyleImage.swift */,
-				128013C82A53FFA60033B45B /* EFQRCodeStyleImageFill.swift */,
 				12D66CF62A525D5E007F2770 /* EFQRCodeStyleLine.swift */,
-				128013AA2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift */,
-				128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";

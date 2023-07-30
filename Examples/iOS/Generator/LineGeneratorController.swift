@@ -33,7 +33,7 @@ class LineGeneratorController: UIViewController, UITextViewDelegate, UITableView
     var dataScale: CGFloat = 0.5
     var dataAlpha: CGFloat = 1
     var dataColor: UIColor = UIColor.black
-    var positionStyle: EFStyleBasicParamsPositionStyle = .roundedRectangle
+    var positionStyle: EFStyleParamsPositionStyle = .roundedRectangle
     var positionColor: UIColor = UIColor.black
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
@@ -169,7 +169,7 @@ extension LineGeneratorController {
                 style: EFQRCodeStyle.line(
                     params: EFStyleLineParams(
                         icon: paramIcon,
-                        position: EFStyleLineParamsPosition(style: positionStyle, color: positionColor.cgColor),
+                        position: EFStyleLineParamsPosition(style: positionStyle, color: positionColor.cgColor, size: 1),
                         line: EFStyleLineParamsLine(direction: dataStyle, thickness: dataScale, color: dataColor.withAlphaComponent(dataAlpha).cgColor)
                     )
                 )
@@ -354,7 +354,7 @@ extension LineGeneratorController {
     }
     
     func choosePositionStyle() {
-        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleBasicParamsPositionStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.positionStyle = result

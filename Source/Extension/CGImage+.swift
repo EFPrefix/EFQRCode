@@ -67,4 +67,18 @@ extension CGImage {
         return CIImage(cgImage: self)
     }
     #endif
+    
+    func clipImageToSquare() -> CGImage? {
+        let width: CGFloat = self.width.cgFloat
+        let height: CGFloat = self.height.cgFloat
+        if width == height { return self }
+        
+        let squareSize: CGFloat = min(width, height)
+        let x: CGFloat = (width - squareSize) / 2.0
+        let y: CGFloat = (height - squareSize) / 2.0
+        let rect: CGRect = CGRect(x: x, y: y, width: squareSize, height: squareSize)
+        
+        let croppedCGImage = self.cropping(to: rect)
+        return croppedCGImage
+    }
 }

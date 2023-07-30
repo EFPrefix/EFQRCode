@@ -33,7 +33,7 @@ class FunctionGeneratorController: UIViewController, UITextViewDelegate, UITable
     var dataColor: UIColor = UIColor.black
     var circleColor: UIColor = UIColor.black
     var dataAlpha: CGFloat = 1
-    var positionStyle: EFStyleBasicParamsPositionStyle = .round
+    var positionStyle: EFStyleParamsPositionStyle = .round
     var positionColor: UIColor = UIColor.black
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
@@ -169,7 +169,7 @@ extension FunctionGeneratorController {
                 style: EFQRCodeStyle.function(
                     params: EFStyleFunctionParams(
                         icon: paramIcon,
-                        position: EFStyleFunctionParamsPosition(style: positionStyle, color: positionColor.cgColor),
+                        position: EFStyleFunctionParamsPosition(style: positionStyle, color: positionColor.cgColor, size: 1),
                         data: EFStyleFunctionParamsData(
                             function: dataFunction == 0 ? .fade(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor) : .circle(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor, circleColor: circleColor.withAlphaComponent(dataAlpha).cgColor) ,
                             style: dataStyle
@@ -389,7 +389,7 @@ extension FunctionGeneratorController {
     }
     
     func choosePositionStyle() {
-        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleBasicParamsPositionStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.positionStyle = result

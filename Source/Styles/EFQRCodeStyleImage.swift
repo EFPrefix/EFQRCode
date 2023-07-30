@@ -96,9 +96,6 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         let posColor: String = try params.position.color.hexString()
         var id: Int = 0
         
-        let vw: [CGFloat] = [3, -3]
-        let vh: [CGFloat] = [3, -3]
-        
         if let image = params.image {
             let line = try image.image.write(id: id, rect: CGRect(x: 0, y: 0, width: nCount, height: nCount), opacity: image.alpha)
             pointList.append(line)
@@ -150,12 +147,12 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                             id += 1
                             pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(posColor)\"  cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(3)\" />")
                             id += 1
-                            for w in 0..<vw.count {
-                                pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + vw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
+                            for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
+                                pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
                                 id += 1
                             }
-                            for h in 0..<vh.count {
-                                pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + vh[h] + 0.5)\" r=\"0.5\" />")
+                            for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
+                                pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"0.5\" />")
                                 id += 1
                             }
                             break

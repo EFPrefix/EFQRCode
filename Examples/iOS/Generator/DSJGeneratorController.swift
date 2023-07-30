@@ -166,8 +166,8 @@ extension DSJGeneratorController {
                 style: EFQRCodeStyle.dsj(
                     params: EFStyleDSJParams(
                         icon: paramIcon,
-                        positionStyle: positionStyle == 0 ? .rectangle : .dsj(thickness: positionThickness),
-                        data: EFStyleDSJParamsData(thickness: dataThickness, xThickness: dataXThickness)
+                        position: EFStyleDSJParamsPosition(style: positionStyle == 0 ? .rectangle : .dsj, size: positionThickness),
+                        data: EFStyleDSJParamsData(lineSize: dataThickness, xSize: dataXThickness)
                     )
                 )
             )
