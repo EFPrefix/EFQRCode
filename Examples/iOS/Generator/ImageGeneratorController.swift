@@ -31,15 +31,15 @@ class ImageGeneratorController: UIViewController, UITextViewDelegate, UITableVie
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var image: EFStyleParamImage? = nil
     var imageAlpha: CGFloat = 1
-    var dataStyle: EFStyleImageParamsDataStyle = .rectangle
+    var dataStyle: EFStyleParamsDataStyle = .rectangle
     var dataDarkColor: UIColor = UIColor.black
     var dataLightColor: UIColor = UIColor.white
     var dataAlpha: CGFloat = 1
     var dataThickness: CGFloat = 0.33
-    var positionStyle: EFStyleImageParamsPositionStyle = .rectangle
+    var positionStyle: EFStyleParamsPositionStyle = .rectangle
     var positionColor: UIColor = UIColor.black
-    var alignStyle: EFStyleParamAlignStyle = .none
-    var timingStyle: EFStyleParamTimingStyle = .none
+    var alignStyle: EFStyleImageParamAlignStyle = .none
+    var timingStyle: EFStyleImageParamTimingStyle = .none
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
@@ -181,11 +181,12 @@ extension ImageGeneratorController {
                 style: EFQRCodeStyle.image(
                     params: EFStyleImageParams(
                         icon: paramIcon,
-                        alignStyle: alignStyle,
-                        timingStyle: timingStyle,
+                        align: EFStyleImageParamsAlign(style: alignStyle),
+                        timing: EFStyleImageParamsTiming(style: timingStyle),
                         position: EFStyleImageParamsPosition(
                             style: positionStyle,
-                            color: positionColor.cgColor
+                            colorDark: positionColor.cgColor,
+                            colorLight: UIColor.white.cgColor
                         ),
                         data: EFStyleImageParamsData(
                             style: dataStyle,
@@ -414,7 +415,7 @@ extension ImageGeneratorController {
     }
     
     func choosePositionStyle() {
-        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleImageParamsPositionStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.positionStyle = result
@@ -432,7 +433,7 @@ extension ImageGeneratorController {
     }
     
     func chooseDataStyle() {
-        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleImageParamsDataStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleParamsDataStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.dataStyle = result
@@ -441,7 +442,7 @@ extension ImageGeneratorController {
     }
     
     func chooseAlignStyle() {
-        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleParamAlignStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleImageParamAlignStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.alignStyle = result
@@ -450,7 +451,7 @@ extension ImageGeneratorController {
     }
     
     func chooseTimingStyle() {
-        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleParamTimingStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleImageParamTimingStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.timingStyle = result

@@ -114,22 +114,22 @@ public class EFQRCodeStyleDSJ: EFQRCodeStyleBase {
                         id += 1
                         break
                     case .roundedRectangle:
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * posSize)\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\" />")
+                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * posSize)\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\"/>")
                         id += 1
                         break
                     case .planets:
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
                         id += 1
                         for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
-                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * posSize)\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
-                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"\(0.5 * posSize)\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         break
@@ -159,9 +159,9 @@ public class EFQRCodeStyleDSJ: EFQRCodeStyleBase {
                             }
                         }
                         if ctn && qrcode.model.isDark(x + 2, y) && qrcode.model.isDark(x + 1, y + 1) && qrcode.model.isDark(x, y + 2) && qrcode.model.isDark(x + 2, y + 2) {
-                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + 3 - width1 / sqrt(8))\" y2=\"\(y.cgFloat + 3 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\" />")
+                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + 3 - width1 / sqrt(8))\" y2=\"\(y.cgFloat + 3 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\"/>")
                             id += 1
-                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + 3 - width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + width1 / sqrt(8))\" y2=\"\(y.cgFloat + 3 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\" />")
+                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + 3 - width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + width1 / sqrt(8))\" y2=\"\(y.cgFloat + 3 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\"/>")
                             id += 1
                             available[x][y] = false
                             available[x + 2][y] = false
@@ -185,9 +185,9 @@ public class EFQRCodeStyleDSJ: EFQRCodeStyleBase {
                             }
                         }
                         if ctn && qrcode.model.isDark(x + 1, y) && qrcode.model.isDark(x, y + 1) && qrcode.model.isDark(x + 1, y + 1) {
-                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + 2 - width1 / sqrt(8))\" y2=\"\(y.cgFloat + 2 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\" />")
+                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + 2 - width1 / sqrt(8))\" y2=\"\(y.cgFloat + 2 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\"/>")
                             id += 1
-                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + 2 - width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + width1 / sqrt(8))\" y2=\"\(y.cgFloat + 2 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\" />")
+                            g1.append("<line opacity=\"\(xAlpha)\" key=\"\(id)\" x1=\"\(x.cgFloat + 2 - width1 / sqrt(8))\" y1=\"\(y.cgFloat + width1 / sqrt(8))\" x2=\"\(x.cgFloat + width1 / sqrt(8))\" y2=\"\(y.cgFloat + 2 - width1 / sqrt(8))\" fill=\"none\" stroke=\"\(xColor)\" stroke-width=\"\(width1)\"/>")
                             id += 1
                             for i in 0..<2 {
                                 for j in 0..<2 {

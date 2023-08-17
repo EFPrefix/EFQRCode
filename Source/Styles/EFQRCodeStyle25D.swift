@@ -92,6 +92,10 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
     }
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
+        struct Anchor {
+            static var uniqueMark: Int = 0
+        }
+        
         guard let icon = params.icon else { return [] }
         
         var id: Int = 0
@@ -104,18 +108,20 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let iconSize: CGFloat = nCount.cgFloat * scale
         let iconXY: CGFloat = (nCount.cgFloat - iconSize) / 2
         
-        let randomIdDefs: String = EFStyleParamIcon.getIdNum()
-        let randomIdClips: String = EFStyleParamIcon.getIdNum()
+        let randomIdDefs: String = "25d\(Anchor.uniqueMark)"
+        Anchor.uniqueMark += 1
+        let randomIdClips: String = "25d\(Anchor.uniqueMark)"
+        Anchor.uniqueMark += 1
         
-        pointList.append("<g transform=\"\(matrixString)\"><path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100/iconSize * 1)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></g>")
+        pointList.append("<g transform=\"\(matrixString)\"><path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100 / iconSize * 1)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></g>")
         pointList.append("<g key=\"\(id)\" transform=\"\(matrixString)\">")
         id += 1
         pointList.append(
-            "<defs><path id=\"defs-path\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize/100),\(iconSize/100))\" /></defs>"
-            + "<clipPath id=\"clip-path\(randomIdClips)\">"
-            + "<use xlink:href=\"#defs-path\(randomIdDefs)\" overflow=\"visible\"/>"
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize/100),\(iconSize/100))\" /></defs>"
+            + "<clipPath id=\"\(randomIdClips)\">"
+            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"
-            + "<g clip-path=\"url(#clip-path\(randomIdClips))\">"
+            + "<g clip-path=\"url(#\(randomIdClips))\">"
             + (try icon.image.write(id: id, rect: CGRect(x: iconXY, y: iconXY, width: iconSize, height: iconSize), opacity: opacity))
             + "</g>"
             + "</g>"

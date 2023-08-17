@@ -72,7 +72,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                             }
                         }
                         if ctn && qrcode.model.isDark(x + 1, y) && qrcode.model.isDark(x + 1, y + 2) && qrcode.model.isDark(x, y + 1) && qrcode.model.isDark(x + 2, y + 1) {
-                            g1.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x.cgFloat + 1 + 0.5)\" cy=\"\(y.cgFloat + 1 + 0.5)\" r=\"1\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\" />")
+                            g1.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x.cgFloat + 1 + 0.5)\" cy=\"\(y.cgFloat + 1 + 0.5)\" r=\"1\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\"/>")
                             id += 1
                             if qrcode.model.isDark(x + 1, y + 1) {
                                 g1.append("<circle opacity=\"\(otherOpacity)\" r=\"\(0.5 * Double.random(in: 0.5...1))\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 1 + 0.5)\" cy=\"\(y.cgFloat + 1 + 0.5)\"/>")
@@ -91,7 +91,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                     }
                     if x < nCount - 1 && y < nCount - 1 {
                         if qrcode.model.isDark(x, y) && qrcode.model.isDark(x + 1, y) && qrcode.model.isDark(x, y + 1) && qrcode.model.isDark(x + 1, y + 1) {
-                            g1.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y + 1)\" r=\"\(sqrt(1.0 / 2.0))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\" />")
+                            g1.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y + 1)\" r=\"\(sqrt(1.0 / 2.0))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\"/>")
                             id += 1
                             for i in 0..<2 {
                                 for j in 0..<2 {
@@ -103,7 +103,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                     }
                     if available[x][y] && y < nCount - 1 {
                         if qrcode.model.isDark(x, y) && qrcode.model.isDark(x, y + 1) {
-                            pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y + 1)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\" />")
+                            pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y + 1)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
                             id += 1
                             available[x][y] = false
                             available[x][y + 1] = false
@@ -111,7 +111,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                     }
                     if available[x][y] && x < nCount - 1 {
                         if qrcode.model.isDark(x, y) && qrcode.model.isDark(x + 1, y) {
-                            pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\" />")
+                            pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
                             id += 1
                             available[x][y] = false
                             available[x + 1][y] = false

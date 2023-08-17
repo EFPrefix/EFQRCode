@@ -326,11 +326,9 @@ class ParametersInterfaceController: WKInterfaceController {
                 style: EFQRCodeStyle.image(
                     params: EFStyleImageParams(
                         icon: paramIcon,
-                        alignStyle: .rectangle,
-                        timingStyle: .rectangle,
                         position: EFStyleImageParamsPosition(
                             style: .rectangle,
-                            color: foregroundColor.cgColor
+                            colorDark: foregroundColor.cgColor
                         ),
                         data: EFStyleImageParamsData(
                             style: .rectangle,
