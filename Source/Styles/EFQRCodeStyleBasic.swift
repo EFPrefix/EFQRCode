@@ -11,22 +11,59 @@ import CoreGraphics
 import QRCodeSwift
 
 public class EFStyleBasicParams: EFStyleParams {
+    
+    public static let defaultAlign: EFStyleBasicParamsAlign = EFStyleBasicParamsAlign()
+    public static let defaultTiming: EFStyleBasicParamsTiming = EFStyleBasicParamsTiming()
+    public static let defaultData: EFStyleBasicParamsData = EFStyleBasicParamsData()
+    public static let defaultPosition: EFStyleBasicParamsPosition = EFStyleBasicParamsPosition()
+    
     let data: EFStyleBasicParamsData
     let position: EFStyleBasicParamsPosition
+    let align: EFStyleBasicParamsAlign
+    let timing: EFStyleBasicParamsTiming
     
-    public init(icon: EFStyleParamIcon? = nil, position: EFStyleBasicParamsPosition, data: EFStyleBasicParamsData) {
+    public init(icon: EFStyleParamIcon? = nil, position: EFStyleBasicParamsPosition = EFStyleBasicParams.defaultPosition, data: EFStyleBasicParamsData = EFStyleBasicParams.defaultData, align: EFStyleBasicParamsAlign = EFStyleBasicParams.defaultAlign, timing: EFStyleBasicParamsTiming = EFStyleBasicParams.defaultTiming) {
         self.data = data
         self.position = position
+        self.align = align
+        self.timing = timing
         super.init(icon: icon)
     }
 }
 
-public class EFStyleBasicParamsData {
-    let style: EFStyleBasicParamsDataStyle
-    let color: CGColor
-    let scale: CGFloat
+public class EFStyleBasicParamsAlign {
     
-    public init(style: EFStyleBasicParamsDataStyle, scale: CGFloat, color: CGColor) {
+    let style: EFStyleParamAlignStyle
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamAlignStyle = .rectangle, size: CGFloat = 1, color: CGColor = CGColor.black) {
+        self.style = style
+        self.size = size
+        self.color = color
+    }
+}
+
+public class EFStyleBasicParamsTiming {
+    
+    let style: EFStyleParamTimingStyle
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamTimingStyle = .rectangle, size: CGFloat = 1, color: CGColor = CGColor.black) {
+        self.style = style
+        self.size = size
+        self.color = color
+    }
+}
+
+public class EFStyleBasicParamsData {
+    
+    let style: EFStyleBasicParamsDataStyle
+    let scale: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleBasicParamsDataStyle = .rectangle, scale: CGFloat = 1, color: CGColor = CGColor.black) {
         self.color = color
         self.scale = scale
         self.style = style
@@ -34,11 +71,12 @@ public class EFStyleBasicParamsData {
 }
 
 public class EFStyleBasicParamsPosition {
-    let style: EFStyleParamsPositionStyle
-    let color: CGColor
-    let size: CGFloat
     
-    public init(style: EFStyleParamsPositionStyle, color: CGColor, size: CGFloat) {
+    let style: EFStyleParamsPositionStyle
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = CGColor.black) {
         self.color = color
         self.style = style
         self.size = size
@@ -48,6 +86,7 @@ public class EFStyleBasicParamsPosition {
 public enum EFStyleBasicParamsDataStyle: CaseIterable {
     case rectangle
     case round
+    case roundedRectangle
     case randomRound
 }
 
@@ -73,12 +112,24 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
         let type: EFStyleBasicParamsDataStyle = params.data.style
         let size: CGFloat = max(0, params.data.scale)
         let opacity: CGFloat = max(0, try params.data.color.alpha())
+        let otherColor: String = try params.data.color.hexString()
+        
         let posType: EFStyleParamsPositionStyle = params.position.style
         let posSize: CGFloat = max(0, params.position.size)
+        let positionColor: String = try params.position.color.hexString()
+        let positionAlpha: CGFloat = try params.position.color.alpha()
+        
+        let alignType: EFStyleParamAlignStyle = params.align.style
+        let alignColor: String = try params.align.color.hexString()
+        let alignAlpha: CGFloat = try params.align.color.alpha()
+        let alignSize: CGFloat = params.align.size
+        
+        let timingType: EFStyleParamTimingStyle = params.timing.style
+        let timingColor: String = try params.timing.color.hexString()
+        let timingAlpha: CGFloat = try params.timing.color.alpha()
+        let timingSize: CGFloat = params.timing.size
+        
         var id: Int = 0
-        let otherColor: String = try params.data.color.hexString()
-        let posColor: String = try params.position.color.hexString()
-        let posAlpha: CGFloat = try params.position.color.alpha()
         
         for x in 0..<nCount {
             for y in 0..<nCount {
@@ -86,96 +137,104 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
                     continue
                 }
                 
-                if typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther || typeTable[x][y] == QRPointType.timing {
-                    switch type {
+                if typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther {
+                    switch alignType {
                     case .rectangle:
-                        pointList.append("<rect opacity=\"\(opacity)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(otherColor)\" x=\"\(x.cgFloat + (1 - size) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\" />")
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(alignAlpha)\" width=\"\(alignSize)\" height=\"\(alignSize)\" fill=\"\(alignColor)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\"/>")
                         id += 1
                         break
                     case .round:
-                        pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" />")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(alignAlpha)\" r=\"\(alignSize / 2)\" fill=\"\(alignColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                         id += 1
                         break
-                    case .randomRound:
-                        pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(size / 2)\" />")
+                    case .roundedRectangle:
+                        let cd: CGFloat = alignSize / 4.0
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(alignAlpha)\" fill=\"\(alignColor)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\" width=\"\(alignSize)\" height=\"\(alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
+                        id += 1
+                        break
+                    }
+                } else if typeTable[x][y] == QRPointType.timing {
+                    switch timingType {
+                    case .rectangle:
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(timingAlpha)\" width=\"\(timingSize)\" height=\"\(timingSize)\" fill=\"\(timingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\"/>")
+                        id += 1
+                        break
+                    case .round:
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(timingAlpha)\" r=\"\(timingSize / 2)\" fill=\"\(timingColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                        id += 1
+                        break
+                    case .roundedRectangle:
+                        let cd: CGFloat = timingSize / 4.0
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(timingAlpha)\" fill=\"\(timingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1 - timingSize) / 2)\" width=\"\(timingSize)\" height=\"\(timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
                         id += 1
                         break
                     }
                 } else if typeTable[x][y] == QRPointType.posCenter {
                     switch posType {
                     case .rectangle:
-                        pointList.append("<rect width=\"1\" height=\"1\" key=\"\(id)\" fill=\"\(posColor)\" x=\"\(x)\" y=\"\(y)\" />")
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"3\" height=\"3\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1)\" y=\"\(y.cgFloat - 1)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" x=\"\(x.cgFloat - 2.5)\" y=\"\(y.cgFloat - 2.5)\" width=\"6\" height=\"6\"/>")
                         id += 1
                         break
                     case .round:
-                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"1\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
                         id += 1
                         break
                     case .roundedRectangle:
-                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<path key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(posColor)\" stroke-width=\"\(100.cgFloat / 6 * (1 - (1 - size) * 0.75))\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\" />")
+                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * posSize)\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\"/>")
                         id += 1
                         break
                     case .planets:
-                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
                         id += 1
                         for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"0.5\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         break
                     case .dsj:
-                        let width3: CGFloat = posSize
-                        let positionAlpha: CGFloat = posAlpha
-                        let positionColor: String = posColor
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - width3))\" height=\"\(3 - (1 - width3))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - width3)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(width3)\" height=\"\(3 - (1 - width3))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 3 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - width3)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(width3)\" height=\"\(3 - (1 - width3))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat + 3 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - width3)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat + 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - width3))\" height=\"\(width3)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - width3)/2.0)\" y=\"\(y.cgFloat - 3 + (1 - width3)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 3 + (1 - posSize)/2.0)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - width3))\" height=\"\(width3)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - width3)/2.0)\" y=\"\(y.cgFloat + 3 + (1 - width3)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat + 3 + (1 - posSize)/2.0)\"/>");
                         id += 1
                         break
                     }
                 } else if typeTable[x][y] == QRPointType.posOther {
-                    switch posType {
-                    case .rectangle:
-                        pointList.append("<rect width=\"1\" height=\"1\" key=\"\(id)\" fill=\"\(posColor)\" x=\"\(x)\" y=\"\(y)\" />")
-                        id += 1
-                        break
-                    case .round:
-                        break
-                    case .roundedRectangle:
-                        break
-                    case .planets:
-                        break
-                    case .dsj:
-                        break
-                    }
+                    continue
                 } else {
                     switch type {
                     case .rectangle:
-                        pointList.append("<rect opacity=\"\(opacity)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(otherColor)\" x=\"\(x.cgFloat + (1 - size) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\" />")
+                        pointList.append("<rect opacity=\"\(opacity)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(otherColor)\" x=\"\(x.cgFloat + (1 - size) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\"/>")
                         id += 1
                         break
                     case .round:
-                        pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" />")
+                        pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                         id += 1
                         break
                     case .randomRound:
-                        pointList.append("<circle opacity=\"\(opacity)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * Double.random(in: 0.33..<1.0))\" />")
+                        pointList.append("<circle opacity=\"\(opacity)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * Double.random(in: 0.33..<1.0))\"/>")
+                        id += 1
+                        break
+                    case .roundedRectangle:
+                        let cd: CGFloat = size / 4.0
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(opacity)\" fill=\"\(otherColor)\" x=\"\(x.cgFloat + (1 - size) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\" width=\"\(size)\" height=\"\(size)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
                         id += 1
                         break
                     }

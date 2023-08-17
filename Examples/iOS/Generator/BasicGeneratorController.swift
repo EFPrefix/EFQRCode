@@ -168,7 +168,7 @@ extension BasicGeneratorController {
                 style: EFQRCodeStyle.basic(
                     params: EFStyleBasicParams(
                         icon: paramIcon,
-                        position: EFStyleBasicParamsPosition(style: positionStyle, color: positionColor.cgColor, size: 1),
+                        position: EFStyleBasicParamsPosition(style: positionStyle, size: 1, color: positionColor.cgColor),
                         data: EFStyleBasicParamsData(style: dataStyle, scale: dataScale, color: dataColor.withAlphaComponent(dataAlpha).cgColor)
                     )
                 )

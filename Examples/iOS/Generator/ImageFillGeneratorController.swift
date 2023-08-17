@@ -175,8 +175,8 @@ extension ImageFillGeneratorController {
                 style: EFQRCodeStyle.imageFill(
                     params: EFStyleImageFillParams(
                         icon: paramIcon,
-                        backgroundColor: backgroundColor.cgColor,
                         image: paramWatermark,
+                        backgroundColor: backgroundColor.cgColor,
                         maskColor: maskColor.withAlphaComponent(maskAlpha).cgColor
                     )
                 )

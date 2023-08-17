@@ -32,14 +32,21 @@ public class EFStyleResampleImageParams: EFStyleParams {
     }
 }
 
+public enum EFStyleResampleImageParamAlignStyle: CaseIterable {
+    case none
+    case rectangle
+    case round
+    case roundedRectangle
+}
+
 public class EFStyleResampleImageParamsAlign {
     
-    let style: EFStyleParamAlignStyle
+    let style: EFStyleResampleImageParamAlignStyle
     let onlyWhite: Bool
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamAlignStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = CGColor.black) {
+    public init(style: EFStyleResampleImageParamAlignStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = CGColor.black) {
         self.style = style
         self.onlyWhite = onlyWhite
         self.size = size
@@ -47,14 +54,21 @@ public class EFStyleResampleImageParamsAlign {
     }
 }
 
+public enum EFStyleResampleImageParamTimingStyle: CaseIterable {
+    case none
+    case rectangle
+    case round
+    case roundedRectangle
+}
+
 public class EFStyleResampleImageParamsTiming {
     
-    let style: EFStyleParamTimingStyle
+    let style: EFStyleResampleImageParamTimingStyle
     let onlyWhite: Bool
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamTimingStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = CGColor.black) {
+    public init(style: EFStyleResampleImageParamTimingStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = CGColor.black) {
         self.style = style
         self.onlyWhite = onlyWhite
         self.size = size
@@ -68,7 +82,7 @@ public class EFStyleResampleImageParamsPosition {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 0.925, color: CGColor = CGColor.black) {
+    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = CGColor.black) {
         self.style = style
         self.size = size
         self.color = color
@@ -100,9 +114,9 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         let nCount: Int = qrcode.model.moduleCount
         let typeTable: [[QRPointType]] = qrcode.model.getTypeTable()
         var pointList: [String] = []
-        let alignType: EFStyleParamAlignStyle = params.align.style
+        let alignType: EFStyleResampleImageParamAlignStyle = params.align.style
         let alignOnlyWhite: Bool = params.align.onlyWhite
-        let timingType: EFStyleParamTimingStyle = params.timing.style
+        let timingType: EFStyleResampleImageParamTimingStyle = params.timing.style
         let timingOnlyWhite: Bool = params.timing.onlyWhite
         let positionType: EFStyleParamsPositionStyle = params.position.style
         let positionColor: String = try params.position.color.hexString()
@@ -173,22 +187,22 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                         id += 1
                         break
                     case .roundedRectangle:
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"4.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"4.5\"/>")
                         id += 1
-                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * positionSize)\" fill=\"none\" transform=\"translate(\(posX - 7.5),\(posY - 7.5)) scale(\(18.cgFloat / 100),\(18.cgFloat / 100))\" />")
+                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * positionSize)\" fill=\"none\" transform=\"translate(\(posX - 7.5),\(posY - 7.5)) scale(\(18.cgFloat / 100),\(18.cgFloat / 100))\"/>")
                         id += 1
                         break
                     case .planets:
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"4.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"4.5\"/>")
                         id += 1
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.45\" stroke-dasharray=\"1.5,1.5\" stroke=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"9\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.45\" stroke-dasharray=\"1.5,1.5\" stroke=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 1.5)\" r=\"9\"/>")
                         id += 1
                         for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
-                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 3 * EFQRCodeStyleBasic.planetsVw[w] + 1.5)\" cy=\"\(posY + 1.5)\" r=\"\(1.5 * positionSize)\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 3 * EFQRCodeStyleBasic.planetsVw[w] + 1.5)\" cy=\"\(posY + 1.5)\" r=\"\(1.5 * positionSize)\"/>")
                             id += 1
                         }
                         for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
-                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 3 * EFQRCodeStyleBasic.planetsVh[h] + 1.5)\" r=\"\(1.5 * positionSize)\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(posX + 1.5)\" cy=\"\(posY + 3 * EFQRCodeStyleBasic.planetsVh[h] + 1.5)\" r=\"\(1.5 * positionSize)\"/>")
                             id += 1
                         }
                         break
@@ -219,6 +233,10 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
     }
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
+        struct Anchor {
+            static var uniqueMark: Int = 0
+        }
+        
         guard let icon = params.icon else { return [] }
         
         var id: Int = 0
@@ -231,18 +249,20 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         let iconSize: CGFloat = nCount.cgFloat * scale * 3
         let iconXY: CGFloat = (nCount.cgFloat * 3 - iconSize) / 2
         
-        let randomIdDefs: String = EFStyleParamIcon.getIdNum()
-        let randomIdClips: String = EFStyleParamIcon.getIdNum()
+        let randomIdDefs: String = "res\(Anchor.uniqueMark)"
+        Anchor.uniqueMark += 1
+        let randomIdClips: String = "res\(Anchor.uniqueMark)"
+        Anchor.uniqueMark += 1
         
-        pointList.append("<path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100 / iconSize * 3)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" />")
+        pointList.append("<path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100 / iconSize * 3)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/>")
         pointList.append("<g key=\"\(id)\">")
         id += 1
         pointList.append(
-            "<defs><path id=\"defs-path\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></defs>"
-            + "<clipPath id=\"clip-path\(randomIdClips)\">"
-            + "<use xlink:href=\"#defs-path\(randomIdDefs)\" overflow=\"visible\"/>"
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></defs>"
+            + "<clipPath id=\"\(randomIdClips)\">"
+            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"
-            + "<g clip-path=\"url(#clip-path\(randomIdClips))\">"
+            + "<g clip-path=\"url(#\(randomIdClips))\">"
             + (try icon.image.write(id: id, rect: CGRect(x: iconXY, y: iconXY, width: iconSize, height: iconSize), opacity: opacity))
             + "</g>"
             + "</g>"
@@ -277,11 +297,11 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
     }
     
     override func generateSVG(qrcode: QRCode) throws -> String {
-        let alignType: EFStyleParamAlignStyle = params.align.style
+        let alignType: EFStyleResampleImageParamAlignStyle = params.align.style
         let alignColor: String = try params.align.color.hexString()
         let alignAlpha: CGFloat = try params.align.color.alpha()
         let alignSize: CGFloat = params.align.size
-        let timingType: EFStyleParamTimingStyle = params.timing.style
+        let timingType: EFStyleResampleImageParamTimingStyle = params.timing.style
         let timingColor: String = try params.timing.color.hexString()
         let timingAlpha: CGFloat = try params.timing.color.alpha()
         let timingSize: CGFloat = params.timing.size
@@ -300,7 +320,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                 return "<circle opacity=\"\(alignAlpha)\" id=\"B-align-black\" fill=\"\(alignColor)\" cx=\"\(roundR)\" cy=\"\(roundR)\" r=\"\(roundR)\"/>"
             case .roundedRectangle:
                 let cd: CGFloat = 3.02 * alignSize / 4.0
-                return "<rect opacity=\"\(alignAlpha)\" id=\"B-align-black\" fill=\"\(alignColor)\" width=\"\(3.02 * alignSize)\" height=\"\(3.02 * alignSize)\"/ rx=\"\(cd)\" ry=\"\(cd)\">"
+                return "<rect opacity=\"\(alignAlpha)\" id=\"B-align-black\" fill=\"\(alignColor)\" width=\"\(3.02 * alignSize)\" height=\"\(3.02 * alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
             }
         }()
         let timingElement: String = {
@@ -314,7 +334,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                 return "<circle opacity=\"\(timingAlpha)\" id=\"B-timing-black\" fill=\"\(timingColor)\" cx=\"\(roundR)\" cy=\"\(roundR)\" r=\"\(roundR)\"/>"
             case .roundedRectangle:
                 let cd: CGFloat = 3.02 * timingSize / 4.0
-                return "<rect opacity=\"\(timingAlpha)\" id=\"B-timing-black\" fill=\"\(timingColor)\" width=\"\(3.02 * timingSize)\" height=\"\(3.02 * timingSize)\"/ rx=\"\(cd)\" ry=\"\(cd)\">"
+                return "<rect opacity=\"\(timingAlpha)\" id=\"B-timing-black\" fill=\"\(timingColor)\" width=\"\(3.02 * timingSize)\" height=\"\(3.02 * timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
             }
         }()
         
@@ -377,7 +397,7 @@ extension CGImage {
                 
                 let gray: CGFloat = gamma(red, green, blue, alpha)
                 if Double.random(in: 0..<1) > ((gray / 255.0) + exposure - 0.5) * (contrast + 1) + 0.5 && (x % 3 != 1 || y % 3 != 1) {
-                    gpl.append("<use key=\"g_\(x)_\(y)\" x=\"\(x)\" y=\"\(y)\" xlink:href=\"\(color)\" />")
+                    gpl.append("<use key=\"g_\(x)_\(y)\" x=\"\(x)\" y=\"\(y)\" xlink:href=\"\(color)\"/>")
                 }
             }
         }

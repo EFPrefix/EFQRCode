@@ -11,18 +11,31 @@ import CoreGraphics
 import QRCodeSwift
 
 public class EFStyleLineParams: EFStyleParams {
+    
+    public static let defaultPosition: EFStyleLineParamsPosition = EFStyleLineParamsPosition()
+    public static let defaultLine: EFStyleLineParamsLine = EFStyleLineParamsLine()
+    
     let position: EFStyleLineParamsPosition
     let line: EFStyleLineParamsLine
     
-    public init(icon: EFStyleParamIcon? = nil, position: EFStyleLineParamsPosition, line: EFStyleLineParamsLine) {
+    public init(icon: EFStyleParamIcon? = nil, position: EFStyleLineParamsPosition = EFStyleLineParams.defaultPosition, line: EFStyleLineParamsLine = EFStyleLineParams.defaultLine) {
         self.position = position
         self.line = line
         super.init(icon: icon)
     }
 }
 
-public class EFStyleLineParamsPosition: EFStyleBasicParamsPosition {
+public class EFStyleLineParamsPosition {
     
+    let style: EFStyleParamsPositionStyle
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = CGColor.black) {
+        self.style = style
+        self.size = size
+        self.color = color
+    }
 }
 
 public class EFStyleLineParamsLine {
@@ -30,7 +43,7 @@ public class EFStyleLineParamsLine {
     let thickness: CGFloat // (0-1]
     let color: CGColor
     
-    public init(direction: EFStyleLineParamsLineDirection, thickness: CGFloat, color: CGColor) {
+    public init(direction: EFStyleLineParamsLineDirection = .x, thickness: CGFloat = 0.5, color: CGColor = CGColor.black) {
         self.direction = direction
         self.thickness = thickness
         self.color = color
@@ -65,10 +78,14 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
         let type: EFStyleLineParamsLineDirection = params.line.direction
         let size: CGFloat = max(0, params.line.thickness)
         let opacity: CGFloat = max(0, try params.line.color.alpha())
-        let posType: EFStyleParamsPositionStyle = params.position.style
-        var id: Int = 0
         let otherColor: String = try params.line.color.hexString()
-        let posColor: String = try params.position.color.hexString()
+        
+        let posType: EFStyleParamsPositionStyle = params.position.style
+        let positionColor: String = try params.position.color.hexString()
+        let positionAlpha: CGFloat = try params.position.color.alpha()
+        let posSize: CGFloat = params.position.size
+        
+        var id: Int = 0
         
         var available: [[Bool]] = Array(repeating: Array(repeating: true, count: nCount), count: nCount)
         var ava2: [[Bool]] = Array(repeating: Array(repeating: true, count: nCount), count: nCount)
@@ -82,43 +99,52 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                 if typeTable[x][y] == QRPointType.posCenter {
                     switch posType {
                     case .rectangle:
-                        pointList.append("<rect width=\"1\" height=\"1\" key=\"\(id)\" fill=\"\(posColor)\" x=\"\(x)\" y=\"\(y)\" />")
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"3\" height=\"3\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1)\" y=\"\(y.cgFloat - 1)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" x=\"\(x.cgFloat - 2.5)\" y=\"\(y.cgFloat - 2.5)\" width=\"6\" height=\"6\"/>")
                         id += 1
                         break
                     case .round:
-                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"1\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
+                        id += 1
+                        break
+                    case .roundedRectangle:
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                        id += 1
+                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * posSize)\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\"/>")
                         id += 1
                         break
                     case .planets:
-                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<circle key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\" />")
+                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
                         id += 1
                         for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"0.5\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
-                            pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"0.5\" />")
+                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         break
-                    case .roundedRectangle:
-                        pointList.append("<circle key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\" />")
-                        id += 1
-                        pointList.append("<path key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(posColor)\" stroke-width=\"\(100.cgFloat / 6 * (1 - (1 - size) * 0.75))\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\" />")
-                        id += 1
-                        break
                     case .dsj:
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat + 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 3 + (1 - posSize)/2.0)\"/>");
+                        id += 1
+                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat + 3 + (1 - posSize)/2.0)\"/>");
+                        id += 1
                         break
                     }
                 } else if typeTable[x][y] == QRPointType.posOther {
-                    if posType == .rectangle {
-                        pointList.append("<rect width=\"1\" height=\"1\" key=\"\(id)\" fill=\"\(posColor)\" x=\"\(x)\" y=\"\(y)\" />")
-                        id += 1
-                    }
+                    continue
                 } else {
                     switch type {
                     case .horizontal:
