@@ -33,8 +33,8 @@ class ResampleImageGeneratorController: UIViewController, UITextViewDelegate, UI
     var dataColor: UIColor = UIColor.black
     var dataAlpha: CGFloat = 1
     var positionColor: UIColor = UIColor.black
-    var alignStyle: EFStyleParamAlignStyle = .none
-    var timingStyle: EFStyleParamTimingStyle = .none
+    var alignStyle: EFStyleResampleImageParamAlignStyle = .none
+    var timingStyle: EFStyleResampleImageParamTimingStyle = .none
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
@@ -380,7 +380,7 @@ extension ResampleImageGeneratorController {
     }
     
     func chooseAlignStyle() {
-        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleParamAlignStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleResampleImageParamAlignStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.alignStyle = result
@@ -389,7 +389,7 @@ extension ResampleImageGeneratorController {
     }
     
     func chooseTimingStyle() {
-        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleParamTimingStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleResampleImageParamTimingStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.timingStyle = result

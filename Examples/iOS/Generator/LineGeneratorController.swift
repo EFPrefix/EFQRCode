@@ -169,7 +169,7 @@ extension LineGeneratorController {
                 style: EFQRCodeStyle.line(
                     params: EFStyleLineParams(
                         icon: paramIcon,
-                        position: EFStyleLineParamsPosition(style: positionStyle, color: positionColor.cgColor, size: 1),
+                        position: EFStyleLineParamsPosition(style: positionStyle, size: 1, color: positionColor.cgColor),
                         line: EFStyleLineParamsLine(direction: dataStyle, thickness: dataScale, color: dataColor.withAlphaComponent(dataAlpha).cgColor)
                     )
                 )
