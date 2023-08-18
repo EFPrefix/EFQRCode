@@ -240,7 +240,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 This project exists thanks to all the people who already contributed to us. [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
-    <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
+    <img src="https://opencollective.com/efqrcode/contributors.svg?width=890"/>
 </a>
 
 ## Backers

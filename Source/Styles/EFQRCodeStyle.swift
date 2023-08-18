@@ -70,7 +70,7 @@ public class EFStyleParamIcon {
         let imageAlpha: CGFloat = max(0, alpha)
         
         let iconSize: CGFloat = nCount.cgFloat * scale
-        let iconXY: CGFloat = (nCount.cgFloat - iconSize) / 2
+        let iconXY: CGFloat = (nCount.cgFloat - iconSize) / 2.0
         
         let bdColor: String = try borderColor.hexString()
         let bdAlpha: CGFloat = max(0, try borderColor.alpha())
@@ -80,16 +80,21 @@ public class EFStyleParamIcon {
         let randomIdClips: String = "icon\(Anchor.uniqueMark)"
         Anchor.uniqueMark += 1
         
-        pointList.append("<path opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100 / iconSize * 1)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/>")
+        pointList.append("<path opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100.0 / iconSize)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>")
         pointList.append("<g key=\"\(id)\">")
         id += 1
+        
+        let iconOffset: CGFloat = iconXY * 0.024
+        let rectXY: CGFloat = iconXY - iconOffset
+        let length: CGFloat = iconSize + 2.0 * iconOffset
+        let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
         pointList.append(
-            "<defs><path opacity=\"\(bdAlpha)\" id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></defs>"
+            "<defs><path id=\"\(randomIdDefs)\" opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/></defs>"
             + "<clipPath id=\"\(randomIdClips)\">"
             + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"
             + "<g clip-path=\"url(#\(randomIdClips))\">"
-            + (try image.write(id: id, rect: CGRect(x: iconXY, y: iconXY, width: iconSize, height: iconSize), opacity: imageAlpha))
+            + (try image.write(id: id, rect: iconRect, opacity: imageAlpha))
             + "</g>"
             + "</g>"
         )
@@ -109,21 +114,21 @@ public enum EFStyleParamImage {
         switch self {
         case .static(let image):
             let imageCliped: CGImage = image.clipImageToSquare() ?? image
-            let pngBase64EncodedString = try imageCliped.pngBase64EncodedString()
-            return "<image key=\"\(id)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\"/>"
+            let pngBase64EncodedString: String = try imageCliped.pngBase64EncodedString()
+            return "<image key=\"\(id)\" opacity=\"\(opacity)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\"/>"
         case .animated(let images, let duration):
-            let pngBase64EncodedStrings = try images.map {
+            let pngBase64EncodedStrings: [String] = try images.map {
                 let imageCliped: CGImage = $0.clipImageToSquare() ?? $0
                 return try imageCliped.pngBase64EncodedString()
             }
             if pngBase64EncodedStrings.isEmpty { return "" }
             Anchor.uniqueMark += 1
             let framePrefix: String = "\(Anchor.uniqueMark)fm"
-            let defs = pngBase64EncodedStrings.enumerated().map { (index, base64Image) -> String in
+            let defs: String = pngBase64EncodedStrings.enumerated().map { (index, base64Image) -> String in
                 "<image id=\"\(framePrefix)\(index + 1)\" xlink:href=\"\(base64Image)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\"/>"
             }.joined()
             let useValues = (1...pngBase64EncodedStrings.count).map { "#\(framePrefix)\($0)" }.joined(separator: ";")
-            let svg = "<g key=\"\(id)\"><defs>\(defs)</defs><use xlink:href=\"#\(framePrefix)1\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\" /></use></g>"
+            let svg = "<g key=\"\(id)\"><defs>\(defs)</defs><use xlink:href=\"#\(framePrefix)1\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\"/></use></g>"
             return svg
         }
     }
