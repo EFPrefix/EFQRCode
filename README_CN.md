@@ -246,7 +246,7 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 这个项目的存在多亏了所有贡献的人。[[参与贡献](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
-    <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
+    <img src="https://opencollective.com/efqrcode/contributors.svg?width=890"/>
 </a>
 
 ## 捐赠

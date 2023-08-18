@@ -32,11 +32,14 @@ class ImageFillGeneratorController: UIViewController, UITextViewDelegate, UITabl
     var image: EFStyleParamImage? = nil
     var imageAlpha: CGFloat = 1
     var backgroundColor: UIColor = UIColor.white
+    var backgroundAlpha: CGFloat = 1
     var maskColor: UIColor = UIColor.black
     var maskAlpha: CGFloat = 0.5
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension ImageFillGeneratorController {
@@ -155,7 +158,7 @@ extension ImageFillGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor)
             }
             return nil
         }()
@@ -176,7 +179,7 @@ extension ImageFillGeneratorController {
                     params: EFStyleImageFillParams(
                         icon: paramIcon,
                         image: paramWatermark,
-                        backgroundColor: backgroundColor.cgColor,
+                        backgroundColor: backgroundColor.withAlphaComponent(backgroundAlpha).cgColor,
                         maskColor: maskColor.withAlphaComponent(maskAlpha).cgColor
                     )
                 )
@@ -272,11 +275,50 @@ extension ImageFillGeneratorController {
         popActionSheet(alert: alert)
     }
 
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(2)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
     func chooseMaskAlpha() {
         chooseFromList(title: Localized.Title.maskAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
             
             self.maskAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseBackgroundAlpha() {
+        chooseFromList(title: Localized.Title.backgroundAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.backgroundAlpha = result
             self.refresh()
         }
     }
@@ -394,17 +436,29 @@ extension ImageFillGeneratorController {
         }
     }
     
+    func chooseIconBorderAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
+            self.refresh()
+        }
+    }
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.watermark,
         Localized.Title.watermarkAlpha,
         Localized.Title.backgroundColor,
+        Localized.Title.backgroundAlpha,
         Localized.Title.maskColor,
         Localized.Title.maskAlpha,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -414,11 +468,14 @@ extension ImageFillGeneratorController {
             chooseWatermark,
             chooseWatermarkAlpha,
             chooseBackgroundColor,
+            chooseBackgroundAlpha,
             chooseMaskColor,
             chooseMaskAlpha,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderAlpha,
         ][indexPath.row]()
     }
 
@@ -448,11 +505,14 @@ extension ImageFillGeneratorController {
             "", // watermark
             "\(imageAlpha)",
             "", // backgroundColor
+            "\(backgroundAlpha)",
             "", // maskColor
             "\(maskAlpha)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)",
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -491,9 +551,9 @@ extension ImageFillGeneratorController {
                     break
                 }
             case 3:
-                rightImageView.backgroundColor = backgroundColor
-            case 4:
-                rightImageView.backgroundColor = maskColor
+                rightImageView.backgroundColor = backgroundColor.withAlphaComponent(backgroundAlpha)
+            case 5:
+                rightImageView.backgroundColor = maskColor.withAlphaComponent(maskAlpha)
             case 7:
                 switch icon {
                 case .static(let image):
@@ -506,6 +566,8 @@ extension ImageFillGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 10:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconAlpha)
             default:
                 break
             }
@@ -540,7 +602,7 @@ extension ImageFillGeneratorController: UIPopoverPresentationControllerDelegate,
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = [backgroundColor, maskColor][colorIndex]
+        colorSelectionController.color = [backgroundColor, maskColor, iconBorderColor][colorIndex]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -568,6 +630,9 @@ extension ImageFillGeneratorController: UIPopoverPresentationControllerDelegate,
             break
         case 1:
             maskColor = color
+            break
+        case 2:
+            iconBorderColor = color
             break
         default:
             break

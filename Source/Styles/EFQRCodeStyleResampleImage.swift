@@ -249,21 +249,29 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         let iconSize: CGFloat = nCount.cgFloat * scale * 3
         let iconXY: CGFloat = (nCount.cgFloat * 3 - iconSize) / 2
         
+        let bdColor: String = try icon.borderColor.hexString()
+        let bdAlpha: CGFloat = max(0, try icon.borderColor.alpha())
+        
         let randomIdDefs: String = "res\(Anchor.uniqueMark)"
         Anchor.uniqueMark += 1
         let randomIdClips: String = "res\(Anchor.uniqueMark)"
         Anchor.uniqueMark += 1
         
-        pointList.append("<path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"#FFF\" stroke-width=\"\(100 / iconSize * 3)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/>")
+        pointList.append("<path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100 / iconSize * 3)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/>")
         pointList.append("<g key=\"\(id)\">")
         id += 1
+        
+        let iconOffset: CGFloat = iconXY * 0.024
+        let rectXY: CGFloat = iconXY - iconOffset
+        let length: CGFloat = iconSize + 2.0 * iconOffset
+        let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
         pointList.append(
-            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"#FFF\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\" /></defs>"
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/></defs>"
             + "<clipPath id=\"\(randomIdClips)\">"
             + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"
             + "<g clip-path=\"url(#\(randomIdClips))\">"
-            + (try icon.image.write(id: id, rect: CGRect(x: iconXY, y: iconXY, width: iconSize, height: iconSize), opacity: opacity))
+            + (try icon.image.write(id: id, rect: iconRect, opacity: opacity))
             + "</g>"
             + "</g>"
         )
@@ -286,7 +294,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                 "<g id=\"resfm\(index + 1)\">\(resFrame.joined())</g>"
             }.joined()
             let useValues = (1...resFrames.count).map { "#resfm\($0)" }.joined(separator: ";")
-            let svg = "<g><defs>\(defs)</defs><use xlink:href=\"#resfm\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\" /></use></g>"
+            let svg = "<g><defs>\(defs)</defs><use xlink:href=\"#resfm\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\"/></use></g>"
             return svg
         }
     }
