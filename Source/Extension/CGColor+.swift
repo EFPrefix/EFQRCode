@@ -11,10 +11,6 @@ import CoreGraphics
 
 extension CGColor {
     
-    public static let white: CGColor = CGColor.createWith(rgb: 0xffffff)!
-    public static let black: CGColor = CGColor.createWith(rgb: 0x000000)!
-    public static let clear: CGColor = CGColor.createWith(rgb: 0xffffff, alpha: 0)!
-    
     static func createWith(rgb: UInt32, alpha: CGFloat = 1.0) -> CGColor? {
         let red = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
         let green = CGFloat((rgb & 0x00FF00) >> 8) / 255.0

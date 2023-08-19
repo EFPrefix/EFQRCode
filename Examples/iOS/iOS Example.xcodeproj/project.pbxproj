@@ -321,16 +321,16 @@
 		125E59FB2A56A04D00B508F2 /* Generator */ = {
 			isa = PBXGroup;
 			children = (
-				12DCACA72A5A32B9009B5414 /* ImageFillGeneratorController.swift */,
 				125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */,
 				12DCAC962A581B6B009B5414 /* BubbleGeneratorController.swift */,
 				12DCAC992A58282D009B5414 /* DSJGeneratorController.swift */,
-				12DCAC9C2A582FA2009B5414 /* LineGeneratorController.swift */,
-				12DCAC9F2A583F11009B5414 /* FunctionGeneratorController.swift */,
+				12DCACA72A5A32B9009B5414 /* ImageFillGeneratorController.swift */,
+				12DCACA92A5A6F5F009B5414 /* D25GeneratorController.swift */,
 				12DCACA12A58EA98009B5414 /* RandomRectangleGeneratorController.swift */,
 				12DCACA32A58F000009B5414 /* ResampleImageGeneratorController.swift */,
+				12DCAC9C2A582FA2009B5414 /* LineGeneratorController.swift */,
+				12DCAC9F2A583F11009B5414 /* FunctionGeneratorController.swift */,
 				12DCACA52A596006009B5414 /* ImageGeneratorController.swift */,
-				12DCACA92A5A6F5F009B5414 /* D25GeneratorController.swift */,
 			);
 			path = Generator;
 			sourceTree = "<group>";

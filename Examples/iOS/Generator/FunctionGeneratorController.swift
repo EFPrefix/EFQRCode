@@ -31,13 +31,18 @@ class FunctionGeneratorController: UIViewController, UITextViewDelegate, UITable
     var dataStyle: EFStyleFunctionParamsDataStyle = .round
     var dataFunction: Int = 0
     var dataColor: UIColor = UIColor.black
-    var circleColor: UIColor = UIColor.black
     var dataAlpha: CGFloat = 1
+    var circleColor: UIColor = UIColor.black
+    var circleAlpha: CGFloat = 1
     var positionStyle: EFStyleParamsPositionStyle = .round
+    var positionThickness: CGFloat = 0.9
     var positionColor: UIColor = UIColor.black
+    var positionAlpha: CGFloat = 1
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension FunctionGeneratorController {
@@ -156,7 +161,12 @@ extension FunctionGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -169,9 +179,9 @@ extension FunctionGeneratorController {
                 style: EFQRCodeStyle.function(
                     params: EFStyleFunctionParams(
                         icon: paramIcon,
-                        position: EFStyleFunctionParamsPosition(style: positionStyle, size: 1, color: positionColor.cgColor),
+                        position: EFStyleFunctionParamsPosition(style: positionStyle, size: positionThickness, color: positionColor.withAlphaComponent(positionAlpha).cgColor),
                         data: EFStyleFunctionParamsData(
-                            function: dataFunction == 0 ? .fade(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor) : .circle(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor, circleColor: circleColor.withAlphaComponent(dataAlpha).cgColor) ,
+                            function: dataFunction == 0 ? .fade(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor) : .circle(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor, circleColor: circleColor.withAlphaComponent(circleAlpha).cgColor) ,
                             style: dataStyle
                         )
                     )
@@ -221,7 +231,7 @@ extension FunctionGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(1)
+                self?.customColor(0)
             }
         )
         #endif
@@ -238,9 +248,77 @@ extension FunctionGeneratorController {
         popActionSheet(alert: alert)
     }
     
+    func chooseDataAlpha() {
+        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseDataFunction() {
+        let items = ["fade", "circle"]
+        chooseFromList(title: Localized.Title.dataFunction, items: items) { [weak self] result in
+            guard let self = self else { return }
+            
+            guard let index = items.firstIndex(of: result) else { return }
+            self.dataFunction = index
+            self.refresh()
+        }
+    }
+    
     func chooseCircleColor() {
         let alert = UIAlertController(
             title: Localized.Title.circleColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(1)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.circleColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseCircleAlpha() {
+        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.circleAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionThickness() {
+        chooseFromList(title: Localized.Title.positionThickness, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionThickness = result
+            self.refresh()
+        }
+    }
+
+    func choosePositionColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.foregroundColor,
             message: nil,
             preferredStyle: .actionSheet
         )
@@ -260,42 +338,21 @@ extension FunctionGeneratorController {
                 UIAlertAction(title: color.name, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    self.dataColor = color.color
-                    self.refresh()
-                }
-            )
-        }
-        popActionSheet(alert: alert)
-    }
-
-    func choosePositionColor() {
-        let alert = UIAlertController(
-            title: Localized.Title.foregroundColor,
-            message: nil,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(
-            UIAlertAction(title: Localized.cancel, style: .cancel)
-        )
-        #if os(iOS)
-        alert.addAction(
-            UIAlertAction(title: Localized.custom, style: .default) {
-                [weak self] _ in
-                self?.customColor(0)
-            }
-        )
-        #endif
-        for color in Localized.Parameters.colors {
-            alert.addAction(
-                UIAlertAction(title: color.name, style: .default) {
-                    [weak self] _ in
-                    guard let self = self else { return }
                     self.positionColor = color.color
                     self.refresh()
                 }
             )
         }
         popActionSheet(alert: alert)
+    }
+    
+    func choosePositionAlpha() {
+        chooseFromList(title: Localized.Title.positionColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionAlpha = result
+            self.refresh()
+        }
     }
 
     func chooseIcon() {
@@ -341,26 +398,6 @@ extension FunctionGeneratorController {
         popActionSheet(alert: alert)
     }
     
-    func chooseDataAlpha() {
-        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.dataAlpha = result
-            self.refresh()
-        }
-    }
-    
-    func chooseDataFunction() {
-        let items = ["fade", "circle"]
-        chooseFromList(title: Localized.Title.dataFunction, items: items) { [weak self] result in
-            guard let self = self else { return }
-            
-            guard let index = items.firstIndex(of: result) else { return }
-            self.dataFunction = index
-            self.refresh()
-        }
-    }
-    
     func chooseIconScale() {
         chooseFromList(title: Localized.Title.iconScale, items: [0, 0.11, 0.22, 0.33]) { [weak self] result in
             guard let self = self else { return }
@@ -375,6 +412,45 @@ extension FunctionGeneratorController {
             guard let self = self else { return }
             
             self.iconAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(3)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
             self.refresh()
         }
     }
@@ -396,20 +472,25 @@ extension FunctionGeneratorController {
             self.refresh()
         }
     }
-
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.dataStyle,
         Localized.Title.dataFunction,
         Localized.Title.dataColor,
-        Localized.Title.circleColor,
         Localized.Title.dataAlpha,
+        Localized.Title.circleColor,
+        Localized.Title.circleColorAlpha,
         Localized.Title.positionStyle,
+        Localized.Title.positionThickness,
         Localized.Title.positionColor,
+        Localized.Title.positionColorAlpha,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -419,13 +500,18 @@ extension FunctionGeneratorController {
             chooseDataStyle,
             chooseDataFunction,
             chooseDataColor,
-            chooseCircleColor,
             chooseDataAlpha,
+            chooseCircleColor,
+            chooseCircleAlpha,
             choosePositionStyle,
+            choosePositionThickness,
             choosePositionColor,
+            choosePositionAlpha,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha
         ][indexPath.row]()
     }
 
@@ -455,13 +541,18 @@ extension FunctionGeneratorController {
             "\(dataStyle)",
             "\(["fade", "circle"][dataFunction])",
             "", // dataColor
-            "", // circleColor
             "\(dataAlpha)",
+            "", // circleColor
+            "\(circleAlpha)",
             "\(positionStyle)",
+            "\(positionThickness)",
             "", // positionColor
+            "\(positionAlpha)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)"
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -488,12 +579,12 @@ extension FunctionGeneratorController {
 
             switch indexPath.row {
             case 3:
-                rightImageView.backgroundColor = dataColor
-            case 4:
-                rightImageView.backgroundColor = circleColor
-            case 7:
-                rightImageView.backgroundColor = positionColor
-            case 8:
+                rightImageView.backgroundColor = dataColor.withAlphaComponent(dataAlpha)
+            case 5:
+                rightImageView.backgroundColor = circleColor.withAlphaComponent(circleAlpha)
+            case 9:
+                rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
+            case 11:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -505,6 +596,8 @@ extension FunctionGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 14:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -518,12 +611,12 @@ extension FunctionGeneratorController {
 extension FunctionGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
 
     struct EFColorPicker {
-        static var colorIndex = 0
+        static var index: Int = 0
     }
 
-    func customColor(_ colorIndex: Int) {
+    func customColor(_ index: Int) {
 
-        EFColorPicker.colorIndex = colorIndex
+        EFColorPicker.index = index
 
         let colorSelectionController = EFColorSelectionViewController()
         let navCtrl = UINavigationController(rootViewController: colorSelectionController)
@@ -539,7 +632,7 @@ extension FunctionGeneratorController: UIPopoverPresentationControllerDelegate, 
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = [positionColor, dataColor, circleColor][colorIndex]
+        colorSelectionController.color = [dataColor, circleColor, positionColor, iconBorderColor][index]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -561,15 +654,18 @@ extension FunctionGeneratorController: UIPopoverPresentationControllerDelegate, 
 
     // MARK: EFColorViewDelegate
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-        switch EFColorPicker.colorIndex {
+        switch EFColorPicker.index {
         case 0:
-            positionColor = color
-            break
-        case 1:
             dataColor = color
             break
-        case 2:
+        case 1:
             circleColor = color
+            break
+        case 2:
+            positionColor = color
+            break
+        case 3:
+            iconBorderColor = color
             break
         default:
             break

@@ -29,12 +29,17 @@ class BubbleGeneratorController: UIViewController, UITextViewDelegate, UITableVi
 
     // MARK: - Param
     var inputCorrectionLevel: EFCorrectionLevel = .h
-    var dataColor: UIColor = UIColor.black
+    var dataColor: UIColor = UIColor(hexRGB: 0x8ED1FC)
     var dataAlpha: CGFloat = 1
-    var positionColor: UIColor = UIColor.black
+    var positionColor: UIColor = UIColor(hexRGB: 0x0693E3)
+    var positionStyle: EFStyleParamsPositionStyle = .round
+    var positionAlpha: CGFloat = 1
+    var positionSize: CGFloat = 1
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor(hexRGB: 0x8ED1FC)
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension BubbleGeneratorController {
@@ -153,7 +158,12 @@ extension BubbleGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -167,7 +177,11 @@ extension BubbleGeneratorController {
                     params: EFStyleBubbleParams(
                         icon: paramIcon,
                         dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor,
-                        positionColor: positionColor.cgColor
+                        position: EFStyleBubbleParamsPosition(
+                            style: positionStyle,
+                            size: positionSize,
+                            color: positionColor.withAlphaComponent(positionAlpha).cgColor
+                        )
                     )
                 )
             )
@@ -215,7 +229,7 @@ extension BubbleGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(false)
+                self?.customColor(1)
             }
         )
         #endif
@@ -245,7 +259,7 @@ extension BubbleGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(true)
+                self?.customColor(0)
             }
         )
         #endif
@@ -305,6 +319,72 @@ extension BubbleGeneratorController {
         popActionSheet(alert: alert)
     }
     
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(2)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionStyle() {
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionStyle = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionAlpha() {
+        chooseFromList(title: Localized.Title.positionColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionSize() {
+        chooseFromList(title: Localized.Title.positionThickness, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionSize = result
+            self.refresh()
+        }
+    }
+    
     func chooseDataAlpha() {
         chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
@@ -337,10 +417,15 @@ extension BubbleGeneratorController {
         Localized.Title.inputCorrectionLevel,
         Localized.Title.dataColor,
         Localized.Title.dataAlpha,
+        Localized.Title.positionStyle,
         Localized.Title.positionColor,
+        Localized.Title.positionColorAlpha,
+        Localized.Title.positionThickness,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -349,10 +434,15 @@ extension BubbleGeneratorController {
             chooseInputCorrectionLevel,
             chooseDataColor,
             chooseDataAlpha,
+            choosePositionStyle,
             choosePositionColor,
+            choosePositionAlpha,
+            choosePositionSize,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha,
         ][indexPath.row]()
     }
 
@@ -381,10 +471,15 @@ extension BubbleGeneratorController {
             "\(inputCorrectionLevel)",
             "", // dataColor
             "\(dataAlpha)",
+            "\(positionStyle)",
+            "\(positionSize)",
             "", // positionColor
+            "\(positionAlpha)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)",
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -411,10 +506,10 @@ extension BubbleGeneratorController {
 
             switch indexPath.row {
             case 1:
-                rightImageView.backgroundColor = dataColor
-            case 3:
-                rightImageView.backgroundColor = positionColor
-            case 4:
+                rightImageView.backgroundColor = dataColor.withAlphaComponent(dataAlpha)
+            case 5:
+                rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
+            case 7:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -426,6 +521,8 @@ extension BubbleGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 10:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -439,12 +536,12 @@ extension BubbleGeneratorController {
 extension BubbleGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
 
     struct EFColorPicker {
-        static var isPosition = false
+        static var index: Int = 0
     }
 
-    func customColor(_ isPosition: Bool) {
+    func customColor(_ index: Int) {
 
-        EFColorPicker.isPosition = isPosition
+        EFColorPicker.index = index
 
         let colorSelectionController = EFColorSelectionViewController()
         let navCtrl = UINavigationController(rootViewController: colorSelectionController)
@@ -460,7 +557,7 @@ extension BubbleGeneratorController: UIPopoverPresentationControllerDelegate, EF
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = EFColorPicker.isPosition ? positionColor : dataColor
+        colorSelectionController.color = [positionColor, dataColor, iconBorderColor][index]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -482,10 +579,18 @@ extension BubbleGeneratorController: UIPopoverPresentationControllerDelegate, EF
 
     // MARK: EFColorViewDelegate
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-        if EFColorPicker.isPosition {
+        switch EFColorPicker.index {
+        case 0:
             positionColor = color
-        } else {
+            break
+        case 1:
             dataColor = color
+            break
+        case 2:
+            iconBorderColor = color
+            break
+        default:
+            break
         }
         refresh()
     }

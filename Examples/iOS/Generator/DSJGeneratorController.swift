@@ -12,6 +12,7 @@ import SnapKit
 import Photos
 import EFQRCode
 import MobileCoreServices
+import EFColorPicker
 
 class DSJGeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
 
@@ -30,11 +31,21 @@ class DSJGeneratorController: UIViewController, UITextViewDelegate, UITableViewD
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var dataThickness: CGFloat = 0.7
     var dataXThickness: CGFloat = 0.7
-    var positionStyle: Int = 1
+    var horizontalLineColor: UIColor = UIColor(hexRGB: 0xF6B506)
+    var horizontalLineColorAlpha: CGFloat = 1
+    var verticalLineColor: UIColor = UIColor(hexRGB: 0xE02020)
+    var verticalLineColorAlpha: CGFloat = 1
+    var xColor: UIColor = UIColor(hexRGB: 0x0B2D97)
+    var xColorAlpha: CGFloat = 1
+    var positionStyle: EFStyleParamsPositionStyle = .dsj
     var positionThickness: CGFloat = 0.9
+    var positionColor: UIColor = UIColor(hexRGB: 0x0B2D97)
+    var positionAlpha: CGFloat = 1
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension DSJGeneratorController {
@@ -153,7 +164,12 @@ extension DSJGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -166,8 +182,18 @@ extension DSJGeneratorController {
                 style: EFQRCodeStyle.dsj(
                     params: EFStyleDSJParams(
                         icon: paramIcon,
-                        position: EFStyleDSJParamsPosition(style: positionStyle == 0 ? .rectangle : .dsj, size: positionThickness),
-                        data: EFStyleDSJParamsData(lineSize: dataThickness, xSize: dataXThickness)
+                        position: EFStyleDSJParamsPosition(
+                            style: positionStyle,
+                            size: positionThickness,
+                            color: positionColor.withAlphaComponent(positionAlpha).cgColor
+                        ),
+                        data: EFStyleDSJParamsData(
+                            lineSize: dataThickness,
+                            xSize: dataXThickness,
+                            horizontalLineColor: horizontalLineColor.withAlphaComponent(horizontalLineColorAlpha).cgColor,
+                            verticalLineColor: verticalLineColor.withAlphaComponent(verticalLineColorAlpha).cgColor,
+                            xColor: xColor.withAlphaComponent(xColorAlpha).cgColor
+                        )
                     )
                 )
             )
@@ -220,13 +246,128 @@ extension DSJGeneratorController {
         }
     }
     
-    func choosePositionStyle() {
-        let items = ["rectangle", "dsj"]
-        chooseFromList(title: Localized.Title.positionStyle, items: items) { [weak self] result in
+    func chooseHorizontalLineColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.horizontalLineColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(0)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.horizontalLineColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseHorizontalLineColorAlpha() {
+        chooseFromList(title: Localized.Title.horizontalLineColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
             
-            guard let index = items.firstIndex(of: result) else { return }
-            self.positionStyle = index
+            self.horizontalLineColorAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseVerticalLineColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.verticalLineColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(1)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.verticalLineColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseVerticalLineColorAlpha() {
+        chooseFromList(title: Localized.Title.verticalLineColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.verticalLineColorAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseXColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.xColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(2)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.xColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseXColorAlpha() {
+        chooseFromList(title: Localized.Title.xColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.xColorAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionStyle() {
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionStyle = result
             self.refresh()
         }
     }
@@ -239,7 +380,46 @@ extension DSJGeneratorController {
             self.refresh()
         }
     }
+    
+    func choosePositionColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.positionColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(3)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.positionColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
 
+    func choosePositionAlpha() {
+        chooseFromList(title: Localized.Title.positionColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionAlpha = result
+            self.refresh()
+        }
+    }
+    
     func chooseIcon() {
         let alert = UIAlertController(
             title: Localized.Title.icon,
@@ -301,16 +481,65 @@ extension DSJGeneratorController {
         }
     }
     
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(4)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
+            self.refresh()
+        }
+    }
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.dataThickness,
         Localized.Title.dataXThickness,
+        Localized.Title.horizontalLineColor,
+        Localized.Title.horizontalLineColorAlpha,
+        Localized.Title.verticalLineColor,
+        Localized.Title.verticalLineColorAlpha,
+        Localized.Title.xColor,
+        Localized.Title.xColorAlpha,
         Localized.Title.positionStyle,
         Localized.Title.positionThickness,
+        Localized.Title.positionColor,
+        Localized.Title.positionColorAlpha,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -319,11 +548,21 @@ extension DSJGeneratorController {
             chooseInputCorrectionLevel,
             chooseDataThickness,
             chooseDataXThickness,
+            chooseHorizontalLineColor,
+            chooseHorizontalLineColorAlpha,
+            chooseVerticalLineColor,
+            chooseVerticalLineColorAlpha,
+            chooseXColor,
+            chooseXColorAlpha,
             choosePositionStyle,
             choosePositionThickness,
+            choosePositionColor,
+            choosePositionAlpha,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha
         ][indexPath.row]()
     }
 
@@ -352,11 +591,21 @@ extension DSJGeneratorController {
             "\(inputCorrectionLevel)",
             "\(dataThickness)",
             "\(dataXThickness)",
-            "\(["rectangle", "dsj"][positionStyle])",
+            "", // horizontalLineColor
+            "\(horizontalLineColorAlpha)",
+            "", // verticalLineColor
+            "\(verticalLineColorAlpha)",
+            "", // xColor
+            "\(xColorAlpha)",
+            "\(positionStyle)",
             "\(positionThickness)",
+            "", // positionColor
+            "\(positionAlpha)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)",
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -382,7 +631,15 @@ extension DSJGeneratorController {
             cell.accessoryView = rightImageView
 
             switch indexPath.row {
+            case 3:
+                rightImageView.backgroundColor = horizontalLineColor.withAlphaComponent(horizontalLineColorAlpha)
             case 5:
+                rightImageView.backgroundColor = verticalLineColor.withAlphaComponent(verticalLineColorAlpha)
+            case 7:
+                rightImageView.backgroundColor = xColor.withAlphaComponent(xColorAlpha)
+            case 11:
+                rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
+            case 13:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -394,6 +651,8 @@ extension DSJGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 16:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -403,6 +662,77 @@ extension DSJGeneratorController {
 }
 
 #if os(iOS)
+// MARK: - EFColorPicker
+extension DSJGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
+
+    struct EFColorPicker {
+        static var index: Int = 0
+    }
+
+    func customColor(_ index: Int) {
+        EFColorPicker.index = index
+
+        let colorSelectionController = EFColorSelectionViewController()
+        let navCtrl = UINavigationController(rootViewController: colorSelectionController)
+        navCtrl.navigationBar.backgroundColor = .white
+        navCtrl.navigationBar.isTranslucent = false
+        navCtrl.modalPresentationStyle = .popover
+        navCtrl.popoverPresentationController?.delegate = self
+        navCtrl.popoverPresentationController?.sourceView = tableView
+        navCtrl.popoverPresentationController?.sourceRect = tableView.bounds
+        navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFitting(
+            UIView.layoutFittingCompressedSize
+        )
+
+        colorSelectionController.isColorTextFieldHidden = false
+        colorSelectionController.delegate = self
+        colorSelectionController.color = [horizontalLineColor, verticalLineColor, xColor, positionColor, iconBorderColor][index]
+
+        if .compact == traitCollection.horizontalSizeClass {
+            let doneBtn = UIBarButtonItem(
+                title: Localized.done,
+                style: .done,
+                target: self,
+                action: #selector(ef_dismissViewController(sender:))
+            )
+            colorSelectionController.navigationItem.rightBarButtonItem = doneBtn
+        }
+        present(navCtrl, animated: true)
+    }
+    
+    // Private
+    @objc private func ef_dismissViewController(sender: UIBarButtonItem) {
+        dismiss(animated: true)
+        refresh()
+    }
+
+    // MARK: EFColorViewDelegate
+    func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+        switch EFColorPicker.index {
+        case 0:
+            horizontalLineColor = color
+            break
+        case 1:
+            verticalLineColor = color
+            break
+        case 2:
+            xColor = color
+            break
+        case 3:
+            positionColor = color
+            break
+        case 4:
+            iconBorderColor = color
+            break
+        default:
+            break
+        }
+        refresh()
+    }
+}
+#endif
+
+#if os(iOS)
 extension DSJGeneratorController: UIImagePickerControllerDelegate {
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -410,7 +740,6 @@ extension DSJGeneratorController: UIImagePickerControllerDelegate {
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
         var finalImage: UIImage?
         if let tryImage = info[.editedImage] as? UIImage {
             finalImage = tryImage
