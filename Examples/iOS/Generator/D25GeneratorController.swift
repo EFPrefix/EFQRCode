@@ -30,13 +30,18 @@ class D25GeneratorController: UIViewController, UITextViewDelegate, UITableViewD
     // MARK: - Param
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var topColor: UIColor = UIColor.black
+    var topAlpha: CGFloat = 1
     var leftColor: UIColor = UIColor.lightGray
+    var leftAlpha: CGFloat = 1
     var rightColor: UIColor = UIColor.white
+    var rightAlpha: CGFloat = 1
     var dataHeight: CGFloat = 2
     var positionHeight: CGFloat = 2
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension D25GeneratorController {
@@ -155,7 +160,12 @@ extension D25GeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -376,17 +386,88 @@ extension D25GeneratorController {
         }
     }
     
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(3)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTopColorAlpha() {
+        chooseFromList(title: Localized.Title.topColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.topAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseLeftColorAlpha() {
+        chooseFromList(title: Localized.Title.leftColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.leftAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseRightColorAlpha() {
+        chooseFromList(title: Localized.Title.rightColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.rightAlpha = result
+            self.refresh()
+        }
+    }
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.topColor,
+        Localized.Title.topColorAlpha,
         Localized.Title.leftColor,
+        Localized.Title.leftColorAlpha,
         Localized.Title.rightColor,
+        Localized.Title.rightColorAlpha,
         Localized.Title.dataHeight,
         Localized.Title.positionHeight,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -394,13 +475,18 @@ extension D25GeneratorController {
         [
             chooseInputCorrectionLevel,
             chooseTopColor,
+            chooseTopColor,
             chooseLeftColor,
+            chooseLeftColor,
+            chooseRightColor,
             chooseRightColor,
             chooseDataHeight,
             choosePositionHeight,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha,
         ][indexPath.row]()
     }
 
@@ -428,13 +514,18 @@ extension D25GeneratorController {
         let detailArray = [
             "\(inputCorrectionLevel)",
             "", // topColor
+            "\(topAlpha)",
             "", // leftColor
+            "\(leftAlpha)",
             "", // rightColor
+            "\(rightAlpha)",
             "\(dataHeight)",
             "\(positionHeight)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)",
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -461,12 +552,12 @@ extension D25GeneratorController {
 
             switch indexPath.row {
             case 1:
-                rightImageView.backgroundColor = topColor
-            case 2:
-                rightImageView.backgroundColor = leftColor
+                rightImageView.backgroundColor = topColor.withAlphaComponent(topAlpha)
             case 3:
-                rightImageView.backgroundColor = rightColor
-            case 6:
+                rightImageView.backgroundColor = leftColor.withAlphaComponent(leftAlpha)
+            case 5:
+                rightImageView.backgroundColor = rightColor.withAlphaComponent(rightAlpha)
+            case 9:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -478,6 +569,8 @@ extension D25GeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 12:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -512,7 +605,7 @@ extension D25GeneratorController: UIPopoverPresentationControllerDelegate, EFCol
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = [topColor, leftColor, rightColor][colorIndex]
+        colorSelectionController.color = [topColor, leftColor, rightColor, iconBorderColor][colorIndex]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -543,6 +636,9 @@ extension D25GeneratorController: UIPopoverPresentationControllerDelegate, EFCol
             break
         case 2:
             rightColor = color
+            break
+        case 3:
+            iconBorderColor = color
             break
         default:
             break

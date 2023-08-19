@@ -42,12 +42,15 @@ public enum EFStyleImageParamAlignStyle: CaseIterable {
 
 public class EFStyleImageParamsAlign {
     
+    public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
+    
     let style: EFStyleImageParamAlignStyle
     let size: CGFloat
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleImageParamAlignStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = CGColor.black, colorLight: CGColor = CGColor.white) {
+    public init(style: EFStyleImageParamAlignStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsAlign.defaultColorDark, colorLight: CGColor = EFStyleImageParamsAlign.defaultColorLight) {
         self.style = style
         self.size = size
         self.colorDark = colorDark
@@ -64,12 +67,15 @@ public enum EFStyleImageParamTimingStyle: CaseIterable {
 
 public class EFStyleImageParamsTiming {
     
+    public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
+    
     let style: EFStyleImageParamTimingStyle
     let size: CGFloat
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleImageParamTimingStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = CGColor.black, colorLight: CGColor = CGColor.white) {
+    public init(style: EFStyleImageParamTimingStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsTiming.defaultColorDark, colorLight: CGColor = EFStyleImageParamsTiming.defaultColorLight) {
         self.style = style
         self.size = size
         self.colorDark = colorDark
@@ -90,12 +96,15 @@ public class EFStyleImageParamsImage {
 
 public class EFStyleImageParamsPosition {
     
+    public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
+    
     let style: EFStyleParamsPositionStyle
     let size: CGFloat
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = CGColor.black, colorLight: CGColor = CGColor.white) {
+    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsPosition.defaultColorDark, colorLight: CGColor = EFStyleImageParamsPosition.defaultColorLight) {
         self.style = style
         self.size = size
         self.colorDark = colorDark
@@ -104,12 +113,16 @@ public class EFStyleImageParamsPosition {
 }
 
 public class EFStyleImageParamsData {
+    
+    public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
+    
     let style: EFStyleParamsDataStyle
     let scale: CGFloat // (0-1]
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleParamsDataStyle = .rectangle, scale: CGFloat = 1, colorDark: CGColor = CGColor.black, colorLight: CGColor = CGColor.white) {
+    public init(style: EFStyleParamsDataStyle = .rectangle, scale: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsData.defaultColorDark, colorLight: CGColor = EFStyleImageParamsData.defaultColorLight) {
         self.style = style
         self.scale = scale
         self.colorDark = colorDark
@@ -169,9 +182,7 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         
         for x in 0..<nCount {
             for y in 0..<nCount {
-                
                 let isDark: Bool = qrcode.model.isDark(x, y)
-                
                 if alignType != .none && (typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther) {
                     let thisAlignColor: String = isDark ? alignDarkColor : alignLightColor
                     let thisAlignAlpha: CGFloat = isDark ? alignDarkAlpha : alignLightAlpha
@@ -199,7 +210,7 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                     case .none:
                         break
                     case .rectangle:
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(thisTimingAlpha)\" width=\"\(timingSize)\" height=\"\(timingSize)\" fill=\"\(thisTimingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\"/>")
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(thisTimingAlpha)\" width=\"\(timingSize)\" height=\"\(timingSize)\" fill=\"\(thisTimingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\"/>")
                         id += 1
                         break
                     case .round:
@@ -213,12 +224,14 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         break
                     }
                 } else if typeTable[x][y] == QRPointType.posCenter {
-                    var markArr: [CGFloat] = [-1, -1]
-                    if x > y {
-                        markArr = [0, -1]
-                    } else if x < y {
-                        markArr = [-1, 0]
-                    }
+                    let markArr: [CGFloat] = {
+                        if x > y {
+                            return [0, -1]
+                        } else if x < y {
+                            return [-1, 0]
+                        }
+                        return [-1, -1]
+                    }()
                     pointList.append("<rect opacity=\"\(posLightAlpha)\" width=\"8\" height=\"8\" key=\"\(id)\" fill=\"\(posLightColor)\" x=\"\(x.cgFloat - 4 - markArr[0])\" y=\"\(y.cgFloat - 4 - markArr[1])\"/>");
                     id += 1
                     switch posType {
@@ -255,15 +268,18 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         }
                         break
                     case .dsj:
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        let widthValue: CGFloat = 3.0 - (1.0 - posSize)
+                        let xTempValue: CGFloat = x.cgFloat + (1.0 - posSize) / 2.0
+                        let yTempValue: CGFloat = y.cgFloat + (1.0 - posSize) / 2.0
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 1)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(x.cgFloat - 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 1)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(x.cgFloat + 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue + 3)\" y=\"\(yTempValue - 1)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 3 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 3)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat + 3 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue + 3)\"/>");
                         id += 1
                         break
                     }
@@ -273,7 +289,7 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                     if isDark {
                         switch type {
                         case .rectangle:
-                            pointList.append("<rect opacity=\"\(opacityDark)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(otherColorDark)\" x=\"\(x.cgFloat + (1 - size) / 2.0)\" y=\"\(y.cgFloat + (1 - size) / 2.0)\"/>")
+                            pointList.append("<rect opacity=\"\(opacityDark)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(otherColorDark)\" x=\"\(x.cgFloat + (1.0 - size) / 2.0)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\"/>")
                             id += 1
                             break
                         case .round:
@@ -282,14 +298,14 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                             break
                         case .roundedRectangle:
                             let cd: CGFloat = size / 4.0
-                            pointList.append("<rect key=\"\(id)\" opacity=\"\(opacityDark)\" fill=\"\(otherColorDark)\" x=\"\(x.cgFloat + (1 - size) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\" width=\"\(size)\" height=\"\(size)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
+                            pointList.append("<rect key=\"\(id)\" opacity=\"\(opacityDark)\" fill=\"\(otherColorDark)\" x=\"\(x.cgFloat + (1.0 - size) / 2.0)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\" width=\"\(size)\" height=\"\(size)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
                             id += 1
                             break
                         }
                     } else {
                         switch type {
                         case .rectangle:
-                            pointList.append("<rect opacity=\"\(opacityLight)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(otherColorLight)\" x=\"\(x.cgFloat + (1 - size) / 2.0)\" y=\"\(y.cgFloat + (1 - size) / 2.0)\"/>")
+                            pointList.append("<rect opacity=\"\(opacityLight)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(otherColorLight)\" x=\"\(x.cgFloat + (1.0 - size) / 2.0)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\"/>")
                             id += 1
                             break
                         case .round:
@@ -298,7 +314,7 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                             break
                         case .roundedRectangle:
                             let cd: CGFloat = size / 4.0
-                            pointList.append("<rect key=\"\(id)\" opacity=\"\(opacityLight)\" fill=\"\(otherColorLight)\" x=\"\(x.cgFloat + (1 - size) / 2)\" y=\"\(y.cgFloat + (1 - size) / 2)\" width=\"\(size)\" height=\"\(size)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
+                            pointList.append("<rect key=\"\(id)\" opacity=\"\(opacityLight)\" fill=\"\(otherColorLight)\" x=\"\(x.cgFloat + (1.0 - size) / 2.0)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\" width=\"\(size)\" height=\"\(size)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
                             id += 1
                             break
                         }

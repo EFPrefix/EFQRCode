@@ -58,31 +58,40 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let size2: CGFloat = 1
         let height: CGFloat = max(0, params.dataHeight)
         let height2: CGFloat = max(0, params.positionHeight)
+        
         let upColor: String = try params.topColor.hexString()
         let upOpacity: CGFloat = try params.topColor.alpha()
+        
         let leftColor: String = try params.leftColor.hexString()
         let leftOpacity: CGFloat = try params.leftColor.alpha()
+        
         let rightColor: String = try params.rightColor.hexString()
         let rightOpacity: CGFloat = try params.rightColor.alpha()
+        
         var id: Int = 0
         
         for x in 0..<nCount {
             for y in 0..<nCount {
-                if qrcode.model.isDark(x, y) == false {
+                let isDark: Bool = qrcode.model.isDark(x, y)
+                if !isDark {
                     continue
-                } else if (typeTable[x][y] == QRPointType.posOther || typeTable[x][y] == QRPointType.posCenter) {
-                    pointList.append("<rect opacity=\"\(upOpacity)\" width=\"\(size2)\" height=\"\(size2)\" key=\"\(id)\" fill=\"\(upColor)\" x=\"\(x.cgFloat + (1.0 - size2) / 2.0)\" y=\"\(y.cgFloat + (1.0 - size2) / 2.0)\" transform=\"\(matrixString)\"/>");
+                } else if typeTable[x][y] == QRPointType.posOther || typeTable[x][y] == QRPointType.posCenter {
+                    let xValue: CGFloat = x.cgFloat + (1.0 - size2) / 2.0
+                    let yValue: CGFloat = y.cgFloat + (1.0 - size2) / 2.0
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(upOpacity)\" width=\"\(size2)\" height=\"\(size2)\" fill=\"\(upColor)\" x=\"\(xValue)\" y=\"\(yValue)\" transform=\"\(matrixString)\"/>");
                     id += 1
-                    pointList.append("<rect opacity=\"\(leftOpacity)\" width=\"\(height2)\" height=\"\(size2)\" key=\"\(id)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size2) / 2 + size2),\(y.cgFloat + (1 - size2) / 2)) skewY(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(leftOpacity)\" width=\"\(height2)\" height=\"\(size2)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue + size2),\(yValue)) skewY(45)\"/>");
                     id += 1
-                    pointList.append("<rect opacity=\"\(rightOpacity)\" width=\"\(size2)\" height=\"\(height2)\" key=\"\(id)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size2) / 2),\(y.cgFloat + size2 + (1 - size2) / 2)) skewX(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(rightOpacity)\" width=\"\(size2)\" height=\"\(height2)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue),\(yValue + size2)) skewX(45)\"/>");
                     id += 1
                 } else {
-                    pointList.append("<rect opacity=\"\(upOpacity)\" width=\"\(size)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(upColor)\" x=\"\(x.cgFloat + (1 - size)/2)\" y=\"\(y.cgFloat + (1 - size)/2)\" transform=\"\(matrixString)\"/>");
+                    let xValue: CGFloat = x.cgFloat + (1.0 - size) / 2.0
+                    let yValue: CGFloat = y.cgFloat + (1.0 - size) / 2.0
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(upOpacity)\" width=\"\(size)\" height=\"\(size)\" fill=\"\(upColor)\" x=\"\(xValue)\" y=\"\(yValue)\" transform=\"\(matrixString)\"/>");
                     id += 1
-                    pointList.append("<rect opacity=\"\(leftOpacity)\" width=\"\(height)\" height=\"\(size)\" key=\"\(id)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size) / 2 + size),\(y.cgFloat + (1 - size) / 2)) skewY(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(leftOpacity)\" width=\"\(height)\" height=\"\(size)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue + size),\(yValue)) skewY(45)\"/>");
                     id += 1
-                    pointList.append("<rect opacity=\"\(rightOpacity)\" width=\"\(size)\" height=\"\(height)\" key=\"\(id)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(x.cgFloat + (1 - size) / 2),\(y.cgFloat + size + (1 - size) / 2)) skewX(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(rightOpacity)\" width=\"\(size)\" height=\"\(height)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue),\(yValue + size)) skewX(45)\"/>");
                     id += 1
                 }
             }
@@ -116,7 +125,7 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let randomIdClips: String = "25d\(Anchor.uniqueMark)"
         Anchor.uniqueMark += 1
         
-        pointList.append("<g transform=\"\(matrixString)\"><path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100 / iconSize)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/></g>")
+        pointList.append("<g opacity=\"\(bdAlpha)\" transform=\"\(matrixString)\"><path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100 / iconSize)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/></g>")
         pointList.append("<g key=\"\(id)\" transform=\"\(matrixString)\">")
         id += 1
         
@@ -125,7 +134,7 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let length: CGFloat = iconSize + 2.0 * iconOffset
         let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
         pointList.append(
-            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize/100),\(iconSize/100))\"/></defs>"
+            "<defs><path id=\"\(randomIdDefs)\" opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/></defs>"
             + "<clipPath id=\"\(randomIdClips)\">"
             + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
             + "</clipPath>"

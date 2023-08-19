@@ -33,16 +33,33 @@ class ImageGeneratorController: UIViewController, UITextViewDelegate, UITableVie
     var imageAlpha: CGFloat = 1
     var dataStyle: EFStyleParamsDataStyle = .rectangle
     var dataDarkColor: UIColor = UIColor.black
+    var dataDarkColorAlpha: CGFloat = 1
     var dataLightColor: UIColor = UIColor.white
-    var dataAlpha: CGFloat = 1
+    var dataLightColorAlpha: CGFloat = 1
     var dataThickness: CGFloat = 0.33
     var positionStyle: EFStyleParamsPositionStyle = .rectangle
-    var positionColor: UIColor = UIColor.black
+    var positionThickness: CGFloat = 1
+    var positionDarkColor: UIColor = UIColor.black
+    var positionDarkAlpha: CGFloat = 1
+    var positionLightColor: UIColor = UIColor.white
+    var positionLightAlpha: CGFloat = 1
     var alignStyle: EFStyleImageParamAlignStyle = .none
+    var alignSize: CGFloat = 1
+    var alignDarkColor: UIColor = UIColor.black
+    var alignDarkColorAlpha: CGFloat = 1
+    var alignLightColor: UIColor = UIColor.white
+    var alignLightColorAlpha: CGFloat = 1
     var timingStyle: EFStyleImageParamTimingStyle = .none
+    var timingSize: CGFloat = 1
+    var timingDarkColor: UIColor = UIColor.black
+    var timingDarkColorAlpha: CGFloat = 1
+    var timingLightColor: UIColor = UIColor.white
+    var timingLightColorAlpha: CGFloat = 1
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension ImageGeneratorController {
@@ -161,7 +178,12 @@ extension ImageGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -181,18 +203,28 @@ extension ImageGeneratorController {
                 style: EFQRCodeStyle.image(
                     params: EFStyleImageParams(
                         icon: paramIcon,
-                        align: EFStyleImageParamsAlign(style: alignStyle),
-                        timing: EFStyleImageParamsTiming(style: timingStyle),
+                        align: EFStyleImageParamsAlign(
+                            style: alignStyle,
+                            size: alignSize,
+                            colorDark: alignDarkColor.withAlphaComponent(alignDarkColorAlpha).cgColor,
+                            colorLight: alignLightColor.withAlphaComponent(alignLightColorAlpha).cgColor
+                        ),
+                        timing: EFStyleImageParamsTiming(
+                            style: timingStyle,
+                            size: timingSize,
+                            colorDark: timingDarkColor.withAlphaComponent(timingDarkColorAlpha).cgColor,
+                            colorLight: timingLightColor.withAlphaComponent(timingLightColorAlpha).cgColor
+                        ),
                         position: EFStyleImageParamsPosition(
                             style: positionStyle,
-                            colorDark: positionColor.cgColor,
-                            colorLight: UIColor.white.cgColor
+                            colorDark: positionDarkColor.withAlphaComponent(positionDarkAlpha).cgColor,
+                            colorLight: positionLightColor.withAlphaComponent(positionLightAlpha).cgColor
                         ),
                         data: EFStyleImageParamsData(
                             style: dataStyle,
                             scale: dataThickness,
-                            colorDark: dataDarkColor.withAlphaComponent(dataAlpha).cgColor,
-                            colorLight: dataLightColor.withAlphaComponent(dataAlpha).cgColor
+                            colorDark: dataDarkColor.withAlphaComponent(dataDarkColorAlpha).cgColor,
+                            colorLight: dataLightColor.withAlphaComponent(dataLightColorAlpha).cgColor
                         ),
                         image: paramWatermark
                     )
@@ -242,7 +274,7 @@ extension ImageGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(1)
+                self?.customColor(0)
             }
         )
         #endif
@@ -259,6 +291,15 @@ extension ImageGeneratorController {
         popActionSheet(alert: alert)
     }
     
+    func chooseDataDarkColorAlpha() {
+        chooseFromList(title: Localized.Title.dataDarkColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataDarkColorAlpha = result
+            self.refresh()
+        }
+    }
+    
     func chooseDataLightColor() {
         let alert = UIAlertController(
             title: Localized.Title.dataLightColor,
@@ -272,7 +313,7 @@ extension ImageGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(2)
+                self?.customColor(1)
             }
         )
         #endif
@@ -288,35 +329,14 @@ extension ImageGeneratorController {
         }
         popActionSheet(alert: alert)
     }
-
-    func choosePositionColor() {
-        let alert = UIAlertController(
-            title: Localized.Title.positionColor,
-            message: nil,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(
-            UIAlertAction(title: Localized.cancel, style: .cancel)
-        )
-        #if os(iOS)
-        alert.addAction(
-            UIAlertAction(title: Localized.custom, style: .default) {
-                [weak self] _ in
-                self?.customColor(0)
-            }
-        )
-        #endif
-        for color in Localized.Parameters.colors {
-            alert.addAction(
-                UIAlertAction(title: color.name, style: .default) {
-                    [weak self] _ in
-                    guard let self = self else { return }
-                    self.positionColor = color.color
-                    self.refresh()
-                }
-            )
+    
+    func chooseDataLightColorAlpha() {
+        chooseFromList(title: Localized.Title.dataLightColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataLightColorAlpha = result
+            self.refresh()
         }
-        popActionSheet(alert: alert)
     }
 
     func chooseIcon() {
@@ -423,6 +443,93 @@ extension ImageGeneratorController {
         }
     }
     
+    func choosePositionThickness() {
+        chooseFromList(title: Localized.Title.positionThickness, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionThickness = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionDarkColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.positionDarkColorAlpha,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(2)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.positionDarkColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func choosePositionDarkAlpha() {
+        chooseFromList(title: Localized.Title.positionDarkColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionDarkAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionLightColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.positionLightColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(3)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.positionLightColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func choosePositionLightAlpha() {
+        chooseFromList(title: Localized.Title.positionLightColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionLightAlpha = result
+            self.refresh()
+        }
+    }
+    
     func chooseWatermarkAlpha() {
         chooseFromList(title: Localized.Title.watermarkAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
@@ -450,6 +557,93 @@ extension ImageGeneratorController {
         }
     }
     
+    func chooseAlignSize() {
+        chooseFromList(title: Localized.Title.alignSize, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.alignSize = result
+            self.refresh()
+        }
+    }
+    
+    func chooseAlignDarkColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.alignDarkColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(4)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.alignDarkColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseAlignDarkColorAlpha() {
+        chooseFromList(title: Localized.Title.alignDarkColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.alignDarkColorAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseAlignLightColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.alignLightColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(5)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.alignLightColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseAlignLightColorAlpha() {
+        chooseFromList(title: Localized.Title.alignLightColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.alignLightColorAlpha = result
+            self.refresh()
+        }
+    }
+    
     func chooseTimingStyle() {
         chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleImageParamTimingStyle.self) { [weak self] result in
             guard let self = self else { return }
@@ -459,11 +653,89 @@ extension ImageGeneratorController {
         }
     }
     
-    func chooseDataAlpha() {
-        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+    func chooseTimingSize() {
+        chooseFromList(title: Localized.Title.timingSize, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
             
-            self.dataAlpha = result
+            self.timingSize = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTimingDarkColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.timingDarkColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(6)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.timingDarkColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseTimingDarkColorAlpha() {
+        chooseFromList(title: Localized.Title.timingDarkColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.timingDarkColorAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTimingLightColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.timingLightColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(7)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.timingLightColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseTimingLightColorAlpha() {
+        chooseFromList(title: Localized.Title.timingLightColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.timingLightColorAlpha = result
             self.refresh()
         }
     }
@@ -486,6 +758,45 @@ extension ImageGeneratorController {
         }
     }
     
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(8)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
+            self.refresh()
+        }
+    }
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
@@ -493,16 +804,33 @@ extension ImageGeneratorController {
         Localized.Title.watermarkAlpha,
         Localized.Title.dataStyle,
         Localized.Title.dataDarkColor,
+        Localized.Title.dataDarkColorAlpha,
         Localized.Title.dataLightColor,
-        Localized.Title.dataAlpha,
+        Localized.Title.dataLightColorAlpha,
         Localized.Title.dataThickness,
         Localized.Title.positionStyle,
-        Localized.Title.positionColor,
+        Localized.Title.positionThickness,
+        Localized.Title.positionDarkColor,
+        Localized.Title.positionDarkColorAlpha,
+        Localized.Title.positionLightColor,
+        Localized.Title.positionLightColorAlpha,
         Localized.Title.alignStyle,
+        Localized.Title.alignSize,
+        Localized.Title.alignDarkColor,
+        Localized.Title.alignDarkColorAlpha,
+        Localized.Title.alignLightColor,
+        Localized.Title.alignLightColorAlpha,
         Localized.Title.timingStyle,
+        Localized.Title.timingSize,
+        Localized.Title.timingDarkColor,
+        Localized.Title.timingDarkColorAlpha,
+        Localized.Title.timingLightColor,
+        Localized.Title.timingLightColorAlpha,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -513,16 +841,33 @@ extension ImageGeneratorController {
             chooseWatermarkAlpha,
             chooseDataStyle,
             chooseDataDarkColor,
+            chooseDataDarkColorAlpha,
             chooseDataLightColor,
-            chooseDataAlpha,
+            chooseDataLightColorAlpha,
             chooseDataThickness,
             choosePositionStyle,
-            choosePositionColor,
+            choosePositionThickness,
+            choosePositionDarkColor,
+            choosePositionDarkAlpha,
+            choosePositionLightColor,
+            choosePositionLightAlpha,
             chooseAlignStyle,
+            chooseAlignSize,
+            chooseAlignDarkColor,
+            chooseAlignDarkColorAlpha,
+            chooseAlignLightColor,
+            chooseAlignLightColorAlpha,
             chooseTimingStyle,
+            chooseTimingSize,
+            chooseTimingDarkColor,
+            chooseTimingDarkColorAlpha,
+            chooseTimingLightColor,
+            chooseTimingLightColorAlpha,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha
         ][indexPath.row]()
     }
 
@@ -553,16 +898,33 @@ extension ImageGeneratorController {
             "\(imageAlpha)",
             "\(dataStyle)",
             "", // dataDarkColor
+            "\(dataDarkColorAlpha)",
             "", // dataLightColor
-            "\(dataAlpha)",
+            "\(dataLightColorAlpha)",
             "\(dataThickness)",
             "\(positionStyle)",
-            "", // positionColor
+            "\(positionThickness)",
+            "", // positionDarkColor
+            "\(positionDarkAlpha)",
+            "", // positionLightColor
+            "\(positionLightAlpha)",
             "\(alignStyle)",
+            "\(alignSize)",
+            "", // alignDarkColor
+            "\(alignDarkColorAlpha)",
+            "", // alignLightColor
+            "\(alignLightColorAlpha)",
             "\(timingStyle)",
+            "\(timingSize)",
+            "", // timingDarkColor
+            "\(timingDarkColorAlpha)",
+            "", // timingLightColor
+            "\(timingLightColorAlpha)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)"
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -601,12 +963,22 @@ extension ImageGeneratorController {
                     break
                 }
             case 4:
-                rightImageView.backgroundColor = dataDarkColor
-            case 5:
-                rightImageView.backgroundColor = dataLightColor
-            case 9:
-                rightImageView.backgroundColor = positionColor
-            case 12:
+                rightImageView.backgroundColor = dataDarkColor.withAlphaComponent(dataDarkColorAlpha)
+            case 6:
+                rightImageView.backgroundColor = dataLightColor.withAlphaComponent(dataLightColorAlpha)
+            case 11:
+                rightImageView.backgroundColor = positionDarkColor.withAlphaComponent(positionDarkAlpha)
+            case 13:
+                rightImageView.backgroundColor = positionLightColor.withAlphaComponent(positionLightAlpha)
+            case 17:
+                rightImageView.backgroundColor = alignDarkColor.withAlphaComponent(alignDarkColorAlpha)
+            case 19:
+                rightImageView.backgroundColor = alignLightColor.withAlphaComponent(alignLightColorAlpha)
+            case 23:
+                rightImageView.backgroundColor = timingDarkColor.withAlphaComponent(timingDarkColorAlpha)
+            case 25:
+                rightImageView.backgroundColor = timingLightColor.withAlphaComponent(timingLightColorAlpha)
+            case 27:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -618,6 +990,8 @@ extension ImageGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 30:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -631,12 +1005,12 @@ extension ImageGeneratorController {
 extension ImageGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
 
     struct EFColorPicker {
-        static var colorIndex = 0
+        static var index: Int = 0
     }
 
-    func customColor(_ colorIndex: Int) {
+    func customColor(_ index: Int) {
 
-        EFColorPicker.colorIndex = colorIndex
+        EFColorPicker.index = index
 
         let colorSelectionController = EFColorSelectionViewController()
         let navCtrl = UINavigationController(rootViewController: colorSelectionController)
@@ -652,7 +1026,17 @@ extension ImageGeneratorController: UIPopoverPresentationControllerDelegate, EFC
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = [positionColor, dataDarkColor, dataLightColor][colorIndex]
+        colorSelectionController.color = [
+            dataDarkColor,
+            dataLightColor,
+            positionDarkColor,
+            positionLightColor,
+            alignDarkColor,
+            alignLightColor,
+            timingDarkColor,
+            timingLightColor,
+            iconBorderColor
+        ][index]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -674,15 +1058,33 @@ extension ImageGeneratorController: UIPopoverPresentationControllerDelegate, EFC
 
     // MARK: EFColorViewDelegate
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-        switch EFColorPicker.colorIndex {
+        switch EFColorPicker.index {
         case 0:
-            positionColor = color
-            break
-        case 1:
             dataDarkColor = color
             break
-        case 2:
+        case 1:
             dataLightColor = color
+            break
+        case 2:
+            positionDarkColor = color
+            break
+        case 3:
+            positionLightColor = color
+            break
+        case 4:
+            alignDarkColor = color
+            break
+        case 5:
+            alignLightColor = color
+            break
+        case 6:
+            timingDarkColor = color
+            break
+        case 7:
+            timingLightColor = color
+            break
+        case 8:
+            iconBorderColor = color
             break
         default:
             break

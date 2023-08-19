@@ -158,7 +158,12 @@ extension ImageFillGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -315,7 +320,7 @@ extension ImageFillGeneratorController {
     }
     
     func chooseBackgroundAlpha() {
-        chooseFromList(title: Localized.Title.backgroundAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+        chooseFromList(title: Localized.Title.backgroundColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
             
             self.backgroundAlpha = result
@@ -451,7 +456,7 @@ extension ImageFillGeneratorController {
         Localized.Title.watermark,
         Localized.Title.watermarkAlpha,
         Localized.Title.backgroundColor,
-        Localized.Title.backgroundAlpha,
+        Localized.Title.backgroundColorAlpha,
         Localized.Title.maskColor,
         Localized.Title.maskAlpha,
         Localized.Title.icon,

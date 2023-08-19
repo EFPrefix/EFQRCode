@@ -283,8 +283,8 @@
 				128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */,
 				12D66CF62A525D5E007F2770 /* EFQRCodeStyleLine.swift */,
 				128013BE2A53BA6B0033B45B /* EFQRCodeStyleFunction.swift */,
-				12D66CBD2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift */,
 				128013C32A53EDB40033B45B /* EFQRCodeStyleImage.swift */,
+				12D66CBD2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift */,
 				12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */,
 			);
 			path = Styles;

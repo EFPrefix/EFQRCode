@@ -13,15 +13,30 @@ import QRCodeSwift
 public class EFStyleBubbleParams: EFStyleParams {
     
     public static let defaultDataColor: CGColor = CGColor.createWith(rgb: 0x8ED1FC)!
-    public static let defaultPositionColor: CGColor = CGColor.createWith(rgb: 0x0693E3)!
+    public static let defaultPosition: EFStyleBubbleParamsPosition = EFStyleBubbleParamsPosition()
     
     let dataColor: CGColor
-    let positionColor: CGColor
+    let position: EFStyleBubbleParamsPosition
     
-    public init(icon: EFStyleParamIcon? = nil, dataColor: CGColor = EFStyleBubbleParams.defaultDataColor, positionColor: CGColor = EFStyleBubbleParams.defaultPositionColor) {
+    public init(icon: EFStyleParamIcon? = nil, dataColor: CGColor = EFStyleBubbleParams.defaultDataColor, position: EFStyleBubbleParamsPosition = EFStyleBubbleParams.defaultPosition) {
         self.dataColor = dataColor
-        self.positionColor = positionColor
+        self.position = position
         super.init(icon: icon)
+    }
+}
+
+public class EFStyleBubbleParamsPosition {
+    
+    public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x0693E3)!
+    
+    let style: EFStyleParamsPositionStyle
+    let size: CGFloat
+    let color: CGColor
+    
+    public init(style: EFStyleParamsPositionStyle = .round, size: CGFloat = 1, color: CGColor = EFStyleBasicParamsPosition.defaultColor) {
+        self.color = color
+        self.style = style
+        self.size = size
     }
 }
 
@@ -41,29 +56,77 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
         var g1: [String] = []
         var g2: [String] = []
         
-        var id: Int = 0
-        
         let otherColor = try params.dataColor.hexString()
         let otherOpacity: CGFloat = try params.dataColor.alpha()
-        let posColor = try params.positionColor.hexString()
-        let posOpacity: CGFloat = try params.positionColor.alpha()
+        
+        let posType: EFStyleParamsPositionStyle = params.position.style
+        let posSize: CGFloat = max(0, params.position.size)
+        let positionColor: String = try params.position.color.hexString()
+        let positionAlpha: CGFloat = try params.position.color.alpha()
+        
+        var id: Int = 0
         
         var available: [[Bool]] = Array(repeating: Array(repeating: true, count: nCount), count: nCount)
         var ava2: [[Bool]] = Array(repeating: Array(repeating: true, count: nCount), count: nCount)
         
         for y in 0..<nCount {
             for x in 0..<nCount {
-                
-                if qrcode.model.isDark(x, y) && typeTable[x][y] == .posCenter {
-                    pointList.append("<circle opacity=\"\(posOpacity)\" key=\"\(id)\" fill=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
-                    id += 1
-                    pointList.append("<circle opacity=\"\(posOpacity)\" key=\"\(id)\" fill=\"none\" stroke-width=\"1\" stroke=\"\(posColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
-                    id += 1
-                } else if qrcode.model.isDark(x, y) && typeTable[x][y] == .posOther {
+                let isDark: Bool = qrcode.model.isDark(x, y)
+                if typeTable[x][y] == QRPointType.posCenter {
+                    switch posType {
+                    case .rectangle:
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"3\" height=\"3\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1)\" y=\"\(y.cgFloat - 1)\"/>");
+                        id += 1
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" x=\"\(x.cgFloat - 2.5)\" y=\"\(y.cgFloat - 2.5)\" width=\"6\" height=\"6\"/>")
+                        id += 1
+                        break
+                    case .round:
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                        id += 1
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
+                        id += 1
+                        break
+                    case .roundedRectangle:
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                        id += 1
+                        pointList.append("<path key=\"\(id)\" opacity=\"\(positionAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * posSize)\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\"/>")
+                        id += 1
+                        break
+                    case .planets:
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                        id += 1
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
+                        id += 1
+                        for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * posSize)\"/>")
+                            id += 1
+                        }
+                        for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"\(0.5 * posSize)\"/>")
+                            id += 1
+                        }
+                        break
+                    case .dsj:
+                        let widthValue: CGFloat = 3.0 - (1.0 - posSize)
+                        let xTempValue: CGFloat = x.cgFloat + (1.0 - posSize) / 2.0
+                        let yTempValue: CGFloat = y.cgFloat + (1.0 - posSize) / 2.0
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 1)\"/>");
+                        id += 1
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 1)\"/>");
+                        id += 1
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue + 3)\" y=\"\(yTempValue - 1)\"/>");
+                        id += 1
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 3)\"/>");
+                        id += 1
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue + 3)\"/>");
+                        id += 1
+                        break
+                    }
+                } else if typeTable[x][y] == QRPointType.posOther {
                     continue
                 } else {
                     if available[x][y] && ava2[x][y] && x < nCount - 2 && y < nCount - 2 {
-                        var ctn = true
+                        var ctn: Bool = true
                         for i in 0..<3 {
                             for j in 0..<3 {
                                 if ava2[x + i][y + j] == false {
@@ -90,7 +153,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                         }
                     }
                     if x < nCount - 1 && y < nCount - 1 {
-                        if qrcode.model.isDark(x, y) && qrcode.model.isDark(x + 1, y) && qrcode.model.isDark(x, y + 1) && qrcode.model.isDark(x + 1, y + 1) {
+                        if isDark && qrcode.model.isDark(x + 1, y) && qrcode.model.isDark(x, y + 1) && qrcode.model.isDark(x + 1, y + 1) {
                             g1.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y + 1)\" r=\"\(sqrt(1.0 / 2.0))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\"/>")
                             id += 1
                             for i in 0..<2 {
@@ -102,7 +165,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                         }
                     }
                     if available[x][y] && y < nCount - 1 {
-                        if qrcode.model.isDark(x, y) && qrcode.model.isDark(x, y + 1) {
+                        if isDark && qrcode.model.isDark(x, y + 1) {
                             pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y + 1)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
                             id += 1
                             available[x][y] = false
@@ -110,7 +173,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                         }
                     }
                     if available[x][y] && x < nCount - 1 {
-                        if qrcode.model.isDark(x, y) && qrcode.model.isDark(x + 1, y) {
+                        if isDark && qrcode.model.isDark(x + 1, y) {
                             pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
                             id += 1
                             available[x][y] = false
@@ -118,7 +181,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                         }
                     }
                     if available[x][y] {
-                        if qrcode.model.isDark(x, y) {
+                        if isDark {
                             pointList.append("<circle opacity=\"\(otherOpacity)\" r=\"\(0.5 * Double.random(in: 0.5...1))\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                             id += 1
                         } else if typeTable[x][y] == QRPointType.data {
