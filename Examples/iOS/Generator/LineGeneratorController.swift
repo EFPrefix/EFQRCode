@@ -34,10 +34,14 @@ class LineGeneratorController: UIViewController, UITextViewDelegate, UITableView
     var dataAlpha: CGFloat = 1
     var dataColor: UIColor = UIColor.black
     var positionStyle: EFStyleParamsPositionStyle = .roundedRectangle
+    var positionThickness: CGFloat = 0.9
     var positionColor: UIColor = UIColor.black
+    var positionAlpha: CGFloat = 1
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension LineGeneratorController {
@@ -156,7 +160,12 @@ extension LineGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -169,7 +178,7 @@ extension LineGeneratorController {
                 style: EFQRCodeStyle.line(
                     params: EFStyleLineParams(
                         icon: paramIcon,
-                        position: EFStyleLineParamsPosition(style: positionStyle, size: 1, color: positionColor.cgColor),
+                        position: EFStyleLineParamsPosition(style: positionStyle, size: positionThickness, color: positionColor.withAlphaComponent(positionAlpha).cgColor),
                         line: EFStyleLineParamsLine(direction: dataStyle, thickness: dataScale, color: dataColor.withAlphaComponent(dataAlpha).cgColor)
                     )
                 )
@@ -204,6 +213,15 @@ extension LineGeneratorController {
             self.refresh()
         }
     }
+    
+    func chooseDataStyle() {
+        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleLineParamsLineDirection.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataStyle = result
+            self.refresh()
+        }
+    }
 
     func chooseDataColor() {
         let alert = UIAlertController(
@@ -218,7 +236,7 @@ extension LineGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(false)
+                self?.customColor(0)
             }
         )
         #endif
@@ -235,6 +253,24 @@ extension LineGeneratorController {
         popActionSheet(alert: alert)
     }
 
+    func choosePositionStyle() {
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionStyle = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionThickness() {
+        chooseFromList(title: Localized.Title.positionThickness, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionThickness = result
+            self.refresh()
+        }
+    }
+    
     func choosePositionColor() {
         let alert = UIAlertController(
             title: Localized.Title.positionColor,
@@ -248,7 +284,7 @@ extension LineGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(true)
+                self?.customColor(1)
             }
         )
         #endif
@@ -263,6 +299,15 @@ extension LineGeneratorController {
             )
         }
         popActionSheet(alert: alert)
+    }
+    
+    func choosePositionAlpha() {
+        chooseFromList(title: Localized.Title.positionColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionAlpha = result
+            self.refresh()
+        }
     }
 
     func chooseIcon() {
@@ -344,24 +389,45 @@ extension LineGeneratorController {
         }
     }
 
-    func chooseDataStyle() {
-        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleLineParamsLineDirection.self) { [weak self] result in
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(2)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
             
-            self.dataStyle = result
+            self.iconBorderAlpha = result
             self.refresh()
         }
     }
     
-    func choosePositionStyle() {
-        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.positionStyle = result
-            self.refresh()
-        }
-    }
-
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
@@ -370,10 +436,14 @@ extension LineGeneratorController {
         Localized.Title.dataScale,
         Localized.Title.dataAlpha,
         Localized.Title.positionStyle,
+        Localized.Title.positionThickness,
         Localized.Title.positionColor,
+        Localized.Title.positionColorAlpha,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -385,10 +455,14 @@ extension LineGeneratorController {
             chooseDataScale,
             chooseDataAlpha,
             choosePositionStyle,
+            choosePositionThickness,
             choosePositionColor,
+            choosePositionAlpha,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha
         ][indexPath.row]()
     }
 
@@ -420,10 +494,14 @@ extension LineGeneratorController {
             "\(dataScale)",
             "\(dataAlpha)",
             "\(positionStyle)",
+            "\(positionThickness)",
             "", // positionColor
+            "\(positionAlpha)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)"
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -450,10 +528,10 @@ extension LineGeneratorController {
 
             switch indexPath.row {
             case 2:
-                rightImageView.backgroundColor = dataColor
-            case 6:
-                rightImageView.backgroundColor = positionColor
+                rightImageView.backgroundColor = dataColor.withAlphaComponent(dataAlpha)
             case 7:
+                rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
+            case 9:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -465,6 +543,8 @@ extension LineGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 12:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -478,12 +558,11 @@ extension LineGeneratorController {
 extension LineGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
 
     struct EFColorPicker {
-        static var isPosition = false
+        static var index: Int = 0
     }
 
-    func customColor(_ isPosition: Bool) {
-
-        EFColorPicker.isPosition = isPosition
+    func customColor(_ index: Int) {
+        EFColorPicker.index = index
 
         let colorSelectionController = EFColorSelectionViewController()
         let navCtrl = UINavigationController(rootViewController: colorSelectionController)
@@ -499,7 +578,7 @@ extension LineGeneratorController: UIPopoverPresentationControllerDelegate, EFCo
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = EFColorPicker.isPosition ? positionColor : dataColor
+        colorSelectionController.color = [dataColor, positionColor, iconBorderColor][EFColorPicker.index]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -521,10 +600,15 @@ extension LineGeneratorController: UIPopoverPresentationControllerDelegate, EFCo
 
     // MARK: EFColorViewDelegate
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-        if EFColorPicker.isPosition {
-            positionColor = color
-        } else {
+        switch EFColorPicker.index {
+        case 0:
             dataColor = color
+        case 1:
+            positionColor = color
+        case 2:
+            iconBorderColor = color
+        default:
+            break
         }
         refresh()
     }

@@ -30,14 +30,27 @@ class ResampleImageGeneratorController: UIViewController, UITextViewDelegate, UI
     var image: EFStyleParamImage? = nil
     var imageContrast: CGFloat = 0
     var imageExposure: CGFloat = 0
+    var positionStyle: EFStyleParamsPositionStyle = .rectangle
+    var positionThickness: CGFloat = 0.9
+    var positionColor: UIColor = UIColor.black
+    var positionAlpha: CGFloat = 1
     var dataColor: UIColor = UIColor.black
     var dataAlpha: CGFloat = 1
-    var positionColor: UIColor = UIColor.black
     var alignStyle: EFStyleResampleImageParamAlignStyle = .none
+    var alignOnlyWhite: Bool = true
+    var alignSize: CGFloat = 1
+    var alignColor: UIColor = UIColor.black
+    var alignColorAlpha: CGFloat = 1
     var timingStyle: EFStyleResampleImageParamTimingStyle = .none
+    var timingOnlyWhite: Bool = true
+    var timingSize: CGFloat = 1
+    var timingColor: UIColor = UIColor.black
+    var timingColorAlpha: CGFloat = 1
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension ResampleImageGeneratorController {
@@ -156,7 +169,12 @@ extension ResampleImageGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -177,9 +195,9 @@ extension ResampleImageGeneratorController {
                     params: EFStyleResampleImageParams(
                         icon: paramIcon,
                         image: paramWatermark,
-                        align: EFStyleResampleImageParamsAlign(style: alignStyle),
-                        timing: EFStyleResampleImageParamsTiming(style: timingStyle),
-                        position: EFStyleResampleImageParamsPosition(style: .rectangle, color: positionColor.cgColor),
+                        align: EFStyleResampleImageParamsAlign(style: alignStyle, onlyWhite: alignOnlyWhite, size: alignSize, color: alignColor.withAlphaComponent(alignColorAlpha).cgColor),
+                        timing: EFStyleResampleImageParamsTiming(style: timingStyle, onlyWhite: timingOnlyWhite, size: timingSize, color: timingColor.withAlphaComponent(timingColorAlpha).cgColor),
+                        position: EFStyleResampleImageParamsPosition(style: positionStyle, size: positionThickness, color: positionColor.withAlphaComponent(positionAlpha).cgColor),
                         dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor
                     )
                 )
@@ -228,7 +246,7 @@ extension ResampleImageGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(false)
+                self?.customColor(1)
             }
         )
         #endif
@@ -244,7 +262,34 @@ extension ResampleImageGeneratorController {
         }
         popActionSheet(alert: alert)
     }
+    
+    func chooseDataAlpha() {
+        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataAlpha = result
+            self.refresh()
+        }
+    }
 
+    func choosePositionStyle() {
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionStyle = result
+            self.refresh()
+        }
+    }
+    
+    func choosePositionThickness() {
+        chooseFromList(title: Localized.Title.positionThickness, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionThickness = result
+            self.refresh()
+        }
+    }
+    
     func choosePositionColor() {
         let alert = UIAlertController(
             title: Localized.Title.positionColor,
@@ -258,7 +303,7 @@ extension ResampleImageGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(true)
+                self?.customColor(0)
             }
         )
         #endif
@@ -273,6 +318,147 @@ extension ResampleImageGeneratorController {
             )
         }
         popActionSheet(alert: alert)
+    }
+
+    func choosePositionAlpha() {
+        chooseFromList(title: Localized.Title.positionColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseAlignStyle() {
+        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleResampleImageParamAlignStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.alignStyle = result
+            self.refresh()
+        }
+    }
+    
+    func chooseAlignSize() {
+        chooseFromList(title: Localized.Title.alignSize, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.alignSize = result
+            self.refresh()
+        }
+    }
+    
+    func chooseAlignColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.alignColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(2)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.positionColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseAlignColorAlpha() {
+        chooseFromList(title: Localized.Title.alignColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.positionAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseAlignOnlyWhite() {
+        chooseFromList(title: Localized.Title.alignOnlyWhite, items: [true, false]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.alignOnlyWhite = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTimingStyle() {
+        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleResampleImageParamTimingStyle.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.timingStyle = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTimingSize() {
+        chooseFromList(title: Localized.Title.timingSize, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.timingSize = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTimingColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.timingColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(3)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.timingColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+
+    func chooseTimingColorAlpha() {
+        chooseFromList(title: Localized.Title.timingColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.timingColorAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseTimingOnlyWhite() {
+        chooseFromList(title: Localized.Title.timingOnlyWhite, items: [true, false]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.timingOnlyWhite = result
+            self.refresh()
+        }
     }
 
     func chooseIcon() {
@@ -316,6 +502,45 @@ extension ResampleImageGeneratorController {
             )
         }
         popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(4)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
+            self.refresh()
+        }
     }
     
     func chooseWatermark() {
@@ -379,33 +604,6 @@ extension ResampleImageGeneratorController {
         }
     }
     
-    func chooseAlignStyle() {
-        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleResampleImageParamAlignStyle.self) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.alignStyle = result
-            self.refresh()
-        }
-    }
-    
-    func chooseTimingStyle() {
-        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleResampleImageParamTimingStyle.self) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.timingStyle = result
-            self.refresh()
-        }
-    }
-    
-    func chooseDataAlpha() {
-        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
-            guard let self = self else { return }
-            
-            self.dataAlpha = result
-            self.refresh()
-        }
-    }
-    
     func chooseIconScale() {
         chooseFromList(title: Localized.Title.iconScale, items: [0, 0.11, 0.22, 0.33]) { [weak self] result in
             guard let self = self else { return }
@@ -423,7 +621,7 @@ extension ResampleImageGeneratorController {
             self.refresh()
         }
     }
-
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
@@ -432,12 +630,25 @@ extension ResampleImageGeneratorController {
         Localized.Title.watermarkExposure,
         Localized.Title.dataColor,
         Localized.Title.dataAlpha,
+        Localized.Title.positionStyle,
+        Localized.Title.positionThickness,
         Localized.Title.positionColor,
+        Localized.Title.positionColorAlpha,
         Localized.Title.alignStyle,
+        Localized.Title.alignSize,
+        Localized.Title.alignColor,
+        Localized.Title.alignColorAlpha,
+        Localized.Title.alignOnlyWhite,
         Localized.Title.timingStyle,
+        Localized.Title.timingSize,
+        Localized.Title.timingColor,
+        Localized.Title.timingColorAlpha,
+        Localized.Title.timingOnlyWhite,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -449,12 +660,25 @@ extension ResampleImageGeneratorController {
             chooseWatermarkExposure,
             chooseDataColor,
             chooseDataAlpha,
+            choosePositionStyle,
+            choosePositionThickness,
             choosePositionColor,
+            choosePositionAlpha,
             chooseAlignStyle,
+            chooseAlignSize,
+            chooseAlignColor,
+            chooseAlignColorAlpha,
+            chooseAlignOnlyWhite,
             chooseTimingStyle,
+            chooseTimingSize,
+            chooseTimingColor,
+            chooseTimingColorAlpha,
+            chooseTimingOnlyWhite,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha
         ][indexPath.row]()
     }
 
@@ -486,12 +710,25 @@ extension ResampleImageGeneratorController {
             "\(imageExposure)",
             "", // dataColor
             "\(dataAlpha)",
+            "\(positionStyle)",
+            "\(positionThickness)",
             "", // positionColor
+            "\(positionAlpha)",
             "\(alignStyle)",
+            "\(alignSize)",
+            "", // alignColor
+            "\(alignColorAlpha)",
+            "\(alignOnlyWhite)",
             "\(timingStyle)",
+            "\(timingSize)",
+            "", // timingColor
+            "\(timingColorAlpha)",
+            "\(timingOnlyWhite)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)"
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -530,10 +767,14 @@ extension ResampleImageGeneratorController {
                     break
                 }
             case 4:
-                rightImageView.backgroundColor = dataColor
-            case 6:
-                rightImageView.backgroundColor = positionColor
-            case 9:
+                rightImageView.backgroundColor = dataColor.withAlphaComponent(dataAlpha)
+            case 8:
+                rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
+            case 12:
+                rightImageView.backgroundColor = alignColor.withAlphaComponent(alignColorAlpha)
+            case 17:
+                rightImageView.backgroundColor = timingColor.withAlphaComponent(timingColorAlpha)
+            case 20:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -545,6 +786,8 @@ extension ResampleImageGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 23:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -558,12 +801,12 @@ extension ResampleImageGeneratorController {
 extension ResampleImageGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
 
     struct EFColorPicker {
-        static var isPosition = false
+        static var index: Int = 0
     }
 
-    func customColor(_ isPosition: Bool) {
+    func customColor(_ index: Int) {
 
-        EFColorPicker.isPosition = isPosition
+        EFColorPicker.index = index
 
         let colorSelectionController = EFColorSelectionViewController()
         let navCtrl = UINavigationController(rootViewController: colorSelectionController)
@@ -579,7 +822,7 @@ extension ResampleImageGeneratorController: UIPopoverPresentationControllerDeleg
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = EFColorPicker.isPosition ? positionColor : dataColor
+        colorSelectionController.color = [positionColor, dataColor, alignColor, timingColor, iconBorderColor][EFColorPicker.index]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -601,10 +844,24 @@ extension ResampleImageGeneratorController: UIPopoverPresentationControllerDeleg
 
     // MARK: EFColorViewDelegate
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-        if EFColorPicker.isPosition {
+        switch EFColorPicker.index {
+        case 0:
             positionColor = color
-        } else {
+            break
+        case 1:
             dataColor = color
+            break
+        case 2:
+            alignColor = color
+            break
+        case 3:
+            timingColor = color
+            break
+        case 4:
+            iconBorderColor = color
+            break
+        default:
+            break
         }
         refresh()
     }

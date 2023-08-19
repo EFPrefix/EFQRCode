@@ -27,11 +27,13 @@ public class EFStyleLineParams: EFStyleParams {
 
 public class EFStyleLineParamsPosition {
     
+    public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
+    
     let style: EFStyleParamsPositionStyle
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = CGColor.black) {
+    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = EFStyleLineParamsPosition.defaultColor) {
         self.style = style
         self.size = size
         self.color = color
@@ -39,11 +41,14 @@ public class EFStyleLineParamsPosition {
 }
 
 public class EFStyleLineParamsLine {
+    
+    public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
+    
     let direction: EFStyleLineParamsLineDirection
     let thickness: CGFloat // (0-1]
     let color: CGColor
     
-    public init(direction: EFStyleLineParamsLineDirection = .x, thickness: CGFloat = 0.5, color: CGColor = CGColor.black) {
+    public init(direction: EFStyleLineParamsLineDirection = .x, thickness: CGFloat = 0.5, color: CGColor = EFStyleLineParamsLine.defaultColor) {
         self.direction = direction
         self.thickness = thickness
         self.color = color
@@ -92,54 +97,56 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
         
         for x in 0..<nCount {
             for y in 0..<nCount {
-                if qrcode.model.isDark(x, y) == false {
+                let isDark: Bool = qrcode.model.isDark(x, y)
+                if !isDark {
                     continue
-                }
-                
-                if typeTable[x][y] == QRPointType.posCenter {
+                } else if typeTable[x][y] == QRPointType.posCenter {
                     switch posType {
                     case .rectangle:
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"3\" height=\"3\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1)\" y=\"\(y.cgFloat - 1)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"3\" height=\"3\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1)\" y=\"\(y.cgFloat - 1)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" x=\"\(x.cgFloat - 2.5)\" y=\"\(y.cgFloat - 2.5)\" width=\"6\" height=\"6\"/>")
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" x=\"\(x.cgFloat - 2.5)\" y=\"\(y.cgFloat - 2.5)\" width=\"6\" height=\"6\"/>")
                         id += 1
                         break
                     case .round:
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
                         id += 1
                         break
                     case .roundedRectangle:
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<path opacity=\"\(positionAlpha)\" key=\"\(id)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * posSize)\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\"/>")
+                        pointList.append("<path key=\"\(id)\" opacity=\"\(positionAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(positionColor)\" stroke-width=\"\(100.cgFloat / 6 * posSize)\" fill=\"none\" transform=\"translate(\(x.cgFloat - 2.5),\(y.cgFloat - 2.5)) scale(\(6.cgFloat / 100),\(6.cgFloat / 100))\"/>")
                         id += 1
                         break
                     case .planets:
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"1.5\"/>")
                         id += 1
-                        pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"none\" stroke-width=\"0.15\" stroke-dasharray=\"0.5,0.5\" stroke=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"3\"/>")
                         id += 1
                         for w in 0..<EFQRCodeStyleBasic.planetsVw.count {
-                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * posSize)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + EFQRCodeStyleBasic.planetsVw[w] + 0.5)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         for h in 0..<EFQRCodeStyleBasic.planetsVh.count {
-                            pointList.append("<circle opacity=\"\(positionAlpha)\" key=\"\(id)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"\(0.5 * posSize)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"\(positionColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + EFQRCodeStyleBasic.planetsVh[h] + 0.5)\" r=\"\(0.5 * posSize)\"/>")
                             id += 1
                         }
                         break
                     case .dsj:
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        let widthValue: CGFloat = 3.0 - (1.0 - posSize)
+                        let xTempValue: CGFloat = x.cgFloat + (1.0 - posSize) / 2.0
+                        let yTempValue: CGFloat = y.cgFloat + (1.0 - posSize) / 2.0
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 1)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 1)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(3 - (1 - posSize))\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat + 3 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 1 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue + 3)\" y=\"\(yTempValue - 1)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat - 3 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 3)\"/>");
                         id += 1
-                        pointList.append("<rect opacity=\"\(positionAlpha)\" width=\"\(3 - (1 - posSize))\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(positionColor)\" x=\"\(x.cgFloat - 1 + (1 - posSize)/2.0)\" y=\"\(y.cgFloat + 3 + (1 - posSize)/2.0)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue + 3)\"/>");
                         id += 1
                         break
                     }
@@ -165,13 +172,13 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                     ava2[x + i][y] = false
                                     available[x + i][y] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 0.5)\" y2=\"\(y.cgFloat + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 0.5)\" y2=\"\(y.cgFloat + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
                         
                         if available[x][y] {
-                            pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" r=\"\(size / 2)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                             id += 1
                         }
                         break
@@ -193,13 +200,13 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                     ava2[x][y + i] = false
                                     available[x][y + i] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
                         
                         if available[x][y] {
-                            pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" r=\"\(size / 2)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                             id += 1
                         }
                         break
@@ -221,7 +228,7 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                     ava2[x][y + i] = false
                                     available[x][y + i] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
@@ -243,13 +250,13 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                     ava2[x + i][y] = false
                                     available[x + i][y] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 0.5)\" y2=\"\(y.cgFloat + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 0.5)\" y2=\"\(y.cgFloat + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
                         
                         if available[x][y] {
-                            pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" r=\"\(size / 2)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                             id += 1
                         }
                         break
@@ -272,7 +279,7 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                         ava2[x][y + i] = false
                                         available[x][y + i] = false
                                     }
-                                    pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                    pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                     id += 1
                                 }
                             }
@@ -294,14 +301,14 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                         ava2[x + i][y] = false
                                         available[x + i][y] = false
                                     }
-                                    pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 0.5)\" y2=\"\(y.cgFloat + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                    pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 0.5)\" y2=\"\(y.cgFloat + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                     id += 1
                                 }
                             }
                         }
                         
                         if available[x][y] {
-                            pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" r=\"\(size / 2)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                             id += 1
                         }
                         break
@@ -322,12 +329,12 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                     ava2[x + i][y + i] = false
                                     available[x + i][y + i] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
                         if available[x][y] {
-                            pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" r=\"\(size / 2)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                             id += 1
                         }
                         break
@@ -348,12 +355,12 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                     ava2[x + i][y - i] = false
                                     available[x + i][y - i] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat - end.cgFloat + start.cgFloat + 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat - end.cgFloat + start.cgFloat + 1 + 0.5)\" stroke-width=\"\(size)\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
                         if available[x][y] {
-                            pointList.append("<circle opacity=\"\(opacity)\" r=\"\(size / 2)\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                            pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" r=\"\(size / 2)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                             id += 1
                         }
                         break
@@ -373,7 +380,7 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                 for i in start..<end {
                                     ava2[x + i][y - i] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat - end.cgFloat + start.cgFloat + 1 + 0.5)\" stroke-width=\"\(size / 2 * CGFloat.random(in: 0.3...1))\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat - end.cgFloat + start.cgFloat + 1 + 0.5)\" stroke-width=\"\(size / 2 * CGFloat.random(in: 0.3...1))\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
@@ -392,11 +399,11 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
                                 for i in start..<end {
                                     available[x + i][y + i] = false
                                 }
-                                pointList.append("<line opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size / 2 * CGFloat.random(in: 0.3...1))\" stroke=\"\(otherColor)\" stroke-linecap=\"round\" key=\"\(id)\"/>")
+                                pointList.append("<line key=\"\(id)\" opacity=\"\(opacity)\" x1=\"\(x.cgFloat + 0.5)\" y1=\"\(y.cgFloat + 0.5)\" x2=\"\(x.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" y2=\"\(y.cgFloat + end.cgFloat - start.cgFloat - 1 + 0.5)\" stroke-width=\"\(size / 2 * CGFloat.random(in: 0.3...1))\" stroke=\"\(otherColor)\" stroke-linecap=\"round\"/>")
                                 id += 1
                             }
                         }
-                        pointList.append("<circle opacity=\"\(opacity)\" r=\"\(0.5 * CGFloat.random(in: 0.33...0.9))\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(opacity)\" r=\"\(0.5 * CGFloat.random(in: 0.33...0.9))\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                         id += 1
                         break
                     }

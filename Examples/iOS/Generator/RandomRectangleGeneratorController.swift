@@ -30,9 +30,12 @@ class RandomRectangleGeneratorController: UIViewController, UITextViewDelegate, 
     // MARK: - Param
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var dataColor: UIColor = UIColor.black
+    var dataColorAlpha: CGFloat = 1
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
+    var iconBorderColor: UIColor = UIColor.white
+    var iconBorderAlpha: CGFloat = 1
 }
 
 extension RandomRectangleGeneratorController {
@@ -151,7 +154,12 @@ extension RandomRectangleGeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: UIColor.white.cgColor)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                )
             }
             return nil
         }()
@@ -164,7 +172,7 @@ extension RandomRectangleGeneratorController {
                 style: EFQRCodeStyle.randomRectangle(
                     params: EFStyleRandomRectangleParams(
                         icon: paramIcon,
-                        color: dataColor.cgColor
+                        color: dataColor.withAlphaComponent(dataColorAlpha).cgColor
                     )
                 )
             )
@@ -212,7 +220,7 @@ extension RandomRectangleGeneratorController {
         alert.addAction(
             UIAlertAction(title: Localized.custom, style: .default) {
                 [weak self] _ in
-                self?.customColor(false)
+                self?.customColor(0)
             }
         )
         #endif
@@ -227,6 +235,15 @@ extension RandomRectangleGeneratorController {
             )
         }
         popActionSheet(alert: alert)
+    }
+    
+    func chooseDataAlpha() {
+        chooseFromList(title: Localized.Title.dataAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataColorAlpha = result
+            self.refresh()
+        }
     }
 
     func chooseIcon() {
@@ -290,13 +307,55 @@ extension RandomRectangleGeneratorController {
         }
     }
     
+    func chooseIconBorderColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.iconBorderColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(1)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.iconBorderColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseIconBorderColorAlpha() {
+        chooseFromList(title: Localized.Title.iconBorderAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.iconBorderAlpha = result
+            self.refresh()
+        }
+    }
+    
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.dataColor,
+        Localized.Title.dataAlpha,
         Localized.Title.icon,
         Localized.Title.iconScale,
         Localized.Title.iconAlpha,
+        Localized.Title.iconBorderColor,
+        Localized.Title.iconBorderAlpha,
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -304,9 +363,12 @@ extension RandomRectangleGeneratorController {
         [
             chooseInputCorrectionLevel,
             chooseDataColor,
+            chooseDataAlpha,
             chooseIcon,
             chooseIconScale,
             chooseIconAlpha,
+            chooseIconBorderColor,
+            chooseIconBorderColorAlpha,
         ][indexPath.row]()
     }
 
@@ -334,9 +396,12 @@ extension RandomRectangleGeneratorController {
         let detailArray = [
             "\(inputCorrectionLevel)",
             "", // dataColor
+            "\(dataColorAlpha)",
             "", // icon
             "\(iconScale)",
-            "\(iconAlpha)"
+            "\(iconAlpha)",
+            "", // iconBorderColor
+            "\(iconBorderAlpha)",
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -363,8 +428,8 @@ extension RandomRectangleGeneratorController {
 
             switch indexPath.row {
             case 1:
-                rightImageView.backgroundColor = dataColor
-            case 2:
+                rightImageView.backgroundColor = dataColor.withAlphaComponent(dataColorAlpha)
+            case 3:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -376,6 +441,8 @@ extension RandomRectangleGeneratorController {
                     rightImageView.image = nil
                     break
                 }
+            case 6:
+                rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
             default:
                 break
             }
@@ -389,12 +456,12 @@ extension RandomRectangleGeneratorController {
 extension RandomRectangleGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
 
     struct EFColorPicker {
-        static var isPosition = false
+        static var index: Int = 0
     }
 
-    func customColor(_ isPosition: Bool) {
+    func customColor(_ index: Int) {
 
-        EFColorPicker.isPosition = isPosition
+        EFColorPicker.index = index
 
         let colorSelectionController = EFColorSelectionViewController()
         let navCtrl = UINavigationController(rootViewController: colorSelectionController)
@@ -410,7 +477,7 @@ extension RandomRectangleGeneratorController: UIPopoverPresentationControllerDel
 
         colorSelectionController.isColorTextFieldHidden = false
         colorSelectionController.delegate = self
-        colorSelectionController.color = dataColor
+        colorSelectionController.color = [dataColor, iconBorderColor][index]
 
         if .compact == traitCollection.horizontalSizeClass {
             let doneBtn = UIBarButtonItem(
@@ -432,7 +499,16 @@ extension RandomRectangleGeneratorController: UIPopoverPresentationControllerDel
 
     // MARK: EFColorViewDelegate
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
-        dataColor = color
+        switch EFColorPicker.index {
+        case 0:
+            dataColor = color
+            break
+        case 1:
+            iconBorderColor = color
+            break
+        default:
+            break
+        }
         refresh()
     }
 }
