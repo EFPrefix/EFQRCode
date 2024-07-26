@@ -73,15 +73,15 @@ class GeneratorController: UIViewController, UITextViewDelegate, UITableViewDele
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var image: EFStyleParamImage? = nil
     var imageAlpha: CGFloat = 1
-    var dataStyle: EFStyleImageParamsDataStyle = .rectangle
+    var dataStyle: EFStyleParamsDataStyle = .rectangle
     var dataDarkColor: UIColor = UIColor.black
     var dataLightColor: UIColor = UIColor.white
     var dataAlpha: CGFloat = 1
     var dataThickness: CGFloat = 0.33
-    var positionStyle: EFStyleImageParamsPositionStyle = .rectangle
+    var positionStyle: EFStyleParamsPositionStyle = .rectangle
     var positionColor: UIColor = UIColor.black
-    var alignStyle: EFStyleParamAlignStyle = .none
-    var timingStyle: EFStyleParamTimingStyle = .none
+    var alignStyle: EFStyleImageParamAlignStyle = .none
+    var timingStyle: EFStyleImageParamTimingStyle = .none
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
@@ -203,7 +203,12 @@ extension GeneratorController {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha)
+                return EFStyleParamIcon(
+                    image: icon,
+                    percentage: iconScale,
+                    alpha: iconAlpha,
+                    borderColor: UIColor.white.cgColor
+                )
             }
             return nil
         }()
@@ -223,16 +228,15 @@ extension GeneratorController {
                 style: EFQRCodeStyle.image(
                     params: EFStyleImageParams(
                         icon: paramIcon,
-                        alignStyle: alignStyle,
-                        timingStyle: timingStyle,
+                        align: EFStyleImageParamsAlign(style: alignStyle),
+                        timing: EFStyleImageParamsTiming(style: timingStyle),
                         position: EFStyleImageParamsPosition(
                             style: positionStyle,
-                            color: positionColor.cgColor
+                            colorDark: positionColor.cgColor
                         ),
                         data: EFStyleImageParamsData(
                             style: dataStyle,
                             scale: dataThickness,
-                            alpha: dataAlpha,
                             colorDark: dataDarkColor.cgColor,
                             colorLight: dataLightColor.cgColor
                         ),
@@ -240,8 +244,15 @@ extension GeneratorController {
                     )
                 )
             )
-            let svg = try generator.generateSVG()
-            present(ShowController(svg: svg), animated: true)
+            let image: EFImage = {
+                let imageSize = CGSize(width: 1024, height: 1024)
+                if generator.isAnimated {
+                    return EFImage.gif(try! generator.toGIFData(size: imageSize))
+                } else {
+                    return EFImage.normal(try! generator.toImage(size: imageSize))
+                }
+            }()
+            present(ShowController(image: image), animated: true)
         } catch {
             let alert = UIAlertController(
                 title: Localized.error,
@@ -457,7 +468,7 @@ extension GeneratorController {
     }
     
     func choosePositionStyle() {
-        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleImageParamsPositionStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.positionStyle = result
@@ -475,7 +486,7 @@ extension GeneratorController {
     }
     
     func chooseDataStyle() {
-        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleImageParamsDataStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleParamsDataStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.dataStyle = result
@@ -484,7 +495,7 @@ extension GeneratorController {
     }
     
     func chooseAlignStyle() {
-        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleParamAlignStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleImageParamAlignStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.alignStyle = result
@@ -493,7 +504,7 @@ extension GeneratorController {
     }
     
     func chooseTimingStyle() {
-        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleParamTimingStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleImageParamTimingStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.timingStyle = result

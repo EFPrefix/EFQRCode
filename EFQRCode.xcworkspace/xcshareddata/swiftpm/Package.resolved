@@ -1,4 +1,5 @@
 {
+  "originHash" : "cb76b9f35e6468f1f4ac092460ce9256c1eef613a87587c74fe6bb56372ceae1",
   "pins" : [
     {
       "identity" : "efcolorpicker",
@@ -19,24 +20,6 @@
       }
     },
     {
-      "identity" : "sdwebimage",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SDWebImage/SDWebImage.git",
-      "state" : {
-        "revision" : "c51ba84499268ea3020e6aee9e229c0f56b9d924",
-        "version" : "5.16.0"
-      }
-    },
-    {
-      "identity" : "sdwebimagesvgcoder",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SDWebImage/SDWebImageSVGCoder.git",
-      "state" : {
-        "revision" : "950167445ab703740569869c8b7510efc9d09a26",
-        "version" : "1.7.0"
-      }
-    },
-    {
       "identity" : "snapkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SnapKit/SnapKit.git",
@@ -52,7 +35,15 @@
       "state" : {
         "revision" : "0b504067933381616058a951382b226d6b3f47f7"
       }
+    },
+    {
+      "identity" : "swiftdraw",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EyreFree/SwiftDraw",
+      "state" : {
+        "revision" : "e4fc708dbb57d81d0aab4e5807a413efa890d894"
+      }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

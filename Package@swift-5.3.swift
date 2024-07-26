@@ -33,14 +33,17 @@ let package = Package(
         .library(name: "EFQRCode", targets: ["EFQRCode"])
     ],
     dependencies: [
-        .package(url: "https://github.com/EFPrefix/swift_qrcodejs.git",
-                 .upToNextMinor(from: "2.3.0"))
+        .package(url: "https://github.com/ApolloZhu/swift_qrcodejs.git",
+                 .upToNextMinor(from: "2.2.2")),
+        .package(url: "https://github.com/EyreFree/SwiftDraw.git", 
+                 .revision("e4fc708dbb57d81d0aab4e5807a413efa890d894"))
     ],
     targets: [
         .target(name: "EFQRCode",
                 dependencies: [
                     .product(name: "QRCodeSwift", package: "swift_qrcodejs",
                              condition: .when(platforms: [.watchOS])),
+                    "SwiftDraw"
                 ],
                 path: "Source",
                 exclude: ["Info.plist", "Info-tvOS.plist"]),

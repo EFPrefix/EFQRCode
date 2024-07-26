@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,6 @@
 		1215B72A1EAC96FB00DC5A86 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1215B7151EAC95AE00DC5A86 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1215B7341EAC9FD300DC5A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7311EAC9FD300DC5A86 /* ViewController.swift */; };
 		1215B7381EACA23E00DC5A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7371EACA23E00DC5A86 /* AppDelegate.swift */; };
-		122A6CE22A5CC38F00EE18B1 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 122A6CE12A5CC38F00EE18B1 /* SDWebImageSVGCoder */; };
 		1261B5832A6E4A09004D4F48 /* EFFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 1261B5822A6E4A09004D4F48 /* EFFoundation */; };
 		127D586C2A6C336800E843D1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 127D586B2A6C336800E843D1 /* SnapKit */; };
 		12A22D0222106B340063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22D0122106B340063EE1F /* StorageUserDefaults.swift */; };
@@ -124,7 +123,6 @@
 				127D586C2A6C336800E843D1 /* SnapKit in Frameworks */,
 				1215B7231EAC96DD00DC5A86 /* EFQRCode.framework in Frameworks */,
 				1261B5832A6E4A09004D4F48 /* EFFoundation in Frameworks */,
-				122A6CE22A5CC38F00EE18B1 /* SDWebImageSVGCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +247,6 @@
 			);
 			name = "tvOS Example";
 			packageProductDependencies = (
-				122A6CE12A5CC38F00EE18B1 /* SDWebImageSVGCoder */,
 				127D586B2A6C336800E843D1 /* SnapKit */,
 				1261B5822A6E4A09004D4F48 /* EFFoundation */,
 			);
@@ -285,7 +282,6 @@
 			);
 			mainGroup = 1215B6E61EAC956F00DC5A86;
 			packageReferences = (
-				122A6CE02A5CC38F00EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
 				127D586A2A6C336800E843D1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				1261B5812A6E4A09004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */,
 			);
@@ -586,14 +582,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		122A6CE02A5CC38F00EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSVGCoder.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.7.0;
-			};
-		};
 		1261B5812A6E4A09004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EFPrefix/EFFoundation.git";
@@ -613,11 +601,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		122A6CE12A5CC38F00EE18B1 /* SDWebImageSVGCoder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 122A6CE02A5CC38F00EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
-			productName = SDWebImageSVGCoder;
-		};
 		1261B5822A6E4A09004D4F48 /* EFFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1261B5812A6E4A09004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */;
