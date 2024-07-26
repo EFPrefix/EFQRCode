@@ -340,8 +340,9 @@ class ParametersInterfaceController: WKInterfaceController {
                     )
                 )
             )
-            let svg = try generator.generateSVG()
-            return svg
+            let imageSize = CGSize(width: 1024, height: 1024)
+            let image = try generator.toImage(size: imageSize)
+            return image
         } catch {
             return nil
         }

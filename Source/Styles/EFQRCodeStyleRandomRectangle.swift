@@ -58,9 +58,18 @@ public class EFQRCodeStyleRandomRectangle: EFQRCodeStyleBase {
             if isDark {
                 let tempRand = Double.random(in: 0.8...1.3)
                 let randNum = Double.random(in: 50...230)
+                
+                let rValue = clampRGBValue(Int(redValue + randNum))
+                let gValue = clampRGBValue(Int(greenValue - randNum / 2))
+                let bValue = clampRGBValue(Int(blueValue + randNum * 2))
+                
+                let r2Value = clampRGBValue(rValue - 40)
+                let g2Value = clampRGBValue(gValue - 40)
+                let b2Value = clampRGBValue(bValue - 40)
+                
                 let tempRGB = [
-                    "rgb(\(Int(redValue + randNum)),\(Int(greenValue - randNum / 2)),\(Int(blueValue + randNum * 2)))",
-                    "rgb(\(Int(redValue - 40 + randNum)),\(Int(greenValue - 40 - randNum / 2)),\(Int(blueValue - 40 + randNum * 2)))"
+                    "rgb(\(rValue),\(gValue),\(bValue))",
+                    "rgb(\(r2Value)),\(g2Value)),\(b2Value))"
                 ]
                 let width: CGFloat = 0.15
                 pointList.append("<rect key=\"\(id)\" opacity=\"\(0.9 * alphaValue)\" fill=\"\(tempRGB[1])\" width=\"\(1 * tempRand.cgFloat + width.cgFloat)\" height=\"\(1 * tempRand.cgFloat + width.cgFloat)\" x=\"\(row.cgFloat - (tempRand.cgFloat - 1) / 2.0)\" y=\"\(col.cgFloat - (tempRand.cgFloat - 1) / 2.0)\"/>");
@@ -74,5 +83,9 @@ public class EFQRCodeStyleRandomRectangle: EFQRCodeStyleBase {
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
+    }
+    
+    private func clampRGBValue(_ value: Int) -> Int {
+        return max(0, min(255, value))
     }
 }

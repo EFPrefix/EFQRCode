@@ -7,7 +7,15 @@
 //
 
 import Foundation
+import CoreGraphics
 import QRCodeSwift
+import SwiftDraw
+#if canImport(UIKit)
+import UIKit
+#endif
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+import AppKit
+#endif
 
 public extension EFQRCode {
     
@@ -47,8 +55,65 @@ public extension EFQRCode {
             self.style = style
         }
         
+        private var svgContent: String?
         public func generateSVG() throws -> String {
-            return try self.style.generateSVG(qrcode: qrcode)
+            if let svgContent = svgContent {
+                return svgContent
+            }
+            let svgString = try self.style.generateSVG(qrcode: qrcode)
+            self.svgContent = svgString
+            print("\(svgString)")
+            return svgString
+        }
+        
+        public lazy var isAnimated: Bool = {
+            if let svgContent = try? generateSVG() {
+                return svgContent.contains("<animate")
+            }
+            return false
+        }()
+        
+#if canImport(UIKit)
+        public func toImage(size: CGSize) throws -> UIImage {
+            let svgContent = try generateSVG()
+            guard let svgData = svgContent.data(using: .utf8) else {
+                throw EFQRCodeError.text(svgContent, incompatibleWithEncoding: .utf8)
+            }
+            
+            let svg = SVG(data: svgData)
+            guard let image = svg?.rasterize(with: size) else {
+                throw EFQRCodeError.cannotCreateUIImage
+            }
+            
+            return image
+        }
+#endif
+        
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+        public func toImage(size: CGSize) throws -> NSImage {
+            let svgContent = try generateSVG()
+            guard let svgData = svgContent.data(using: .utf8) else {
+                throw EFQRCodeError.text(svgContent, incompatibleWithEncoding: .utf8)
+            }
+            
+            let svg = SVG(data: svgData)
+            guard let image = svg?.rasterize(with: size) else {
+                throw EFQRCodeError.cannotCreateUIImage
+            }
+            
+            return image
+        }
+#endif
+        
+        public func toGIFData(size: CGSize) throws -> Data {
+            let svgContent = try generateSVG()
+            
+            if self.isAnimated {
+                
+            } else {
+                
+            }
+            return Data()
         }
     }
 }

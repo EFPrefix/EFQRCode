@@ -58,7 +58,7 @@ class MoreViewController: UIViewController {
         downloadButton.addTarget(self, action: #selector(openDownload), for: .touchUpInside)
         downloadButton.layer.borderColor = UIColor.white.cgColor
         downloadButton.layer.borderWidth = 1
-        downloadButton.layer.cornerRadius = downloadButtonHeight / 2
+        downloadButton.layer.cornerRadius = downloadButtonHeight / 2 - 10
         self.view.addSubview(downloadButton)
         downloadButton.snp.makeConstraints { (make) in
             make.left.equalTo(36)
@@ -74,7 +74,7 @@ class MoreViewController: UIViewController {
         labelTip.backgroundColor = UIColor.clear
         labelTip.alwaysBounceVertical = true
         labelTip.isEditable = false
-        labelTip.text = "We recommend you to try our pro version - EFQRCoder, you can get the following:\n\n- Support more kinds of barcode & 2D code;\n- More user-friendly scanner;\n- Support recognition history;\n- More beautiful user interface;\n- Multi-language adaptation;\n- More recognition and generation options;\n- More timely customer support;\n- Support the development of EFQRCode;\n- Etc.\n\nAnyway, thank you very much for using our products!"
+        labelTip.text = "We recommend you to try our pro version - EFQRCoder, you can get the following:\n\n- Support more kinds of barcode & 2D code;\n- More user-friendly scanner;\n- Support recognition history;\n- More beautiful user interface;\n- Multi-language adaptation;\n- More recognition and generation options;\n- More timely customer support;\n- Support the development of EFQRCode;\n- Etc.\n\nAnyway, thank you very much for using our products."
         self.view.addSubview(labelTip)
         labelTip.snp.makeConstraints { (make) in
             make.left.equalTo(20)

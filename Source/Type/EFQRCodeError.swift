@@ -30,6 +30,12 @@ public enum EFQRCodeError: Error {
     case cannotFinalizeCGImageDestination
     /// Can not create CGContext
     case cannotCreateCGContext
+    /// Can not create CGContext
+    case cannotCreateSVGDocument
+    /// Can not create CGImage
+    case cannotCreateCGImage
+    /// Can not create UIImage
+    case cannotCreateUIImage
     /// Fill a new issue on GitHub, or submit a pull request.
     case internalError(ImplmentationError)
     

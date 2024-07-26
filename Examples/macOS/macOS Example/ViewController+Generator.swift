@@ -247,16 +247,15 @@ extension ViewController: NSAlertDelegate {
                 style: EFQRCodeStyle.image(
                     params: EFStyleImageParams(
                         icon: paramIcon,
-                        alignStyle: alignStyle,
-                        timingStyle: timingStyle,
+                        align: EFStyleImageParamsAlign(style: alignStyle),
+                        timing: EFStyleImageParamsTiming(style: timingStyle),
                         position: EFStyleImageParamsPosition(
                             style: positionStyle,
-                            color: positionColor.cgColor
+                            colorDark: positionColor.cgColor
                         ),
                         data: EFStyleImageParamsData(
                             style: dataStyle,
                             scale: dataThickness,
-                            alpha: dataAlpha,
                             colorDark: dataDarkColor.cgColor,
                             colorLight: dataLightColor.cgColor
                         ),
@@ -529,7 +528,7 @@ extension ViewController: NSAlertDelegate {
     }
     
     func choosePositionStyle() {
-        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleImageParamsPositionStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.positionStyle, type: EFStyleParamsPositionStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.positionStyle = result
@@ -547,7 +546,7 @@ extension ViewController: NSAlertDelegate {
     }
     
     func chooseDataStyle() {
-        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleImageParamsDataStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.dataStyle, type: EFStyleParamsDataStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.dataStyle = result
@@ -556,7 +555,7 @@ extension ViewController: NSAlertDelegate {
     }
     
     func chooseAlignStyle() {
-        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleParamAlignStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.alignStyle, type: EFStyleImageParamAlignStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.alignStyle = result
@@ -565,7 +564,7 @@ extension ViewController: NSAlertDelegate {
     }
     
     func chooseTimingStyle() {
-        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleParamTimingStyle.self) { [weak self] result in
+        chooseFromEnum(title: Localized.Title.timingStyle, type: EFStyleImageParamTimingStyle.self) { [weak self] result in
             guard let self = self else { return }
             
             self.timingStyle = result

@@ -202,8 +202,15 @@ extension ResampleImageGeneratorController {
                     )
                 )
             )
-            let svg = try generator.generateSVG()
-            present(ShowController(svg: svg), animated: true)
+            let image: EFImage = {
+                let imageSize = CGSize(length: 1024)
+                if generator.isAnimated {
+                    return EFImage.gif(try! generator.toGIFData(size: imageSize))
+                } else {
+                    return EFImage.normal(try! generator.toImage(size: imageSize))
+                }
+            }()
+            present(ShowController(image: image), animated: true)
         } catch {
             let alert = UIAlertController(
                 title: Localized.error,

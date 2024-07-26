@@ -10,11 +10,6 @@ import Foundation
 import EFFoundation
 import UIKit
 import Photos
-#if os(tvOS)
-import SDWebImage
-#else
-import WebKit
-#endif
 
 // MARK: - QRCode Display
 
@@ -23,19 +18,11 @@ extension ShowController {
         self.init()
         self.image = image
     }
-    
-    convenience init(svg: String?) {
-        self.init()
-        self.svg = svg
-        
-        // print(svg!)
-    }
 }
 
 class ShowController: UIViewController {
 
     private(set) var image: EFImage?
-    private(set) var svg: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,39 +31,15 @@ class ShowController: UIViewController {
         setupViews()
         
         if let image = image {
-            imageView.isHidden = false
-            #if os(tvOS)
-
-            #else
-            webView.isHidden = true
-            #endif
-            
             switch image {
             case .gif(let dataGIF):
                 imageView.loadGif(data: dataGIF)
             case .normal(let uiImage):
                 imageView.image = uiImage
             }
-        } else if let svg = svg {
-            #if os(tvOS)
-            imageView.isHidden = false
-            if let svgURL = saveSvgStringToTemporaryFile(svgString: svg) {
-                let bitmapSize = CGSize(width: 512, height: 512)
-                imageView.sd_setImage(with: svgURL, placeholderImage: nil, options: [], context: [.imageThumbnailPixelSize : bitmapSize])
-            }
-            #else
-            imageView.isHidden = true
-            webView.isHidden = false
-            webView.loadHTMLString(svg, baseURL: nil)
-            #endif
         }
     }
 
-    #if os(tvOS)
-    
-    #else
-    let webView = WKWebView()
-    #endif
     let imageView = UIImageView()
     let backButton = UIButton(type: .system)
     #if os(iOS)
@@ -97,14 +60,6 @@ class ShowController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = UIColor.white
         view.addSubview(imageView)
-        
-        #if os(tvOS)
-
-        #else
-        webView.scrollView.bounces = false
-        webView.scrollView.bouncesZoom = false
-        view.addSubview(webView)
-        #endif
         
         backButton.setTitle(Localized.back, for: .normal)
         backButton.setTitleColor(.white, for: .normal)
@@ -132,14 +87,6 @@ class ShowController: UIViewController {
             make.height.lessThanOrEqualTo(view.snp.width).offset(-20)
             make.height.lessThanOrEqualTo(view.snp.height).offset(-20-46-10-46-10-top)
         }
-        
-        #if os(tvOS)
-
-        #else
-        webView.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalTo(imageView)
-        }
-        #endif
 
         saveButton.addTarget(self, action: #selector(saveToAlbum), for: .touchDown)
         saveButton.snp.makeConstraints {
@@ -215,21 +162,6 @@ class ShowController: UIViewController {
 
     @objc func back() {
         dismiss(animated: true)
-    }
-    
-    func saveSvgStringToTemporaryFile(svgString: String) -> URL? {
-        guard let data = svgString.data(using: .utf8) else {
-            return nil
-        }
-        let temporaryDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
-        let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("svg")
-        do {
-            try data.write(to: temporaryFileURL, options: [])
-            return temporaryFileURL
-        } catch {
-            print("Save SVG error: \(error)")
-            return nil
-        }
     }
 }
 

@@ -25,13 +25,10 @@
 //  THE SOFTWARE.
 
 import WatchKit
-import SDWebImageSVGCoder
-import SDWebImage
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     func applicationDidFinishLaunching() {
-        let SVGCoder = SDImageSVGCoder.shared
-        SDImageCodersManager.shared.addCoder(SVGCoder)
+        
     }
 }

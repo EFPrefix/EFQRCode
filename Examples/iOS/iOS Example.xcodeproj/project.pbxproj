@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,6 @@
 		120B78411EA39E1B00D34440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78401EA39E1B00D34440 /* AppDelegate.swift */; };
 		120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; };
 		120B785E1EA3AA1100D34440 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		122A6D072A5CD9AA00EE18B1 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 122A6D062A5CD9AA00EE18B1 /* SDWebImageSVGCoder */; };
 		12399E642A4389F400BB789F /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12399E632A4389F400BB789F /* MoreViewController.swift */; };
 		125E59F42A561B4A00B508F2 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59F32A561B4A00B508F2 /* StyleViewController.swift */; };
 		125E59FD2A56A06400B508F2 /* BasicGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */; };
@@ -247,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5282BD1E1FF3FD8A00DFB36B /* EFQRCode.framework in Frameworks */,
-				122A6D072A5CD9AA00EE18B1 /* SDWebImageSVGCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +495,6 @@
 			);
 			name = "watchOS Example Extension";
 			packageProductDependencies = (
-				122A6D062A5CD9AA00EE18B1 /* SDWebImageSVGCoder */,
 			);
 			productName = "watchOS Example Extension";
 			productReference = 5282BCEF1FF3AD9100DFB36B /* watchOS Example Extension.appex */;
@@ -565,7 +562,6 @@
 			);
 			mainGroup = F8111DFC19A951050040E7D1;
 			packageReferences = (
-				122A6CFE2A5CD69900EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
 				120B14622A6C2FC600970B90 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				120B146A2A6C30D000970B90 /* XCRemoteSwiftPackageReference "EFColorPicker" */,
 				1261B5AB2A6E78EE004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */,
@@ -1123,14 +1119,6 @@
 				version = 5.2.2;
 			};
 		};
-		122A6CFE2A5CD69900EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSVGCoder.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.7.0;
-			};
-		};
 		1261B5AB2A6E78EE004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EFPrefix/EFFoundation.git";
@@ -1151,11 +1139,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 120B146A2A6C30D000970B90 /* XCRemoteSwiftPackageReference "EFColorPicker" */;
 			productName = EFColorPicker;
-		};
-		122A6D062A5CD9AA00EE18B1 /* SDWebImageSVGCoder */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 122A6CFE2A5CD69900EE18B1 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
-			productName = SDWebImageSVGCoder;
 		};
 		1261B5AC2A6E78EE004D4F48 /* EFFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
