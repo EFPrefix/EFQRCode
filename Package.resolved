@@ -9,6 +9,15 @@
           "revision": "817ba220a2eba840bae888e7eeb11207bec05f8c",
           "version": "2.3.0"
         }
+      },
+      {
+        "package": "SwiftDraw",
+        "repositoryURL": "https://github.com/EyreFree/SwiftDraw.git",
+        "state": {
+          "branch": null,
+          "revision": "e4fc708dbb57d81d0aab4e5807a413efa890d894",
+          "version": null
+        }
       }
     ]
   },

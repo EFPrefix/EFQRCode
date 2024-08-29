@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 import QRCodeSwift
 
 /// All possible errors that could occur when constructing `EFQRCode`.
@@ -36,6 +37,8 @@ public enum EFQRCodeError: Error {
     case cannotCreateCGImage
     /// Can not create UIImage
     case cannotCreateUIImage
+    /// Can not create GIF
+    case cannotCreateGIF
     /// Fill a new issue on GitHub, or submit a pull request.
     case internalError(ImplmentationError)
     

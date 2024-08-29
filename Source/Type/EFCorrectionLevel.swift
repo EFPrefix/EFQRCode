@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+
 import QRCodeSwift
 
 /// Levels of tolerance.

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+
 import QRCodeSwift
 
 public class EFStyleRandomRectangleParams: EFStyleParams {
@@ -19,6 +20,16 @@ public class EFStyleRandomRectangleParams: EFStyleParams {
     public init(icon: EFStyleParamIcon? = nil, color: CGColor = EFStyleRandomRectangleParams.defaultColor) {
         self.color = color
         super.init(icon: icon)
+    }
+    
+    func copyWith(
+        icon: EFStyleParamIcon? = nil,
+        color: CGColor? = nil
+    ) -> EFStyleRandomRectangleParams {
+        return EFStyleRandomRectangleParams(
+            icon: icon ?? self.icon,
+            color: color ?? self.color
+        )
     }
 }
 
