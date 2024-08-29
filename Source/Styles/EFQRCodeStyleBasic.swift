@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+
 import QRCodeSwift
 
 public class EFStyleBasicParams: EFStyleParams {
@@ -28,6 +29,22 @@ public class EFStyleBasicParams: EFStyleParams {
         self.align = align
         self.timing = timing
         super.init(icon: icon)
+    }
+    
+    func copyWith(
+        icon: EFStyleParamIcon? = nil,
+        position: EFStyleBasicParamsPosition? = nil,
+        data: EFStyleBasicParamsData? = nil,
+        align: EFStyleBasicParamsAlign? = nil,
+        timing: EFStyleBasicParamsTiming? = nil
+    ) -> EFStyleBasicParams {
+        return EFStyleBasicParams(
+            icon: icon ?? self.icon,
+            position: position ?? self.position,
+            data: data ?? self.data,
+            align: align ?? self.align,
+            timing: timing ?? self.timing
+        )
     }
 }
 

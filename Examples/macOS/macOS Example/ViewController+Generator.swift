@@ -48,8 +48,8 @@ enum EFImage {
         case .gif(let data):
             if let animatedImage = AnimatedImage(data: data, format: .gif) {
                 let frames = animatedImage.frames.compactMap { return $0 }
-                let duration = animatedImage.duration
-                return .animated(images: frames, duration: duration)
+                let frameDelays = animatedImage.frameDelays.map({ $0.cgFloat })
+                return .animated(images: frames, imageDelays: frameDelays)
             }
             return nil
         }

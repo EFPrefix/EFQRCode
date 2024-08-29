@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+
 import QRCodeSwift
 
 public class EFStyleImageFillParams: EFStyleParams {
@@ -25,6 +26,20 @@ public class EFStyleImageFillParams: EFStyleParams {
         self.maskColor = maskColor
         super.init(icon: icon)
     }
+    
+    func copyWith(
+        icon: EFStyleParamIcon? = nil,
+        image: EFStyleImageFillParamsImage? = nil,
+        backgroundColor: CGColor? = nil,
+        maskColor: CGColor? = nil
+    ) -> EFStyleImageFillParams {
+        return EFStyleImageFillParams(
+            icon: icon ?? self.icon,
+            image: image ?? self.image,
+            backgroundColor: backgroundColor ?? self.backgroundColor,
+            maskColor: maskColor ?? self.maskColor
+        )
+    }
 }
 
 public class EFStyleImageFillParamsImage {
@@ -35,6 +50,16 @@ public class EFStyleImageFillParamsImage {
     public init(image: EFStyleParamImage, alpha: CGFloat = 1) {
         self.image = image
         self.alpha = alpha
+    }
+    
+    func copyWith(
+        image: EFStyleParamImage? = nil,
+        alpha: CGFloat? = nil
+    ) -> EFStyleImageFillParamsImage {
+        return EFStyleImageFillParamsImage(
+            image: image ?? self.image,
+            alpha: alpha ?? self.alpha
+        )
     }
 }
 

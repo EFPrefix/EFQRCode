@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+
 import QRCodeSwift
 
 public class EFStyleLineParams: EFStyleParams {
@@ -22,6 +23,18 @@ public class EFStyleLineParams: EFStyleParams {
         self.position = position
         self.line = line
         super.init(icon: icon)
+    }
+    
+    func copyWith(
+        icon: EFStyleParamIcon? = nil,
+        position: EFStyleLineParamsPosition? = nil,
+        line: EFStyleLineParamsLine? = nil
+    ) -> EFStyleLineParams {
+        return EFStyleLineParams(
+            icon: icon ?? self.icon,
+            position: position ?? self.position,
+            line: line ?? self.line
+        )
     }
 }
 

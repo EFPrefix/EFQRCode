@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+
 import QRCodeSwift
 
 public class EFStyle25DParams: EFStyleParams {
@@ -29,6 +30,24 @@ public class EFStyle25DParams: EFStyleParams {
         self.leftColor = leftColor
         self.rightColor = rightColor
         super.init(icon: icon)
+    }
+    
+    func copyWith(
+        icon: EFStyleParamIcon? = nil,
+        dataHeight: CGFloat? = nil,
+        positionHeight: CGFloat? = nil,
+        topColor: CGColor? = nil,
+        leftColor: CGColor? = nil,
+        rightColor: CGColor? = nil
+    ) -> EFStyle25DParams {
+        return EFStyle25DParams(
+            icon: icon ?? self.icon,
+            dataHeight: dataHeight ?? self.dataHeight,
+            positionHeight: positionHeight ?? self.positionHeight,
+            topColor: topColor ?? self.topColor,
+            leftColor: leftColor ?? self.leftColor,
+            rightColor: rightColor ?? self.rightColor
+        )
     }
 }
 

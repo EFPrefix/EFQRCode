@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+
 import QRCodeSwift
 
 public class EFStyleBubbleParams: EFStyleParams {
@@ -22,6 +23,18 @@ public class EFStyleBubbleParams: EFStyleParams {
         self.dataColor = dataColor
         self.position = position
         super.init(icon: icon)
+    }
+    
+    func copyWith(
+        icon: EFStyleParamIcon? = nil,
+        dataColor: CGColor? = nil,
+        position: EFStyleBubbleParamsPosition? = nil
+    ) -> EFStyleBubbleParams {
+        return EFStyleBubbleParams(
+            icon: icon ?? self.icon,
+            dataColor: dataColor ?? self.dataColor,
+            position: position ?? self.position
+        )
     }
 }
 

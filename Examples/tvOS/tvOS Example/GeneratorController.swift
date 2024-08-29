@@ -780,8 +780,8 @@ extension GeneratorController: UIImagePickerControllerDelegate {
                 if case .gif(let data) = tryGIF.value {
                     if let animatedImage = AnimatedImage(data: data, format: .gif) {
                         let frames = animatedImage.frames.compactMap { return $0 }
-                        let duration = animatedImage.duration
-                        self.image = .animated(images: frames, duration: duration)
+                        let frameDelays = animatedImage.frameDelays.map({ $0.cgFloat })
+                        self.image = .animated(images: frames, imageDelays: frameDelays)
                     }
                 }
             }

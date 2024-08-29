@@ -20,7 +20,7 @@ class AnimatedImage {
     private(set) var duration = 0.0
     private(set) var imageSource: CGImageSource
     private(set) var frames: [CGImage?]
-    private(set) lazy var frameDurations = [TimeInterval]()
+    private(set) lazy var frameDelays = [TimeInterval]()
     var size: CGSize {
         guard let f = frames.first, let cgImage = f else { return .zero }
         return CGSize(width: cgImage.width, height: cgImage.height)
@@ -40,7 +40,7 @@ class AnimatedImage {
         let dispatchGroup = DispatchGroup()
         for i in 0 ..< imgCount {
             let delay = loopFunc(imageSource, i)
-            frameDurations.append(delay)
+            frameDelays.append(delay)
             duration += delay
             
             dispatchGroup.enter()
