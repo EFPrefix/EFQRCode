@@ -125,27 +125,18 @@ public extension EFQRCode {
 #endif
         
         public func toGIFData(size: CGSize) throws -> Data {
-            let startTime = CFAbsoluteTimeGetCurrent() // 开始时间
             let (images, durations) = try {
                 if self.isAnimated {
                     let (iconImage, watermarkImage) = self.style.getParamImages()
                     return try self.reconcileQRImages(image1: iconImage, image2: watermarkImage, style: self.style, size: size)
-                }
-                if let cgImage = try self.toImage(size: size).cgImage() {
-                    return ([cgImage], [0.02])
+                } else {
+                    if let cgImage = try self.toImage(size: size).cgImage() {
+                        return ([cgImage], [1])
+                    }
                 }
                 return ([], [])
             }()
-            
-            let midTime = CFAbsoluteTimeGetCurrent() // 图像生成完成时间
-                print("Image generation time: \(midTime - startTime) seconds")
-            
             let gifData = try self.createGIFDataWith(frames: images, frameDelays: durations)
-            
-            let endTime = CFAbsoluteTimeGetCurrent() // 结束时间
-                print("GIF creation time: \(endTime - midTime) seconds")
-                print("Total execution time: \(endTime - startTime) seconds")
-            
             return gifData
         }
     }
@@ -153,7 +144,6 @@ public extension EFQRCode {
 
 extension EFQRCode.Generator {
     
-    // todo 图像缩放和调整
     private func reconcileQRImages(image1: EFStyleParamImage?, image2: EFStyleParamImage?, style: EFQRCodeStyle, size: CGSize) throws -> ([CGImage], [CGFloat]) {
         let (iconFrames, watermarkFrames, delays) = self.reconcileFrameImages(image1: image1, image2: image2)
         print(delays.count)
@@ -200,7 +190,6 @@ extension EFQRCode.Generator {
         return (finalQRFrames, delays)
     }
     
-    // todo 这里可以优化两图合并算法
     private func reconcileFrameImages(image1: EFStyleParamImage?, image2: EFStyleParamImage?) -> ([CGImage], [CGImage], [CGFloat]) {
         if let image1 = image1 {
             if let image2 = image2 {
@@ -323,36 +312,51 @@ extension EFQRCode.Generator {
             if let image2 = image2 {
                 let (frames, delays) = frameImages(image: image2)
                 return ([], frames, delays)
-            } else {
-                return ([], [], [])
             }
         }
+        return ([], [], [])
     }
     
     private func frameImages(image: EFStyleParamImage) -> ([CGImage], [CGFloat]) {
         switch image {
         case .static(let image):
-            return ([image], [0.02])
+            return ([image], [1])
         case .animated(let images, let imageDelays):
             return (images, imageDelays)
         }
     }
     
     private func gcd(_ a: Int, _ b: Int) -> Int {
-        let r = a % b
-        return r != 0 ? gcd(b, r) : b
+        var a = a, b = b
+        while b != 0 {
+            (a, b) = (b, a % b)
+        }
+        return abs(a)
     }
     
     private func lcm(_ a: Int, _ b: Int) -> Int {
-        return a * b / gcd(a, b)
+        return (a / gcd(a, b)) * b
+    }
+    
+    private func rationalApproximation(of x: Double, withPrecision eps: Double = 1.0E-6) -> (Int, Int) {
+        var x = x
+        var a = floor(x)
+        var (h1, k1, h, k) = (1, 0, Int(a), 1)
+        while x - a > eps * Double(k) * Double(k) {
+            x = 1.0 / (x - a)
+            a = floor(x)
+            (h1, k1, h, k) = (h, k, h1 + Int(a) * h, k1 + Int(a) * k)
+        }
+        return (h, k)
     }
     
     private func lcm(_ a: CGFloat, _ b: CGFloat, precision: Int = 1) -> CGFloat {
-        let factor = CGFloat(pow(10, Double(precision)))
-        let intA = Int(a * factor)
-        let intB = Int(b * factor)
-        let lcmInt = lcm(intA, intB)
-        return CGFloat(lcmInt) / factor
+        let precision = 1.0 / pow(10, Double(precision))
+        let (num1, den1) = rationalApproximation(of: Double(a), withPrecision: precision)
+        let (num2, den2) = rationalApproximation(of: Double(b), withPrecision: precision)
+        let lcmDen = lcm(den1, den2)
+        let lcmNum = lcm(num1 * (lcmDen / den1), num2 * (lcmDen / den2))
+        return CGFloat(lcmNum) / CGFloat(lcmDen)
     }
     
     private func createGIFDataWith(frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
