@@ -38,7 +38,7 @@ public enum EFQRCodeError: Error {
     /// Can not create UIImage
     case cannotCreateUIImage
     /// Can not create GIF
-    case cannotCreateGIF
+    case cannotCreateAnimatedImage
     /// Fill a new issue on GitHub, or submit a pull request.
     case internalError(ImplmentationError)
     

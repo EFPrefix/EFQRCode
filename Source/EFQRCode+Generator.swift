@@ -124,7 +124,7 @@ public extension EFQRCode {
         }
 #endif
         
-        public func toGIFData(size: CGSize) throws -> Data {
+        public func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize) throws -> Data {
             let (images, durations) = try {
                 if self.isAnimated {
                     let (iconImage, watermarkImage) = self.style.getParamImages()
@@ -136,8 +136,8 @@ public extension EFQRCode {
                 }
                 return ([], [])
             }()
-            let gifData = try self.createGIFDataWith(frames: images, frameDelays: durations)
-            return gifData
+            let animatedImageData = try self.createAnimatedImageDataWith(format: format, frames: images, frameDelays: durations)
+            return animatedImageData
         }
     }
 }
@@ -359,35 +359,55 @@ extension EFQRCode.Generator {
         return CGFloat(lcmNum) / CGFloat(lcmDen)
     }
     
-    private func createGIFDataWith(frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
+    private func createAnimatedImageDataWith(format: EFAnimatedImageFormat, frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
         if frames.isEmpty || frames.count != frameDelays.count {
-            throw EFQRCodeError.cannotCreateGIF
+            throw EFQRCodeError.cannotCreateAnimatedImage
         }
-        let framePropertiesArray: [[String: Any]] = frameDelays.map { delay in
-            [kCGImagePropertyGIFDictionary as String: [
-                kCGImagePropertyGIFDelayTime as String: delay,
-                kCGImagePropertyGIFUnclampedDelayTime as String: delay
-            ]]
-        }
-        let fileProperties: [String: Any] = [
-            kCGImagePropertyGIFDictionary as String: [
-                kCGImagePropertyGIFLoopCount as String: 0,
-                kCGImagePropertyGIFHasGlobalColorMap as String: true
-            ],
-            kCGImageDestinationLossyCompressionQuality as String: 0.8
-        ]
-        return try self.createGIFDataWith(
+        let (framePropertiesArray, fileProperties): ([CFDictionary], CFDictionary) = {
+            switch format {
+            case .gif:
+                return (
+                    frameDelays.map { delay in
+                        [kCGImagePropertyGIFDictionary as String: [
+                            kCGImagePropertyGIFDelayTime as String: delay,
+                            kCGImagePropertyGIFUnclampedDelayTime as String: delay
+                        ]]
+                    } as [CFDictionary],
+                    [
+                        kCGImagePropertyGIFDictionary as String: [
+                            kCGImagePropertyGIFLoopCount as String: 0
+                        ]
+                    ] as CFDictionary
+                )
+            case .apng:
+                return (
+                    frameDelays.map { delay in
+                        [kCGImagePropertyPNGDictionary as String: [
+                            kCGImagePropertyAPNGDelayTime as String: delay,
+                            kCGImagePropertyAPNGUnclampedDelayTime as String: delay
+                        ]]
+                    } as [CFDictionary],
+                    [
+                        kCGImagePropertyPNGDictionary as String: [
+                            kCGImagePropertyAPNGLoopCount as String: 0
+                        ]
+                    ] as CFDictionary
+                )
+            }
+        }()
+        return try self.createAnimatedImageDataWith(
+            format: format,
             frames: frames,
-            framePropertiesArray: framePropertiesArray as [CFDictionary],
-            fileProperties: fileProperties as CFDictionary
+            framePropertiesArray: framePropertiesArray,
+            fileProperties: fileProperties
         )
     }
     
-    private func createGIFDataWith(frames: [CGImage], framePropertiesArray: [CFDictionary], fileProperties: CFDictionary) throws -> Data {
+    private func createAnimatedImageDataWith(format: EFAnimatedImageFormat, frames: [CGImage], framePropertiesArray: [CFDictionary], fileProperties: CFDictionary) throws -> Data {
         guard let mutableData = CFDataCreateMutable(nil, 0) else {
             throw EFQRCodeError.cannotCreateMutableData
         }
-        guard let destination = CGImageDestinationCreateWithData(mutableData, kUTTypeGIF, frames.count, nil) else {
+        guard let destination = CGImageDestinationCreateWithData(mutableData, format.identifier, frames.count, nil) else {
             throw EFQRCodeError.cannotCreateCGImageDestination
         }
         CGImageDestinationSetProperties(destination, fileProperties)
