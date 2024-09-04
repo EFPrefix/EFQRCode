@@ -96,7 +96,7 @@ public extension EFQRCode {
             }
             
             let svg = SVG(data: svgData)
-            guard let image = svg?.rasterize(with: size) else {
+            guard let image = svg?.rasterize(with: size, scale: 1) else {
                 throw EFQRCodeError.cannotCreateUIImage
             }
             
@@ -116,7 +116,7 @@ public extension EFQRCode {
             }
             
             let svg = SVG(data: svgData)
-            guard let image = svg?.rasterize(with: size) else {
+            guard let image = svg?.rasterize(with: size, scale: 1) else {
                 throw EFQRCodeError.cannotCreateUIImage
             }
             
@@ -125,7 +125,7 @@ public extension EFQRCode {
 #endif
         
         public func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize) throws -> Data {
-            let (images, durations) = try {
+            let (images, durations): ([CGImage], [CGFloat]) = try {
                 if self.isAnimated {
                     let (iconImage, watermarkImage) = self.style.getParamImages()
                     return try self.reconcileQRImages(image1: iconImage, image2: watermarkImage, style: self.style, size: size)
