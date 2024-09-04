@@ -85,6 +85,10 @@
 		128013CF2A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */; };
 		128013D02A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */; };
 		128013D12A540A090033B45B /* EFQRCodeStyleResampleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */; };
+		1283C7B92C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */; };
+		1283C7BA2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */; };
+		1283C7BB2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */; };
+		1283C7BC2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */; };
 		12D66CB42A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB52A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB62A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
@@ -172,6 +176,7 @@
 		128013C32A53EDB40033B45B /* EFQRCodeStyleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleImage.swift; sourceTree = "<group>"; };
 		128013C82A53FFA60033B45B /* EFQRCodeStyleImageFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleImageFill.swift; sourceTree = "<group>"; };
 		128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleResampleImage.swift; sourceTree = "<group>"; };
+		1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFAnimatedImageFormat.swift; sourceTree = "<group>"; };
 		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
 		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyle.swift; sourceTree = "<group>"; };
@@ -327,6 +332,7 @@
 			children = (
 				12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */,
 				125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */,
+				1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -769,6 +775,7 @@
 				122A6D292A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */,
 				125E5A012A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
 				122A6D1F2A5D560300EE18B1 /* BinaryInteger+EFQRCode.swift in Sources */,
+				1283C7BB2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */,
 				122A6D1A2A5D55E400EE18B1 /* BinaryFloatingPoint+EFQRCode.swift in Sources */,
 				128013BC2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB62A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
@@ -809,6 +816,7 @@
 				122A6D282A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */,
 				125E5A002A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
 				122A6D1E2A5D560300EE18B1 /* BinaryInteger+EFQRCode.swift in Sources */,
+				1283C7BA2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */,
 				122A6D192A5D55E400EE18B1 /* BinaryFloatingPoint+EFQRCode.swift in Sources */,
 				128013BB2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB52A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
@@ -840,6 +848,7 @@
 				122A6D2A2A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */,
 				125E5A022A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
 				122A6D202A5D560300EE18B1 /* BinaryInteger+EFQRCode.swift in Sources */,
+				1283C7BC2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */,
 				122A6D1B2A5D55E400EE18B1 /* BinaryFloatingPoint+EFQRCode.swift in Sources */,
 				128013BD2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB72A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
@@ -871,6 +880,7 @@
 				122A6D272A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */,
 				125E59FF2A56C79400B508F2 /* EFCorrectionLevel.swift in Sources */,
 				122A6D1D2A5D560300EE18B1 /* BinaryInteger+EFQRCode.swift in Sources */,
+				1283C7B92C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */,
 				122A6D182A5D55E400EE18B1 /* BinaryFloatingPoint+EFQRCode.swift in Sources */,
 				128013BA2A538CAA0033B45B /* EFQRCodeStyleDSJ.swift in Sources */,
 				12D66CB42A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */,
