@@ -125,6 +125,7 @@ public extension EFQRCode {
 #endif
         
         public func toGIFData(size: CGSize) throws -> Data {
+            let startTime = CFAbsoluteTimeGetCurrent() // 开始时间
             let (images, durations) = try {
                 if self.isAnimated {
                     let (iconImage, watermarkImage) = self.style.getParamImages()
@@ -136,31 +137,67 @@ public extension EFQRCode {
                 return ([], [])
             }()
             
-            return try self.createGIFDataWith(frames: images, frameDelays: durations)
+            let midTime = CFAbsoluteTimeGetCurrent() // 图像生成完成时间
+                print("Image generation time: \(midTime - startTime) seconds")
+            
+            let gifData = try self.createGIFDataWith(frames: images, frameDelays: durations)
+            
+            let endTime = CFAbsoluteTimeGetCurrent() // 结束时间
+                print("GIF creation time: \(endTime - midTime) seconds")
+                print("Total execution time: \(endTime - startTime) seconds")
+            
+            return gifData
         }
     }
 }
 
 extension EFQRCode.Generator {
     
-    // todo 这里可以加多线程
+    // todo 图像缩放和调整
     private func reconcileQRImages(image1: EFStyleParamImage?, image2: EFStyleParamImage?, style: EFQRCodeStyle, size: CGSize) throws -> ([CGImage], [CGFloat]) {
         let (iconFrames, watermarkFrames, delays) = self.reconcileFrameImages(image1: image1, image2: image2)
         print(delays.count)
-        var qrFrames: [CGImage] = []
+        var qrFrames = [CGImage?](repeating: nil, count: delays.count)
+        
+        let processorCount: Int = ProcessInfo.processInfo.activeProcessorCount
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = max(2, processorCount - 1)
+        var encounteredError: Error?
+        let errorLock = NSLock()
+        
         for index in 0..<delays.count {
-            let iconImage: EFStyleParamImage? = iconFrames.isEmpty ? nil : EFStyleParamImage.static(image: iconFrames[index])
-            let watermarkImage: EFStyleParamImage? = watermarkFrames.isEmpty ? nil : EFStyleParamImage.static(image: watermarkFrames[index])
-            let frameStyle: EFQRCodeStyleBase = style.copyWith(iconImage: iconImage, watermarkImage: watermarkImage)
-            let svgContent: String = try frameStyle.generateSVG(qrcode: self.qrcode)
-            let qrFrame = try self.toImage(size: size, svgContent: svgContent)
-            guard let qrFrameCGImage = qrFrame.cgImage() else {
-                throw EFQRCodeError.cannotCreateCGImage
+            queue.addOperation {
+                autoreleasepool {
+                    do {
+                        let iconImage: EFStyleParamImage? = iconFrames.isEmpty ? nil : EFStyleParamImage.static(image: iconFrames[index])
+                        let watermarkImage: EFStyleParamImage? = watermarkFrames.isEmpty ? nil : EFStyleParamImage.static(image: watermarkFrames[index])
+                        let frameStyle: EFQRCodeStyleBase = style.copyWith(iconImage: iconImage, watermarkImage: watermarkImage)
+                        let svgContent: String = try frameStyle.generateSVG(qrcode: self.qrcode)
+                        let qrFrame = try self.toImage(size: size, svgContent: svgContent)
+                        guard let qrFrameCGImage = qrFrame.cgImage() else {
+                            throw EFQRCodeError.cannotCreateCGImage
+                        }
+                        qrFrames[index] = qrFrameCGImage
+                    } catch {
+                        errorLock.lock()
+                        if encounteredError == nil {
+                            encounteredError = error
+                            queue.cancelAllOperations()
+                        }
+                        errorLock.unlock()
+                    }
+                }
             }
-            qrFrames.append(qrFrameCGImage)
         }
         
-        return (qrFrames, delays)
+        queue.waitUntilAllOperationsAreFinished()
+        
+        if let error = encounteredError {
+            throw error
+        }
+        
+        let finalQRFrames = qrFrames.compactMap { $0 }
+        return (finalQRFrames, delays)
     }
     
     // todo 这里可以优化两图合并算法
@@ -192,6 +229,7 @@ extension EFQRCode.Generator {
                     var remainDelay: CGFloat = 0
                     var remainIs1: Bool = true
                     var durationLeft: CGFloat = duration
+                    
                     repeat {
                         let arrayIndex1: Int = index1 % imagesCount1
                         let arrayIndex2: Int = index2 % imagesCount2
@@ -332,7 +370,7 @@ extension EFQRCode.Generator {
                 kCGImagePropertyGIFLoopCount as String: 0,
                 kCGImagePropertyGIFHasGlobalColorMap as String: true
             ],
-            kCGImageDestinationLossyCompressionQuality as String: 1.0
+            kCGImageDestinationLossyCompressionQuality as String: 0.8
         ]
         return try self.createGIFDataWith(
             frames: frames,
