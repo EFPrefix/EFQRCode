@@ -149,13 +149,16 @@ class ShowController: UIViewController {
         CustomPhotoAlbum.save(image: tryImage) {
             [weak self] (issue) in
             guard let self = self else { return }
-            let alert = UIAlertController(
-                title: issue == nil ? Localized.success : Localized.error,
-                message: issue ?? NSLocalizedString("Save finished.", comment: "Image successfuly saved to photos"),
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
-            self.present(alert, animated: true)
+            
+            DispatchQueue.main.async {
+                let alert = UIAlertController(
+                    title: issue == nil ? Localized.success : Localized.error,
+                    message: issue ?? NSLocalizedString("Save finished.", comment: "Image successfuly saved to photos"),
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
+                self.present(alert, animated: true)
+            }
         }
     }
     #endif
