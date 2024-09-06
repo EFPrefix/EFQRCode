@@ -34,10 +34,6 @@
 		122A6D282A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */; };
 		122A6D292A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */; };
 		122A6D2A2A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */; };
-		124A605F2C52FE48009BEFCE /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 124A605E2C52FE48009BEFCE /* SwiftDraw */; };
-		124A60612C52FE4C009BEFCE /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 124A60602C52FE4C009BEFCE /* SwiftDraw */; };
-		124A60632C52FE51009BEFCE /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 124A60622C52FE51009BEFCE /* SwiftDraw */; };
-		124A60652C52FE56009BEFCE /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 124A60642C52FE56009BEFCE /* SwiftDraw */; };
 		124A60862C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */; };
 		124A60872C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */; };
 		124A60882C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */; };
@@ -89,6 +85,10 @@
 		1283C7BA2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */; };
 		1283C7BB2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */; };
 		1283C7BC2C88E80F00462E4C /* EFAnimatedImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */; };
+		1283C7CD2C8B33BF00462E4C /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 1283C7CC2C8B33BF00462E4C /* SwiftDraw */; };
+		1283C7CF2C8B33C700462E4C /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 1283C7CE2C8B33C700462E4C /* SwiftDraw */; };
+		1283C7D12C8B33CC00462E4C /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 1283C7D02C8B33CC00462E4C /* SwiftDraw */; };
+		1283C7D32C8B33D000462E4C /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 1283C7D22C8B33D000462E4C /* SwiftDraw */; };
 		12D66CB42A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB52A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB62A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
@@ -212,7 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				124A60632C52FE51009BEFCE /* SwiftDraw in Frameworks */,
+				1283C7D12C8B33CC00462E4C /* SwiftDraw in Frameworks */,
 				122A6CD42A5C41B100EE18B1 /* QRCodeSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				124A60612C52FE4C009BEFCE /* SwiftDraw in Frameworks */,
+				1283C7CF2C8B33C700462E4C /* SwiftDraw in Frameworks */,
 				122A6CD22A5C41A900EE18B1 /* QRCodeSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,7 +238,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				124A60652C52FE56009BEFCE /* SwiftDraw in Frameworks */,
+				1283C7D32C8B33D000462E4C /* SwiftDraw in Frameworks */,
 				122A6CD62A5C41B600EE18B1 /* QRCodeSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,7 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				124A605F2C52FE48009BEFCE /* SwiftDraw in Frameworks */,
+				1283C7CD2C8B33BF00462E4C /* SwiftDraw in Frameworks */,
 				122A6CC52A5C379600EE18B1 /* QRCodeSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,7 +485,7 @@
 			name = "EFQRCode tvOS";
 			packageProductDependencies = (
 				122A6CD32A5C41B100EE18B1 /* QRCodeSwift */,
-				124A60622C52FE51009BEFCE /* SwiftDraw */,
+				1283C7D02C8B33CC00462E4C /* SwiftDraw */,
 			);
 			productName = "Alamofire tvOS";
 			productReference = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */;
@@ -525,7 +525,7 @@
 			name = "EFQRCode macOS";
 			packageProductDependencies = (
 				122A6CD12A5C41A900EE18B1 /* QRCodeSwift */,
-				124A60602C52FE4C009BEFCE /* SwiftDraw */,
+				1283C7CE2C8B33C700462E4C /* SwiftDraw */,
 			);
 			productName = AlamofireOSX;
 			productReference = 4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */;
@@ -547,7 +547,7 @@
 			name = "EFQRCode watchOS";
 			packageProductDependencies = (
 				122A6CD52A5C41B600EE18B1 /* QRCodeSwift */,
-				124A60642C52FE56009BEFCE /* SwiftDraw */,
+				1283C7D22C8B33D000462E4C /* SwiftDraw */,
 			);
 			productName = "EFQRCode watchOS";
 			productReference = 5282BCAD1FF38F8100DFB36B /* EFQRCode.framework */;
@@ -570,7 +570,7 @@
 			name = "EFQRCode iOS";
 			packageProductDependencies = (
 				122A6CC42A5C379600EE18B1 /* QRCodeSwift */,
-				124A605E2C52FE48009BEFCE /* SwiftDraw */,
+				1283C7CC2C8B33BF00462E4C /* SwiftDraw */,
 			);
 			productName = Alamofire;
 			productReference = F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */;
@@ -668,7 +668,7 @@
 			mainGroup = F8111E2919A95C8B0040E7D1;
 			packageReferences = (
 				122A6CC32A5C379600EE18B1 /* XCRemoteSwiftPackageReference "swift_qrcodejs" */,
-				124A605D2C52FB02009BEFCE /* XCRemoteSwiftPackageReference "SwiftDraw" */,
+				1283C7CB2C8B33B300462E4C /* XCRemoteSwiftPackageReference "SwiftDraw" */,
 			);
 			productRefGroup = F8111E3419A95C8B0040E7D1 /* Products */;
 			projectDirPath = "";
@@ -1542,12 +1542,12 @@
 				revision = 0b504067933381616058a951382b226d6b3f47f7;
 			};
 		};
-		124A605D2C52FB02009BEFCE /* XCRemoteSwiftPackageReference "SwiftDraw" */ = {
+		1283C7CB2C8B33B300462E4C /* XCRemoteSwiftPackageReference "SwiftDraw" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EyreFree/SwiftDraw";
+			repositoryURL = "https://github.com/swhitty/SwiftDraw.git";
 			requirement = {
 				kind = revision;
-				revision = e4fc708dbb57d81d0aab4e5807a413efa890d894;
+				revision = 67ed5e44fe41b5df72bb41ccb4342044f823e198;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1573,24 +1573,24 @@
 			package = 122A6CC32A5C379600EE18B1 /* XCRemoteSwiftPackageReference "swift_qrcodejs" */;
 			productName = QRCodeSwift;
 		};
-		124A605E2C52FE48009BEFCE /* SwiftDraw */ = {
+		1283C7CC2C8B33BF00462E4C /* SwiftDraw */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 124A605D2C52FB02009BEFCE /* XCRemoteSwiftPackageReference "SwiftDraw" */;
+			package = 1283C7CB2C8B33B300462E4C /* XCRemoteSwiftPackageReference "SwiftDraw" */;
 			productName = SwiftDraw;
 		};
-		124A60602C52FE4C009BEFCE /* SwiftDraw */ = {
+		1283C7CE2C8B33C700462E4C /* SwiftDraw */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 124A605D2C52FB02009BEFCE /* XCRemoteSwiftPackageReference "SwiftDraw" */;
+			package = 1283C7CB2C8B33B300462E4C /* XCRemoteSwiftPackageReference "SwiftDraw" */;
 			productName = SwiftDraw;
 		};
-		124A60622C52FE51009BEFCE /* SwiftDraw */ = {
+		1283C7D02C8B33CC00462E4C /* SwiftDraw */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 124A605D2C52FB02009BEFCE /* XCRemoteSwiftPackageReference "SwiftDraw" */;
+			package = 1283C7CB2C8B33B300462E4C /* XCRemoteSwiftPackageReference "SwiftDraw" */;
 			productName = SwiftDraw;
 		};
-		124A60642C52FE56009BEFCE /* SwiftDraw */ = {
+		1283C7D22C8B33D000462E4C /* SwiftDraw */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 124A605D2C52FB02009BEFCE /* XCRemoteSwiftPackageReference "SwiftDraw" */;
+			package = 1283C7CB2C8B33B300462E4C /* XCRemoteSwiftPackageReference "SwiftDraw" */;
 			productName = SwiftDraw;
 		};
 /* End XCSwiftPackageProductDependency section */

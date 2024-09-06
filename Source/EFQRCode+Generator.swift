@@ -74,6 +74,7 @@ public extension EFQRCode {
             }
             let svgString = try self.style.generateSVG(qrcode: qrcode)
             self.svgContent = svgString
+            print(svgString)
             return svgString
         }
         
