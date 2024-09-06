@@ -158,6 +158,7 @@ extension Localized {
                 NSLocalizedString("Gray", comment: "Standard UIColor name"),
                 NSLocalizedString("Red", comment: "Standard UIColor name"),
                 NSLocalizedString("Blue", comment: "Standard UIColor name"),
+                NSLocalizedString("SkyBlue", comment: "Standard UIColor name"),
                 Localized.Miku,
                 Localized.Wille,
                 NSLocalizedString("Hearthstone", comment: "Name of the game"),

@@ -23,7 +23,13 @@ public class EFStyleBasicParams: EFStyleParams {
     let align: EFStyleBasicParamsAlign
     let timing: EFStyleBasicParamsTiming
     
-    public init(icon: EFStyleParamIcon? = nil, position: EFStyleBasicParamsPosition = EFStyleBasicParams.defaultPosition, data: EFStyleBasicParamsData = EFStyleBasicParams.defaultData, align: EFStyleBasicParamsAlign = EFStyleBasicParams.defaultAlign, timing: EFStyleBasicParamsTiming = EFStyleBasicParams.defaultTiming) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        position: EFStyleBasicParamsPosition = EFStyleBasicParams.defaultPosition,
+        data: EFStyleBasicParamsData = EFStyleBasicParams.defaultData,
+        align: EFStyleBasicParamsAlign = EFStyleBasicParams.defaultAlign,
+        timing: EFStyleBasicParamsTiming = EFStyleBasicParams.defaultTiming
+    ) {
         self.data = data
         self.position = position
         self.align = align
@@ -56,7 +62,11 @@ public class EFStyleBasicParamsAlign {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamAlignStyle = .rectangle, size: CGFloat = 1, color: CGColor = EFStyleBasicParamsAlign.defaultColor) {
+    public init(
+        style: EFStyleParamAlignStyle = .rectangle,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleBasicParamsAlign.defaultColor
+    ) {
         self.style = style
         self.size = size
         self.color = color
@@ -71,7 +81,11 @@ public class EFStyleBasicParamsTiming {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamTimingStyle = .rectangle, size: CGFloat = 1, color: CGColor = EFStyleBasicParamsTiming.defaultColor) {
+    public init(
+        style: EFStyleParamTimingStyle = .rectangle,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleBasicParamsTiming.defaultColor
+    ) {
         self.style = style
         self.size = size
         self.color = color
@@ -86,7 +100,11 @@ public class EFStyleBasicParamsData {
     let scale: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleBasicParamsDataStyle = .rectangle, scale: CGFloat = 1, color: CGColor = EFStyleBasicParamsData.defaultColor) {
+    public init(
+        style: EFStyleBasicParamsDataStyle = .rectangle,
+        scale: CGFloat = 1,
+        color: CGColor = EFStyleBasicParamsData.defaultColor
+    ) {
         self.color = color
         self.scale = scale
         self.style = style
@@ -101,7 +119,11 @@ public class EFStyleBasicParamsPosition {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = EFStyleBasicParamsPosition.defaultColor) {
+    public init(
+        style: EFStyleParamsPositionStyle = .rectangle,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleBasicParamsPosition.defaultColor
+    ) {
         self.color = color
         self.style = style
         self.size = size

@@ -104,11 +104,12 @@ public class EFStyleParamIcon {
         let length: CGFloat = iconSize + 2.0 * iconOffset
         let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
         pointList.append(
-            "<defs><path id=\"\(randomIdDefs)\" opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/></defs>"
-            + "<clipPath id=\"\(randomIdClips)\">"
-            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
-            + "</clipPath>"
-            + "<g clip-path=\"url(#\(randomIdClips))\">"
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" />"
+            + "<mask id=\"\(randomIdClips)\">"
+            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>"
+            + "</mask>"
+            + "</defs>"
+            + "<g mask=\"url(#\(randomIdClips))\">"
             + (try image.write(id: id, rect: iconRect, opacity: imageAlpha))
             + "</g>"
             + "</g>"
