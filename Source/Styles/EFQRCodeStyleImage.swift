@@ -24,7 +24,14 @@ public class EFStyleImageParams: EFStyleParams {
     let data: EFStyleImageParamsData
     let image: EFStyleImageParamsImage?
     
-    public init(icon: EFStyleParamIcon? = nil, align: EFStyleImageParamsAlign = EFStyleImageParams.defaultAlign, timing: EFStyleImageParamsTiming = EFStyleImageParams.defaultTiming, position: EFStyleImageParamsPosition = EFStyleImageParams.defaultPosition, data: EFStyleImageParamsData = EFStyleImageParams.defaultData, image: EFStyleImageParamsImage?) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        align: EFStyleImageParamsAlign = EFStyleImageParams.defaultAlign,
+        timing: EFStyleImageParamsTiming = EFStyleImageParams.defaultTiming,
+        position: EFStyleImageParamsPosition = EFStyleImageParams.defaultPosition,
+        data: EFStyleImageParamsData = EFStyleImageParams.defaultData,
+        image: EFStyleImageParamsImage?
+    ) {
         self.align = align
         self.timing = timing
         self.position = position
@@ -69,7 +76,12 @@ public class EFStyleImageParamsAlign {
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleImageParamAlignStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsAlign.defaultColorDark, colorLight: CGColor = EFStyleImageParamsAlign.defaultColorLight) {
+    public init(
+        style: EFStyleImageParamAlignStyle = .rectangle,
+        size: CGFloat = 1,
+        colorDark: CGColor = EFStyleImageParamsAlign.defaultColorDark,
+        colorLight: CGColor = EFStyleImageParamsAlign.defaultColorLight
+    ) {
         self.style = style
         self.size = size
         self.colorDark = colorDark
@@ -94,7 +106,12 @@ public class EFStyleImageParamsTiming {
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleImageParamTimingStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsTiming.defaultColorDark, colorLight: CGColor = EFStyleImageParamsTiming.defaultColorLight) {
+    public init(
+        style: EFStyleImageParamTimingStyle = .rectangle,
+        size: CGFloat = 1,
+        colorDark: CGColor = EFStyleImageParamsTiming.defaultColorDark,
+        colorLight: CGColor = EFStyleImageParamsTiming.defaultColorLight
+    ) {
         self.style = style
         self.size = size
         self.colorDark = colorDark
@@ -107,7 +124,10 @@ public class EFStyleImageParamsImage {
     let image: EFStyleParamImage
     let alpha: CGFloat
     
-    public init(image: EFStyleParamImage, alpha: CGFloat = 1) {
+    public init(
+        image: EFStyleParamImage,
+        alpha: CGFloat = 1
+    ) {
         self.image = image
         self.alpha = alpha
     }
@@ -133,7 +153,12 @@ public class EFStyleImageParamsPosition {
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsPosition.defaultColorDark, colorLight: CGColor = EFStyleImageParamsPosition.defaultColorLight) {
+    public init(
+        style: EFStyleParamsPositionStyle = .rectangle,
+        size: CGFloat = 1,
+        colorDark: CGColor = EFStyleImageParamsPosition.defaultColorDark,
+        colorLight: CGColor = EFStyleImageParamsPosition.defaultColorLight
+    ) {
         self.style = style
         self.size = size
         self.colorDark = colorDark
@@ -151,7 +176,12 @@ public class EFStyleImageParamsData {
     let colorDark: CGColor
     let colorLight: CGColor
     
-    public init(style: EFStyleParamsDataStyle = .rectangle, scale: CGFloat = 1, colorDark: CGColor = EFStyleImageParamsData.defaultColorDark, colorLight: CGColor = EFStyleImageParamsData.defaultColorLight) {
+    public init(
+        style: EFStyleParamsDataStyle = .rectangle,
+        scale: CGFloat = 1,
+        colorDark: CGColor = EFStyleImageParamsData.defaultColorDark,
+        colorLight: CGColor = EFStyleImageParamsData.defaultColorLight
+    ) {
         self.style = style
         self.scale = scale
         self.colorDark = colorDark

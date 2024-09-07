@@ -24,7 +24,14 @@ public class EFStyleResampleImageParams: EFStyleParams {
     let position: EFStyleResampleImageParamsPosition
     let dataColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, image: EFStyleResampleImageParamsImage?, align: EFStyleResampleImageParamsAlign = EFStyleResampleImageParams.defaultAlign, timing: EFStyleResampleImageParamsTiming = EFStyleResampleImageParams.defaultTiming, position: EFStyleResampleImageParamsPosition = EFStyleResampleImageParams.defaultPosition, dataColor: CGColor = EFStyleResampleImageParams.defaultDataColor) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        image: EFStyleResampleImageParamsImage?,
+        align: EFStyleResampleImageParamsAlign = EFStyleResampleImageParams.defaultAlign,
+        timing: EFStyleResampleImageParamsTiming = EFStyleResampleImageParams.defaultTiming,
+        position: EFStyleResampleImageParamsPosition = EFStyleResampleImageParams.defaultPosition,
+        dataColor: CGColor = EFStyleResampleImageParams.defaultDataColor
+    ) {
         self.image = image
         self.align = align
         self.timing = timing
@@ -68,7 +75,12 @@ public class EFStyleResampleImageParamsAlign {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleResampleImageParamAlignStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = EFStyleResampleImageParamsAlign.defaultColor) {
+    public init(
+        style: EFStyleResampleImageParamAlignStyle = .rectangle,
+        onlyWhite: Bool = false,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleResampleImageParamsAlign.defaultColor
+    ) {
         self.style = style
         self.onlyWhite = onlyWhite
         self.size = size
@@ -92,7 +104,12 @@ public class EFStyleResampleImageParamsTiming {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleResampleImageParamTimingStyle = .rectangle, onlyWhite: Bool = false, size: CGFloat = 1, color: CGColor = EFStyleResampleImageParamsTiming.defaultColor) {
+    public init(
+        style: EFStyleResampleImageParamTimingStyle = .rectangle,
+        onlyWhite: Bool = false,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleResampleImageParamsTiming.defaultColor
+    ) {
         self.style = style
         self.onlyWhite = onlyWhite
         self.size = size
@@ -108,7 +125,11 @@ public class EFStyleResampleImageParamsPosition {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = EFStyleResampleImageParamsPosition.defaultColor) {
+    public init(
+        style: EFStyleParamsPositionStyle = .rectangle,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleResampleImageParamsPosition.defaultColor
+    ) {
         self.style = style
         self.size = size
         self.color = color
@@ -120,7 +141,11 @@ public class EFStyleResampleImageParamsImage {
     let contrast: CGFloat
     let exposure: CGFloat
     
-    public init(image: EFStyleParamImage, contrast: CGFloat = 0, exposure: CGFloat = 0) {
+    public init(
+        image: EFStyleParamImage,
+        contrast: CGFloat = 0,
+        exposure: CGFloat = 0
+    ) {
         self.image = image
         self.contrast = contrast
         self.exposure = exposure
@@ -306,7 +331,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         Anchor.uniqueMark += 1
         
         pointList.append("<path opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100 / iconSize * 3)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/>")
-        pointList.append("<g key=\"\(id)\">")
+        pointList.append("<g key=\"g\(id)\">")
         id += 1
         
         let iconOffset: CGFloat = iconXY * 0.024
@@ -314,11 +339,12 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         let length: CGFloat = iconSize + 2.0 * iconOffset
         let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
         pointList.append(
-            "<defs><path id=\"\(randomIdDefs)\" opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/></defs>"
-            + "<clipPath id=\"\(randomIdClips)\">"
-            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
-            + "</clipPath>"
-            + "<g clip-path=\"url(#\(randomIdClips))\">"
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\"/>"
+            + "<mask id=\"\(randomIdClips)\">"
+            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\" fill=\"#ffffff\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/>"
+            + "</mask>"
+            + "</defs>"
+            + "<g mask=\"url(#\(randomIdClips))\">"
             + (try icon.image.write(id: id, rect: iconRect, opacity: opacity))
             + "</g>"
             + "</g>"
@@ -433,6 +459,7 @@ extension CGImage {
         return weightedGray
     }
     
+    //todo 多线程优化
     func getGrayPointList(newWidth: Int, newHeight: Int, contrast: CGFloat = 0, exposure: CGFloat = 0, color: String) throws -> [String] {
         let dataSize = newWidth * newHeight * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))

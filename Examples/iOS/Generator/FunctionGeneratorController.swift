@@ -179,7 +179,11 @@ extension FunctionGeneratorController {
                 style: EFQRCodeStyle.function(
                     params: EFStyleFunctionParams(
                         icon: paramIcon,
-                        position: EFStyleFunctionParamsPosition(style: positionStyle, size: positionThickness, color: positionColor.withAlphaComponent(positionAlpha).cgColor),
+                        position: EFStyleFunctionParamsPosition(
+                            style: positionStyle,
+                            size: positionThickness,
+                            color: positionColor.withAlphaComponent(positionAlpha).cgColor
+                        ),
                         data: EFStyleFunctionParamsData(
                             function: dataFunction == 0 ? .fade(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor) : .circle(dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor, circleColor: circleColor.withAlphaComponent(circleAlpha).cgColor) ,
                             style: dataStyle

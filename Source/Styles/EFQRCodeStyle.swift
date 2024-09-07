@@ -96,7 +96,7 @@ public class EFStyleParamIcon {
         Anchor.uniqueMark += 1
         
         pointList.append("<path opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100.0 / iconSize)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>")
-        pointList.append("<g key=\"\(id)\">")
+        pointList.append("<g key=\"g\(id)\">")
         id += 1
         
         let iconOffset: CGFloat = iconXY * 0.024
@@ -104,9 +104,9 @@ public class EFStyleParamIcon {
         let length: CGFloat = iconSize + 2.0 * iconOffset
         let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
         pointList.append(
-            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\" />"
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\"/>"
             + "<mask id=\"\(randomIdClips)\">"
-            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>"
+            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\" fill=\"#ffffff\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>"
             + "</mask>"
             + "</defs>"
             + "<g mask=\"url(#\(randomIdClips))\">"
@@ -131,7 +131,7 @@ public enum EFStyleParamImage {
         case .static(let image):
             let imageCliped: CGImage = image.clipImageToSquare() ?? image
             let pngBase64EncodedString: String = try imageCliped.pngBase64EncodedString()
-            return "<image key=\"\(id)\" opacity=\"\(opacity)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\"/>"
+            return "<image key=\"i\(id)\" opacity=\"\(opacity)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\"/>"
         case .animated(let images, let imageDelays):
             let pngBase64EncodedStrings: [String] = try images.map {
                 let imageCliped: CGImage = $0.clipImageToSquare() ?? $0
@@ -146,7 +146,7 @@ public enum EFStyleParamImage {
             let useValues = (1...pngBase64EncodedStrings.count).map { "#\(framePrefix)\($0)" }.joined(separator: ";")
             //todo
             let duration = imageDelays.reduce(0, +)
-            let svg = "<g key=\"\(id)\"><defs>\(defs)</defs><use xlink:href=\"#\(framePrefix)1\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\"/></use></g>"
+            let svg = "<g key=\"g\(id)\"><defs>\(defs)</defs><use xlink:href=\"#\(framePrefix)1\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\"/></use></g>"
             return svg
         }
     }

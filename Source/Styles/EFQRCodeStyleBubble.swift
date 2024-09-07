@@ -19,7 +19,11 @@ public class EFStyleBubbleParams: EFStyleParams {
     let dataColor: CGColor
     let position: EFStyleBubbleParamsPosition
     
-    public init(icon: EFStyleParamIcon? = nil, dataColor: CGColor = EFStyleBubbleParams.defaultDataColor, position: EFStyleBubbleParamsPosition = EFStyleBubbleParams.defaultPosition) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        dataColor: CGColor = EFStyleBubbleParams.defaultDataColor,
+        position: EFStyleBubbleParamsPosition = EFStyleBubbleParams.defaultPosition
+    ) {
         self.dataColor = dataColor
         self.position = position
         super.init(icon: icon)
@@ -46,7 +50,11 @@ public class EFStyleBubbleParamsPosition {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .round, size: CGFloat = 1, color: CGColor = EFStyleBasicParamsPosition.defaultColor) {
+    public init(
+        style: EFStyleParamsPositionStyle = .round,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleBasicParamsPosition.defaultColor
+    ) {
         self.color = color
         self.style = style
         self.size = size

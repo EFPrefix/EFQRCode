@@ -217,6 +217,7 @@ extension ImageGeneratorController {
                         ),
                         position: EFStyleImageParamsPosition(
                             style: positionStyle,
+                            size: positionThickness,
                             colorDark: positionDarkColor.withAlphaComponent(positionDarkAlpha).cgColor,
                             colorLight: positionLightColor.withAlphaComponent(positionLightAlpha).cgColor
                         ),
