@@ -17,7 +17,10 @@ public class EFStyleRandomRectangleParams: EFStyleParams {
     
     let color: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, color: CGColor = EFStyleRandomRectangleParams.defaultColor) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        color: CGColor = EFStyleRandomRectangleParams.defaultColor
+    ) {
         self.color = color
         super.init(icon: icon)
     }

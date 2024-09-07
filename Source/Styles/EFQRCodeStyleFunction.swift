@@ -19,7 +19,11 @@ public class EFStyleFunctionParams: EFStyleParams {
     let position: EFStyleFunctionParamsPosition
     let data: EFStyleFunctionParamsData
     
-    public init(icon: EFStyleParamIcon? = nil, position: EFStyleFunctionParamsPosition = EFStyleFunctionParams.defaultPosition, data: EFStyleFunctionParamsData = EFStyleFunctionParams.defaultData) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        position: EFStyleFunctionParamsPosition = EFStyleFunctionParams.defaultPosition,
+        data: EFStyleFunctionParamsData = EFStyleFunctionParams.defaultData
+    ) {
         self.position = position
         self.data = data
         super.init(icon: icon)
@@ -46,7 +50,11 @@ public class EFStyleFunctionParamsPosition {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .round, size: CGFloat = 1, color: CGColor = EFStyleFunctionParamsPosition.defaultColor) {
+    public init(
+        style: EFStyleParamsPositionStyle = .round,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleFunctionParamsPosition.defaultColor
+    ) {
         self.style = style
         self.size = size
         self.color = color
@@ -58,7 +66,10 @@ public class EFStyleFunctionParamsData {
     let function: EFStyleFunctionParamsDataFunction
     let style: EFStyleFunctionParamsDataStyle
     
-    public init(function: EFStyleFunctionParamsDataFunction = EFStyleFunctionParamsDataFunction.fade(), style: EFStyleFunctionParamsDataStyle = .round) {
+    public init(
+        function: EFStyleFunctionParamsDataFunction = EFStyleFunctionParamsDataFunction.fade(),
+        style: EFStyleFunctionParamsDataStyle = .round
+    ) {
         self.function = function
         self.style = style
     }

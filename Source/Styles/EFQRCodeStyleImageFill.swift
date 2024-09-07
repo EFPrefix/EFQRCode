@@ -20,7 +20,12 @@ public class EFStyleImageFillParams: EFStyleParams {
     let backgroundColor: CGColor
     let maskColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, image: EFStyleImageFillParamsImage?, backgroundColor: CGColor = EFStyleImageFillParams.defaultBackgroundColor, maskColor: CGColor = EFStyleImageFillParams.defaultMaskColor) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        image: EFStyleImageFillParamsImage?,
+        backgroundColor: CGColor = EFStyleImageFillParams.defaultBackgroundColor,
+        maskColor: CGColor = EFStyleImageFillParams.defaultMaskColor
+    ) {
         self.image = image
         self.backgroundColor = backgroundColor
         self.maskColor = maskColor
@@ -47,7 +52,10 @@ public class EFStyleImageFillParamsImage {
     let image: EFStyleParamImage
     let alpha: CGFloat
     
-    public init(image: EFStyleParamImage, alpha: CGFloat = 1) {
+    public init(
+        image: EFStyleParamImage,
+        alpha: CGFloat = 1
+    ) {
         self.image = image
         self.alpha = alpha
     }

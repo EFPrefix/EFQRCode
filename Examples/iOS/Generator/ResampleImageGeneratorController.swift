@@ -195,9 +195,23 @@ extension ResampleImageGeneratorController {
                     params: EFStyleResampleImageParams(
                         icon: paramIcon,
                         image: paramWatermark,
-                        align: EFStyleResampleImageParamsAlign(style: alignStyle, onlyWhite: alignOnlyWhite, size: alignSize, color: alignColor.withAlphaComponent(alignColorAlpha).cgColor),
-                        timing: EFStyleResampleImageParamsTiming(style: timingStyle, onlyWhite: timingOnlyWhite, size: timingSize, color: timingColor.withAlphaComponent(timingColorAlpha).cgColor),
-                        position: EFStyleResampleImageParamsPosition(style: positionStyle, size: positionThickness, color: positionColor.withAlphaComponent(positionAlpha).cgColor),
+                        align: EFStyleResampleImageParamsAlign(
+                            style: alignStyle,
+                            onlyWhite: alignOnlyWhite,
+                            size: alignSize,
+                            color: alignColor.withAlphaComponent(alignColorAlpha).cgColor
+                        ),
+                        timing: EFStyleResampleImageParamsTiming(
+                            style: timingStyle,
+                            onlyWhite: timingOnlyWhite,
+                            size: timingSize,
+                            color: timingColor.withAlphaComponent(timingColorAlpha).cgColor
+                        ),
+                        position: EFStyleResampleImageParamsPosition(
+                            style: positionStyle,
+                            size: positionThickness,
+                            color: positionColor.withAlphaComponent(positionAlpha).cgColor
+                        ),
                         dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor
                     )
                 )

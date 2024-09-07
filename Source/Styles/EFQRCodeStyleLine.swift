@@ -19,7 +19,11 @@ public class EFStyleLineParams: EFStyleParams {
     let position: EFStyleLineParamsPosition
     let line: EFStyleLineParamsLine
     
-    public init(icon: EFStyleParamIcon? = nil, position: EFStyleLineParamsPosition = EFStyleLineParams.defaultPosition, line: EFStyleLineParamsLine = EFStyleLineParams.defaultLine) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        position: EFStyleLineParamsPosition = EFStyleLineParams.defaultPosition,
+        line: EFStyleLineParamsLine = EFStyleLineParams.defaultLine
+    ) {
         self.position = position
         self.line = line
         super.init(icon: icon)
@@ -46,7 +50,11 @@ public class EFStyleLineParamsPosition {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .rectangle, size: CGFloat = 1, color: CGColor = EFStyleLineParamsPosition.defaultColor) {
+    public init(
+        style: EFStyleParamsPositionStyle = .rectangle,
+        size: CGFloat = 1,
+        color: CGColor = EFStyleLineParamsPosition.defaultColor
+    ) {
         self.style = style
         self.size = size
         self.color = color
@@ -61,7 +69,10 @@ public class EFStyleLineParamsLine {
     let thickness: CGFloat // (0-1]
     let color: CGColor
     
-    public init(direction: EFStyleLineParamsLineDirection = .x, thickness: CGFloat = 0.5, color: CGColor = EFStyleLineParamsLine.defaultColor) {
+    public init(
+        direction: EFStyleLineParamsLineDirection = .x,
+        thickness: CGFloat = 0.5, color: CGColor = EFStyleLineParamsLine.defaultColor
+    ) {
         self.direction = direction
         self.thickness = thickness
         self.color = color

@@ -23,7 +23,14 @@ public class EFStyle25DParams: EFStyleParams {
     let leftColor: CGColor
     let rightColor: CGColor
     
-    public init(icon: EFStyleParamIcon? = nil, dataHeight: CGFloat = 1, positionHeight: CGFloat = 1, topColor: CGColor = EFStyle25DParams.defaultTopColor, leftColor: CGColor = EFStyle25DParams.defaultLeftColor, rightColor: CGColor = EFStyle25DParams.defaultRightColor) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        dataHeight: CGFloat = 1,
+        positionHeight: CGFloat = 1,
+        topColor: CGColor = EFStyle25DParams.defaultTopColor,
+        leftColor: CGColor = EFStyle25DParams.defaultLeftColor,
+        rightColor: CGColor = EFStyle25DParams.defaultRightColor
+    ) {
         self.dataHeight = dataHeight
         self.positionHeight = positionHeight
         self.topColor = topColor
@@ -145,7 +152,7 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         Anchor.uniqueMark += 1
         
         pointList.append("<g opacity=\"\(bdAlpha)\" transform=\"\(matrixString)\"><path d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100 / iconSize)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100),\(iconSize / 100))\"/></g>")
-        pointList.append("<g key=\"\(id)\" transform=\"\(matrixString)\">")
+        pointList.append("<g key=\"g\(id)\" transform=\"\(matrixString)\">")
         id += 1
         
         let iconOffset: CGFloat = iconXY * 0.024
@@ -153,11 +160,12 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let length: CGFloat = iconSize + 2.0 * iconOffset
         let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
         pointList.append(
-            "<defs><path id=\"\(randomIdDefs)\" opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/></defs>"
-            + "<clipPath id=\"\(randomIdClips)\">"
-            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\"/>"
-            + "</clipPath>"
-            + "<g clip-path=\"url(#\(randomIdClips))\">"
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\"/>"
+            + "<mask id=\"\(randomIdClips)\">"
+            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\" fill=\"#ffffff\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>"
+            + "</mask>"
+            + "</defs>"
+            + "<g mask=\"url(#\(randomIdClips))\">"
             + (try icon.image.write(id: id, rect: iconRect, opacity: opacity))
             + "</g>"
             + "</g>"

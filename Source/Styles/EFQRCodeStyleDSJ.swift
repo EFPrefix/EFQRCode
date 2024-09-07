@@ -19,7 +19,11 @@ public class EFStyleDSJParams: EFStyleParams {
     let position: EFStyleDSJParamsPosition
     let data: EFStyleDSJParamsData
     
-    public init(icon: EFStyleParamIcon? = nil, position: EFStyleDSJParamsPosition = EFStyleDSJParams.defaultPosition, data: EFStyleDSJParamsData = EFStyleDSJParams.defaultData) {
+    public init(
+        icon: EFStyleParamIcon? = nil,
+        position: EFStyleDSJParamsPosition = EFStyleDSJParams.defaultPosition,
+        data: EFStyleDSJParamsData = EFStyleDSJParams.defaultData
+    ) {
         self.position = position
         self.data = data
         super.init(icon: icon)
@@ -46,7 +50,11 @@ public class EFStyleDSJParamsPosition {
     let size: CGFloat
     let color: CGColor
     
-    public init(style: EFStyleParamsPositionStyle = .dsj, size: CGFloat = 0.925, color: CGColor = EFStyleDSJParamsPosition.defaultColor) {
+    public init(
+        style: EFStyleParamsPositionStyle = .dsj,
+        size: CGFloat = 0.925,
+        color: CGColor = EFStyleDSJParamsPosition.defaultColor
+    ) {
         self.style = style
         self.size = size
         self.color = color
@@ -65,7 +73,13 @@ public class EFStyleDSJParamsData {
     let verticalLineColor: CGColor
     let xColor: CGColor
     
-    public init(lineSize: CGFloat = 0.7, xSize: CGFloat = 0.7, horizontalLineColor: CGColor = EFStyleDSJParamsData.defaultHorizontalLineColor, verticalLineColor: CGColor = EFStyleDSJParamsData.defaultVerticalLineColor, xColor: CGColor = EFStyleDSJParamsData.defaultXColor) {
+    public init(
+        lineSize: CGFloat = 0.7,
+        xSize: CGFloat = 0.7,
+        horizontalLineColor: CGColor = EFStyleDSJParamsData.defaultHorizontalLineColor,
+        verticalLineColor: CGColor = EFStyleDSJParamsData.defaultVerticalLineColor,
+        xColor: CGColor = EFStyleDSJParamsData.defaultXColor
+    ) {
         self.lineSize = lineSize
         self.xSize = xSize
         self.horizontalLineColor = horizontalLineColor
