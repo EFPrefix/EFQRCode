@@ -360,15 +360,35 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         let exposure: CGFloat = image.exposure
         switch image.image {
         case .static(let image):
-            return try image.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
-        case .animated(let images, let duration):
-            let resFrames: [[String]] = try images.map { try $0.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color) }
+            let imageCliped: CGImage = image.clipImageToSquare() ?? image
+            return try imageCliped.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
+        case .animated(let images, let imageDelays):
+            let resFrames: [String] = try images.map {
+                let imageCliped: CGImage = $0.clipImageToSquare() ?? $0
+                return try imageCliped.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
+            }
             if resFrames.isEmpty { return "" }
+            let framePrefix: String = "resfm"
             let defs = resFrames.enumerated().map { (index, resFrame) -> String in
-                "<g id=\"resfm\(index + 1)\">\(resFrame.joined())</g>"
+                "<g id=\"\(framePrefix)\(index)\">\(resFrame)</g>"
             }.joined()
-            let useValues = (1...resFrames.count).map { "#resfm\($0)" }.joined(separator: ";")
-            let svg = "<g><defs>\(defs)</defs><use xlink:href=\"#resfm\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\"/></use></g>"
+            let totalDuration: CGFloat = imageDelays.reduce(0, +)
+            let keyTimes: [CGFloat] = imageDelays.reduce(into: [0]) { result, delay in
+                result.append((result.last ?? 0) + delay / totalDuration)
+            }
+            let use = """
+            <use xlink:href="#\(framePrefix)0">
+                <animate
+                    attributeName="xlink:href"
+                    values="\(resFrames.indices.map { "#\(framePrefix)\($0)" }.joined(separator: ";"))"
+                    keyTimes="\(keyTimes.dropLast().map { String(format: "%.3f", $0) }.joined(separator: ";"))"
+                    dur="\(totalDuration)s"
+                    repeatCount="indefinite"
+                    calcMode="discrete"
+                />
+            </use>
+            """
+            let svg = "<g><defs>\(defs)</defs>\(use)</g>"
             return svg
         }
     }
