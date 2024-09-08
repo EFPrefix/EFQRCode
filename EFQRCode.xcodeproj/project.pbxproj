@@ -89,6 +89,10 @@
 		1283C7CF2C8B33C700462E4C /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 1283C7CE2C8B33C700462E4C /* SwiftDraw */; };
 		1283C7D12C8B33CC00462E4C /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 1283C7D02C8B33CC00462E4C /* SwiftDraw */; };
 		1283C7D32C8B33D000462E4C /* SwiftDraw in Frameworks */ = {isa = PBXBuildFile; productRef = 1283C7D22C8B33D000462E4C /* SwiftDraw */; };
+		1283C7EE2C8DF69400462E4C /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7ED2C8DF69400462E4C /* EFWatermarkMode.swift */; };
+		1283C7EF2C8DF69400462E4C /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7ED2C8DF69400462E4C /* EFWatermarkMode.swift */; };
+		1283C7F02C8DF69400462E4C /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7ED2C8DF69400462E4C /* EFWatermarkMode.swift */; };
+		1283C7F12C8DF69400462E4C /* EFWatermarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7ED2C8DF69400462E4C /* EFWatermarkMode.swift */; };
 		12D66CB42A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB52A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB62A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
@@ -177,6 +181,7 @@
 		128013C82A53FFA60033B45B /* EFQRCodeStyleImageFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleImageFill.swift; sourceTree = "<group>"; };
 		128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleResampleImage.swift; sourceTree = "<group>"; };
 		1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFAnimatedImageFormat.swift; sourceTree = "<group>"; };
+		1283C7ED2C8DF69400462E4C /* EFWatermarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFWatermarkMode.swift; sourceTree = "<group>"; };
 		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
 		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyle.swift; sourceTree = "<group>"; };
@@ -333,6 +338,7 @@
 				12D66CF12A5222FD007F2770 /* EFQRCodeError.swift */,
 				125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */,
 				1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */,
+				1283C7ED2C8DF69400462E4C /* EFWatermarkMode.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -762,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1283C7F02C8DF69400462E4C /* EFWatermarkMode.swift in Sources */,
 				128013C62A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
 				12D66CF92A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
 				12D66CC52A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
@@ -803,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1283C7EF2C8DF69400462E4C /* EFWatermarkMode.swift in Sources */,
 				128013C52A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
 				12D66CF82A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
 				12D66CC42A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
@@ -835,6 +843,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1283C7F12C8DF69400462E4C /* EFWatermarkMode.swift in Sources */,
 				128013C72A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
 				12D66CFA2A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
 				12D66CC62A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
@@ -867,6 +876,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1283C7EE2C8DF69400462E4C /* EFWatermarkMode.swift in Sources */,
 				128013C42A53EDB40033B45B /* EFQRCodeStyleImage.swift in Sources */,
 				12D66CF72A525D5E007F2770 /* EFQRCodeStyleLine.swift in Sources */,
 				12D66CC32A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
