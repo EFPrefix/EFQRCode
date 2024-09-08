@@ -141,12 +141,30 @@ public enum EFStyleParamImage {
             Anchor.uniqueMark += 1
             let framePrefix: String = "\(Anchor.uniqueMark)fm"
             let defs: String = pngBase64EncodedStrings.enumerated().map { (index, base64Image) -> String in
-                "<image id=\"\(framePrefix)\(index + 1)\" xlink:href=\"\(base64Image)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\"/>"
+                "<image id=\"\(framePrefix)\(index)\" xlink:href=\"\(base64Image)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\"/>"
             }.joined()
-            let useValues = (1...pngBase64EncodedStrings.count).map { "#\(framePrefix)\($0)" }.joined(separator: ";")
-            //todo
-            let duration = imageDelays.reduce(0, +)
-            let svg = "<g key=\"g\(id)\"><defs>\(defs)</defs><use xlink:href=\"#\(framePrefix)1\"><animate attributeName=\"xlink:href\" values=\"\(useValues)\" dur=\"\(duration)s\" repeatCount=\"indefinite\"/></use></g>"
+            let totalDuration: CGFloat = imageDelays.reduce(0, +)
+            let keyTimes: [CGFloat] = imageDelays.reduce(into: [0]) { result, delay in
+                result.append((result.last ?? 0) + delay / totalDuration)
+            }
+            let use: String = """
+            <use xlink:href="#\(framePrefix)0">
+                <animate
+                    attributeName="xlink:href"
+                    values="\(pngBase64EncodedStrings.indices.map { "#\(framePrefix)\($0)" }.joined(separator: ";"))"
+                    keyTimes="\(keyTimes.dropLast().map { String(format: "%.3f", $0) }.joined(separator: ";"))"
+                    dur="\(totalDuration)s"
+                    repeatCount="indefinite"
+                    calcMode="discrete"
+                />
+            </use>
+            """
+            let svg: String = """
+            <g key="g\(id)">
+                <defs>\(defs)</defs>
+                \(use)
+            </g>
+            """
             return svg
         }
     }
