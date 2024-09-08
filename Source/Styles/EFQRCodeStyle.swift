@@ -159,12 +159,7 @@ public enum EFStyleParamImage {
                 />
             </use>
             """
-            let svg: String = """
-            <g key="g\(id)">
-                <defs>\(defs)</defs>
-                \(use)
-            </g>
-            """
+            let svg: String = "<g key=\"g\(id)\"><defs>\(defs)</defs>\(use)</g>"
             return svg
         }
     }
