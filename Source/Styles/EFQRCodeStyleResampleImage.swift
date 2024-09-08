@@ -459,7 +459,6 @@ extension CGImage {
         return weightedGray
     }
     
-    //todo 多线程优化
     func getGrayPointList(newWidth: Int, newHeight: Int, contrast: CGFloat = 0, exposure: CGFloat = 0, color: String) throws -> [String] {
         let dataSize = newWidth * newHeight * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
@@ -481,7 +480,7 @@ extension CGImage {
         var gpl: [String] = []
         for x in 0 ..< newWidth {
             for y in 0 ..< newHeight {
-                let offset = 4 * (x + y * newWidth)
+                let offset: Int = 4 * (x + y * newWidth)
                 // RGBA
                 let alpha: CGFloat = CGFloat(pixelData[offset + 3]) / 255.0
                 let red: CGFloat = pixelData[offset + 0].cgFloat

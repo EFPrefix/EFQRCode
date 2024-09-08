@@ -74,7 +74,6 @@ public extension EFQRCode {
             }
             let svgString = try self.style.generateSVG(qrcode: qrcode)
             self.svgContent = svgString
-            print(svgString)
             return svgString
         }
         
@@ -85,6 +84,40 @@ public extension EFQRCode {
             return false
         }()
         
+        func checkIfNeedResize(size: CGSize, svgContent: String) throws -> String {
+            var newSvgContent: String = svgContent
+            if self.isAnimated == false {
+                var (iconImage, watermarkImage) = self.style.getParamImages()
+                var needResize: Bool = false
+                if let tryIcon = iconImage, case .static(let tryIconImage) = tryIcon {
+                    let canvasSize: CGSize = CGSize(width: size.width * 0.33, height: size.height * 0.33)
+                    let imageSize: CGSize = CGSize(width: tryIconImage.width.cgFloat, height: tryIconImage.height.cgFloat)
+                    if imageSize.width > canvasSize.width || imageSize.height > canvasSize.height {
+                        let newImageSize = EFWatermarkMode.scaleAspectFill.rectForWatermark(ofSize: imageSize, inCanvasOfSize: canvasSize)
+                        if let resizedImage = try tryIconImage.resize(to: newImageSize.size) {
+                            iconImage = EFStyleParamImage.static(image: resizedImage)
+                            needResize = true
+                        }
+                    }
+                }
+                if let tryWatermark = watermarkImage, case .static(let tryWatermarkImage) = tryWatermark {
+                    let canvasSize: CGSize = CGSize(width: size.width, height: size.height)
+                    let imageSize: CGSize = CGSize(width: tryWatermarkImage.width.cgFloat, height: tryWatermarkImage.height.cgFloat)
+                    if imageSize.width > canvasSize.width || imageSize.height > canvasSize.height {
+                        let newImageSize = EFWatermarkMode.scaleAspectFill.rectForWatermark(ofSize: imageSize, inCanvasOfSize: canvasSize)
+                        if let resizedImage = try tryWatermarkImage.resize(to: newImageSize.size) {
+                            watermarkImage = EFStyleParamImage.static(image: resizedImage)
+                            needResize = true
+                        }
+                    }
+                }
+                if needResize {
+                    newSvgContent = try self.style.copyWith(iconImage: iconImage, watermarkImage: watermarkImage).generateSVG(qrcode: self.qrcode)
+                }
+            }
+            return newSvgContent
+        }
+        
 #if canImport(UIKit)
         public func toImage(size: CGSize) throws -> UIImage {
             let svgContent = try generateSVG()
@@ -92,8 +125,9 @@ public extension EFQRCode {
         }
         
         func toImage(size: CGSize, svgContent: String) throws -> UIImage {
-            guard let svgData = svgContent.data(using: .utf8) else {
-                throw EFQRCodeError.text(svgContent, incompatibleWithEncoding: .utf8)
+            let newSvgContent: String = try checkIfNeedResize(size: size, svgContent: svgContent)
+            guard let svgData = newSvgContent.data(using: .utf8) else {
+                throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
             
             let svg = SVG(data: svgData)
@@ -112,8 +146,9 @@ public extension EFQRCode {
         }
         
         func toImage(size: CGSize, svgContent: String) throws -> NSImage {
-            guard let svgData = svgContent.data(using: .utf8) else {
-                throw EFQRCodeError.text(svgContent, incompatibleWithEncoding: .utf8)
+            let newSvgContent: String = try checkIfNeedResize(size: size, svgContent: svgContent)
+            guard let svgData = newSvgContent.data(using: .utf8) else {
+                throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
             
             let svg = SVG(data: svgData)
@@ -147,7 +182,6 @@ extension EFQRCode.Generator {
     
     private func reconcileQRImages(image1: EFStyleParamImage?, image2: EFStyleParamImage?, style: EFQRCodeStyle, size: CGSize) throws -> ([CGImage], [CGFloat]) {
         let (iconFrames, watermarkFrames, delays) = self.reconcileFrameImages(image1: image1, image2: image2)
-        print(delays.count)
         var qrFrames = [CGImage?](repeating: nil, count: delays.count)
         
         let processorCount: Int = ProcessInfo.processInfo.activeProcessorCount

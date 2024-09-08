@@ -62,11 +62,11 @@ extension CGImage {
         return context.makeImage()
     }
     
-    #if canImport(CoreImage)
+#if canImport(CoreImage)
     func ciImage() -> CIImage {
         return CIImage(cgImage: self)
     }
-    #endif
+#endif
     
     func clipImageToSquare() -> CGImage? {
         let width: CGFloat = self.width.cgFloat
@@ -80,5 +80,27 @@ extension CGImage {
         
         let croppedCGImage = self.cropping(to: rect)
         return croppedCGImage
+    }
+    
+    func resize(to newSize: CGSize) throws -> CGImage? {
+        let newWidth: Int = newSize.width.int
+        let newHeight: Int = newSize.height.int
+        let bitsPerComponent = self.bitsPerComponent
+        let bytesPerRow = newWidth * self.bytesPerRow / self.width
+        let colorSpace = self.colorSpace ?? CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = self.bitmapInfo
+        guard let context = CGContext(
+            data: nil,
+            width: newWidth,
+            height: newHeight,
+            bitsPerComponent: bitsPerComponent,
+            bytesPerRow: bytesPerRow,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo.rawValue
+        ) else {
+            throw EFQRCodeError.cannotCreateCGContext
+        }
+        context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: newWidth, height: newHeight)))
+        return context.makeImage()
     }
 }
