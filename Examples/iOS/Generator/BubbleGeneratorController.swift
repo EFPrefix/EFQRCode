@@ -540,52 +540,29 @@ extension BubbleGeneratorController {
 
 #if os(iOS)
 // MARK: - EFColorPicker
-extension BubbleGeneratorController: UIPopoverPresentationControllerDelegate, EFColorSelectionViewControllerDelegate {
+extension BubbleGeneratorController: UIColorPickerViewControllerDelegate {
 
     struct EFColorPicker {
         static var index: Int = 0
     }
 
     func customColor(_ index: Int) {
-
         EFColorPicker.index = index
 
-        let colorSelectionController = EFColorSelectionViewController()
-        let navCtrl = UINavigationController(rootViewController: colorSelectionController)
-        navCtrl.navigationBar.backgroundColor = .white
-        navCtrl.navigationBar.isTranslucent = false
-        navCtrl.modalPresentationStyle = .popover
-        navCtrl.popoverPresentationController?.delegate = self
-        navCtrl.popoverPresentationController?.sourceView = tableView
-        navCtrl.popoverPresentationController?.sourceRect = tableView.bounds
-        navCtrl.preferredContentSize = colorSelectionController.view.systemLayoutSizeFitting(
-            UIView.layoutFittingCompressedSize
-        )
-
-        colorSelectionController.isColorTextFieldHidden = false
-        colorSelectionController.delegate = self
-        colorSelectionController.color = [positionColor, dataColor, iconBorderColor][index]
-
-        if .compact == traitCollection.horizontalSizeClass {
-            let doneBtn = UIBarButtonItem(
-                title: Localized.done,
-                style: .done,
-                target: self,
-                action: #selector(ef_dismissViewController(sender:))
-            )
-            colorSelectionController.navigationItem.rightBarButtonItem = doneBtn
-        }
-        present(navCtrl, animated: true)
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.delegate = self
+        colorPicker.selectedColor = [positionColor, dataColor, iconBorderColor][index]
+        colorPicker.supportsAlpha = false
+        present(colorPicker, animated: true)
     }
     
-    // Private
-    @objc private func ef_dismissViewController(sender: UIBarButtonItem) {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         dismiss(animated: true)
         refresh()
     }
 
-    // MARK: EFColorViewDelegate
-    func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor) {
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        let color = viewController.selectedColor
         switch EFColorPicker.index {
         case 0:
             positionColor = color

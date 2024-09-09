@@ -24,6 +24,10 @@ import AppKit
 import QRCodeSwift
 import SwiftDraw
 
+//todo
+//1. 白边控制
+//2. 底色/透明控制
+//3. 导出格式增加
 public extension EFQRCode {
     
     @objcMembers

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		120B14642A6C2FC600970B90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 120B14632A6C2FC600970B90 /* SnapKit */; };
-		120B146C2A6C30D000970B90 /* EFColorPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 120B146B2A6C30D000970B90 /* EFColorPicker */; };
 		120B77FF1EA395EC00D34440 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 120B77FD1EA395EC00D34440 /* Main.storyboard */; };
 		120B78011EA3960D00D34440 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 120B78001EA3960D00D34440 /* LaunchScreen.xib */; };
 		120B78031EA3968700D34440 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78021EA3968700D34440 /* ViewController.swift */; };
@@ -254,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */,
-				120B146C2A6C30D000970B90 /* EFColorPicker in Frameworks */,
 				1261B5AD2A6E78EE004D4F48 /* EFFoundation in Frameworks */,
 				120B14642A6C2FC600970B90 /* SnapKit in Frameworks */,
 			);
@@ -519,7 +517,6 @@
 			name = "iOS Example";
 			packageProductDependencies = (
 				120B14632A6C2FC600970B90 /* SnapKit */,
-				120B146B2A6C30D000970B90 /* EFColorPicker */,
 				1261B5AC2A6E78EE004D4F48 /* EFFoundation */,
 			);
 			productName = Alamofire;
@@ -563,7 +560,6 @@
 			mainGroup = F8111DFC19A951050040E7D1;
 			packageReferences = (
 				120B14622A6C2FC600970B90 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				120B146A2A6C30D000970B90 /* XCRemoteSwiftPackageReference "EFColorPicker" */,
 				1261B5AB2A6E78EE004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */,
 			);
 			productRefGroup = F8111E0619A951050040E7D1 /* Products */;
@@ -1111,14 +1107,6 @@
 				version = 5.6.0;
 			};
 		};
-		120B146A2A6C30D000970B90 /* XCRemoteSwiftPackageReference "EFColorPicker" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EFPrefix/EFColorPicker.git";
-			requirement = {
-				kind = exactVersion;
-				version = 5.2.2;
-			};
-		};
 		1261B5AB2A6E78EE004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EFPrefix/EFFoundation.git";
@@ -1134,11 +1122,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 120B14622A6C2FC600970B90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		120B146B2A6C30D000970B90 /* EFColorPicker */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 120B146A2A6C30D000970B90 /* XCRemoteSwiftPackageReference "EFColorPicker" */;
-			productName = EFColorPicker;
 		};
 		1261B5AC2A6E78EE004D4F48 /* EFFoundation */ = {
 			isa = XCSwiftPackageProductDependency;

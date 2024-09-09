@@ -1,15 +1,6 @@
 {
-  "originHash" : "11f86398518dcbf41e872014094fd3b1bfe927bfb72c93803a72971c0282f595",
+  "originHash" : "be929adcdb011855acf3e6ecc7d60247342f4745a8d30decbb11d695d5801643",
   "pins" : [
-    {
-      "identity" : "efcolorpicker",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EFPrefix/EFColorPicker.git",
-      "state" : {
-        "revision" : "706c8412c38df821d5bff2751e8961bc5fdd4154",
-        "version" : "5.2.2"
-      }
-    },
     {
       "identity" : "effoundation",
       "kind" : "remoteSourceControl",

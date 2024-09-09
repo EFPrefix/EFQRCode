@@ -28,6 +28,7 @@ import UIKit
 import SnapKit
 import SnapKit
 import EFQRCode
+import EFFoundation
 
 class RecognizerController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -138,7 +139,7 @@ class RecognizerController: UIViewController, UIImagePickerControllerDelegate, U
     }
 
     @objc func scanQRCode() {
-        if let tryImage = UIImage2CGImage(imageView.image) {
+        if let tryImage = imageView.image?.cgImage() {
             let codes = EFQRCode.Recognizer(image: tryImage).recognize()
             let title = codes.isEmpty ? Localized.error : Localized.success
             let result = codes.first ?? NSLocalizedString(
