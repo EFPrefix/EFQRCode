@@ -63,7 +63,7 @@ class MoreViewController: UIViewController {
         downloadButton.snp.makeConstraints { (make) in
             make.left.equalTo(36)
             make.right.equalTo(-36)
-            make.bottom.equalTo(-CGFloat.bottomSafeArea())
+            make.bottom.equalTo(-CGFloat.bottomSafeArea() - 36)
             make.height.equalTo(downloadButtonHeight)
         }
         
