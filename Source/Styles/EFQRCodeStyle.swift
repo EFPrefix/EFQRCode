@@ -13,6 +13,7 @@ import QRCodeSwift
 
 public class EFStyleParams {
     let icon: EFStyleParamIcon?
+    // let backdrop:
     
     init(icon: EFStyleParamIcon?) {
         self.icon = icon
@@ -165,6 +166,81 @@ public enum EFStyleParamImage {
     }
 }
 
+/*public class EFStyleParamBackdrop {
+    let image: CGImage
+    let cornerRadius: CGFloat
+    let alpha: CGFloat
+    let backgroundColor: CGColor
+    let quietzone: 
+    
+    public init(image: EFStyleParamImage, percentage: CGFloat, alpha: CGFloat, borderColor: CGColor) {
+        self.image = image
+        self.percentage = percentage
+        self.alpha = alpha
+        self.borderColor = borderColor
+    }
+    
+    func copyWith(
+        image: EFStyleParamImage? = nil,
+        percentage: CGFloat? = nil,
+        alpha: CGFloat? = nil,
+        borderColor: CGColor? = nil
+    ) -> EFStyleParamIcon {
+        return EFStyleParamIcon(
+            image: image ?? self.image,
+            percentage: percentage ?? self.percentage,
+            alpha: alpha ?? self.alpha,
+            borderColor: borderColor ?? self.borderColor
+        )
+    }
+    
+    func write(qrcode: QRCode) throws -> [String] {
+        struct Anchor {
+            static var uniqueMark: Int = 0
+        }
+        
+        var id: Int = 0
+        let nCount: Int = qrcode.model.moduleCount
+        var pointList: [String] = []
+        
+        let scale: CGFloat = min(self.percentage, 0.33)
+        let imageAlpha: CGFloat = max(0, alpha)
+        
+        let iconSize: CGFloat = nCount.cgFloat * scale
+        let iconXY: CGFloat = (nCount.cgFloat - iconSize) / 2.0
+        
+        let bdColor: String = try borderColor.hexString()
+        let bdAlpha: CGFloat = max(0, try borderColor.alpha())
+        
+        let randomIdDefs: String = "icon\(Anchor.uniqueMark)"
+        Anchor.uniqueMark += 1
+        let randomIdClips: String = "icon\(Anchor.uniqueMark)"
+        Anchor.uniqueMark += 1
+        
+        pointList.append("<path opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100.0 / iconSize)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>")
+        pointList.append("<g key=\"g\(id)\">")
+        id += 1
+        
+        let iconOffset: CGFloat = iconXY * 0.024
+        let rectXY: CGFloat = iconXY - iconOffset
+        let length: CGFloat = iconSize + 2.0 * iconOffset
+        let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
+        pointList.append(
+            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\"/>"
+            + "<mask id=\"\(randomIdClips)\">"
+            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\" fill=\"#ffffff\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>"
+            + "</mask>"
+            + "</defs>"
+            + "<g mask=\"url(#\(randomIdClips))\">"
+            + (try image.write(id: id, rect: iconRect, opacity: imageAlpha))
+            + "</g>"
+            + "</g>"
+        )
+        id += 1
+        return pointList
+    }
+}*/
+
 public class EFQRCodeStyleBase {
     
     func writeQRCode(qrcode: QRCode) throws -> [String] {
@@ -188,6 +264,24 @@ public class EFQRCodeStyleBase {
         + (try writeIcon(qrcode: qrcode)).joined()
         + "</svg>"
     }
+    
+    func copyWith(
+        iconImage: EFStyleParamImage? = nil,
+        watermarkImage: EFStyleParamImage? = nil
+    ) -> EFQRCodeStyleBase {
+        Utils.ShowNotImplementedError()
+        return self
+    }
+    
+    func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
+        Utils.ShowNotImplementedError()
+        return (nil, nil)
+    }
+    
+    func toQRCodeStyle() -> EFQRCodeStyle {
+        Utils.ShowNotImplementedError()
+        return .basic(params: .init())
+    }
 }
 
 public enum EFQRCodeStyle {
@@ -202,7 +296,7 @@ public enum EFQRCodeStyle {
     case randomRectangle(params: EFStyleRandomRectangleParams)
     case resampleImage(params: EFStyleResampleImageParams)
     
-    var style: EFQRCodeStyleBase {
+    var implementation: EFQRCodeStyleBase {
         switch self {
         case .basic(let params):
             return EFQRCodeStyleBasic(params: params)
@@ -224,76 +318,6 @@ public enum EFQRCodeStyle {
             return EFQRCodeStyleRandomRectangle(params: params)
         case .resampleImage(let params):
             return EFQRCodeStyleResampleImage(params: params)
-        }
-    }
-    
-    func generateSVG(qrcode: QRCode) throws -> String {
-        return try style.generateSVG(qrcode: qrcode)
-    }
-    
-    func copyWith(
-        iconImage: EFStyleParamImage? = nil,
-        watermarkImage: EFStyleParamImage? = nil
-    ) -> EFQRCodeStyleBase {
-        switch self {
-        case .basic(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            return EFQRCodeStyleBasic(params: params.copyWith(icon: icon))
-        case .bubble(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            return EFQRCodeStyleBubble(params: params.copyWith(icon: icon))
-        case .d25(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            return EFQRCodeStyle25D(params: params.copyWith(icon: icon))
-        case .dsj(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            return EFQRCodeStyleDSJ(params: params.copyWith(icon: icon))
-        case .function(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            return EFQRCodeStyleFunction(params: params.copyWith(icon: icon))
-        case .image(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            let image: EFStyleImageParamsImage? = params.image?.copyWith(image: watermarkImage)
-            return EFQRCodeStyleImage(params: params.copyWith(icon: icon, image: image))
-        case .imageFill(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            let image: EFStyleImageFillParamsImage? = params.image?.copyWith(image: watermarkImage)
-            return EFQRCodeStyleImageFill(params: params.copyWith(icon: icon, image: image))
-        case .line(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            return EFQRCodeStyleLine(params: params.copyWith(icon: icon))
-        case .randomRectangle(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            return EFQRCodeStyleRandomRectangle(params: params.copyWith(icon: icon))
-        case .resampleImage(let params):
-            let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
-            let image: EFStyleResampleImageParamsImage? = params.image?.copyWith(image: watermarkImage)
-            return EFQRCodeStyleResampleImage(params: params.copyWith(icon: icon, image: image))
-        }
-    }
-    
-    func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
-        switch self {
-        case .basic(let params):
-            return (params.icon?.image, nil)
-        case .bubble(let params):
-            return (params.icon?.image, nil)
-        case .dsj(let params):
-            return (params.icon?.image, nil)
-        case .function(let params):
-            return (params.icon?.image, nil)
-        case .image(let params):
-            return (params.icon?.image, params.image?.image)
-        case .imageFill(let params):
-            return (params.icon?.image, params.image?.image)
-        case .line(let params):
-            return (params.icon?.image, nil)
-        case .randomRectangle(let params):
-            return (params.icon?.image, nil)
-        case .resampleImage(let params):
-            return (params.icon?.image, params.image?.image)
-        case .d25(let params):
-            return (params.icon?.image, nil)
         }
     }
 }

@@ -178,4 +178,20 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let nCount: Int = qrcode.model.moduleCount
         return "\(-nCount) \(-nCount / 2) \(nCount * 2) \(nCount * 2)"
     }
+    
+    override func copyWith(
+        iconImage: EFStyleParamImage? = nil,
+        watermarkImage: EFStyleParamImage? = nil
+    ) -> EFQRCodeStyleBase {
+        let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
+        return EFQRCodeStyle25D(params: params.copyWith(icon: icon))
+    }
+    
+    override func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
+        return (params.icon?.image, nil)
+    }
+    
+    override func toQRCodeStyle() -> EFQRCodeStyle {
+        return EFQRCodeStyle.d25(params: self.params)
+    }
 }

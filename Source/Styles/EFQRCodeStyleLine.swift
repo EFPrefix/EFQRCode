@@ -441,4 +441,20 @@ public class EFQRCodeStyleLine: EFQRCodeStyleBase {
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
     }
+    
+    override func copyWith(
+        iconImage: EFStyleParamImage? = nil,
+        watermarkImage: EFStyleParamImage? = nil
+    ) -> EFQRCodeStyleBase {
+        let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
+        return EFQRCodeStyleLine(params: params.copyWith(icon: icon))
+    }
+    
+    override func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
+        return (params.icon?.image, nil)
+    }
+    
+    override func toQRCodeStyle() -> EFQRCodeStyle {
+        return EFQRCodeStyle.line(params: self.params)
+    }
 }

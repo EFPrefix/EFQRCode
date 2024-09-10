@@ -83,6 +83,8 @@ extension CGImage {
     }
     
     func resize(to newSize: CGSize) throws -> CGImage? {
+        if newSize.width == self.width.cgFloat && newSize.height == self.height.cgFloat { return self }
+        
         let newWidth: Int = newSize.width.int
         let newHeight: Int = newSize.height.int
         let bitsPerComponent = self.bitsPerComponent

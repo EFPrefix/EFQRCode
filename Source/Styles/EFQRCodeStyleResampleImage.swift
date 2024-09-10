@@ -466,6 +466,23 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         + (try writeIcon(qrcode: qrcode)).joined()
         + "</svg>"
     }
+    
+    override func copyWith(
+        iconImage: EFStyleParamImage? = nil,
+        watermarkImage: EFStyleParamImage? = nil
+    ) -> EFQRCodeStyleBase {
+        let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
+        let image: EFStyleResampleImageParamsImage? = params.image?.copyWith(image: watermarkImage)
+        return EFQRCodeStyleResampleImage(params: params.copyWith(icon: icon, image: image))
+    }
+    
+    override func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
+        return (params.icon?.image, params.image?.image)
+    }
+    
+    override func toQRCodeStyle() -> EFQRCodeStyle {
+        return EFQRCodeStyle.resampleImage(params: self.params)
+    }
 }
 
 extension CGImage {
