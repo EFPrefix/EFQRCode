@@ -102,4 +102,20 @@ public class EFQRCodeStyleRandomRectangle: EFQRCodeStyleBase {
     private func clampRGBValue(_ value: Int) -> Int {
         return max(0, min(255, value))
     }
+    
+    override func copyWith(
+        iconImage: EFStyleParamImage? = nil,
+        watermarkImage: EFStyleParamImage? = nil
+    ) -> EFQRCodeStyleBase {
+        let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
+        return EFQRCodeStyleRandomRectangle(params: params.copyWith(icon: icon))
+    }
+    
+    override func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
+        return (params.icon?.image, nil)
+    }
+    
+    override func toQRCodeStyle() -> EFQRCodeStyle {
+        return EFQRCodeStyle.randomRectangle(params: self.params)
+    }
 }

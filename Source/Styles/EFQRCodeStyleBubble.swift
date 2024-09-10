@@ -225,4 +225,20 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
     }
+    
+    override func copyWith(
+        iconImage: EFStyleParamImage? = nil,
+        watermarkImage: EFStyleParamImage? = nil
+    ) -> EFQRCodeStyleBase {
+        let icon: EFStyleParamIcon? = params.icon?.copyWith(image: iconImage)
+        return EFQRCodeStyleBubble(params: params.copyWith(icon: icon))
+    }
+    
+    override func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
+        return (params.icon?.image, nil)
+    }
+    
+    override func toQRCodeStyle() -> EFQRCodeStyle {
+        return EFQRCodeStyle.bubble(params: self.params)
+    }
 }
