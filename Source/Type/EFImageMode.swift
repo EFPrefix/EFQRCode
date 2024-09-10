@@ -1,5 +1,5 @@
 //
-//  EFWatermarkMode.swift
+//  EFImageMode.swift
 //  EFQRCode
 //
 //  Created by EyreFree on 2017/4/11.
@@ -28,7 +28,7 @@ import Foundation
 import CoreGraphics
 
 /// Options to specify how watermark position and size for QR code.
-@objc public enum EFWatermarkMode: Int {
+@objc public enum EFImageMode: Int {
     /// The option to scale the watermark to fit the size of QR code by changing the aspect ratio of the watermark if necessary.
     case scaleToFill        = 0
     /// The option to scale the watermark to fit the size of the QR code by maintaining the aspect ratio. Any remaining area of the QR code uses the background color.
@@ -53,16 +53,16 @@ import CoreGraphics
     case bottomLeft         = 10
     /// The option to align the watermark in the bottom-right corner of the QR code.
     case bottomRight        = 11
-
+    
     // MARK: - Utilities
-
+    
     /// Calculates and returns the area in canvas where the image is going to be in this mode.
     /// - Parameters:
     ///   - imageSize: size of the watermark image to place in the canvas.
     ///   - canvasSize: size of the canvas to place the image in.
     /// - Returns: the area where the image is going to be according to the watermark mode.
-    public func rectForWatermark(ofSize imageSize: CGSize,
-                                 inCanvasOfSize canvasSize: CGSize) -> CGRect {
+    public func rectForContent(ofSize imageSize: CGSize,
+                               inCanvasOfSize canvasSize: CGSize) -> CGRect {
         let size = canvasSize
         var finalSize: CGSize = size
         var finalOrigin: CGPoint = CGPoint.zero
