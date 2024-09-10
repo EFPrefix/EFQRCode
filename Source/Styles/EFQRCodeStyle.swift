@@ -12,11 +12,18 @@ import CoreGraphics
 import QRCodeSwift
 
 public class EFStyleParams {
-    let icon: EFStyleParamIcon?
-    // let backdrop:
     
-    init(icon: EFStyleParamIcon?) {
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    
+    let icon: EFStyleParamIcon?
+    let backdrop: EFStyleParamBackdrop
+    
+    init(
+        icon: EFStyleParamIcon?,
+        backdrop: EFStyleParamBackdrop = EFStyleParams.defaultBackdrop
+    ) {
         self.icon = icon
+        self.backdrop = backdrop
     }
 }
 
@@ -52,7 +59,12 @@ public class EFStyleParamIcon {
     let alpha: CGFloat
     let borderColor: CGColor
     
-    public init(image: EFStyleParamImage, percentage: CGFloat, alpha: CGFloat, borderColor: CGColor) {
+    public init(
+        image: EFStyleParamImage,
+        percentage: CGFloat,
+        alpha: CGFloat,
+        borderColor: CGColor
+    ) {
         self.image = image
         self.percentage = percentage
         self.alpha = alpha
@@ -166,80 +178,43 @@ public enum EFStyleParamImage {
     }
 }
 
-/*public class EFStyleParamBackdrop {
-    let image: CGImage
+public class EFStyleParamBackdrop {
+    
+    public static let defaultColor: CGColor = CGColor.createWith(rgb: 0xffffff)!
+    
     let cornerRadius: CGFloat
-    let alpha: CGFloat
-    let backgroundColor: CGColor
-    let quietzone: 
+    let color: CGColor
+    let image: EFStyleParamBackdropImage?
+    let quietzone: EFEdgeInsets?
     
-    public init(image: EFStyleParamImage, percentage: CGFloat, alpha: CGFloat, borderColor: CGColor) {
+    public init(
+        cornerRadius: CGFloat = 0,
+        color: CGColor = EFStyleParamBackdrop.defaultColor,
+        image: EFStyleParamBackdropImage? = nil,
+        quietzone: EFEdgeInsets? = nil
+    ) {
+        self.cornerRadius = cornerRadius
+        self.color = color
         self.image = image
-        self.percentage = percentage
+        self.quietzone = quietzone
+    }
+}
+
+public class EFStyleParamBackdropImage {
+    let image: CGImage
+    let alpha: CGFloat
+    let mode: EFImageMode
+    
+    public init(
+        image: CGImage,
+        alpha: CGFloat = 1,
+        mode: EFImageMode
+    ) {
+        self.image = image
         self.alpha = alpha
-        self.borderColor = borderColor
+        self.mode = mode
     }
-    
-    func copyWith(
-        image: EFStyleParamImage? = nil,
-        percentage: CGFloat? = nil,
-        alpha: CGFloat? = nil,
-        borderColor: CGColor? = nil
-    ) -> EFStyleParamIcon {
-        return EFStyleParamIcon(
-            image: image ?? self.image,
-            percentage: percentage ?? self.percentage,
-            alpha: alpha ?? self.alpha,
-            borderColor: borderColor ?? self.borderColor
-        )
-    }
-    
-    func write(qrcode: QRCode) throws -> [String] {
-        struct Anchor {
-            static var uniqueMark: Int = 0
-        }
-        
-        var id: Int = 0
-        let nCount: Int = qrcode.model.moduleCount
-        var pointList: [String] = []
-        
-        let scale: CGFloat = min(self.percentage, 0.33)
-        let imageAlpha: CGFloat = max(0, alpha)
-        
-        let iconSize: CGFloat = nCount.cgFloat * scale
-        let iconXY: CGFloat = (nCount.cgFloat - iconSize) / 2.0
-        
-        let bdColor: String = try borderColor.hexString()
-        let bdAlpha: CGFloat = max(0, try borderColor.alpha())
-        
-        let randomIdDefs: String = "icon\(Anchor.uniqueMark)"
-        Anchor.uniqueMark += 1
-        let randomIdClips: String = "icon\(Anchor.uniqueMark)"
-        Anchor.uniqueMark += 1
-        
-        pointList.append("<path opacity=\"\(bdAlpha)\" d=\"\(EFQRCodeStyleBasic.sq25)\" stroke=\"\(bdColor)\" stroke-width=\"\(100.0 / iconSize)\" fill=\"\(bdColor)\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>")
-        pointList.append("<g key=\"g\(id)\">")
-        id += 1
-        
-        let iconOffset: CGFloat = iconXY * 0.024
-        let rectXY: CGFloat = iconXY - iconOffset
-        let length: CGFloat = iconSize + 2.0 * iconOffset
-        let iconRect: CGRect = CGRect(x: rectXY, y: rectXY, width: length, height: length)
-        pointList.append(
-            "<defs><path id=\"\(randomIdDefs)\" d=\"\(EFQRCodeStyleBasic.sq25)\"/>"
-            + "<mask id=\"\(randomIdClips)\">"
-            + "<use xlink:href=\"#\(randomIdDefs)\" overflow=\"visible\" fill=\"#ffffff\" transform=\"translate(\(iconXY),\(iconXY)) scale(\(iconSize / 100.0),\(iconSize / 100.0))\"/>"
-            + "</mask>"
-            + "</defs>"
-            + "<g mask=\"url(#\(randomIdClips))\">"
-            + (try image.write(id: id, rect: iconRect, opacity: imageAlpha))
-            + "</g>"
-            + "</g>"
-        )
-        id += 1
-        return pointList
-    }
-}*/
+}
 
 public class EFQRCodeStyleBase {
     

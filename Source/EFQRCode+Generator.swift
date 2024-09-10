@@ -170,7 +170,7 @@ extension EFQRCode.Generator {
             let canvasSize: CGSize = CGSize(width: containerSize.width * percentage, height: containerSize.height * percentage)
             let imageSize: CGSize = CGSize(width: targetImage.width.cgFloat, height: targetImage.height.cgFloat)
             if imageSize.width > canvasSize.width || imageSize.height > canvasSize.height {
-                let newImageSize = EFWatermarkMode.scaleAspectFill.rectForWatermark(ofSize: imageSize, inCanvasOfSize: canvasSize)
+                let newImageSize = EFImageMode.scaleAspectFill.rectForContent(ofSize: imageSize, inCanvasOfSize: canvasSize)
                 if let resizedImage = try targetImage.resize(to: newImageSize.size) {
                     return EFStyleParamImage.static(image: resizedImage)
                 }
