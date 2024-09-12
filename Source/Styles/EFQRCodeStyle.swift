@@ -213,23 +213,24 @@ public class EFStyleParamBackdrop {
         let bgColor: String = try color.hexString()
         let bgAlpha: CGFloat = max(0, try color.alpha())
         return (
-        """
-        <svg className="Qr-item-svg" width="100%" height="100%" viewBox="0 0 \(viewBoxRect.width) \(viewBoxRect.height)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <defs>
-                <clipPath id="rounded-corners">
-                    <rect width="100%" height="100%" rx="\(cornerRadius)" ry="\(cornerRadius)"/>
-                </clipPath>
-            </defs>
-            <g clip-path="url(#rounded-corners)">
-                <rect width="100%" height="100%" opacity=\"\(bgAlpha)\" fill="\(bgColor)"/>
-                \(try image?.write() ?? "")
-                <svg className="Qr-content-svg" width="100%" height="100%" viewBox="\(viewBoxRect.minX) \(viewBoxRect.minY) \(viewBoxRect.width) \(viewBoxRect.height)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        """,
-        """
-                </svg>
-            </g>
-        </svg>
-        """)
+            """
+            <svg className="Qr-item-svg" width="100%" height="100%" viewBox="0 0 \(viewBoxRect.width) \(viewBoxRect.height)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <clipPath id="rounded-corners">
+                        <rect width="100%" height="100%" rx="\(cornerRadius)" ry="\(cornerRadius)"/>
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#rounded-corners)">
+                    <rect width="100%" height="100%" opacity=\"\(bgAlpha)\" fill="\(bgColor)"/>
+                    \(try image?.write() ?? "")
+                    <g width="100%" height="100%" transform="translate(\(-viewBoxRect.minX), \(-viewBoxRect.minY))">
+            """,
+            """
+                    </g>
+                </g>
+            </svg>
+            """
+        )
     }
 }
 

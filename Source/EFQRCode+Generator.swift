@@ -25,8 +25,7 @@ import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. backdrop 不支持导出
-//2. 导出格式增加
+//1. 导出格式增加
 public extension EFQRCode {
     
     @objcMembers
