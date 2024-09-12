@@ -87,7 +87,7 @@ public class EFQRCodeStyleRandomRectangle: EFQRCodeStyleBase {
                 
                 let tempRGB = [
                     "rgb(\(rValue),\(gValue),\(bValue))",
-                    "rgb(\(r2Value)),\(g2Value)),\(b2Value))"
+                    "rgb(\(r2Value),\(g2Value),\(b2Value))"
                 ]
                 let width: CGFloat = 0.15
                 pointList.append("<rect key=\"\(id)\" opacity=\"\(0.9 * alphaValue)\" fill=\"\(tempRGB[1])\" width=\"\(1 * tempRand.cgFloat + width.cgFloat)\" height=\"\(1 * tempRand.cgFloat + width.cgFloat)\" x=\"\(row.cgFloat - (tempRand.cgFloat - 1) / 2.0)\" y=\"\(col.cgFloat - (tempRand.cgFloat - 1) / 2.0)\"/>");
