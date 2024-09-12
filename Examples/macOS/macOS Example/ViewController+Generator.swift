@@ -294,10 +294,10 @@ extension ViewController: NSAlertDelegate {
             // [@"onecodego" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
             do {
                 try svgString.data(using: .utf8)?.write(to: url)
-                messageBox(NSLocalizedString(
+                /*messageBox(NSLocalizedString(
                     "SVG image saved",
                     comment: "Successfully export QR code image"
-                ))
+                ))*/
             } catch {
                 messageBox(NSLocalizedString(
                     "Failed to save SVG image",

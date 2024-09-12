@@ -25,9 +25,8 @@ import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. 白边控制
-//2. 底色/透明控制
-//3. 导出格式增加
+//1. backdrop 不支持导出
+//2. 导出格式增加
 public extension EFQRCode {
     
     @objcMembers
@@ -126,12 +125,7 @@ public extension EFQRCode {
         
 #if canImport(AppKit)
         public func toImage(size: CGSize) throws -> NSImage {
-            let svgContent = try generateSVG()
-            return try self.toImage(size: size, svgContent: svgContent)
-        }
-        
-        func toImage(size: CGSize, svgContent: String, style: EFQRCodeStyle, qrcode: QRCode) throws -> NSImage {
-            let newSvgContent: String = try EFQRCode.Generator.checkIfNeedResize(size: size, svgContent: svgContent, style: style, qrcode: qrcode)
+            let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }

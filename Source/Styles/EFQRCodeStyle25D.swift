@@ -13,6 +13,7 @@ import QRCodeSwift
 
 public class EFStyle25DParams: EFStyleParams {
     
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultTopColor: CGColor = CGColor.createWith(rgb: 0x000000)!
     public static let defaultLeftColor: CGColor = CGColor.createWith(rgb: 0x000000, alpha: 0.2)!
     public static let defaultRightColor: CGColor = CGColor.createWith(rgb: 0x000000, alpha: 0.6)!
@@ -25,6 +26,7 @@ public class EFStyle25DParams: EFStyleParams {
     
     public init(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop = EFStyle25DParams.defaultBackdrop,
         dataHeight: CGFloat = 1,
         positionHeight: CGFloat = 1,
         topColor: CGColor = EFStyle25DParams.defaultTopColor,
@@ -36,11 +38,12 @@ public class EFStyle25DParams: EFStyleParams {
         self.topColor = topColor
         self.leftColor = leftColor
         self.rightColor = rightColor
-        super.init(icon: icon)
+        super.init(icon: icon, backdrop: backdrop)
     }
     
     func copyWith(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop? = nil,
         dataHeight: CGFloat? = nil,
         positionHeight: CGFloat? = nil,
         topColor: CGColor? = nil,
@@ -49,6 +52,7 @@ public class EFStyle25DParams: EFStyleParams {
     ) -> EFStyle25DParams {
         return EFStyle25DParams(
             icon: icon ?? self.icon,
+            backdrop: backdrop ?? self.backdrop,
             dataHeight: dataHeight ?? self.dataHeight,
             positionHeight: positionHeight ?? self.positionHeight,
             topColor: topColor ?? self.topColor,
@@ -174,9 +178,26 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         return pointList
     }
     
-    override func viewBox(qrcode: QRCode) -> String {
-        let nCount: Int = qrcode.model.moduleCount
-        return "\(-nCount) \(-nCount / 2) \(nCount * 2) \(nCount * 2)"
+    override func viewBox(qrcode: QRCode) -> CGRect {
+        let moduleCount: Int = qrcode.model.moduleCount
+        if let quietzone = params.backdrop.quietzone {
+            return CGRect(
+                x: -moduleCount.cgFloat * (1 + quietzone.left),
+                y: -moduleCount.cgFloat * (quietzone.top - 0.5),
+                width: moduleCount.cgFloat * (quietzone.left + 2 + quietzone.right),
+                height: moduleCount.cgFloat * (quietzone.top + 2 + quietzone.bottom)
+            )
+        }
+        return CGRect(x: -moduleCount.cgFloat, y: -moduleCount.cgFloat / 2.0, width: moduleCount.cgFloat * 2, height: moduleCount.cgFloat * 2)
+    }
+    
+    override func generateSVG(qrcode: QRCode) throws -> String {
+        let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
+        let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
+        return part1
+        + (try writeQRCode(qrcode: qrcode)).joined()
+        + (try writeIcon(qrcode: qrcode)).joined()
+        + part2
     }
     
     override func copyWith(
