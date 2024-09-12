@@ -23,6 +23,7 @@ extension ShowController {
 class ShowController: UIViewController {
 
     private(set) var image: EFImage?
+    var svgString: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,7 @@ class ShowController: UIViewController {
     #if os(iOS)
     let saveButton = UIButton(type: .system)
     #endif
+    let copyButton = UIButton(type: .system)
     
     func setupViews() {
         #if os(iOS)
@@ -121,6 +123,21 @@ class ShowController: UIViewController {
             make.height.equalTo(46)
         }
         #endif
+        
+        copyButton.setTitle(Localized.copy, for: .normal)
+        copyButton.setTitleColor(UIColor.white, for: .normal)
+        copyButton.layer.borderColor = UIColor.white.cgColor
+        copyButton.layer.borderWidth = 1
+        copyButton.layer.cornerRadius = 5
+        copyButton.layer.masksToBounds = true
+        view.addSubview(copyButton)
+        copyButton.addTarget(self, action: #selector(copyAction), for: .primaryActionTriggered)
+        copyButton.snp.makeConstraints {
+            (make) in
+            make.leading.width.equalTo(imageView)
+            make.top.equalTo(backButton.snp.bottom).offset(10)
+            make.height.equalTo(46)
+        }
     }
     
     #if os(iOS)
@@ -165,6 +182,10 @@ class ShowController: UIViewController {
 
     @objc func back() {
         dismiss(animated: true)
+    }
+    
+    @objc func copyAction() {
+        UIPasteboard.general.string = svgString
     }
 }
 

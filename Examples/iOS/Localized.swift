@@ -121,6 +121,7 @@ enum Localized {
     static let no = NSLocalizedString("No", comment: "Negative")
     static let done = NSLocalizedString("Done", comment: "Generic completion indication button title")
     static let save = NSLocalizedString("Save", comment: "Generic save button title")
+    static let copy = NSLocalizedString("Copy", comment: "Generic save button title")
     static let back = NSLocalizedString("Back", comment: "Generic back button title")
     static let width = NSLocalizedString("Width", comment: "Generic label for size input")
     static let height = NSLocalizedString("Height", comment: "Generic label for size input")

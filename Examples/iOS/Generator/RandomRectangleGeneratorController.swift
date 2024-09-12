@@ -184,7 +184,9 @@ extension RandomRectangleGeneratorController {
                     return EFImage.normal(try! generator.toImage(size: imageSize))
                 }
             }()
-            present(ShowController(image: image), animated: true)
+            let showVC = ShowController(image: image)
+            showVC.svgString = (try? generator.generateSVG()) ?? ""
+            present(showVC, animated: true)
         } catch {
             let alert = UIAlertController(
                 title: Localized.error,

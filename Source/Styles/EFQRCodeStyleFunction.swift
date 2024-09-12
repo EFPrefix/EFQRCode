@@ -13,6 +13,7 @@ import QRCodeSwift
 
 public class EFStyleFunctionParams: EFStyleParams {
     
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultPosition: EFStyleFunctionParamsPosition = EFStyleFunctionParamsPosition()
     public static let defaultData: EFStyleFunctionParamsData = EFStyleFunctionParamsData()
     
@@ -21,21 +22,24 @@ public class EFStyleFunctionParams: EFStyleParams {
     
     public init(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop = EFStyleFunctionParams.defaultBackdrop,
         position: EFStyleFunctionParamsPosition = EFStyleFunctionParams.defaultPosition,
         data: EFStyleFunctionParamsData = EFStyleFunctionParams.defaultData
     ) {
         self.position = position
         self.data = data
-        super.init(icon: icon)
+        super.init(icon: icon, backdrop: backdrop)
     }
     
     func copyWith(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop? = nil,
         position: EFStyleFunctionParamsPosition? = nil,
         data: EFStyleFunctionParamsData? = nil
     ) -> EFStyleFunctionParams {
         return EFStyleFunctionParams(
             icon: icon ?? self.icon,
+            backdrop: backdrop ?? self.backdrop,
             position: position ?? self.position,
             data: data ?? self.data
         )
@@ -261,6 +265,19 @@ public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
+    }
+    
+    override func viewBox(qrcode: QRCode) -> CGRect {
+        return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount)
+    }
+    
+    override func generateSVG(qrcode: QRCode) throws -> String {
+        let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
+        let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
+        return part1
+        + (try writeQRCode(qrcode: qrcode)).joined()
+        + (try writeIcon(qrcode: qrcode)).joined()
+        + part2
     }
     
     override func copyWith(

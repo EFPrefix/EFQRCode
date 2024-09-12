@@ -13,6 +13,7 @@ import QRCodeSwift
 
 public class EFStyleResampleImageParams: EFStyleParams {
     
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultAlign: EFStyleResampleImageParamsAlign = EFStyleResampleImageParamsAlign()
     public static let defaultTiming: EFStyleResampleImageParamsTiming = EFStyleResampleImageParamsTiming()
     public static let defaultPosition: EFStyleResampleImageParamsPosition = EFStyleResampleImageParamsPosition()
@@ -26,6 +27,7 @@ public class EFStyleResampleImageParams: EFStyleParams {
     
     public init(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop = EFStyleResampleImageParams.defaultBackdrop,
         image: EFStyleResampleImageParamsImage?,
         align: EFStyleResampleImageParamsAlign = EFStyleResampleImageParams.defaultAlign,
         timing: EFStyleResampleImageParamsTiming = EFStyleResampleImageParams.defaultTiming,
@@ -37,11 +39,12 @@ public class EFStyleResampleImageParams: EFStyleParams {
         self.timing = timing
         self.position = position
         self.dataColor = dataColor
-        super.init(icon: icon)
+        super.init(icon: icon, backdrop: backdrop)
     }
     
     func copyWith(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop? = nil,
         image: EFStyleResampleImageParamsImage? = nil,
         align: EFStyleResampleImageParamsAlign? = nil,
         timing: EFStyleResampleImageParamsTiming? = nil,
@@ -50,6 +53,7 @@ public class EFStyleResampleImageParams: EFStyleParams {
     ) -> EFStyleResampleImageParams {
         return EFStyleResampleImageParams(
             icon: icon ?? self.icon,
+            backdrop: backdrop ?? self.backdrop,
             image: image ?? self.image,
             align: align ?? self.align,
             timing: timing ?? self.timing,
@@ -393,12 +397,19 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         }
     }
     
-    override func viewBox(qrcode: QRCode) -> String {
-        let nCount = qrcode.model.moduleCount * 3
-        return "\(-nCount.cgFloat / 5) \(-nCount.cgFloat / 5) \(nCount.cgFloat + nCount.cgFloat / 5 * 2) \(nCount.cgFloat + nCount.cgFloat / 5 * 2)"
+    override func viewBox(qrcode: QRCode) -> CGRect {
+        return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount * 3)
     }
     
     override func generateSVG(qrcode: QRCode) throws -> String {
+        let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
+        let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
+        return part1
+        + (try customSVG(qrcode: qrcode))
+        + part2
+    }
+    
+    func customSVG(qrcode: QRCode) throws -> String {
         let alignType: EFStyleResampleImageParamAlignStyle = params.align.style
         let alignColor: String = try params.align.color.hexString()
         let alignAlpha: CGFloat = try params.align.color.alpha()
@@ -450,8 +461,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         // Sb is short for Small-black
         // Bw is short for Big-white
         // Sw is short for Small-white
-        return "<svg className=\"Qr-item-svg\" width=\"100%\" height=\"100%\" viewBox=\"\(viewBox(qrcode: qrcode))\" fill=\"white\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">"
-        + "<defs>"
+        return "<defs>"
         + alignElement
         + "<rect id=\"Sab\" opacity=\"\(alignAlpha)\" fill=\"\(alignColor)\" width=\"\(1.02 * alignSize)\" height=\"\(1.02 * alignSize)\"/>"
         + timingElement
@@ -464,7 +474,6 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         + (try writeResImage(image: params.image, newWidth: size * 3, newHeight: size * 3, color: "#Sb"))
         + (try writeQRCode(qrcode: qrcode)).joined()
         + (try writeIcon(qrcode: qrcode)).joined()
-        + "</svg>"
     }
     
     override func copyWith(

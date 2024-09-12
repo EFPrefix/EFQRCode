@@ -13,14 +13,12 @@ import QRCodeSwift
 
 public class EFStyleParams {
     
-    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
-    
     let icon: EFStyleParamIcon?
     let backdrop: EFStyleParamBackdrop
     
     init(
         icon: EFStyleParamIcon?,
-        backdrop: EFStyleParamBackdrop = EFStyleParams.defaultBackdrop
+        backdrop: EFStyleParamBackdrop
     ) {
         self.icon = icon
         self.backdrop = backdrop
@@ -198,6 +196,41 @@ public class EFStyleParamBackdrop {
         self.image = image
         self.quietzone = quietzone
     }
+    
+    func viewBox(moduleCount: Int) -> CGRect {
+        if let quietzone = quietzone {
+            return CGRect(
+                x: -moduleCount.cgFloat * quietzone.left,
+                y: -moduleCount.cgFloat * quietzone.top,
+                width: moduleCount.cgFloat * (quietzone.left + 1 + quietzone.right),
+                height: moduleCount.cgFloat * (quietzone.top + 1 + quietzone.bottom)
+            )
+        }
+        return CGRect(x: -1, y: -1, width: moduleCount.cgFloat + 2, height: moduleCount.cgFloat + 2)
+    }
+    
+    func generateSVG(qrcode: QRCode, viewBoxRect: CGRect) throws -> (String, String) {
+        let bgColor: String = try color.hexString()
+        let bgAlpha: CGFloat = max(0, try color.alpha())
+        return (
+        """
+        <svg className="Qr-item-svg" width="100%" height="100%" viewBox="0 0 \(viewBoxRect.width) \(viewBoxRect.height)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <clipPath id="rounded-corners">
+                    <rect width="100%" height="100%" rx="\(cornerRadius)" ry="\(cornerRadius)"/>
+                </clipPath>
+            </defs>
+            <g clip-path="url(#rounded-corners)">
+                <rect width="100%" height="100%" opacity=\"\(bgAlpha)\" fill="\(bgColor)"/>
+                \(try image?.write() ?? "")
+                <svg className="Qr-content-svg" width="100%" height="100%" viewBox="\(viewBoxRect.minX) \(viewBoxRect.minY) \(viewBoxRect.width) \(viewBoxRect.height)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        """,
+        """
+                </svg>
+            </g>
+        </svg>
+        """)
+    }
 }
 
 public class EFStyleParamBackdropImage {
@@ -214,6 +247,11 @@ public class EFStyleParamBackdropImage {
         self.alpha = alpha
         self.mode = mode
     }
+    
+    func write() throws -> String {
+        let pngBase64EncodedString: String = try image.pngBase64EncodedString()
+        return "<image key=\"bi\" opacity=\"\(alpha)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"100%\" height=\"100%\" x=\"0\" y=\"0\" preserveAspectRatio=\"\(mode.preserveAspectRatio)\"/>"
+    }
 }
 
 public class EFQRCodeStyleBase {
@@ -228,16 +266,14 @@ public class EFQRCodeStyleBase {
         return []
     }
     
-    func viewBox(qrcode: QRCode) -> String {
-        let nCount: Int = qrcode.model.moduleCount
-        return "\(-nCount.cgFloat / 5) \(-nCount.cgFloat / 5) \(nCount.cgFloat + nCount.cgFloat / 5 * 2) \(nCount.cgFloat + nCount.cgFloat / 5 * 2)"
+    func viewBox(qrcode: QRCode) -> CGRect {
+        Utils.ShowNotImplementedError()
+        return CGRect.zero
     }
     
     func generateSVG(qrcode: QRCode) throws -> String {
-        return "<svg className=\"Qr-item-svg\" width=\"100%\" height=\"100%\" viewBox=\"\(viewBox(qrcode: qrcode))\" fill=\"white\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">"
-        + (try writeQRCode(qrcode: qrcode)).joined()
-        + (try writeIcon(qrcode: qrcode)).joined()
-        + "</svg>"
+        Utils.ShowNotImplementedError()
+        return ""
     }
     
     func copyWith(

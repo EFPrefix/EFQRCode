@@ -13,6 +13,7 @@ import QRCodeSwift
 
 public class EFStyleDSJParams: EFStyleParams {
     
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultPosition: EFStyleDSJParamsPosition = EFStyleDSJParamsPosition()
     public static let defaultData: EFStyleDSJParamsData = EFStyleDSJParamsData()
     
@@ -21,21 +22,24 @@ public class EFStyleDSJParams: EFStyleParams {
     
     public init(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop = EFStyleDSJParams.defaultBackdrop,
         position: EFStyleDSJParamsPosition = EFStyleDSJParams.defaultPosition,
         data: EFStyleDSJParamsData = EFStyleDSJParams.defaultData
     ) {
         self.position = position
         self.data = data
-        super.init(icon: icon)
+        super.init(icon: icon, backdrop: backdrop)
     }
     
     func copyWith(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop? = nil,
         position: EFStyleDSJParamsPosition? = nil,
         data: EFStyleDSJParamsData? = nil
     ) -> EFStyleDSJParams {
         return EFStyleDSJParams(
             icon: icon ?? self.icon,
+            backdrop: backdrop ?? self.backdrop,
             position: position ?? self.position,
             data: data ?? self.data
         )
@@ -295,6 +299,19 @@ public class EFQRCodeStyleDSJ: EFQRCodeStyleBase {
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
+    }
+    
+    override func viewBox(qrcode: QRCode) -> CGRect {
+        return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount)
+    }
+    
+    override func generateSVG(qrcode: QRCode) throws -> String {
+        let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
+        let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
+        return part1
+        + (try writeQRCode(qrcode: qrcode)).joined()
+        + (try writeIcon(qrcode: qrcode)).joined()
+        + part2
     }
     
     override func copyWith(

@@ -13,6 +13,7 @@ import QRCodeSwift
 
 public class EFStyleBubbleParams: EFStyleParams {
     
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultDataColor: CGColor = CGColor.createWith(rgb: 0x8ED1FC)!
     public static let defaultPosition: EFStyleBubbleParamsPosition = EFStyleBubbleParamsPosition()
     
@@ -21,21 +22,24 @@ public class EFStyleBubbleParams: EFStyleParams {
     
     public init(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop = EFStyleBubbleParams.defaultBackdrop,
         dataColor: CGColor = EFStyleBubbleParams.defaultDataColor,
         position: EFStyleBubbleParamsPosition = EFStyleBubbleParams.defaultPosition
     ) {
         self.dataColor = dataColor
         self.position = position
-        super.init(icon: icon)
+        super.init(icon: icon, backdrop: backdrop)
     }
     
     func copyWith(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop? = nil,
         dataColor: CGColor? = nil,
         position: EFStyleBubbleParamsPosition? = nil
     ) -> EFStyleBubbleParams {
         return EFStyleBubbleParams(
             icon: icon ?? self.icon,
+            backdrop: backdrop ?? self.backdrop,
             dataColor: dataColor ?? self.dataColor,
             position: position ?? self.position
         )
@@ -224,6 +228,19 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
+    }
+    
+    override func viewBox(qrcode: QRCode) -> CGRect {
+        return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount)
+    }
+    
+    override func generateSVG(qrcode: QRCode) throws -> String {
+        let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
+        let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
+        return part1
+        + (try writeQRCode(qrcode: qrcode)).joined()
+        + (try writeIcon(qrcode: qrcode)).joined()
+        + part2
     }
     
     override func copyWith(

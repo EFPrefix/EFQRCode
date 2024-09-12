@@ -13,6 +13,7 @@ import QRCodeSwift
 
 public class EFStyleBasicParams: EFStyleParams {
     
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultAlign: EFStyleBasicParamsAlign = EFStyleBasicParamsAlign()
     public static let defaultTiming: EFStyleBasicParamsTiming = EFStyleBasicParamsTiming()
     public static let defaultData: EFStyleBasicParamsData = EFStyleBasicParamsData()
@@ -25,6 +26,7 @@ public class EFStyleBasicParams: EFStyleParams {
     
     public init(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop = EFStyleBasicParams.defaultBackdrop,
         position: EFStyleBasicParamsPosition = EFStyleBasicParams.defaultPosition,
         data: EFStyleBasicParamsData = EFStyleBasicParams.defaultData,
         align: EFStyleBasicParamsAlign = EFStyleBasicParams.defaultAlign,
@@ -34,11 +36,12 @@ public class EFStyleBasicParams: EFStyleParams {
         self.position = position
         self.align = align
         self.timing = timing
-        super.init(icon: icon)
+        super.init(icon: icon, backdrop: backdrop)
     }
     
     func copyWith(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop? = nil,
         position: EFStyleBasicParamsPosition? = nil,
         data: EFStyleBasicParamsData? = nil,
         align: EFStyleBasicParamsAlign? = nil,
@@ -46,6 +49,7 @@ public class EFStyleBasicParams: EFStyleParams {
     ) -> EFStyleBasicParams {
         return EFStyleBasicParams(
             icon: icon ?? self.icon,
+            backdrop: backdrop ?? self.backdrop,
             position: position ?? self.position,
             data: data ?? self.data,
             align: align ?? self.align,
@@ -296,6 +300,19 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
+    }
+    
+    override func viewBox(qrcode: QRCode) -> CGRect {
+        return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount)
+    }
+    
+    override func generateSVG(qrcode: QRCode) throws -> String {
+        let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
+        let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
+        return part1
+        + (try writeQRCode(qrcode: qrcode)).joined()
+        + (try writeIcon(qrcode: qrcode)).joined()
+        + part2
     }
     
     override func copyWith(

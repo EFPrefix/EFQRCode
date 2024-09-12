@@ -13,24 +13,28 @@ import QRCodeSwift
 
 public class EFStyleRandomRectangleParams: EFStyleParams {
     
+    public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x14AA3C)!
     
     let color: CGColor
     
     public init(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop = EFStyleRandomRectangleParams.defaultBackdrop,
         color: CGColor = EFStyleRandomRectangleParams.defaultColor
     ) {
         self.color = color
-        super.init(icon: icon)
+        super.init(icon: icon, backdrop: backdrop)
     }
     
     func copyWith(
         icon: EFStyleParamIcon? = nil,
+        backdrop: EFStyleParamBackdrop? = nil,
         color: CGColor? = nil
     ) -> EFStyleRandomRectangleParams {
         return EFStyleRandomRectangleParams(
             icon: icon ?? self.icon,
+            backdrop: backdrop ?? self.backdrop,
             color: color ?? self.color
         )
     }
@@ -97,6 +101,19 @@ public class EFQRCodeStyleRandomRectangle: EFQRCodeStyleBase {
     
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
+    }
+    
+    override func viewBox(qrcode: QRCode) -> CGRect {
+        return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount)
+    }
+    
+    override func generateSVG(qrcode: QRCode) throws -> String {
+        let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
+        let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
+        return part1
+        + (try writeQRCode(qrcode: qrcode)).joined()
+        + (try writeIcon(qrcode: qrcode)).joined()
+        + part2
     }
     
     private func clampRGBValue(_ value: Int) -> Int {
