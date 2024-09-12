@@ -25,7 +25,7 @@ import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. 导出格式增加
+//1. backdrop 导致的 bug
 public extension EFQRCode {
     
     @objcMembers
@@ -107,14 +107,14 @@ public extension EFQRCode {
         }()
         
 #if canImport(UIKit)
-        public func toImage(size: CGSize) throws -> UIImage {
+        public func toImage(size: CGSize, insets: UIEdgeInsets = .zero) throws -> UIImage {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
             
             let svg = SVG(data: svgData)
-            guard let image = svg?.rasterize(with: size, scale: 1) else {
+            guard let image = svg?.rasterize(with: size, scale: 1, insets: insets) else {
                 throw EFQRCodeError.cannotCreateUIImage
             }
             
@@ -123,14 +123,14 @@ public extension EFQRCode {
 #endif
         
 #if canImport(AppKit)
-        public func toImage(size: CGSize) throws -> NSImage {
+        public func toImage(size: CGSize, insets: NSEdgeInsets = .zero) throws -> NSImage {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
             
             let svg = SVG(data: svgData)
-            guard let image = svg?.rasterize(with: size, scale: 1) else {
+            guard let image = svg?.rasterize(with: size, scale: 1, insets: insets) else {
                 throw EFQRCodeError.cannotCreateUIImage
             }
             
@@ -138,13 +138,21 @@ public extension EFQRCode {
         }
 #endif
         
-        public func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize) throws -> Data {
+        public func toGIFData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+            return try toAnimatedImage(format: EFAnimatedImageFormat.gif, size: size, insets: insets)
+        }
+        
+        public func toAPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+            return try toAnimatedImage(format: EFAnimatedImageFormat.apng, size: size, insets: insets)
+        }
+        
+        private func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
             let (images, durations): ([CGImage], [CGFloat]) = try {
                 if self.isAnimated {
                     let (iconImage, watermarkImage) = self.style.getParamImages()
                     return try self.reconcileQRImages(image1: iconImage, image2: watermarkImage, style: self.style, size: size)
                 } else {
-                    if let cgImage = try self.toImage(size: size).cgImage() {
+                    if let cgImage = try self.toImage(size: size, insets: insets).cgImage() {
                         return ([cgImage], [1])
                     }
                 }
@@ -152,6 +160,48 @@ public extension EFQRCode {
             }()
             let animatedImageData = try self.createAnimatedImageDataWith(format: format, frames: images, frameDelays: durations)
             return animatedImageData
+        }
+        
+        public func toJPEGData(size: CGSize, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
+            let newSvgContent: String = try checkIfNeedResize(size: size)
+            guard let svgData = newSvgContent.data(using: .utf8) else {
+                throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
+            }
+            
+            let svg = SVG(data: svgData)
+            guard let data = try svg?.jpegData(size: size, scale: 1, compressionQuality: compressionQuality, insets: insets) else {
+                throw EFQRCodeError.cannotCreateImageData
+            }
+            
+            return data
+        }
+        
+        public func toPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+            let newSvgContent: String = try checkIfNeedResize(size: size)
+            guard let svgData = newSvgContent.data(using: .utf8) else {
+                throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
+            }
+            
+            let svg = SVG(data: svgData)
+            guard let data = try svg?.pngData(size: size, scale: 1, insets: insets) else {
+                throw EFQRCodeError.cannotCreateImageData
+            }
+            
+            return data
+        }
+        
+        public func toPDFData(size: CGSize, insets: SVG.Insets = .zero) throws -> Data {
+            let newSvgContent: String = try checkIfNeedResize(size: size)
+            guard let svgData = newSvgContent.data(using: .utf8) else {
+                throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
+            }
+            
+            let svg = SVG(data: svgData)
+            guard let data = try svg?.pdfData(size: size, insets: insets) else {
+                throw EFQRCodeError.cannotCreateImageData
+            }
+            
+            return data
         }
     }
 }

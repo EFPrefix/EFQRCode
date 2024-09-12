@@ -194,7 +194,7 @@ extension FunctionGeneratorController {
             let image: EFImage = {
                 let imageSize = CGSize(length: 1024)
                 if generator.isAnimated {
-                    return EFImage.gif(try! generator.toAnimatedImage(format: .gif, size: imageSize))
+                    return EFImage.gif(try! generator.toGIFData(size: imageSize))
                 } else {
                     return EFImage.normal(try! generator.toImage(size: imageSize))
                 }

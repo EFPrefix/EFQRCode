@@ -14,7 +14,7 @@ import CoreServices
 #endif
 import UniformTypeIdentifiers
 
-public enum EFAnimatedImageFormat: Int {
+enum EFAnimatedImageFormat: Int {
     case gif
     case apng
     

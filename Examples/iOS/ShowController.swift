@@ -71,6 +71,21 @@ class ShowController: UIViewController {
         backButton.layer.masksToBounds = true
         view.addSubview(backButton)
 
+        copyButton.setTitle(Localized.copy, for: .normal)
+        copyButton.setTitleColor(UIColor.white, for: .normal)
+        copyButton.layer.borderColor = UIColor.white.cgColor
+        copyButton.layer.borderWidth = 1
+        copyButton.layer.cornerRadius = 5
+        copyButton.layer.masksToBounds = true
+        copyButton.addTarget(self, action: #selector(copyAction), for: .primaryActionTriggered)
+        view.addSubview(copyButton)
+        copyButton.snp.makeConstraints {
+            (make) in
+            make.leading.width.equalTo(imageView)
+            make.top.equalTo(imageView.snp.bottom).offset(10)
+            make.height.equalTo(46)
+        }
+        
         #if os(iOS)
         saveButton.setTitle(Localized.save, for: .normal)
         saveButton.setTitleColor(UIColor.white, for: .normal)
@@ -94,7 +109,7 @@ class ShowController: UIViewController {
         saveButton.snp.makeConstraints {
             (make) in
             make.leading.width.equalTo(imageView)
-            make.top.equalTo(imageView.snp.bottom).offset(10)
+            make.top.equalTo(copyButton.snp.bottom).offset(10)
             make.height.equalTo(46)
         }
 
@@ -119,25 +134,10 @@ class ShowController: UIViewController {
         backButton.snp.makeConstraints {
             (make) in
             make.leading.width.equalTo(imageView)
-            make.top.equalTo(imageView.snp.bottom).offset(10)
+            make.top.equalTo(copyButton.snp.bottom).offset(10)
             make.height.equalTo(46)
         }
         #endif
-        
-        copyButton.setTitle(Localized.copy, for: .normal)
-        copyButton.setTitleColor(UIColor.white, for: .normal)
-        copyButton.layer.borderColor = UIColor.white.cgColor
-        copyButton.layer.borderWidth = 1
-        copyButton.layer.cornerRadius = 5
-        copyButton.layer.masksToBounds = true
-        view.addSubview(copyButton)
-        copyButton.addTarget(self, action: #selector(copyAction), for: .primaryActionTriggered)
-        copyButton.snp.makeConstraints {
-            (make) in
-            make.leading.width.equalTo(imageView)
-            make.top.equalTo(backButton.snp.bottom).offset(10)
-            make.height.equalTo(46)
-        }
     }
     
     #if os(iOS)
