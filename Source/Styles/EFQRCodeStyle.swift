@@ -214,16 +214,16 @@ public class EFStyleParamBackdrop {
         let bgAlpha: CGFloat = max(0, try color.alpha())
         return (
             """
-            <svg className="Qr-item-svg" width="100%" height="100%" viewBox="0 0 \(viewBoxRect.width) \(viewBoxRect.height)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <svg className="Qr-item-svg" width="\(viewBoxRect.width)" height="\(viewBoxRect.height)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <clipPath id="rounded-corners">
-                        <rect width="100%" height="100%" rx="\(cornerRadius)" ry="\(cornerRadius)"/>
+                        <rect width="\(viewBoxRect.width)" height="\(viewBoxRect.height)" rx="\(cornerRadius)" ry="\(cornerRadius)"/>
                     </clipPath>
                 </defs>
                 <g clip-path="url(#rounded-corners)">
-                    <rect width="100%" height="100%" opacity=\"\(bgAlpha)\" fill="\(bgColor)"/>
-                    \(try image?.write() ?? "")
-                    <g width="100%" height="100%" transform="translate(\(-viewBoxRect.minX), \(-viewBoxRect.minY))">
+                    <rect width="\(viewBoxRect.width)" height="\(viewBoxRect.height)" opacity=\"\(bgAlpha)\" fill="\(bgColor)"/>
+                    \(try image?.write(size: viewBoxRect.size) ?? "")
+                    <g width="\(viewBoxRect.width)" height="\(viewBoxRect.height)" transform="translate(\(-viewBoxRect.minX), \(-viewBoxRect.minY))">
             """,
             """
                     </g>
@@ -249,9 +249,9 @@ public class EFStyleParamBackdropImage {
         self.mode = mode
     }
     
-    func write() throws -> String {
+    func write(size: CGSize) throws -> String {
         let pngBase64EncodedString: String = try image.pngBase64EncodedString()
-        return "<image key=\"bi\" opacity=\"\(alpha)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"100%\" height=\"100%\" x=\"0\" y=\"0\" preserveAspectRatio=\"\(mode.preserveAspectRatio)\"/>"
+        return "<image key=\"bi\" opacity=\"\(alpha)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(size.width)\" height=\"\(size.height)\" x=\"0\" y=\"0\" preserveAspectRatio=\"\(mode.preserveAspectRatio)\"/>"
     }
 }
 

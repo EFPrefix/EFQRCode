@@ -186,6 +186,13 @@ extension ResampleImageGeneratorController {
             return nil
         }()
         
+        let backdropImage: EFStyleParamBackdropImage? = {
+            if let image = self.image, case .static(let imageC) = image {
+                return EFStyleParamBackdropImage(image: imageC, mode: .scaleAspectFit)
+            }
+            return nil
+        }()
+        
         do {
             let generator = try EFQRCode.Generator(
                 content,
@@ -194,6 +201,13 @@ extension ResampleImageGeneratorController {
                 style: EFQRCodeStyle.resampleImage(
                     params: EFStyleResampleImageParams(
                         icon: paramIcon,
+                        backdrop: EFStyleParamBackdrop(
+                            cornerRadius: 10,
+                            
+                            color: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor,
+                            image: backdropImage,
+                            quietzone: EFEdgeInsets(top: 1, left: 2, bottom: 3, right: 4)
+                        ),
                         image: paramWatermark,
                         align: EFStyleResampleImageParamsAlign(
                             style: alignStyle,

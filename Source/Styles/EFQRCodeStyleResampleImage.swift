@@ -398,7 +398,16 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
     }
     
     override func viewBox(qrcode: QRCode) -> CGRect {
-        return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount * 3)
+        let moduleCount: CGFloat = qrcode.model.moduleCount.cgFloat * 3.0
+        if let quietzone = params.backdrop.quietzone {
+            return CGRect(
+                x: -moduleCount.cgFloat * quietzone.left,
+                y: -moduleCount.cgFloat * quietzone.top,
+                width: moduleCount.cgFloat * (quietzone.left + 1 + quietzone.right),
+                height: moduleCount.cgFloat * (quietzone.top + 1 + quietzone.bottom)
+            )
+        }
+        return CGRect(x: -3.0, y: -3.0, width: moduleCount + 6.0, height: moduleCount + 6.0)
     }
     
     override func generateSVG(qrcode: QRCode) throws -> String {
