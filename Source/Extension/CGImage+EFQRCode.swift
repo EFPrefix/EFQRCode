@@ -87,18 +87,14 @@ extension CGImage {
         
         let newWidth: Int = newSize.width.int
         let newHeight: Int = newSize.height.int
-        let bitsPerComponent = self.bitsPerComponent
-        let bytesPerRow = newWidth * self.bytesPerRow / self.width
-        let colorSpace = self.colorSpace ?? CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = self.bitmapInfo
         guard let context = CGContext(
             data: nil,
             width: newWidth,
             height: newHeight,
-            bitsPerComponent: bitsPerComponent,
-            bytesPerRow: bytesPerRow,
-            space: colorSpace,
-            bitmapInfo: bitmapInfo.rawValue
+            bitsPerComponent: 8,
+            bytesPerRow: newWidth * 4,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         ) else {
             throw EFQRCodeError.cannotCreateCGContext
         }
