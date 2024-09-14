@@ -177,7 +177,7 @@ extension RandomRectangleGeneratorController {
                 )
             )
             let image: EFImage = {
-                let imageSize = CGSize(length: 1024)
+                let imageSize = CGSize(length: (generator.qrcode.model.moduleCount + 1) * 12)
                 if generator.isAnimated {
                     return EFImage.gif(try! generator.toGIFData(size: imageSize))
                 } else {
