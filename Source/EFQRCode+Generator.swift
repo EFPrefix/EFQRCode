@@ -107,7 +107,17 @@ public extension EFQRCode {
         }()
         
 #if canImport(UIKit)
-        public func toImage(size: CGSize, insets: UIEdgeInsets = .zero) throws -> UIImage {
+        public func toImage(width: CGFloat, insets: UIEdgeInsets = .zero) throws -> UIImage {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toImage(size: imageSize)
+        }
+        
+        public func toImage(height: CGFloat, insets: UIEdgeInsets = .zero) throws -> UIImage {
+            let imageSize: CGSize = calculateSize(height: height)
+            return try toImage(size: imageSize)
+        }
+        
+        private func toImage(size: CGSize, insets: UIEdgeInsets = .zero) throws -> UIImage {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
@@ -123,7 +133,17 @@ public extension EFQRCode {
 #endif
         
 #if canImport(AppKit)
-        public func toImage(size: CGSize, insets: NSEdgeInsets = .zero) throws -> NSImage {
+        public func toImage(width: CGFloat, insets: NSEdgeInsets = .zero) throws -> NSImage {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toImage(size: imageSize)
+        }
+        
+        public func toImage(height: CGFloat, insets: NSEdgeInsets = .zero) throws -> NSImage {
+            let imageSize: CGSize = calculateSize(height: height)
+            return try toImage(size: imageSize)
+        }
+        
+        private func toImage(size: CGSize, insets: NSEdgeInsets = .zero) throws -> NSImage {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
@@ -138,31 +158,48 @@ public extension EFQRCode {
         }
 #endif
         
-        public func toGIFData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+        // MARK:- GIF
+        public func toGIFData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toGIFData(size: imageSize)
+        }
+        
+        public func toGIFData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(height: height)
+            return try toGIFData(size: imageSize)
+        }
+        
+        private func toGIFData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
             return try toAnimatedImage(format: EFAnimatedImageFormat.gif, size: size, insets: insets)
         }
         
-        public func toAPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+        // MARK:- APNG
+        public func toAPNGData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toAPNGData(size: imageSize)
+        }
+        
+        public func toAPNGData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(height: height)
+            return try toAPNGData(size: imageSize)
+        }
+        
+        private func toAPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
             return try toAnimatedImage(format: EFAnimatedImageFormat.apng, size: size, insets: insets)
         }
         
-        private func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
-            let (images, durations): ([CGImage], [CGFloat]) = try {
-                if self.isAnimated {
-                    let (iconImage, watermarkImage) = self.style.getParamImages()
-                    return try self.reconcileQRImages(image1: iconImage, image2: watermarkImage, style: self.style, size: size)
-                } else {
-                    if let cgImage = try self.toImage(size: size, insets: insets).cgImage() {
-                        return ([cgImage], [1])
-                    }
-                }
-                return ([], [])
-            }()
-            let animatedImageData = try self.createAnimatedImageDataWith(format: format, frames: images, frameDelays: durations)
-            return animatedImageData
+        // MARK:- JPEG
+        public func toJPEGData(width: CGFloat, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toJPEGData(size: imageSize)
         }
         
-        public func toJPEGData(size: CGSize, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
+        public func toJPEGData(height: CGFloat, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(height: height)
+            return try toJPEGData(size: imageSize)
+        }
+        
+        private func toJPEGData(size: CGSize, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
@@ -176,7 +213,18 @@ public extension EFQRCode {
             return data
         }
         
-        public func toPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+        // MARK:- PNG
+        public func toPNGData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toPNGData(size: imageSize)
+        }
+        
+        public func toPNGData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(height: height)
+            return try toPNGData(size: imageSize)
+        }
+        
+        private func toPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
@@ -189,8 +237,19 @@ public extension EFQRCode {
             
             return data
         }
+
+        // MARK:- PDF
+        public func toPDFData(width: CGFloat, insets: SVG.Insets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toPDFData(size: imageSize)
+        }
         
-        public func toPDFData(size: CGSize, insets: SVG.Insets = .zero) throws -> Data {
+        public func toPDFData(height: CGFloat, insets: SVG.Insets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(height: height)
+            return try toPDFData(size: imageSize)
+        }
+        
+        private func toPDFData(size: CGSize, insets: SVG.Insets = .zero) throws -> Data {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
@@ -207,6 +266,18 @@ public extension EFQRCode {
 }
 
 extension EFQRCode.Generator {
+    
+    private func calculateSize(width: CGFloat) -> CGSize {
+        let viewBox: CGRect = self.style.viewBox(qrcode: self.qrcode)
+        let imageHeight: CGFloat = width / viewBox.width * viewBox.height
+        return CGSize(width: width, height: imageHeight)
+    }
+    
+    private func calculateSize(height: CGFloat) -> CGSize {
+        let viewBox: CGRect = self.style.viewBox(qrcode: self.qrcode)
+        let imageWidth: CGFloat = height / viewBox.height * viewBox.width
+        return CGSize(width: imageWidth, height: height)
+    }
     
     private func checkIfNeedResize(size: CGSize) throws -> String {
         func judgeImage(containerSize: CGSize, percentage: CGFloat, targetImage: CGImage, needRecreate: Bool) throws -> EFStyleParamImage? {
@@ -267,6 +338,22 @@ extension EFQRCode.Generator {
             }
         }()
         return newSvgContent
+    }
+    
+    private func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+        let (images, durations): ([CGImage], [CGFloat]) = try {
+            if self.isAnimated {
+                let (iconImage, watermarkImage) = self.style.getParamImages()
+                return try self.reconcileQRImages(image1: iconImage, image2: watermarkImage, style: self.style, size: size)
+            } else {
+                if let cgImage = try self.toImage(size: size, insets: insets).cgImage() {
+                    return ([cgImage], [1])
+                }
+            }
+            return ([], [])
+        }()
+        let animatedImageData = try self.createAnimatedImageDataWith(format: format, frames: images, frameDelays: durations)
+        return animatedImageData
     }
     
     private func reconcileQRImages(image1: EFStyleParamImage?, image2: EFStyleParamImage?, style: EFQRCodeStyleBase, size: CGSize) throws -> ([CGImage], [CGFloat]) {
