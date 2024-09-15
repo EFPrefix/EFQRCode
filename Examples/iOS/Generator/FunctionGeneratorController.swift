@@ -192,11 +192,11 @@ extension FunctionGeneratorController {
                 )
             )
             let image: EFImage = {
-                let imageSize = CGSize(length: (generator.qrcode.model.moduleCount + 1) * 12)
+                let imageWidth: CGFloat = ((generator.qrcode.model.moduleCount + 1) * 12).cgFloat
                 if generator.isAnimated {
-                    return EFImage.gif(try! generator.toGIFData(size: imageSize))
+                    return EFImage.gif(try! generator.toGIFData(width: imageWidth))
                 } else {
-                    return EFImage.normal(try! generator.toImage(size: imageSize))
+                    return EFImage.normal(try! generator.toImage(width: imageWidth))
                 }
             }()
             let showVC = ShowController(image: image)

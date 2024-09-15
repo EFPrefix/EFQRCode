@@ -340,8 +340,8 @@ class ParametersInterfaceController: WKInterfaceController {
                     )
                 )
             )
-            let imageSize = CGSize(width: 1024, height: 1024)
-            let image = try generator.toImage(size: imageSize)
+            let imageWidth: CGFloat = CGFloat((generator.qrcode.model.moduleCount + 1) * 12)
+            let image = try generator.toImage(width: imageWidth)
             return image
         } catch {
             return nil
