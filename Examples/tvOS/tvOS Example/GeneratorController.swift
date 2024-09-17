@@ -205,9 +205,10 @@ extension GeneratorController {
             if let icon = self.icon {
                 return EFStyleParamIcon(
                     image: icon,
-                    percentage: iconScale,
+                    mode: .scaleAspectFill,
                     alpha: iconAlpha,
-                    borderColor: UIColor.white.cgColor
+                    borderColor: UIColor.white.cgColor,
+                    percentage: iconScale
                 )
             }
             return nil
@@ -245,15 +246,15 @@ extension GeneratorController {
                 )
             )
             let image: EFImage = {
-                let imageSize = CGSize(width: 1024, height: 1024)
+                let imageWidth: CGFloat = ((generator.qrcode.model.moduleCount + 1) * 12).cgFloat
                 if generator.isAnimated {
-                    return EFImage.gif(try! generator.toGIFData(size: imageSize))
+                    return EFImage.gif(try! generator.toGIFData(width: imageWidth))
                 } else {
-                    return EFImage.normal(try! generator.toImage(size: imageSize))
+                    return EFImage.normal(try! generator.toImage(width: imageWidth))
                 }
             }()
             let showVC = ShowController(image: image)
-            showVC.svgString = (try? generator.generateSVG()) ?? ""
+            showVC.svgString = (try? generator.toSVG()) ?? ""
             present(showVC, animated: true)
         } catch {
             let alert = UIAlertController(

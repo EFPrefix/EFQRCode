@@ -25,7 +25,7 @@ import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. backdrop 导致的 bug
+//1. 各种样式的透明支持
 public extension EFQRCode {
     
     @objcMembers
@@ -90,7 +90,14 @@ public extension EFQRCode {
             )
         }
         
-        public func generateSVG() throws -> String {
+        public lazy var isAnimated: Bool = {
+            if let svgContent = try? toSVG() {
+                return svgContent.contains("<animate")
+            }
+            return false
+        }()
+        
+        public func toSVG() throws -> String {
             if let svgContent = svgContentCache {
                 return svgContent
             }
@@ -98,13 +105,6 @@ public extension EFQRCode {
             self.svgContentCache = svgString
             return svgString
         }
-        
-        public lazy var isAnimated: Bool = {
-            if let svgContent = try? generateSVG() {
-                return svgContent.contains("<animate")
-            }
-            return false
-        }()
         
 #if canImport(UIKit)
         public func toImage(width: CGFloat, insets: UIEdgeInsets = .zero) throws -> UIImage {
@@ -285,9 +285,8 @@ extension EFQRCode.Generator {
             let imageSize: CGSize = CGSize(width: targetImage.width.cgFloat, height: targetImage.height.cgFloat)
             if imageSize.width > canvasSize.width || imageSize.height > canvasSize.height {
                 let newImageSize = EFImageMode.scaleAspectFill.rectForContent(ofSize: imageSize, inCanvasOfSize: canvasSize)
-                if let resizedImage = try targetImage.resize(to: newImageSize.size) {
-                    return EFStyleParamImage.static(image: resizedImage)
-                }
+                let resizedImage = try targetImage.resize(to: newImageSize.size)
+                return EFStyleParamImage.static(image: resizedImage)
             }
             if needRecreate {
                 return EFStyleParamImage.static(image: targetImage)
@@ -334,7 +333,7 @@ extension EFQRCode.Generator {
             if needRecreateIcon || needRecreateWatermark {
                 return try style.copyWith(iconImage: iconImage, watermarkImage: watermarkImage).generateSVG(qrcode: qrcode)
             } else {
-                return try generateSVG()
+                return try toSVG()
             }
         }()
         return newSvgContent

@@ -70,14 +70,52 @@ import CoreGraphics
         return CGRect(origin: finalOrigin, size: finalSize)
     }
     
-    var preserveAspectRatio: String {
+    public func imageForContent(ofImage image: CGImage, inCanvasOfRatio canvasRatio: CGSize) throws -> CGImage {
+        let imageWidth: CGFloat = image.width.cgFloat
+        let imageHeight: CGFloat = image.height.cgFloat
+        
+        if imageWidth / imageHeight == canvasRatio.width / canvasRatio.height { return image }
+        
+        let widthRatio: CGFloat = imageWidth / canvasRatio.width
+        let heightRatio: CGFloat = imageHeight / canvasRatio.height
         switch self {
-        case .scaleAspectFill:
-            return "xMidYMid slice"
-        case .scaleAspectFit:
-            return "xMidYMid meet"
         case .scaleToFill:
-            return "none"
+            let newSize: CGSize = {
+                if widthRatio > heightRatio {
+                    return CGSize(width: imageHeight / canvasRatio.height * canvasRatio.width, height: imageHeight)
+                } else {
+                    return CGSize(width: imageWidth, height: imageWidth / canvasRatio.width * canvasRatio.height)
+                }
+            }()
+            return try image.resize(to: newSize)
+        case .scaleAspectFit:
+            let newSize: CGSize = {
+                if widthRatio > heightRatio {
+                    return CGSize(width: imageWidth, height: imageWidth / canvasRatio.width * canvasRatio.height)
+                } else {
+                    return CGSize(width: imageHeight / canvasRatio.height * canvasRatio.width, height: imageHeight)
+                }
+            }()
+            return try image.clipAndExpandingTransparencyWith(rect: CGRect(
+                x: -(imageWidth.cgFloat - newSize.width) / 2,
+                y:  -(imageHeight.cgFloat - newSize.height) / 2,
+                width: newSize.width,
+                height: newSize.height
+            ))
+        case .scaleAspectFill:
+            let newSize: CGSize = {
+                if widthRatio < heightRatio {
+                    return CGSize(width: imageWidth, height: imageWidth / canvasRatio.width * canvasRatio.height)
+                } else {
+                    return CGSize(width: imageHeight / canvasRatio.height * canvasRatio.width, height: imageHeight)
+                }
+            }()
+            return try image.clipAndExpandingTransparencyWith(rect: CGRect(
+                x: -(imageWidth.cgFloat - newSize.width) / 2,
+                y:  -(imageHeight.cgFloat - newSize.height) / 2,
+                width: newSize.width,
+                height: newSize.height
+            ))
         }
     }
 }

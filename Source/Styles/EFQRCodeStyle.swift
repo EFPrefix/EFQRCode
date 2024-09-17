@@ -53,33 +53,38 @@ public enum EFStyleParamsPositionStyle: CaseIterable {
 
 public class EFStyleParamIcon {
     let image: EFStyleParamImage
-    let percentage: CGFloat
+    let mode: EFImageMode
     let alpha: CGFloat
     let borderColor: CGColor
+    let percentage: CGFloat
     
     public init(
         image: EFStyleParamImage,
-        percentage: CGFloat,
-        alpha: CGFloat,
-        borderColor: CGColor
+        mode: EFImageMode = .scaleAspectFill,
+        alpha: CGFloat = 1,
+        borderColor: CGColor,
+        percentage: CGFloat = 0.2
     ) {
         self.image = image
-        self.percentage = percentage
+        self.mode = mode
         self.alpha = alpha
         self.borderColor = borderColor
+        self.percentage = percentage
     }
     
     func copyWith(
         image: EFStyleParamImage? = nil,
-        percentage: CGFloat? = nil,
+        mode: EFImageMode? = nil,
         alpha: CGFloat? = nil,
-        borderColor: CGColor? = nil
+        borderColor: CGColor? = nil,
+        percentage: CGFloat? = nil
     ) -> EFStyleParamIcon {
         return EFStyleParamIcon(
             image: image ?? self.image,
-            percentage: percentage ?? self.percentage,
+            mode: mode ?? self.mode,
             alpha: alpha ?? self.alpha,
-            borderColor: borderColor ?? self.borderColor
+            borderColor: borderColor ?? self.borderColor,
+            percentage: percentage ?? self.percentage
         )
     }
     
@@ -121,7 +126,7 @@ public class EFStyleParamIcon {
             + "</mask>"
             + "</defs>"
             + "<g mask=\"url(#\(randomIdClips))\">"
-            + (try image.write(id: id, rect: iconRect, opacity: imageAlpha))
+            + (try image.write(id: id, rect: iconRect, opacity: imageAlpha, mode: mode))
             + "</g>"
             + "</g>"
         )
@@ -134,25 +139,25 @@ public enum EFStyleParamImage {
     case `static`(image: CGImage)
     case animated(images: [CGImage], imageDelays: [CGFloat])
     
-    func write(id: Int, rect: CGRect, opacity: CGFloat) throws -> String {
+    func write(id: Int, rect: CGRect, opacity: CGFloat, mode: EFImageMode) throws -> String {
         struct Anchor {
             static var uniqueMark: Int = 0
         }
         switch self {
         case .static(let image):
-            let imageCliped: CGImage = image.clipImageToSquare() ?? image
+            let imageCliped: CGImage = try mode.imageForContent(ofImage: image, inCanvasOfRatio: rect.size)
             let pngBase64EncodedString: String = try imageCliped.pngBase64EncodedString()
             return "<image key=\"i\(id)\" opacity=\"\(opacity)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\"/>"
         case .animated(let images, let imageDelays):
             let pngBase64EncodedStrings: [String] = try images.map {
-                let imageCliped: CGImage = $0.clipImageToSquare() ?? $0
+                let imageCliped: CGImage = try mode.imageForContent(ofImage: $0, inCanvasOfRatio: rect.size)
                 return try imageCliped.pngBase64EncodedString()
             }
             if pngBase64EncodedStrings.isEmpty { return "" }
             Anchor.uniqueMark += 1
             let framePrefix: String = "\(Anchor.uniqueMark)fm"
             let defs: String = pngBase64EncodedStrings.enumerated().map { (index, base64Image) -> String in
-                "<image id=\"\(framePrefix)\(index)\" xlink:href=\"\(base64Image)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\"/>"
+                "<image id=\"\(framePrefix)\(index)\" xlink:href=\"\(base64Image)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\" />"
             }.joined()
             let totalDuration: CGFloat = imageDelays.reduce(0, +)
             let keyTimes: [CGFloat] = imageDelays.reduce(into: [0]) { result, delay in
@@ -242,7 +247,7 @@ public class EFStyleParamBackdropImage {
     public init(
         image: CGImage,
         alpha: CGFloat = 1,
-        mode: EFImageMode
+        mode: EFImageMode = .scaleAspectFill
     ) {
         self.image = image
         self.alpha = alpha
@@ -250,8 +255,9 @@ public class EFStyleParamBackdropImage {
     }
     
     func write(size: CGSize) throws -> String {
-        let pngBase64EncodedString: String = try image.pngBase64EncodedString()
-        return "<image key=\"bi\" opacity=\"\(alpha)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(size.width)\" height=\"\(size.height)\" x=\"0\" y=\"0\" preserveAspectRatio=\"\(mode.preserveAspectRatio)\"/>"
+        let imageCliped: CGImage = try self.mode.imageForContent(ofImage: image, inCanvasOfRatio: size)
+        let pngBase64EncodedString: String = try imageCliped.pngBase64EncodedString()
+        return "<image key=\"bi\" opacity=\"\(alpha)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(size.width)\" height=\"\(size.height)\" x=\"0\" y=\"0\" />"
     }
 }
 
