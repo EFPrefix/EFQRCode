@@ -227,7 +227,13 @@ extension ViewController: NSAlertDelegate {
 
         let paramIcon: EFStyleParamIcon? = {
             if let icon = self.icon {
-                return EFStyleParamIcon(image: icon, percentage: iconScale, alpha: iconAlpha, borderColor: CGColor.white)
+                return EFStyleParamIcon(
+                    image: icon,
+                    mode: .scaleAspectFill,
+                    alpha: iconAlpha,
+                    borderColor: CGColor.white,
+                    percentage: iconScale
+                )
             }
             return nil
         }()
@@ -263,7 +269,7 @@ extension ViewController: NSAlertDelegate {
                     )
                 )
             )
-            let svg = try generator.generateSVG()
+            let svg = try generator.toSVG()
             self.generatorSVG = svg
             generatorWebViewImage.loadHTMLString(svg, baseURL: nil)
         } catch {

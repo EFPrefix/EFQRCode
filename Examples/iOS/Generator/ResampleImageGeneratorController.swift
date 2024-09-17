@@ -171,9 +171,10 @@ extension ResampleImageGeneratorController {
             if let icon = self.icon {
                 return EFStyleParamIcon(
                     image: icon,
-                    percentage: iconScale,
+                    mode: .scaleAspectFill,
                     alpha: iconAlpha,
-                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor,
+                    percentage: iconScale
                 )
             }
             return nil
@@ -186,12 +187,12 @@ extension ResampleImageGeneratorController {
             return nil
         }()
         
-        /*let backdropImage: EFStyleParamBackdropImage? = {
+        let backdropImage: EFStyleParamBackdropImage? = {
             if let image = self.image, case .static(let imageC) = image {
                 return EFStyleParamBackdropImage(image: imageC, mode: .scaleAspectFit)
             }
             return nil
-        }()*/
+        }()
         
         do {
             let generator = try EFQRCode.Generator(
@@ -201,12 +202,12 @@ extension ResampleImageGeneratorController {
                 style: EFQRCodeStyle.resampleImage(
                     params: EFStyleResampleImageParams(
                         icon: paramIcon,
-                        /*backdrop: EFStyleParamBackdrop(
+                        backdrop: EFStyleParamBackdrop(
                             cornerRadius: 10,
                             color: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor,
                             image: backdropImage,
                             quietzone: EFEdgeInsets(top: 1, left: 2, bottom: 3, right: 4)
-                        ),*/
+                        ),
                         image: paramWatermark,
                         align: EFStyleResampleImageParamsAlign(
                             style: alignStyle,
@@ -238,7 +239,7 @@ extension ResampleImageGeneratorController {
                 }
             }()
             let showVC = ShowController(image: image)
-            showVC.svgString = (try? generator.generateSVG()) ?? ""
+            showVC.svgString = (try? generator.toSVG()) ?? ""
             present(showVC, animated: true)
         } catch {
             let alert = UIAlertController(

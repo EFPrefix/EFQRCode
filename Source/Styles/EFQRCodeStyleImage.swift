@@ -126,22 +126,27 @@ public class EFStyleImageParamsTiming {
 public class EFStyleImageParamsImage {
     
     let image: EFStyleParamImage
+    let mode: EFImageMode
     let alpha: CGFloat
     
     public init(
         image: EFStyleParamImage,
+        mode: EFImageMode = .scaleAspectFill,
         alpha: CGFloat = 1
     ) {
         self.image = image
+        self.mode = mode
         self.alpha = alpha
     }
     
     func copyWith(
         image: EFStyleParamImage? = nil,
+        mode: EFImageMode? = nil,
         alpha: CGFloat? = nil
     ) -> EFStyleImageParamsImage {
         return EFStyleImageParamsImage(
             image: image ?? self.image,
+            mode: mode ?? self.mode,
             alpha: alpha ?? self.alpha
         )
     }
@@ -238,7 +243,7 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         var id: Int = 0
         
         if let image = params.image {
-            let line = try image.image.write(id: id, rect: CGRect(x: 0, y: 0, width: nCount, height: nCount), opacity: image.alpha)
+            let line = try image.image.write(id: id, rect: CGRect(x: 0, y: 0, width: nCount, height: nCount), opacity: image.alpha, mode: image.mode)
             pointList.append(line)
             id += 1
         }

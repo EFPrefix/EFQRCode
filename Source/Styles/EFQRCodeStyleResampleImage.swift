@@ -142,26 +142,31 @@ public class EFStyleResampleImageParamsPosition {
 
 public class EFStyleResampleImageParamsImage {
     let image: EFStyleParamImage
+    let mode: EFImageMode
     let contrast: CGFloat
     let exposure: CGFloat
     
     public init(
         image: EFStyleParamImage,
+        mode: EFImageMode = .scaleAspectFill,
         contrast: CGFloat = 0,
         exposure: CGFloat = 0
     ) {
         self.image = image
+        self.mode = mode
         self.contrast = contrast
         self.exposure = exposure
     }
     
     func copyWith(
         image: EFStyleParamImage? = nil,
+        mode: EFImageMode? = nil,
         contrast: CGFloat? = nil,
         exposure: CGFloat? = nil
     ) -> EFStyleResampleImageParamsImage {
         return EFStyleResampleImageParamsImage(
             image: image ?? self.image,
+            mode: mode ?? self.mode,
             contrast: contrast ?? self.contrast,
             exposure: exposure ?? self.exposure
         )
@@ -349,7 +354,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
             + "</mask>"
             + "</defs>"
             + "<g mask=\"url(#\(randomIdClips))\">"
-            + (try icon.image.write(id: id, rect: iconRect, opacity: opacity))
+            + (try icon.image.write(id: id, rect: iconRect, opacity: opacity, mode: icon.mode))
             + "</g>"
             + "</g>"
         )
@@ -362,13 +367,14 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         
         let contrast: CGFloat = image.contrast
         let exposure: CGFloat = image.exposure
+        let mode: EFImageMode = image.mode
         switch image.image {
         case .static(let image):
-            let imageCliped: CGImage = image.clipImageToSquare() ?? image
+            let imageCliped: CGImage = try mode.imageForContent(ofImage: image, inCanvasOfRatio: CGSize(width: newWidth, height: newHeight))
             return try imageCliped.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
         case .animated(let images, let imageDelays):
             let resFrames: [String] = try images.map {
-                let imageCliped: CGImage = $0.clipImageToSquare() ?? $0
+                let imageCliped: CGImage = try mode.imageForContent(ofImage: $0, inCanvasOfRatio: CGSize(width: newWidth, height: newHeight))
                 return try imageCliped.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
             }
             if resFrames.isEmpty { return "" }

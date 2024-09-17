@@ -170,7 +170,7 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
             + "</mask>"
             + "</defs>"
             + "<g mask=\"url(#\(randomIdClips))\">"
-            + (try icon.image.write(id: id, rect: iconRect, opacity: opacity))
+            + (try icon.image.write(id: id, rect: iconRect, opacity: opacity, mode: icon.mode))
             + "</g>"
             + "</g>"
         )

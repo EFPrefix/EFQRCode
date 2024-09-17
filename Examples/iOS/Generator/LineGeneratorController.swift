@@ -162,9 +162,10 @@ extension LineGeneratorController {
             if let icon = self.icon {
                 return EFStyleParamIcon(
                     image: icon,
-                    percentage: iconScale,
+                    mode: .scaleAspectFill,
                     alpha: iconAlpha,
-                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor
+                    borderColor: iconBorderColor.withAlphaComponent(iconBorderAlpha).cgColor,
+                    percentage: iconScale
                 )
             }
             return nil
@@ -200,7 +201,7 @@ extension LineGeneratorController {
                 }
             }()
             let showVC = ShowController(image: image)
-            showVC.svgString = (try? generator.generateSVG()) ?? ""
+            showVC.svgString = (try? generator.toSVG()) ?? ""
             present(showVC, animated: true)
         } catch {
             let alert = UIAlertController(

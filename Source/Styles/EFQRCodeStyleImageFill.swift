@@ -54,22 +54,27 @@ public class EFStyleImageFillParams: EFStyleParams {
 public class EFStyleImageFillParamsImage {
     
     let image: EFStyleParamImage
+    let mode: EFImageMode
     let alpha: CGFloat
     
     public init(
         image: EFStyleParamImage,
+        mode: EFImageMode = .scaleAspectFill,
         alpha: CGFloat = 1
     ) {
         self.image = image
+        self.mode = mode
         self.alpha = alpha
     }
     
     func copyWith(
         image: EFStyleParamImage? = nil,
+        mode: EFImageMode? = nil,
         alpha: CGFloat? = nil
     ) -> EFStyleImageFillParamsImage {
         return EFStyleImageFillParamsImage(
             image: image ?? self.image,
+            mode: mode ?? self.mode,
             alpha: alpha ?? self.alpha
         )
     }
@@ -99,9 +104,9 @@ public class EFQRCodeStyleImageFill: EFQRCodeStyleBase {
         pointList.append("<rect key=\"\(id)\" opacity=\"\(backgroundAlpha)\" x=\"0\" y=\"0\" width=\"\(nCount)\" height=\"\(nCount)\" fill=\"\(backgroundColor)\"/>")
         id += 1
         
-        if let image = params.image?.image, let alpha = params.image?.alpha {
-            let imageAlpha: CGFloat = max(0, alpha)
-            let imageLine: String = try image.write(id: id, rect: CGRect(x: 0, y: 0, width: nCount, height: nCount), opacity: imageAlpha)
+        if let paramsImage = params.image {
+            let imageAlpha: CGFloat = max(0, paramsImage.alpha)
+            let imageLine: String = try paramsImage.image.write(id: id, rect: CGRect(x: 0, y: 0, width: nCount, height: nCount), opacity: imageAlpha, mode: paramsImage.mode)
             pointList.append(imageLine)
             id += 1
         }

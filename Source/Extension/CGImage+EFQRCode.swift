@@ -68,21 +68,42 @@ extension CGImage {
     }
 #endif
     
-    func clipImageToSquare() -> CGImage? {
-        let width: CGFloat = self.width.cgFloat
-        let height: CGFloat = self.height.cgFloat
-        if width == height { return self }
+    func clipAndExpandingTransparencyWith(rect: CGRect) throws -> CGImage {
+        let imageWidth: CGFloat = self.width.cgFloat
+        let imageHeight: CGFloat = self.height.cgFloat
         
-        let squareSize: CGFloat = min(width, height)
-        let x: CGFloat = (width - squareSize) / 2.0
-        let y: CGFloat = (height - squareSize) / 2.0
-        let rect: CGRect = CGRect(x: x, y: y, width: squareSize, height: squareSize)
+        if rect.minX == 0 && rect.minY == 0 && rect.width == imageWidth && rect.height == imageHeight {
+            return self
+        }
+        if rect.minX >= 0 && rect.minY >= 0 && rect.maxX <= imageWidth && rect.maxY <= imageHeight {
+            guard let imageResized = self.cropping(to: rect) else {
+                throw EFQRCodeError.cannotCreateCGImage
+            }
+            return imageResized
+        }
         
-        let croppedCGImage = self.cropping(to: rect)
-        return croppedCGImage
+        let newWidth: Int = rect.width.int
+        let newHeight: Int = rect.height.int
+        guard let context = CGContext(
+            data: nil,
+            width: newWidth,
+            height: newHeight,
+            bitsPerComponent: 8,
+            bytesPerRow: newWidth * 4,
+            space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
+        ) else {
+            throw EFQRCodeError.cannotCreateCGContext
+        }
+        let drawRect: CGRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: imageWidth, height: imageHeight)
+        context.draw(self, in: drawRect)
+        guard let imageResized = context.makeImage() else {
+            throw EFQRCodeError.cannotCreateCGImage
+        }
+        return imageResized
     }
     
-    func resize(to newSize: CGSize) throws -> CGImage? {
+    func resize(to newSize: CGSize) throws -> CGImage {
         if newSize.width == self.width.cgFloat && newSize.height == self.height.cgFloat { return self }
         
         let newWidth: Int = newSize.width.int
@@ -99,6 +120,9 @@ extension CGImage {
             throw EFQRCodeError.cannotCreateCGContext
         }
         context.draw(self, in: CGRect(origin: .zero, size: CGSize(width: newWidth, height: newHeight)))
-        return context.makeImage()
+        guard let imageResized = context.makeImage() else {
+            throw EFQRCodeError.cannotCreateCGImage
+        }
+        return imageResized
     }
 }
