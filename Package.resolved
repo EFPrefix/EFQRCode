@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "swift_qrcodejs",
-        "repositoryURL": "https://github.com/ApolloZhu/swift_qrcodejs.git",
+        "repositoryURL": "https://github.com/EFPrefix/swift_qrcodejs.git",
         "state": {
           "branch": null,
-          "revision": "374dc7f7b9e76c6aeb393f6a84590c6d387e1ecb",
-          "version": "2.2.2"
+          "revision": "817ba220a2eba840bae888e7eeb11207bec05f8c",
+          "version": "2.3.0"
         }
       }
     ]
