@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EFQRCodeGenerator Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/EFQRCodeGenerator" class="dashAnchor"></a>
+
+    <a title="EFQRCodeGenerator Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          EFQRCode 6.2.2 Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/EFPrefix/EFQRCode">
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fefprefix.github.io%2FEFQRCode%2Fdocsets%2FEFQRCode.xml">
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">EFQRCode</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Classes.html">Classes</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      EFQRCodeGenerator Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../user-guide.html">User Guide</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFCirclePointStyle.html">EFCirclePointStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFDiamondPointStyle.html">EFDiamondPointStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFIntSize.html">EFIntSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeGenerator.html">EFQRCodeGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeRecognizer.html">EFQRCodeRecognizer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFSquarePointStyle.html">EFSquarePointStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFInputCorrectionLevel.html">EFInputCorrectionLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFQRCode.html">EFQRCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFQRCodeMode.html">EFQRCodeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFWatermarkMode.html">EFWatermarkMode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CGColor.html">CGColor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/EFPointStyle.html">EFPointStyle</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>EFQRCodeGenerator</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">@objcMembers</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="kt">EFQRCodeGenerator</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Class for generating QR code images.</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L37-L1016">Show on GitHub</a>
+              </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC4withyACs24ReferenceWritableKeyPathCyACxG_xtlF"></a>
+                    <a name="//apple_ref/swift/Method/with(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC4withyACs24ReferenceWritableKeyPathCyACxG_xtlF">with(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update the property specified the key path to have a new value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">with</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">keyPath</span><span class="p">:</span> <span class="kt">ReferenceWritableKeyPath</span><span class="o">&lt;</span><span class="kt">EFQRCodeGenerator</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span>
+                    <span class="n">_</span> <span class="nv">newValue</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A property to update.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>newValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new value for the specified property.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L45-L49">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Content%20Parameters"></a>
+                <a name="//apple_ref/swift/Section/Content Parameters" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Content%20Parameters"></a>
+                  <h3 class="section-name"><span>Content Parameters</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)content"></a>
+                    <a name="//apple_ref/swift/Property/content" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)content">content</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Content to include in the generated QR Code.</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    Limited to at most 1273 characters.
+
+</div><div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    The density of the QR-lattice increases with the increases of the content length.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L56-L60">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC11withContent_8encodingACSS_SS10FoundationE8EncodingVSgtF"></a>
+                    <a name="//apple_ref/swift/Method/withContent(_:encoding:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC11withContent_8encodingACSS_SS10FoundationE8EncodingVSgtF">withContent(_:<wbr>encoding:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to generate for content using the specified encoding.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withContent</span><span class="p">(</span><span class="n">_</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>content</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new content to generate QR code for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>encoding</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The encoding to use for generating data from <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)content">content</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L67-L73">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC15contentEncodingSS10FoundationE0D0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/contentEncoding" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC15contentEncodingSS10FoundationE0D0Vvp">contentEncoding</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encoding for <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)content">content</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">contentEncoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L76-L80">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC19withContentEncodingyACSS10FoundationE0E0VF"></a>
+                    <a name="//apple_ref/swift/Method/withContentEncoding(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC19withContentEncodingyACSS10FoundationE0E0VF">withContentEncoding(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified encoding.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withContentEncoding</span><span class="p">(</span><span class="n">_</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>encoding</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The encoding to use for generating data from <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)content">content</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L85-L87">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)inputCorrectionLevel"></a>
+                    <a name="//apple_ref/swift/Property/inputCorrectionLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)inputCorrectionLevel">inputCorrectionLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Level of error tolerance.</p>
+
+<ul>
+<li>L 7%</li>
+<li>M 15%</li>
+<li>Q 25%</li>
+<li>H 30%(Default)</li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">inputCorrectionLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/EFInputCorrectionLevel.html">EFInputCorrectionLevel</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L95-L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withInputCorrectionLevel:"></a>
+                    <a name="//apple_ref/swift/Method/withInputCorrectionLevel(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withInputCorrectionLevel:">withInputCorrectionLevel(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified input correction level.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withInputCorrectionLevel</span><span class="p">(</span><span class="n">_</span> <span class="nv">inputCorrectionLevel</span><span class="p">:</span> <span class="kt"><a href="../Enums/EFInputCorrectionLevel.html">EFInputCorrectionLevel</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inputCorrectionLevel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>level of error-tolerant rate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L104-L106">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Style%20Parameters"></a>
+                <a name="//apple_ref/swift/Section/Style Parameters" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Style%20Parameters"></a>
+                  <h3 class="section-name"><span>Style Parameters</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC4modeAA0A4ModeOSgvp"></a>
+                    <a name="//apple_ref/swift/Property/mode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC4modeAA0A4ModeOSgvp">mode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Color mode of QR Code, defaults to <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt"><a href="../Enums/EFQRCodeMode.html">EFQRCodeMode</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L111-L115">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC8withModeyAcA0aD0OSgF"></a>
+                    <a name="//apple_ref/swift/Method/withMode(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC8withModeyAcA0aD0OSgF">withMode(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified coloring <code><a href="../Classes/EFQRCodeGenerator.html#/s:8EFQRCode0A9GeneratorC4modeAA0A4ModeOSgvp">mode</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withMode</span><span class="p">(</span><span class="n">_</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt"><a href="../Enums/EFQRCodeMode.html">EFQRCodeMode</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new coloring mode to use.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L120-L122">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)size"></a>
+                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)size">size</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Size of the QR code, defaults to 256 by 256.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Will be overridden by non-<code>nil</code> <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)magnification">magnification</a></code> parameter.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L127-L131">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withSize:"></a>
+                    <a name="//apple_ref/swift/Method/withSize(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withSize:">withSize(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified size.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withSize</span><span class="p">(</span><span class="n">_</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width and height desired.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L136-L138">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)magnification"></a>
+                    <a name="//apple_ref/swift/Property/magnification" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)magnification">magnification</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The ratio of actual size to the smallest possible size, defaults to <code>nil</code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Any non-<code>nil</code> value overrides the <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)size">size</a></code> parameter.
+If you already have a desired size in mind, we have two helpers methods at your disposal to
+calculate the magnification that results in the closet dimension:
+
+</div><ul>
+<li><code><a href="../Classes/EFQRCodeGenerator.html#/s:8EFQRCode0A9GeneratorC16maxMagnification17lessThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF">maxMagnification(lessThanOrEqualTo:)</a></code></li>
+<li><code><a href="../Classes/EFQRCodeGenerator.html#/s:8EFQRCode0A9GeneratorC16minMagnification20greaterThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF">minMagnification(greaterThanOrEqualTo:)</a></code></li>
+</ul>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">generator</span> <span class="o">=</span> <span class="kt">EFQRCodeGenerator</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1">// get max magnification where size ≤ desired size</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">maxMagnification</span> <span class="o">=</span> <span class="n">generator</span>
+    <span class="o">.</span><span class="nf">maxMagnification</span><span class="p">(</span><span class="nv">lessThanOrEqualTo</span><span class="p">:</span> <span class="n">desiredSize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">generator</span><span class="o">.</span><span class="n">magnification</span> <span class="o">=</span> <span class="kt">EFIntSize</span><span class="p">(</span>
+        <span class="nv">width</span><span class="p">:</span> <span class="n">maxMagnification</span><span class="p">,</span>
+        <span class="nv">height</span><span class="p">:</span> <span class="n">maxMagnification</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// or get min magnification where size ≥ desired size</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">minMagnification</span> <span class="o">=</span> <span class="n">generator</span>
+    <span class="o">.</span><span class="nf">minMagnification</span><span class="p">(</span><span class="nv">greaterThanOrEqualTo</span><span class="p">:</span> <span class="n">desiredSize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">generator</span><span class="o">.</span><span class="n">magnification</span> <span class="o">=</span> <span class="kt">EFIntSize</span><span class="p">(</span>
+        <span class="nv">width</span><span class="p">:</span> <span class="n">minMagnification</span><span class="p">,</span>
+        <span class="nv">height</span><span class="p">:</span> <span class="n">minMagnification</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// then generate</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">generate</span><span class="p">()</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">magnification</span><span class="p">:</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L171-L175">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withMagnification:"></a>
+                    <a name="//apple_ref/swift/Method/withMagnification(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withMagnification:">withMagnification(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified magnification.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withMagnification</span><span class="p">(</span><span class="n">_</span> <span class="nv">magnification</span><span class="p">:</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>magnification</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired scale factor in comparison to the intrinsic size.
+See <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)magnification">magnification</a></code> for more details on how to translate your desired size to the
+closest magnification.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L182-L184">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)backgroundColor"></a>
+                    <a name="//apple_ref/swift/Property/backgroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)backgroundColor">backgroundColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Background color, defaults to white.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">CGColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L187-L191">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)foregroundColor"></a>
+                    <a name="//apple_ref/swift/Property/foregroundColor" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)foregroundColor">foregroundColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Foreground color (for code points), defaults to black.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">foregroundColor</span><span class="p">:</span> <span class="kt">CGColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L193-L197">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withCIColorsForBackgroundColor:foregroundColor:"></a>
+                    <a name="//apple_ref/swift/Method/withColors(backgroundColor:foregroundColor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withCIColorsForBackgroundColor:foregroundColor:">withColors(backgroundColor:<wbr>foregroundColor:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified <code>CIColor</code>s.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">@objc(withCIColorsForBackgroundColor:foregroundColor:)</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withColors</span><span class="p">(</span><span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">CIColor</span><span class="p">,</span> <span class="nv">foregroundColor</span><span class="p">:</span> <span class="kt">CIColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backgroundColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The background <code>CIColor</code>.
+If conversion to <code>CGColor</code> fails, will use white instead.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>foregroundColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The foreground <code>CIColor</code> for code points.
+If conversion to <code>CGColor</code> fails, will use black instead.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L208-L211">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withCGColorsForBackgroundColor:foregroundColor:"></a>
+                    <a name="//apple_ref/swift/Method/withColors(backgroundColor:foregroundColor:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withCGColorsForBackgroundColor:foregroundColor:">withColors(backgroundColor:<wbr>foregroundColor:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified <code>CGColor</code>s.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">@objc(withCGColorsForBackgroundColor:foregroundColor:)</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withColors</span><span class="p">(</span><span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">CGColor</span><span class="p">,</span> <span class="nv">foregroundColor</span><span class="p">:</span> <span class="kt">CGColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backgroundColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The background <code>CGColor</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>foregroundColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The foreground <code>CGColor</code> for code points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L221-L225">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)icon"></a>
+                    <a name="//apple_ref/swift/Property/icon" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)icon">icon</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Icon image in the center of QR code image, defaults to <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">icon</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L228-L232">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)iconSize"></a>
+                    <a name="//apple_ref/swift/Property/iconSize" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)iconSize">iconSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Size of the icon image, defaults to 20% of <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)size">size</a></code> if <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">iconSize</span><span class="p">:</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L234-L238">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withIcon:size:"></a>
+                    <a name="//apple_ref/swift/Method/withIcon(_:size:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withIcon:size:">withIcon(_:<wbr>size:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified icon in the specified size.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withIcon</span><span class="p">(</span><span class="n">_</span> <span class="nv">icon</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">?,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Icon image in the center of QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Size of the icon image, <code>nil</code> means to 20% of QR code size.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L245-L249">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)watermark"></a>
+                    <a name="//apple_ref/swift/Property/watermark" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)watermark">watermark</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Background watermark image, defaults to <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">watermark</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L252-L256">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)watermarkMode"></a>
+                    <a name="//apple_ref/swift/Property/watermarkMode" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)watermarkMode">watermarkMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>How to position and size the watermark, defaults to <code><a href="../Enums/EFWatermarkMode.html#/c:@M@EFQRCode@E@EFWatermarkMode@EFWatermarkModeScaleAspectFill">EFWatermarkMode.scaleAspectFill</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">watermarkMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/EFWatermarkMode.html">EFWatermarkMode</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L258-L262">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC13withWatermark_4modeACSo10CGImageRefaSg_AA15EFWatermarkModeOSgtF"></a>
+                    <a name="//apple_ref/swift/Method/withWatermark(_:mode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC13withWatermark_4modeACSo10CGImageRefaSg_AA15EFWatermarkModeOSgtF">withWatermark(_:<wbr>mode:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified watermark (and mode).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withWatermark</span><span class="p">(</span><span class="n">_</span> <span class="nv">watermark</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">?,</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt"><a href="../Enums/EFWatermarkMode.html">EFWatermarkMode</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>watermark</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The background watermark image.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>How to position and size the watermark,
+<code>nil</code> (the default) means use the current <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)watermarkMode">watermarkMode</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L270-L277">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)pointOffset"></a>
+                    <a name="//apple_ref/swift/Property/pointOffset" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)pointOffset">pointOffset</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Foreground point offset, defaults to 0.</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    Generated QR code might be hard to recognize with non-zero values.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">pointOffset</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L282-L286">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withPointOffset:"></a>
+                    <a name="//apple_ref/swift/Method/withPointOffset(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withPointOffset:">withPointOffset(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the generator to use the specified point offset.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withPointOffset</span><span class="p">(</span><span class="n">_</span> <span class="nv">pointOffset</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pointOffset</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Foreground point offset.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L291-L293">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)isWatermarkOpaque"></a>
+                    <a name="//apple_ref/swift/Property/isWatermarkOpaque" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)isWatermarkOpaque">isWatermarkOpaque</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If <code>false</code> (default), area of watermark where alpha is 0 will be transparent.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isWatermarkOpaque</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L296-L300">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withOpaqueWatermark:"></a>
+                    <a name="//apple_ref/swift/Method/withOpaqueWatermark(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withOpaqueWatermark:">withOpaqueWatermark(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set generator to treat watermark image as opaque (or not).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withOpaqueWatermark</span><span class="p">(</span><span class="n">_</span> <span class="nv">isWatermarkOpaque</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isWatermarkOpaque</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Should ignore alpha channel or not, defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L305-L307">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withTransparentWatermark:"></a>
+                    <a name="//apple_ref/swift/Method/withTransparentWatermark(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withTransparentWatermark:">withTransparentWatermark(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set generator to treat watermark image as transparent (or not).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withTransparentWatermark</span><span class="p">(</span><span class="n">_</span> <span class="nv">isTransparent</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isTransparent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Should use alpha channel or not, defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L312-L314">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)pointStyle"></a>
+                    <a name="//apple_ref/swift/Property/pointStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)pointStyle">pointStyle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Style of foreground code points, defaults to <code><a href="../Protocols/EFPointStyle.html#/s:8EFQRCode12EFPointStylePA2A013EFSquarePointC0CRszrlE6squareAEvpZ">EFPointStyle.square</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">pointStyle</span><span class="p">:</span> <span class="kt"><a href="../Protocols/EFPointStyle.html">EFPointStyle</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L317-L321">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withPointStyle:"></a>
+                    <a name="//apple_ref/swift/Method/withPointStyle(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withPointStyle:">withPointStyle(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set generator to use the specified foreground point style.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withPointStyle</span><span class="p">(</span><span class="n">_</span> <span class="nv">pointStyle</span><span class="p">:</span> <span class="kt"><a href="../Protocols/EFPointStyle.html">EFPointStyle</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pointStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Style of foreground code points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L326-L328">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)isTimingPointStatic"></a>
+                    <a name="//apple_ref/swift/Property/isTimingPointStatic" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)isTimingPointStatic">isTimingPointStatic</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If <code>true</code> (default), points for timing pattern will be squares.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isTimingPointStatic</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L331-L335">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withStaticTimingPoint:"></a>
+                    <a name="//apple_ref/swift/Method/withStaticTimingPoint(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withStaticTimingPoint:">withStaticTimingPoint(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set generator to use un-styled points for timing pattern (or not).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withStaticTimingPoint</span><span class="p">(</span><span class="n">_</span> <span class="nv">isStatic</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isStatic</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Wether or not to use square shape for timing pattern points,
+defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L341-L343">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withStyledTimingPoint:"></a>
+                    <a name="//apple_ref/swift/Method/withStyledTimingPoint(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)withStyledTimingPoint:">withStyledTimingPoint(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set generator to use styled points for timing pattern (or not).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">withStyledTimingPoint</span><span class="p">(</span><span class="n">_</span> <span class="nv">ignoreTiming</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EFQRCodeGenerator</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ignoreTiming</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Wether or not to use current <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)pointStyle">pointStyle</a></code>
+for timing pattern points, defaults to <code>true</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>self</code>, allowing chaining.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L349-L351">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Cache"></a>
+                <a name="//apple_ref/swift/Section/Cache" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Cache"></a>
+                  <h3 class="section-name"><span>Cache</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)clearCache"></a>
+                    <a name="//apple_ref/swift/Method/clearCache()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)clearCache">clearCache()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Clears the cache.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    You do not need to call this except for reducing memory usage.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearCache</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L382-L385">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Init"></a>
+                <a name="//apple_ref/swift/Section/Init" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Init"></a>
+                  <h3 class="section-name"><span>Init</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC7content8encoding4sizeACSS_SS10FoundationE8EncodingVAA9EFIntSizeCtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(content:encoding:size:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC7content8encoding4sizeACSS_SS10FoundationE8EncodingVAA9EFIntSizeCtcfc">init(content:<wbr>encoding:<wbr>size:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initialize a QR code generator to generate a QR code of specified of size
+for some content with appropriate encoding.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">content</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="o">=</span> <span class="o">.</span><span class="n">utf8</span><span class="p">,</span>
+    <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/EFIntSize.html">EFIntSize</a></span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">256</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">256</span><span class="p">)</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>content</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Information to convey in the generated QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>encoding</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Text encoding for generating data from <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)content">content</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width and height of the generated QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L395-L402">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)generate"></a>
+                    <a name="//apple_ref/swift/Method/generate()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(im)generate">generate()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetches the final QR code image.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">generate</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CGImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the generated QR code, or <code>nil</code> if failed.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L406-L411">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Recommended%20Magnification"></a>
+                <a name="//apple_ref/swift/Section/Recommended Magnification" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Recommended%20Magnification"></a>
+                  <h3 class="section-name"><span>Recommended Magnification</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC16minMagnification20greaterThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF"></a>
+                    <a name="//apple_ref/swift/Method/minMagnification(greaterThanOrEqualTo:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC16minMagnification20greaterThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF">minMagnification(greaterThanOrEqualTo:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculates and returns the magnification such that multiplied to intrinsic size  &gt;= the given size.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">minMagnification</span><span class="p">(</span><span class="n">greaterThanOrEqualTo</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired final size of generated QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The recommended value to set as a side of <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)magnification">magnification</a></code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L955-L973">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode0A9GeneratorC16maxMagnification17lessThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF"></a>
+                    <a name="//apple_ref/swift/Method/maxMagnification(lessThanOrEqualTo:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode0A9GeneratorC16maxMagnification17lessThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF">maxMagnification(lessThanOrEqualTo:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculates and returns the magnification such that multiplied to intrinsic size  &lt;= the given size.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">maxMagnification</span><span class="p">(</span><span class="n">lessThanOrEqualTo</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Desired final size of generated QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The recommended value to set as a side of <code><a href="../Classes/EFQRCodeGenerator.html#/c:@M@EFQRCode@objc(cs)EFQRCodeGenerator(py)magnification">magnification</a></code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCodeGenerator.swift#L978-L999">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2024 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external noopener">EyreFree</a>. All rights reserved. (Last updated: 2024-09-19)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

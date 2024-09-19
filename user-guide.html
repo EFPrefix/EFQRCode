@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User Guide  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="User Guide  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          EFQRCode 6.2.2 Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/EFPrefix/EFQRCode">
+            <img class="header-icon" src="img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fefprefix.github.io%2FEFQRCode%2Fdocsets%2FEFQRCode.xml">
+            <img class="header-icon" src="img/dash.png" alt="Dash"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">EFQRCode</a>
+      <img class="carat" src="img/carat.png" alt=""/>
+      <a class="breadcrumb" href="Guides.html">Guides</a>
+      <img class="carat" src="img/carat.png" alt=""/>
+      User Guide  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="user-guide.html">User Guide</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFCirclePointStyle.html">EFCirclePointStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFDiamondPointStyle.html">EFDiamondPointStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFIntSize.html">EFIntSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFQRCodeGenerator.html">EFQRCodeGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFQRCodeRecognizer.html">EFQRCodeRecognizer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EFSquarePointStyle.html">EFSquarePointStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFInputCorrectionLevel.html">EFInputCorrectionLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFQRCode.html">EFQRCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFQRCodeMode.html">EFQRCodeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/EFWatermarkMode.html">EFWatermarkMode</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/CGColor.html">CGColor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/EFPointStyle.html">EFPointStyle</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <h1 id='user-guide' class='heading'>User Guide</h1>
+
+<blockquote>
+<p><strong>NOTE</strong>: Want to explore EFQRCode interactively? Get our user guide as Swift Playground <a href="https://github.com/EFPrefix/EFQRCode/tree/main/Playgrounds/User%20Guide.playground">here</a>.</p>
+</blockquote>
+<h2 id='1-recognition' class='heading'>1. Recognition</h2>
+
+<p>There are two equivalent ways:</p>
+<pre class="highlight swift"><code><span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">recognize</span><span class="p">(</span><span class="kt">CGImage</span><span class="p">)</span>
+</code></pre>
+
+<p>or</p>
+<pre class="highlight swift"><code><span class="kt">EFQRCodeRecognizer</span><span class="p">(</span><span class="nv">image</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">)</span><span class="o">.</span><span class="nf">recognize</span><span class="p">()</span>
+</code></pre>
+
+<p>Because of the possibility that more than one QR code exist in the same image, the return value is a <code>[String]</code>. If the returned array is empty, we could not recognize/didn&rsquo;t find any QR code in the image.</p>
+<h2 id='2-generation' class='heading'>2. Generation</h2>
+
+<p>Again, there are two equivalent ways of doing this:</p>
+<pre class="highlight swift"><code><span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generate</span><span class="p">(</span>
+    <span class="nv">for</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span><span class="p">,</span>
+    <span class="nv">inputCorrectionLevel</span><span class="p">:</span> <span class="kt">EFInputCorrectionLevel</span><span class="p">,</span>
+    <span class="nv">size</span><span class="p">:</span> <span class="kt">EFIntSize</span><span class="p">,</span> <span class="nv">magnification</span><span class="p">:</span> <span class="kt">EFIntSize</span><span class="p">?,</span>
+    <span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">CGColor</span><span class="p">,</span> <span class="nv">foregroundColor</span><span class="p">:</span> <span class="kt">CGColor</span><span class="p">,</span>
+    <span class="nv">watermark</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">?,</span> <span class="nv">watermarkMode</span><span class="p">:</span> <span class="kt">EFWatermarkMode</span><span class="p">,</span>
+    <span class="nv">watermarkIsTransparent</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">icon</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">?,</span> <span class="nv">iconSize</span><span class="p">:</span> <span class="kt">EFIntSize</span><span class="p">?,</span>
+    <span class="nv">pointStyle</span><span class="p">:</span> <span class="kt">EFPointStyle</span><span class="p">,</span> <span class="nv">pointOffset</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+    <span class="nv">isTimingPointStyled</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">mode</span><span class="p">:</span> <span class="kt">EFQRCodeMode</span><span class="p">?</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>or</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">generator</span> <span class="o">=</span> <span class="kt">EFQRCodeGenerator</span><span class="p">(</span>
+    <span class="nv">content</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span><span class="p">,</span>
+    <span class="nv">size</span><span class="p">:</span> <span class="kt">EFIntSize</span>
+<span class="p">)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withMode</span><span class="p">(</span><span class="kt">EFQRCodeMode</span><span class="p">)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withInputCorrectionLevel</span><span class="p">(</span><span class="kt">EFInputCorrectionLevel</span><span class="p">)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withSize</span><span class="p">(</span><span class="kt">EFIntSize</span><span class="p">)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withMagnification</span><span class="p">(</span><span class="kt">EFIntSize</span><span class="p">?)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withColors</span><span class="p">(</span><span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">CGColor</span><span class="p">,</span> 
+                     <span class="nv">foregroundColor</span><span class="p">:</span> <span class="kt">CGColor</span><span class="p">)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withIcon</span><span class="p">(</span><span class="kt">CGImage</span><span class="p">?,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">EFIntSize</span><span class="p">?)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withWatermark</span><span class="p">(</span><span class="kt">CGImage</span><span class="p">?,</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt">EFWatermarkMode</span><span class="p">?)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withPointOffset</span><span class="p">(</span><span class="kt">CGFloat</span><span class="p">)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withTransparentWatermark</span><span class="p">(</span><span class="kt">Bool</span><span class="p">)</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">withPointStyle</span><span class="p">(</span><span class="kt">EFPointStyle</span><span class="p">)</span>
+
+<span class="c1">// Lastly, get the final two-dimensional code image</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">generate</span><span class="p">()</span>
+</code></pre>
+
+<p>The return value is of type <code>CGImage?</code>. If it is <code>nil</code>, something went wrong during generation.</p>
+<h3 id='parameters-explained' class='heading'>Parameters Explained</h3>
+<h4 id='content-string' class='heading'>content: String?</h4>
+
+<p>Content is a required parameter, with its capacity limited at 1273 characters. The density of the QR-lattice increases with the increases of the content length. For example:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center">10 characters</th>
+<th style="text-align: center">250 characters</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareContent2.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='mode-efqrcodemode' class='heading'>mode: EFQRCodeMode</h4>
+
+<p>Mode of QR Code is defined as <code><a href="Enums/EFQRCodeMode.html">EFQRCodeMode</a></code>:</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EFQRCodeMode</span> <span class="p">{</span>
+    <span class="c1">// case none     // use `nil` instead</span>
+    <span class="k">case</span> <span class="n">grayscale</span>
+    <span class="k">case</span> <span class="nf">binarization</span><span class="p">(</span><span class="nv">threshold</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: center"><code>nil</code></th>
+<th style="text-align: center">grayscale</th>
+<th style="text-align: center">binarization</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode2.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/mode3.jpg" alt=""></td>
+</tr>
+</tbody></table>
+
+<p>binarization threshold:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center">mode <code>nil</code></th>
+<th style="text-align: center">0.3</th>
+<th style="text-align: center">0.5</th>
+<th style="text-align: center">0.8</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/binarizationThreshold0.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/binarizationThreshold1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/binarizationThreshold2.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/binarizationThreshold3.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='inputcorrectionlevel-efinputcorrectionlevel' class='heading'>inputCorrectionLevel: EFInputCorrectionLevel</h4>
+
+<p>Percent of tolerance (which we default to H defined below) has 4 different levels: L 7% / M 15% / Q 25% / H 30%.</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EFInputCorrectionLevel</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1">// L 7%</span>
+    <span class="k">case</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>      <span class="c1">// M 15%</span>
+    <span class="k">case</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">2</span>      <span class="c1">// Q 25%</span>
+    <span class="k">case</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">3</span>      <span class="c1">// H 30%</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Comparison of different input correction levels (generating for the same content):</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center">L</th>
+<th style="text-align: center">M</th>
+<th style="text-align: center">Q</th>
+<th style="text-align: center">H</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel2.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel3.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareInputCorrectionLevel4.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='size-efintsize' class='heading'>size: EFIntSize</h4>
+
+<blockquote>
+<p><strong>NOTE</strong>: will be ignored if magnification is not <code>nil</code></p>
+</blockquote>
+
+<p>Length and height of the generated QR code, defaults to 256 by 256. <code><a href="Classes/EFIntSize.html">EFIntSize</a></code> is just like <code>CGSize</code>, but <code>width</code> and <code>height</code> are <code>Int</code> instead of <code>CGFloat</code>.</p>
+<pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">EFIntSize</span> <span class="p">:</span> <span class="kt">NSObject</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="k">let</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span>
+    <span class="kd">public</span> <span class="k">let</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Int</span>
+
+    <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span>
+
+    <span class="kd">public</span> <span class="k">var</span> <span class="nv">cgSize</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: center">234 * 234</th>
+<th style="text-align: center">312 * 234</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/size1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/size2.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='magnification-efintsize' class='heading'>magnification: EFIntSize?</h4>
+
+<p>Magnification is defined as the ratio of actual size to the smallest possible size, and defaults to <code>nil</code>.</p>
+
+<p>Directly setting the <code>size</code> parameter results in low resolution QR code images, so setting the <code>magnification</code> is recommended instead. If you already have a desired size in mind, we have two helpers methods at your disposal to calculate the magnification that results in the closet dimension: <code><a href="Classes/EFQRCodeGenerator.html#/s:8EFQRCode0A9GeneratorC16maxMagnification17lessThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF">EFQRCodeGenerator.maxMagnification(lessThanOrEqualTo:)</a></code> and <code><a href="Classes/EFQRCodeGenerator.html#/s:8EFQRCode0A9GeneratorC16minMagnification20greaterThanOrEqualToSiSg14CoreFoundation7CGFloatV_tF">EFQRCodeGenerator.minMagnification(greaterThanOrEqualTo:)</a></code>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">generator</span> <span class="o">=</span> <span class="kt">EFQRCodeGenerator</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1">// get max magnification where size ≤ desired size</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">maxMagnification</span> <span class="o">=</span> <span class="n">generator</span>
+    <span class="o">.</span><span class="nf">maxMagnification</span><span class="p">(</span><span class="nv">lessThanOrEqualTo</span><span class="p">:</span> <span class="n">desiredSize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">generator</span><span class="o">.</span><span class="n">magnification</span> <span class="o">=</span> <span class="kt">EFIntSize</span><span class="p">(</span>
+        <span class="nv">width</span><span class="p">:</span> <span class="n">maxMagnification</span><span class="p">,</span> 
+        <span class="nv">height</span><span class="p">:</span> <span class="n">maxMagnification</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// or get min magnification where size ≥ desired size</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">minMagnification</span> <span class="o">=</span> <span class="n">generator</span>
+    <span class="o">.</span><span class="nf">minMagnification</span><span class="p">(</span><span class="nv">greaterThanOrEqualTo</span><span class="p">:</span> <span class="n">desiredSize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">generator</span><span class="o">.</span><span class="n">magnification</span> <span class="o">=</span> <span class="kt">EFIntSize</span><span class="p">(</span>
+        <span class="nv">width</span><span class="p">:</span> <span class="n">minMagnification</span><span class="p">,</span> 
+        <span class="nv">height</span><span class="p">:</span> <span class="n">minMagnification</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// then generate</span>
+<span class="n">generator</span><span class="o">.</span><span class="nf">generate</span><span class="p">()</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th style="text-align: center">size 300</th>
+<th style="text-align: center">magnification 9</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareMagnification1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareMagnification2.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='backgroundcolor-cicolor-cgcolor' class='heading'>backgroundColor: CIColor/CGColor</h4>
+
+<p>Background color, defaults to white.</p>
+<h4 id='foregroundcolor-cicolor-cgcolor' class='heading'>foregroundColor: CIColor/CGColor</h4>
+
+<p>Foreground color (for code points), defaults to black.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Foreground color set to red</th>
+<th style="text-align: center">Background color set to gray</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundcolor.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareBackgroundcolor.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='icon-cgimage' class='heading'>icon: CGImage?</h4>
+
+<p>Icon image in the center of QR code image, defaults to <code>nil</code>.</p>
+<h4 id='iconsize-cgfloat' class='heading'>iconSize: CGFloat?</h4>
+
+<p>Size of icon image, defaults to 20% of QR code size if <code>nil</code>.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Default 20% size</th>
+<th style="text-align: center">Set to 64</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareIcon.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareIconSize.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='watermark-cgimage' class='heading'>watermark: CGImage?</h4>
+
+<p>Background watermark image, defaults to <code>nil</code>.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center"></th>
+<th style="text-align: center"></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareWatermark1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareWatermark2.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='watermarkmode-efwatermarkmode' class='heading'>watermarkMode: EFWatermarkMode</h4>
+
+<p>Position of watermark in the QR code, defaults to <code><a href="Enums/EFWatermarkMode.html#/c:@M@EFQRCode@E@EFWatermarkMode@EFWatermarkModeScaleAspectFill">EFWatermarkMode.scaleAspectFill</a></code>. Think of the generated QR code like <code>UIImageView</code> and <code><a href="Enums/EFWatermarkMode.html">EFWatermarkMode</a></code> as <code>UIView.ContentMode</code>.</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EFWatermarkMode</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">scaleToFill</span>        <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">case</span> <span class="n">scaleAspectFit</span>     <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">case</span> <span class="n">scaleAspectFill</span>    <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">case</span> <span class="n">center</span>             <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">case</span> <span class="n">top</span>                <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">case</span> <span class="n">bottom</span>             <span class="o">=</span> <span class="mi">5</span>
+    <span class="k">case</span> <span class="n">left</span>               <span class="o">=</span> <span class="mi">6</span>
+    <span class="k">case</span> <span class="n">right</span>              <span class="o">=</span> <span class="mi">7</span>
+    <span class="k">case</span> <span class="n">topLeft</span>            <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">case</span> <span class="n">topRight</span>           <span class="o">=</span> <span class="mi">9</span>
+    <span class="k">case</span> <span class="n">bottomLeft</span>         <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">case</span> <span class="n">bottomRight</span>        <span class="o">=</span> <span class="mi">11</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='iswatermarkopaque-bool' class='heading'>isWatermarkOpaque: Bool</h4>
+
+<p>Treat watermark image as opaque, defaults to <code>false</code> (use transparency).</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center"><code>false</code></th>
+<th style="text-align: center"><code>true</code></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareAllowTransparent1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareAllowTransparent2.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='pointoffset-cgfloat' class='heading'>pointOffset: CGFloat</h4>
+
+<blockquote>
+<p><strong>WARNING</strong>: Generated QR code might be hard to recognize with this parameter.</p>
+</blockquote>
+
+<p>Foreground point offset, defaults to 0.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: center">0</th>
+<th style="text-align: center">0.5</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareForegroundPointOffset2.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id='pointstyle-efpointstyle' class='heading'>pointStyle: EFPointStyle</h4>
+
+<p>Shape of foreground code points, defaults to <code><a href="Protocols/EFPointStyle.html#/s:8EFQRCode12EFPointStylePA2A013EFSquarePointC0CRszrlE6squareAEvpZ">EFPointStyle.square</a></code>. Other built-in styles are <code><a href="Protocols/EFPointStyle.html#/s:8EFQRCode12EFPointStylePA2A013EFCirclePointC0CRszrlE6circleAEvpZ">EFPointStyle.circle</a></code> and <code><a href="Protocols/EFPointStyle.html#/s:8EFQRCode12EFPointStylePA2A014EFDiamondPointC0CRszrlE7diamondAEvpZ">EFPointStyle.diamond</a></code>.</p>
+
+<p>To draw custom point shapes, implement a new type that conforms to the <code><a href="Protocols/EFPointStyle.html">EFPointStyle</a></code> protocol and set an instance of it as the <code>pointStyle</code>.</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">EFPointStyle</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">fillRect</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="kt">CGContext</span><span class="p">,</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">,</span> <span class="nv">isStatic</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<blockquote>
+<p>See <code>StarPointStyle</code> in the Example app for more details.</p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th style="text-align: center">square</th>
+<th style="text-align: center">circle</th>
+<th style="text-align: center">diamond</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/compareAllowTransparent1.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/pointShape.jpg" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/pointDiamond.jpg" alt=""></td>
+</tr>
+</tbody></table>
+<h3 id='3-generation-from-gif' class='heading'>3. Generation from GIF</h3>
+
+<p>First you should get the complete <code>Data</code> of a GIF file</p>
+
+<blockquote>
+<p><strong>NOTE</strong>: You shall not get <code>Data</code> from <code>UIImage</code> as it only provides the first frame.</p>
+</blockquote>
+
+<p>Then you can create GIF QRCode with <code>EFQRCode.generateGIF</code>:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Parameter</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right"><code>generator</code></td>
+<td style="text-align: left"><strong><em>REQUIRED</em></strong>, an <code><a href="Classes/EFQRCodeGenerator.html">EFQRCodeGenerator</a></code> instance with other settings</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>data</code></td>
+<td style="text-align: left"><strong><em>REQUIRED</em></strong>, encoded input GIF</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>delay</code></td>
+<td style="text-align: left">Output QRCode GIF delay, emitted means no change</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>loopCount</code></td>
+<td style="text-align: left">Times looped in GIF, emitted means no change</td>
+</tr>
+</tbody></table>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">qrcodeData</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generateGIF</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="n">generator</span><span class="p">,</span> <span class="nv">withWatermarkGIF</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success."</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image failed!"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The <code>generator</code> here is an instance of <code><a href="Classes/EFQRCodeGenerator.html">EFQRCodeGenerator</a></code>, as demonstrated above, for configuring other parameters for individual frames in GIF. You can checkout the demo projects for more information.</p>
+
+<p>The result (seizure WARNING) will be something like this:</p>
+
+<p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "42%"/></p>
+
+<p>Now you can get the complete data of output QRCode GIF, next we can save it to local path / system photo library / upload to server or some other things you want to do;</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2024 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external noopener">EyreFree</a>. All rights reserved. (Last updated: 2024-09-19)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

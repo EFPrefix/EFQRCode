@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EFQRCode  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="EFQRCode  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          EFQRCode 6.2.2 Docs
+        </a>
+         (0% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">EFQRCode</a>
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97.html">用户指南</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            
+            <p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg" alt=""></p>
+
+<p align="center">
+    <a href="https://travis-ci.org/EFPrefix/EFQRCode">
+        <img src="https://img.shields.io/travis/EFPrefix/EFQRCode.svg">
+    </a>
+    <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
+        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
+    </a>
+    <a href="https://efprefix.github.io/EFQRCode/">
+        <img src="https://efprefix.github.io/EFQRCode/badge.svg">
+    </a>
+    <a href="https://github.com/Carthage/Carthage/">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
+    </a>
+    <a href="https://swift.org/package-manager/">
+        <img src="https://img.shields.io/badge/SPM-ready-orange.svg">
+    </a>
+    <a href="http://cocoapods.org/pods/EFQRCode">
+        <img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat">
+    </a>
+    <a href="https://swiftpackageindex.com/EFPrefix/EFQRCode">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dplatforms" alt="支持所有平台">
+    </a>
+    <a href="https://github.com/apple/swift">
+        <img src="https://img.shields.io/badge/language-swift-orange.svg">
+    </a>
+    <a href="https://codebeat.co/projects/github-com-efprefix-efqrcode-master">
+        <img src="https://codebeat.co/badges/c2ae977c-157a-4cb7-a476-76530e7f292b">
+    </a>
+    <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/main/LICENSE">
+        <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
+    </a>
+    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode?ref=badge_shield">
+        <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode.svg?type=shield">
+    </a>
+</p>
+
+<p>EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 <code>CoreGraphics</code>、<code>CoreImage</code> 和 <code>ImageIO</code> 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 iOS、macOS、watchOS 和 tvOS 平台，并且支持通过 CocoaPods、Carthage 和 Swift Package Manager 获取。本项目受 <a href="https://github.com/sylnsfar/qrcode">qrcode</a> 启发。</p>
+
+<blockquote>
+<p><a href="https://github.com/EFPrefix/EFQRCode/blob/main/README.md">English Introduction</a></p>
+</blockquote>
+<h2 id='概述' class='heading'>概述</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg" alt=""></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg" alt=""></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg" alt=""></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg" alt=""></th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF1.gif" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF2.gif" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF7.gif" alt=""></td>
+<td style="text-align: center"><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF8.gif" alt=""></td>
+</tr>
+</tbody></table>
+<h2 id='示例' class='heading'>示例</h2>
+<h3 id='应用商店' class='heading'>应用商店</h3>
+
+<p>你可以点击下方的 App Store 按钮从应用商店下载示例程序，支持 iOS、tvOS 和 watchOS：</p>
+
+<p><a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1242337058?mt=8'>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStore.jpeg' width='144' height='49'/>
+</a></p>
+
+<p>你也可以点击下方的 Mac App Store 按钮下载 macOS 示例程序：</p>
+
+<p><a target='_blank' href='https://itunes.apple.com/cn/app/EFQRCode/id1306793539?mt=8'>
+    <img src='https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/icon/AppStoreMac.png' width='168.5' height='49'/>
+</a></p>
+<h3 id='手动' class='heading'>手动</h3>
+
+<ol>
+<li>利用 <code>git clone</code> 命令下载本仓库；</li>
+<li>切换到仓库根目录下，执行 <code>sh Startup.sh</code> 命令获取所有依赖；</li>
+<li><code>EFQRCode.xcworkspace</code> 工程中包含了所有的示例程序，用 Xcode 打开它，选择对应平台 target 编译即可。</li>
+</ol>
+
+<p>或执行以下命令：</p>
+<pre class="highlight shell"><code>git clone git@github.com:EFPrefix/EFQRCode.git; <span class="nb">cd </span>EFQRCode; sh Startup.sh; open <span class="s1">'EFQRCode.xcworkspace'</span>
+</code></pre>
+<h2 id='环境' class='heading'>环境</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left">版本</th>
+<th style="text-align: left">需求</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">1.x</td>
+<td style="text-align: left">Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+</td>
+</tr>
+<tr>
+<td style="text-align: left">4.x</td>
+<td style="text-align: left">Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+</td>
+</tr>
+<tr>
+<td style="text-align: left">5.x</td>
+<td style="text-align: left">Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>6.x</strong></td>
+<td style="text-align: left">Xcode 12.0+<br><a href="https://swiftpackageindex.com/EFPrefix/EFQRCode"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dswift-versions" alt="latest Swift"></a><br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+</td>
+</tr>
+</tbody></table>
+<h2 id='安装' class='heading'>安装</h2>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>EFQRCode 可以通过 <a href="http://cocoapods.org">CocoaPods</a> 进行获取。只需要在你的 Podfile 中添加如下代码就能实现引入：</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'EFQRCode'</span><span class="p">,</span> <span class="s1">'~&gt; 6.2.2'</span>
+</code></pre>
+
+<p>然后，执行如下命令即可：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>pod install
+</code></pre>
+<h3 id='carthage' class='heading'>Carthage</h3>
+
+<blockquote>
+<p><strong><em>注意</em></strong>：在 Xcode 12 中使用 Carthage 需要<a href="https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md">这个半吊子的解决方案</a>。</p>
+</blockquote>
+
+<p><a href="https://github.com/Carthage/Carthage">Carthage</a> 是一个去中心化的依赖管理器，它为我们构建依赖并通过提供二进制 Frameworks 的方式供我们使用。</p>
+
+<p>你可以通过 <a href="http://brew.sh/">Homebrew</a> 使用如下命令来安装 Carthage：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>brew update
+<span class="gp">$ </span>brew install carthage
+</code></pre>
+
+<p>通过在你的 <code>Cartfile</code> 添加如下语句可以将 EFQRCode 引入你的项目：</p>
+<pre class="highlight plaintext"><code>github "EFPrefix/EFQRCode" ~&gt; 6.2.2
+</code></pre>
+
+<p>接下来执行 <code>carthage update</code> 命令生成 Framework 并且将生成的 <code>EFQRCode.framework</code> 拖入工程即可。</p>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p><a href="https://swift.org/package-manager/">Swift Package Manager</a> 是一个集成在 Swift 编译器中的用来进行 Swift 代码自动化发布的工具。</p>
+
+<p>如果你已经建立了你的 Swift 包，将 EFQRCode 加入依赖是十分容易的，只需要将其添加到你的 <code>Package.swift</code> 文件的 <code>dependencies</code> 项中即可：</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/EFPrefix/EFQRCode.git"</span><span class="p">,</span> <span class="o">.</span><span class="nf">upToNextMinor</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="s">"6.2.2"</span><span class="p">))</span>
+<span class="p">]</span>
+</code></pre>
+<h2 id='快速使用' class='heading'>快速使用</h2>
+<h4 id='1-导入-efqrcode' class='heading'>1. 导入 EFQRCode</h4>
+
+<p>在你需要使用的地方添加如下代码引入 EFQRCode 模块：</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">EFQRCode</span>
+</code></pre>
+<h4 id='2-二维码识别' class='heading'>2. 二维码识别</h4>
+
+<p>获取图片中所包含的二维码，同一张图片中可能包含多个二维码，所以返回值是一个字符串数组：</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">testImage</span> <span class="o">=</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"test.png"</span><span class="p">)?</span><span class="o">.</span><span class="n">cgImage</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">codes</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">recognize</span><span class="p">(</span><span class="n">testImage</span><span class="p">)</span>
+    <span class="k">if</span> <span class="o">!</span><span class="n">codes</span><span class="o">.</span><span class="n">isEmpty</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"There are </span><span class="se">\(</span><span class="n">codes</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> codes"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span> <span class="k">in</span> <span class="n">codes</span><span class="o">.</span><span class="nf">enumerated</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"The content of QR Code </span><span class="se">\(</span><span class="n">index</span><span class="se">)</span><span class="s"> is </span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s">."</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"There is no QR Codes in testImage."</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='3-二维码生成' class='heading'>3. 二维码生成</h4>
+
+<p>根据所输入参数创建各种艺术二维码图片，快速使用方式如下:</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">参数</th>
+<th style="text-align: left">作用描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right"><code>content</code></td>
+<td style="text-align: left">[<strong>必填</strong>] 二维码内容</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>size</code></td>
+<td style="text-align: left">二维码宽高</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>backgroundColor</code></td>
+<td style="text-align: left">二维码背景色</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>foregroundColor</code></td>
+<td style="text-align: left">二维码前景色</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>watermark</code></td>
+<td style="text-align: left">背景水印图</td>
+</tr>
+</tbody></table>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generate</span><span class="p">(</span>
+    <span class="nv">for</span><span class="p">:</span> <span class="s">"https://github.com/EFPrefix/EFQRCode"</span><span class="p">,</span>
+    <span class="nv">watermark</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">(</span><span class="nv">named</span><span class="p">:</span> <span class="s">"WWF"</span><span class="p">)?</span><span class="o">.</span><span class="n">cgImage</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success </span><span class="se">\(</span><span class="n">image</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image failed!"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>结果：</p>
+
+<p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/></p>
+<h4 id='4-动态二维码' class='heading'>4. 动态二维码</h4>
+
+<p>可通过 EFQRCode 的类方法 <code>generateGIF</code> 来创建 GIF 二维码，使用方式如下：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">参数</th>
+<th style="text-align: left">作用描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right"><code>generator</code></td>
+<td style="text-align: left">[<strong>必填</strong>] 一个用来获取设置的 <code>EFQRCodeGenerator</code> 对象</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>data</code></td>
+<td style="text-align: left">[<strong>必填</strong>] 输入的 GIF 图片的数据</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>delay</code></td>
+<td style="text-align: left">输出的动态 QRCode 的帧间延时，默认从输入的 GIF 图片获取</td>
+</tr>
+<tr>
+<td style="text-align: right"><code>loopCount</code></td>
+<td style="text-align: left">输出的动态 QRCode 的循环次数，默认从输入的 GIF 图片获取</td>
+</tr>
+</tbody></table>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">qrCodeData</span> <span class="o">=</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="nf">generateGIF</span><span class="p">(</span>
+    <span class="nv">using</span><span class="p">:</span> <span class="n">generator</span><span class="p">,</span> <span class="nv">withWatermarkGIF</span><span class="p">:</span> <span class="n">data</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image success."</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Create QRCode image failed!"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>你可以通过查看 Demo 代码的方式来获取更多信息，结果预览：</p>
+
+<p><img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/></p>
+<h4 id='5-接下来' class='heading'>5. 接下来</h4>
+
+<p>查看 <a href="https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE_CN.md">用户手册</a> 了解更多细节。</p>
+
+<p>您也可以查看下列非官方的使用说明：</p>
+
+<ul>
+<li><a href="https://sspai.com/post/43211">不用请设计师，你也能做出个性二维码：EFQRCode</a></li>
+<li><a href="https://sspai.com/post/43097">想更优雅地分享 Wi-Fi 密码，只需一枚二维码</a></li>
+</ul>
+<h2 id='备注' class='heading'>备注</h2>
+
+<ol>
+<li>请选用对比度较高的前景色和背景色组合；</li>
+<li>想要提高生成二维码的清晰度可以选择使用 <code>magnification</code> 替代 <code>size</code>，或适当提高它们的数值；</li>
+<li>放大倍数过高／边长过大／二维码内容过多可能会导致生成失败；</li>
+<li>建议对生成的二维码进行测试后投入使用，例如微信能够扫描成功并不代表支付宝也能成功扫描，请务必根据您的具体业务需要做有针对性的测试；</li>
+<li>若有任何问题，期待得到您的反馈，<code>Issue</code> 和 <code>Pull request</code> 都是受欢迎的。</li>
+</ol>
+
+<p>备注的备注：好用的话可以给个<code>星星</code>，蟹蟹，QAQ&hellip;</p>
+<h2 id='其它平台-语言' class='heading'>其它平台／语言</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: left">平台／语言</th>
+<th style="text-align: left">链接</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">Objective-C</td>
+<td style="text-align: left"><a href="https://github.com/z624821876/YSQRCode">https://github.com/z624821876/YSQRCode</a></td>
+</tr>
+<tr>
+<td style="text-align: left">Java</td>
+<td style="text-align: left"><a href="https://github.com/SumiMakito/AwesomeQRCode">https://github.com/SumiMakito/AwesomeQRCode</a></td>
+</tr>
+<tr>
+<td style="text-align: left">JavaScript</td>
+<td style="text-align: left"><a href="https://github.com/SumiMakito/Awesome-qr.js">https://github.com/SumiMakito/Awesome-qr.js</a></td>
+</tr>
+<tr>
+<td style="text-align: left">Kotlin</td>
+<td style="text-align: left"><a href="https://github.com/SumiMakito/AwesomeQRCode-Kotlin">https://github.com/SumiMakito/AwesomeQRCode-Kotlin</a></td>
+</tr>
+<tr>
+<td style="text-align: left">Python</td>
+<td style="text-align: left"><a href="https://github.com/sylnsfar/qrcode">https://github.com/sylnsfar/qrcode</a></td>
+</tr>
+</tbody></table>
+<h2 id='贡献者' class='heading'>贡献者</h2>
+
+<p>这个项目的存在多亏了所有贡献的人。[<a href="https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md">参与贡献</a>]</p>
+
+<p><a href="https://opencollective.com/efqrcode#contributors">
+    <img src="https://opencollective.com/efqrcode/contributors.svg?width=890" />
+</a></p>
+<h2 id='捐赠' class='heading'>捐赠</h2>
+
+<p>如果你认为这个项目给你带来了帮助，你可以给我买杯咖啡。如果你喜欢这个项目，并愿意为它的发展提供进一步的支持，你可以选择在 <a href="https://opencollective.com/efqrcode">Open Collective</a> 上成为 <code>支持者</code>。感谢所有的支持者！ 🙏 [<a href="https://opencollective.com/efqrcode#backer">成为支持者</a>]</p>
+
+<p><a href="https://opencollective.com/efqrcode#backers" target="_blank">
+    <img src="https://opencollective.com/efqrcode/backers.svg?width=890">
+</a></p>
+<h2 id='赞助商' class='heading'>赞助商</h2>
+
+<ul>
+<li>感谢 MacStadium 的 <a href="https://www.macstadium.com/opensource?from=EFQRCode">开源计划</a> 对本项目的帮助。</li>
+</ul>
+
+<p><a href="https://macstadium.com/?from=EFQRCode">
+    <img src="https://uploads-ssl.webflow.com/5ac3c046c82724970fc60918/5c019d917bba312af7553b49_MacStadium-developerlogo.png" width = "46%">
+</a></p>
+
+<ul>
+<li>感谢 JetBrains 的 <a href="https://www.jetbrains.com/community/opensource/?from=EFQRCode">开源支持计划</a> 对本项目的帮助。</li>
+</ul>
+
+<p><a href="https://www.jetbrains.com/?from=EFQRCode">
+    <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/ce8982e1858d62ac8b9fecec96f5369d8b1b62c3/logo/jetbrains.svg?sanitize=true" width = "20%">
+</a></p>
+<h2 id='其他' class='heading'>其他</h2>
+
+<p>文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除。</p>
+<h2 id='联系' class='heading'>联系</h2>
+
+<p>邮箱：<a href="mailto:eyrefree@eyrefree.org">eyrefree@eyrefree.org</a></p>
+<h2 id='协议' class='heading'>协议</h2>
+
+<p><a href="https://github.com/EFPrefix/EFQRCode/blob/main/LICENSE">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
+</a></p>
+
+<p>EFQRCode 基于 MIT 协议进行分发和使用，更多信息参见协议文件。</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2024 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external noopener">EyreFree</a>. All rights reserved. (Last updated: 2024-09-19)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>
