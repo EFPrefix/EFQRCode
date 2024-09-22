@@ -31,6 +31,8 @@ class BubbleGeneratorController: UIViewController, UITextViewDelegate, UITableVi
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var dataColor: UIColor = UIColor(hexRGB: 0x8ED1FC)
     var dataAlpha: CGFloat = 1
+    var dataCenterColor: UIColor = UIColor(hexRGB: 0xffffff)
+    var dataCenterAlpha: CGFloat = 1
     var positionColor: UIColor = UIColor(hexRGB: 0x0693E3)
     var positionStyle: EFStyleParamsPositionStyle = .round
     var positionAlpha: CGFloat = 1
@@ -206,6 +208,7 @@ extension BubbleGeneratorController {
                             quietzone: backdropQuietzone
                         ),
                         dataColor: dataColor.withAlphaComponent(dataAlpha).cgColor,
+                        dataCenterColor: dataCenterColor.withAlphaComponent(dataCenterAlpha).cgColor,
                         position: EFStyleBubbleParamsPosition(
                             style: positionStyle,
                             size: positionSize,
@@ -277,6 +280,36 @@ extension BubbleGeneratorController {
                     [weak self] _ in
                     guard let self = self else { return }
                     self.dataColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseDataCenterColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.dataCenterColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(4)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.dataCenterColor = color.color
                     self.refresh()
                 }
             )
@@ -432,6 +465,15 @@ extension BubbleGeneratorController {
         }
     }
     
+    func chooseDataCenterAlpha() {
+        chooseFromList(title: Localized.Title.dataCenterColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.dataCenterAlpha = result
+            self.refresh()
+        }
+    }
+    
     func chooseIconScale() {
         chooseFromList(title: Localized.Title.iconScale, items: [0, 0.11, 0.22, 0.33]) { [weak self] result in
             guard let self = self else { return }
@@ -574,6 +616,8 @@ extension BubbleGeneratorController {
         Localized.Title.inputCorrectionLevel,
         Localized.Title.dataColor,
         Localized.Title.dataAlpha,
+        Localized.Title.dataCenterColor,
+        Localized.Title.dataCenterColorAlpha,
         Localized.Title.positionStyle,
         Localized.Title.positionColor,
         Localized.Title.positionColorAlpha,
@@ -598,6 +642,8 @@ extension BubbleGeneratorController {
             chooseInputCorrectionLevel,
             chooseDataColor,
             chooseDataAlpha,
+            chooseDataCenterColor,
+            chooseDataCenterAlpha,
             choosePositionStyle,
             choosePositionColor,
             choosePositionAlpha,
@@ -642,6 +688,8 @@ extension BubbleGeneratorController {
             "\(inputCorrectionLevel)",
             "", // dataColor
             "\(dataAlpha)",
+            "", // dataCenterColor
+            "\(dataCenterAlpha)",
             "\(positionStyle)",
             "\(positionSize)",
             "", // positionColor
@@ -685,9 +733,11 @@ extension BubbleGeneratorController {
             switch indexPath.row {
             case 1:
                 rightImageView.backgroundColor = dataColor.withAlphaComponent(dataAlpha)
-            case 5:
-                rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
+            case 3:
+                rightImageView.backgroundColor = dataCenterColor.withAlphaComponent(dataCenterAlpha)
             case 7:
+                rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
+            case 9:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -699,11 +749,11 @@ extension BubbleGeneratorController {
                     rightImageView.image = nil
                     break
                 }
-            case 10:
+            case 12:
                 rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
-            case 13:
-                rightImageView.backgroundColor = backdropColor.withAlphaComponent(backdropColorAlpha)
             case 15:
+                rightImageView.backgroundColor = backdropColor.withAlphaComponent(backdropColorAlpha)
+            case 17:
                 rightImageView.image = backdropImage.flatMap { UIImage(cgImage: $0) }
             default:
                 break
@@ -726,7 +776,7 @@ extension BubbleGeneratorController: UIColorPickerViewControllerDelegate {
 
         let colorPicker = UIColorPickerViewController()
         colorPicker.delegate = self
-        colorPicker.selectedColor = [positionColor, dataColor, iconBorderColor, backdropColor][index]
+        colorPicker.selectedColor = [positionColor, dataColor, iconBorderColor, backdropColor, dataCenterColor][index]
         colorPicker.supportsAlpha = false
         present(colorPicker, animated: true)
     }
@@ -750,6 +800,9 @@ extension BubbleGeneratorController: UIColorPickerViewControllerDelegate {
             break
         case 3:
             backdropColor = color
+            break
+        case 4:
+            dataCenterColor = color
             break
         default:
             break

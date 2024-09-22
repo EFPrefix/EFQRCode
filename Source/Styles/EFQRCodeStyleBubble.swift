@@ -15,18 +15,22 @@ public class EFStyleBubbleParams: EFStyleParams {
     
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
     public static let defaultDataColor: CGColor = CGColor.createWith(rgb: 0x8ED1FC)!
+    public static let defaultDataCenterColor: CGColor = CGColor.createWith(rgb: 0xffffff)!
     public static let defaultPosition: EFStyleBubbleParamsPosition = EFStyleBubbleParamsPosition()
     
     let dataColor: CGColor
+    let dataCenterColor: CGColor
     let position: EFStyleBubbleParamsPosition
     
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyleBubbleParams.defaultBackdrop,
         dataColor: CGColor = EFStyleBubbleParams.defaultDataColor,
+        dataCenterColor: CGColor = EFStyleBubbleParams.defaultDataCenterColor,
         position: EFStyleBubbleParamsPosition = EFStyleBubbleParams.defaultPosition
     ) {
         self.dataColor = dataColor
+        self.dataCenterColor = dataCenterColor
         self.position = position
         super.init(icon: icon, backdrop: backdrop)
     }
@@ -35,12 +39,14 @@ public class EFStyleBubbleParams: EFStyleParams {
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
         dataColor: CGColor? = nil,
+        dataCenterColor: CGColor? = nil,
         position: EFStyleBubbleParamsPosition? = nil
     ) -> EFStyleBubbleParams {
         return EFStyleBubbleParams(
             icon: icon ?? self.icon,
             backdrop: backdrop ?? self.backdrop,
             dataColor: dataColor ?? self.dataColor,
+            dataCenterColor: dataCenterColor ?? self.dataCenterColor,
             position: position ?? self.position
         )
     }
@@ -83,6 +89,9 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
         
         let otherColor = try params.dataColor.hexString()
         let otherOpacity: CGFloat = try params.dataColor.alpha()
+        
+        let otherCenterColor = try params.dataCenterColor.hexString()
+        let otherCenterOpacity: CGFloat = try params.dataCenterColor.alpha()
         
         let posType: EFStyleParamsPositionStyle = params.position.style
         let posSize: CGFloat = max(0, params.position.size)
@@ -160,7 +169,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                             }
                         }
                         if ctn && qrcode.model.isDark(x + 1, y) && qrcode.model.isDark(x + 1, y + 2) && qrcode.model.isDark(x, y + 1) && qrcode.model.isDark(x + 2, y + 1) {
-                            g1.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x.cgFloat + 1 + 0.5)\" cy=\"\(y.cgFloat + 1 + 0.5)\" r=\"1\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\"/>")
+                            g1.append("<circle key=\"\(id)\" cx=\"\(x.cgFloat + 1 + 0.5)\" cy=\"\(y.cgFloat + 1 + 0.5)\" r=\"1\" fill=\"\(otherCenterColor)\" fill-opacity=\"\(otherCenterOpacity)\" stroke=\"\(otherColor)\" stroke-opacity=\"\(otherOpacity)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\"/>")
                             id += 1
                             if qrcode.model.isDark(x + 1, y + 1) {
                                 g1.append("<circle opacity=\"\(otherOpacity)\" r=\"\(0.5 * Double.random(in: 0.5...1))\" key=\"\(id)\" fill=\"\(otherColor)\" cx=\"\(x.cgFloat + 1 + 0.5)\" cy=\"\(y.cgFloat + 1 + 0.5)\"/>")
@@ -179,7 +188,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                     }
                     if x < nCount - 1 && y < nCount - 1 {
                         if isDark && qrcode.model.isDark(x + 1, y) && qrcode.model.isDark(x, y + 1) && qrcode.model.isDark(x + 1, y + 1) {
-                            g1.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y + 1)\" r=\"\(sqrt(1.0 / 2.0))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\"/>")
+                            g1.append("<circle key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y + 1)\" r=\"\(sqrt(1.0 / 2.0))\" fill=\"\(otherCenterColor)\" fill-opacity=\"\(otherCenterOpacity)\" stroke=\"\(otherColor)\" stroke-opacity=\"\(otherOpacity)\" stroke-width=\"\(Double.random(in: 0.33...0.6))\"/>")
                             id += 1
                             for i in 0..<2 {
                                 for j in 0..<2 {
@@ -191,7 +200,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                     }
                     if available[x][y] && y < nCount - 1 {
                         if isDark && qrcode.model.isDark(x, y + 1) {
-                            pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y + 1)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
+                            pointList.append("<circle key=\"\(id)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y + 1)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"\(otherCenterColor)\" fill-opacity=\"\(otherCenterOpacity)\" stroke=\"\(otherColor)\" stroke-opacity=\"\(otherOpacity)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
                             id += 1
                             available[x][y] = false
                             available[x][y + 1] = false
@@ -199,7 +208,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                     }
                     if available[x][y] && x < nCount - 1 {
                         if isDark && qrcode.model.isDark(x + 1, y) {
-                            pointList.append("<circle opacity=\"\(otherOpacity)\" key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
+                            pointList.append("<circle key=\"\(id)\" cx=\"\(x + 1)\" cy=\"\(y.cgFloat + 0.5)\" r=\"\(0.5 * Double.random(in: 0.95...1.05))\" fill=\"\(otherCenterColor)\" fill-opacity=\"\(otherCenterOpacity)\" stroke=\"\(otherColor)\" stroke-opacity=\"\(otherOpacity)\" stroke-width=\"\(Double.random(in: 0.36...0.4))\"/>")
                             id += 1
                             available[x][y] = false
                             available[x + 1][y] = false
@@ -211,7 +220,7 @@ public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
                             id += 1
                         } else if typeTable[x][y] == QRPointType.data {
                             if Double.random(in: 0...1) > 0.85 {
-                                g2.append("<circle opacity=\"\(otherOpacity)\" r=\"\(0.5 * Double.random(in: 0.85...1.3))\" key=\"\(id)\" fill=\"#FFFFFF\" stroke=\"\(otherColor)\" stroke-width=\"\(Double.random(in: 0.15...0.33))\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                                g2.append("<circle r=\"\(0.5 * Double.random(in: 0.85...1.3))\" key=\"\(id)\" fill=\"\(otherCenterColor)\" fill-opacity=\"\(otherCenterOpacity)\" stroke=\"\(otherColor)\" stroke-opacity=\"\(otherOpacity)\" stroke-width=\"\(Double.random(in: 0.15...0.33))\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                                 id += 1
                             }
                         }
