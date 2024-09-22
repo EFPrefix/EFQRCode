@@ -8,7 +8,6 @@
 
 import Foundation
 
-@objcMembers
 public class EFQRCode {
     
 }

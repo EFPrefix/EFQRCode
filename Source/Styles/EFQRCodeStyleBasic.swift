@@ -134,7 +134,7 @@ public class EFStyleBasicParamsPosition {
     }
 }
 
-public enum EFStyleBasicParamsDataStyle: Int, CaseIterable {
+public enum EFStyleBasicParamsDataStyle: CaseIterable {
     case rectangle
     case round
     case roundedRectangle

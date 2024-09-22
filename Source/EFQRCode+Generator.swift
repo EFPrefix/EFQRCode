@@ -26,9 +26,9 @@ import SwiftDraw
 
 //todo
 //1. 各种样式的透明支持
+//2. 各种样式的图片的 mode
 public extension EFQRCode {
     
-    @objcMembers
     class Generator {
         public let qrcode: QRCode
         public let style: EFQRCodeStyleBase
