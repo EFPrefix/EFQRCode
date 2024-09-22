@@ -182,8 +182,8 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         let moduleCount: Int = qrcode.model.moduleCount
         if let quietzone = params.backdrop.quietzone {
             return CGRect(
-                x: -moduleCount.cgFloat * (1 + quietzone.left),
-                y: -moduleCount.cgFloat * (quietzone.top - 0.5),
+                x: -moduleCount.cgFloat * (quietzone.left + 1),
+                y: -moduleCount.cgFloat * (quietzone.top + 0.5),
                 width: moduleCount.cgFloat * (quietzone.left + 2 + quietzone.right),
                 height: moduleCount.cgFloat * (quietzone.top + 2 + quietzone.bottom)
             )
