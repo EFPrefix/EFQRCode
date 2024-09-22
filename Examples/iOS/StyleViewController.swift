@@ -76,12 +76,12 @@ class StyleViewController: UIViewController, UITableViewDelegate, UITableViewDat
         "Basic",
         "Bubble",
         "DSJ",
-        "Line",
         "Function",
-        "RandomRectangle",
-        "ResampleImage",
         "Image",
         "ImageFill",
+        "Line",
+        "RandomRectangle",
+        "ResampleImage",
         "2.5D"
     ]
     
@@ -94,12 +94,12 @@ class StyleViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 BasicGeneratorController.self,
                 BubbleGeneratorController.self,
                 DSJGeneratorController.self,
-                LineGeneratorController.self,
                 FunctionGeneratorController.self,
-                RandomRectangleGeneratorController.self,
-                ResampleImageGeneratorController.self,
                 ImageGeneratorController.self,
                 ImageFillGeneratorController.self,
+                LineGeneratorController.self,
+                RandomRectangleGeneratorController.self,
+                ResampleImageGeneratorController.self,
                 D25GeneratorController.self,
             ][indexPath.row].init(),
             animated: true
