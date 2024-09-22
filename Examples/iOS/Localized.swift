@@ -52,6 +52,8 @@ enum Localized {
         static let maskAlpha = NSLocalizedString("mask Color Alpha", comment: "Configuration prompt title")
         static let dataColor = NSLocalizedString("Data Color", comment: "Configuration prompt title")
         static let dataColorAlpha = NSLocalizedString("Data Color Alpha", comment: "Configuration prompt title")
+        static let dataCenterColor = NSLocalizedString("Data Center Color", comment: "Configuration prompt title")
+        static let dataCenterColorAlpha = NSLocalizedString("Data Center Color Alpha", comment: "Configuration prompt title")
         static let dataDarkColor = NSLocalizedString("Data Dark Color", comment: "Configuration prompt title")
         static let dataDarkColorAlpha = NSLocalizedString("Data Dark Color Alpha", comment: "Configuration prompt title")
         static let dataLightColor = NSLocalizedString("Data Light Color", comment: "Configuration prompt title")
