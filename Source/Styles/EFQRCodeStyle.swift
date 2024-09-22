@@ -25,25 +25,25 @@ public class EFStyleParams {
     }
 }
 
-public enum EFStyleParamAlignStyle: CaseIterable {
+public enum EFStyleParamAlignStyle: Int, CaseIterable {
     case rectangle
     case round
     case roundedRectangle
 }
 
-public enum EFStyleParamTimingStyle: CaseIterable {
+public enum EFStyleParamTimingStyle: Int, CaseIterable {
     case rectangle
     case round
     case roundedRectangle
 }
 
-public enum EFStyleParamsDataStyle: CaseIterable {
+public enum EFStyleParamsDataStyle: Int, CaseIterable {
     case rectangle
     case round
     case roundedRectangle
 }
 
-public enum EFStyleParamsPositionStyle: CaseIterable {
+public enum EFStyleParamsPositionStyle: Int, CaseIterable {
     case rectangle
     case round
     case roundedRectangle

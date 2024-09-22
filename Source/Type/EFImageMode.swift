@@ -28,13 +28,13 @@ import Foundation
 import CoreGraphics
 
 /// Options to specify how watermark position and size for QR code.
-@objc public enum EFImageMode: Int {
+public enum EFImageMode: Int, CaseIterable {
     /// The option to scale the watermark to fit the size of QR code by changing the aspect ratio of the watermark if necessary.
-    case scaleToFill        = 0
+    case scaleToFill
     /// The option to scale the watermark to fit the size of the QR code by maintaining the aspect ratio. Any remaining area of the QR code uses the background color.
-    case scaleAspectFit     = 1
+    case scaleAspectFit
     /// The option to scale the watermark to fill the size of the QR code. Some portion of the watermark may be clipped to fill the QR code.
-    case scaleAspectFill    = 2
+    case scaleAspectFill
     
     // MARK: - Utilities
     

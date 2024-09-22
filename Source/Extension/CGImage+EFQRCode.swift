@@ -89,12 +89,13 @@ extension CGImage {
             width: newWidth,
             height: newHeight,
             bitsPerComponent: 8,
-            bytesPerRow: newWidth * 4,
+            bytesPerRow: 4 * newWidth,
             space: CGColorSpaceCreateDeviceRGB(),
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         ) else {
             throw EFQRCodeError.cannotCreateCGContext
         }
+        context.clear(CGRect(origin: .zero, size: rect.size))
         let drawRect: CGRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: imageWidth, height: imageHeight)
         context.draw(self, in: drawRect)
         guard let imageResized = context.makeImage() else {
@@ -113,7 +114,7 @@ extension CGImage {
             width: newWidth,
             height: newHeight,
             bitsPerComponent: 8,
-            bytesPerRow: newWidth * 4,
+            bytesPerRow: 4 * newWidth,
             space: CGColorSpaceCreateDeviceRGB(),
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         ) else {
