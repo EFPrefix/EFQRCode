@@ -49,6 +49,14 @@ class BasicGeneratorController: UIViewController, UITextViewDelegate, UITableVie
     var iconAlpha: CGFloat = 1
     var iconBorderColor: UIColor = UIColor.white
     var iconBorderAlpha: CGFloat = 1
+    // Backdrop
+    var backdropCornerRadius: CGFloat = 0
+    var backdropColor: UIColor = UIColor.white
+    var backdropColorAlpha: CGFloat = 1
+    var backdropImage: CGImage? = nil
+    var backdropImageAlpha: CGFloat = 1
+    var backdropImageMode: EFImageMode = .scaleAspectFill
+    var backdropQuietzone: CGFloat? = nil
 }
 
 extension BasicGeneratorController {
@@ -178,6 +186,20 @@ extension BasicGeneratorController {
             return nil
         }()
         
+        let backdropImage: EFStyleParamBackdropImage? = {
+            if let backdropImage = self.backdropImage {
+                return EFStyleParamBackdropImage(image: backdropImage, alpha: backdropImageAlpha, mode: backdropImageMode)
+            }
+            return nil
+        }()
+        
+        let backdropQuietzone: EFEdgeInsets? = {
+            if let backdropQuietzone = self.backdropQuietzone {
+                return EFEdgeInsets(all: backdropQuietzone)
+            }
+            return nil
+        }()
+        
         do {
             let generator = try EFQRCode.Generator(
                 content,
@@ -186,6 +208,12 @@ extension BasicGeneratorController {
                 style: EFQRCodeStyle.basic(
                     params: EFStyleBasicParams(
                         icon: paramIcon,
+                        backdrop: EFStyleParamBackdrop(
+                            cornerRadius: backdropCornerRadius,
+                            color: backdropColor.withAlphaComponent(backdropColorAlpha).cgColor,
+                            image: backdropImage,
+                            quietzone: backdropQuietzone
+                        ),
                         position: EFStyleBasicParamsPosition(
                             style: positionStyle,
                             size: positionThickness,
@@ -415,7 +443,7 @@ extension BasicGeneratorController {
         chooseFromList(title: Localized.Title.alignColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
             
-            self.positionAlpha = result
+            self.alignColorAlpha = result
             self.refresh()
         }
     }
@@ -576,6 +604,125 @@ extension BasicGeneratorController {
             self.refresh()
         }
     }
+    
+    // Backdrop
+    func chooseBackdropCornerRadius() {
+        chooseFromList(title: Localized.Title.backdropCornerRadius, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.backdropCornerRadius = result
+            self.refresh()
+        }
+    }
+    
+    func chooseBackdropColor() {
+        let alert = UIAlertController(
+            title: Localized.Title.backdropColor,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.custom, style: .default) {
+                [weak self] _ in
+                self?.customColor(5)
+            }
+        )
+        #endif
+        for color in Localized.Parameters.colors {
+            alert.addAction(
+                UIAlertAction(title: color.name, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    self.backdropColor = color.color
+                    self.refresh()
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseBackdropColorAlpha() {
+        chooseFromList(title: Localized.Title.alignColorAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.backdropColorAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseBackdropImage() {
+        let alert = UIAlertController(
+            title: Localized.Title.backdropImage,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.cancel, style: .cancel)
+        )
+        alert.addAction(
+            UIAlertAction(title: Localized.none, style: .default) {
+                [weak self] _ in
+                guard let self = self else { return }
+                self.backdropImage = nil
+                self.refresh()
+            }
+        )
+        #if os(iOS)
+        alert.addAction(
+            UIAlertAction(title: Localized.chooseImage, style: .default) {
+                [weak self] _ in
+                guard let self = self else { return }
+                self.chooseImageFromAlbum(title: Localized.Title.backdropImage)
+                self.refresh()
+            }
+        )
+        #endif
+        for (index, icon) in Localized.Parameters.watermarkNames.enumerated() {
+            alert.addAction(
+                UIAlertAction(title: icon, style: .default) {
+                    [weak self] _ in
+                    guard let self = self else { return }
+                    
+                    if let cgImage = UIImage(named: Localized.Parameters.watermarkNames[index])?.cgImage {
+                        self.backdropImage = cgImage
+                        self.refresh()
+                    }
+                }
+            )
+        }
+        popActionSheet(alert: alert)
+    }
+    
+    func chooseBackdropImageAlpha() {
+        chooseFromList(title: Localized.Title.backdropImageAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.backdropImageAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseBackdropImageMode() {
+        chooseFromEnum(title: Localized.Title.backdropImageMode, type: EFImageMode.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.backdropImageMode = result
+            self.refresh()
+        }
+    }
+    
+    func chooseBackdropQuietzone() {
+        chooseFromList(title: Localized.Title.backdropQuietzone, items: ["nil", "0", "0.25", "0.5", "0.75", "1"]) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.backdropQuietzone = result.cgFloat
+            self.refresh()
+        }
+    }
 
     // MARK: - UITableViewDelegate & UITableViewDataSource
     static let titles = [
@@ -601,6 +748,13 @@ extension BasicGeneratorController {
         Localized.Title.iconAlpha,
         Localized.Title.iconBorderColor,
         Localized.Title.iconBorderAlpha,
+        Localized.Title.backdropCornerRadius,
+        Localized.Title.backdropColor,
+        Localized.Title.backdropColorAlpha,
+        Localized.Title.backdropImage,
+        Localized.Title.backdropImageAlpha,
+        Localized.Title.backdropImageMode,
+        Localized.Title.backdropQuietzone
     ]
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -627,7 +781,14 @@ extension BasicGeneratorController {
             chooseIconScale,
             chooseIconAlpha,
             chooseIconBorderColor,
-            chooseIconBorderColorAlpha
+            chooseIconBorderColorAlpha,
+            chooseBackdropCornerRadius,
+            chooseBackdropColor,
+            chooseBackdropColorAlpha,
+            chooseBackdropImage,
+            chooseBackdropImageAlpha,
+            chooseBackdropImageMode,
+            chooseBackdropQuietzone
         ][indexPath.row]()
     }
 
@@ -674,7 +835,14 @@ extension BasicGeneratorController {
             "\(iconScale)",
             "\(iconAlpha)",
             "", // iconBorderColor
-            "\(iconBorderAlpha)"
+            "\(iconBorderAlpha)",
+            "\(backdropCornerRadius)",
+            "", // backdropColor
+            "\(backdropColorAlpha)",
+            "", // backdropImage
+            "\(backdropImageAlpha)",
+            "\(backdropImageMode)",
+            "\(String(describing: backdropQuietzone))"
         ]
 
         let cell = UITableViewCell(style: detailArray[indexPath.row] == "" ? .default : .value1, reuseIdentifier: nil)
@@ -722,6 +890,10 @@ extension BasicGeneratorController {
                 }
             case 20:
                 rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
+            case 23:
+                rightImageView.backgroundColor = backdropColor.withAlphaComponent(backdropColorAlpha)
+            case 25:
+                rightImageView.image = backdropImage.flatMap { UIImage(cgImage: $0) }
             default:
                 break
             }
@@ -743,7 +915,7 @@ extension BasicGeneratorController: UIColorPickerViewControllerDelegate {
 
         let colorPicker = UIColorPickerViewController()
         colorPicker.delegate = self
-        colorPicker.selectedColor = [dataColor, positionColor, alignColor, timingColor, iconBorderColor][EFColorPicker.index]
+        colorPicker.selectedColor = [dataColor, positionColor, alignColor, timingColor, iconBorderColor, backdropColor][EFColorPicker.index]
         colorPicker.supportsAlpha = false
         present(colorPicker, animated: true)
     }
@@ -771,6 +943,9 @@ extension BasicGeneratorController: UIColorPickerViewControllerDelegate {
         case 4:
             iconBorderColor = color
             break
+        case 5:
+            backdropColor = color
+            break
         default:
             break
         }
@@ -797,25 +972,37 @@ extension BasicGeneratorController: UIImagePickerControllerDelegate {
             print(Localized.errored)
         }
 
-        if let finalImage = finalImage?.cgImage {
-            icon = .static(image: finalImage)
-        } else {
-            icon = nil
-        }
-        
-        var images = [Ref<EFImage?>]()
-        if let imageUrl = info[.referenceURL] as? URL,
-            let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).lastObject {
-            images = selectedAlbumPhotosIncludingGifWithPHAssets(assets: [asset])
-        }
-        if let tryGIF = images.first(where: { $0.value?.isGIF == true }) {
-            if case .gif(let data) = tryGIF.value {
-                if let animatedImage = AnimatedImage(data: data, format: .gif) {
-                    let frames = animatedImage.frames.compactMap { return $0 }
-                    let frameDelays = animatedImage.frameDelays.map({ $0.cgFloat })
-                    self.icon = .animated(images: frames, imageDelays: frameDelays)
+        let imageContent: EFStyleParamImage? = {
+            var content: EFStyleParamImage? = nil
+            if let finalImage = finalImage?.cgImage {
+                content = .static(image: finalImage)
+            } else {
+                content = nil
+            }
+            var images = [Ref<EFImage?>]()
+            if let imageUrl = info[.referenceURL] as? URL,
+                let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).lastObject {
+                images = selectedAlbumPhotosIncludingGifWithPHAssets(assets: [asset])
+            }
+            if let tryGIF = images.first(where: { $0.value?.isGIF == true }) {
+                if case .gif(let data) = tryGIF.value {
+                    if let animatedImage = AnimatedImage(data: data, format: .gif) {
+                        let frames = animatedImage.frames.compactMap { return $0 }
+                        let frameDelays = animatedImage.frameDelays.map({ $0.cgFloat })
+                        content = .animated(images: frames, imageDelays: frameDelays)
+                    }
                 }
             }
+            return content
+        }()
+        
+        switch titleCurrent {
+        case Localized.Title.icon:
+            icon = imageContent
+        case Localized.Title.backdropImage:
+            backdropImage = imageContent?.firstImage
+        default:
+            break
         }
         refresh()
 

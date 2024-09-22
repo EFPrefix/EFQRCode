@@ -83,7 +83,7 @@ public class EFStyleLineParamsLine {
     }
 }
 
-public enum EFStyleLineParamsLineDirection: CaseIterable {
+public enum EFStyleLineParamsLineDirection: Int, CaseIterable {
     case horizontal
     case vertical
     case cross

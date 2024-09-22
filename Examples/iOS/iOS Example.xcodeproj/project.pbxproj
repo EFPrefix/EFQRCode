@@ -15,6 +15,7 @@
 		120B78411EA39E1B00D34440 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B78401EA39E1B00D34440 /* AppDelegate.swift */; };
 		120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; };
 		120B785E1EA3AA1100D34440 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 120B784E1EA3A9E100D34440 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		12327A5A2C9E1A59001B1CD6 /* EFStyleParamImage+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12327A592C9E1A59001B1CD6 /* EFStyleParamImage+Example.swift */; };
 		12399E642A4389F400BB789F /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12399E632A4389F400BB789F /* MoreViewController.swift */; };
 		125E59F42A561B4A00B508F2 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59F32A561B4A00B508F2 /* StyleViewController.swift */; };
 		125E59FD2A56A06400B508F2 /* BasicGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */; };
@@ -191,6 +192,7 @@
 		120B78091EA3977300D34440 /* UIImage+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Example.swift"; sourceTree = SOURCE_ROOT; };
 		120B78401EA39E1B00D34440 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
+		12327A592C9E1A59001B1CD6 /* EFStyleParamImage+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFStyleParamImage+Example.swift"; sourceTree = "<group>"; };
 		12399E632A4389F400BB789F /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		125E59F32A561B4A00B508F2 /* StyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGeneratorController.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			children = (
 				120B78091EA3977300D34440 /* UIImage+Example.swift */,
 				12981D891F99F75D00156E1E /* CGFloat+Example.swift */,
+				12327A592C9E1A59001B1CD6 /* EFStyleParamImage+Example.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -705,6 +708,7 @@
 				D2FAEBD12749731F00DFA959 /* PointStyle.swift in Sources */,
 				12399E642A4389F400BB789F /* MoreViewController.swift in Sources */,
 				12DCACA42A58F000009B5414 /* ResampleImageGeneratorController.swift in Sources */,
+				12327A5A2C9E1A59001B1CD6 /* EFStyleParamImage+Example.swift in Sources */,
 				528EFA7422965AC80026663C /* Localized.swift in Sources */,
 				12DCACAC2A5BCB28009B5414 /* RecognizerController.swift in Sources */,
 			);
