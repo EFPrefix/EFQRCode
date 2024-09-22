@@ -830,6 +830,9 @@ extension FunctionGeneratorController: UIColorPickerViewControllerDelegate {
         case 3:
             iconBorderColor = color
             break
+        case 4:
+            backdropColor = color
+            break
         default:
             break
         }
@@ -856,25 +859,37 @@ extension FunctionGeneratorController: UIImagePickerControllerDelegate {
             print(Localized.errored)
         }
 
-        if let finalImage = finalImage?.cgImage {
-            icon = .static(image: finalImage)
-        } else {
-            icon = nil
-        }
-        
-        var images = [Ref<EFImage?>]()
-        if let imageUrl = info[.referenceURL] as? URL,
-            let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).lastObject {
-            images = selectedAlbumPhotosIncludingGifWithPHAssets(assets: [asset])
-        }
-        if let tryGIF = images.first(where: { $0.value?.isGIF == true }) {
-            if case .gif(let data) = tryGIF.value {
-                if let animatedImage = AnimatedImage(data: data, format: .gif) {
-                    let frames = animatedImage.frames.compactMap { return $0 }
-                    let frameDelays = animatedImage.frameDelays.map({ $0.cgFloat })
-                    self.icon = .animated(images: frames, imageDelays: frameDelays)
+        let imageContent: EFStyleParamImage? = {
+            var content: EFStyleParamImage? = nil
+            if let finalImage = finalImage?.cgImage {
+                content = .static(image: finalImage)
+            } else {
+                content = nil
+            }
+            var images = [Ref<EFImage?>]()
+            if let imageUrl = info[.referenceURL] as? URL,
+                let asset = PHAsset.fetchAssets(withALAssetURLs: [imageUrl], options: nil).lastObject {
+                images = selectedAlbumPhotosIncludingGifWithPHAssets(assets: [asset])
+            }
+            if let tryGIF = images.first(where: { $0.value?.isGIF == true }) {
+                if case .gif(let data) = tryGIF.value {
+                    if let animatedImage = AnimatedImage(data: data, format: .gif) {
+                        let frames = animatedImage.frames.compactMap { return $0 }
+                        let frameDelays = animatedImage.frameDelays.map({ $0.cgFloat })
+                        content = .animated(images: frames, imageDelays: frameDelays)
+                    }
                 }
             }
+            return content
+        }()
+        
+        switch titleCurrent {
+        case Localized.Title.icon:
+            icon = imageContent
+        case Localized.Title.backdropImage:
+            backdropImage = imageContent?.firstImage
+        default:
+            break
         }
         refresh()
 
