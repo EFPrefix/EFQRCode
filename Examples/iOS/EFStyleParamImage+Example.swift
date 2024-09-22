@@ -16,7 +16,7 @@ extension EFStyleParamImage {
         switch self {
         case .static(let image):
             return image
-        case .animated(let images, let imageDelays):
+        case .animated(let images, _):
             return images[0]
         }
     }

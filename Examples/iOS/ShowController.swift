@@ -49,6 +49,12 @@ class ShowController: UIViewController {
     let copyButton = UIButton(type: .system)
     
     func setupViews() {
+        let backgroundImageView = UIImageView()
+        backgroundImageView.image = UIImage(named: "transparentHolder")
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
+        view.addSubview(backgroundImageView)
+        
         #if os(iOS)
         if #available(iOS 11.0, *) {
             imageView.accessibilityIgnoresInvertColors = true
@@ -60,8 +66,12 @@ class ShowController: UIViewController {
         imageView.layer.borderWidth = 1
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
-        imageView.backgroundColor = UIColor.white
+        imageView.backgroundColor = UIColor.clear
         view.addSubview(imageView)
+        backgroundImageView.snp.makeConstraints {
+            (make) in
+            make.left.right.top.bottom.equalTo(imageView)
+        }
         
         backButton.setTitle(Localized.back, for: .normal)
         backButton.setTitleColor(.white, for: .normal)
