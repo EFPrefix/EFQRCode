@@ -12,7 +12,6 @@ import CoreImage
 public extension EFQRCode {
     
     /// Class for recognizing QR code contents from images.
-    @objcMembers
     class Recognizer: NSObject {
         /// The QR code to recognize.
         public var image: CGImage {

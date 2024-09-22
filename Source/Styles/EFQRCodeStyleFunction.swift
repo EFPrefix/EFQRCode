@@ -86,7 +86,7 @@ public enum EFStyleFunctionParamsDataFunction {
     case circle(dataColor: CGColor = EFStyleFunctionParamsDataFunction.defaultColor, circleColor: CGColor = EFStyleFunctionParamsDataFunction.defaultColor)
 }
 
-public enum EFStyleFunctionParamsDataStyle: Int, CaseIterable {
+public enum EFStyleFunctionParamsDataStyle: CaseIterable {
     case rectangle
     case round
 }

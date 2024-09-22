@@ -12,7 +12,7 @@ import CoreGraphics
 import QRCodeSwift
 
 /// Levels of tolerance.
-public enum EFCorrectionLevel: Int, CaseIterable, CustomStringConvertible {
+public enum EFCorrectionLevel: CaseIterable {
     /// L 7%.
     case l
     /// M 15%.
@@ -21,19 +21,6 @@ public enum EFCorrectionLevel: Int, CaseIterable, CustomStringConvertible {
     case q
     /// H 30%.
     case h
-    
-    public var description: String {
-        switch self {
-        case .l:
-            return "l"
-        case .m:
-            return "m"
-        case .q:
-            return "q"
-        case .h:
-            return "h"
-        }
-    }
 }
 
 extension EFCorrectionLevel {

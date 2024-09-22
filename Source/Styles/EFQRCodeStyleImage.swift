@@ -63,7 +63,7 @@ public class EFStyleImageParams: EFStyleParams {
     }
 }
 
-public enum EFStyleImageParamAlignStyle: Int, CaseIterable {
+public enum EFStyleImageParamAlignStyle: CaseIterable {
     case none
     case rectangle
     case round
@@ -93,7 +93,7 @@ public class EFStyleImageParamsAlign {
     }
 }
 
-public enum EFStyleImageParamTimingStyle: Int, CaseIterable {
+public enum EFStyleImageParamTimingStyle: CaseIterable {
     case none
     case rectangle
     case round
