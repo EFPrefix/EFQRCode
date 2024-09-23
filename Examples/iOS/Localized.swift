@@ -109,6 +109,7 @@ enum Localized {
         static let watermarkContrast = NSLocalizedString("Watermark Contrast", comment: "Configuration prompt title")
         static let watermarkExposure = NSLocalizedString("Watermark Exposure", comment: "Configuration prompt title")
         static let watermarkAlpha = NSLocalizedString("Watermark Alpha", comment: "Configuration prompt title")
+        static let imageMode = NSLocalizedString("Image Mode", comment: "Configuration prompt title")
         static let foregroundPointOffset = NSLocalizedString("Foreground Point Offset", comment: "Configuration prompt title")
         static let allowTransparent = NSLocalizedString("Allow Transparent", comment: "Configuration prompt title")
         static let binarizationThreshold = NSLocalizedString("Binarization Threshold", comment: "Configuration prompt title")

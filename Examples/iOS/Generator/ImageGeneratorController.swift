@@ -30,6 +30,7 @@ class ImageGeneratorController: UIViewController, UITextViewDelegate, UITableVie
     // MARK: - Param
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var image: EFStyleParamImage? = nil
+    var imageMode: EFImageMode = .scaleAspectFill
     var imageAlpha: CGFloat = 1
     var dataStyle: EFStyleParamsDataStyle = .rectangle
     var dataDarkColor: UIColor = UIColor.black
@@ -199,7 +200,7 @@ extension ImageGeneratorController {
         
         let paramWatermark: EFStyleImageParamsImage? = {
             if let image = self.image {
-                return EFStyleImageParamsImage(image: image, alpha: imageAlpha)
+                return EFStyleImageParamsImage(image: image, mode: imageMode, alpha: imageAlpha)
             }
             return nil
         }()
@@ -574,6 +575,15 @@ extension ImageGeneratorController {
             guard let self = self else { return }
             
             self.imageAlpha = result
+            self.refresh()
+        }
+    }
+    
+    func chooseImageMode() {
+        chooseFromEnum(title: Localized.Title.imageMode, type: EFImageMode.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.imageMode = result
             self.refresh()
         }
     }
@@ -959,6 +969,7 @@ extension ImageGeneratorController {
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.watermark,
+        Localized.Title.imageMode,
         Localized.Title.watermarkAlpha,
         Localized.Title.dataStyle,
         Localized.Title.dataDarkColor,
@@ -1003,6 +1014,7 @@ extension ImageGeneratorController {
         [
             chooseInputCorrectionLevel,
             chooseWatermark,
+            chooseImageMode,
             chooseWatermarkAlpha,
             chooseDataStyle,
             chooseDataDarkColor,
@@ -1067,6 +1079,7 @@ extension ImageGeneratorController {
         let detailArray = [
             "\(inputCorrectionLevel)",
             "", // watermark
+            "\(imageMode)",
             "\(imageAlpha)",
             "\(dataStyle)",
             "", // dataDarkColor
@@ -1141,23 +1154,23 @@ extension ImageGeneratorController {
                     rightImageView.image = nil
                     break
                 }
-            case 4:
+            case 5:
                 rightImageView.backgroundColor = dataDarkColor.withAlphaComponent(dataDarkColorAlpha)
-            case 6:
+            case 7:
                 rightImageView.backgroundColor = dataLightColor.withAlphaComponent(dataLightColorAlpha)
-            case 11:
+            case 12:
                 rightImageView.backgroundColor = positionDarkColor.withAlphaComponent(positionDarkAlpha)
-            case 13:
+            case 14:
                 rightImageView.backgroundColor = positionLightColor.withAlphaComponent(positionLightAlpha)
-            case 17:
+            case 18:
                 rightImageView.backgroundColor = alignDarkColor.withAlphaComponent(alignDarkColorAlpha)
-            case 19:
+            case 20:
                 rightImageView.backgroundColor = alignLightColor.withAlphaComponent(alignLightColorAlpha)
-            case 23:
+            case 24:
                 rightImageView.backgroundColor = timingDarkColor.withAlphaComponent(timingDarkColorAlpha)
-            case 25:
+            case 26:
                 rightImageView.backgroundColor = timingLightColor.withAlphaComponent(timingLightColorAlpha)
-            case 27:
+            case 28:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -1169,11 +1182,11 @@ extension ImageGeneratorController {
                     rightImageView.image = nil
                     break
                 }
-            case 30:
+            case 31:
                 rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
-            case 33:
+            case 34:
                 rightImageView.backgroundColor = backdropColor.withAlphaComponent(backdropColorAlpha)
-            case 35:
+            case 36:
                 rightImageView.image = backdropImage.flatMap { UIImage(cgImage: $0) }
             default:
                 break
