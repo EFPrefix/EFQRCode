@@ -30,6 +30,7 @@ class ImageFillGeneratorController: UIViewController, UITextViewDelegate, UITabl
     // MARK: - Param
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var image: EFStyleParamImage? = nil
+    var imageMode: EFImageMode = .scaleAspectFill
     var imageAlpha: CGFloat = 1
     var backgroundColor: UIColor = UIColor.white
     var backgroundAlpha: CGFloat = 1
@@ -179,7 +180,7 @@ extension ImageFillGeneratorController {
         
         let paramWatermark: EFStyleImageFillParamsImage? = {
             if let image = self.image {
-                return EFStyleImageFillParamsImage(image: image, alpha: imageAlpha)
+                return EFStyleImageFillParamsImage(image: image, mode: imageMode, alpha: imageAlpha)
             }
             return nil
         }()
@@ -452,6 +453,15 @@ extension ImageFillGeneratorController {
         popActionSheet(alert: alert)
     }
     
+    func chooseImageMode() {
+        chooseFromEnum(title: Localized.Title.imageMode, type: EFImageMode.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.imageMode = result
+            self.refresh()
+        }
+    }
+    
     func chooseWatermarkAlpha() {
         chooseFromList(title: Localized.Title.watermarkAlpha, items: [0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
@@ -611,6 +621,7 @@ extension ImageFillGeneratorController {
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.watermark,
+        Localized.Title.imageMode,
         Localized.Title.watermarkAlpha,
         Localized.Title.backgroundColor,
         Localized.Title.backgroundColorAlpha,
@@ -635,6 +646,7 @@ extension ImageFillGeneratorController {
         [
             chooseInputCorrectionLevel,
             chooseWatermark,
+            chooseImageMode,
             chooseWatermarkAlpha,
             chooseBackgroundColor,
             chooseBackgroundAlpha,
@@ -679,6 +691,7 @@ extension ImageFillGeneratorController {
         let detailArray = [
             "\(inputCorrectionLevel)",
             "", // watermark
+            "\(imageMode)",
             "\(imageAlpha)",
             "", // backgroundColor
             "\(backgroundAlpha)",
@@ -733,11 +746,11 @@ extension ImageFillGeneratorController {
                     rightImageView.image = nil
                     break
                 }
-            case 3:
+            case 4:
                 rightImageView.backgroundColor = backgroundColor.withAlphaComponent(backgroundAlpha)
-            case 5:
+            case 6:
                 rightImageView.backgroundColor = maskColor.withAlphaComponent(maskAlpha)
-            case 7:
+            case 8:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -749,11 +762,11 @@ extension ImageFillGeneratorController {
                     rightImageView.image = nil
                     break
                 }
-            case 10:
+            case 11:
                 rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconAlpha)
-            case 13:
+            case 14:
                 rightImageView.backgroundColor = backdropColor.withAlphaComponent(backdropColorAlpha)
-            case 15:
+            case 16:
                 rightImageView.image = backdropImage.flatMap { UIImage(cgImage: $0) }
             default:
                 break

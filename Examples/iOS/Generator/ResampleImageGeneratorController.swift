@@ -28,6 +28,7 @@ class ResampleImageGeneratorController: UIViewController, UITextViewDelegate, UI
     // MARK: - Param
     var inputCorrectionLevel: EFCorrectionLevel = .h
     var image: EFStyleParamImage? = nil
+    var imageMode: EFImageMode = .scaleAspectFill
     var imageContrast: CGFloat = 0
     var imageExposure: CGFloat = 0
     var positionStyle: EFStyleParamsPositionStyle = .rectangle
@@ -190,7 +191,7 @@ extension ResampleImageGeneratorController {
         
         let paramWatermark: EFStyleResampleImageParamsImage? = {
             if let image = self.image {
-                return EFStyleResampleImageParamsImage(image: image, contrast: imageContrast, exposure: imageExposure)
+                return EFStyleResampleImageParamsImage(image: image, mode: imageMode, contrast: imageContrast, exposure: imageExposure)
             }
             return nil
         }()
@@ -638,6 +639,15 @@ extension ResampleImageGeneratorController {
         popActionSheet(alert: alert)
     }
     
+    func chooseImageMode() {
+        chooseFromEnum(title: Localized.Title.imageMode, type: EFImageMode.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.imageMode = result
+            self.refresh()
+        }
+    }
+    
     func chooseWatermarkContrast() {
         chooseFromList(title: Localized.Title.watermarkContrast, items: [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1]) { [weak self] result in
             guard let self = self else { return }
@@ -797,6 +807,7 @@ extension ResampleImageGeneratorController {
     static let titles = [
         Localized.Title.inputCorrectionLevel,
         Localized.Title.watermark,
+        Localized.Title.imageMode,
         Localized.Title.watermarkContrast,
         Localized.Title.watermarkExposure,
         Localized.Title.dataColor,
@@ -834,6 +845,7 @@ extension ResampleImageGeneratorController {
         [
             chooseInputCorrectionLevel,
             chooseWatermark,
+            chooseImageMode,
             chooseWatermarkContrast,
             chooseWatermarkExposure,
             chooseDataColor,
@@ -891,6 +903,7 @@ extension ResampleImageGeneratorController {
         let detailArray = [
             "\(inputCorrectionLevel)",
             "", // watermark
+            "\(imageMode)",
             "\(imageContrast)",
             "\(imageExposure)",
             "", // dataColor
@@ -958,15 +971,15 @@ extension ResampleImageGeneratorController {
                     rightImageView.image = nil
                     break
                 }
-            case 4:
+            case 5:
                 rightImageView.backgroundColor = dataColor.withAlphaComponent(dataAlpha)
-            case 8:
+            case 9:
                 rightImageView.backgroundColor = positionColor.withAlphaComponent(positionAlpha)
-            case 12:
+            case 13:
                 rightImageView.backgroundColor = alignColor.withAlphaComponent(alignColorAlpha)
-            case 17:
+            case 18:
                 rightImageView.backgroundColor = timingColor.withAlphaComponent(timingColorAlpha)
-            case 20:
+            case 21:
                 switch icon {
                 case .static(let image):
                     rightImageView.image = UIImage(cgImage: image)
@@ -978,11 +991,11 @@ extension ResampleImageGeneratorController {
                     rightImageView.image = nil
                     break
                 }
-            case 23:
+            case 24:
                 rightImageView.backgroundColor = iconBorderColor.withAlphaComponent(iconBorderAlpha)
-            case 26:
+            case 27:
                 rightImageView.backgroundColor = backdropColor.withAlphaComponent(backdropColorAlpha)
-            case 28:
+            case 29:
                 rightImageView.image = backdropImage.flatMap { UIImage(cgImage: $0) }
             default:
                 break

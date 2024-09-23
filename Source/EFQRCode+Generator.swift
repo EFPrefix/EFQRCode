@@ -26,7 +26,6 @@ import SwiftDraw
 
 //todo
 //1. 各种样式的透明支持,todo: image,imagefill,resampleimage
-//2. 各种样式的图片的 mode
 public extension EFQRCode {
     
     class Generator {
