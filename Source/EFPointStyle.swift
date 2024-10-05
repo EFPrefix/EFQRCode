@@ -33,21 +33,21 @@ import CoreGraphics
     /// - Parameters:
     ///   - context: the context to draw in.
     ///   - rect: the boundaries of the point to draw.
-    ///   - isStatic: true if it is recommended to use a square instead of current style.
-    func fillRect(context: CGContext, rect: CGRect, isStatic: Bool)
+    ///   - patternType: the type of static point being drawn, it is recommended to use a square if the pattern is not `.none`
+    func fillRect(context: CGContext, rect: CGRect, patternType: EFPointPatternType)
 }
 
 /// Drawing classical look and feel QR code foreground points 🔳.
 @objc public class EFSquarePointStyle: NSObject, EFPointStyle {
-    public func fillRect(context: CGContext, rect: CGRect, isStatic: Bool) {
+    public func fillRect(context: CGContext, rect: CGRect, patternType: EFPointPatternType) {
         context.fill(rect)
     }
 }
 
 /// Drawing rounded foreground points 🔘.
 @objc public class EFCirclePointStyle: NSObject, EFPointStyle {
-    public func fillRect(context: CGContext, rect: CGRect, isStatic: Bool) {
-        if isStatic {
+    public func fillRect(context: CGContext, rect: CGRect, patternType: EFPointPatternType) {
+        if patternType != .none {
             context.fill(rect)
         } else {
             context.fillEllipse(in: rect)
@@ -57,8 +57,8 @@ import CoreGraphics
 
 /// Drawing Sparkling foreground points ✨.
 @objc public class EFDiamondPointStyle: NSObject, EFPointStyle {
-    public func fillRect(context: CGContext, rect: CGRect, isStatic: Bool) {
-        if isStatic {
+    public func fillRect(context: CGContext, rect: CGRect, patternType: EFPointPatternType) {
+        if patternType != .none {
             context.fill(rect)
         } else {
             fillDiamond(context: context, rect: rect)

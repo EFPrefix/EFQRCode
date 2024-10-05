@@ -110,6 +110,10 @@
 		D2FAEBB92749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
 		D2FAEBBA2749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
 		D2FAEBBB2749720F00DFA959 /* EFPointStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */; };
+		D53C7D102CB1402100C2A40A /* EFPointPatternType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C7D0F2CB1402100C2A40A /* EFPointPatternType.swift */; };
+		D53C7D112CB1402100C2A40A /* EFPointPatternType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C7D0F2CB1402100C2A40A /* EFPointPatternType.swift */; };
+		D53C7D122CB1402100C2A40A /* EFPointPatternType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C7D0F2CB1402100C2A40A /* EFPointPatternType.swift */; };
+		D53C7D132CB1402100C2A40A /* EFPointPatternType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C7D0F2CB1402100C2A40A /* EFPointPatternType.swift */; };
 		F829C6B81A7A94F100A2CD59 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +182,7 @@
 		D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "European SEPA Money Transfer + Watermark.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2DF1DB8256EC4CF00EB6012 /* Basic B&W QR Code.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Basic B&W QR Code.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EFPointStyle.swift; sourceTree = "<group>"; };
+		D53C7D0F2CB1402100C2A40A /* EFPointPatternType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFPointPatternType.swift; sourceTree = "<group>"; };
 		F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8111E3E19A95C8B0040E7D1 /* EFQRCode iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EFQRCode iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +266,7 @@
 				12C0B701219C102C000545C9 /* EFIntSize.swift */,
 				12C0B706219C1046000545C9 /* EFInputCorrectionLevel.swift */,
 				D2FAEBB72749720F00DFA959 /* EFPointStyle.swift */,
+				D53C7D0F2CB1402100C2A40A /* EFPointPatternType.swift */,
 				12C0B6F2219C0F7D000545C9 /* EFQRCodeMode.swift */,
 				12C0B6FC219C0FD3000545C9 /* EFUIntPixel.swift */,
 				12664E9A1FA9CEAB00D56500 /* EFWatermarkMode.swift */,
@@ -722,6 +728,7 @@
 				12EE9E3C23863D6E00241C60 /* UIImage+.swift in Sources */,
 				12664ED11FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
 				12EE9E502386968F00241C60 /* NSColor+.swift in Sources */,
+				D53C7D122CB1402100C2A40A /* EFPointPatternType.swift in Sources */,
 				12664EB81FA9CED100D56500 /* CIImage+.swift in Sources */,
 				12C0B704219C102C000545C9 /* EFIntSize.swift in Sources */,
 				12C0B709219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
@@ -760,6 +767,7 @@
 				12EE9E3B23863D6E00241C60 /* UIImage+.swift in Sources */,
 				12664ED01FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
 				12EE9E4F2386968F00241C60 /* NSColor+.swift in Sources */,
+				D53C7D112CB1402100C2A40A /* EFPointPatternType.swift in Sources */,
 				12664EB71FA9CED100D56500 /* CIImage+.swift in Sources */,
 				12C0B703219C102C000545C9 /* EFIntSize.swift in Sources */,
 				12C0B708219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
@@ -789,6 +797,7 @@
 				D2265578256EA35600920D11 /* EFQRCode+ObjC.swift in Sources */,
 				12EE9E3D23863D6E00241C60 /* UIImage+.swift in Sources */,
 				5282BCBD1FF3903D00DFB36B /* EFQRCodeGenerator.swift in Sources */,
+				D53C7D132CB1402100C2A40A /* EFPointPatternType.swift in Sources */,
 				12EE9E512386968F00241C60 /* NSColor+.swift in Sources */,
 				5282BCB51FF3903D00DFB36B /* EFWatermarkMode.swift in Sources */,
 				5282BCB71FF3903D00DFB36B /* CGImage+.swift in Sources */,
@@ -818,6 +827,7 @@
 				12EE9E3A23863D6E00241C60 /* UIImage+.swift in Sources */,
 				12664ECF1FA9CEDD00D56500 /* EFQRCode.swift in Sources */,
 				12EE9E4E2386968F00241C60 /* NSColor+.swift in Sources */,
+				D53C7D102CB1402100C2A40A /* EFPointPatternType.swift in Sources */,
 				12664EB61FA9CED100D56500 /* CIImage+.swift in Sources */,
 				12C0B702219C102C000545C9 /* EFIntSize.swift in Sources */,
 				12C0B707219C1046000545C9 /* EFInputCorrectionLevel.swift in Sources */,
