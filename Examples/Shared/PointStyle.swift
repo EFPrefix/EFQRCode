@@ -28,7 +28,7 @@ import EFQRCode
 import CoreGraphics
 
 class StarPointStyle: EFPointStyle {
-    func fillRect(context: CGContext, rect: CGRect, isStatic: Bool) {
+    func fillRect(context: CGContext, rect: CGRect, patternType: EFPointPatternType) {
         let path = CGMutablePath()
         var points: [CGPoint] = []
         let radius = Float(rect.width / 2)

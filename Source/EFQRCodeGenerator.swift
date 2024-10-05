@@ -576,13 +576,13 @@ public class EFQRCodeGenerator: NSObject {
         size: EFIntSize
     ) -> CGImage? {
         let codeSize = codes.count
-        
+
         let scaleX = size.width.cgFloat / CGFloat(codeSize)
         let scaleY = size.height.cgFloat / CGFloat(codeSize)
         if scaleX < 1.0 || scaleY < 1.0 {
             print("Warning: Size too small.")
         }
-        
+
         var points = [CGPoint]()
         if let locations = getAlignmentPatternLocations(version: getVersion(size: codeSize - 2)) {
             for indexX in locations {
@@ -608,8 +608,8 @@ public class EFQRCodeGenerator: NSObject {
                     // CTM-90
                     let indexXCTM = indexY
                     let indexYCTM = codeSize - indexX - 1
-                    
-                    let isStaticPoint = isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points)
+
+                    let patternType = patternTypeFor(x: indexX, y: indexY, size: codeSize, APLPoints: points)
 
                     drawPoint(
                         context: context,
@@ -619,7 +619,7 @@ public class EFQRCodeGenerator: NSObject {
                             width: scaleX - 2 * pointOffset,
                             height: scaleY - 2 * pointOffset
                         ),
-                        isStatic: isStaticPoint
+                        patternType: patternType
                     )
                 }
             }
@@ -690,7 +690,9 @@ public class EFQRCodeGenerator: NSObject {
                     // CTM-90
                     let indexXCTM = indexY
                     let indexYCTM = codeSize - indexX - 1
-                    if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
+                    let patternType = patternTypeFor(x: indexX, y: indexY, size: codeSize, APLPoints: points)
+
+                    if patternType != .none {
                         drawPoint(
                             context: context,
                             rect: CGRect(
@@ -699,7 +701,7 @@ public class EFQRCodeGenerator: NSObject {
                                 width: pointWidthOriX,
                                 height: pointWidthOriY
                             ),
-                            isStatic: true
+                            patternType: patternType
                         )
                     } else {
                         drawPoint(
@@ -721,7 +723,9 @@ public class EFQRCodeGenerator: NSObject {
                     // CTM-90
                     let indexXCTM = indexY
                     let indexYCTM = codeSize - indexX - 1
-                    if isStatic(x: indexX, y: indexY, size: codeSize, APLPoints: points) {
+                    let patternType = patternTypeFor(x: indexX, y: indexY, size: codeSize, APLPoints: points)
+
+                    if patternType != .none {
                         drawPoint(
                             context: context,
                             rect: CGRect(
@@ -730,7 +734,7 @@ public class EFQRCodeGenerator: NSObject {
                                 width: pointWidthOriX - 2 * pointOffset,
                                 height: pointWidthOriY - 2 * pointOffset
                             ),
-                            isStatic: true
+                            patternType: patternType
                         )
                     } else {
                         drawPoint(
@@ -812,9 +816,9 @@ public class EFQRCodeGenerator: NSObject {
             )
         )
     }
-    
-    private func drawPoint(context: CGContext, rect: CGRect, isStatic: Bool = false) {
-        pointStyle.fillRect(context: context, rect: rect, isStatic: isStatic)
+
+    private func drawPoint(context: CGContext, rect: CGRect, patternType: EFPointPatternType = .none) {
+        pointStyle.fillRect(context: context, rect: rect, patternType: patternType)
     }
 
     private func createContext(size: EFIntSize) -> CGContext? {
@@ -886,22 +890,38 @@ public class EFQRCodeGenerator: NSObject {
         return imageCodes
     }
 
-    /// Special Points of QRCode
-    private func isStatic(x: Int, y: Int, size: Int, APLPoints: [CGPoint]) -> Bool {
+    private func patternTypeFor(x: Int, y: Int, size: Int, APLPoints: [CGPoint]) -> EFPointPatternType {
         // Empty border
         if x == 0 || y == 0 || x == (size - 1) || y == (size - 1) {
-            return true
+            return .border
         }
 
         // Finder Patterns
-        if (x <= 8 && y <= 8) || (x <= 8 && y >= (size - 9)) || (x >= (size - 9) && y <= 8) {
-            return true
+        if (x <= 8 && y <= 8) {
+            if 2...6 ~= x && 2...6 ~= y {
+                return .finderTopLeftInner
+            }
+            return .finderTopLeftOuter
+        }
+
+        if (x <= 8 && y >= (size - 9)) {
+            if 2...6 ~= x && (size - 7)...(size - 4) ~= y {
+                return .finderTopRightInner
+            }
+            return .finderTopRightOuter
+        }
+
+        if (x >= (size - 9) && y <= 8) {
+            if (size - 7)...(size - 4) ~= x && 2...6 ~= y {
+                return .finderBottomLeftInner
+            }
+            return .finderBottomLeftOuter
         }
 
         if isTimingPointStatic {
             // Timing Patterns
             if x == 7 || y == 7 {
-                return true
+                return .timing
             }
         }
 
@@ -911,7 +931,7 @@ public class EFQRCodeGenerator: NSObject {
                 && x <= Int(point.x + 2)
                 && y >= Int(point.y - 2)
                 && y <= Int(point.y + 2)
-        }
+        } ? .alignment : .none
     }
 
     /// [Alignment Pattern Locations](
