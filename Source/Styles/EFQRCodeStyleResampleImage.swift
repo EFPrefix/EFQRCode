@@ -216,10 +216,10 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                         }
                     } else {
                         if alignType == .none {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
+                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         } else {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
+                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
                             id += 1
                         }
                     }
@@ -234,15 +234,16 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                         }
                     } else {
                         if timingType == .none {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
+                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         } else {
-                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
+                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
                             id += 1
                         }
                     }
                 } else if typeTable[x][y] == QRPointType.posCenter {
-                    let markArr: [CGFloat] = {
+                    //white bg
+                    /*let markArr: [CGFloat] = {
                         if x > y {
                             return [0, -3]
                         } else if x < y {
@@ -250,7 +251,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                         }
                         return [-3, -3]
                     }()
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"24\" height=\"24\" fill=\"#FFFFFF\" x=\"\(posX - 12 - markArr[0])\" y=\"\(posY - 12 - markArr[1])\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"24\" height=\"24\" fill=\"#FFFFFF\" x=\"\(posX - 12 - markArr[0])\" y=\"\(posY - 12 - markArr[1])\"/>");*/
                     id += 1
                     switch positionType {
                     case .rectangle:
@@ -362,7 +363,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         return pointList
     }
     
-    func writeResImage(image: EFStyleResampleImageParamsImage?, newWidth: Int, newHeight: Int, color: String) throws -> String {
+    func writeResImage(params: EFStyleResampleImageParams, qrcode: QRCode, image: EFStyleResampleImageParamsImage?, newWidth: Int, newHeight: Int, color: String) throws -> String {
         guard let image = image else { return "" }
         
         let contrast: CGFloat = image.contrast
@@ -371,11 +372,11 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         switch image.image {
         case .static(let image):
             let imageCliped: CGImage = try mode.imageForContent(ofImage: image, inCanvasOfRatio: CGSize(width: newWidth, height: newHeight))
-            return try imageCliped.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
+            return try imageCliped.getGrayPointList(params: params, qrcode: qrcode, newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
         case .animated(let images, let imageDelays):
             let resFrames: [String] = try images.map {
                 let imageCliped: CGImage = try mode.imageForContent(ofImage: $0, inCanvasOfRatio: CGSize(width: newWidth, height: newHeight))
-                return try imageCliped.getGrayPointList(newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
+                return try imageCliped.getGrayPointList(params: params, qrcode: qrcode, newWidth: newWidth, newHeight: newHeight, contrast: contrast, exposure: exposure, color: color).joined()
             }
             if resFrames.isEmpty { return "" }
             let framePrefix: String = "resfm"
@@ -486,7 +487,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         + "<rect id=\"Bw\" fill=\"white\" width=\"3.02\" height=\"3.02\"/>"
         + "<rect id=\"Sw\" fill=\"white\" width=\"1.02\" height=\"1.02\"/>"
         + "</defs>"
-        + (try writeResImage(image: params.image, newWidth: size * 3, newHeight: size * 3, color: "#Sb"))
+        + (try writeResImage(params: params, qrcode: qrcode, image: params.image, newWidth: size * 3, newHeight: size * 3, color: "#Sb"))
         + (try writeQRCode(qrcode: qrcode)).joined()
         + (try writeIcon(qrcode: qrcode)).joined()
     }
@@ -520,7 +521,61 @@ extension CGImage {
         return weightedGray
     }
     
-    func getGrayPointList(newWidth: Int, newHeight: Int, contrast: CGFloat = 0, exposure: CGFloat = 0, color: String) throws -> [String] {
+    func getGrayPointList(params: EFStyleResampleImageParams, qrcode: QRCode, newWidth: Int, newHeight: Int, contrast: CGFloat = 0, exposure: CGFloat = 0, color: String) throws -> [String] {
+        // filter trans area
+        let nCount: Int = qrcode.model.moduleCount
+        let typeTable: [[QRPointType]] = qrcode.model.getTypeTable()
+        var posOrigins: [(Int, Int)] = []
+        var swOrigins: [(Int, Int)] = []
+        var bwOrigins: [(Int, Int)] = []
+        let alignType: EFStyleResampleImageParamAlignStyle = params.align.style
+        let timingType: EFStyleResampleImageParamTimingStyle = params.timing.style
+        for x in 0..<nCount {
+            for y in 0..<nCount {
+                let posX: Int = 3 * x
+                let posY: Int = 3 * y
+                if typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther {
+                    let isDark: Bool = qrcode.model.isDark(x, y)
+                    if !isDark {
+                        if alignType == .none {
+                            let oriX: Int = posX + 1
+                            let oriY: Int = posY + 1
+                            swOrigins.append((oriX, oriY))
+                        } else {
+                            let oriX: Int = posX
+                            let oriY: Int = posY
+                            bwOrigins.append((oriX, oriY))
+                        }
+                    }
+                } else if typeTable[x][y] == QRPointType.timing {
+                    let isDark: Bool = qrcode.model.isDark(x, y)
+                    if !isDark {
+                        if timingType == .none {
+                            let oriX: Int = posX + 1
+                            let oriY: Int = posY + 1
+                            swOrigins.append((oriX, oriY))
+                        } else {
+                            let oriX: Int = posX
+                            let oriY: Int = posY
+                            bwOrigins.append((oriX, oriY))
+                        }
+                    }
+                } else if typeTable[x][y] == QRPointType.posCenter {
+                    let markArr: [Int] = {
+                        if x > y {
+                            return [0, -3]
+                        } else if x < y {
+                            return [-3, 0]
+                        }
+                        return [-3, -3]
+                    }()
+                    let oriX: Int = posX - 12 - markArr[0]
+                    let oriY: Int = posY - 12 - markArr[1]
+                    posOrigins.append((oriX, oriY))
+                }
+            }
+        }
+        
         let dataSize = newWidth * newHeight * 4
         var pixelData = [UInt8](repeating: 0, count: Int(dataSize))
         let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -541,6 +596,27 @@ extension CGImage {
         var gpl: [String] = []
         for x in 0 ..< newWidth {
             for y in 0 ..< newHeight {
+                // filter trans area
+                let isTransArea: Bool = {
+                    for posOrigin in posOrigins {
+                        if x >= posOrigin.0 && x < posOrigin.0 + 24 && y >= posOrigin.1 && y < posOrigin.1 + 24 {
+                            return true
+                        }
+                    }
+                    for bwOrigin in bwOrigins {
+                        if x >= bwOrigin.0 && x < bwOrigin.0 + 3 && y >= bwOrigin.1 && y < bwOrigin.1 + 3 {
+                            return true
+                        }
+                    }
+                    for swOrigin in swOrigins {
+                        if x >= swOrigin.0 && x < swOrigin.0 + 1 && y >= swOrigin.1 && y < swOrigin.1 + 1 {
+                            return true
+                        }
+                    }
+                    return false
+                }()
+                if isTransArea { continue }
+                
                 let offset: Int = 4 * (x + y * newWidth)
                 // RGBA
                 let alpha: CGFloat = CGFloat(pixelData[offset + 3]) / 255.0
