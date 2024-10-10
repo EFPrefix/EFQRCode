@@ -422,7 +422,7 @@ extension ResampleImageGeneratorController {
                 UIAlertAction(title: color.name, style: .default) {
                     [weak self] _ in
                     guard let self = self else { return }
-                    self.positionColor = color.color
+                    self.alignColor = color.color
                     self.refresh()
                 }
             )

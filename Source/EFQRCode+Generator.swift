@@ -25,7 +25,7 @@ import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. 各种样式的透明支持,todo: image,imagefill,resampleimage
+//1. 各种样式的透明支持,todo: image,imagefill
 public extension EFQRCode {
     
     class Generator {
