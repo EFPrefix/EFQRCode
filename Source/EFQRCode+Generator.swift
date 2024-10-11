@@ -25,7 +25,8 @@ import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. 各种样式的透明支持,todo: image,imagefill
+//1. 各种样式的透明支持,todo: image
+//2. 导出为 livephoto？
 public extension EFQRCode {
     
     class Generator {
