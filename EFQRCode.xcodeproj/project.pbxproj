@@ -38,6 +38,10 @@
 		122A6D282A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */; };
 		122A6D292A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */; };
 		122A6D2A2A5D5C7500EE18B1 /* CIImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */; };
+		12433D9C2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12433D9B2CB9AF6E000D3ABB /* String+EFQRCode.swift */; };
+		12433D9D2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12433D9B2CB9AF6E000D3ABB /* String+EFQRCode.swift */; };
+		12433D9E2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12433D9B2CB9AF6E000D3ABB /* String+EFQRCode.swift */; };
+		12433D9F2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12433D9B2CB9AF6E000D3ABB /* String+EFQRCode.swift */; };
 		124A60862C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */; };
 		124A60872C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */; };
 		124A60882C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */; };
@@ -172,6 +176,7 @@
 		122A6D1C2A5D560300EE18B1 /* BinaryInteger+EFQRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+EFQRCode.swift"; sourceTree = "<group>"; };
 		122A6D212A5D56A900EE18B1 /* EFQRCode+Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Recognizer.swift"; sourceTree = "<group>"; };
 		122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+EFQRCode.swift"; sourceTree = "<group>"; };
+		12433D9B2CB9AF6E000D3ABB /* String+EFQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EFQRCode.swift"; sourceTree = "<group>"; };
 		124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+EFQRCode.swift"; sourceTree = "<group>"; };
 		124A608A2C542BDF009BEFCE /* UIImage+EFQRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+EFQRCode.swift"; sourceTree = "<group>"; };
 		125E59FE2A56C79400B508F2 /* EFCorrectionLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFCorrectionLevel.swift; sourceTree = "<group>"; };
@@ -333,6 +338,7 @@
 				122A6D262A5D5C7500EE18B1 /* CIImage+EFQRCode.swift */,
 				124A60852C542BA3009BEFCE /* NSImage+EFQRCode.swift */,
 				124A608A2C542BDF009BEFCE /* UIImage+EFQRCode.swift */,
+				12433D9B2CB9AF6E000D3ABB /* String+EFQRCode.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -797,6 +803,7 @@
 				128013AD2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
 				12D66CEF2A521FEC007F2770 /* CGImage+EFQRCode.swift in Sources */,
 				122A6D242A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
+				12433D9E2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */,
 				12D66CF42A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
 				124A608D2C542BDF009BEFCE /* UIImage+EFQRCode.swift in Sources */,
 				124A60882C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */,
@@ -840,6 +847,7 @@
 				128013AC2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
 				12D66CEE2A521FEC007F2770 /* CGImage+EFQRCode.swift in Sources */,
 				122A6D232A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
+				12433D9D2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */,
 				12D66CF32A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
 				124A608C2C542BDF009BEFCE /* UIImage+EFQRCode.swift in Sources */,
 				124A60872C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */,
@@ -874,6 +882,7 @@
 				128013AE2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
 				12D66CF02A521FEC007F2770 /* CGImage+EFQRCode.swift in Sources */,
 				122A6D252A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
+				12433D9F2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */,
 				12D66CF52A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
 				124A608E2C542BDF009BEFCE /* UIImage+EFQRCode.swift in Sources */,
 				124A60892C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */,
@@ -908,6 +917,7 @@
 				128013AB2A52CBEF0033B45B /* EFQRCodeStyleRandomRectangle.swift in Sources */,
 				12D66CED2A521FEC007F2770 /* CGImage+EFQRCode.swift in Sources */,
 				122A6D222A5D56A900EE18B1 /* EFQRCode+Recognizer.swift in Sources */,
+				12433D9C2CB9AF6E000D3ABB /* String+EFQRCode.swift in Sources */,
 				12D66CF22A5222FD007F2770 /* EFQRCodeError.swift in Sources */,
 				124A608B2C542BDF009BEFCE /* UIImage+EFQRCode.swift in Sources */,
 				124A60862C542BA3009BEFCE /* NSImage+EFQRCode.swift in Sources */,

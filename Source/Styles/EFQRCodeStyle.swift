@@ -157,7 +157,7 @@ public enum EFStyleParamImage {
             Anchor.uniqueMark += 1
             let framePrefix: String = "\(Anchor.uniqueMark)fm"
             let defs: String = pngBase64EncodedStrings.enumerated().map { (index, base64Image) -> String in
-                "<image id=\"\(framePrefix)\(index)\" xlink:href=\"\(base64Image)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\" />"
+                "<image id=\"\(framePrefix)\(index)\" xlink:href=\"\(base64Image)\" width=\"\(rect.width)\" height=\"\(rect.height)\" x=\"\(rect.origin.x)\" y=\"\(rect.origin.y)\" opacity=\"\(opacity)\"/>"
             }.joined()
             let totalDuration: CGFloat = imageDelays.reduce(0, +)
             let keyTimes: [CGFloat] = imageDelays.reduce(into: [0]) { result, delay in
@@ -257,7 +257,7 @@ public class EFStyleParamBackdropImage {
     func write(size: CGSize) throws -> String {
         let imageCliped: CGImage = try self.mode.imageForContent(ofImage: image, inCanvasOfRatio: size)
         let pngBase64EncodedString: String = try imageCliped.pngBase64EncodedString()
-        return "<image key=\"bi\" opacity=\"\(alpha)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(size.width)\" height=\"\(size.height)\" x=\"0\" y=\"0\" />"
+        return "<image key=\"bi\" opacity=\"\(alpha)\" xlink:href=\"\(pngBase64EncodedString)\" width=\"\(size.width)\" height=\"\(size.height)\" x=\"0\" y=\"0\"/>"
     }
 }
 

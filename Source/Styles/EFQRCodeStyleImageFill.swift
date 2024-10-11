@@ -101,6 +101,18 @@ public class EFQRCodeStyleImageFill: EFQRCodeStyleBase {
         
         var id: Int = 0
         
+        pointList.append("<defs><mask id=\"hole\"><rect x=\"0\" y=\"0\" width=\"\(nCount)\" height=\"\(nCount)\" fill=\"black\"/>")
+        for x in 0..<nCount {
+            for y in 0..<nCount {
+                let isDark: Bool = qrcode.model.isDark(x, y)
+                if isDark {
+                    pointList.append("<rect x=\"\(x.cgFloat - 0.01)\" y=\"\(y.cgFloat - 0.01)\" width=\"1.02\" height=\"1.02\" fill=\"white\"/>")
+                }
+            }
+        }
+        pointList.append("</mask></defs>")
+        
+        pointList.append("<g x=\"0\" y=\"0\" width=\"\(nCount)\" height=\"\(nCount)\" mask=\"url(#hole)\">")
         pointList.append("<rect key=\"\(id)\" opacity=\"\(backgroundAlpha)\" x=\"0\" y=\"0\" width=\"\(nCount)\" height=\"\(nCount)\" fill=\"\(backgroundColor)\"/>")
         id += 1
         
@@ -114,15 +126,8 @@ public class EFQRCodeStyleImageFill: EFQRCodeStyleBase {
         pointList.append("<rect key=\"\(id)\" opacity=\"\(maskAlpha)\" x=\"0\" y=\"0\" width=\"\(nCount)\" height=\"\(nCount)\" fill=\"\(maskColor)\"/>")
         id += 1
         
-        for x in 0..<nCount {
-            for y in 0..<nCount {
-                let isDark: Bool = qrcode.model.isDark(x, y)
-                if !isDark {
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(backgroundAlpha)\" width=\"1.02\" height=\"1.02\" fill=\"\(backgroundColor)\" x=\"\(x.cgFloat - 0.01)\" y=\"\(y.cgFloat - 0.01)\"/>")
-                    id += 1
-                }
-            }
-        }
+        pointList.append("</g>")
+        
         return pointList
     }
     
