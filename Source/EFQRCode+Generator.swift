@@ -25,7 +25,7 @@ import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. 导出为 livephoto？
+//1. 读取 & 导出 livephoto？
 public extension EFQRCode {
     
     class Generator {
