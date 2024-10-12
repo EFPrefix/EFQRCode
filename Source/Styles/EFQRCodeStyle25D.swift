@@ -108,20 +108,20 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
                 } else if typeTable[x][y] == QRPointType.posOther || typeTable[x][y] == QRPointType.posCenter {
                     let xValue: CGFloat = x.cgFloat + (1.0 - size2) / 2.0
                     let yValue: CGFloat = y.cgFloat + (1.0 - size2) / 2.0
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(upOpacity)\" width=\"\(size2)\" height=\"\(size2)\" fill=\"\(upColor)\" x=\"\(xValue)\" y=\"\(yValue)\" transform=\"\(matrixString)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(upOpacity)\" width=\"\(size2)\" height=\"\(size2)\" fill=\"\(upColor)\" x=\"\(xValue)\" y=\"\(yValue)\" transform=\"\(matrixString)\"/>")
                     id += 1
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(leftOpacity)\" width=\"\(height2)\" height=\"\(size2)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue + size2),\(yValue)) skewY(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(leftOpacity)\" width=\"\(height2)\" height=\"\(size2)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue + size2),\(yValue)) skewY(45)\"/>")
                     id += 1
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(rightOpacity)\" width=\"\(size2)\" height=\"\(height2)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue),\(yValue + size2)) skewX(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(rightOpacity)\" width=\"\(size2)\" height=\"\(height2)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue),\(yValue + size2)) skewX(45)\"/>")
                     id += 1
                 } else {
                     let xValue: CGFloat = x.cgFloat + (1.0 - size) / 2.0
                     let yValue: CGFloat = y.cgFloat + (1.0 - size) / 2.0
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(upOpacity)\" width=\"\(size)\" height=\"\(size)\" fill=\"\(upColor)\" x=\"\(xValue)\" y=\"\(yValue)\" transform=\"\(matrixString)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(upOpacity)\" width=\"\(size)\" height=\"\(size)\" fill=\"\(upColor)\" x=\"\(xValue)\" y=\"\(yValue)\" transform=\"\(matrixString)\"/>")
                     id += 1
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(leftOpacity)\" width=\"\(height)\" height=\"\(size)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue + size),\(yValue)) skewY(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(leftOpacity)\" width=\"\(height)\" height=\"\(size)\" fill=\"\(leftColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue + size),\(yValue)) skewY(45)\"/>")
                     id += 1
-                    pointList.append("<rect key=\"\(id)\" opacity=\"\(rightOpacity)\" width=\"\(size)\" height=\"\(height)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue),\(yValue + size)) skewX(45)\"/>");
+                    pointList.append("<rect key=\"\(id)\" opacity=\"\(rightOpacity)\" width=\"\(size)\" height=\"\(height)\" fill=\"\(rightColor)\" x=\"0\" y=\"0\" transform=\"\(matrixString)translate(\(xValue),\(yValue + size)) skewX(45)\"/>")
                     id += 1
                 }
             }
