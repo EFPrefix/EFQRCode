@@ -255,7 +255,7 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                     id += 1
                     switch positionType {
                     case .rectangle:
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"9\" height=\"9\" fill=\"\(positionColor)\" x=\"\(posX - 3)\" y=\"\(posY - 3)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"9\" height=\"9\" fill=\"\(positionColor)\" x=\"\(posX - 3)\" y=\"\(posY - 3)\"/>")
                         id += 1
                         pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" fill=\"none\" stroke-width=\"\(3 * positionSize)\" stroke=\"\(positionColor)\" x=\"\(posX - 7.5)\" y=\"\(posY - 7.5)\" width=\"18\" height=\"18\"/>")
                         id += 1
@@ -290,15 +290,15 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                         let widthValue: CGFloat = (3.0 - (1.0 - positionSize)) * 3
                         let xTempValue: CGFloat = (x.cgFloat + (1.0 - positionSize) / 2.0) * 3
                         let yTempValue: CGFloat = (y.cgFloat + (1.0 - positionSize) / 2.0) * 3
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 3)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 3)\"/>")
                         id += 1
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(3 * positionSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 9)\" y=\"\(yTempValue - 3)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(3 * positionSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 9)\" y=\"\(yTempValue - 3)\"/>")
                         id += 1
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(3 * positionSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue + 9)\" y=\"\(yTempValue - 3)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(3 * positionSize)\" height=\"\(widthValue)\" fill=\"\(positionColor)\" x=\"\(xTempValue + 9)\" y=\"\(yTempValue - 3)\"/>")
                         id += 1
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(3 * positionSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 9)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(3 * positionSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 9)\"/>")
                         id += 1
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(3 * positionSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue + 9)\"/>");
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(positionAlpha)\" width=\"\(widthValue)\" height=\"\(3 * positionSize)\" fill=\"\(positionColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue + 9)\"/>")
                         id += 1
                         break
                     }

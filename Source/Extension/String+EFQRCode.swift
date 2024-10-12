@@ -16,4 +16,8 @@ extension String {
         }
         return self
     }
+    
+    func replace(_ string: String, with: String, options: String.CompareOptions = [], range: Range<String.Index>? = nil) -> String {
+        return replacingOccurrences(of: string, with: with, options: options, range: range)
+    }
 }

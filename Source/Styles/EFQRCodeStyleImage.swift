@@ -242,54 +242,75 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         
         var id: Int = 0
         
+        var imageLineIndex: Int? = nil
         if let image = params.image {
             let line = try image.image.write(id: id, rect: CGRect(x: 0, y: 0, width: nCount, height: nCount), opacity: image.alpha, mode: image.mode)
+            imageLineIndex = pointList.count
             pointList.append(line)
             id += 1
         }
         
+        var imageMask: String = "<defs><mask id=\"hole\"><rect x=\"0\" y=\"0\" width=\"\(nCount)\" height=\"\(nCount)\" fill=\"white\"/>"
         for x in 0..<nCount {
             for y in 0..<nCount {
                 let isDark: Bool = qrcode.model.isDark(x, y)
                 if alignType != .none && (typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther) {
                     let thisAlignColor: String = isDark ? alignDarkColor : alignLightColor
                     let thisAlignAlpha: CGFloat = isDark ? alignDarkAlpha : alignLightAlpha
-                    switch alignType {
-                    case .none:
-                        break
-                    case .rectangle:
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(thisAlignAlpha)\" width=\"\(alignSize)\" height=\"\(alignSize)\" fill=\"\(thisAlignColor)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\"/>")
-                        id += 1
-                        break
-                    case .round:
-                        pointList.append("<circle key=\"\(id)\" opacity=\"\(thisAlignAlpha)\" r=\"\(alignSize / 2)\" fill=\"\(thisAlignColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
-                        id += 1
-                        break
-                    case .roundedRectangle:
-                        let cd: CGFloat = alignSize / 4.0
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(thisAlignAlpha)\" fill=\"\(thisAlignColor)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\" width=\"\(alignSize)\" height=\"\(alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
-                        id += 1
-                        break
+                    let kof: String = "key=\"\(id)\" opacity=\"\(thisAlignAlpha)\" fill=\"\(thisAlignColor)\" "
+                    let alignLine: String = {
+                        var newLine: String = ""
+                        switch alignType {
+                        case .none:
+                            break
+                        case .rectangle:
+                            newLine = "<rect \(kof)width=\"\(alignSize)\" height=\"\(alignSize)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\"/>"
+                            id += 1
+                            break
+                        case .round:
+                            newLine = "<circle \(kof)r=\"\(alignSize / 2)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>"
+                            id += 1
+                            break
+                        case .roundedRectangle:
+                            let cd: CGFloat = alignSize / 4.0
+                            newLine = "<rect \(kof)x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\" width=\"\(alignSize)\" height=\"\(alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
+                            id += 1
+                            break
+                        }
+                        return newLine
+                    }()
+                    pointList.append(alignLine)
+                    if let _ = imageLineIndex, !alignLine.isEmpty && !isDark {
+                        imageMask += alignLine.replace(kof, with: "fill=\"black\" ")
                     }
                 } else if timingType != .none && typeTable[x][y] == QRPointType.timing {
                     let thisTimingColor: String = isDark ? timingDarkColor : timingLightColor
                     let thisTimingAlpha: CGFloat = isDark ? timingDarkAlpha : timingLightAlpha
-                    switch timingType {
-                    case .none:
-                        break
-                    case .rectangle:
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(thisTimingAlpha)\" width=\"\(timingSize)\" height=\"\(timingSize)\" fill=\"\(thisTimingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\"/>")
-                        id += 1
-                        break
-                    case .round:
-                        pointList.append("<circle key=\"\(id)\" opacity=\"\(thisTimingAlpha)\" r=\"\(timingSize / 2)\" fill=\"\(thisTimingColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
-                        id += 1
-                        break
-                    case .roundedRectangle:
-                        let cd: CGFloat = timingSize / 4.0
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(thisTimingAlpha)\" fill=\"\(thisTimingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1 - timingSize) / 2)\" width=\"\(timingSize)\" height=\"\(timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
-                        id += 1
-                        break
+                    let kof: String = "key=\"\(id)\" opacity=\"\(thisTimingAlpha)\" fill=\"\(thisTimingColor)\" "
+                    let timingLine: String = {
+                        var newLine: String = ""
+                        switch timingType {
+                        case .none:
+                            break
+                        case .rectangle:
+                            newLine += "<rect \(kof)width=\"\(timingSize)\" height=\"\(timingSize)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\"/>"
+                            id += 1
+                            break
+                        case .round:
+                            newLine += "<circle \(kof)r=\"\(timingSize / 2)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>"
+                            id += 1
+                            break
+                        case .roundedRectangle:
+                            let cd: CGFloat = timingSize / 4.0
+                            newLine += "<rect \(kof)x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1 - timingSize) / 2)\" width=\"\(timingSize)\" height=\"\(timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
+                            id += 1
+                            break
+                        }
+                        return newLine
+                    }()
+                    pointList.append(timingLine)
+                    if let _ = imageLineIndex, !timingLine.isEmpty && !isDark {
+                        imageMask += timingLine.replace(kof, with: "fill=\"black\" ")
                     }
                 } else if typeTable[x][y] == QRPointType.posCenter {
                     let markArr: [CGFloat] = {
@@ -300,11 +321,16 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         }
                         return [-1, -1]
                     }()
-                    pointList.append("<rect opacity=\"\(posLightAlpha)\" width=\"8\" height=\"8\" key=\"\(id)\" fill=\"\(posLightColor)\" x=\"\(x.cgFloat - 4 - markArr[0])\" y=\"\(y.cgFloat - 4 - markArr[1])\"/>");
+                    let kof: String = "key=\"\(id)\" opacity=\"\(posLightAlpha)\" fill=\"\(posLightColor)\" "
+                    let posBGLine: String = "<rect \(kof)width=\"8\" height=\"8\" x=\"\(x.cgFloat - 4 - markArr[0])\" y=\"\(y.cgFloat - 4 - markArr[1])\"/>"
+                    pointList.append(posBGLine)
+                    if let _ = imageLineIndex {
+                        imageMask += posBGLine.replace(kof, with: "fill=\"black\" ")
+                    }
                     id += 1
                     switch posType {
                     case .rectangle:
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"3\" height=\"3\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(x.cgFloat - 1)\" y=\"\(y.cgFloat - 1)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"3\" height=\"3\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(x.cgFloat - 1)\" y=\"\(y.cgFloat - 1)\"/>")
                         id += 1
                         pointList.append("<rect opacity=\"\(posDarkAlpha)\" key=\"\(id)\" fill=\"none\" stroke-width=\"\(1 * posSize)\" stroke=\"\(posDarkColor)\" x=\"\(x.cgFloat - 2.5)\" y=\"\(y.cgFloat - 2.5)\" width=\"6\" height=\"6\"/>")
                         id += 1
@@ -339,15 +365,15 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         let widthValue: CGFloat = 3.0 - (1.0 - posSize)
                         let xTempValue: CGFloat = x.cgFloat + (1.0 - posSize) / 2.0
                         let yTempValue: CGFloat = y.cgFloat + (1.0 - posSize) / 2.0
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 1)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 1)\"/>")
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 1)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 3)\" y=\"\(yTempValue - 1)\"/>")
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue + 3)\" y=\"\(yTempValue - 1)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(posSize)\" height=\"\(widthValue)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue + 3)\" y=\"\(yTempValue - 1)\"/>")
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 3)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue - 3)\"/>")
                         id += 1
-                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue + 3)\"/>");
+                        pointList.append("<rect opacity=\"\(posDarkAlpha)\" width=\"\(widthValue)\" height=\"\(posSize)\" key=\"\(id)\" fill=\"\(posDarkColor)\" x=\"\(xTempValue - 1)\" y=\"\(yTempValue + 3)\"/>")
                         id += 1
                         break
                     }
@@ -390,6 +416,11 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                     
                 }
             }
+        }
+        if let imageLineIndex = imageLineIndex {
+            imageMask += "</mask></defs>"
+            let oldImageLine: String = pointList[imageLineIndex]
+            pointList[imageLineIndex] = "\(imageMask)<g x=\"0\" y=\"0\" width=\"\(nCount)\" height=\"\(nCount)\" mask=\"url(#hole)\">\(oldImageLine)</g>"
         }
         
         return pointList

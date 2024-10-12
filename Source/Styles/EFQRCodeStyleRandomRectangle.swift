@@ -90,9 +90,9 @@ public class EFQRCodeStyleRandomRectangle: EFQRCodeStyleBase {
                     "rgb(\(r2Value),\(g2Value),\(b2Value))"
                 ]
                 let width: CGFloat = 0.15
-                pointList.append("<rect key=\"\(id)\" opacity=\"\(0.9 * alphaValue)\" fill=\"\(tempRGB[1])\" width=\"\(1 * tempRand.cgFloat + width.cgFloat)\" height=\"\(1 * tempRand.cgFloat + width.cgFloat)\" x=\"\(row.cgFloat - (tempRand.cgFloat - 1) / 2.0)\" y=\"\(col.cgFloat - (tempRand.cgFloat - 1) / 2.0)\"/>");
+                pointList.append("<rect key=\"\(id)\" opacity=\"\(0.9 * alphaValue)\" fill=\"\(tempRGB[1])\" width=\"\(1 * tempRand.cgFloat + width.cgFloat)\" height=\"\(1 * tempRand.cgFloat + width.cgFloat)\" x=\"\(row.cgFloat - (tempRand.cgFloat - 1) / 2.0)\" y=\"\(col.cgFloat - (tempRand.cgFloat - 1) / 2.0)\"/>")
                 id += 1
-                pointList.append("<rect key=\"\(id)\" opacity=\"\(alphaValue)\" fill=\"\(tempRGB[0])\" width=\"\(1 * tempRand.cgFloat)\" height=\"\(1 * tempRand.cgFloat)\" x=\"\(row.cgFloat - (tempRand.cgFloat - 1) / 2.0)\" y=\"\(col.cgFloat - (tempRand.cgFloat - 1) / 2.0)\"/>");
+                pointList.append("<rect key=\"\(id)\" opacity=\"\(alphaValue)\" fill=\"\(tempRGB[0])\" width=\"\(1 * tempRand.cgFloat)\" height=\"\(1 * tempRand.cgFloat)\" x=\"\(row.cgFloat - (tempRand.cgFloat - 1) / 2.0)\" y=\"\(col.cgFloat - (tempRand.cgFloat - 1) / 2.0)\"/>")
                 id += 1
             }
         }
