@@ -11,7 +11,6 @@ import UIKit
 import SnapKit
 import Photos
 import EFQRCode
-import EFColorPicker
 import MobileCoreServices
 
 class D25GeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {

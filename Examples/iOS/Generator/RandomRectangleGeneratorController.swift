@@ -11,7 +11,6 @@ import UIKit
 import SnapKit
 import Photos
 import EFQRCode
-import EFColorPicker
 import MobileCoreServices
 
 class RandomRectangleGeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {

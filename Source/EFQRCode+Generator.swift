@@ -20,12 +20,16 @@ import UIKit
 #if canImport(AppKit)
 import AppKit
 #endif
+#if canImport(AVFoundation)
+import AVFoundation
+import CoreVideo
+#endif
 
 import QRCodeSwift
 import SwiftDraw
 
 //todo
-//1. 读取 & 导出 livephoto？
+//1. 文档
 public extension EFQRCode {
     
     class Generator {
@@ -157,15 +161,23 @@ public extension EFQRCode {
         }
 #endif
         
+        // MARK:- Video
+#if canImport(AVFoundation)
+        public func toVideoData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toVideoData(size: imageSize, insets: insets)
+        }
+#endif
+        
         // MARK:- GIF
         public func toGIFData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toGIFData(size: imageSize)
+            return try toGIFData(size: imageSize, insets: insets)
         }
         
         public func toGIFData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
-            return try toGIFData(size: imageSize)
+            return try toGIFData(size: imageSize, insets: insets)
         }
         
         private func toGIFData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
@@ -175,12 +187,12 @@ public extension EFQRCode {
         // MARK:- APNG
         public func toAPNGData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toAPNGData(size: imageSize)
+            return try toAPNGData(size: imageSize, insets: insets)
         }
         
         public func toAPNGData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
-            return try toAPNGData(size: imageSize)
+            return try toAPNGData(size: imageSize, insets: insets)
         }
         
         private func toAPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
@@ -190,12 +202,12 @@ public extension EFQRCode {
         // MARK:- JPEG
         public func toJPEGData(width: CGFloat, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toJPEGData(size: imageSize)
+            return try toJPEGData(size: imageSize, compressionQuality: compressionQuality, insets: insets)
         }
         
         public func toJPEGData(height: CGFloat, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
-            return try toJPEGData(size: imageSize)
+            return try toJPEGData(size: imageSize, compressionQuality: compressionQuality, insets: insets)
         }
         
         private func toJPEGData(size: CGSize, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
@@ -215,12 +227,12 @@ public extension EFQRCode {
         // MARK:- PNG
         public func toPNGData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toPNGData(size: imageSize)
+            return try toPNGData(size: imageSize, insets: insets)
         }
         
         public func toPNGData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
-            return try toPNGData(size: imageSize)
+            return try toPNGData(size: imageSize, insets: insets)
         }
         
         private func toPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
@@ -240,12 +252,12 @@ public extension EFQRCode {
         // MARK:- PDF
         public func toPDFData(width: CGFloat, insets: SVG.Insets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toPDFData(size: imageSize)
+            return try toPDFData(size: imageSize, insets: insets)
         }
         
         public func toPDFData(height: CGFloat, insets: SVG.Insets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
-            return try toPDFData(size: imageSize)
+            return try toPDFData(size: imageSize, insets: insets)
         }
         
         private func toPDFData(size: CGSize, insets: SVG.Insets = .zero) throws -> Data {
@@ -338,8 +350,8 @@ extension EFQRCode.Generator {
         return newSvgContent
     }
     
-    private func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
-        let (images, durations): ([CGImage], [CGFloat]) = try {
+    private func getAnimatedFrames(size: CGSize, insets: EFEdgeInsets = .zero) throws -> ([CGImage], [CGFloat]) {
+        return try {
             if self.isAnimated {
                 let (iconImage, watermarkImage) = self.style.getParamImages()
                 return try self.reconcileQRImages(image1: iconImage, image2: watermarkImage, style: self.style, size: size)
@@ -350,6 +362,10 @@ extension EFQRCode.Generator {
             }
             return ([], [])
         }()
+    }
+    
+    private func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+        let (images, durations): ([CGImage], [CGFloat]) = try getAnimatedFrames(size: size, insets: insets)
         let animatedImageData = try self.createAnimatedImageDataWith(format: format, frames: images, frameDelays: durations)
         return animatedImageData
     }
@@ -628,4 +644,138 @@ extension EFQRCode.Generator {
         }
         return mutableData as Data
     }
+    
+#if canImport(AVFoundation)
+    private func toVideoData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+        let (images, durations): ([CGImage], [CGFloat]) = try getAnimatedFrames(size: size, insets: insets)
+        let animatedImageData = try self.createVideoDataWith(frames: images, frameDelays: durations)
+        return animatedImageData
+    }
+    
+    private func createVideoDataWith(frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
+        if frames.isEmpty || frames.count != frameDelays.count {
+            throw EFQRCodeError.cannotCreateVideo
+        }
+        
+        let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".mov")
+        
+        let width = frames[0].width
+        let height = frames[0].height
+        let fps: Float = 30.0
+        let frameDuration = 1.0 / Double(fps)
+        
+        guard let assetWriter = try? AVAssetWriter(outputURL: outputURL, fileType: .mov) else {
+            throw EFQRCodeError.cannotCreateVideo
+        }
+        
+        let videoSettings: [String: Any] = [
+            AVVideoCodecKey: AVVideoCodecType.h264,
+            AVVideoWidthKey: width,
+            AVVideoHeightKey: height
+        ]
+        
+        let writerInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings)
+        writerInput.expectsMediaDataInRealTime = false
+        
+        let adaptor = AVAssetWriterInputPixelBufferAdaptor(
+            assetWriterInput: writerInput,
+            sourcePixelBufferAttributes: [
+                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32ARGB,
+                kCVPixelBufferWidthKey as String: width,
+                kCVPixelBufferHeightKey as String: height
+            ]
+        )
+        
+        assetWriter.add(writerInput)
+        assetWriter.startWriting()
+        assetWriter.startSession(atSourceTime: .zero)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let attributes: [String: Any] = [
+            kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32ARGB,
+            kCVPixelBufferWidthKey as String: width,
+            kCVPixelBufferHeightKey as String: height,
+            kCVPixelBufferIOSurfacePropertiesKey as String: [:]
+        ]
+        
+        var pixelBufferPool: CVPixelBufferPool?
+        CVPixelBufferPoolCreate(kCFAllocatorDefault, nil, attributes as CFDictionary, &pixelBufferPool)
+        
+        guard let pool = pixelBufferPool else {
+            throw EFQRCodeError.cannotCreateVideo
+        }
+        
+        let frameQueue = DispatchQueue(label: "com.ef.qrcode.frameQueue")
+        writerInput.requestMediaDataWhenReady(on: frameQueue) {
+            var accumulatedTime: Double = 0.0
+            
+            for (frameIndex, (frame, originalDelay)) in zip(frames, frameDelays).enumerated() {
+                let targetTime = accumulatedTime + Double(originalDelay)
+                
+                while accumulatedTime < targetTime {
+                    var pixelBuffer: CVPixelBuffer?
+                    CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault, pool, &pixelBuffer)
+                    
+                    guard let buffer = pixelBuffer else { return }
+                    
+                    CVPixelBufferLockBaseAddress(buffer, [])
+                    let pixelData = CVPixelBufferGetBaseAddress(buffer)
+                    let colorSpace = CGColorSpaceCreateDeviceRGB()
+                    
+                    guard let context = CGContext(
+                        data: pixelData,
+                        width: width,
+                        height: height,
+                        bitsPerComponent: 8,
+                        bytesPerRow: CVPixelBufferGetBytesPerRow(buffer),
+                        space: colorSpace,
+                        bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue
+                    ) else {
+                        CVPixelBufferUnlockBaseAddress(buffer, [])
+                        return
+                    }
+                    
+                    context.clear(CGRect(x: 0, y: 0, width: width, height: height))
+                    context.draw(frame, in: CGRect(x: 0, y: 0, width: width, height: height))
+                    CVPixelBufferUnlockBaseAddress(buffer, [])
+                    
+                    let remainingTime = targetTime - accumulatedTime
+                    if remainingTime < frameDuration * 0.5 && frameIndex < frames.count - 1 {
+                        break
+                    }
+                    
+                    let presentationTime = CMTime(
+                        seconds: accumulatedTime,
+                        preferredTimescale: CMTimeScale(fps * 10)
+                    )
+                    
+                    while !writerInput.isReadyForMoreMediaData {
+                        Thread.sleep(forTimeInterval: 0.1)
+                    }
+                    
+                    adaptor.append(buffer, withPresentationTime: presentationTime)
+                    accumulatedTime += frameDuration
+                }
+            }
+            
+            writerInput.markAsFinished()
+            assetWriter.finishWriting {
+                semaphore.signal()
+            }
+        }
+        
+        semaphore.wait()
+        
+        if assetWriter.status == .failed {
+            throw assetWriter.error ?? EFQRCodeError.cannotCreateVideo
+        }
+        
+        let videoData = try Data(contentsOf: outputURL)
+        
+        try? FileManager.default.removeItem(at: outputURL)
+        
+        return videoData
+    }
+#endif
 }
