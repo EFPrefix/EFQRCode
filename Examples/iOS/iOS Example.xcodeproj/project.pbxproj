@@ -42,7 +42,6 @@
 		5282BCF51FF3AD9100DFB36B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BCF41FF3AD9100DFB36B /* InterfaceController.swift */; };
 		5282BCF71FF3AD9100DFB36B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BCF61FF3AD9100DFB36B /* ExtensionDelegate.swift */; };
 		5282BCF91FF3AD9100DFB36B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5282BCF81FF3AD9100DFB36B /* Assets.xcassets */; };
-		5282BCFD1FF3AD9100DFB36B /* watchOS Example.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 5282BCE31FF3AD9000DFB36B /* watchOS Example.app */; };
 		5282BD1E1FF3FD8A00DFB36B /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5282BD091FF3AD9100DFB36B /* EFQRCode.framework */; };
 		5282BD1F1FF3FD8A00DFB36B /* EFQRCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5282BD091FF3AD9100DFB36B /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5282BD241FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282BD231FF40F3B00DFB36B /* VersionDisplayInterfaceController.swift */; };
@@ -115,13 +114,6 @@
 			remoteGlobalIDString = 5282BCEE1FF3AD9100DFB36B;
 			remoteInfo = "watchOS Example Extension";
 		};
-		5282BCFB1FF3AD9100DFB36B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F8111DFD19A951050040E7D1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5282BCE21FF3AD9000DFB36B;
-			remoteInfo = "watchOS Example";
-		};
 		5282BD081FF3AD9100DFB36B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 120B78421EA3A9E100D34440 /* EFQRCode.xcodeproj */;
@@ -156,7 +148,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				5282BCFD1FF3AD9100DFB36B /* watchOS Example.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,7 +506,6 @@
 			);
 			dependencies = (
 				120B785C1EA3A9F500D34440 /* PBXTargetDependency */,
-				5282BCFC1FF3AD9100DFB36B /* PBXTargetDependency */,
 			);
 			name = "iOS Example";
 			packageProductDependencies = (
@@ -538,12 +528,10 @@
 				TargetAttributes = {
 					5282BCE21FF3AD9000DFB36B = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
 					};
 					5282BCEE1FF3AD9100DFB36B = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
 					};
 					F8111E0419A951050040E7D1 = {
 						CreatedOnToolsVersion = 6.0;
@@ -727,11 +715,6 @@
 			target = 5282BCEE1FF3AD9100DFB36B /* watchOS Example Extension */;
 			targetProxy = 5282BCF11FF3AD9100DFB36B /* PBXContainerItemProxy */;
 		};
-		5282BCFC1FF3AD9100DFB36B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5282BCE21FF3AD9000DFB36B /* watchOS Example */;
-			targetProxy = 5282BCFB1FF3AD9100DFB36B /* PBXContainerItemProxy */;
-		};
 		5282BD211FF3FD8A00DFB36B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "EFQRCode watchOS";
@@ -772,9 +755,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1690463315;
+				CURRENT_PROJECT_VERSION = 1690463516;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				IBSC_MODULE = watchOS_Example_Extension;
 				INFOPLIST_FILE = "watchOS Example/Info.plist";
@@ -804,10 +787,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1690463315;
+				CURRENT_PROJECT_VERSION = 1690463516;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -820,7 +803,7 @@
 				MARKETING_VERSION = 7.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS.watchkitapp";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -841,9 +824,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1690463315;
+				CURRENT_PROJECT_VERSION = 1690463516;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "watchOS Example Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -872,10 +855,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1690463315;
+				CURRENT_PROJECT_VERSION = 1690463516;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -888,7 +871,7 @@
 				MARKETING_VERSION = 7.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS.watchkitapp.watchkitextension";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1018,8 +1001,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1690463315;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1690463516;
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1029,6 +1014,7 @@
 				MARKETING_VERSION = 7.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1040,9 +1026,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1690463315;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1690463516;
 				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1053,7 +1039,7 @@
 				MARKETING_VERSION = 7.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
-				PROVISIONING_PROFILE_SPECIFIER = "EFQRCode-iOS";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;

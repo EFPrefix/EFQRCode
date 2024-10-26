@@ -41,6 +41,8 @@ public enum EFQRCodeError: Error {
     case cannotCreateImageData
     /// Can not create GIF
     case cannotCreateAnimatedImage
+    /// Can not create video
+    case cannotCreateVideo
     /// Fill a new issue on GitHub, or submit a pull request.
     case internalError(ImplmentationError)
     

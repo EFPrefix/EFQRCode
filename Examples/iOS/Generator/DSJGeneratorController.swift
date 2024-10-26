@@ -12,7 +12,6 @@ import SnapKit
 import Photos
 import EFQRCode
 import MobileCoreServices
-import EFColorPicker
 
 class DSJGeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
 

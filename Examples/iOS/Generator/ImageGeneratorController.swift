@@ -11,7 +11,6 @@ import UIKit
 import SnapKit
 import Photos
 import EFQRCode
-import EFColorPicker
 import MobileCoreServices
 
 class ImageGeneratorController: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
@@ -264,11 +263,15 @@ extension ImageGeneratorController {
             let image: EFImage = {
                 let imageWidth: CGFloat = ((generator.qrcode.model.moduleCount + 1) * 12).cgFloat
                 if generator.isAnimated {
+                    // let testData = try! generator.toVideoData(width: imageWidth)
+                    // saveVideoToAlbum(videoData: testData)
+                    
                     return EFImage.gif(try! generator.toGIFData(width: imageWidth))
                 } else {
                     return EFImage.normal(try! generator.toImage(width: imageWidth))
                 }
             }()
+            
             let showVC = ShowController(image: image)
             showVC.svgString = (try? generator.toSVG()) ?? ""
             present(showVC, animated: true)
@@ -279,6 +282,40 @@ extension ImageGeneratorController {
                 preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: Localized.ok, style: .cancel))
             present(alert, animated: true)
+        }
+    }
+    
+    func saveVideoToAlbum(videoData: Data) {
+        // 首先检查权限
+        PHPhotoLibrary.requestAuthorization { status in
+            guard status == .authorized else {
+                // 处理未授权情况
+                return
+            }
+            
+            // 创建临时文件
+            let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".mov")
+            
+            do {
+                // 将数据写入临时文件
+                try videoData.write(to: tempURL)
+                
+                // 保存到相册
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: tempURL)
+                }) { success, error in
+                    // 清理临时文件
+                    try? FileManager.default.removeItem(at: tempURL)
+                    
+                    if success {
+                        print("Video saved successfully")
+                    } else if let error = error {
+                        print("Error saving video: \(error)")
+                    }
+                }
+            } catch {
+                print("Error writing video data: \(error)")
+            }
         }
     }
 

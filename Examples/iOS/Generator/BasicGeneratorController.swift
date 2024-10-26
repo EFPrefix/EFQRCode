@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import EFColorPicker
 import Photos
 import EFQRCode
 import MobileCoreServices
