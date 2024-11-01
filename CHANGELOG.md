@@ -23,9 +23,11 @@
   - PDF (Vector)
   - PNG
   - JPEG
-  - MOV
   - APNG
   - GIF
+  - MOV
+  - MP4
+  - M4V
 - Support transparent background
 - Add backdrop parameter for background customization
 - Add image mode parameter for more display options
