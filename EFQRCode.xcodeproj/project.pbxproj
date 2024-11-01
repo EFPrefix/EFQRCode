@@ -101,6 +101,10 @@
 		1283C7EF2C8DF69400462E4C /* EFImageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7ED2C8DF69400462E4C /* EFImageMode.swift */; };
 		1283C7F02C8DF69400462E4C /* EFImageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7ED2C8DF69400462E4C /* EFImageMode.swift */; };
 		1283C7F12C8DF69400462E4C /* EFImageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283C7ED2C8DF69400462E4C /* EFImageMode.swift */; };
+		12C3A7E52CD5627800226CD1 /* EFVideoFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3A7E42CD5627800226CD1 /* EFVideoFormat.swift */; };
+		12C3A7E62CD5627800226CD1 /* EFVideoFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3A7E42CD5627800226CD1 /* EFVideoFormat.swift */; };
+		12C3A7E72CD5627800226CD1 /* EFVideoFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3A7E42CD5627800226CD1 /* EFVideoFormat.swift */; };
+		12C3A7E82CD5627800226CD1 /* EFVideoFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3A7E42CD5627800226CD1 /* EFVideoFormat.swift */; };
 		12D66CB42A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB52A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
 		12D66CB62A4FA2A3007F2770 /* EFQRCodeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */; };
@@ -194,6 +198,7 @@
 		1283C7ED2C8DF69400462E4C /* EFImageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFImageMode.swift; sourceTree = "<group>"; };
 		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
 		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		12C3A7E42CD5627800226CD1 /* EFVideoFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFVideoFormat.swift; sourceTree = "<group>"; };
 		12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyle.swift; sourceTree = "<group>"; };
 		12D66CBD2A4FB7AF007F2770 /* EFQRCodeStyleBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleBasic.swift; sourceTree = "<group>"; };
 		12D66CC22A4FC47C007F2770 /* EFQRCode+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EFQRCode+Generator.swift"; sourceTree = "<group>"; };
@@ -351,6 +356,7 @@
 				1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */,
 				1283C7ED2C8DF69400462E4C /* EFImageMode.swift */,
 				12297FA92C90CB3600692841 /* EFEdgeInsets.swift */,
+				12C3A7E42CD5627800226CD1 /* EFVideoFormat.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -786,6 +792,7 @@
 				12D66CC52A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
 				128013B72A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CCA2A50A167007F2770 /* Utils.swift in Sources */,
+				12C3A7E72CD5627800226CD1 /* EFVideoFormat.swift in Sources */,
 				12297FAC2C90CB3600692841 /* EFEdgeInsets.swift in Sources */,
 				128013C12A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
 				122A6D152A5D558400EE18B1 /* EFQRCode.swift in Sources */,
@@ -830,6 +837,7 @@
 				12D66CC42A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
 				128013B62A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CC92A50A167007F2770 /* Utils.swift in Sources */,
+				12C3A7E62CD5627800226CD1 /* EFVideoFormat.swift in Sources */,
 				12297FAB2C90CB3600692841 /* EFEdgeInsets.swift in Sources */,
 				128013C02A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
 				122A6D142A5D558400EE18B1 /* EFQRCode.swift in Sources */,
@@ -865,6 +873,7 @@
 				12D66CC62A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
 				128013B82A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CCB2A50A167007F2770 /* Utils.swift in Sources */,
+				12C3A7E82CD5627800226CD1 /* EFVideoFormat.swift in Sources */,
 				12297FAD2C90CB3600692841 /* EFEdgeInsets.swift in Sources */,
 				128013C22A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
 				122A6D162A5D558400EE18B1 /* EFQRCode.swift in Sources */,
@@ -900,6 +909,7 @@
 				12D66CC32A4FC47C007F2770 /* EFQRCode+Generator.swift in Sources */,
 				128013B52A5371670033B45B /* EFQRCodeStyleBubble.swift in Sources */,
 				12D66CC82A50A167007F2770 /* Utils.swift in Sources */,
+				12C3A7E52CD5627800226CD1 /* EFVideoFormat.swift in Sources */,
 				12297FAA2C90CB3600692841 /* EFEdgeInsets.swift in Sources */,
 				128013BF2A53BA6B0033B45B /* EFQRCodeStyleFunction.swift in Sources */,
 				122A6D132A5D558400EE18B1 /* EFQRCode.swift in Sources */,

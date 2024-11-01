@@ -181,9 +181,19 @@ public extension EFQRCode {
         
         // MARK:- Video
 #if canImport(AVFoundation)
-        public func toVideoData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+        public func toMovData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toVideoData(size: imageSize, insets: insets)
+            return try toVideoData(format: .mov, size: imageSize, insets: insets)
+        }
+        
+        public func toM4vData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toVideoData(format: .m4v, size: imageSize, insets: insets)
+        }
+        
+        public func toMp4Data(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
+            let imageSize: CGSize = calculateSize(width: width)
+            return try toVideoData(format: .mp4, size: imageSize, insets: insets)
         }
 #endif
         
@@ -664,33 +674,32 @@ extension EFQRCode.Generator {
     }
     
 #if canImport(AVFoundation)
-    private func toVideoData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
+    private func toVideoData(format: EFVideoFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
         let (images, durations): ([CGImage], [CGFloat]) = try getAnimatedFrames(size: size, insets: insets)
-        let animatedImageData = try self.createVideoDataWith(frames: images, frameDelays: durations)
+        let animatedImageData = try self.createVideoDataWith(format: format, frames: images, frameDelays: durations)
         return animatedImageData
     }
     
-    private func createVideoDataWith(frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
+    private func createVideoDataWith(format: EFVideoFormat, frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
         if frames.isEmpty || frames.count != frameDelays.count {
             throw EFQRCodeError.cannotCreateVideo
         }
         
-        let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".mov")
+        let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + "." + format.fileExtension)
         
         let width = frames[0].width
         let height = frames[0].height
         let fps: Float = 30.0
         let frameDuration = 1.0 / Double(fps)
         
-        guard let assetWriter = try? AVAssetWriter(outputURL: outputURL, fileType: .mov) else {
+        guard let assetWriter = try? AVAssetWriter(outputURL: outputURL, fileType: format.fileType) else {
             throw EFQRCodeError.cannotCreateVideo
         }
         
-        let videoSettings: [String: Any] = [
-            AVVideoCodecKey: AVVideoCodecType.h264,
+        let videoSettings = format.videoSettings.merging([
             AVVideoWidthKey: width,
             AVVideoHeightKey: height
-        ]
+        ]) { (_, new) in new }
         
         let writerInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings)
         writerInput.expectsMediaDataInRealTime = false
@@ -790,9 +799,7 @@ extension EFQRCode.Generator {
         }
         
         let videoData = try Data(contentsOf: outputURL)
-        
         try? FileManager.default.removeItem(at: outputURL)
-        
         return videoData
     }
 #endif

@@ -263,8 +263,8 @@ extension ImageGeneratorController {
             let image: EFImage = {
                 let imageWidth: CGFloat = ((generator.qrcode.model.moduleCount + 1) * 12).cgFloat
                 if generator.isAnimated {
-                    // let testData = try! generator.toVideoData(width: imageWidth)
-                    // saveVideoToAlbum(videoData: testData)
+                    //let testData = try! generator.toMp4Data(width: imageWidth)
+                    //saveVideoToAlbum(videoData: testData)
                     
                     return EFImage.gif(try! generator.toGIFData(width: imageWidth))
                 } else {
