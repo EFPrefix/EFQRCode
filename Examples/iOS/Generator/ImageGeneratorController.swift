@@ -264,7 +264,7 @@ extension ImageGeneratorController {
                 let imageWidth: CGFloat = ((generator.qrcode.model.moduleCount + 1) * 12).cgFloat
                 if generator.isAnimated {
                     //let testData = try! generator.toMp4Data(width: imageWidth)
-                    //saveVideoToAlbum(videoData: testData)
+                    //saveVideoToAlbum(format: .mp4, videoData: testData)
                     
                     return EFImage.gif(try! generator.toGIFData(width: imageWidth))
                 } else {
@@ -285,7 +285,7 @@ extension ImageGeneratorController {
         }
     }
     
-    func saveVideoToAlbum(videoData: Data) {
+    func saveVideoToAlbum(format: EFVideoFormat, videoData: Data) {
         // 首先检查权限
         PHPhotoLibrary.requestAuthorization { status in
             guard status == .authorized else {
@@ -294,7 +294,7 @@ extension ImageGeneratorController {
             }
             
             // 创建临时文件
-            let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".mov")
+            let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + "." + format.fileExtension)
             
             do {
                 // 将数据写入临时文件

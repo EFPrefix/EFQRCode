@@ -29,7 +29,7 @@ import Foundation
 import AVFoundation
 import CoreVideo
 
-enum EFVideoFormat {
+public enum EFVideoFormat {
     case mov
     case mp4
     case m4v

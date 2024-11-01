@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
 	s.documentation_url = 'https://efprefix.github.io/EFQRCode'
 
 	s.ios.deployment_target = '13.0'
+    s.tvos.deployment_target = '13.0'
 	s.osx.deployment_target = '10.15'
-	s.tvos.deployment_target = '13.0'
 	s.watchos.deployment_target = '6.0'
 
 	s.swift_version = '5.0'
@@ -25,9 +25,9 @@ Pod::Spec.new do |s|
 
 	s.frameworks = 'ImageIO', 'CoreGraphics', 'Foundation'
 	s.ios.framework = 'CoreImage'
+    s.tvos.framework = 'CoreImage'
 	s.osx.framework = 'CoreImage'
-	s.tvos.framework = 'CoreImage'
-	s.watchos.dependency 'ef_swift_qrcodejs', '~> 2.3.0'
+	s.watchos.dependency 'swift_qrcodejs', '~> 2.2.2'
 
 	s.source_files = 'Source/**/*.{h,swift}'
 end
