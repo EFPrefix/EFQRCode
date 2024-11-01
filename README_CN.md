@@ -218,10 +218,7 @@ if let qrCodeData = EFQRCode.generateGIF(
 4. 建议对生成的二维码进行测试后投入使用，例如微信能够扫描成功并不代表支付宝也能成功扫描，请务必根据您的具体业务需要做有针对性的测试；
 5. 文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除；
 6. 若有任何问题，期待得到您的反馈，`Issue` 和 `Pull request` 都是受欢迎的。
-
-备注的备注：好用的话可以给个`星星`，蟹蟹，QAQ
-
-<iframe src="https://ghbtns.com/github-btn.html?user=EFPrefix&repo=EFQRCode&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+7. 最后，好用的话希望可以给个 `Star`，蟹蟹，QAQ
 
 ## 其它平台／语言
 
