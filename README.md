@@ -27,7 +27,7 @@
     </a>
 </p>
 
-EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images, inspired by [qrcode](https://github.com/sylnsfar/qrcode). Based on `CoreGraphics`, `CoreImage`, and `ImageIO`, EFQRCode provides you a better way to handle QRCode in your app, no matter if it is on iOS, macOS, watchOS, and/or tvOS. You can integrate EFQRCode through CocoaPods, Carthage, and/or Swift Package Manager.
+EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images, inspired by [qrcode](https://github.com/sylnsfar/qrcode) ans [react-qrbtf](https://github.com/CPunisher/react-qrbtf). Based on `CoreGraphics`, `CoreImage`, and `ImageIO`, EFQRCode provides you a better way to handle QRCode in your app, no matter if it is on iOS, macOS, watchOS, and/or tvOS. You can integrate EFQRCode through CocoaPods, Carthage, and/or Swift Package Manager.
 
 > [中文介绍](https://github.com/EFPrefix/EFQRCode/blob/main/README_CN.md)
 
@@ -70,7 +70,8 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 | 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
 | 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
 | 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| **6.x** | Xcode 12.0+<br>[![latest Swift](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/EFPrefix/EFQRCode)<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+| 6.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+| 7.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
 
 ## Installation
 
@@ -90,8 +91,6 @@ $ pod install
 ```
 
 ### Carthage
-
-> ***IMPORTANT***: this [workaround](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md) is necessary for Carthage to somewhat work in Xcode 12.
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
@@ -209,20 +208,21 @@ Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/main/USER
 ## Recommendations
 
 1. Please select a high contrast foreground and background color combinations;
-2. To improve the definition of QRCode images, increase `size`, or scale up using `magnification` (instead);
-3. Magnification too high／size too large／contents too long may cause failure;
+2. To improve the definition of QRCode images, increase `size`;
+3. Size too large／contents too long may cause failure;
 4. It is recommended to test the QRCode image before put it into use;
-5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome.
-
-PS of PS: I wish you can click the `Star` button if this tool is useful for you, thanks, QAQ...
+5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome;
+6. Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete;
+7. Wish you can click the `Star` button if this tool is useful for you, thanks, QAQ
 
 ## Other Platforms/Languages
 
 Platforms/Languages|Link
 :-------------------------|:-------------------------
 Objective-C|[https://github.com/z624821876/YSQRCode](https://github.com/z624821876/YSQRCode)
-Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
+TypeScript|[https://github.com/CPunisher/react-qrbtf](https://github.com/CPunisher/react-qrbtf)
 JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
+Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
 Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
 Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
@@ -255,10 +255,6 @@ If you think this project has brought you help, you can buy me a cup of coffee. 
 <a href="https://www.jetbrains.com/?from=EFQRCode">
     <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/ce8982e1858d62ac8b9fecec96f5369d8b1b62c3/logo/jetbrains.svg?sanitize=true" width = "20%">
 </a>
-
-## Other
-
-Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete.
 
 ## Contact
 
