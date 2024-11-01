@@ -1,10 +1,39 @@
 # Change Log
 
-## [7.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.0) (2023-07-26)
+# Change Log
+
+## [7.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.0) (2024-11-01)
 
 #### Add
 
-- Change result qrcode image to SVG.
+- Change rendering engine to SVG based (SwiftDraw)
+- Support more QR code styles:
+  - Basic style
+  - Bubble style
+  - 2.5D style
+  - DSJ style
+  - Function style
+  - Image style (Old)
+  - ImageFill style
+  - Line style
+  - RandomRectangle style
+  - ResampleImage style
+- Support multiple export formats:
+  - SVG (Vector)
+  - PDF (Vector)
+  - PNG
+  - JPEG
+  - MOV
+  - APNG
+  - GIF
+- Support transparent background
+- Add backdrop parameter for background customization
+- Add image mode parameter for more display options
+- Add icon alpha handling
+
+#### Remove
+
+- Remove Objective-C support
 
 ---
 
