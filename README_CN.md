@@ -22,21 +22,12 @@
     <a href="https://swiftpackageindex.com/EFPrefix/EFQRCode">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dplatforms" alt="支持所有平台">
     </a>
-    <a href="https://github.com/apple/swift">
-        <img src="https://img.shields.io/badge/language-swift-orange.svg">
-    </a>
-    <a href="https://codebeat.co/projects/github-com-efprefix-efqrcode-master">
-        <img src="https://codebeat.co/badges/c2ae977c-157a-4cb7-a476-76530e7f292b">
-    </a>
     <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/main/LICENSE">
         <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
     </a>
-    <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode?ref=badge_shield">
-        <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FEFPrefix%2FEFQRCode.svg?type=shield">
-    </a>
 </p>
 
-EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 iOS、macOS、watchOS 和 tvOS 平台，并且支持通过 CocoaPods、Carthage 和 Swift Package Manager 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 启发。
+EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库，可根据输入的水印图和图标产生艺术二维码，基于 `CoreGraphics`、`CoreImage` 和 `ImageIO` 进行开发。EFQRCode 为你提供了一种更好的在你的 App 中操作二维码的方式，它能够运行于 iOS、macOS、watchOS 和 tvOS 平台，并且支持通过 CocoaPods、Carthage 和 Swift Package Manager 获取。本项目受 [qrcode](https://github.com/sylnsfar/qrcode) 和 [react-qrbtf](https://github.com/CPunisher/react-qrbtf) 启发。
 
 > [English Introduction](https://github.com/EFPrefix/EFQRCode/blob/main/README.md)
 
@@ -100,8 +91,6 @@ $ pod install
 ```
 
 ### Carthage
-
-> ***注意***：在 Xcode 12 中使用 Carthage 需要[这个半吊子的解决方案](https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md)。
 
 [Carthage](https://github.com/Carthage/Carthage) 是一个去中心化的依赖管理器，它为我们构建依赖并通过提供二进制 Frameworks 的方式供我们使用。
 
@@ -224,20 +213,24 @@ if let qrCodeData = EFQRCode.generateGIF(
 ## 备注
 
 1. 请选用对比度较高的前景色和背景色组合；
-2. 想要提高生成二维码的清晰度可以选择使用 `magnification` 替代 `size`，或适当提高它们的数值；
-3. 放大倍数过高／边长过大／二维码内容过多可能会导致生成失败；
+2. 想要提高生成二维码的清晰度可以适当提高它的生成、导出尺寸；
+3. 生成尺寸过大、二维码内容过多可能会导致生成失败；
 4. 建议对生成的二维码进行测试后投入使用，例如微信能够扫描成功并不代表支付宝也能成功扫描，请务必根据您的具体业务需要做有针对性的测试；
-5. 若有任何问题，期待得到您的反馈，`Issue` 和 `Pull request` 都是受欢迎的。
+5. 文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除；
+6. 若有任何问题，期待得到您的反馈，`Issue` 和 `Pull request` 都是受欢迎的。
 
-备注的备注：好用的话可以给个`星星`，蟹蟹，QAQ...
+备注的备注：好用的话可以给个`星星`，蟹蟹，QAQ
+
+<iframe src="https://ghbtns.com/github-btn.html?user=EFPrefix&repo=EFQRCode&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
 
 ## 其它平台／语言
 
 平台／语言|链接
 :-------------------------|:-------------------------
 Objective-C|[https://github.com/z624821876/YSQRCode](https://github.com/z624821876/YSQRCode)
-Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
+TypeScript|[https://github.com/CPunisher/react-qrbtf](https://github.com/CPunisher/react-qrbtf)
 JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
+Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
 Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
 Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 
@@ -270,10 +263,6 @@ Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
 <a href="https://www.jetbrains.com/?from=EFQRCode">
     <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/ce8982e1858d62ac8b9fecec96f5369d8b1b62c3/logo/jetbrains.svg?sanitize=true" width = "20%">
 </a>
-
-## 其他
-
-文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除。
 
 ## 联系
 
