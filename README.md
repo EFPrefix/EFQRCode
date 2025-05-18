@@ -65,13 +65,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 
 ## Requirements
 
-| Version | Needs                                                                          |
-|:--------|:-------------------------------------------------------------------------------|
-| 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
-| 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
-| 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| 6.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
-| 7.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+ / visionOS 1.0+
 
 ## Installation
 
@@ -203,13 +197,13 @@ You can get more information from the demo, result will like this:
 
 #### 5. Next
 
-Learn more from [User Guide](https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE.md).
+Learn more from [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode).
 
 ## Recommendations
 
 1. Please select a high contrast foreground and background color combinations;
 2. To improve the definition of QRCode images, increase `size`;
-3. Size too large／contents too long may cause failure;
+3. Oversized generation dimensions, excessive QR code content, and overly large imported media may lead to generation failures;
 4. It is recommended to test the QRCode image before put it into use;
 5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome;
 6. Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete;

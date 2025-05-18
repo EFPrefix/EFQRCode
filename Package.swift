@@ -33,10 +33,10 @@ let package = Package(
         .library(name: "EFQRCode", targets: ["EFQRCode"])
     ],
     dependencies: [
-        .package(url: "https://github.com/ApolloZhu/swift_qrcodejs.git",
-                 .upToNextMinor(from: "2.2.2")),
-        .package(url: "https://github.com/EyreFree/SwiftDraw.git", 
-                 .revision("e4fc708dbb57d81d0aab4e5807a413efa890d894"))
+        .package(url: "https://github.com/EFPrefix/swift_qrcodejs.git",
+                 .upToNextMinor(from: "2.3.1")),
+        .package(url: "https://github.com/swhitty/SwiftDraw.git", 
+                 .upToNextMinor(from: "0.18.0")),
     ],
     targets: [
         .target(name: "EFQRCode",

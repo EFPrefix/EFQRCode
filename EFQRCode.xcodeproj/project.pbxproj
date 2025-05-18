@@ -1578,16 +1578,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EFPrefix/swift_qrcodejs.git";
 			requirement = {
-				kind = revision;
-				revision = 0b504067933381616058a951382b226d6b3f47f7;
+				kind = exactVersion;
+				version = 2.3.1;
 			};
 		};
 		1283C7CB2C8B33B300462E4C /* XCRemoteSwiftPackageReference "SwiftDraw" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swhitty/SwiftDraw.git";
 			requirement = {
-				kind = revision;
-				revision = 67ed5e44fe41b5df72bb41ccb4342044f823e198;
+				kind = exactVersion;
+				version = 0.18.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

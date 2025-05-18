@@ -42,7 +42,7 @@ public enum EFVideoFormat {
         }
     }
     
-    var fileExtension: String {
+    public var fileExtension: String {
         switch self {
         case .mov: return "mov"
         case .mp4: return "mp4"
