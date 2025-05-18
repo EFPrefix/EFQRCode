@@ -25,10 +25,14 @@
 //  THE SOFTWARE.
 
 import Foundation
+import SwiftDraw
 
 #if canImport(AppKit)
 import AppKit
 public typealias EFEdgeInsets = NSEdgeInsets
+public extension EFEdgeInsets {
+    static let zero = NSEdgeInsetsZero
+}
 #elseif canImport(UIKit)
 import UIKit
 public typealias EFEdgeInsets = UIEdgeInsets

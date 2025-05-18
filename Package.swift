@@ -36,7 +36,7 @@ let package = Package(
         .package(url: "https://github.com/EFPrefix/swift_qrcodejs.git",
                  .upToNextMinor(from: "2.3.1")),
         .package(url: "https://github.com/swhitty/SwiftDraw.git", 
-                 .upToNextMinor(from: "0.18.0")),
+                 .upToNextMinor(from: "0.20.1")),
     ],
     targets: [
         .target(name: "EFQRCode",
