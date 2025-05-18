@@ -24,7 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(AVFoundation)
+#if canImport(AVFoundation) && !os(watchOS)
 import Foundation
 import AVFoundation
 import CoreVideo

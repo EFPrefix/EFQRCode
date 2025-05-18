@@ -38,7 +38,7 @@ import UIKit
 #if canImport(AppKit)
 import AppKit
 #endif
-#if canImport(AVFoundation)
+#if canImport(AVFoundation) && !os(watchOS)
 import AVFoundation
 import CoreVideo
 #endif
@@ -130,12 +130,12 @@ public extension EFQRCode {
 #if canImport(UIKit)
         public func toImage(width: CGFloat, insets: UIEdgeInsets = .zero) throws -> UIImage {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toImage(size: imageSize)
+            return try toImage(size: imageSize, insets: insets)
         }
         
         public func toImage(height: CGFloat, insets: UIEdgeInsets = .zero) throws -> UIImage {
             let imageSize: CGSize = calculateSize(height: height)
-            return try toImage(size: imageSize)
+            return try toImage(size: imageSize, insets: insets)
         }
         
         private func toImage(size: CGSize, insets: UIEdgeInsets = .zero) throws -> UIImage {
@@ -144,8 +144,8 @@ public extension EFQRCode {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
             
-            let svg = SVG(data: svgData)
-            guard let image = svg?.rasterize(with: size, scale: 1, insets: insets) else {
+            let svg = SVG(data: svgData)?.expanded(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
+            guard let image = svg?.rasterize(size: size, scale: 1) else {
                 throw EFQRCodeError.cannotCreateUIImage
             }
             
@@ -156,12 +156,12 @@ public extension EFQRCode {
 #if canImport(AppKit)
         public func toImage(width: CGFloat, insets: NSEdgeInsets = .zero) throws -> NSImage {
             let imageSize: CGSize = calculateSize(width: width)
-            return try toImage(size: imageSize)
+            return try toImage(size: imageSize, insets: insets)
         }
         
         public func toImage(height: CGFloat, insets: NSEdgeInsets = .zero) throws -> NSImage {
             let imageSize: CGSize = calculateSize(height: height)
-            return try toImage(size: imageSize)
+            return try toImage(size: imageSize, insets: insets)
         }
         
         private func toImage(size: CGSize, insets: NSEdgeInsets = .zero) throws -> NSImage {
@@ -170,8 +170,8 @@ public extension EFQRCode {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
             
-            let svg = SVG(data: svgData)
-            guard let image = svg?.rasterize(with: size, scale: 1, insets: insets) else {
+            let svg = SVG(data: svgData)?.expanded(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
+            guard let image = svg?.rasterize(with: size, scale: 1) else {
                 throw EFQRCodeError.cannotCreateUIImage
             }
             
@@ -180,7 +180,7 @@ public extension EFQRCode {
 #endif
         
         // MARK:- Video
-#if canImport(AVFoundation)
+#if canImport(AVFoundation) && !os(watchOS)
         public func toMovData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toVideoData(format: .mov, size: imageSize, insets: insets)
@@ -243,12 +243,10 @@ public extension EFQRCode {
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
-            
-            let svg = SVG(data: svgData)
-            guard let data = try svg?.jpegData(size: size, scale: 1, compressionQuality: compressionQuality, insets: insets) else {
+            let svg = SVG(data: svgData)?.sized(size).expanded(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
+            guard let data = try svg?.jpegData(scale: 1, compressionQuality: compressionQuality) else {
                 throw EFQRCodeError.cannotCreateImageData
             }
-            
             return data
         }
         
@@ -268,12 +266,10 @@ public extension EFQRCode {
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
-            
-            let svg = SVG(data: svgData)
-            guard let data = try svg?.pngData(size: size, scale: 1, insets: insets) else {
+            let svg = SVG(data: svgData)?.sized(size).expanded(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
+            guard let data = try svg?.pngData(scale: 1) else {
                 throw EFQRCodeError.cannotCreateImageData
             }
-            
             return data
         }
 
@@ -293,12 +289,10 @@ public extension EFQRCode {
             guard let svgData = newSvgContent.data(using: .utf8) else {
                 throw EFQRCodeError.text(newSvgContent, incompatibleWithEncoding: .utf8)
             }
-            
-            let svg = SVG(data: svgData)
-            guard let data = try svg?.pdfData(size: size, insets: insets) else {
+            let svg = SVG(data: svgData)?.sized(size).expanded(top: -insets.top, left: -insets.left, bottom: -insets.bottom, right: -insets.right)
+            guard let data = try svg?.pdfData() else {
                 throw EFQRCodeError.cannotCreateImageData
             }
-            
             return data
         }
     }
@@ -673,7 +667,7 @@ extension EFQRCode.Generator {
         return mutableData as Data
     }
     
-#if canImport(AVFoundation)
+#if canImport(AVFoundation) && !os(watchOS)
     private func toVideoData(format: EFVideoFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
         let (images, durations): ([CGImage], [CGFloat]) = try getAnimatedFrames(size: size, insets: insets)
         let animatedImageData = try self.createVideoDataWith(format: format, frames: images, frameDelays: durations)

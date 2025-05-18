@@ -1587,7 +1587,7 @@
 			repositoryURL = "https://github.com/swhitty/SwiftDraw.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.18.0;
+				version = 0.20.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

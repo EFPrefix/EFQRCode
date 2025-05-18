@@ -45,8 +45,8 @@ class ShowController: UIViewController {
     let backButton = UIButton(type: .system)
     #if os(iOS)
     let saveButton = UIButton(type: .system)
-    #endif
     let copyButton = UIButton(type: .system)
+    #endif
     
     func setupViews() {
         let backgroundImageView = UIImageView()
@@ -81,6 +81,7 @@ class ShowController: UIViewController {
         backButton.layer.masksToBounds = true
         view.addSubview(backButton)
 
+        #if os(iOS)
         copyButton.setTitle(Localized.copy, for: .normal)
         copyButton.setTitleColor(UIColor.white, for: .normal)
         copyButton.layer.borderColor = UIColor.white.cgColor
@@ -96,7 +97,6 @@ class ShowController: UIViewController {
             make.height.equalTo(46)
         }
         
-        #if os(iOS)
         saveButton.setTitle(Localized.save, for: .normal)
         saveButton.setTitleColor(UIColor.white, for: .normal)
         saveButton.layer.borderColor = UIColor.white.cgColor
@@ -144,7 +144,7 @@ class ShowController: UIViewController {
         backButton.snp.makeConstraints {
             (make) in
             make.leading.width.equalTo(imageView)
-            make.top.equalTo(copyButton.snp.bottom).offset(10)
+            make.top.equalTo(imageView.snp.bottom).offset(10)
             make.height.equalTo(46)
         }
         #endif
@@ -194,9 +194,11 @@ class ShowController: UIViewController {
         dismiss(animated: true)
     }
     
+#if os(iOS)
     @objc func copyAction() {
         UIPasteboard.general.string = svgString
     }
+#endif
 }
 
 #if os(iOS)

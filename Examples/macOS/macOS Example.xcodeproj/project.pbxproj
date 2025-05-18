@@ -103,7 +103,7 @@
 /* Begin PBXFileReference section */
 		1218B8231FBB2E8700560874 /* ViewController+Recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Recognizer.swift"; sourceTree = "<group>"; };
 		1218B82A1FBB2E9000560874 /* ViewController+Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Generator.swift"; sourceTree = "<group>"; };
-		122A6D102A5D420800EE18B1 /* AnimatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedImage.swift; path = "/Users/eyrefree/Documents/QRCode/EFQRCode/Examples/tvOS/tvOS Example/../../iOS/AnimatedImage.swift"; sourceTree = "<absolute>"; };
+		122A6D102A5D420800EE18B1 /* AnimatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedImage.swift; path = ../../iOS/AnimatedImage.swift; sourceTree = "<group>"; };
 		122BB0391FBEF5E100BBCA0B /* EFQRCode.macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EFQRCode.macOS.entitlements; sourceTree = "<group>"; };
 		122BB03A1FBEFA1B00BBCA0B /* NSImage+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Example.swift"; sourceTree = "<group>"; };
 		12409D671FC582D200719A02 /* EFDetailButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFDetailButton.swift; sourceTree = "<group>"; };
