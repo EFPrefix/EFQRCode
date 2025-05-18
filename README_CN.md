@@ -67,13 +67,7 @@ git clone git@github.com:EFPrefix/EFQRCode.git; cd EFQRCode; sh Startup.sh; open
 
 ## 环境
 
-| 版本     | 需求                                                                           |
-|:--------|:-------------------------------------------------------------------------------|
-| 1.x     | Xcode 8.0+<br>Swift 3.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+                |
-| 4.x     | Xcode 9.0+<br>Swift 4.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+ |
-| 5.x     | Xcode 11.1+<br>Swift 5.0+<br>iOS 8.0+ / macOS 10.11+ / tvOS 9.0+ / watchOS 2.0+|
-| 6.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
-| 7.x     | Xcode 12.0+<br>Swift 5.0+<br>iOS 9.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+|
+iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+ / visionOS 1.0+
 
 ## 安装
 
@@ -204,7 +198,7 @@ if let qrCodeData = EFQRCode.generateGIF(
 
 #### 5. 接下来
 
-查看 [用户手册](https://github.com/EFPrefix/EFQRCode/blob/main/USERGUIDE_CN.md) 了解更多细节。
+查看 [详细文档](https://deepwiki.com/EFPrefix/EFQRCode) 了解更多细节（没错，我偷懒了没写文档，QWQ
 
 您也可以查看下列非官方的使用说明：
 
@@ -215,7 +209,7 @@ if let qrCodeData = EFQRCode.generateGIF(
 
 1. 请选用对比度较高的前景色和背景色组合；
 2. 想要提高生成二维码的清晰度可以适当提高它的生成、导出尺寸；
-3. 生成尺寸过大、二维码内容过多可能会导致生成失败；
+3. 生成尺寸过大、二维码内容过多、导入媒体过大可能会导致生成失败；
 4. 建议对生成的二维码进行测试后投入使用，例如微信能够扫描成功并不代表支付宝也能成功扫描，请务必根据您的具体业务需要做有针对性的测试；
 5. 文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除；
 6. 若有任何问题，期待得到您的反馈，`Issue` 和 `Pull request` 都是受欢迎的。

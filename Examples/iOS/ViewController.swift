@@ -96,7 +96,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let bottomLabel = UIButton(type: .system)
         bottomLabel.titleLabel?.font = .systemFont(ofSize: 20)
         bottomLabel.setTitleColor(.white, for: .normal)
-        bottomLabel.setTitle("https://www.efqrcode.com/", for: .normal)
+        bottomLabel.setTitle("https://github.com/EFPrefix/EFQRCode", for: .normal)
         #if os(iOS)
         bottomLabel.addTarget(self, action: #selector(openWeb), for: .touchDown)
         #endif
@@ -110,7 +110,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func openWeb() {
-        if let tryUrl = URL(string: "https://www.efqrcode.com/") {
+        if let tryUrl = URL(string: "https://github.com/EFPrefix/EFQRCode") {
             #if canImport(SafariServices)
             openURLWithSafari(tryUrl, controller: self)
             #else
