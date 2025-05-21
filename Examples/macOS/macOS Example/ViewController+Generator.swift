@@ -272,45 +272,222 @@ extension ViewController: NSAlertDelegate {
             let svg = try generator.toSVG()
             self.generatorSVG = svg
             generatorWebViewImage.loadHTMLString(svg, baseURL: nil)
+            
+            Anchor.generator = generator
         } catch {
             messageBox(Localized.createQRCodeFailed)
         }
     }
 
+    // 添加所有支持的格式选项
+    static let formats = [
+        "SVG": "svg",
+        "PDF": "pdf",
+        "PNG": "png",
+        "JPEG": "jpg",
+        "APNG": "apng",
+        "GIF": "gif",
+        "MOV": "mov",
+        "MP4": "mp4",
+        "M4V": "m4v"
+    ]
+    // 用于存储当前选择的格式
+    struct Anchor {
+        static var selectedFormat: String = "svg"
+        static weak var currentAlert: NSAlert?
+        static var generator: EFQRCode.Generator?
+    }
     @objc func generatorViewSaveClicked() {
-        guard let svgString = self.generatorSVG else { return }
-        let panel = NSSavePanel()
-        panel.allowedFileTypes = ["svg"]
-        let defaultFileName = NSLocalizedString("Untitled", comment: "Default file name")
-        let fileExtension = "svg"
-        panel.nameFieldStringValue = "\(defaultFileName).\(fileExtension)"
-        panel.message = NSLocalizedString(
-            "Choose the location to save the image",
-            comment: "File saver prompt title"
-        )
-        panel.allowsOtherFileTypes = true
-        panel.isExtensionHidden = true
-        panel.canCreateDirectories = true
-        panel.begin {
-            [weak self] (result) in
-            guard let self = self,
-                result.rawValue == NSApplication.ModalResponse.OK.rawValue,
-                let url = panel.url
-                else { return }
-            // [@"onecodego" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            do {
-                try svgString.data(using: .utf8)?.write(to: url)
-                /*messageBox(NSLocalizedString(
-                    "SVG image saved",
-                    comment: "Successfully export QR code image"
-                ))*/
-            } catch {
-                messageBox(NSLocalizedString(
-                    "Failed to save SVG image",
-                    comment: "Failed to export QR code image"
-                ))
+        // 创建文件类型选择菜单
+        let formatMenu = NSMenu()
+        
+        // 为每种格式创建菜单项
+        for (title, ext) in ViewController.formats {
+            let item = NSMenuItem(title: title, action: #selector(formatSelected(_:)), keyEquivalent: "")
+            item.representedObject = ext
+            item.target = self
+            formatMenu.addItem(item)
+        }
+        
+        // 创建菜单按钮
+        let formatButton = NSButton(title: "SVG", target: self, action: #selector(showFormatMenu(_:)))
+        formatButton.menu = formatMenu
+        formatButton.bezelStyle = .rounded
+        formatButton.tag = 100 // 用于标识这个按钮
+        
+        // 创建保存对话框
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("Save Image As", comment: "Save dialog title")
+        alert.informativeText = NSLocalizedString("Choose format and location:", comment: "Format selection prompt")
+        alert.alertStyle = .informational
+        Anchor.currentAlert = alert
+        
+        // 添加取消和保存按钮
+        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: "Cancel button"))
+        
+        _ = alert.addButton(withTitle: NSLocalizedString("Save", comment: "Save button"))
+        // 添加格式选择器作为附件视图
+        alert.accessoryView = formatButton
+        
+        // 显示对话框并处理结果
+        alert.beginSheetModal(for: self.view.window!) { [weak self] (response) in
+            guard let self = self else { return }
+            
+            // 用户点击了保存按钮
+            if response == .alertSecondButtonReturn {
+                let format = Anchor.selectedFormat
+                self.saveFile(withType: format)
             }
         }
+    }
+    
+    @objc func showFormatMenu(_ sender: NSButton) {
+        if let menu = sender.menu {
+            menu.popUp(positioning: nil, at: NSPoint(x: 0, y: sender.bounds.height), in: sender)
+        }
+    }
+    
+    // 定义格式选择的处理函数
+    @objc func formatSelected(_ sender: NSMenuItem) {
+        if let formatButton = Anchor.currentAlert?.accessoryView as? NSButton {
+            formatButton.title = sender.title
+            Anchor.selectedFormat = sender.representedObject as? String ?? "svg"
+        }
+    }
+
+    private func saveAsSVG(to url: URL) {
+        guard let svgString = self.generatorSVG else {
+            showErrorMessage()
+            return
+        }
+        
+        do {
+            try svgString.data(using: .utf8)?.write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsPDF(to url: URL) {
+        do {
+            try Anchor.generator?.toPDFData(width: 1024).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsPNG(to url: URL) {
+        do {
+            try Anchor.generator?.toPNGData(width: 1024).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsJPEG(to url: URL) {
+        do {
+            try Anchor.generator?.toJPEGData(width: 1024, compressionQuality: 0.8).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsAPNG(to url: URL) {
+        do {
+            try Anchor.generator?.toAPNGData(width: 1024).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsGIF(to url: URL) {
+        do {
+            try Anchor.generator?.toGIFData(width: 1024).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsMOV(to url: URL) {
+        do {
+            try Anchor.generator?.toMovData(width: 1024).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsMP4(to url: URL) {
+        do {
+            try Anchor.generator?.toMp4Data(width: 1024).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+    
+    private func saveAsM4V(to url: URL) {
+        do {
+            try Anchor.generator?.toM4vData(width: 1024).write(to: url)
+            showSuccessMessage()
+        } catch {
+            showErrorMessage()
+        }
+    }
+
+    // 保存文件的方法
+    private func saveFile(withType fileType: String) {
+        let panel = NSSavePanel()
+        panel.allowedFileTypes = [fileType]
+        panel.nameFieldStringValue = "Untitled.\(fileType)"
+        panel.message = NSLocalizedString("Choose the location to save the image", comment: "File saver prompt title")
+        panel.allowsOtherFileTypes = false
+        panel.isExtensionHidden = false
+        panel.canCreateDirectories = true
+        
+        panel.begin { [weak self] (result) in
+            guard let self = self,
+                  result == .OK,
+                  let url = panel.url else { return }
+            
+            // 根据文件类型调用对应的保存方法
+            switch fileType {
+            case "svg":
+                self.saveAsSVG(to: url)
+            case "pdf":
+                self.saveAsPDF(to: url)
+            case "png":
+                self.saveAsPNG(to: url)
+            case "jpg":
+                self.saveAsJPEG(to: url)
+            case "apng":
+                self.saveAsAPNG(to: url)
+            case "gif":
+                self.saveAsGIF(to: url)
+            case "mov":
+                self.saveAsMOV(to: url)
+            case "mp4":
+                self.saveAsMP4(to: url)
+            case "m4v":
+                self.saveAsM4V(to: url)
+            default:
+                self.showErrorMessage("Unsupported format: \(fileType)")
+            }
+        }
+    }
+
+    private func showSuccessMessage() {
+        messageBox(NSLocalizedString("File saved successfully", comment: "Successfully save file"))
+    }
+
+    private func showErrorMessage(_ msg: String? = nil) {
+        messageBox(NSLocalizedString(msg ?? "Failed to save file", comment: "Failed to save file"))
     }
 
     @objc func generatorViewOptionsClicked(button: NSButton) {

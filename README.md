@@ -1,15 +1,6 @@
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
-    <a href="https://travis-ci.org/EFPrefix/EFQRCode">
-        <img src="https://img.shields.io/travis/EFPrefix/EFQRCode.svg">
-    </a>
-    <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
-        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
-    </a>
-    <a href="https://efprefix.github.io/EFQRCode/">
-        <img src="https://efprefix.github.io/EFQRCode/badge.svg">
-    </a>
     <a href="https://github.com/Carthage/Carthage/">
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
     </a>

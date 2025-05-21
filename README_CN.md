@@ -1,15 +1,6 @@
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/EFQRCode.jpg)
 
 <p align="center">
-    <a href="https://travis-ci.org/EFPrefix/EFQRCode">
-        <img src="https://img.shields.io/travis/EFPrefix/EFQRCode.svg">
-    </a>
-    <a href="https://codecov.io/gh/EFPrefix/EFQRCode">
-        <img src="https://codecov.io/gh/EFPrefix/EFQRCode/branch/main/graph/badge.svg">
-    </a>
-    <a href="https://efprefix.github.io/EFQRCode/">
-        <img src="https://efprefix.github.io/EFQRCode/badge.svg">
-    </a>
     <a href="https://github.com/Carthage/Carthage/">
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
     </a>
@@ -198,7 +189,7 @@ if let qrCodeData = EFQRCode.generateGIF(
 
 #### 5. 接下来
 
-查看 [详细文档](https://deepwiki.com/EFPrefix/EFQRCode) 了解更多细节（没错，我偷懒了没写文档，QWQ
+查看 [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode) 了解更多细节（没错，我偷懒了没写文档，QWQ
 
 您也可以查看下列非官方的使用说明：
 
