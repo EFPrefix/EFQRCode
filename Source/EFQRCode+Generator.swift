@@ -46,8 +46,6 @@ import CoreVideo
 import QRCodeSwift
 import SwiftDraw
 
-//todo
-//1. 文档
 public extension EFQRCode {
     
     class Generator {

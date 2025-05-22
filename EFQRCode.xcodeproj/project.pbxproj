@@ -216,10 +216,6 @@
 		72998D721BF26173006D3F69 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 		D22654B5256E965300920D11 /* ObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
 		D2483C94256E14C0005899D8 /* QRCodeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRCodeSwift.framework; path = ../swift_qrcodejs/Carthage/Build/watchOS/QRCodeSwift.framework; sourceTree = "<group>"; };
-		D2B2741C258DBB8900E6FFC8 /* User Guide.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "User Guide.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		D2B27435258DEC3000E6FFC8 /* README.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = README.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "European SEPA Money Transfer + Watermark.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		D2DF1DB8256EC4CF00EB6012 /* Basic B&W QR Code.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Basic B&W QR Code.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8111E3E19A95C8B0040E7D1 /* EFQRCode iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EFQRCode iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,25 +357,6 @@
 			path = Type;
 			sourceTree = "<group>";
 		};
-		D2DF1DB5256EC4CF00EB6012 /* Playgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				D2B27435258DEC3000E6FFC8 /* README.playground */,
-				D2B2741C258DBB8900E6FFC8 /* User Guide.playground */,
-				D2DF1DB6256EC4CF00EB6012 /* Generate */,
-			);
-			path = Playgrounds;
-			sourceTree = "<group>";
-		};
-		D2DF1DB6256EC4CF00EB6012 /* Generate */ = {
-			isa = PBXGroup;
-			children = (
-				D2DF1DB7256EC4CF00EB6012 /* European SEPA Money Transfer + Watermark.playground */,
-				D2DF1DB8256EC4CF00EB6012 /* Basic B&W QR Code.playground */,
-			);
-			path = Generate;
-			sourceTree = "<group>";
-		};
 		F8111E2919A95C8B0040E7D1 = {
 			isa = PBXGroup;
 			children = (
@@ -388,7 +365,6 @@
 				127F871E1ECF56AC0002B554 /* EFQRCode.podspec */,
 				F8111E3519A95C8B0040E7D1 /* Source */,
 				F8111E3F19A95C8B0040E7D1 /* Tests */,
-				D2DF1DB5256EC4CF00EB6012 /* Playgrounds */,
 				F8111E3419A95C8B0040E7D1 /* Products */,
 				120AAA7A21932CD300F0783B /* Frameworks */,
 			);

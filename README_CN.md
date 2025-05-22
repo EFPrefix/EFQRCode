@@ -191,11 +191,6 @@ if let qrCodeData = EFQRCode.generateGIF(
 
 查看 [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode) 了解更多细节（没错，我偷懒了没写文档，QWQ
 
-您也可以查看下列非官方的使用说明：
-
-- [不用请设计师，你也能做出个性二维码：EFQRCode](https://sspai.com/post/43211)
-- [想更优雅地分享 Wi-Fi 密码，只需一枚二维码](https://sspai.com/post/43097)
-
 ## 备注
 
 1. 请选用对比度较高的前景色和背景色组合；
@@ -204,30 +199,15 @@ if let qrCodeData = EFQRCode.generateGIF(
 4. 建议对生成的二维码进行测试后投入使用，例如微信能够扫描成功并不代表支付宝也能成功扫描，请务必根据您的具体业务需要做有针对性的测试；
 5. 文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除；
 6. 若有任何问题，期待得到您的反馈，`Issue` 和 `Pull request` 都是受欢迎的。
-7. 好用的话希望可以点下 `Star`，蟹蟹，QAQ
-
-## 其它平台／语言
-
-平台／语言|链接
-:-------------------------|:-------------------------
-Objective-C|[https://github.com/z624821876/YSQRCode](https://github.com/z624821876/YSQRCode)
-TypeScript|[https://github.com/CPunisher/react-qrbtf](https://github.com/CPunisher/react-qrbtf)
-JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
-Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
-Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
-Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
+7. 好用的话希望可以点下 `Star`，QWQ
 
 ## 贡献者
-
-这个项目的存在多亏了所有贡献的人。[[参与贡献](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890"/>
 </a>
 
 ## 捐赠
-
-如果你认为这个项目给你带来了帮助，你可以给我买杯咖啡。如果你喜欢这个项目，并愿意为它的发展提供进一步的支持，你可以选择在 [Open Collective](https://opencollective.com/efqrcode) 上成为 `支持者`。感谢所有的支持者！ 🙏 [[成为支持者](https://opencollective.com/efqrcode#backer)]
 
 <a href="https://opencollective.com/efqrcode#backers" target="_blank">
     <img src="https://opencollective.com/efqrcode/backers.svg?width=890">

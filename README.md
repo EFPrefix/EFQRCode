@@ -198,30 +198,15 @@ Learn more from [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode).
 4. It is recommended to test the QRCode image before put it into use;
 5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome;
 6. Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete;
-7. Wish you can click the `Star` button if this tool is useful for you, thanks, QAQ
-
-## Other Platforms/Languages
-
-Platforms/Languages|Link
-:-------------------------|:-------------------------
-Objective-C|[https://github.com/z624821876/YSQRCode](https://github.com/z624821876/YSQRCode)
-TypeScript|[https://github.com/CPunisher/react-qrbtf](https://github.com/CPunisher/react-qrbtf)
-JavaScript|[https://github.com/SumiMakito/Awesome-qr.js](https://github.com/SumiMakito/Awesome-qr.js)
-Java|[https://github.com/SumiMakito/AwesomeQRCode](https://github.com/SumiMakito/AwesomeQRCode)
-Kotlin|[https://github.com/SumiMakito/AwesomeQRCode-Kotlin](https://github.com/SumiMakito/AwesomeQRCode-Kotlin)
-Python|[https://github.com/sylnsfar/qrcode](https://github.com/sylnsfar/qrcode)
+7. Wish you can click the `Star` button if this tool is useful for you, QWQ
 
 ## Contributors
-
-This project exists thanks to all the people who already contributed to us. [[Contribute](https://github.com/EFPrefix/EFQRCode/blob/main/.github/CONTRIBUTING.md)]
 
 <a href="https://opencollective.com/efqrcode#contributors">
     <img src="https://opencollective.com/efqrcode/contributors.svg?width=890"/>
 </a>
 
 ## Backers
-
-If you think this project has brought you help, you can buy me a cup of coffee. If you like this project and are willing to provide further support for it's development, you can choose to become `Backer` in [Open Collective](https://opencollective.com/efqrcode). Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/efqrcode#backer)]
 
 <a href="https://opencollective.com/efqrcode#backers" target="_blank">
     <img src="https://opencollective.com/efqrcode/backers.svg?width=890">
