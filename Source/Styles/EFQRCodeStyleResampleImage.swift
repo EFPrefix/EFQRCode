@@ -232,15 +232,15 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                             pointList.append("<use key=\"\(id)\" xlink:href=\"#Sab\" x=\"\(posX + 1 - 0.01)\" y=\"\(posY + 1 - 0.01)\"/>")
                             id += 1
                         }
-                    } else {
+                    } /*else {
                         if alignType == .none {
-                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         } else {
-                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
                             id += 1
                         }
-                    }
+                    }*/
                 } else if typeTable[x][y] == QRPointType.timing {
                     if isDark {
                         if timingType != .none && timingOnlyWhite == false {
@@ -250,15 +250,15 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
                             pointList.append("<use key=\"\(id)\" xlink:href=\"#Stb\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         }
-                    } else {
+                    } /*else {
                         if timingType == .none {
-                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Sw\" x=\"\(posX + 1)\" y=\"\(posY + 1)\"/>")
                             id += 1
                         } else {
-                            // pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
+                            pointList.append("<use key=\"\(id)\" xlink:href=\"#Bw\" x=\"\(posX - 0.01)\" y=\"\(posY - 0.01)\"/>")
                             id += 1
                         }
-                    }
+                    }*/
                 } else if typeTable[x][y] == QRPointType.posCenter {
                     //white bg
                     /*let markArr: [CGFloat] = {

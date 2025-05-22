@@ -146,26 +146,31 @@ public class EFStyleImageParamsImage {
     let image: EFStyleParamImage
     let mode: EFImageMode
     let alpha: CGFloat
+    let allowTransparent: Bool
     
     public init(
         image: EFStyleParamImage,
         mode: EFImageMode = .scaleAspectFill,
-        alpha: CGFloat = 1
+        alpha: CGFloat = 1,
+        allowTransparent: Bool = false
     ) {
         self.image = image
         self.mode = mode
         self.alpha = alpha
+        self.allowTransparent = allowTransparent
     }
     
     func copyWith(
         image: EFStyleParamImage? = nil,
         mode: EFImageMode? = nil,
-        alpha: CGFloat? = nil
+        alpha: CGFloat? = nil,
+        allowTransparent: Bool? = nil
     ) -> EFStyleImageParamsImage {
         return EFStyleImageParamsImage(
             image: image ?? self.image,
             mode: mode ?? self.mode,
-            alpha: alpha ?? self.alpha
+            alpha: alpha ?? self.alpha,
+            allowTransparent: allowTransparent ?? self.allowTransparent
         )
     }
 }
@@ -262,6 +267,55 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         
         var imageLineIndex: Int? = nil
         if let image = params.image {
+            if image.allowTransparent == true {
+                for x in 0..<nCount {
+                    for y in 0..<nCount {
+                        let isDark: Bool = qrcode.model.isDark(x, y)
+                        if alignType != .none && (typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther) {
+                            
+                        } else if timingType != .none && typeTable[x][y] == QRPointType.timing {
+                            
+                        } else if typeTable[x][y] == QRPointType.posCenter {
+                            
+                        } else if typeTable[x][y] == QRPointType.posOther {
+                            continue
+                        } else {
+                            if isDark {
+                                switch type {
+                                case .rectangle:
+                                    pointList.append("<rect opacity=\"\(opacityDark)\" width=\"1\" height=\"1\" key=\"\(id)\" fill=\"\(otherColorDark)\" x=\"\(x.cgFloat)\" y=\"\(y.cgFloat)\"/>")
+                                    id += 1
+                                    break
+                                case .round:
+                                    pointList.append("<circle opacity=\"\(opacityDark)\" r=\"0.5\" key=\"\(id)\" fill=\"\(otherColorDark)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                                    id += 1
+                                    break
+                                case .roundedRectangle:
+                                    pointList.append("<rect key=\"\(id)\" opacity=\"\(opacityDark)\" fill=\"\(otherColorDark)\" x=\"\(x.cgFloat)\" y=\"\(y.cgFloat)\" width=\"1\" height=\"1\" rx=\"0.25\" ry=\"0.25\"/>")
+                                    id += 1
+                                    break
+                                }
+                            } else {
+                                switch type {
+                                case .rectangle:
+                                    pointList.append("<rect opacity=\"\(opacityLight)\" width=\"1\" height=\"1\" key=\"\(id)\" fill=\"\(otherColorLight)\" x=\"\(x.cgFloat)\" y=\"\(y.cgFloat)\"/>")
+                                    id += 1
+                                    break
+                                case .round:
+                                    pointList.append("<circle opacity=\"\(opacityLight)\" r=\"0.5\" key=\"\(id)\" fill=\"\(otherColorLight)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                                    id += 1
+                                    break
+                                case .roundedRectangle:
+                                    pointList.append("<rect key=\"\(id)\" opacity=\"\(opacityLight)\" fill=\"\(otherColorLight)\" x=\"\(x.cgFloat)\" y=\"\(y.cgFloat)\" width=\"1\" height=\"1\" rx=\"0.25\" ry=\"0.25\"/>")
+                                    id += 1
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
             let line = try image.image.write(id: id, rect: CGRect(x: 0, y: 0, width: nCount, height: nCount), opacity: image.alpha, mode: image.mode)
             imageLineIndex = pointList.count
             pointList.append(line)
@@ -298,9 +352,9 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         return newLine
                     }()
                     pointList.append(alignLine)
-                    if let _ = imageLineIndex, !alignLine.isEmpty && !isDark {
+                    /*if let _ = imageLineIndex, !alignLine.isEmpty && !isDark {
                         imageMask += alignLine.replace(kof, with: "fill=\"black\" ")
-                    }
+                    }*/
                 } else if timingType != .none && typeTable[x][y] == QRPointType.timing {
                     let thisTimingColor: String = isDark ? timingDarkColor : timingLightColor
                     let thisTimingAlpha: CGFloat = isDark ? timingDarkAlpha : timingLightAlpha
@@ -327,9 +381,9 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         return newLine
                     }()
                     pointList.append(timingLine)
-                    if let _ = imageLineIndex, !timingLine.isEmpty && !isDark {
+                    /*if let _ = imageLineIndex, !timingLine.isEmpty && !isDark {
                         imageMask += timingLine.replace(kof, with: "fill=\"black\" ")
-                    }
+                    }*/
                 } else if typeTable[x][y] == QRPointType.posCenter {
                     let markArr: [CGFloat] = {
                         if x > y {
