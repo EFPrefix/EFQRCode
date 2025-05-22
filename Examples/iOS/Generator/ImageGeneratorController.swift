@@ -206,7 +206,7 @@ extension ImageGeneratorController {
         
         let paramWatermark: EFStyleImageParamsImage? = {
             if let image = self.image {
-                return EFStyleImageParamsImage(image: image, mode: imageMode, alpha: imageAlpha)
+                return EFStyleImageParamsImage(image: image, mode: imageMode, alpha: imageAlpha, allowTransparent: true)
             }
             return nil
         }()
