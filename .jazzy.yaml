@@ -3,7 +3,6 @@ module: EFQRCode
 author: EyreFree
 theme: fullwidth
 readme: README.md
-documentation: User Guide.md
 root_url: https://efprefix.github.io/EFQRCode
 github_url: https://github.com/EFPrefix/EFQRCode
 github_file_prefix: https://github.com/EFPrefix/EFQRCode/blob/main
