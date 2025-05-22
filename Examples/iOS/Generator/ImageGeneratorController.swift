@@ -80,6 +80,13 @@ extension ImageGeneratorController {
         view.backgroundColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
 
         setupViews()
+        
+        DispatchQueue.main.async {
+            if let cgImage = UIImage(named: "Jobs")?.cgImage {
+                self.image = EFStyleParamImage.static(image: cgImage)
+                self.refresh()
+            }
+        }
     }
 
     func setupViews() {
