@@ -208,7 +208,7 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
                 } else if typeTable[x][y] == QRPointType.alignCenter || typeTable[x][y] == QRPointType.alignOther {
                     switch alignType {
                     case .rectangle:
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(alignAlpha)\" width=\"\(alignSize)\" height=\"\(alignSize)\" fill=\"\(alignColor)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\"/>")
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(alignAlpha)\" width=\"\(alignSize)\" height=\"\(alignSize)\" fill=\"\(alignColor)\" x=\"\(x.cgFloat + (1.0 - alignSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - alignSize) / 2.0)\"/>")
                         id += 1
                         break
                     case .round:
@@ -217,23 +217,23 @@ public class EFQRCodeStyleBasic: EFQRCodeStyleBase {
                         break
                     case .roundedRectangle:
                         let cd: CGFloat = alignSize / 4.0
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(alignAlpha)\" fill=\"\(alignColor)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\" width=\"\(alignSize)\" height=\"\(alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(alignAlpha)\" fill=\"\(alignColor)\" x=\"\(x.cgFloat + (1.0 - alignSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - alignSize) / 2.0)\" width=\"\(alignSize)\" height=\"\(alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
                         id += 1
                         break
                     }
                 } else if typeTable[x][y] == QRPointType.timing {
                     switch timingType {
                     case .rectangle:
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(timingAlpha)\" width=\"\(timingSize)\" height=\"\(timingSize)\" fill=\"\(timingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\"/>")
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(timingAlpha)\" width=\"\(timingSize)\" height=\"\(timingSize)\" fill=\"\(timingColor)\" x=\"\(x.cgFloat + (1.0 - timingSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - timingSize) / 2.0)\"/>")
                         id += 1
                         break
                     case .round:
-                        pointList.append("<circle key=\"\(id)\" opacity=\"\(timingAlpha)\" r=\"\(timingSize / 2)\" fill=\"\(timingColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
+                        pointList.append("<circle key=\"\(id)\" opacity=\"\(timingAlpha)\" r=\"\(timingSize / 2.0)\" fill=\"\(timingColor)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>")
                         id += 1
                         break
                     case .roundedRectangle:
                         let cd: CGFloat = timingSize / 4.0
-                        pointList.append("<rect key=\"\(id)\" opacity=\"\(timingAlpha)\" fill=\"\(timingColor)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1 - timingSize) / 2)\" width=\"\(timingSize)\" height=\"\(timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
+                        pointList.append("<rect key=\"\(id)\" opacity=\"\(timingAlpha)\" fill=\"\(timingColor)\" x=\"\(x.cgFloat + (1.0 - timingSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - timingSize) / 2.0)\" width=\"\(timingSize)\" height=\"\(timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>")
                         id += 1
                         break
                     }
