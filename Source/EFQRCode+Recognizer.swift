@@ -30,7 +30,7 @@ import CoreImage
 public extension EFQRCode {
     
     /// Class for recognizing QR code contents from images.
-    class Recognizer: NSObject {
+    class Recognizer {
         /// The QR code to recognize.
         public var image: CGImage {
             didSet {

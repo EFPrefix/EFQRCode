@@ -142,9 +142,6 @@
 		4CF626F91BA7CB3E0011A099 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF626EF1BA7CB3E0011A099 /* EFQRCode.framework */; };
 		4CF627141BA7CC240011A099 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C256A501B096C2C0065714F /* Tests.swift */; };
 		8035DB621BAB492500466CB3 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */; };
-		D22654B6256E965300920D11 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22654B5256E965300920D11 /* ObjCTests.m */; };
-		D22654B7256E965300920D11 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22654B5256E965300920D11 /* ObjCTests.m */; };
-		D22654B8256E965300920D11 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22654B5256E965300920D11 /* ObjCTests.m */; };
 		F829C6B81A7A94F100A2CD59 /* EFQRCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */; };
 /* End PBXBuildFile section */
 
@@ -214,7 +211,6 @@
 		4DD67C0B1A5C55C900ED2280 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5282BCAD1FF38F8100DFB36B /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72998D721BF26173006D3F69 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
-		D22654B5256E965300920D11 /* ObjCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
 		D2483C94256E14C0005899D8 /* QRCodeSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QRCodeSwift.framework; path = ../swift_qrcodejs/Carthage/Build/watchOS/QRCodeSwift.framework; sourceTree = "<group>"; };
 		F8111E3319A95C8B0040E7D1 /* EFQRCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EFQRCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8111E3719A95C8B0040E7D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -416,7 +412,6 @@
 			isa = PBXGroup;
 			children = (
 				4C256A501B096C2C0065714F /* Tests.swift */,
-				D22654B5256E965300920D11 /* ObjCTests.m */,
 				126A1B581EAF225100EFBA1B /* Resources */,
 				F8111E4019A95C8B0040E7D1 /* Supporting Files */,
 			);
@@ -799,7 +794,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CF627141BA7CC240011A099 /* Tests.swift in Sources */,
-				D22654B8256E965300920D11 /* ObjCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,7 +910,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C256A531B096C770065714F /* Tests.swift in Sources */,
-				D22654B6256E965300920D11 /* ObjCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,7 +918,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C256A541B096C770065714F /* Tests.swift in Sources */,
-				D22654B7256E965300920D11 /* ObjCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

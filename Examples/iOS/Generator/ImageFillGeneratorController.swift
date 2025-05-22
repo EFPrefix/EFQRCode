@@ -34,7 +34,7 @@ class ImageFillGeneratorController: UIViewController, UITextViewDelegate, UITabl
     var backgroundColor: UIColor = UIColor.white
     var backgroundAlpha: CGFloat = 1
     var maskColor: UIColor = UIColor.black
-    var maskAlpha: CGFloat = 0.5
+    var maskAlpha: CGFloat = 0.3
     var icon: EFStyleParamImage? = nil
     var iconScale: CGFloat = 0.22
     var iconAlpha: CGFloat = 1
@@ -60,6 +60,13 @@ extension ImageFillGeneratorController {
         view.backgroundColor = #colorLiteral(red: 0.3803921569, green: 0.8117647059, blue: 0.7803921569, alpha: 1)
 
         setupViews()
+        
+        DispatchQueue.main.async {
+            if let cgImage = UIImage(named: "Beethoven")?.cgImage {
+                self.image = EFStyleParamImage.static(image: cgImage)
+                self.refresh()
+            }
+        }
     }
 
     func setupViews() {
