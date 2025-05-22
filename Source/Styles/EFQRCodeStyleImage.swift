@@ -336,7 +336,7 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         case .none:
                             break
                         case .rectangle:
-                            newLine = "<rect \(kof)width=\"\(alignSize)\" height=\"\(alignSize)\" x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\"/>"
+                            newLine = "<rect \(kof)width=\"\(alignSize)\" height=\"\(alignSize)\" x=\"\(x.cgFloat + (1.0 - alignSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - alignSize) / 2.0)\"/>"
                             id += 1
                             break
                         case .round:
@@ -345,7 +345,7 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                             break
                         case .roundedRectangle:
                             let cd: CGFloat = alignSize / 4.0
-                            newLine = "<rect \(kof)x=\"\(x.cgFloat + (1 - alignSize) / 2)\" y=\"\(y.cgFloat + (1 - alignSize) / 2)\" width=\"\(alignSize)\" height=\"\(alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
+                            newLine = "<rect \(kof)x=\"\(x.cgFloat + (1.0 - alignSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - alignSize) / 2.0)\" width=\"\(alignSize)\" height=\"\(alignSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
                             id += 1
                             break
                         }
@@ -365,16 +365,16 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
                         case .none:
                             break
                         case .rectangle:
-                            newLine += "<rect \(kof)width=\"\(timingSize)\" height=\"\(timingSize)\" x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1.0 - size) / 2.0)\"/>"
+                            newLine += "<rect \(kof)width=\"\(timingSize)\" height=\"\(timingSize)\" x=\"\(x.cgFloat + (1.0 - timingSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - timingSize) / 2.0)\"/>"
                             id += 1
                             break
                         case .round:
-                            newLine += "<circle \(kof)r=\"\(timingSize / 2)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>"
+                            newLine += "<circle \(kof)r=\"\(timingSize / 2.0)\" cx=\"\(x.cgFloat + 0.5)\" cy=\"\(y.cgFloat + 0.5)\"/>"
                             id += 1
                             break
                         case .roundedRectangle:
                             let cd: CGFloat = timingSize / 4.0
-                            newLine += "<rect \(kof)x=\"\(x.cgFloat + (1 - timingSize) / 2)\" y=\"\(y.cgFloat + (1 - timingSize) / 2)\" width=\"\(timingSize)\" height=\"\(timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
+                            newLine += "<rect \(kof)x=\"\(x.cgFloat + (1.0 - timingSize) / 2.0)\" y=\"\(y.cgFloat + (1.0 - timingSize) / 2.0)\" width=\"\(timingSize)\" height=\"\(timingSize)\" rx=\"\(cd)\" ry=\"\(cd)\"/>"
                             id += 1
                             break
                         }
