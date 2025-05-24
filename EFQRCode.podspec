@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
     s.tvos.deployment_target = '13.0'
     s.osx.deployment_target = '10.15'
     s.watchos.deployment_target = '6.0'
-    s.visionos.deployment_target = "1.0"
+    #s.visionos.deployment_target = "1.0"
 
     s.swift_version = '5.0'
     s.requires_arc = true
@@ -28,9 +28,10 @@ Pod::Spec.new do |s|
     s.ios.framework = 'CoreImage'
     s.tvos.framework = 'CoreImage'
     s.osx.framework = 'CoreImage'
+    #s.visionos.framework = 'CoreImage'
     
     s.dependency 'SwiftDraw', '~> 0.20.1'
-    s.watchos.dependency 'ef_swift_qrcodejs', '~> 2.3.1'
+    s.dependency 'ef_swift_qrcodejs', '~> 2.3.1'
 
     s.source_files = 'Source/**/*.{h,swift}'
 end
