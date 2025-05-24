@@ -177,8 +177,8 @@ if let imageData = try? generator?.toGIFData(width: 512) {
 
 ##### 3.3 可导出类型
 
-- 静态: NSImage, UIImage, SVG, PDF, PNG, JPEG
-- 动态: APNG, GIF, MOV, MP4, M4V
+- 静态: NSImage, UIImage, PDF, PNG, JPEG
+- 动态: APNG, GIF, SVG, MOV, MP4, M4V
 
 #### 4. 接下来
 

@@ -174,8 +174,8 @@ You can get more information from the demo, result will like this:
 
 ##### 3.3 Exportable types
 
-- Static: NSImage, UIImage, SVG, PDF, PNG, JPEG
-- Animated: APNG, GIF, MOV, MP4, M4V
+- Static: NSImage, UIImage, PDF, PNG, JPEG
+- Animated: APNG, GIF, SVG, MOV, MP4, M4V
 
 #### 4. Next
 
