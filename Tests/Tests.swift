@@ -93,7 +93,7 @@ class Tests: XCTestCase {
         let generator = try? EFQRCode.Generator(content, style: .image(
             params: .init(
                 icon: .init(image: .static(image: getImage()), borderColor: .init(red: 0.8, green: 0.7, blue: 0.6, alpha: 0.5)),
-                image: .init(image: .static(image: getImage())))
+                image: .init(image: .static(image: getImage()), allowTransparent: true))
             )
         )
         let testResult = try? generator?.toImage(width: 180).cgImage

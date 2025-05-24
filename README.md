@@ -18,7 +18,7 @@
     </a>
 </p>
 
-EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images, inspired by [qrcode](https://github.com/sylnsfar/qrcode) ans [react-qrbtf](https://github.com/CPunisher/react-qrbtf). Based on `CoreGraphics`, `CoreImage`, and `ImageIO`, EFQRCode provides you a better way to handle QRCode in your app, no matter if it is on iOS, macOS, watchOS, and/or tvOS. You can integrate EFQRCode through CocoaPods, Carthage, and/or Swift Package Manager.
+EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images, inspired by [qrcode](https://github.com/sylnsfar/qrcode) ans [react-qrbtf](https://github.com/CPunisher/react-qrbtf). Based on `CoreGraphics`, `CoreImage`, and `ImageIO`, EFQRCode provides you a better way to handle QRCode in your app, no matter if it is on iOS, macOS, watchOS, tvOS, and/or visionOS. You can integrate EFQRCode through CocoaPods, Carthage, and/or Swift Package Manager.
 
 > [中文介绍](https://github.com/EFPrefix/EFQRCode/blob/main/README_CN.md)
 
@@ -122,7 +122,7 @@ A String Array is returned as there might be several QR Codes in a single `CGIma
 
 ```swift
 if let testImage = UIImage(named: "test.png")?.cgImage {
-    let codes = EFQRCode.recognize(testImage)
+    let codes = EFQRCode.Recognizer(image: testImage).recognize()
     if !codes.isEmpty {
         print("There are \(codes.count) codes")
         for (index, code) in codes.enumerated() {
@@ -136,21 +136,13 @@ if let testImage = UIImage(named: "test.png")?.cgImage {
 
 #### 3. Generation
 
-Create QR Code image, basic usage:
-
-|Parameter|Description|
-|-:|:-|
-|`content`|***REQUIRED***, content of QR Code|
-|`size`|Width and height of image|
-|`backgroundColor`|Background color of QRCode|
-|`foregroundColor`|Foreground color of QRCode|
-|`watermark`|Background image of QRCode|
+Create QR Code with watermark image:
 
 ```swift
-if let image = EFQRCode.generate(
-    for: "https://github.com/EFPrefix/EFQRCode",
-    watermark: UIImage(named: "WWF")?.cgImage
-) {
+let generator = try? EFQRCode.Generator("https://github.com/EFPrefix/EFQRCode", style: .image(
+    params: .init(image: .init(image: .static(image: UIImage(named: "WWF")?.cgImage!), allowTransparent: true)))
+)
+if let image = try? generator?.toImage(width: 180).cgImage {
     print("Create QRCode image success \(image)")
 } else {
     print("Create QRCode image failed!")
@@ -161,22 +153,16 @@ Result:
 
 <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-#### 4. Generation from GIF
+#### 4. Generation from animated images
 
-Use `EFQRCode.generateGIF` to create GIF QRCode.
-
-|Parameter|Description|
-|-:|:-|
-|`generator`|***REQUIRED***, an `EFQRCodeGenerator` instance with other settings|
-|`data`|***REQUIRED***, encoded input GIF|
-|`delay`|Output QRCode GIF delay, emitted means no change|
-|`loopCount`|Times looped in GIF, emitted means no change|
+You can create a dynamic QR code by passing in a sequence of animated images. The usage method is as follows:
 
 ```swift
-if let qrCodeData = EFQRCode.generateGIF(
-    using: generator, withWatermarkGIF: data
-) {
-    print("Create QRCode image success.")
+let generator = try? EFQRCode.Generator("https://github.com/EFPrefix/EFQRCode", style: .image(
+    params: .init(image: .init(image: .animated(images: cgImages, imageDelays: cgImageDelays))))
+)
+if let imageData = try? generator?.toGIFData(width: 512) {
+    print("Create QRCode image success \(imageData)")
 } else {
     print("Create QRCode image failed!")
 }
