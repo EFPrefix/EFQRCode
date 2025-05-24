@@ -136,7 +136,7 @@ if let testImage = UIImage(named: "test.png")?.cgImage {
 
 #### 3. Generation
 
-Create QR Code with watermark image:
+##### 3.1 Create QR Code with static image
 
 ```swift
 let generator = try? EFQRCode.Generator("https://github.com/EFPrefix/EFQRCode", style: .image(
@@ -153,7 +153,7 @@ Result:
 
 <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-#### 4. Generation from animated images
+##### 3.2 Generation from animated images
 
 You can create a dynamic QR code by passing in a sequence of animated images. The usage method is as follows:
 
@@ -172,7 +172,12 @@ You can get more information from the demo, result will like this:
 
 <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/>
 
-#### 5. Next
+##### 3.3 Exportable types
+
+- Static: NSImage, UIImage, SVG, PDF, PNG, JPEG
+- Animated: APNG, GIF, MOV, MP4, M4V
+
+#### 4. Next
 
 Learn more from [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode).
 

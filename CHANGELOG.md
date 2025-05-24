@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.0) (2024-11-01)
+## [7.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.0) (2025-05-24)
 
 #### Add
 

@@ -137,6 +137,8 @@ if let testImage = UIImage(named: "test.png")?.cgImage {
 
 #### 3. 二维码生成
 
+##### 3.1 静态二维码
+
 根据所输入参数创建各种艺术二维码图片，快速使用方式如下:
 
 ```swift
@@ -154,7 +156,7 @@ if let image = try? generator?.toImage(width: 180).cgImage {
 
 <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/sample1.jpg" width = "36%"/>
 
-#### 4. 动态二维码
+##### 3.2. 动态二维码
 
 可通过 animated image 传入动图序列来创建动态二维码，使用方式如下：
 
@@ -173,7 +175,12 @@ if let imageData = try? generator?.toGIFData(width: 512) {
 
 <img src="https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF6.gif" width = "36%"/>
 
-#### 5. 接下来
+##### 3.3 可导出类型
+
+- 静态: NSImage, UIImage, SVG, PDF, PNG, JPEG
+- 动态: APNG, GIF, MOV, MP4, M4V
+
+#### 4. 接下来
 
 查看 [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode) 了解更多细节（没错，我偷懒了没写文档，QWQ
 
