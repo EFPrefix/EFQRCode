@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.0.1](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.1) (2025-05-29)
+
+#### Fix
+
+- fix: spm minimum platform and dependency [#168](https://github.com/EFPrefix/EFQRCode/pull/168)
+
+---
+
 ## [7.0.0](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.0) (2025-05-24)
 
 #### Add
