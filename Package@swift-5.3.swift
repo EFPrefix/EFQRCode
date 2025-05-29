@@ -29,6 +29,12 @@ import PackageDescription
 
 let package = Package(
     name: "EFQRCode",
+    platforms: [
+        .macOS(.v10_15),
+        .iOS(.v13),
+        .tvOS(.v13),
+        .watchOS(.v6)
+    ],
     products: [
         .library(name: "EFQRCode", targets: ["EFQRCode"])
     ],
@@ -41,8 +47,7 @@ let package = Package(
     targets: [
         .target(name: "EFQRCode",
                 dependencies: [
-                    .product(name: "QRCodeSwift", package: "swift_qrcodejs",
-                             condition: .when(platforms: [.watchOS])),
+                    .product(name: "QRCodeSwift", package: "swift_qrcodejs"),
                     "SwiftDraw"
                 ],
                 path: "Source",
@@ -50,7 +55,7 @@ let package = Package(
         .testTarget(name: "EFQRCodeSwiftTests",
                     dependencies: ["EFQRCode"],
                     path: "Tests",
-                    exclude: ["Info.plist", "ObjCTests.m"],
+                    exclude: ["Info.plist"],
                     resources: [.process("Resources")]),
         .testTarget(name: "EFQRCodeObjCTests",
                     dependencies: ["EFQRCode"],
