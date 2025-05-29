@@ -563,7 +563,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 7.0.0;
+				MARKETING_VERSION = 7.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
 				PRODUCT_MODULE_NAME = EFQRCode_Module;
 				PRODUCT_NAME = EFQRCode;
@@ -588,7 +588,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 7.0.0;
+				MARKETING_VERSION = 7.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = MacAppStore.EFQRCode;
 				PRODUCT_MODULE_NAME = EFQRCode_Module;
 				PRODUCT_NAME = EFQRCode;
