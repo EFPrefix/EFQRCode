@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.0.2](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.2) (2025-06-01)
+
+#### Add
+
+- Support visionOS
+
+---
+
 ## [7.0.1](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.1) (2025-05-29)
 
 #### Fix

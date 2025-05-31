@@ -33,7 +33,8 @@ let package = Package(
         .macOS(.v10_15),
         .iOS(.v13),
         .tvOS(.v13),
-        .watchOS(.v6)
+        .watchOS(.v6),
+        .visionOS(.v1)
     ],
     products: [
         .library(name: "EFQRCode", targets: ["EFQRCode"])
@@ -42,7 +43,7 @@ let package = Package(
         .package(url: "https://github.com/EFPrefix/swift_qrcodejs.git",
                  .upToNextMinor(from: "2.3.1")),
         .package(url: "https://github.com/swhitty/SwiftDraw.git", 
-                 .upToNextMinor(from: "0.20.1")),
+                 .upToNextMinor(from: "0.22.0")),
     ],
     targets: [
         .target(name: "EFQRCode",
