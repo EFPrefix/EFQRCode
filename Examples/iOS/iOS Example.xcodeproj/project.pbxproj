@@ -765,7 +765,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -800,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -834,7 +834,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -868,7 +868,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1011,7 +1011,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1036,7 +1036,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = AppStore.EFQRCode;
 				PRODUCT_NAME = EFQRCode.iOS;
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -959,7 +959,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -989,7 +989,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1066,7 +1066,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1096,7 +1096,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1131,7 +1131,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				SDKROOT = watchos;
@@ -1168,7 +1168,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				SDKROOT = watchos;
@@ -1318,7 +1318,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1347,7 +1347,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.1;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = org.eyrefree.EFQRCode;
 				PRODUCT_NAME = EFQRCode;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1549,7 +1549,7 @@
 			repositoryURL = "https://github.com/swhitty/SwiftDraw.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.20.1;
+				version = 0.22.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
