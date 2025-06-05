@@ -26,7 +26,9 @@ EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode ima
 
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF1.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF2.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF7.gif)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCodeGIF8.gif)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample7.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample8.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample9.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample13.JPG)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample6.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample15.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample16.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample5.GIF)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample2.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample3.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample4.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample1.GIF)  
 
 ## Demo Projects
 
