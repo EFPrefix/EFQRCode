@@ -1,15 +1,6 @@
 {
-  "originHash" : "be929adcdb011855acf3e6ecc7d60247342f4745a8d30decbb11d695d5801643",
+  "originHash" : "4be440f4ff32aec652314ea8f7d5a17f293fdee1d4309c631e739aab57ec51a3",
   "pins" : [
-    {
-      "identity" : "effoundation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EFPrefix/EFFoundation.git",
-      "state" : {
-        "revision" : "afb22ded5e2dfd8b375b9e4236ea9c20ecd5815f",
-        "version" : "1.7.1"
-      }
-    },
     {
       "identity" : "snapkit",
       "kind" : "remoteSourceControl",

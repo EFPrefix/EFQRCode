@@ -187,7 +187,7 @@ extension BubbleGeneratorController {
         
         let backdropQuietzone: EFEdgeInsets? = {
             if let backdropQuietzone = self.backdropQuietzone {
-                return EFEdgeInsets(all: backdropQuietzone)
+                return EFEdgeInsets(top: backdropQuietzone, left: backdropQuietzone, bottom: backdropQuietzone, right: backdropQuietzone)
             }
             return nil
         }()
@@ -217,7 +217,7 @@ extension BubbleGeneratorController {
                 )
             )
             let image: EFImage = {
-                let imageWidth: CGFloat = ((generator.qrcode.model.moduleCount + 1) * 12).cgFloat
+                let imageWidth: CGFloat = CGFloat((generator.qrcode.model.moduleCount + 1) * 12)
                 if generator.isAnimated {
                     return EFImage.gif(try! generator.toGIFData(width: imageWidth))
                 } else {
@@ -605,7 +605,11 @@ extension BubbleGeneratorController {
         chooseFromList(title: Localized.Title.backdropQuietzone, items: ["nil", "0", "0.25", "0.5", "0.75", "1"]) { [weak self] result in
             guard let self = self else { return }
             
-            self.backdropQuietzone = result.cgFloat
+            if let double = Double(result) {
+                self.backdropQuietzone = CGFloat(double)
+            } else {
+                self.backdropQuietzone = nil
+            }
             self.refresh()
         }
     }
@@ -845,7 +849,7 @@ extension BubbleGeneratorController: UIImagePickerControllerDelegate {
                 if case .gif(let data) = tryGIF.value {
                     if let animatedImage = AnimatedImage(data: data, format: .gif) {
                         let frames = animatedImage.frames.compactMap { return $0 }
-                        let frameDelays = animatedImage.frameDelays.map({ $0.cgFloat })
+                        let frameDelays = animatedImage.frameDelays.map({ CGFloat($0) })
                         content = .animated(images: frames, imageDelays: frameDelays)
                     }
                 }

@@ -20,7 +20,7 @@
 		125E59F42A561B4A00B508F2 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59F32A561B4A00B508F2 /* StyleViewController.swift */; };
 		125E59FD2A56A06400B508F2 /* BasicGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */; };
 		125E5A042A56CA5F00B508F2 /* ShowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E5A032A56CA5F00B508F2 /* ShowController.swift */; };
-		1261B5AD2A6E78EE004D4F48 /* EFFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 1261B5AC2A6E78EE004D4F48 /* EFFoundation */; };
+		129783E32E0FE4B00066F378 /* UIImageView+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129783E22E0FE4B00066F378 /* UIImageView+Example.swift */; };
 		12981D8A1F99F75D00156E1E /* CGFloat+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12981D891F99F75D00156E1E /* CGFloat+Example.swift */; };
 		12A22CEB2210656D0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
 		12A22D0322106FFF0063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */; };
@@ -36,6 +36,7 @@
 		12DCACA82A5A32B9009B5414 /* ImageFillGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACA72A5A32B9009B5414 /* ImageFillGeneratorController.swift */; };
 		12DCACAA2A5A6F5F009B5414 /* D25GeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACA92A5A6F5F009B5414 /* D25GeneratorController.swift */; };
 		12DCACAC2A5BCB28009B5414 /* RecognizerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCACAB2A5BCB28009B5414 /* RecognizerController.swift */; };
+		12F5C4D42E0FE02E00C26A4C /* UIColor+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F5C4D32E0FE02B00C26A4C /* UIColor+Example.swift */; };
 		4C6D2C8F1C67EFEC00846168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */; };
 		5282BCE71FF3AD9000DFB36B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5282BCE51FF3AD9000DFB36B /* Interface.storyboard */; };
 		5282BCF01FF3AD9100DFB36B /* watchOS Example Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5282BCEF1FF3AD9100DFB36B /* watchOS Example Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -188,6 +189,7 @@
 		125E59F32A561B4A00B508F2 /* StyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		125E59FC2A56A06400B508F2 /* BasicGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicGeneratorController.swift; sourceTree = "<group>"; };
 		125E5A032A56CA5F00B508F2 /* ShowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowController.swift; sourceTree = "<group>"; };
+		129783E22E0FE4B00066F378 /* UIImageView+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Example.swift"; sourceTree = "<group>"; };
 		12981D891F99F75D00156E1E /* CGFloat+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Example.swift"; sourceTree = SOURCE_ROOT; };
 		12A22CEA2210656D0063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUserDefaults.swift; sourceTree = "<group>"; };
 		12DCAC932A56E946009B5414 /* AnimatedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedImage.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		12DCACA72A5A32B9009B5414 /* ImageFillGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFillGeneratorController.swift; sourceTree = "<group>"; };
 		12DCACA92A5A6F5F009B5414 /* D25GeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = D25GeneratorController.swift; sourceTree = "<group>"; };
 		12DCACAB2A5BCB28009B5414 /* RecognizerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognizerController.swift; sourceTree = "<group>"; };
+		12F5C4D32E0FE02B00C26A4C /* UIColor+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Example.swift"; sourceTree = "<group>"; };
 		4C6D2C8C1C67EFEC00846168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		4C6D2C8D1C67EFEC00846168 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		5282BCE31FF3AD9000DFB36B /* watchOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "watchOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,7 +249,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				120B785D1EA3A9FE00D34440 /* EFQRCode.framework in Frameworks */,
-				1261B5AD2A6E78EE004D4F48 /* EFFoundation in Frameworks */,
 				120B14642A6C2FC600970B90 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +279,8 @@
 		120B77F91EA3951100D34440 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				129783E22E0FE4B00066F378 /* UIImageView+Example.swift */,
+				12F5C4D32E0FE02B00C26A4C /* UIColor+Example.swift */,
 				120B78091EA3977300D34440 /* UIImage+Example.swift */,
 				12981D891F99F75D00156E1E /* CGFloat+Example.swift */,
 				12327A592C9E1A59001B1CD6 /* EFStyleParamImage+Example.swift */,
@@ -510,7 +514,6 @@
 			name = "iOS Example";
 			packageProductDependencies = (
 				120B14632A6C2FC600970B90 /* SnapKit */,
-				1261B5AC2A6E78EE004D4F48 /* EFFoundation */,
 			);
 			productName = Alamofire;
 			productReference = F8111E0519A951050040E7D1 /* EFQRCode.iOS.app */;
@@ -551,7 +554,6 @@
 			mainGroup = F8111DFC19A951050040E7D1;
 			packageReferences = (
 				120B14622A6C2FC600970B90 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				1261B5AB2A6E78EE004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */,
 			);
 			productRefGroup = F8111E0619A951050040E7D1 /* Products */;
 			projectDirPath = "";
@@ -692,10 +694,12 @@
 				12DCACA82A5A32B9009B5414 /* ImageFillGeneratorController.swift in Sources */,
 				125E59F42A561B4A00B508F2 /* StyleViewController.swift in Sources */,
 				12981D8A1F99F75D00156E1E /* CGFloat+Example.swift in Sources */,
+				129783E32E0FE4B00066F378 /* UIImageView+Example.swift in Sources */,
 				125E59FD2A56A06400B508F2 /* BasicGeneratorController.swift in Sources */,
 				D2FAEBD12749731F00DFA959 /* PointStyle.swift in Sources */,
 				12399E642A4389F400BB789F /* MoreViewController.swift in Sources */,
 				12DCACA42A58F000009B5414 /* ResampleImageGeneratorController.swift in Sources */,
+				12F5C4D42E0FE02E00C26A4C /* UIColor+Example.swift in Sources */,
 				12327A5A2C9E1A59001B1CD6 /* EFStyleParamImage+Example.swift in Sources */,
 				528EFA7422965AC80026663C /* Localized.swift in Sources */,
 				12DCACAC2A5BCB28009B5414 /* RecognizerController.swift in Sources */,
@@ -1097,14 +1101,6 @@
 				version = 5.6.0;
 			};
 		};
-		1261B5AB2A6E78EE004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EFPrefix/EFFoundation.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.7.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1112,11 +1108,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 120B14622A6C2FC600970B90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		1261B5AC2A6E78EE004D4F48 /* EFFoundation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1261B5AB2A6E78EE004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */;
-			productName = EFFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
