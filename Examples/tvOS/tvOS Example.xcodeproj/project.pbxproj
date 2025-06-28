@@ -13,8 +13,8 @@
 		1215B72A1EAC96FB00DC5A86 /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1215B7151EAC95AE00DC5A86 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1215B7341EAC9FD300DC5A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7311EAC9FD300DC5A86 /* ViewController.swift */; };
 		1215B7381EACA23E00DC5A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215B7371EACA23E00DC5A86 /* AppDelegate.swift */; };
-		1261B5832A6E4A09004D4F48 /* EFFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 1261B5822A6E4A09004D4F48 /* EFFoundation */; };
 		127D586C2A6C336800E843D1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 127D586B2A6C336800E843D1 /* SnapKit */; };
+		129783E52E0FE6F00066F378 /* UIImageView+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129783E42E0FE6F00066F378 /* UIImageView+Example.swift */; };
 		12A22D0222106B340063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22D0122106B340063EE1F /* StorageUserDefaults.swift */; };
 		12D0B9BF234A491200ECCAD5 /* UIImage+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0B9BD234A491200ECCAD5 /* UIImage+Example.swift */; };
 		12D0B9C0234A491200ECCAD5 /* CGFloat+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D0B9BE234A491200ECCAD5 /* CGFloat+Example.swift */; };
@@ -105,6 +105,7 @@
 		1215B7031EAC95AE00DC5A86 /* EFQRCode.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EFQRCode.xcodeproj; path = ../../EFQRCode.xcodeproj; sourceTree = "<group>"; };
 		1215B7311EAC9FD300DC5A86 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../iOS/ViewController.swift; sourceTree = "<group>"; };
 		1215B7371EACA23E00DC5A86 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../../iOS/AppDelegate.swift; sourceTree = "<group>"; };
+		129783E42E0FE6F00066F378 /* UIImageView+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImageView+Example.swift"; path = "../iOS/UIImageView+Example.swift"; sourceTree = SOURCE_ROOT; };
 		12A22D0122106B340063EE1F /* StorageUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageUserDefaults.swift; path = ../../iOS/StorageUserDefaults.swift; sourceTree = "<group>"; };
 		12D0B9BD234A491200ECCAD5 /* UIImage+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Example.swift"; path = "../../iOS/UIImage+Example.swift"; sourceTree = "<group>"; };
 		12D0B9BE234A491200ECCAD5 /* CGFloat+Example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+Example.swift"; path = "../../iOS/CGFloat+Example.swift"; sourceTree = "<group>"; };
@@ -122,7 +123,6 @@
 			files = (
 				127D586C2A6C336800E843D1 /* SnapKit in Frameworks */,
 				1215B7231EAC96DD00DC5A86 /* EFQRCode.framework in Frameworks */,
-				1261B5832A6E4A09004D4F48 /* EFFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +186,7 @@
 		1215B71E1EAC967A00DC5A86 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				129783E42E0FE6F00066F378 /* UIImageView+Example.swift */,
 				12D0B9BE234A491200ECCAD5 /* CGFloat+Example.swift */,
 				12D0B9BD234A491200ECCAD5 /* UIImage+Example.swift */,
 			);
@@ -248,7 +249,6 @@
 			name = "tvOS Example";
 			packageProductDependencies = (
 				127D586B2A6C336800E843D1 /* SnapKit */,
-				1261B5822A6E4A09004D4F48 /* EFFoundation */,
 			);
 			productName = "tvOS Example";
 			productReference = 1215B6EF1EAC956F00DC5A86 /* EFQRCode.tvOS.app */;
@@ -283,7 +283,6 @@
 			mainGroup = 1215B6E61EAC956F00DC5A86;
 			packageReferences = (
 				127D586A2A6C336800E843D1 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				1261B5812A6E4A09004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */,
 			);
 			productRefGroup = 1215B6F01EAC956F00DC5A86 /* Products */;
 			projectDirPath = "";
@@ -370,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12D0B9C0234A491200ECCAD5 /* CGFloat+Example.swift in Sources */,
+				129783E52E0FE6F00066F378 /* UIImageView+Example.swift in Sources */,
 				1215B7381EACA23E00DC5A86 /* AppDelegate.swift in Sources */,
 				528EFA8922965AE50026663C /* Localized.swift in Sources */,
 				12D0B9BF234A491200ECCAD5 /* UIImage+Example.swift in Sources */,
@@ -582,14 +582,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1261B5812A6E4A09004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EFPrefix/EFFoundation.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.7.1;
-			};
-		};
 		127D586A2A6C336800E843D1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -601,11 +593,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1261B5822A6E4A09004D4F48 /* EFFoundation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1261B5812A6E4A09004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */;
-			productName = EFFoundation;
-		};
 		127D586B2A6C336800E843D1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 127D586A2A6C336800E843D1 /* XCRemoteSwiftPackageReference "SnapKit" */;

@@ -27,7 +27,6 @@
 import Cocoa
 import EFQRCode
 import SnapKit
-import EFFoundation
 
 extension ViewController {
 

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import EFFoundation
 import UIKit
 import Photos
 

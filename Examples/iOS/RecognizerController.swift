@@ -28,7 +28,6 @@ import UIKit
 import SnapKit
 import SnapKit
 import EFQRCode
-import EFFoundation
 
 class RecognizerController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

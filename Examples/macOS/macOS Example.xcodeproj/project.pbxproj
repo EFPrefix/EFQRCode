@@ -14,7 +14,6 @@
 		122BB03B1FBEFA1B00BBCA0B /* NSImage+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BB03A1FBEFA1B00BBCA0B /* NSImage+Example.swift */; };
 		12409D681FC582D200719A02 /* EFDetailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12409D671FC582D200719A02 /* EFDetailButton.swift */; };
 		125436EF1EABA98C00C46CC7 /* NSColor+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125436EE1EABA98C00C46CC7 /* NSColor+Example.swift */; };
-		1261B5862A6E4A28004D4F48 /* EFFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 1261B5852A6E4A28004D4F48 /* EFFoundation */; };
 		127948371FC81DE0002B056C /* EFQRCode.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 12F371B41EA8DE740049DE67 /* EFQRCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		127D58632A6C334B00E843D1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 127D58622A6C334B00E843D1 /* SnapKit */; };
 		12A22CF7221069860063EE1F /* StorageUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A22CF6221069860063EE1F /* StorageUserDefaults.swift */; };
@@ -127,7 +126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1261B5862A6E4A28004D4F48 /* EFFoundation in Frameworks */,
 				1215ADB41EAC908000F824B1 /* EFQRCode.framework in Frameworks */,
 				127D58632A6C334B00E843D1 /* SnapKit in Frameworks */,
 			);
@@ -267,7 +265,6 @@
 			name = "macOS Example";
 			packageProductDependencies = (
 				127D58622A6C334B00E843D1 /* SnapKit */,
-				1261B5852A6E4A28004D4F48 /* EFFoundation */,
 			);
 			productName = "macOS Example";
 			productReference = 12F371931EA8DE3A0049DE67 /* EFQRCode.app */;
@@ -308,7 +305,6 @@
 			mainGroup = 12F3718A1EA8DE3A0049DE67;
 			packageReferences = (
 				127D58612A6C334B00E843D1 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				1261B5842A6E4A28004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */,
 			);
 			productRefGroup = 12F371941EA8DE3A0049DE67 /* Products */;
 			projectDirPath = "";
@@ -621,14 +617,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1261B5842A6E4A28004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EFPrefix/EFFoundation.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.7.1;
-			};
-		};
 		127D58612A6C334B00E843D1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -640,11 +628,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1261B5852A6E4A28004D4F48 /* EFFoundation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1261B5842A6E4A28004D4F48 /* XCRemoteSwiftPackageReference "EFFoundation" */;
-			productName = EFFoundation;
-		};
 		127D58622A6C334B00E843D1 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 127D58612A6C334B00E843D1 /* XCRemoteSwiftPackageReference "SnapKit" */;
