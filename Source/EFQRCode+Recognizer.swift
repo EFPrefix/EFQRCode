@@ -29,27 +29,83 @@ import CoreImage
 
 public extension EFQRCode {
     
-    /// Class for recognizing QR code contents from images.
+    /**
+     * A QR code recognizer that extracts QR code content from images.
+     *
+     * The `Recognizer` class provides functionality to detect and decode QR codes
+     * from images. It uses Core Image's QR code detection capabilities with
+     * high accuracy settings and fallback to low accuracy if needed.
+     *
+     * ## Basic Usage
+     *
+     * ```swift
+     * // Create a recognizer with an image
+     * let recognizer = EFQRCode.Recognizer(image: qrCodeImage)
+     * 
+     * // Recognize QR code content
+     * let contents = recognizer.recognize()
+     * 
+     * // Check if any QR codes were found
+     * if !contents.isEmpty {
+     *     print("Found QR code: \(contents[0])")
+     * }
+     * ```
+     *
+     * ## Features
+     *
+     * - **High Accuracy**: Uses high accuracy detection by default
+     * - **Fallback Detection**: Automatically falls back to low accuracy if no QR codes are found
+     * - **Multiple QR Codes**: Can detect multiple QR codes in a single image
+     * - **Caching**: Results are cached for performance
+     * - **Image Updates**: Automatically clears cache when image is updated
+     *
+     * ## Requirements
+     *
+     * - Core Image framework must be available
+     * - Image must contain recognizable QR code content
+     */
     class Recognizer {
-        /// The QR code to recognize.
+        /**
+         * The image containing the QR code to recognize.
+         *
+         * When this property is set, the cached recognition results are cleared
+         * to ensure fresh recognition on the new image.
+         */
         public var image: CGImage {
             didSet {
                 contentArray = nil
             }
         }
         
-        /// Recognized QR code content cache.
+        /**
+         * Cached array of recognized QR code contents.
+         *
+         * This cache is used to avoid re-recognizing the same image multiple times.
+         * It's automatically cleared when the image is updated.
+         */
         private var contentArray: [String]?
         
-        /// Initialize a QR code recognizer to recognize the specified `image`.
-        /// - Parameter image: a QR code to recognize.
+        /**
+         * Creates a QR code recognizer for the specified image.
+         *
+         * - Parameter image: The CGImage containing the QR code to recognize.
+         */
         public init(image: CGImage) {
             self.image = image
         }
         
-        /// Recognizes and returns the contents of the current QR code `image`.
-        /// - Returns: an array of contents recognized from `image`.
-        /// - Note: If the returned array is empty, there's no recognizable content in the QR code `image`.
+        /**
+         * Recognizes and returns the contents of QR codes in the current image.
+         *
+         * This method performs QR code detection on the current image and returns
+         * an array of strings containing the decoded content from all detected QR codes.
+         * The results are cached for subsequent calls until the image is changed.
+         *
+         * - Returns: An array of strings containing the recognized QR code contents.
+         *   If no QR codes are found, the array will be empty.
+         * - Note: The method uses high accuracy detection first, then falls back to
+         *   low accuracy if no QR codes are detected with high accuracy.
+         */
         public func recognize() -> [String] {
             if nil == contentArray {
                 contentArray = getQRString()
@@ -57,7 +113,15 @@ public extension EFQRCode {
             return contentArray!
         }
         
-        /// Get QRCodes from image
+        /**
+         * Performs QR code detection on the current image.
+         *
+         * This method uses Core Image's QR code detector with high accuracy settings.
+         * If no QR codes are found with high accuracy, it attempts detection with
+         * low accuracy settings on a grayscale version of the image.
+         *
+         * - Returns: An array of strings containing the recognized QR code contents.
+         */
         private func getQRString() -> [String] {
             let result = image.ciImage().recognizeQRCode(
                 options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]

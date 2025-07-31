@@ -29,11 +29,54 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for QR code styling and customization.
+ *
+ * This class encapsulates the styling parameters used to customize the appearance
+ * of QR codes, including icon placement and backdrop configuration.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let icon = EFStyleParamIcon(
+ *     image: .static(myIconImage),
+ *     mode: .scaleAspectFill,
+ *     alpha: 0.8,
+ *     borderColor: .black,
+ *     percentage: 0.2
+ * )
+ * 
+ * let params = EFStyleParams(
+ *     icon: icon,
+ *     backdrop: .clear
+ * )
+ * ```
+ */
 public class EFStyleParams {
     
+    /**
+     * The icon to display in the center of the QR code.
+     *
+     * This can be a static image or an animated sequence of images.
+     * When nil, no icon is displayed.
+     */
     let icon: EFStyleParamIcon?
+    
+    /**
+     * The backdrop configuration for the QR code.
+     *
+     * Defines the background appearance of the QR code, including
+     * color, transparency, and other visual properties.
+     */
     let backdrop: EFStyleParamBackdrop
     
+    /**
+     * Creates styling parameters for QR code customization.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration for the QR code.
+     */
     init(
         icon: EFStyleParamIcon?,
         backdrop: EFStyleParamBackdrop
@@ -43,39 +86,173 @@ public class EFStyleParams {
     }
 }
 
+/**
+ * Alignment styles for QR code elements.
+ *
+ * These styles define how different elements within the QR code are aligned
+ * and positioned relative to each other.
+ */
 public enum EFStyleParamAlignStyle: CaseIterable {
+    /**
+     * Rectangular alignment with sharp corners.
+     */
     case rectangle
+    
+    /**
+     * Circular alignment with rounded corners.
+     */
     case round
+    
+    /**
+     * Rounded rectangle alignment with soft corners.
+     */
     case roundedRectangle
 }
 
+/**
+ * Timing pattern styles for QR codes.
+ *
+ * Timing patterns are the alternating black and white modules that help
+ * QR code readers determine the size and position of the code.
+ */
 public enum EFStyleParamTimingStyle: CaseIterable {
+    /**
+     * Rectangular timing pattern with sharp corners.
+     */
     case rectangle
+    
+    /**
+     * Circular timing pattern with rounded corners.
+     */
     case round
+    
+    /**
+     * Rounded rectangle timing pattern with soft corners.
+     */
     case roundedRectangle
 }
 
+/**
+ * Data module styles for QR codes.
+ *
+ * Data modules are the individual black and white squares that contain
+ * the encoded information in the QR code.
+ */
 public enum EFStyleParamsDataStyle: CaseIterable {
+    /**
+     * Rectangular data modules with sharp corners.
+     */
     case rectangle
+    
+    /**
+     * Circular data modules with rounded corners.
+     */
     case round
+    
+    /**
+     * Rounded rectangle data modules with soft corners.
+     */
     case roundedRectangle
 }
 
+/**
+ * Position detection pattern styles for QR codes.
+ *
+ * Position detection patterns are the three large squares in the corners
+ * of QR codes that help readers locate and orient the code.
+ */
 public enum EFStyleParamsPositionStyle: CaseIterable {
+    /**
+     * Rectangular position patterns with sharp corners.
+     */
     case rectangle
+    
+    /**
+     * Circular position patterns with rounded corners.
+     */
     case round
+    
+    /**
+     * Rounded rectangle position patterns with soft corners.
+     */
     case roundedRectangle
+    
+    /**
+     * Planet-themed position patterns with celestial styling.
+     */
     case planets
+    
+    /**
+     * DSJ (Dancing Square J) position patterns with unique styling.
+     */
     case dsj
 }
 
+/**
+ * Icon configuration for QR code customization.
+ *
+ * This class defines how an icon is displayed in the center of a QR code,
+ * including its appearance, size, and positioning.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let icon = EFStyleParamIcon(
+ *     image: .static(myLogoImage),
+ *     mode: .scaleAspectFill,
+ *     alpha: 0.9,
+ *     borderColor: .white,
+ *     percentage: 0.25
+ * )
+ * ```
+ */
 public class EFStyleParamIcon {
+    /**
+     * The image to display as the icon.
+     *
+     * Can be a static image or an animated sequence of images.
+     */
     let image: EFStyleParamImage
+    
+    /**
+     * The scaling mode for the icon image.
+     *
+     * Determines how the icon image is scaled to fit the available space.
+     */
     let mode: EFImageMode
+    
+    /**
+     * The transparency level of the icon (0.0 to 1.0).
+     *
+     * 0.0 is completely transparent, 1.0 is completely opaque.
+     */
     let alpha: CGFloat
+    
+    /**
+     * The border color of the icon.
+     *
+     * The color of the border around the icon, if any.
+     */
     let borderColor: CGColor
+    
+    /**
+     * The size of the icon as a percentage of the QR code size.
+     *
+     * Values range from 0.0 to 1.0, where 1.0 would make the icon
+     * the same size as the QR code.
+     */
     let percentage: CGFloat
     
+    /**
+     * Creates an icon configuration for QR code customization.
+     *
+     * - Parameters:
+     *   - image: The image to display as the icon.
+     *   - mode: The scaling mode for the icon image. Defaults to `.scaleAspectFill`.
+     *   - alpha: The transparency level of the icon (0.0 to 1.0). Defaults to 1.0.
+     *   - borderColor: The border color of the icon.
+     *   - percentage: The size of the icon as a percentage of the QR code size. Defaults to 0.2.
+     */
     public init(
         image: EFStyleParamImage,
         mode: EFImageMode = .scaleAspectFill,
@@ -90,6 +267,17 @@ public class EFStyleParamIcon {
         self.percentage = percentage
     }
     
+    /**
+     * Creates a copy of the icon configuration with optional modifications.
+     *
+     * - Parameters:
+     *   - image: The new image to use. If nil, keeps the current image.
+     *   - mode: The new scaling mode. If nil, keeps the current mode.
+     *   - alpha: The new transparency level. If nil, keeps the current alpha.
+     *   - borderColor: The new border color. If nil, keeps the current border color.
+     *   - percentage: The new size percentage. If nil, keeps the current percentage.
+     * - Returns: A new EFStyleParamIcon with the specified modifications.
+     */
     func copyWith(
         image: EFStyleParamImage? = nil,
         mode: EFImageMode? = nil,

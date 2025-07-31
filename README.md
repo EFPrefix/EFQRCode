@@ -26,9 +26,8 @@ EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode ima
 
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample7.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample8.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample9.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample13.JPG)  
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample6.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample15.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample16.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample5.GIF)  
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample2.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample3.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample4.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample1.GIF)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample7.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample8.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample2.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample13.JPG)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample4.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample15.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample16.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample1.GIF)  
 
 ## Demo Projects
 
@@ -189,9 +188,8 @@ Learn more from [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode).
 2. To improve the definition of QRCode images, increase `size`;
 3. Oversized generation dimensions, excessive QR code content, and overly large imported media may lead to generation failures;
 4. It is recommended to test the QRCode image before put it into use;
-5. You can contact me if there is any problem, both `Issue` and `Pull request` are welcome;
-6. Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete;
-7. Wish you can click the `Star` button if this tool is useful for you, QWQ
+5. Any contributing and pull requests are warmly welcome;
+6. Part of the pictures in the demo project and guide come from the internet. If there is any infringement of your legitimate rights and interests, please contact us to delete.
 
 ## Contributors
 
@@ -221,6 +219,8 @@ Learn more from [DeepWiki](https://deepwiki.com/EFPrefix/EFQRCode).
 
 ## Contact
 
+Twitter: [@EyreFree777](https://x.com/eyrefree777)   
+Weibo: [@EyreFree](https://weibo.com/eyrefree777)   
 Email: [eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)   
 
 ## License

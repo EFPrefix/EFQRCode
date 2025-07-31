@@ -29,21 +29,91 @@ import CoreGraphics
 
 import QRCodeSwift
 
-/// Levels of tolerance.
+/**
+ * QR code error correction levels.
+ *
+ * Error correction allows QR codes to be read even if they are partially damaged
+ * or obscured. Higher correction levels provide better error recovery but reduce
+ * the data capacity of the QR code.
+ *
+ * ## Error Correction Levels
+ *
+ * The error correction level determines how much of the QR code can be damaged
+ * or obscured while still allowing successful decoding. Each level provides
+ * different trade-offs between data capacity and error recovery capability.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * // Create a QR code with high error correction
+ * let generator = try EFQRCode.Generator(
+ *     "Hello World",
+ *     errorCorrectLevel: .h,
+ *     style: .basic()
+ * )
+ * ```
+ *
+ * ## Correction Capabilities
+ *
+ * - **L (Low)**: 7% of the QR code can be damaged and still be readable
+ * - **M (Medium)**: 15% of the QR code can be damaged and still be readable
+ * - **Q (Quartile)**: 25% of the QR code can be damaged and still be readable
+ * - **H (High)**: 30% of the QR code can be damaged and still be readable
+ *
+ * ## Data Capacity Trade-offs
+ *
+ * Higher error correction levels provide better error recovery but reduce the
+ * amount of data that can be stored in the QR code. Choose the level based on:
+ *
+ * - **L**: Use when QR codes will be displayed in high quality and clean environments
+ * - **M**: Good balance for most general use cases
+ * - **Q**: Use when QR codes might be slightly damaged or in challenging environments
+ * - **H**: Use when QR codes might be significantly damaged or in very challenging environments
+ */
 public enum EFCorrectionLevel: CaseIterable {
-    /// L 7%.
+    /**
+     * Low error correction level (7%).
+     *
+     * Provides the highest data capacity but lowest error recovery.
+     * Suitable for clean environments where QR codes are unlikely to be damaged.
+     */
     case l
-    /// M 15%.
+    
+    /**
+     * Medium error correction level (15%).
+     *
+     * Provides a good balance between data capacity and error recovery.
+     * Suitable for most general use cases.
+     */
     case m
-    /// Q 25%.
+    
+    /**
+     * Quartile error correction level (25%).
+     *
+     * Provides good error recovery with moderate data capacity reduction.
+     * Suitable for environments where QR codes might be slightly damaged.
+     */
     case q
-    /// H 30%.
+    
+    /**
+     * High error correction level (30%).
+     *
+     * Provides the highest error recovery but lowest data capacity.
+     * Suitable for challenging environments where QR codes might be significantly damaged.
+     */
     case h
 }
 
 extension EFCorrectionLevel {
     
-    /// Representation of `self` in QRCodeSwift.
+    /**
+     * Converts EFQRCode error correction level to QRCodeSwift error correction level.
+     *
+     * This extension provides a mapping from EFQRCode error correction levels
+     * to the underlying QRCodeSwift library's error correction levels.
+     *
+     * - Returns: The corresponding QRErrorCorrectLevel for QRCodeSwift.
+     */
     var qrErrorCorrectLevel: QRErrorCorrectLevel {
         switch self {
         case .h: return .H

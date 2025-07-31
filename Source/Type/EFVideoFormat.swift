@@ -29,11 +29,95 @@ import Foundation
 import AVFoundation
 import CoreVideo
 
+/**
+ * Supported video formats for QR code animation export.
+ *
+ * This enum defines the video formats that can be used to export animated QR codes
+ * as video files. Each format has different characteristics in terms of compatibility,
+ * file size, and quality.
+ *
+ * ## Supported Formats
+ *
+ * - **MOV**: Apple's native format, best compatibility with Apple ecosystem
+ * - **MP4**: Widely supported format, good for cross-platform use
+ * - **M4V**: Apple's container format, optimized for iTunes and Apple devices
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let generator = try EFQRCode.Generator("Hello World")
+ * 
+ * // Export as MOV video
+ * let movData = try generator.toMovData(width: 200)
+ * 
+ * // Export as MP4 video
+ * let mp4Data = try generator.toMp4Data(width: 200)
+ * 
+ * // Export as M4V video
+ * let m4vData = try generator.toM4vData(width: 200)
+ * ```
+ *
+ * ## Format Comparison
+ *
+ * | Format | Apple Ecosystem | Cross-Platform | File Size | Quality |
+ * |--------|-----------------|-----------------|-----------|---------|
+ * | MOV    | Excellent       | Good            | Medium    | High    |
+ * | MP4    | Good            | Excellent       | Small     | High    |
+ * | M4V    | Excellent       | Limited         | Medium    | High    |
+ *
+ * ## Requirements
+ *
+ * - AVFoundation framework must be available
+ * - Not available on watchOS
+ */
 public enum EFVideoFormat {
+    /**
+     * QuickTime Movie format (MOV).
+     *
+     * MOV is Apple's native video format with the following characteristics:
+     * - Excellent compatibility with Apple ecosystem
+     * - Good cross-platform support
+     * - High quality output
+     * - Medium file sizes
+     *
+     * Best for: Apple ecosystem applications, high-quality video export.
+     */
     case mov
+    
+    /**
+     * MPEG-4 format (MP4).
+     *
+     * MP4 is a widely supported video format with the following characteristics:
+     * - Excellent cross-platform compatibility
+     * - Good Apple ecosystem support
+     * - High quality output
+     * - Smaller file sizes compared to MOV
+     *
+     * Best for: Cross-platform applications, web use, email attachments.
+     */
     case mp4
+    
+    /**
+     * Apple's M4V container format.
+     *
+     * M4V is Apple's container format with the following characteristics:
+     * - Excellent Apple ecosystem compatibility
+     * - Optimized for iTunes and Apple devices
+     * - Limited cross-platform support
+     * - High quality output
+     *
+     * Best for: iTunes distribution, Apple device optimization.
+     */
     case m4v
     
+    /**
+     * The AVFoundation file type for the video format.
+     *
+     * This property provides the appropriate AVFileType for use with AVFoundation
+     * video writing operations.
+     *
+     * - Returns: The AVFileType corresponding to the video format.
+     */
     var fileType: AVFileType {
         switch self {
         case .mov: return .mov
@@ -42,6 +126,14 @@ public enum EFVideoFormat {
         }
     }
     
+    /**
+     * The file extension for the video format.
+     *
+     * This property provides the standard file extension for the video format,
+     * useful for saving files with the correct extension.
+     *
+     * - Returns: The file extension string (e.g., "mov", "mp4", "m4v").
+     */
     public var fileExtension: String {
         switch self {
         case .mov: return "mov"
@@ -50,6 +142,14 @@ public enum EFVideoFormat {
         }
     }
     
+    /**
+     * Video compression settings for the format.
+     *
+     * This property provides optimized video compression settings for each format,
+     * including codec type and compression properties.
+     *
+     * - Returns: A dictionary containing video compression settings.
+     */
     var videoSettings: [String: Any] {
         var settings: [String: Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,

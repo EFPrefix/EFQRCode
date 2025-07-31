@@ -37,8 +37,32 @@ import MobileCoreServices
 import CoreImage
 #endif
 
+/**
+ * Extensions for CGImage to support QR code generation and processing.
+ *
+ * This extension provides utility methods for CGImage that are used throughout
+ * the EFQRCode library for image processing, format conversion, and manipulation.
+ *
+ * ## Features
+ *
+ * - PNG data generation and base64 encoding
+ * - Grayscale conversion for QR code recognition
+ * - Image clipping and transparency handling
+ * - Core Image integration for advanced processing
+ * - Image resizing and cropping operations
+ */
 extension CGImage {
     
+    /**
+     * Converts the CGImage to PNG data.
+     *
+     * This method creates PNG data from the CGImage using Core Graphics
+     * image destination APIs. The resulting data can be used for file
+     * saving or network transmission.
+     *
+     * - Returns: PNG data representation of the image.
+     * - Throws: `EFQRCodeError` if PNG data creation fails.
+     */
     func pngData() throws -> Data {
         let imageIdentifier: CFString = {
             if #available(iOS 14, macOS 11, tvOS 14, watchOS 7, *) {
@@ -60,10 +84,29 @@ extension CGImage {
         return mutableData as Data
     }
     
+    /**
+     * Converts the CGImage to a base64-encoded PNG data URL.
+     *
+     * This method creates a data URL that can be used directly in HTML
+     * or web applications. The format is: `data:image/png;base64,<base64-data>`
+     *
+     * - Returns: A base64-encoded PNG data URL string.
+     * - Throws: `EFQRCodeError` if PNG data creation fails.
+     */
     func pngBase64EncodedString() throws -> String {
         return "data:image/png;base64," + (try pngData().base64EncodedString())
     }
     
+    /**
+     * Converts the CGImage to grayscale.
+     *
+     * This method creates a grayscale version of the image, which is useful
+     * for QR code recognition when the original image has poor contrast or
+     * when trying to improve recognition accuracy.
+     *
+     * - Returns: A grayscale CGImage, or nil if conversion fails.
+     * - Throws: `EFQRCodeError` if grayscale conversion fails.
+     */
     func grayscale() throws -> CGImage? {
         guard let context = CGContext(
             data: nil,
@@ -81,11 +124,30 @@ extension CGImage {
     }
     
 #if canImport(CoreImage)
+    /**
+     * Converts the CGImage to a CIImage.
+     *
+     * This method creates a CIImage from the CGImage, enabling the use of
+     * Core Image filters and processing capabilities.
+     *
+     * - Returns: A CIImage representation of the CGImage.
+     */
     func ciImage() -> CIImage {
         return CIImage(cgImage: self)
     }
 #endif
     
+    /**
+     * Clips the image to the specified rectangle and handles transparency.
+     *
+     * This method crops the image to the specified rectangle and handles
+     * transparency expansion. If the rectangle matches the image bounds,
+     * the original image is returned unchanged.
+     *
+     * - Parameter rect: The rectangle to clip the image to.
+     * - Returns: A clipped CGImage.
+     * - Throws: `EFQRCodeError` if image clipping fails.
+     */
     func clipAndExpandingTransparencyWith(rect: CGRect) throws -> CGImage {
         let imageWidth: CGFloat = self.width.cgFloat
         let imageHeight: CGFloat = self.height.cgFloat

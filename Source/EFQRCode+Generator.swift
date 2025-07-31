@@ -48,12 +48,69 @@ import SwiftDraw
 
 public extension EFQRCode {
     
+    /**
+     * A QR code generator that creates QR codes with various styles and output formats.
+     *
+     * The `Generator` class is the main entry point for creating QR codes in EFQRCode.
+     * It supports multiple initialization methods, various output formats, and custom styling.
+     *
+     * ## Basic Usage
+     *
+     * ```swift
+     * // Create a generator with text
+     * let generator = try EFQRCode.Generator("Hello World")
+     * 
+     * // Generate an image
+     * let image = try generator.toImage(width: 200)
+     * 
+     * // Generate PNG data
+     * let pngData = try generator.toPNGData(width: 200)
+     * ```
+     *
+     * ## Initialization
+     *
+     * You can initialize a generator with:
+     * - String content with encoding
+     * - Data content
+     * - Existing QRCode object
+     *
+     * ## Output Formats
+     *
+     * The generator supports multiple output formats:
+     * - **Images**: PNG, JPEG, SVG
+     * - **Animated**: GIF, APNG
+     * - **Video**: MOV, M4V, MP4
+     * - **Document**: PDF
+     *
+     * ## Styling
+     *
+     * QR codes can be styled with various styles including:
+     * - Basic styles
+     * - Bubble styles
+     * - 2.5D styles
+     * - Image-based styles
+     * - Custom icons and watermarks
+     */
     class Generator {
+        /// The underlying QR code object containing the encoded data and structure.
         public let qrcode: QRCode
+        
+        /// The style implementation that defines how the QR code is rendered.
         public let style: EFQRCodeStyleBase
         
+        /// Cache for SVG content to avoid regeneration.
         private var svgContentCache: String?
         
+        /**
+         * Creates a QR code generator with text content.
+         *
+         * - Parameters:
+         *   - text: The text content to encode in the QR code.
+         *   - encoding: The string encoding to use for the text. Defaults to UTF-8.
+         *   - errorCorrectLevel: The error correction level for the QR code. Defaults to high (H).
+         *   - style: The style to apply to the QR code.
+         * - Throws: `EFQRCodeError` if the text cannot be encoded or if the data is too large.
+         */
         public convenience init(
             _ text: String,
             encoding: String.Encoding = .utf8,
@@ -66,6 +123,15 @@ public extension EFQRCode {
             try self.init(data, errorCorrectLevel: errorCorrectLevel, style: style)
         }
         
+        /**
+         * Creates a QR code generator with data content.
+         *
+         * - Parameters:
+         *   - data: The data to encode in the QR code.
+         *   - errorCorrectLevel: The error correction level for the QR code. Defaults to high (H).
+         *   - style: The style to apply to the QR code.
+         * - Throws: `EFQRCodeError` if the data is too large for QR code capacity.
+         */
         public init(
             _ data: Data,
             errorCorrectLevel: EFCorrectionLevel = .h,
@@ -85,6 +151,13 @@ public extension EFQRCode {
             self.style = style.implementation
         }
         
+        /**
+         * Creates a QR code generator with an existing QR code object.
+         *
+         * - Parameters:
+         *   - qrcode: An existing QR code object.
+         *   - style: The style to apply to the QR code.
+         */
         public convenience init(
             _ qrcode: QRCode,
             style: EFQRCodeStyle
@@ -92,6 +165,13 @@ public extension EFQRCode {
             self.init(qrcode, styleImplementation: style.implementation)
         }
         
+        /**
+         * Creates a QR code generator with an existing QR code object and style implementation.
+         *
+         * - Parameters:
+         *   - qrcode: An existing QR code object.
+         *   - styleImplementation: The style implementation to apply to the QR code.
+         */
         public init(
             _ qrcode: QRCode,
             styleImplementation: EFQRCodeStyleBase
@@ -100,6 +180,12 @@ public extension EFQRCode {
             self.style = styleImplementation
         }
         
+        /**
+         * Creates a copy of the generator with a new style.
+         *
+         * - Parameter style: The new style to apply.
+         * - Returns: A new generator instance with the updated style.
+         */
         func copyWith(
             style: EFQRCodeStyle
         ) -> Generator {
@@ -109,6 +195,12 @@ public extension EFQRCode {
             )
         }
         
+        /**
+         * Indicates whether the QR code contains animated content.
+         *
+         * This property checks if the SVG content contains animation elements.
+         * It's computed lazily and cached for performance.
+         */
         public lazy var isAnimated: Bool = {
             if let svgContent = try? toSVG() {
                 return svgContent.contains("<animate")
@@ -116,6 +208,12 @@ public extension EFQRCode {
             return false
         }()
         
+        /**
+         * Generates SVG content for the QR code.
+         *
+         * - Returns: The SVG string representation of the QR code.
+         * - Throws: `EFQRCodeError` if SVG generation fails.
+         */
         public func toSVG() throws -> String {
             if let svgContent = svgContentCache {
                 return svgContent
@@ -126,16 +224,43 @@ public extension EFQRCode {
         }
         
 #if canImport(UIKit)
+        /**
+         * Generates a UIImage with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the image in points.
+         *   - insets: Edge insets to apply to the image. Defaults to zero.
+         * - Returns: A UIImage representation of the QR code.
+         * - Throws: `EFQRCodeError` if image generation fails.
+         */
         public func toImage(width: CGFloat, insets: UIEdgeInsets = .zero) throws -> UIImage {
             let imageSize: CGSize = calculateSize(width: width)
             return try toImage(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates a UIImage with the specified height.
+         *
+         * - Parameters:
+         *   - height: The desired height of the image in points.
+         *   - insets: Edge insets to apply to the image. Defaults to zero.
+         * - Returns: A UIImage representation of the QR code.
+         * - Throws: `EFQRCodeError` if image generation fails.
+         */
         public func toImage(height: CGFloat, insets: UIEdgeInsets = .zero) throws -> UIImage {
             let imageSize: CGSize = calculateSize(height: height)
             return try toImage(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates a UIImage with the specified size.
+         *
+         * - Parameters:
+         *   - size: The desired size of the image in points.
+         *   - insets: Edge insets to apply to the image. Defaults to zero.
+         * - Returns: A UIImage representation of the QR code.
+         * - Throws: `EFQRCodeError` if image generation fails.
+         */
         private func toImage(size: CGSize, insets: UIEdgeInsets = .zero) throws -> UIImage {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
@@ -152,16 +277,43 @@ public extension EFQRCode {
 #endif
         
 #if canImport(AppKit)
+        /**
+         * Generates an NSImage with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the image in points.
+         *   - insets: Edge insets to apply to the image. Defaults to zero.
+         * - Returns: An NSImage representation of the QR code.
+         * - Throws: `EFQRCodeError` if image generation fails.
+         */
         public func toImage(width: CGFloat, insets: NSEdgeInsets = .zero) throws -> NSImage {
             let imageSize: CGSize = calculateSize(width: width)
             return try toImage(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates an NSImage with the specified height.
+         *
+         * - Parameters:
+         *   - height: The desired height of the image in points.
+         *   - insets: Edge insets to apply to the image. Defaults to zero.
+         * - Returns: An NSImage representation of the QR code.
+         * - Throws: `EFQRCodeError` if image generation fails.
+         */
         public func toImage(height: CGFloat, insets: NSEdgeInsets = .zero) throws -> NSImage {
             let imageSize: CGSize = calculateSize(height: height)
             return try toImage(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates an NSImage with the specified size.
+         *
+         * - Parameters:
+         *   - size: The desired size of the image in points.
+         *   - insets: Edge insets to apply to the image. Defaults to zero.
+         * - Returns: An NSImage representation of the QR code.
+         * - Throws: `EFQRCodeError` if image generation fails.
+         */
         private func toImage(size: CGSize, insets: NSEdgeInsets = .zero) throws -> NSImage {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
@@ -179,16 +331,43 @@ public extension EFQRCode {
         
         // MARK:- Video
 #if canImport(AVFoundation) && !os(watchOS)
+        /**
+         * Generates MOV video data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the video in points.
+         *   - insets: Edge insets to apply to the video. Defaults to zero.
+         * - Returns: MOV video data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if video generation fails.
+         */
         public func toMovData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toVideoData(format: .mov, size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates M4V video data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the video in points.
+         *   - insets: Edge insets to apply to the video. Defaults to zero.
+         * - Returns: M4V video data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if video generation fails.
+         */
         public func toM4vData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toVideoData(format: .m4v, size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates MP4 video data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the video in points.
+         *   - insets: Edge insets to apply to the video. Defaults to zero.
+         * - Returns: MP4 video data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if video generation fails.
+         */
         public func toMp4Data(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toVideoData(format: .mp4, size: imageSize, insets: insets)
@@ -196,46 +375,130 @@ public extension EFQRCode {
 #endif
         
         // MARK:- GIF
+        /**
+         * Generates GIF data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the GIF in points.
+         *   - insets: Edge insets to apply to the GIF. Defaults to zero.
+         * - Returns: GIF data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if GIF generation fails.
+         */
         public func toGIFData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toGIFData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates GIF data with the specified height.
+         *
+         * - Parameters:
+         *   - height: The desired height of the GIF in points.
+         *   - insets: Edge insets to apply to the GIF. Defaults to zero.
+         * - Returns: GIF data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if GIF generation fails.
+         */
         public func toGIFData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
             return try toGIFData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates GIF data with the specified size.
+         *
+         * - Parameters:
+         *   - size: The desired size of the GIF in points.
+         *   - insets: Edge insets to apply to the GIF. Defaults to zero.
+         * - Returns: GIF data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if GIF generation fails.
+         */
         private func toGIFData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
             return try toAnimatedImage(format: EFAnimatedImageFormat.gif, size: size, insets: insets)
         }
         
         // MARK:- APNG
+        /**
+         * Generates APNG data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the APNG in points.
+         *   - insets: Edge insets to apply to the APNG. Defaults to zero.
+         * - Returns: APNG data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if APNG generation fails.
+         */
         public func toAPNGData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toAPNGData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates APNG data with the specified height.
+         *
+         * - Parameters:
+         *   - height: The desired height of the APNG in points.
+         *   - insets: Edge insets to apply to the APNG. Defaults to zero.
+         * - Returns: APNG data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if APNG generation fails.
+         */
         public func toAPNGData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
             return try toAPNGData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates APNG data with the specified size.
+         *
+         * - Parameters:
+         *   - size: The desired size of the APNG in points.
+         *   - insets: Edge insets to apply to the APNG. Defaults to zero.
+         * - Returns: APNG data containing the animated QR code.
+         * - Throws: `EFQRCodeError` if APNG generation fails.
+         */
         private func toAPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
             return try toAnimatedImage(format: EFAnimatedImageFormat.apng, size: size, insets: insets)
         }
         
         // MARK:- JPEG
+        /**
+         * Generates JPEG data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the JPEG in points.
+         *   - compressionQuality: The compression quality (0.0 to 1.0). Defaults to 1.0.
+         *   - insets: Edge insets to apply to the JPEG. Defaults to zero.
+         * - Returns: JPEG data containing the QR code.
+         * - Throws: `EFQRCodeError` if JPEG generation fails.
+         */
         public func toJPEGData(width: CGFloat, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toJPEGData(size: imageSize, compressionQuality: compressionQuality, insets: insets)
         }
         
+        /**
+         * Generates JPEG data with the specified height.
+         *
+         * - Parameters:
+         *   - height: The desired height of the JPEG in points.
+         *   - compressionQuality: The compression quality (0.0 to 1.0). Defaults to 1.0.
+         *   - insets: Edge insets to apply to the JPEG. Defaults to zero.
+         * - Returns: JPEG data containing the QR code.
+         * - Throws: `EFQRCodeError` if JPEG generation fails.
+         */
         public func toJPEGData(height: CGFloat, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
             return try toJPEGData(size: imageSize, compressionQuality: compressionQuality, insets: insets)
         }
         
+        /**
+         * Generates JPEG data with the specified size.
+         *
+         * - Parameters:
+         *   - size: The desired size of the JPEG in points.
+         *   - compressionQuality: The compression quality (0.0 to 1.0). Defaults to 1.0.
+         *   - insets: Edge insets to apply to the JPEG. Defaults to zero.
+         * - Returns: JPEG data containing the QR code.
+         * - Throws: `EFQRCodeError` if JPEG generation fails.
+         */
         private func toJPEGData(size: CGSize, compressionQuality: CGFloat = 1, insets: EFEdgeInsets = .zero) throws -> Data {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
@@ -249,16 +512,43 @@ public extension EFQRCode {
         }
         
         // MARK:- PNG
+        /**
+         * Generates PNG data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the PNG in points.
+         *   - insets: Edge insets to apply to the PNG. Defaults to zero.
+         * - Returns: PNG data containing the QR code.
+         * - Throws: `EFQRCodeError` if PNG generation fails.
+         */
         public func toPNGData(width: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toPNGData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates PNG data with the specified height.
+         *
+         * - Parameters:
+         *   - height: The desired height of the PNG in points.
+         *   - insets: Edge insets to apply to the PNG. Defaults to zero.
+         * - Returns: PNG data containing the QR code.
+         * - Throws: `EFQRCodeError` if PNG generation fails.
+         */
         public func toPNGData(height: CGFloat, insets: EFEdgeInsets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
             return try toPNGData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates PNG data with the specified size.
+         *
+         * - Parameters:
+         *   - size: The desired size of the PNG in points.
+         *   - insets: Edge insets to apply to the PNG. Defaults to zero.
+         * - Returns: PNG data containing the QR code.
+         * - Throws: `EFQRCodeError` if PNG generation fails.
+         */
         private func toPNGData(size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {
@@ -272,16 +562,43 @@ public extension EFQRCode {
         }
 
         // MARK:- PDF
+        /**
+         * Generates PDF data with the specified width.
+         *
+         * - Parameters:
+         *   - width: The desired width of the PDF in points.
+         *   - insets: Edge insets to apply to the PDF. Defaults to zero.
+         * - Returns: PDF data containing the QR code.
+         * - Throws: `EFQRCodeError` if PDF generation fails.
+         */
         public func toPDFData(width: CGFloat, insets: SVG.Insets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(width: width)
             return try toPDFData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates PDF data with the specified height.
+         *
+         * - Parameters:
+         *   - height: The desired height of the PDF in points.
+         *   - insets: Edge insets to apply to the PDF. Defaults to zero.
+         * - Returns: PDF data containing the QR code.
+         * - Throws: `EFQRCodeError` if PDF generation fails.
+         */
         public func toPDFData(height: CGFloat, insets: SVG.Insets = .zero) throws -> Data {
             let imageSize: CGSize = calculateSize(height: height)
             return try toPDFData(size: imageSize, insets: insets)
         }
         
+        /**
+         * Generates PDF data with the specified size.
+         *
+         * - Parameters:
+         *   - size: The desired size of the PDF in points.
+         *   - insets: Edge insets to apply to the PDF. Defaults to zero.
+         * - Returns: PDF data containing the QR code.
+         * - Throws: `EFQRCodeError` if PDF generation fails.
+         */
         private func toPDFData(size: CGSize, insets: SVG.Insets = .zero) throws -> Data {
             let newSvgContent: String = try checkIfNeedResize(size: size)
             guard let svgData = newSvgContent.data(using: .utf8) else {

@@ -28,53 +28,203 @@ import Foundation
 
 import QRCodeSwift
 
-/// All possible errors that could occur when constructing `EFQRCode`.
+/**
+ * All possible errors that could occur when working with EFQRCode.
+ *
+ * This enum defines all the error types that can be thrown by EFQRCode operations,
+ * including data encoding errors, image generation errors, and internal implementation errors.
+ *
+ * ## Error Categories
+ *
+ * - **Data Errors**: Related to input data encoding and capacity
+ * - **Image Generation Errors**: Related to image creation and processing
+ * - **Color Space Errors**: Related to color space conversion and creation
+ * - **Internal Errors**: Related to internal implementation issues
+ *
+ * ## Usage
+ *
+ * ```swift
+ * do {
+ *     let generator = try EFQRCode.Generator("Hello World")
+ *     let image = try generator.toImage(width: 200)
+ * } catch EFQRCodeError.dataLengthExceedsCapacityLimit {
+ *     print("Data is too large for QR code")
+ * } catch EFQRCodeError.text(let text, let encoding) {
+ *     print("Cannot encode '\(text)' with \(encoding)")
+ * } catch {
+ *     print("Other error: \(error)")
+ * }
+ * ```
+ */
 public enum EFQRCodeError: Error {
-    /// The thing you want to save is too large for `QRCode`.
+    /**
+     * The data to be encoded exceeds the QR code capacity limit.
+     *
+     * QR codes have a maximum data capacity that depends on the error correction level
+     * and the QR code version. This error occurs when the input data is too large
+     * to fit within the available capacity.
+     */
     case dataLengthExceedsCapacityLimit
-    /// Can not encode the given string using the specified encoding.
+    
+    /**
+     * The text cannot be encoded using the specified encoding.
+     *
+     * - Parameters:
+     *   - text: The text that failed to encode
+     *   - encoding: The encoding that was attempted
+     */
     case text(String, incompatibleWithEncoding: String.Encoding)
     
-    /// Color space conversion failure
+    /**
+     * Failed to convert between color spaces.
+     *
+     * This error occurs when the system cannot convert between different color spaces,
+     * typically when working with images that have incompatible color spaces.
+     */
     case colorSpaceConversionFailure
-    /// colorSpaceCreateFailure
+    
+    /**
+     * Failed to create a color space.
+     *
+     * This error occurs when the system cannot create a required color space,
+     * typically due to insufficient memory or system resources.
+     */
     case colorSpaceCreateFailure
-    /// Can not get components from CGColor
+    
+    /**
+     * Cannot extract color components from CGColor.
+     *
+     * This error occurs when the CGColor object does not contain the expected
+     * color components or the color space is not supported.
+     */
     case invalidCGColorComponents
-    /// Can not create mutableData
+    
+    /**
+     * Cannot create mutable data buffer.
+     *
+     * This error occurs when the system cannot allocate memory for a mutable data buffer,
+     * typically due to insufficient memory.
+     */
     case cannotCreateMutableData
-    /// Can not create CGImage destination
+    
+    /**
+     * Cannot create CGImage destination.
+     *
+     * This error occurs when the system cannot create a CGImage destination for
+     * image writing operations.
+     */
     case cannotCreateCGImageDestination
-    /// Can not finalize CGImage destination
+    
+    /**
+     * Cannot finalize CGImage destination.
+     *
+     * This error occurs when the system cannot finalize the CGImage destination,
+     * typically due to data corruption or insufficient memory.
+     */
     case cannotFinalizeCGImageDestination
-    /// Can not create CGContext
+    
+    /**
+     * Cannot create CGContext.
+     *
+     * This error occurs when the system cannot create a Core Graphics context,
+     * typically due to insufficient memory or invalid parameters.
+     */
     case cannotCreateCGContext
-    /// Can not create CGContext
+    
+    /**
+     * Cannot create SVG document.
+     *
+     * This error occurs when the system cannot create an SVG document,
+     * typically due to invalid SVG content or insufficient memory.
+     */
     case cannotCreateSVGDocument
-    /// Can not create CGImage
+    
+    /**
+     * Cannot create CGImage.
+     *
+     * This error occurs when the system cannot create a CGImage from the provided data,
+     * typically due to invalid image data or insufficient memory.
+     */
     case cannotCreateCGImage
-    /// Can not create UIImage
+    
+    /**
+     * Cannot create UIImage.
+     *
+     * This error occurs when the system cannot create a UIImage from the CGImage,
+     * typically due to invalid image data or platform-specific issues.
+     */
     case cannotCreateUIImage
-    /// Can not create image data
+    
+    /**
+     * Cannot create image data.
+     *
+     * This error occurs when the system cannot create image data in the requested format,
+     * typically due to unsupported format or insufficient memory.
+     */
     case cannotCreateImageData
-    /// Can not create GIF
+    
+    /**
+     * Cannot create animated image (GIF/APNG).
+     *
+     * This error occurs when the system cannot create an animated image,
+     * typically due to invalid frame data or insufficient memory.
+     */
     case cannotCreateAnimatedImage
-    /// Can not create video
+    
+    /**
+     * Cannot create video file.
+     *
+     * This error occurs when the system cannot create a video file,
+     * typically due to invalid video data or insufficient memory.
+     */
     case cannotCreateVideo
-    /// Fill a new issue on GitHub, or submit a pull request.
+    
+    /**
+     * Internal implementation error.
+     *
+     * This error indicates an internal implementation issue that should be reported
+     * to the developers. It contains additional details about the specific problem.
+     *
+     * - Parameter error: The specific implementation error details.
+     */
     case internalError(ImplmentationError)
     
-    /// Should probably contact developer is you ever see any of these.
+    /**
+     * Internal implementation error types.
+     *
+     * These errors represent specific internal implementation issues that should
+     * be reported to the developers for investigation.
+     */
     public enum ImplmentationError {
-        /// fail to determine how large is the data.
+        /**
+         * Failed to determine the size of the data.
+         *
+         * This error occurs when the system cannot determine the size of the input data,
+         * typically due to data corruption or invalid data format.
+         */
         case dataLengthIndeterminable
-        /// fail to find appropriate container for your data.
+        
+        /**
+         * Data length exceeds the capacity limit.
+         *
+         * - Parameters:
+         *   - dataLength: The actual length of the data
+         *   - capacityLimit: The maximum capacity limit
+         */
         case dataLength(Int, exceedsCapacityLimit: Int)
     }
 }
 
 extension QRCodeError {
     
+    /**
+     * Converts a QRCodeError to an EFQRCodeError.
+     *
+     * This extension provides a mapping from QRCodeSwift errors to EFQRCode errors,
+     * ensuring consistent error handling across the library.
+     *
+     * - Returns: The corresponding EFQRCodeError.
+     */
     var efQRCodeError: EFQRCodeError {
         switch self {
         case .dataLengthExceedsCapacityLimit:
