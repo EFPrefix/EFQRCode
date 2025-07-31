@@ -26,6 +26,42 @@
 
 import Foundation
 
+/**
+ * EFQRCode - A lightweight QR code generator and recognizer for iOS, macOS, tvOS and watchOS.
+ *
+ * EFQRCode is a powerful and flexible QR code library that supports:
+ * - QR code generation with various styles and customizations
+ * - QR code recognition from images
+ * - Multiple output formats (PNG, JPEG, GIF, APNG, PDF, SVG, Video)
+ * - Animated QR codes
+ * - Custom styling with icons and watermarks
+ * - Error correction levels
+ * - Cross-platform support (iOS, macOS, tvOS, watchOS)
+ *
+ * ## Basic Usage
+ *
+ * ```swift
+ * // Generate a basic QR code
+ * let generator = try EFQRCode.Generator("Hello World")
+ * let image = try generator.toImage(width: 200)
+ * ```
+ *
+ * ## Features
+ *
+ * - **Multiple Styles**: Basic, Bubble, 2.5D, Image, Line, Random Rectangle, and more
+ * - **Custom Icons**: Add custom icons to QR codes
+ * - **Watermarks**: Overlay watermarks on QR codes
+ * - **Animated QR Codes**: Create animated QR codes with GIF and APNG support
+ * - **Video Export**: Export QR codes as video files (MOV, M4V, MP4)
+ * - **High Performance**: Optimized for performance with caching and efficient algorithms
+ * - **Cross Platform**: Works on iOS, macOS, tvOS, and watchOS
+ *
+ * ## Requirements
+ *
+ * - iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+ / visionOS 1.0+
+ * - Swift 5.0+
+ * - Xcode 13.0+
+ */
 public class EFQRCode {
     
 }

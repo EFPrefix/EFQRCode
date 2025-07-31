@@ -26,9 +26,8 @@ EFQRCode 是一个轻量级的、用来生成和识别二维码的纯 Swift 库�
 
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg)  
 :---------------------:|:---------------------:|:---------------------:|:---------------------:
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample7.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample8.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample9.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample13.JPG)  
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample6.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample15.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample16.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample5.GIF)  
-![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample2.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample3.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample4.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample1.GIF)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample7.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample8.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample2.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample13.JPG)  
+![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample4.GIF)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample15.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample16.JPG)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/7sample1.GIF)  
 
 ## 示例
 
@@ -193,8 +192,7 @@ if let imageData = try? generator?.toGIFData(width: 512) {
 3. 生成尺寸过大、二维码内容过多、导入媒体过大可能会导致生成失败；
 4. 建议对生成的二维码进行测试后投入使用，例如微信能够扫描成功并不代表支付宝也能成功扫描，请务必根据您的具体业务需要做有针对性的测试；
 5. 文档与演示项目中部分图片来源于网络，如侵犯您的合法权益，请联系我们删除；
-6. 若有任何问题，期待得到您的反馈，`Issue` 和 `Pull request` 都是受欢迎的。
-7. 好用的话希望可以点下 `Star`，QWQ
+6. 欢迎任何贡献和 `Pull request`。
 
 ## 贡献者
 
@@ -224,6 +222,8 @@ if let imageData = try? generator?.toGIFData(width: 512) {
 
 ## 联系
 
+推特：[@EyreFree777](https://x.com/eyrefree777)   
+微博：[@EyreFree](https://weibo.com/eyrefree777)   
 邮箱：[eyrefree@eyrefree.org](mailto:eyrefree@eyrefree.org)
 
 ## 协议
