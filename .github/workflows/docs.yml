@@ -10,9 +10,11 @@ jobs:
   jazzy:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install Jazzy
         run: sudo gem install jazzy
+      - name: Resolve Swift Package dependencies
+        run: xcodebuild -resolvePackageDependencies
       - name: Generate Documentation
         run: ./docs.sh
       - name: Publish
