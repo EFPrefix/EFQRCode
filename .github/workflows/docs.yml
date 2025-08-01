@@ -16,11 +16,7 @@ jobs:
       - name: Resolve Swift Package dependencies
         run: xcodebuild -resolvePackageDependencies
       - name: Generate Documentation
-        run: ./docs.sh || {
-          # 若失败，打印 xcodebuild 日志
-          cat /var/folders/y6/nj790rtn62lfktb1sh__79hc0000gn/T/xcodebuild-*.log
-          exit 1
-        }
+        run: ./docs.sh
         continue-on-error: false
       - name: Publish
         uses: peaceiris/actions-gh-pages@v3
