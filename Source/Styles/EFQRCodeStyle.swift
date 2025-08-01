@@ -53,23 +53,10 @@ import QRCodeSwift
  * ```
  */
 public class EFStyleParams {
-    
-    /**
-     * The icon to display in the center of the QR code.
-     *
-     * This can be a static image or an animated sequence of images.
-     * When nil, no icon is displayed.
-     */
+    /// The icon to display in the center of the QR code.
     let icon: EFStyleParamIcon?
-    
-    /**
-     * The backdrop configuration for the QR code.
-     *
-     * Defines the background appearance of the QR code, including
-     * color, transparency, and other visual properties.
-     */
+    /// The backdrop configuration for the QR code.
     let backdrop: EFStyleParamBackdrop
-    
     /**
      * Creates styling parameters for QR code customization.
      *
@@ -86,105 +73,47 @@ public class EFStyleParams {
     }
 }
 
-/**
- * Alignment styles for QR code elements.
- *
- * These styles define how different elements within the QR code are aligned
- * and positioned relative to each other.
- */
+/// Alignment styles for QR code elements.
 public enum EFStyleParamAlignStyle: CaseIterable {
-    /**
-     * Rectangular alignment with sharp corners.
-     */
+    /// Rectangular alignment with sharp corners.
     case rectangle
-    
-    /**
-     * Circular alignment with rounded corners.
-     */
+    /// Circular alignment with rounded corners.
     case round
-    
-    /**
-     * Rounded rectangle alignment with soft corners.
-     */
+    /// Rounded rectangle alignment with soft corners.
     case roundedRectangle
 }
 
-/**
- * Timing pattern styles for QR codes.
- *
- * Timing patterns are the alternating black and white modules that help
- * QR code readers determine the size and position of the code.
- */
+/// Timing pattern styles for QR codes.
 public enum EFStyleParamTimingStyle: CaseIterable {
-    /**
-     * Rectangular timing pattern with sharp corners.
-     */
+    /// Rectangular timing pattern with sharp corners.
     case rectangle
-    
-    /**
-     * Circular timing pattern with rounded corners.
-     */
+    /// Circular timing pattern with rounded corners.
     case round
-    
-    /**
-     * Rounded rectangle timing pattern with soft corners.
-     */
+    /// Rounded rectangle timing pattern with soft corners.
     case roundedRectangle
 }
 
-/**
- * Data module styles for QR codes.
- *
- * Data modules are the individual black and white squares that contain
- * the encoded information in the QR code.
- */
+/// Data module styles for QR codes.
 public enum EFStyleParamsDataStyle: CaseIterable {
-    /**
-     * Rectangular data modules with sharp corners.
-     */
+    /// Rectangular data modules with sharp corners.
     case rectangle
-    
-    /**
-     * Circular data modules with rounded corners.
-     */
+    /// Circular data modules with rounded corners.
     case round
-    
-    /**
-     * Rounded rectangle data modules with soft corners.
-     */
+    /// Rounded rectangle data modules with soft corners.
     case roundedRectangle
 }
 
-/**
- * Position detection pattern styles for QR codes.
- *
- * Position detection patterns are the three large squares in the corners
- * of QR codes that help readers locate and orient the code.
- */
+/// Position detection pattern styles for QR codes.
 public enum EFStyleParamsPositionStyle: CaseIterable {
-    /**
-     * Rectangular position patterns with sharp corners.
-     */
+    /// Rectangular position patterns with sharp corners.
     case rectangle
-    
-    /**
-     * Circular position patterns with rounded corners.
-     */
+    /// Circular position patterns with rounded corners.
     case round
-    
-    /**
-     * Rounded rectangle position patterns with soft corners.
-     */
+    /// Rounded rectangle position patterns with soft corners.
     case roundedRectangle
-    
-    /**
-     * Planet-themed position patterns with celestial styling.
-     */
+    /// Planet-themed position patterns with celestial styling.
     case planets
-    
-    /**
-     * DSJ (Dancing Square J) position patterns with unique styling.
-     */
+    /// DSJ (Dancing Square J) position patterns with unique styling.
     case dsj
 }
 
@@ -207,42 +136,16 @@ public enum EFStyleParamsPositionStyle: CaseIterable {
  * ```
  */
 public class EFStyleParamIcon {
-    /**
-     * The image to display as the icon.
-     *
-     * Can be a static image or an animated sequence of images.
-     */
+    /// The image to display as the icon.
     let image: EFStyleParamImage
-    
-    /**
-     * The scaling mode for the icon image.
-     *
-     * Determines how the icon image is scaled to fit the available space.
-     */
+    /// The scaling mode for the icon image.
     let mode: EFImageMode
-    
-    /**
-     * The transparency level of the icon (0.0 to 1.0).
-     *
-     * 0.0 is completely transparent, 1.0 is completely opaque.
-     */
+    /// The transparency level of the icon (0.0 to 1.0).
     let alpha: CGFloat
-    
-    /**
-     * The border color of the icon.
-     *
-     * The color of the border around the icon, if any.
-     */
+    /// The border color of the icon.
     let borderColor: CGColor
-    
-    /**
-     * The size of the icon as a percentage of the QR code size.
-     *
-     * Values range from 0.0 to 1.0, where 1.0 would make the icon
-     * the same size as the QR code.
-     */
+    /// The size of the icon as a percentage of the QR code size.
     let percentage: CGFloat
-    
     /**
      * Creates an icon configuration for QR code customization.
      *
@@ -266,7 +169,6 @@ public class EFStyleParamIcon {
         self.borderColor = borderColor
         self.percentage = percentage
     }
-    
     /**
      * Creates a copy of the icon configuration with optional modifications.
      *
@@ -341,8 +243,11 @@ public class EFStyleParamIcon {
     }
 }
 
+/// Image parameter for QR code styling.
 public enum EFStyleParamImage {
+    /// Static image parameter.
     case `static`(image: CGImage)
+    /// Animated image parameter with frame delays.
     case animated(images: [CGImage], imageDelays: [CGFloat])
     
     func write(id: Int, rect: CGRect, opacity: CGFloat, mode: EFImageMode) throws -> String {
@@ -387,15 +292,29 @@ public enum EFStyleParamImage {
     }
 }
 
+/// Backdrop configuration for QR codes.
 public class EFStyleParamBackdrop {
     
+    /// Default color for backdrop (white).
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0xffffff)!
     
+    /// The corner radius of the backdrop.
     let cornerRadius: CGFloat
+    /// The color of the backdrop.
     let color: CGColor
+    /// The image to use as backdrop.
     let image: EFStyleParamBackdropImage?
+    /// The quiet zone insets around the QR code.
     let quietzone: EFEdgeInsets?
-    
+    /**
+     * Creates a backdrop configuration for QR codes.
+     *
+     * - Parameters:
+     *   - cornerRadius: The corner radius of the backdrop. Defaults to 0.
+     *   - color: The color of the backdrop. Defaults to white.
+     *   - image: The image to use as backdrop. Defaults to nil.
+     *   - quietzone: The quiet zone insets around the QR code. Defaults to nil.
+     */
     public init(
         cornerRadius: CGFloat = 0,
         color: CGColor = EFStyleParamBackdrop.defaultColor,
@@ -445,11 +364,22 @@ public class EFStyleParamBackdrop {
     }
 }
 
+/// Backdrop image configuration for QR codes.
 public class EFStyleParamBackdropImage {
+    /// The image to use as backdrop.
     let image: CGImage
+    /// The alpha transparency of the backdrop image.
     let alpha: CGFloat
+    /// The image mode for scaling and positioning.
     let mode: EFImageMode
-    
+    /**
+     * Creates a backdrop image configuration.
+     *
+     * - Parameters:
+     *   - image: The image to use as backdrop.
+     *   - alpha: The alpha transparency. Defaults to 1.
+     *   - mode: The image mode for scaling and positioning. Defaults to scaleAspectFill.
+     */
     public init(
         image: CGImage,
         alpha: CGFloat = 1,
@@ -467,28 +397,64 @@ public class EFStyleParamBackdropImage {
     }
 }
 
+/**
+ * Base class for QR code style implementations.
+ *
+ * This class provides the foundation for all QR code style implementations,
+ * defining the interface that all styles must implement.
+ */
 public class EFQRCodeStyleBase {
-    
+    /**
+     * Writes the QR code to SVG format.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: An array of SVG strings.
+     * - Throws: An error if writing fails.
+     */
     func writeQRCode(qrcode: QRCode) throws -> [String] {
         Utils.ShowNotImplementedError()
         return []
     }
-    
+    /**
+     * Writes the icon to SVG format.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: An array of SVG strings.
+     * - Throws: An error if writing fails.
+     */
     func writeIcon(qrcode: QRCode) throws -> [String] {
         Utils.ShowNotImplementedError()
         return []
     }
-    
+    /**
+     * Calculates the viewBox for the QR code.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: The viewBox rectangle.
+     */
     func viewBox(qrcode: QRCode) -> CGRect {
         Utils.ShowNotImplementedError()
         return CGRect.zero
     }
-    
+    /**
+     * Generates the SVG string for the QR code.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: The SVG string.
+     * - Throws: An error if generation fails.
+     */
     func generateSVG(qrcode: QRCode) throws -> String {
         Utils.ShowNotImplementedError()
         return ""
     }
-    
+    /**
+     * Creates a copy of the style with optional modified icon and watermark images.
+     *
+     * - Parameters:
+     *   - iconImage: The new icon image. If nil, keeps the current icon image.
+     *   - watermarkImage: The new watermark image. If nil, keeps the current watermark image.
+     * - Returns: A new EFQRCodeStyleBase with the specified modifications.
+     */
     func copyWith(
         iconImage: EFStyleParamImage? = nil,
         watermarkImage: EFStyleParamImage? = nil
@@ -496,30 +462,54 @@ public class EFQRCodeStyleBase {
         Utils.ShowNotImplementedError()
         return self
     }
-    
+    /**
+     * Retrieves the current icon and watermark images.
+     *
+     * - Returns: A tuple containing the icon image and watermark image.
+     */
     func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
         Utils.ShowNotImplementedError()
         return (nil, nil)
     }
-    
+    /**
+     * Converts the style to an EFQRCodeStyle.
+     *
+     * - Returns: The EFQRCodeStyle representation.
+     */
     func toQRCodeStyle() -> EFQRCodeStyle {
         Utils.ShowNotImplementedError()
         return .basic(params: .init())
     }
 }
 
+/**
+ * QR code style enumeration.
+ *
+ * This enum provides all available QR code styles and their corresponding
+ * parameter types and implementations.
+ */
 public enum EFQRCodeStyle {
+    /// Basic QR code style.
     case basic(params: EFStyleBasicParams)
+    /// Bubble-style QR code.
     case bubble(params: EFStyleBubbleParams)
+    /// 2.5D QR code style.
     case d25(params: EFStyle25DParams)
+    /// DSJ-style QR code.
     case dsj(params: EFStyleDSJParams)
+    /// Function-based QR code style.
     case function(params: EFStyleFunctionParams)
+    /// Image-based QR code style.
     case image(params: EFStyleImageParams)
+    /// Image fill QR code style.
     case imageFill(params: EFStyleImageFillParams)
+    /// Line-style QR code.
     case line(params: EFStyleLineParams)
+    /// Random rectangle QR code style.
     case randomRectangle(params: EFStyleRandomRectangleParams)
+    /// Resample image QR code style.
     case resampleImage(params: EFStyleResampleImageParams)
-    
+    /// The implementation of the QR code style.
     var implementation: EFQRCodeStyleBase {
         switch self {
         case .basic(let params):

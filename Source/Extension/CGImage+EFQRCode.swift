@@ -184,6 +184,16 @@ extension CGImage {
         return imageResized
     }
     
+    /**
+     * Resizes the CGImage to the specified size.
+     *
+     * This method creates a new CGImage with the specified dimensions.
+     * If the new size matches the current size, the original image is returned.
+     *
+     * - Parameter newSize: The target size for the image.
+     * - Returns: A resized CGImage.
+     * - Throws: `EFQRCodeError` if image resizing fails.
+     */
     func resize(to newSize: CGSize) throws -> CGImage {
         if newSize.width == self.width.cgFloat && newSize.height == self.height.cgFloat { return self }
         

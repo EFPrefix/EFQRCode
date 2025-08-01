@@ -193,7 +193,6 @@
 		128013CD2A540A090033B45B /* EFQRCodeStyleResampleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyleResampleImage.swift; sourceTree = "<group>"; };
 		1283C7B82C88E80F00462E4C /* EFAnimatedImageFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFAnimatedImageFormat.swift; sourceTree = "<group>"; };
 		1283C7ED2C8DF69400462E4C /* EFImageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFImageMode.swift; sourceTree = "<group>"; };
-		128AD85E20C40759006CED36 /* README_CN.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README_CN.md; sourceTree = "<group>"; };
 		128AD85F20C4075A006CED36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		12C3A7E42CD5627800226CD1 /* EFVideoFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFVideoFormat.swift; sourceTree = "<group>"; };
 		12D66CB32A4FA2A3007F2770 /* EFQRCodeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EFQRCodeStyle.swift; sourceTree = "<group>"; };
@@ -357,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				128AD85F20C4075A006CED36 /* README.md */,
-				128AD85E20C40759006CED36 /* README_CN.md */,
 				127F871E1ECF56AC0002B554 /* EFQRCode.podspec */,
 				F8111E3519A95C8B0040E7D1 /* Source */,
 				F8111E3F19A95C8B0040E7D1 /* Tests */,

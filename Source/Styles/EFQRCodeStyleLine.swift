@@ -29,15 +29,67 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for line-style QR code styling.
+ *
+ * This class defines the styling parameters for line-style QR codes, which use
+ * lines to represent data modules instead of solid blocks. This creates QR codes
+ * with a unique, minimalist appearance that maintains scannability.
+ *
+ * ## Features
+ *
+ * - Line-based data module representation
+ * - Customizable line direction and thickness
+ * - Position detection pattern styling
+ * - Icon and backdrop support
+ * - Minimalist, modern appearance
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let lineParams = EFStyleLineParamsLine(
+ *     direction: .x,
+ *     thickness: 0.5,
+ *     color: .black
+ * )
+ * 
+ * let params = EFStyleLineParams(
+ *     icon: icon,
+ *     backdrop: backdrop,
+ *     position: position,
+ *     line: lineParams
+ * )
+ * 
+ * let style = EFQRCodeStyle.line(params)
+ * ```
+ *
+ * ## Visual Characteristics
+ *
+ * - Data modules are represented as lines
+ * - Lines can be oriented horizontally or vertically
+ * - Thickness controls the visual weight of lines
+ * - Creates a clean, minimalist appearance
+ */
 public class EFStyleLineParams: EFStyleParams {
-    
+    /// The default backdrop configuration for line QR codes.
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    /// The default position detection pattern configuration.
     public static let defaultPosition: EFStyleLineParamsPosition = EFStyleLineParamsPosition()
+    /// The default line configuration.
     public static let defaultLine: EFStyleLineParamsLine = EFStyleLineParamsLine()
-    
+    /// Position detection pattern styling parameters.
     let position: EFStyleLineParamsPosition
+    /// Line styling parameters.
     let line: EFStyleLineParamsLine
-    
+    /**
+     * Creates line-style QR code styling parameters.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration. Defaults to default backdrop.
+     *   - position: The position detection pattern configuration. Defaults to default position.
+     *   - line: The line configuration. Defaults to default line.
+     */
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyleLineParams.defaultBackdrop,
@@ -48,7 +100,16 @@ public class EFStyleLineParams: EFStyleParams {
         self.line = line
         super.init(icon: icon, backdrop: backdrop)
     }
-    
+    /**
+     * Creates a copy of the parameters with optional modifications.
+     *
+     * - Parameters:
+     *   - icon: The new icon. If nil, keeps the current icon.
+     *   - backdrop: The new backdrop. If nil, keeps the current backdrop.
+     *   - position: The new position configuration. If nil, keeps the current position.
+     *   - line: The new line configuration. If nil, keeps the current line.
+     * - Returns: A new EFStyleLineParams with the specified modifications.
+     */
     func copyWith(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
@@ -64,14 +125,24 @@ public class EFStyleLineParams: EFStyleParams {
     }
 }
 
+/// Position detection pattern styling parameters for line QR codes.
 public class EFStyleLineParamsPosition {
-    
+    /// Default color for position detection patterns (black).
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// The style of the position detection pattern.
     let style: EFStyleParamsPositionStyle
+    /// The size of the position detection pattern.
     let size: CGFloat
+    /// The color of the position detection pattern.
     let color: CGColor
-    
+    /**
+     * Creates position detection pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the position detection pattern. Defaults to .rectangle.
+     *   - size: The size of the position detection pattern. Defaults to 1.0.
+     *   - color: The color of the position detection pattern. Defaults to black.
+     */
     public init(
         style: EFStyleParamsPositionStyle = .rectangle,
         size: CGFloat = 1,
@@ -83,14 +154,24 @@ public class EFStyleLineParamsPosition {
     }
 }
 
+/// Line styling parameters for line QR codes.
 public class EFStyleLineParamsLine {
-    
+    /// Default color for lines (black).
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// The direction of the lines.
     let direction: EFStyleLineParamsLineDirection
+    /// The thickness of the lines (0-1].
     let thickness: CGFloat // (0-1]
+    /// The color of the lines.
     let color: CGColor
-    
+    /**
+     * Creates line styling parameters.
+     *
+     * - Parameters:
+     *   - direction: The direction of the lines. Defaults to .x.
+     *   - thickness: The thickness of the lines (0-1]. Defaults to 0.5.
+     *   - color: The color of the lines. Defaults to black.
+     */
     public init(
         direction: EFStyleLineParamsLineDirection = .x,
         thickness: CGFloat = 0.5, color: CGColor = EFStyleLineParamsLine.defaultColor
@@ -101,20 +182,57 @@ public class EFStyleLineParamsLine {
     }
 }
 
+/// Line direction options for line-style QR codes.
 public enum EFStyleLineParamsLineDirection: CaseIterable {
+    /// Horizontal lines.
     case horizontal
+    /// Vertical lines.
     case vertical
+    /// Cross pattern lines.
     case cross
+    /// Loopback pattern lines.
     case loopback
+    /// Diagonal lines from top-left to bottom-right.
     case topLeftToBottomRight
+    /// Diagonal lines from top-right to bottom-left.
     case topRightToBottomLeft
+    /// X pattern lines.
     case x
 }
 
+/**
+ * Line-style QR code implementation.
+ *
+ * This class implements the line-style QR code rendering, creating QR codes
+ * where data modules are represented as lines instead of solid blocks.
+ *
+ * ## Features
+ *
+ * - Line-based data module representation
+ * - Multiple line direction options
+ * - Customizable line thickness
+ * - Position detection pattern styling
+ * - Icon and backdrop support
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let params = EFStyleLineParams(
+ *     position: position,
+ *     line: lineParams
+ * )
+ * 
+ * let style = EFQRCodeStyleLine(params: params)
+ * ```
+ */
 public class EFQRCodeStyleLine: EFQRCodeStyleBase {
-    
+    /// The line styling parameters.
     let params: EFStyleLineParams
-    
+    /**
+     * Creates a line-style QR code with the specified parameters.
+     *
+     * - Parameter params: The line styling parameters.
+     */
     public init(params: EFStyleLineParams) {
         self.params = params
         super.init()

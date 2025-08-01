@@ -57,166 +57,49 @@ import QRCodeSwift
  * ```
  */
 public enum EFQRCodeError: Error {
-    /**
-     * The data to be encoded exceeds the QR code capacity limit.
-     *
-     * QR codes have a maximum data capacity that depends on the error correction level
-     * and the QR code version. This error occurs when the input data is too large
-     * to fit within the available capacity.
-     */
+    /// The data to be encoded exceeds the QR code capacity limit.
     case dataLengthExceedsCapacityLimit
-    
-    /**
-     * The text cannot be encoded using the specified encoding.
-     *
-     * - Parameters:
-     *   - text: The text that failed to encode
-     *   - encoding: The encoding that was attempted
-     */
+    /// The text cannot be encoded using the specified encoding.
     case text(String, incompatibleWithEncoding: String.Encoding)
-    
-    /**
-     * Failed to convert between color spaces.
-     *
-     * This error occurs when the system cannot convert between different color spaces,
-     * typically when working with images that have incompatible color spaces.
-     */
+    /// Failed to convert between color spaces.
     case colorSpaceConversionFailure
-    
-    /**
-     * Failed to create a color space.
-     *
-     * This error occurs when the system cannot create a required color space,
-     * typically due to insufficient memory or system resources.
-     */
+    /// Failed to create a color space.
     case colorSpaceCreateFailure
-    
-    /**
-     * Cannot extract color components from CGColor.
-     *
-     * This error occurs when the CGColor object does not contain the expected
-     * color components or the color space is not supported.
-     */
+    /// Cannot extract color components from CGColor.
     case invalidCGColorComponents
-    
-    /**
-     * Cannot create mutable data buffer.
-     *
-     * This error occurs when the system cannot allocate memory for a mutable data buffer,
-     * typically due to insufficient memory.
-     */
+    /// Cannot create mutable data buffer.
     case cannotCreateMutableData
-    
-    /**
-     * Cannot create CGImage destination.
-     *
-     * This error occurs when the system cannot create a CGImage destination for
-     * image writing operations.
-     */
+    /// Cannot create CGImage destination.
     case cannotCreateCGImageDestination
-    
-    /**
-     * Cannot finalize CGImage destination.
-     *
-     * This error occurs when the system cannot finalize the CGImage destination,
-     * typically due to data corruption or insufficient memory.
-     */
+    /// Cannot finalize CGImage destination.
     case cannotFinalizeCGImageDestination
-    
-    /**
-     * Cannot create CGContext.
-     *
-     * This error occurs when the system cannot create a Core Graphics context,
-     * typically due to insufficient memory or invalid parameters.
-     */
+    /// Cannot create CGContext.
     case cannotCreateCGContext
-    
-    /**
-     * Cannot create SVG document.
-     *
-     * This error occurs when the system cannot create an SVG document,
-     * typically due to invalid SVG content or insufficient memory.
-     */
+    /// Cannot create SVG document.
     case cannotCreateSVGDocument
-    
-    /**
-     * Cannot create CGImage.
-     *
-     * This error occurs when the system cannot create a CGImage from the provided data,
-     * typically due to invalid image data or insufficient memory.
-     */
+    /// Cannot create CGImage.
     case cannotCreateCGImage
-    
-    /**
-     * Cannot create UIImage.
-     *
-     * This error occurs when the system cannot create a UIImage from the CGImage,
-     * typically due to invalid image data or platform-specific issues.
-     */
+    /// Cannot create UIImage.
     case cannotCreateUIImage
-    
-    /**
-     * Cannot create image data.
-     *
-     * This error occurs when the system cannot create image data in the requested format,
-     * typically due to unsupported format or insufficient memory.
-     */
+    /// Cannot create image data.
     case cannotCreateImageData
-    
-    /**
-     * Cannot create animated image (GIF/APNG).
-     *
-     * This error occurs when the system cannot create an animated image,
-     * typically due to invalid frame data or insufficient memory.
-     */
+    /// Cannot create animated image (GIF/APNG).
     case cannotCreateAnimatedImage
-    
-    /**
-     * Cannot create video file.
-     *
-     * This error occurs when the system cannot create a video file,
-     * typically due to invalid video data or insufficient memory.
-     */
+    /// Cannot create video file.
     case cannotCreateVideo
-    
-    /**
-     * Internal implementation error.
-     *
-     * This error indicates an internal implementation issue that should be reported
-     * to the developers. It contains additional details about the specific problem.
-     *
-     * - Parameter error: The specific implementation error details.
-     */
+    /// Internal implementation error.
     case internalError(ImplmentationError)
     
-    /**
-     * Internal implementation error types.
-     *
-     * These errors represent specific internal implementation issues that should
-     * be reported to the developers for investigation.
-     */
+    /// Internal implementation error types.
     public enum ImplmentationError {
-        /**
-         * Failed to determine the size of the data.
-         *
-         * This error occurs when the system cannot determine the size of the input data,
-         * typically due to data corruption or invalid data format.
-         */
+        /// Failed to determine the size of the data.
         case dataLengthIndeterminable
-        
-        /**
-         * Data length exceeds the capacity limit.
-         *
-         * - Parameters:
-         *   - dataLength: The actual length of the data
-         *   - capacityLimit: The maximum capacity limit
-         */
+        /// Data length exceeds the capacity limit.
         case dataLength(Int, exceedsCapacityLimit: Int)
     }
 }
 
 extension QRCodeError {
-    
     /**
      * Converts a QRCodeError to an EFQRCodeError.
      *

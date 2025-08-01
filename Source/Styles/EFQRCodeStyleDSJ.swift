@@ -29,15 +29,60 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for DSJ-style QR code styling.
+ *
+ * This class defines the styling parameters for DSJ-style QR codes, which use
+ * distinctive position and data module patterns inspired by the "DSJ" visual style.
+ *
+ * ## Features
+ *
+ * - Custom DSJ-style position detection patterns
+ * - Customizable data module appearance
+ * - Icon and backdrop support
+ * - Unique, visually striking QR codes
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let dataParams = EFStyleDSJParamsData(
+ *     lineSize: 0.7,
+ *     xSize: 0.7,
+ *     horizontalLineColor: .yellow,
+ *     verticalLineColor: .red,
+ *     xColor: .blue
+ * )
+ *
+ * let params = EFStyleDSJParams(
+ *     icon: icon,
+ *     backdrop: backdrop,
+ *     position: position,
+ *     data: dataParams
+ * )
+ *
+ * let style = EFQRCodeStyle.dsj(params)
+ * ```
+ */
 public class EFStyleDSJParams: EFStyleParams {
-    
+    /// The default backdrop configuration for DSJ QR codes.
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    /// The default position detection pattern configuration.
     public static let defaultPosition: EFStyleDSJParamsPosition = EFStyleDSJParamsPosition()
+    /// The default data module configuration.
     public static let defaultData: EFStyleDSJParamsData = EFStyleDSJParamsData()
-    
+    /// Position detection pattern styling parameters.
     let position: EFStyleDSJParamsPosition
+    /// Data module styling parameters.
     let data: EFStyleDSJParamsData
-    
+    /**
+     * Creates DSJ-style QR code styling parameters.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration. Defaults to default backdrop.
+     *   - position: The position detection pattern configuration. Defaults to default position.
+     *   - data: The data module configuration. Defaults to default data.
+     */
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyleDSJParams.defaultBackdrop,
@@ -48,7 +93,16 @@ public class EFStyleDSJParams: EFStyleParams {
         self.data = data
         super.init(icon: icon, backdrop: backdrop)
     }
-    
+    /**
+     * Creates a copy of the parameters with optional modifications.
+     *
+     * - Parameters:
+     *   - icon: The new icon. If nil, keeps the current icon.
+     *   - backdrop: The new backdrop. If nil, keeps the current backdrop.
+     *   - position: The new position configuration. If nil, keeps the current position.
+     *   - data: The new data configuration. If nil, keeps the current data.
+     * - Returns: A new EFStyleDSJParams with the specified modifications.
+     */
     func copyWith(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
@@ -64,14 +118,24 @@ public class EFStyleDSJParams: EFStyleParams {
     }
 }
 
+/// Position detection pattern styling parameters for DSJ QR codes.
 public class EFStyleDSJParamsPosition {
-    
+    /// Default color for position detection patterns (blue).
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x0B2D97)!
-    
+    /// The style of the position detection pattern.
     let style: EFStyleParamsPositionStyle
+    /// The size of the position detection pattern.
     let size: CGFloat
+    /// The color of the position detection pattern.
     let color: CGColor
-    
+    /**
+     * Creates position detection pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the position detection pattern. Defaults to .dsj.
+     *   - size: The size of the position detection pattern. Defaults to 0.925.
+     *   - color: The color of the position detection pattern. Defaults to blue.
+     */
     public init(
         style: EFStyleParamsPositionStyle = .dsj,
         size: CGFloat = 0.925,
@@ -83,18 +147,34 @@ public class EFStyleDSJParamsPosition {
     }
 }
 
+/// Data module styling parameters for DSJ QR codes.
 public class EFStyleDSJParamsData {
-    
+    /// Default color for horizontal lines (yellow).
     public static let defaultHorizontalLineColor: CGColor = CGColor.createWith(rgb: 0xF6B506)!
+    /// Default color for vertical lines (red).
     public static let defaultVerticalLineColor: CGColor = CGColor.createWith(rgb: 0xE02020)!
+    /// Default color for X shapes (blue).
     public static let defaultXColor: CGColor = CGColor.createWith(rgb: 0x0B2D97)!
-    
+    /// The size of the lines in data modules.
     let lineSize: CGFloat
+    /// The size of the X shapes in data modules.
     let xSize: CGFloat
+    /// The color of horizontal lines.
     let horizontalLineColor: CGColor
+    /// The color of vertical lines.
     let verticalLineColor: CGColor
+    /// The color of X shapes.
     let xColor: CGColor
-    
+    /**
+     * Creates data module styling parameters.
+     *
+     * - Parameters:
+     *   - lineSize: The size of the lines. Defaults to 0.7.
+     *   - xSize: The size of the X shapes. Defaults to 0.7.
+     *   - horizontalLineColor: The color of horizontal lines. Defaults to yellow.
+     *   - verticalLineColor: The color of vertical lines. Defaults to red.
+     *   - xColor: The color of X shapes. Defaults to blue.
+     */
     public init(
         lineSize: CGFloat = 0.7,
         xSize: CGFloat = 0.7,
@@ -110,10 +190,38 @@ public class EFStyleDSJParamsData {
     }
 }
 
+/**
+ * DSJ-style QR code implementation.
+ *
+ * This class implements the DSJ-style QR code rendering, creating QR codes
+ * with distinctive position and data module patterns inspired by the "DSJ" visual style.
+ *
+ * ## Features
+ *
+ * - Custom DSJ-style position detection patterns
+ * - Line and X-shaped data modules
+ * - Multi-color styling for different elements
+ * - Icon and backdrop support
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let params = EFStyleDSJParams(
+ *     position: position,
+ *     data: dataParams
+ * )
+ * 
+ * let style = EFQRCodeStyleDSJ(params: params)
+ * ```
+ */
 public class EFQRCodeStyleDSJ: EFQRCodeStyleBase {
-    
+    /// The DSJ styling parameters.
     let params: EFStyleDSJParams
-    
+    /**
+     * Creates a DSJ-style QR code with the specified parameters.
+     *
+     * - Parameter params: The DSJ styling parameters.
+     */
     public init(params: EFStyleDSJParams) {
         self.params = params
         super.init()

@@ -20,8 +20,6 @@
 
 EFQRCode is a lightweight, pure-Swift library for generating stylized QRCode images with watermark or icon, and for recognizing QRCode from images, inspired by [qrcode](https://github.com/sylnsfar/qrcode) and [react-qrbtf](https://github.com/CPunisher/react-qrbtf). Based on `CoreGraphics`, `CoreImage`, and `ImageIO`, EFQRCode provides you a better way to handle QRCode in your app, no matter if it is on iOS, macOS, watchOS, tvOS, and/or visionOS. You can integrate EFQRCode through CocoaPods, Carthage, and/or Swift Package Manager.
 
-> [中文介绍](https://github.com/EFPrefix/EFQRCode/blob/main/README_CN.md)
-
 ## Examples
 
 ![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode5.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode6.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode7.jpg)|![](https://raw.githubusercontent.com/EFPrefix/EFQRCode/assets/QRCode8.jpg)  

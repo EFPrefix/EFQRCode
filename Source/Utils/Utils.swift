@@ -26,8 +26,31 @@
 
 import Foundation
 
+/**
+ * Utility functions for EFQRCode library.
+ *
+ * This class provides utility functions that are used throughout the EFQRCode library
+ * for error handling and debugging purposes.
+ *
+ * ## Features
+ *
+ * - Error handling for unimplemented methods
+ * - Debug information for development
+ * - Fatal error reporting with context
+ */
 class Utils {
-    
+    /**
+     * Shows a fatal error for unimplemented methods.
+     *
+     * This method is used to indicate that a method has not been implemented
+     * in a subclass or extension. It provides detailed information about the
+     * location of the unimplemented method for debugging purposes.
+     *
+     * - Parameters:
+     *   - file: The file where the error occurred. Defaults to the calling file.
+     *   - method: The method name where the error occurred. Defaults to the calling function.
+     *   - line: The line number where the error occurred. Defaults to the calling line.
+     */
     static func ShowNotImplementedError(file: String = #file, method: String = #function, line: Int = #line) {
         fatalError("\((file as NSString).lastPathComponent)[\(line)], \(method) has not been implemented")
     }

@@ -63,153 +63,59 @@ import CoreGraphics
  * - **Unsigned Integers**: `uInt`, `uInt8`, `uInt16`, `uInt32`, `uInt64`
  */
 extension BinaryFloatingPoint {
-
-    /**
-     * Converts the floating-point value to a boolean.
-     *
-     * Returns true if the value is non-zero, false if the value is zero.
-     *
-     * - Returns: true if the value is non-zero, false otherwise.
-     */
+    /// Converts the floating-point value to a boolean.
     var bool: Bool {
         return 0 != self
     }
-
-    /**
-     * Converts the floating-point value to CGFloat.
-     *
-     * This is commonly used for Core Graphics operations that require CGFloat.
-     *
-     * - Returns: A CGFloat representation of the value.
-     */
+    /// Converts the floating-point value to CGFloat.
     var cgFloat: CGFloat {
         return CGFloat(self)
     }
-
-    /**
-     * Converts the floating-point value to Double.
-     *
-     * - Returns: A Double representation of the value.
-     */
+    /// Converts the floating-point value to Double.
     var double: Double {
         return Double(self)
     }
-
-    /**
-     * Converts the floating-point value to Float.
-     *
-     * - Returns: A Float representation of the value.
-     */
+    /// Converts the floating-point value to Float.
     var float: Float {
         return Float(self)
     }
-
-    /**
-     * Converts the floating-point value to Int.
-     *
-     * The value is truncated to the nearest integer.
-     *
-     * - Returns: An Int representation of the value.
-     */
+    /// Converts the floating-point value to Int.
     var int: Int {
         return Int(self)
     }
-
-    /**
-     * Converts the floating-point value to Int8.
-     *
-     * The value is truncated to the nearest integer and clamped to Int8 range.
-     *
-     * - Returns: An Int8 representation of the value.
-     */
+    /// Converts the floating-point value to Int8.
     var int8: Int8 {
         return Int8(self)
     }
-
-    /**
-     * Converts the floating-point value to Int16.
-     *
-     * The value is truncated to the nearest integer and clamped to Int16 range.
-     *
-     * - Returns: An Int16 representation of the value.
-     */
+    /// Converts the floating-point value to Int16.
     var int16: Int16 {
         return Int16(self)
     }
-
-    /**
-     * Converts the floating-point value to Int32.
-     *
-     * The value is truncated to the nearest integer and clamped to Int32 range.
-     *
-     * - Returns: An Int32 representation of the value.
-     */
+    /// Converts the floating-point value to Int32.
     var int32: Int32 {
         return Int32(self)
     }
-
-    /**
-     * Converts the floating-point value to Int64.
-     *
-     * The value is truncated to the nearest integer and clamped to Int64 range.
-     *
-     * - Returns: An Int64 representation of the value.
-     */
+    /// Converts the floating-point value to Int64.
     var int64: Int64 {
         return Int64(self)
     }
-
-    /**
-     * Converts the floating-point value to UInt.
-     *
-     * The value is truncated to the nearest integer and clamped to UInt range.
-     *
-     * - Returns: A UInt representation of the value.
-     */
+    /// Converts the floating-point value to UInt.
     var uInt: UInt {
         return UInt(self)
     }
-
-    /**
-     * Converts the floating-point value to UInt8.
-     *
-     * The value is truncated to the nearest integer and clamped to UInt8 range.
-     *
-     * - Returns: A UInt8 representation of the value.
-     */
+    /// Converts the floating-point value to UInt8.
     var uInt8: UInt8 {
         return UInt8(self)
     }
-
-    /**
-     * Converts the floating-point value to UInt16.
-     *
-     * The value is truncated to the nearest integer and clamped to UInt16 range.
-     *
-     * - Returns: A UInt16 representation of the value.
-     */
+    /// Converts the floating-point value to UInt16.
     var uInt16: UInt16 {
         return UInt16(self)
     }
-
-    /**
-     * Converts the floating-point value to UInt32.
-     *
-     * The value is truncated to the nearest integer and clamped to UInt32 range.
-     *
-     * - Returns: A UInt32 representation of the value.
-     */
+    /// Converts the floating-point value to UInt32.
     var uInt32: UInt32 {
         return UInt32(self)
     }
-
-    /**
-     * Converts the floating-point value to UInt64.
-     *
-     * The value is truncated to the nearest integer and clamped to UInt64 range.
-     *
-     * - Returns: A UInt64 representation of the value.
-     */
+    /// Converts the floating-point value to UInt64.
     var uInt64: UInt64 {
         return UInt64(self)
     }

@@ -115,7 +115,7 @@ extension CIImage {
      *
      * ```swift
      * let ciImage = CIImage(image: qrCodeImage)
- * 
+     * 
      * // High accuracy detection
      * let highAccuracyResults = ciImage.recognizeQRCode(
      *     options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]

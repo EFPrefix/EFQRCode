@@ -71,41 +71,17 @@ import QRCodeSwift
  * - **H**: Use when QR codes might be significantly damaged or in very challenging environments
  */
 public enum EFCorrectionLevel: CaseIterable {
-    /**
-     * Low error correction level (7%).
-     *
-     * Provides the highest data capacity but lowest error recovery.
-     * Suitable for clean environments where QR codes are unlikely to be damaged.
-     */
+    /// Low error correction level (7%).
     case l
-    
-    /**
-     * Medium error correction level (15%).
-     *
-     * Provides a good balance between data capacity and error recovery.
-     * Suitable for most general use cases.
-     */
+    /// Medium error correction level (15%).
     case m
-    
-    /**
-     * Quartile error correction level (25%).
-     *
-     * Provides good error recovery with moderate data capacity reduction.
-     * Suitable for environments where QR codes might be slightly damaged.
-     */
+    /// Quartile error correction level (25%).
     case q
-    
-    /**
-     * High error correction level (30%).
-     *
-     * Provides the highest error recovery but lowest data capacity.
-     * Suitable for challenging environments where QR codes might be significantly damaged.
-     */
+    /// High error correction level (30%).
     case h
 }
 
 extension EFCorrectionLevel {
-    
     /**
      * Converts EFQRCode error correction level to QRCodeSwift error correction level.
      *
