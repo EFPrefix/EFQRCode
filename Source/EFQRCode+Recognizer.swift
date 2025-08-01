@@ -65,24 +65,14 @@ public extension EFQRCode {
      * - Image must contain recognizable QR code content
      */
     class Recognizer {
-        /**
-         * The image containing the QR code to recognize.
-         *
-         * When this property is set, the cached recognition results are cleared
-         * to ensure fresh recognition on the new image.
-         */
+        /// The image containing the QR code to recognize.
         public var image: CGImage {
             didSet {
                 contentArray = nil
             }
         }
         
-        /**
-         * Cached array of recognized QR code contents.
-         *
-         * This cache is used to avoid re-recognizing the same image multiple times.
-         * It's automatically cleared when the image is updated.
-         */
+        /// Cached array of recognized QR code contents.
         private var contentArray: [String]?
         
         /**

@@ -29,20 +29,83 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for image-based QR code styling.
+ *
+ * This class defines the styling parameters for image-based QR codes, which use
+ * actual images to fill the QR code modules instead of solid colors. This creates
+ * QR codes that incorporate visual content while maintaining scannability.
+ *
+ * ## Features
+ *
+ * - Image-based module filling
+ * - Alignment pattern customization
+ * - Timing pattern styling
+ * - Position detection pattern styling
+ * - Data module appearance control
+ * - Icon and backdrop support
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let imageParams = EFStyleImageParamsImage(
+ *     image: myImage,
+ *     mode: .scaleAspectFill
+ * )
+ * 
+ * let params = EFStyleImageParams(
+ *     icon: icon,
+ *     backdrop: backdrop,
+ *     align: align,
+ *     timing: timing,
+ *     position: position,
+ *     data: data,
+ *     image: imageParams
+ * )
+ * 
+ * let style = EFQRCodeStyle.image(params)
+ * ```
+ *
+ * ## Visual Characteristics
+ *
+ * - QR code modules are filled with actual image content
+ * - Maintains QR code structure and scannability
+ * - Supports different image scaling modes
+ * - Creates visually appealing, branded QR codes
+ */
 public class EFStyleImageParams: EFStyleParams {
-
+    /// The default backdrop configuration for image QR codes.
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    /// The default alignment pattern configuration.
     public static let defaultAlign: EFStyleImageParamsAlign = EFStyleImageParamsAlign()
+    /// The default timing pattern configuration.
     public static let defaultTiming: EFStyleImageParamsTiming = EFStyleImageParamsTiming()
+    /// The default data module configuration.
     public static let defaultData: EFStyleImageParamsData = EFStyleImageParamsData()
+    /// The default position detection pattern configuration.
     public static let defaultPosition: EFStyleImageParamsPosition = EFStyleImageParamsPosition()
-    
+    /// Alignment pattern styling parameters.
     let align: EFStyleImageParamsAlign
+    /// Timing pattern styling parameters.
     let timing: EFStyleImageParamsTiming
+    /// Position detection pattern styling parameters.
     let position: EFStyleImageParamsPosition
+    /// Data module styling parameters.
     let data: EFStyleImageParamsData
+    /// Image configuration for module filling.
     let image: EFStyleImageParamsImage?
-    
+    /**
+     * Creates image-based QR code styling parameters.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration. Defaults to default backdrop.
+     *   - align: The alignment pattern configuration. Defaults to default align.
+     *   - timing: The timing pattern configuration. Defaults to default timing.
+     *   - position: The position detection pattern configuration. Defaults to default position.
+     *   - data: The data module configuration. Defaults to default data.
+     *   - image: The image configuration for module filling. Defaults to nil.
+     */
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyleImageParams.defaultBackdrop,
@@ -59,7 +122,19 @@ public class EFStyleImageParams: EFStyleParams {
         self.image = image
         super.init(icon: icon, backdrop: backdrop)
     }
-    
+    /**
+     * Creates a copy of the parameters with optional modifications.
+     *
+     * - Parameters:
+     *   - icon: The new icon. If nil, keeps the current icon.
+     *   - backdrop: The new backdrop. If nil, keeps the current backdrop.
+     *   - align: The new align configuration. If nil, keeps the current align.
+     *   - timing: The new timing configuration. If nil, keeps the current timing.
+     *   - position: The new position configuration. If nil, keeps the current position.
+     *   - data: The new data configuration. If nil, keeps the current data.
+     *   - image: The new image configuration. If nil, keeps the current image.
+     * - Returns: A new EFStyleImageParams with the specified modifications.
+     */
     func copyWith(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
@@ -81,23 +156,79 @@ public class EFStyleImageParams: EFStyleParams {
     }
 }
 
+/// Alignment pattern styles for image-based QR codes.
 public enum EFStyleImageParamAlignStyle: CaseIterable {
+    /// No alignment pattern styling.
     case none
+    
+    /// Rectangular alignment pattern with sharp corners.
     case rectangle
+    
+    /// Circular alignment pattern with rounded corners.
     case round
+    
+    /// Rounded rectangle alignment pattern with soft corners.
     case roundedRectangle
 }
 
+/**
+ * Alignment pattern styling parameters for image-based QR codes.
+ *
+ * This class defines the appearance of alignment patterns in image-based QR codes,
+ * including their style, size, and colors for dark and light modules.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let align = EFStyleImageParamsAlign(
+ *     style: .rectangle,
+ *     size: 1.0,
+ *     colorDark: .black,
+ *     colorLight: .white
+ * )
+ * ```
+ */
 public class EFStyleImageParamsAlign {
     
+    /**
+     * Default color for dark alignment pattern modules (black).
+     */
     public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    
+    /**
+     * Default color for light alignment pattern modules (white).
+     */
     public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
     
+    /**
+     * The style of the alignment pattern.
+     */
     let style: EFStyleImageParamAlignStyle
+    
+    /**
+     * The size of the alignment pattern.
+     */
     let size: CGFloat
+    
+    /**
+     * The color of dark alignment pattern modules.
+     */
     let colorDark: CGColor
+    
+    /**
+     * The color of light alignment pattern modules.
+     */
     let colorLight: CGColor
     
+    /**
+     * Creates alignment pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the alignment pattern. Defaults to .rectangle.
+     *   - size: The size of the alignment pattern. Defaults to 1.
+     *   - colorDark: The color for dark alignment pattern modules. Defaults to default color dark.
+     *   - colorLight: The color for light alignment pattern modules. Defaults to default color light.
+     */
     public init(
         style: EFStyleImageParamAlignStyle = .rectangle,
         size: CGFloat = 1,
@@ -111,23 +242,91 @@ public class EFStyleImageParamsAlign {
     }
 }
 
+/**
+ * Timing pattern styles for image-based QR codes.
+ *
+ * These styles define how timing patterns appear in image-based QR codes.
+ */
 public enum EFStyleImageParamTimingStyle: CaseIterable {
+    /**
+     * No timing pattern styling.
+     */
     case none
+    
+    /**
+     * Rectangular timing pattern with sharp corners.
+     */
     case rectangle
+    
+    /**
+     * Circular timing pattern with rounded corners.
+     */
     case round
+    
+    /**
+     * Rounded rectangle timing pattern with soft corners.
+     */
     case roundedRectangle
 }
 
+/**
+ * Timing pattern styling parameters for image-based QR codes.
+ *
+ * This class defines the appearance of timing patterns in image-based QR codes,
+ * including their style, size, and colors for dark and light modules.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let timing = EFStyleImageParamsTiming(
+ *     style: .rectangle,
+ *     size: 1.0,
+ *     colorDark: .black,
+ *     colorLight: .white
+ * )
+ * ```
+ */
 public class EFStyleImageParamsTiming {
     
+    /**
+     * Default color for dark timing pattern modules (black).
+     */
     public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    
+    /**
+     * Default color for light timing pattern modules (white).
+     */
     public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
     
+    /**
+     * The style of the timing pattern.
+     */
     let style: EFStyleImageParamTimingStyle
+    
+    /**
+     * The size of the timing pattern.
+     */
     let size: CGFloat
+    
+    /**
+     * The color of dark timing pattern modules.
+     */
     let colorDark: CGColor
+    
+    /**
+     * The color of light timing pattern modules.
+     */
     let colorLight: CGColor
     
+    /**
+     * Creates timing pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the timing pattern. Defaults to .rectangle.
+     *   - size: The size of the timing pattern. Defaults to 1.
+     *   - colorDark: The color for dark timing pattern modules. Defaults to default color dark.
+     *   - colorLight: The color for light timing pattern modules. Defaults to default color light.
+     */
     public init(
         style: EFStyleImageParamTimingStyle = .rectangle,
         size: CGFloat = 1,
@@ -141,13 +340,51 @@ public class EFStyleImageParamsTiming {
     }
 }
 
+/**
+ * Image configuration for module filling in image-based QR codes.
+ *
+ * This class defines how an image is used to fill QR code modules.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let imageParams = EFStyleImageParamsImage(
+ *     image: myImage,
+ *     mode: .scaleAspectFill
+ * )
+ * ```
+ */
 public class EFStyleImageParamsImage {
     
+    /**
+     * The image to use for module filling.
+     */
     let image: EFStyleParamImage
+    
+    /**
+     * The scaling mode for the image.
+     */
     let mode: EFImageMode
+    
+    /**
+     * The opacity of the image.
+     */
     let alpha: CGFloat
+    
+    /**
+     * Whether to allow transparent pixels in the image.
+     */
     let allowTransparent: Bool
     
+    /**
+     * Creates image configuration for module filling.
+     *
+     * - Parameters:
+     *   - image: The image to use.
+     *   - mode: The scaling mode. Defaults to .scaleAspectFill.
+     *   - alpha: The opacity of the image. Defaults to 1.
+     *   - allowTransparent: Whether to allow transparent pixels. Defaults to false.
+     */
     public init(
         image: EFStyleParamImage,
         mode: EFImageMode = .scaleAspectFill,
@@ -160,6 +397,16 @@ public class EFStyleImageParamsImage {
         self.allowTransparent = allowTransparent
     }
     
+    /**
+     * Creates a copy of the image configuration with optional modifications.
+     *
+     * - Parameters:
+     *   - image: The new image. If nil, keeps the current image.
+     *   - mode: The new scaling mode. If nil, keeps the current mode.
+     *   - alpha: The new opacity. If nil, keeps the current alpha.
+     *   - allowTransparent: Whether to allow transparent pixels. If nil, keeps the current value.
+     * - Returns: A new EFStyleImageParamsImage with the specified modifications.
+     */
     func copyWith(
         image: EFStyleParamImage? = nil,
         mode: EFImageMode? = nil,
@@ -175,16 +422,64 @@ public class EFStyleImageParamsImage {
     }
 }
 
+/**
+ * Position detection pattern styling parameters for image-based QR codes.
+ *
+ * This class defines the appearance of position detection patterns in image-based QR codes,
+ * including their style, size, and colors for dark and light modules.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let position = EFStyleImageParamsPosition(
+ *     style: .rectangle,
+ *     size: 1.0,
+ *     colorDark: .black,
+ *     colorLight: .white
+ * )
+ * ```
+ */
 public class EFStyleImageParamsPosition {
     
+    /**
+     * Default color for dark position detection pattern modules (black).
+     */
     public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    
+    /**
+     * Default color for light position detection pattern modules (white).
+     */
     public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
     
+    /**
+     * The style of the position detection pattern.
+     */
     let style: EFStyleParamsPositionStyle
+    
+    /**
+     * The size of the position detection pattern.
+     */
     let size: CGFloat
+    
+    /**
+     * The color of dark position detection pattern modules.
+     */
     let colorDark: CGColor
+    
+    /**
+     * The color of light position detection pattern modules.
+     */
     let colorLight: CGColor
     
+    /**
+     * Creates position detection pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the position detection pattern. Defaults to .rectangle.
+     *   - size: The size of the position detection pattern. Defaults to 1.
+     *   - colorDark: The color for dark position detection pattern modules. Defaults to default color dark.
+     *   - colorLight: The color for light position detection pattern modules. Defaults to default color light.
+     */
     public init(
         style: EFStyleParamsPositionStyle = .rectangle,
         size: CGFloat = 1,
@@ -198,16 +493,64 @@ public class EFStyleImageParamsPosition {
     }
 }
 
+/**
+ * Data module styling parameters for image-based QR codes.
+ *
+ * This class defines the appearance of data modules in image-based QR codes,
+ * including their style, scale, and colors for dark and light modules.
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let data = EFStyleImageParamsData(
+ *     style: .rectangle,
+ *     scale: 1.0,
+ *     colorDark: .black,
+ *     colorLight: .white
+ * )
+ * ```
+ */
 public class EFStyleImageParamsData {
     
+    /**
+     * Default color for dark data modules (black).
+     */
     public static let defaultColorDark: CGColor = CGColor.createWith(rgb: 0x000000)!
+    
+    /**
+     * Default color for light data modules (white).
+     */
     public static let defaultColorLight: CGColor = CGColor.createWith(rgb: 0xffffff)!
     
+    /**
+     * The style of the data module.
+     */
     let style: EFStyleParamsDataStyle
+    
+    /**
+     * The scale of the data module.
+     */
     let scale: CGFloat // (0-1]
+    
+    /**
+     * The color of dark data modules.
+     */
     let colorDark: CGColor
+    
+    /**
+     * The color of light data modules.
+     */
     let colorLight: CGColor
     
+    /**
+     * Creates data module styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the data module. Defaults to .rectangle.
+     *   - scale: The scale of the data module. Defaults to 1.
+     *   - colorDark: The color for dark data modules. Defaults to default color dark.
+     *   - colorLight: The color for light data modules. Defaults to default color light.
+     */
     public init(
         style: EFStyleParamsDataStyle = .rectangle,
         scale: CGFloat = 1,
@@ -221,15 +564,36 @@ public class EFStyleImageParamsData {
     }
 }
 
+/**
+ * Base class for image-based QR code styling.
+ *
+ * This class provides the foundation for styling QR codes using images.
+ * It handles common tasks like writing QR code, icon, and backdrop.
+ */
 public class EFQRCodeStyleImage: EFQRCodeStyleBase {
     
+    /**
+     * The styling parameters for the QR code.
+     */
     let params: EFStyleImageParams
     
+    /**
+     * Creates an image-based QR code style with specified parameters.
+     *
+     * - Parameter params: The styling parameters.
+     */
     public init(params: EFStyleImageParams) {
         self.params = params
         super.init()
     }
     
+    /**
+     * Writes the QR code to SVG format.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: An array of SVG strings.
+     * - Throws: An error if writing fails.
+     */
     override func writeQRCode(qrcode: QRCode) throws -> [String] {
         let nCount: Int = qrcode.model.moduleCount
         let typeTable: [[QRPointType]] = qrcode.model.getTypeTable()
@@ -498,14 +862,34 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         return pointList
     }
     
+    /**
+     * Writes the icon to SVG format.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: An array of SVG strings.
+     * - Throws: An error if writing fails.
+     */
     override func writeIcon(qrcode: QRCode) throws -> [String] {
         return try params.icon?.write(qrcode: qrcode) ?? []
     }
     
+    /**
+     * Calculates the viewBox for the QR code.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: The viewBox rectangle.
+     */
     override func viewBox(qrcode: QRCode) -> CGRect {
         return params.backdrop.viewBox(moduleCount: qrcode.model.moduleCount)
     }
     
+    /**
+     * Generates the SVG string for the QR code.
+     *
+     * - Parameter qrcode: The QR code model.
+     * - Returns: The SVG string.
+     * - Throws: An error if generation fails.
+     */
     override func generateSVG(qrcode: QRCode) throws -> String {
         let viewBoxRect: CGRect = viewBox(qrcode: qrcode)
         let (part1, part2) = try params.backdrop.generateSVG(qrcode: qrcode, viewBoxRect: viewBoxRect)
@@ -515,6 +899,14 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         + part2
     }
     
+    /**
+     * Creates a copy of the style with optional modified icon and watermark images.
+     *
+     * - Parameters:
+     *   - iconImage: The new icon image. If nil, keeps the current icon image.
+     *   - watermarkImage: The new watermark image. If nil, keeps the current watermark image.
+     * - Returns: A new EFQRCodeStyleBase with the specified modifications.
+     */
     override func copyWith(
         iconImage: EFStyleParamImage? = nil,
         watermarkImage: EFStyleParamImage? = nil
@@ -524,10 +916,20 @@ public class EFQRCodeStyleImage: EFQRCodeStyleBase {
         return EFQRCodeStyleImage(params: params.copyWith(icon: icon, image: image))
     }
     
+    /**
+     * Retrieves the current icon and watermark images.
+     *
+     * - Returns: A tuple containing the icon image and watermark image.
+     */
     override func getParamImages() -> (iconImage: EFStyleParamImage?, watermarkImage: EFStyleParamImage?) {
         return (params.icon?.image, params.image?.image)
     }
     
+    /**
+     * Converts the style to an EFQRCodeStyle.
+     *
+     * - Returns: The EFQRCodeStyle representation.
+     */
     override func toQRCodeStyle() -> EFQRCodeStyle {
         return EFQRCodeStyle.image(params: self.params)
     }

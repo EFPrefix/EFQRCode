@@ -61,16 +61,9 @@ import AppKit
  */
 public typealias EFEdgeInsets = NSEdgeInsets
 
-/**
- * Extension providing zero edge insets for macOS.
- */
+/// Extension providing zero edge insets for macOS.
 public extension EFEdgeInsets {
-    /**
-     * Edge insets with zero values for all edges.
-     *
-     * This static property provides a convenient way to create edge insets
-     * with no padding on any side.
-     */
+    /// Edge insets with zero values for all edges.
     static let zero = NSEdgeInsetsZero
 }
 #elseif canImport(UIKit)

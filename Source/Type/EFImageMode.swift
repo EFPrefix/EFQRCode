@@ -27,22 +27,60 @@
 import Foundation
 import CoreGraphics
 
-/// Options to specify how watermark position and size for QR code.
+/**
+ * Image scaling modes for QR code watermark and icon positioning.
+ *
+ * This enum defines how images (watermarks, icons) are scaled and positioned
+ * within QR codes. Each mode provides different behavior for handling aspect ratios
+ * and image fitting.
+ *
+ * ## Scaling Modes
+ *
+ * - **scaleToFill**: Stretches the image to fill the entire area, potentially distorting it
+ * - **scaleAspectFit**: Scales the image to fit within the area while maintaining aspect ratio
+ * - **scaleAspectFill**: Scales the image to fill the area while maintaining aspect ratio, potentially cropping
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let icon = EFStyleParamIcon(
+ *     image: .static(myImage),
+ *     mode: .scaleAspectFill,  // Use aspect fill mode
+ *     alpha: 1.0,
+ *     borderColor: .black,
+ *     percentage: 0.2
+ * )
+ * ```
+ *
+ * ## Visual Comparison
+ *
+ * | Mode | Behavior | Aspect Ratio | Cropping | Distortion |
+ * |------|----------|--------------|----------|------------|
+ * | scaleToFill | Stretches to fill | Changed | No | Yes |
+ * | scaleAspectFit | Fits within bounds | Maintained | No | No |
+ * | scaleAspectFill | Fills bounds | Maintained | Yes | No |
+ */
 public enum EFImageMode: CaseIterable {
-    /// The option to scale the watermark to fit the size of QR code by changing the aspect ratio of the watermark if necessary.
+    /// Scales the image to fill the entire area by changing the aspect ratio if necessary.
     case scaleToFill
-    /// The option to scale the watermark to fit the size of the QR code by maintaining the aspect ratio. Any remaining area of the QR code uses the background color.
+    /// Scales the image to fit within the area while maintaining the aspect ratio.
     case scaleAspectFit
-    /// The option to scale the watermark to fill the size of the QR code. Some portion of the watermark may be clipped to fill the QR code.
+    /// Scales the image to fill the area while maintaining the aspect ratio.
     case scaleAspectFill
     
     // MARK: - Utilities
     
-    /// Calculates and returns the area in canvas where the image is going to be in this mode.
-    /// - Parameters:
-    ///   - imageSize: size of the watermark image to place in the canvas.
-    ///   - canvasSize: size of the canvas to place the image in.
-    /// - Returns: the area where the image is going to be according to the watermark mode.
+    /**
+     * Calculates the rectangle where the image will be positioned in the canvas.
+     *
+     * This method determines the exact position and size of the image within the canvas
+     * based on the scaling mode and the relative sizes of the image and canvas.
+     *
+     * - Parameters:
+     *   - imageSize: The size of the image to be positioned.
+     *   - canvasSize: The size of the canvas where the image will be placed.
+     * - Returns: A CGRect defining the area where the image will be positioned.
+     */
     public func rectForContent(ofSize imageSize: CGSize,
                                inCanvasOfSize canvasSize: CGSize) -> CGRect {
         let size = canvasSize
@@ -70,6 +108,18 @@ public enum EFImageMode: CaseIterable {
         return CGRect(origin: finalOrigin, size: finalSize)
     }
     
+    /**
+     * Processes an image according to the scaling mode and target ratio.
+     *
+     * This method applies the scaling mode to transform the input image to match
+     * the desired canvas ratio, potentially resizing or cropping the image.
+     *
+     * - Parameters:
+     *   - image: The CGImage to be processed.
+     *   - canvasRatio: The target aspect ratio for the canvas.
+     * - Returns: A processed CGImage that matches the scaling mode and target ratio.
+     * - Throws: `EFQRCodeError` if image processing fails.
+     */
     public func imageForContent(ofImage image: CGImage, inCanvasOfRatio canvasRatio: CGSize) throws -> CGImage {
         let imageWidth: CGFloat = image.width.cgFloat
         let imageHeight: CGFloat = image.height.cgFloat

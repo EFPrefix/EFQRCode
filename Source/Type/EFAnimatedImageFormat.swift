@@ -64,32 +64,10 @@ import UniformTypeIdentifiers
  * | APNG   | Larger    | Higher  | Good            | Full              |
  */
 enum EFAnimatedImageFormat: CaseIterable {
-    /**
-     * Graphics Interchange Format (GIF).
-     *
-     * GIF is a widely supported animated image format with the following characteristics:
-     * - Limited to 256 colors per frame
-     * - Excellent browser and device compatibility
-     * - Smaller file sizes compared to APNG
-     * - Limited animation capabilities
-     *
-     * Best for: Web use, email attachments, and situations where file size is critical.
-     */
+    /// Graphics Interchange Format (GIF).
     case gif
-    
-    /**
-     * Animated Portable Network Graphics (APNG).
-     *
-     * APNG is a modern animated image format with the following characteristics:
-     * - Full 24-bit color support
-     * - Better image quality than GIF
-     * - Larger file sizes compared to GIF
-     * - Full animation capabilities
-     *
-     * Best for: High-quality animations, modern applications, and when quality is priority.
-     */
+    /// Animated Portable Network Graphics (APNG).
     case apng
-    
     /**
      * The Core Foundation string identifier for the image format.
      *

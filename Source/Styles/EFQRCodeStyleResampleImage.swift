@@ -29,20 +29,75 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for resample image QR code styling.
+ *
+ * This class defines the styling parameters for QR codes that use a resampled image
+ * as the basis for module coloring. The QR code's modules are colored by sampling
+ * from a source image, creating a visually blended effect between the QR code and the image.
+ *
+ * ## Features
+ *
+ * - Image-based module coloring via resampling
+ * - Customizable alignment, timing, and position patterns
+ * - Data module color fallback
+ * - Icon and backdrop support
+ * - Visually blended, artistic QR codes
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let imageParams = EFStyleResampleImageParamsImage(
+ *     image: myImage,
+ *     mode: .scaleAspectFill
+ * )
+ *
+ * let params = EFStyleResampleImageParams(
+ *     icon: icon,
+ *     backdrop: backdrop,
+ *     image: imageParams,
+ *     align: align,
+ *     timing: timing,
+ *     position: position,
+ *     dataColor: .black
+ * )
+ *
+ * let style = EFQRCodeStyle.resampleImage(params)
+ * ```
+ */
 public class EFStyleResampleImageParams: EFStyleParams {
-    
+    /// The default backdrop configuration for resample image QR codes.
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    /// The default alignment pattern configuration.
     public static let defaultAlign: EFStyleResampleImageParamsAlign = EFStyleResampleImageParamsAlign()
+    /// The default timing pattern configuration.
     public static let defaultTiming: EFStyleResampleImageParamsTiming = EFStyleResampleImageParamsTiming()
+    /// The default position detection pattern configuration.
     public static let defaultPosition: EFStyleResampleImageParamsPosition = EFStyleResampleImageParamsPosition()
+    /// The default color for data modules (black).
     public static let defaultDataColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// The image configuration for resampling.
     let image: EFStyleResampleImageParamsImage?
+    /// Alignment pattern styling parameters.
     let align: EFStyleResampleImageParamsAlign
+    /// Timing pattern styling parameters.
     let timing: EFStyleResampleImageParamsTiming
+    /// Position detection pattern styling parameters.
     let position: EFStyleResampleImageParamsPosition
+    /// Fallback color for data modules if image is not available.
     let dataColor: CGColor
-    
+    /**
+     * Creates resample image QR code styling parameters.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration. Defaults to default backdrop.
+     *   - image: The image configuration for resampling. Defaults to nil.
+     *   - align: The alignment pattern configuration. Defaults to default align.
+     *   - timing: The timing pattern configuration. Defaults to default timing.
+     *   - position: The position detection pattern configuration. Defaults to default position.
+     *   - dataColor: The fallback color for data modules. Defaults to black.
+     */
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyleResampleImageParams.defaultBackdrop,
@@ -59,7 +114,19 @@ public class EFStyleResampleImageParams: EFStyleParams {
         self.dataColor = dataColor
         super.init(icon: icon, backdrop: backdrop)
     }
-    
+    /**
+     * Creates a copy of the parameters with optional modifications.
+     *
+     * - Parameters:
+     *   - icon: The new icon. If nil, keeps the current icon.
+     *   - backdrop: The new backdrop. If nil, keeps the current backdrop.
+     *   - image: The new image configuration. If nil, keeps the current image.
+     *   - align: The new align configuration. If nil, keeps the current align.
+     *   - timing: The new timing configuration. If nil, keeps the current timing.
+     *   - position: The new position configuration. If nil, keeps the current position.
+     *   - dataColor: The new data color. If nil, keeps the current data color.
+     * - Returns: A new EFStyleResampleImageParams with the specified modifications.
+     */
     func copyWith(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
@@ -81,6 +148,7 @@ public class EFStyleResampleImageParams: EFStyleParams {
     }
 }
 
+/// Alignment pattern style options for resample image QR codes.
 public enum EFStyleResampleImageParamAlignStyle: CaseIterable {
     case none
     case rectangle
@@ -88,15 +156,27 @@ public enum EFStyleResampleImageParamAlignStyle: CaseIterable {
     case roundedRectangle
 }
 
+/// Alignment pattern styling parameters for resample image QR codes.
 public class EFStyleResampleImageParamsAlign {
-    
+    /// The default color for alignment patterns.
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// The style of the alignment pattern.
     let style: EFStyleResampleImageParamAlignStyle
+    /// Whether to only use white for alignment patterns.
     let onlyWhite: Bool
+    /// The size of the alignment pattern.
     let size: CGFloat
+    /// The color of the alignment pattern.
     let color: CGColor
-    
+    /**
+     * Creates alignment pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the alignment pattern. Defaults to rectangle.
+     *   - onlyWhite: Whether to only use white. Defaults to false.
+     *   - size: The size of the alignment pattern. Defaults to 1.
+     *   - color: The color of the alignment pattern. Defaults to default color.
+     */
     public init(
         style: EFStyleResampleImageParamAlignStyle = .rectangle,
         onlyWhite: Bool = false,
@@ -110,6 +190,7 @@ public class EFStyleResampleImageParamsAlign {
     }
 }
 
+/// Timing pattern style options for resample image QR codes.
 public enum EFStyleResampleImageParamTimingStyle: CaseIterable {
     case none
     case rectangle
@@ -117,15 +198,27 @@ public enum EFStyleResampleImageParamTimingStyle: CaseIterable {
     case roundedRectangle
 }
 
+/// Timing pattern styling parameters for resample image QR codes.
 public class EFStyleResampleImageParamsTiming {
-    
+    /// The default color for timing patterns.
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// The style of the timing pattern.
     let style: EFStyleResampleImageParamTimingStyle
+    /// Whether to only use white for timing patterns.
     let onlyWhite: Bool
+    /// The size of the timing pattern.
     let size: CGFloat
+    /// The color of the timing pattern.
     let color: CGColor
-    
+    /**
+     * Creates timing pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the timing pattern. Defaults to rectangle.
+     *   - onlyWhite: Whether to only use white. Defaults to false.
+     *   - size: The size of the timing pattern. Defaults to 1.
+     *   - color: The color of the timing pattern. Defaults to default color.
+     */
     public init(
         style: EFStyleResampleImageParamTimingStyle = .rectangle,
         onlyWhite: Bool = false,
@@ -139,14 +232,24 @@ public class EFStyleResampleImageParamsTiming {
     }
 }
 
+/// Position detection pattern styling parameters for resample image QR codes.
 public class EFStyleResampleImageParamsPosition {
-    
+    /// The default color for position detection patterns.
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// The style of the position detection pattern.
     let style: EFStyleParamsPositionStyle
+    /// The size of the position detection pattern.
     let size: CGFloat
+    /// The color of the position detection pattern.
     let color: CGColor
-    
+    /**
+     * Creates position detection pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the position detection pattern. Defaults to rectangle.
+     *   - size: The size of the position detection pattern. Defaults to 1.
+     *   - color: The color of the position detection pattern. Defaults to default color.
+     */
     public init(
         style: EFStyleParamsPositionStyle = .rectangle,
         size: CGFloat = 1,
@@ -158,12 +261,25 @@ public class EFStyleResampleImageParamsPosition {
     }
 }
 
+/// Image configuration for resampling in resample image QR codes.
 public class EFStyleResampleImageParamsImage {
+    /// The image to be used for resampling.
     let image: EFStyleParamImage
+    /// The image mode for resampling.
     let mode: EFImageMode
+    /// The contrast adjustment for the image.
     let contrast: CGFloat
+    /// The exposure adjustment for the image.
     let exposure: CGFloat
-    
+    /**
+     * Creates an image configuration for resampling.
+     *
+     * - Parameters:
+     *   - image: The image to be used for resampling.
+     *   - mode: The image mode for resampling. Defaults to scaleAspectFill.
+     *   - contrast: The contrast adjustment. Defaults to 0.
+     *   - exposure: The exposure adjustment. Defaults to 0.
+     */
     public init(
         image: EFStyleParamImage,
         mode: EFImageMode = .scaleAspectFill,
@@ -175,7 +291,16 @@ public class EFStyleResampleImageParamsImage {
         self.contrast = contrast
         self.exposure = exposure
     }
-    
+    /**
+     * Creates a copy of the image configuration with optional modifications.
+     *
+     * - Parameters:
+     *   - image: The new image. If nil, keeps the current image.
+     *   - mode: The new image mode. If nil, keeps the current mode.
+     *   - contrast: The new contrast. If nil, keeps the current contrast.
+     *   - exposure: The new exposure. If nil, keeps the current exposure.
+     * - Returns: A new EFStyleResampleImageParamsImage with the specified modifications.
+     */
     func copyWith(
         image: EFStyleParamImage? = nil,
         mode: EFImageMode? = nil,
@@ -191,10 +316,20 @@ public class EFStyleResampleImageParamsImage {
     }
 }
 
+/**
+ * QR code style implementation for resample image effect.
+ *
+ * This class implements the rendering logic for QR codes that use a resampled image
+ * to color the modules, supporting advanced artistic effects.
+ */
 public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
-    
+    /// The parameters for the resample image style.
     let params: EFStyleResampleImageParams
-    
+    /**
+     * Creates a new resample image style with the given parameters.
+     *
+     * - Parameter params: The parameters for the resample image style.
+     */
     public init(params: EFStyleResampleImageParams) {
         self.params = params
         super.init()

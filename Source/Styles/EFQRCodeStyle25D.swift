@@ -29,19 +29,86 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for 2.5D QR code styling.
+ *
+ * This class defines the styling parameters for 2.5D QR codes, which create
+ * a three-dimensional appearance using shading and depth effects. The 2.5D style
+ * simulates depth by using different colors for the top, left, and right faces
+ * of each module.
+ *
+ * ## Features
+ *
+ * - Three-dimensional appearance with depth simulation
+ * - Customizable height for data and position modules
+ * - Multi-color shading (top, left, right faces)
+ * - Icon and backdrop support
+ * - Realistic 3D visual effect
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let params = EFStyle25DParams(
+ *     icon: icon,
+ *     backdrop: backdrop,
+ *     dataHeight: 1.0,
+ *     positionHeight: 1.0,
+ *     topColor: .black,
+ *     leftColor: .darkGray,
+ *     rightColor: .lightGray
+ * )
+ * 
+ * let style = EFQRCodeStyle.style25D(params)
+ * ```
+ *
+ * ## Visual Characteristics
+ *
+ * - Modules appear to have depth and volume
+ * - Different colors create shading effects
+ * - Height parameters control the 3D appearance
+ * - Creates a modern, sophisticated look
+ */
 public class EFStyle25DParams: EFStyleParams {
     
+    /// The default backdrop configuration for 2.5D QR codes.
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    
+    /// The default color for the top face of modules (black).
     public static let defaultTopColor: CGColor = CGColor.createWith(rgb: 0x000000)!
+    
+    /// The default color for the left face of modules (semi-transparent black).
     public static let defaultLeftColor: CGColor = CGColor.createWith(rgb: 0x000000, alpha: 0.2)!
+    
+    /// The default color for the right face of modules (semi-transparent black).
     public static let defaultRightColor: CGColor = CGColor.createWith(rgb: 0x000000, alpha: 0.6)!
     
+    /// The height of data modules for 3D effect.
     let dataHeight: CGFloat
+    
+    /// The height of position detection patterns for 3D effect.
     let positionHeight: CGFloat
+    
+    /// The color of the top face of modules.
     let topColor: CGColor
+    
+    /// The color of the left face of modules.
     let leftColor: CGColor
+    
+    /// The color of the right face of modules.
     let rightColor: CGColor
     
+    /**
+     * Creates 2.5D QR code styling parameters.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration. Defaults to default backdrop.
+     *   - dataHeight: The height of data modules for 3D effect. Defaults to 1.0.
+     *   - positionHeight: The height of position detection patterns for 3D effect. Defaults to 1.0.
+     *   - topColor: The color of the top face of modules. Defaults to black.
+     *   - leftColor: The color of the left face of modules. Defaults to semi-transparent black.
+     *   - rightColor: The color of the right face of modules. Defaults to semi-transparent black.
+     */
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyle25DParams.defaultBackdrop,
@@ -59,6 +126,19 @@ public class EFStyle25DParams: EFStyleParams {
         super.init(icon: icon, backdrop: backdrop)
     }
     
+    /**
+     * Creates a copy of the parameters with optional modifications.
+     *
+     * - Parameters:
+     *   - icon: The new icon. If nil, keeps the current icon.
+     *   - backdrop: The new backdrop. If nil, keeps the current backdrop.
+     *   - dataHeight: The new data height. If nil, keeps the current data height.
+     *   - positionHeight: The new position height. If nil, keeps the current position height.
+     *   - topColor: The new top color. If nil, keeps the current top color.
+     *   - leftColor: The new left color. If nil, keeps the current left color.
+     *   - rightColor: The new right color. If nil, keeps the current right color.
+     * - Returns: A new EFStyle25DParams with the specified modifications.
+     */
     func copyWith(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
@@ -80,10 +160,43 @@ public class EFStyle25DParams: EFStyleParams {
     }
 }
 
+/**
+ * 2.5D QR code implementation.
+ *
+ * This class implements the 2.5D QR code rendering, creating QR codes with
+ * a three-dimensional appearance using shading and depth effects. The 2.5D style
+ * simulates depth by rendering each module with multiple faces using different colors.
+ *
+ * ## Features
+ *
+ * - Three-dimensional appearance with depth simulation
+ * - Multi-color shading for realistic 3D effect
+ * - Customizable height for different module types
+ * - Icon and backdrop support
+ * - Sophisticated visual appearance
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let params = EFStyle25DParams(
+ *     dataHeight: 1.0,
+ *     positionHeight: 1.0,
+ *     topColor: .black,
+ *     leftColor: .darkGray,
+ *     rightColor: .lightGray
+ * )
+ * 
+ * let style = EFQRCodeStyle25D(params: params)
+ * ```
+ */
 public class EFQRCodeStyle25D: EFQRCodeStyleBase {
     
+    /// The 2.5D styling parameters.
     let params: EFStyle25DParams
     
+    /**
+     * Transformation matrix for creating 3D perspective effect.
+     */
     private lazy var matrixString: String = {
         let matrixX = [sqrt(3.0) / 2, 0.5]
         let matrixY = [-sqrt(3.0) / 2, 0.5]
@@ -91,6 +204,11 @@ public class EFQRCodeStyle25D: EFQRCodeStyleBase {
         return "matrix(\(matrixX[0]),\(matrixX[1]),\(matrixY[0]),\(matrixY[1]),\(matrixZ[0]),\(matrixZ[1]))"
     }()
     
+    /**
+     * Creates a 2.5D QR code with the specified parameters.
+     *
+     * - Parameter params: The 2.5D styling parameters.
+     */
     public init(params: EFStyle25DParams) {
         self.params = params
         super.init()

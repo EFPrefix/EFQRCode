@@ -71,45 +71,12 @@ import CoreVideo
  * - Not available on watchOS
  */
 public enum EFVideoFormat {
-    /**
-     * QuickTime Movie format (MOV).
-     *
-     * MOV is Apple's native video format with the following characteristics:
-     * - Excellent compatibility with Apple ecosystem
-     * - Good cross-platform support
-     * - High quality output
-     * - Medium file sizes
-     *
-     * Best for: Apple ecosystem applications, high-quality video export.
-     */
+    /// QuickTime Movie format (MOV).
     case mov
-    
-    /**
-     * MPEG-4 format (MP4).
-     *
-     * MP4 is a widely supported video format with the following characteristics:
-     * - Excellent cross-platform compatibility
-     * - Good Apple ecosystem support
-     * - High quality output
-     * - Smaller file sizes compared to MOV
-     *
-     * Best for: Cross-platform applications, web use, email attachments.
-     */
+    /// MPEG-4 format (MP4).
     case mp4
-    
-    /**
-     * Apple's M4V container format.
-     *
-     * M4V is Apple's container format with the following characteristics:
-     * - Excellent Apple ecosystem compatibility
-     * - Optimized for iTunes and Apple devices
-     * - Limited cross-platform support
-     * - High quality output
-     *
-     * Best for: iTunes distribution, Apple device optimization.
-     */
+    /// Apple's M4V container format.
     case m4v
-    
     /**
      * The AVFoundation file type for the video format.
      *
@@ -125,7 +92,6 @@ public enum EFVideoFormat {
         case .m4v: return .m4v
         }
     }
-    
     /**
      * The file extension for the video format.
      *
@@ -141,7 +107,6 @@ public enum EFVideoFormat {
         case .m4v: return "m4v"
         }
     }
-    
     /**
      * Video compression settings for the format.
      *

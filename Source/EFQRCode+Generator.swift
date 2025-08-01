@@ -90,6 +90,14 @@ public extension EFQRCode {
      * - 2.5D styles
      * - Image-based styles
      * - Custom icons and watermarks
+     *
+     * ## Error Handling
+     *
+     * The generator throws `EFQRCodeError` for various error conditions:
+     * - Invalid text encoding
+     * - Data too large for QR code capacity
+     * - Invalid style configurations
+     * - Output format errors
      */
     class Generator {
         /// The underlying QR code object containing the encoded data and structure.
@@ -613,20 +621,61 @@ public extension EFQRCode {
     }
 }
 
+/**
+ * Private extension for EFQRCode.Generator providing internal implementation methods.
+ *
+ * This extension contains private helper methods used internally by the Generator
+ * class for image processing, size calculations, animation handling, and video generation.
+ *
+ * ## Internal Methods
+ *
+ * - **Size Calculations**: Methods for calculating image dimensions
+ * - **Image Processing**: Methods for resizing and processing images
+ * - **Animation Handling**: Methods for creating animated images and videos
+ * - **Mathematical Utilities**: Helper methods for GCD, LCM, and rational approximations
+ */
 extension EFQRCode.Generator {
-    
+    /**
+     * Calculates the size of the QR code image based on the specified width.
+     *
+     * This method maintains the aspect ratio of the QR code while scaling to the
+     * specified width.
+     *
+     * - Parameter width: The target width for the image.
+     * - Returns: A CGSize with the calculated dimensions.
+     */
     private func calculateSize(width: CGFloat) -> CGSize {
         let viewBox: CGRect = self.style.viewBox(qrcode: self.qrcode)
         let imageHeight: CGFloat = width / viewBox.width * viewBox.height
         return CGSize(width: width, height: imageHeight)
     }
     
+    /**
+     * Calculates the size of the QR code image based on the specified height.
+     *
+     * This method maintains the aspect ratio of the QR code while scaling to the
+     * specified height.
+     *
+     * - Parameter height: The target height for the image.
+     * - Returns: A CGSize with the calculated dimensions.
+     */
     private func calculateSize(height: CGFloat) -> CGSize {
         let viewBox: CGRect = self.style.viewBox(qrcode: self.qrcode)
         let imageWidth: CGFloat = height / viewBox.height * viewBox.width
         return CGSize(width: imageWidth, height: height)
     }
     
+    /**
+     * Checks if image resizing is needed and returns the appropriate SVG content.
+     *
+     * This method determines if the icon or watermark images need to be resized
+     * based on the target size and percentage constraints. If resizing is needed,
+     * it creates a new SVG with the resized images.
+     *
+     * - Parameter size: The target size for the QR code image.
+     * - Returns: SVG content string with appropriate image sizing.
+     * - Throws: `EFQRCodeError` if image processing fails.
+     */
     private func checkIfNeedResize(size: CGSize) throws -> String {
         func judgeImage(containerSize: CGSize, percentage: CGFloat, targetImage: CGImage, needRecreate: Bool) throws -> EFStyleParamImage? {
             let canvasSize: CGSize = CGSize(width: containerSize.width * percentage, height: containerSize.height * percentage)
@@ -687,6 +736,19 @@ extension EFQRCode.Generator {
         return newSvgContent
     }
     
+    /**
+     * Generates animated frames for the QR code.
+     *
+     * This method creates an array of CGImages and their corresponding durations
+     * for animated QR codes. If the QR code is not animated, it returns a single
+     * frame with duration 1.
+     *
+     * - Parameters:
+     *   - size: The target size for the frames.
+     *   - insets: Edge insets for the image. Defaults to zero.
+     * - Returns: A tuple containing arrays of CGImages and their durations.
+     * - Throws: `EFQRCodeError` if frame generation fails.
+     */
     private func getAnimatedFrames(size: CGSize, insets: EFEdgeInsets = .zero) throws -> ([CGImage], [CGFloat]) {
         return try {
             if self.isAnimated {
@@ -701,12 +763,39 @@ extension EFQRCode.Generator {
         }()
     }
     
+    /**
+     * Creates an animated image in the specified format.
+     *
+     * This method generates an animated image (GIF or APNG) from the QR code
+     * with the specified size and format.
+     *
+     * - Parameters:
+     *   - format: The animated image format (GIF or APNG).
+     *   - size: The target size for the animated image.
+     *   - insets: Edge insets for the image. Defaults to zero.
+     * - Returns: Data containing the animated image.
+     * - Throws: `EFQRCodeError` if animated image creation fails.
+     */
     private func toAnimatedImage(format: EFAnimatedImageFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
         let (images, durations): ([CGImage], [CGFloat]) = try getAnimatedFrames(size: size, insets: insets)
         let animatedImageData = try self.createAnimatedImageDataWith(format: format, frames: images, frameDelays: durations)
         return animatedImageData
     }
     
+    /**
+     * Reconciles multiple images for animated QR code generation.
+     *
+     * This method processes icon and watermark images to create synchronized
+     * animated frames. It uses parallel processing for performance.
+     *
+     * - Parameters:
+     *   - image1: The first image (typically icon).
+     *   - image2: The second image (typically watermark).
+     *   - style: The QR code style to apply.
+     *   - size: The target size for the frames.
+     * - Returns: A tuple containing arrays of CGImages and their durations.
+     * - Throws: `EFQRCodeError` if frame generation fails.
+     */
     private func reconcileQRImages(image1: EFStyleParamImage?, image2: EFStyleParamImage?, style: EFQRCodeStyleBase, size: CGSize) throws -> ([CGImage], [CGFloat]) {
         let (iconFrames, watermarkFrames, delays) = self.reconcileFrameImages(image1: image1, image2: image2)
         var qrFrames = [CGImage?](repeating: nil, count: delays.count)
@@ -752,6 +841,17 @@ extension EFQRCode.Generator {
         return (finalQRFrames, delays)
     }
     
+    /**
+     * Reconciles frame images for synchronized animation.
+     *
+     * This method synchronizes two animated images by finding the least common
+     * multiple of their durations and creating synchronized frame sequences.
+     *
+     * - Parameters:
+     *   - image1: The first animated image.
+     *   - image2: The second animated image.
+     * - Returns: A tuple containing synchronized frame arrays and delays.
+     */
     private func reconcileFrameImages(image1: EFStyleParamImage?, image2: EFStyleParamImage?) -> ([CGImage], [CGImage], [CGFloat]) {
         if let image1 = image1 {
             if let image2 = image2 {
@@ -879,6 +979,15 @@ extension EFQRCode.Generator {
         return ([], [], [])
     }
     
+    /**
+     * Extracts frame images and delays from an EFStyleParamImage.
+     *
+     * This method converts an EFStyleParamImage to arrays of CGImages and delays.
+     * For static images, it returns a single frame with duration 1.
+     *
+     * - Parameter image: The image to extract frames from.
+     * - Returns: A tuple containing arrays of CGImages and their durations.
+     */
     private func frameImages(image: EFStyleParamImage) -> ([CGImage], [CGFloat]) {
         switch image {
         case .static(let image):
@@ -888,6 +997,16 @@ extension EFQRCode.Generator {
         }
     }
     
+    /**
+     * Calculates the greatest common divisor of two integers.
+     *
+     * This method uses the Euclidean algorithm to find the GCD.
+     *
+     * - Parameters:
+     *   - a: The first integer.
+     *   - b: The second integer.
+     * - Returns: The greatest common divisor of a and b.
+     */
     private func gcd(_ a: Int, _ b: Int) -> Int {
         var a = a, b = b
         while b != 0 {
@@ -896,10 +1015,31 @@ extension EFQRCode.Generator {
         return abs(a)
     }
     
+    /**
+     * Calculates the least common multiple of two integers.
+     *
+     * This method uses the GCD to calculate the LCM.
+     *
+     * - Parameters:
+     *   - a: The first integer.
+     *   - b: The second integer.
+     * - Returns: The least common multiple of a and b.
+     */
     private func lcm(_ a: Int, _ b: Int) -> Int {
         return (a / gcd(a, b)) * b
     }
     
+    /**
+     * Calculates a rational approximation of a floating-point number.
+     *
+     * This method uses continued fraction expansion to find a rational
+     * approximation of the given number.
+     *
+     * - Parameters:
+     *   - x: The floating-point number to approximate.
+     *   - eps: The precision for the approximation. Defaults to 1.0E-6.
+     * - Returns: A tuple containing the numerator and denominator.
+     */
     private func rationalApproximation(of x: Double, withPrecision eps: Double = 1.0E-6) -> (Int, Int) {
         var x = x
         var a = floor(x)
@@ -912,6 +1052,18 @@ extension EFQRCode.Generator {
         return (h, k)
     }
     
+    /**
+     * Calculates the least common multiple of two CGFloat values.
+     *
+     * This method uses rational approximation to handle floating-point
+     * precision issues when calculating LCM.
+     *
+     * - Parameters:
+     *   - a: The first CGFloat value.
+     *   - b: The second CGFloat value.
+     *   - precision: The precision for rational approximation. Defaults to 1.
+     * - Returns: The least common multiple of a and b.
+     */
     private func lcm(_ a: CGFloat, _ b: CGFloat, precision: Int = 1) -> CGFloat {
         let precision = 1.0 / pow(10, Double(precision))
         let (num1, den1) = rationalApproximation(of: Double(a), withPrecision: precision)
@@ -921,6 +1073,19 @@ extension EFQRCode.Generator {
         return CGFloat(lcmNum) / CGFloat(lcmDen)
     }
     
+    /**
+     * Creates animated image data with the specified format and frames.
+     *
+     * This method creates animated image data (GIF or APNG) from an array
+     * of frames and their corresponding delays.
+     *
+     * - Parameters:
+     *   - format: The animated image format (GIF or APNG).
+     *   - frames: Array of CGImages representing the animation frames.
+     *   - frameDelays: Array of delays for each frame.
+     * - Returns: Data containing the animated image.
+     * - Throws: `EFQRCodeError` if animated image creation fails.
+     */
     private func createAnimatedImageDataWith(format: EFAnimatedImageFormat, frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
         if frames.isEmpty || frames.count != frameDelays.count {
             throw EFQRCodeError.cannotCreateAnimatedImage
@@ -965,6 +1130,20 @@ extension EFQRCode.Generator {
         )
     }
     
+    /**
+     * Creates animated image data with custom frame and file properties.
+     *
+     * This method creates animated image data with custom properties for
+     * frame delays and file metadata.
+     *
+     * - Parameters:
+     *   - format: The animated image format (GIF or APNG).
+     *   - frames: Array of CGImages representing the animation frames.
+     *   - framePropertiesArray: Array of frame properties dictionaries.
+     *   - fileProperties: File properties dictionary.
+     * - Returns: Data containing the animated image.
+     * - Throws: `EFQRCodeError` if animated image creation fails.
+     */
     private func createAnimatedImageDataWith(format: EFAnimatedImageFormat, frames: [CGImage], framePropertiesArray: [CFDictionary], fileProperties: CFDictionary) throws -> Data {
         guard let mutableData = CFDataCreateMutable(nil, 0) else {
             throw EFQRCodeError.cannotCreateMutableData
@@ -983,12 +1162,38 @@ extension EFQRCode.Generator {
     }
     
 #if canImport(AVFoundation) && !os(watchOS)
+    /**
+     * Creates video data in the specified format.
+     *
+     * This method generates video data (MOV, MP4, or M4V) from the QR code
+     * animation frames.
+     *
+     * - Parameters:
+     *   - format: The video format (MOV, MP4, or M4V).
+     *   - size: The target size for the video.
+     *   - insets: Edge insets for the video. Defaults to zero.
+     * - Returns: Data containing the video file.
+     * - Throws: `EFQRCodeError` if video creation fails.
+     */
     private func toVideoData(format: EFVideoFormat, size: CGSize, insets: EFEdgeInsets = .zero) throws -> Data {
         let (images, durations): ([CGImage], [CGFloat]) = try getAnimatedFrames(size: size, insets: insets)
         let animatedImageData = try self.createVideoDataWith(format: format, frames: images, frameDelays: durations)
         return animatedImageData
     }
     
+    /**
+     * Creates video data with the specified format and frames.
+     *
+     * This method creates video data using AVFoundation with the specified
+     * frames and their corresponding delays.
+     *
+     * - Parameters:
+     *   - format: The video format (MOV, MP4, or M4V).
+     *   - frames: Array of CGImages representing the video frames.
+     *   - frameDelays: Array of delays for each frame.
+     * - Returns: Data containing the video file.
+     * - Throws: `EFQRCodeError` if video creation fails.
+     */
     private func createVideoDataWith(format: EFVideoFormat, frames: [CGImage], frameDelays: [CGFloat]) throws -> Data {
         if frames.isEmpty || frames.count != frameDelays.count {
             throw EFQRCodeError.cannotCreateVideo

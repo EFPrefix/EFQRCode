@@ -29,17 +29,68 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for bubble-style QR code styling.
+ *
+ * This class defines the styling parameters for bubble-style QR codes, which feature
+ * rounded, bubble-like data modules with a distinctive appearance. The bubble style
+ * creates QR codes with a modern, friendly appearance that stands out from traditional
+ * square-based QR codes.
+ *
+ * ## Features
+ *
+ * - Bubble-shaped data modules
+ * - Customizable data colors
+ * - Position detection pattern styling
+ * - Icon and backdrop support
+ * - Modern, friendly appearance
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let params = EFStyleBubbleParams(
+ *     icon: icon,
+ *     backdrop: backdrop,
+ *     dataColor: .blue,
+ *     dataCenterColor: .white,
+ *     position: position
+ * )
+ * 
+ * let style = EFQRCodeStyle.bubble(params)
+ * ```
+ *
+ * ## Visual Characteristics
+ *
+ * - Data modules appear as rounded bubbles
+ * - Position detection patterns can be styled independently
+ * - Supports custom colors for different elements
+ * - Creates a modern, approachable appearance
+ */
 public class EFStyleBubbleParams: EFStyleParams {
-    
+    /// The default backdrop configuration for bubble QR codes.
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    /// The default color for bubble data modules (light blue).
     public static let defaultDataColor: CGColor = CGColor.createWith(rgb: 0x8ED1FC)!
+    /// The default color for the center of bubble data modules (white).
     public static let defaultDataCenterColor: CGColor = CGColor.createWith(rgb: 0xffffff)!
+    /// The default position detection pattern configuration.
     public static let defaultPosition: EFStyleBubbleParamsPosition = EFStyleBubbleParamsPosition()
-    
+    /// The color of the bubble data modules.
     let dataColor: CGColor
+    /// The color of the center of bubble data modules.
     let dataCenterColor: CGColor
+    /// Position detection pattern styling parameters.
     let position: EFStyleBubbleParamsPosition
-    
+    /**
+     * Creates bubble QR code styling parameters.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration. Defaults to default backdrop.
+     *   - dataColor: The color of the bubble data modules. Defaults to light blue.
+     *   - dataCenterColor: The color of the center of bubble data modules. Defaults to white.
+     *   - position: The position detection pattern configuration. Defaults to default position.
+     */
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyleBubbleParams.defaultBackdrop,
@@ -52,7 +103,17 @@ public class EFStyleBubbleParams: EFStyleParams {
         self.position = position
         super.init(icon: icon, backdrop: backdrop)
     }
-    
+    /**
+     * Creates a copy of the parameters with optional modifications.
+     *
+     * - Parameters:
+     *   - icon: The new icon. If nil, keeps the current icon.
+     *   - backdrop: The new backdrop. If nil, keeps the current backdrop.
+     *   - dataColor: The new data color. If nil, keeps the current data color.
+     *   - dataCenterColor: The new data center color. If nil, keeps the current data center color.
+     *   - position: The new position configuration. If nil, keeps the current position.
+     * - Returns: A new EFStyleBubbleParams with the specified modifications.
+     */
     func copyWith(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
@@ -70,14 +131,24 @@ public class EFStyleBubbleParams: EFStyleParams {
     }
 }
 
+/// Position detection pattern styling parameters for bubble QR codes.
 public class EFStyleBubbleParamsPosition {
-    
+    /// Default color for position detection patterns (blue).
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x0693E3)!
-    
+    /// The style of the position detection pattern.
     let style: EFStyleParamsPositionStyle
+    /// The size of the position detection pattern.
     let size: CGFloat
+    /// The color of the position detection pattern.
     let color: CGColor
-    
+    /**
+     * Creates position detection pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the position detection pattern. Defaults to round.
+     *   - size: The size of the position detection pattern. Defaults to 1.0.
+     *   - color: The color of the position detection pattern. Defaults to blue.
+     */
     public init(
         style: EFStyleParamsPositionStyle = .round,
         size: CGFloat = 1,
@@ -89,10 +160,39 @@ public class EFStyleBubbleParamsPosition {
     }
 }
 
+/**
+ * Bubble-style QR code implementation.
+ *
+ * This class implements the bubble-style QR code rendering, creating QR codes
+ * with rounded, bubble-like data modules that have a modern and friendly appearance.
+ *
+ * ## Features
+ *
+ * - Rounded data modules with bubble appearance
+ * - Customizable colors for different elements
+ * - Position detection pattern styling
+ * - Icon and backdrop support
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let params = EFStyleBubbleParams(
+ *     dataColor: .blue,
+ *     dataCenterColor: .white,
+ *     position: position
+ * )
+ * 
+ * let style = EFQRCodeStyleBubble(params: params)
+ * ```
+ */
 public class EFQRCodeStyleBubble: EFQRCodeStyleBase {
-    
+    /// The bubble styling parameters.
     let params: EFStyleBubbleParams
-    
+    /**
+     * Creates a bubble-style QR code with the specified parameters.
+     *
+     * - Parameter params: The bubble styling parameters.
+     */
     public init(params: EFStyleBubbleParams) {
         self.params = params
         super.init()

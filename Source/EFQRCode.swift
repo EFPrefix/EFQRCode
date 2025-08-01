@@ -36,7 +36,7 @@ import Foundation
  * - Animated QR codes
  * - Custom styling with icons and watermarks
  * - Error correction levels
- * - Cross-platform support (iOS, macOS, tvOS, watchOS)
+ * - Cross-platform support (iOS, macOS, tvOS, watchOS, visionOS)
  *
  * ## Basic Usage
  *

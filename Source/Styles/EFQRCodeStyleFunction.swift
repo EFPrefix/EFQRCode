@@ -29,15 +29,66 @@ import CoreGraphics
 
 import QRCodeSwift
 
+/**
+ * Parameters for function-based QR code styling.
+ *
+ * This class defines the styling parameters for function-based QR codes, which use
+ * mathematical functions to determine the appearance of data modules. This creates
+ * QR codes with dynamic, algorithmically generated patterns.
+ *
+ * ## Features
+ *
+ * - Function-based data module generation
+ * - Mathematical pattern algorithms
+ * - Position detection pattern styling
+ * - Icon and backdrop support
+ * - Dynamic, algorithmic appearance
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let dataParams = EFStyleFunctionParamsData(
+ *     function: .fade(),
+ *     style: .round
+ * )
+ * 
+ * let params = EFStyleFunctionParams(
+ *     icon: icon,
+ *     backdrop: backdrop,
+ *     position: position,
+ *     data: dataParams
+ * )
+ * 
+ * let style = EFQRCodeStyle.function(params)
+ * ```
+ *
+ * ## Visual Characteristics
+ *
+ * - Data modules are generated using mathematical functions
+ * - Patterns can be fade, wave, or other algorithmic effects
+ * - Creates dynamic, visually interesting QR codes
+ * - Maintains QR code structure and scannability
+ */
 public class EFStyleFunctionParams: EFStyleParams {
-    
+    /// The default backdrop configuration for function QR codes.
     public static let defaultBackdrop: EFStyleParamBackdrop = EFStyleParamBackdrop()
+    /// The default position detection pattern configuration.
     public static let defaultPosition: EFStyleFunctionParamsPosition = EFStyleFunctionParamsPosition()
+    /// The default data module configuration.
     public static let defaultData: EFStyleFunctionParamsData = EFStyleFunctionParamsData()
-    
+    /// Position detection pattern styling parameters.
     let position: EFStyleFunctionParamsPosition
+    /// Data module styling parameters.
     let data: EFStyleFunctionParamsData
-    
+    /**
+     * Creates function-based QR code styling parameters.
+     *
+     * - Parameters:
+     *   - icon: The icon to display in the center of the QR code. Defaults to nil.
+     *   - backdrop: The backdrop configuration. Defaults to default backdrop.
+     *   - position: The position detection pattern configuration. Defaults to default position.
+     *   - data: The data module configuration. Defaults to default data.
+     */
     public init(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop = EFStyleFunctionParams.defaultBackdrop,
@@ -48,7 +99,16 @@ public class EFStyleFunctionParams: EFStyleParams {
         self.data = data
         super.init(icon: icon, backdrop: backdrop)
     }
-    
+    /**
+     * Creates a copy of the parameters with optional modifications.
+     *
+     * - Parameters:
+     *   - icon: The new icon. If nil, keeps the current icon.
+     *   - backdrop: The new backdrop. If nil, keeps the current backdrop.
+     *   - position: The new position configuration. If nil, keeps the current position.
+     *   - data: The new data configuration. If nil, keeps the current data.
+     * - Returns: A new EFStyleFunctionParams with the specified modifications.
+     */
     func copyWith(
         icon: EFStyleParamIcon? = nil,
         backdrop: EFStyleParamBackdrop? = nil,
@@ -64,14 +124,24 @@ public class EFStyleFunctionParams: EFStyleParams {
     }
 }
 
+/// Position detection pattern styling parameters for function QR codes.
 public class EFStyleFunctionParamsPosition {
-    
+    /// Default color for position detection patterns (black).
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// The style of the position detection pattern.
     let style: EFStyleParamsPositionStyle
+    /// The size of the position detection pattern.
     let size: CGFloat
+    /// The color of the position detection pattern.
     let color: CGColor
-    
+    /**
+     * Creates position detection pattern styling parameters.
+     *
+     * - Parameters:
+     *   - style: The style of the position detection pattern. Defaults to .round.
+     *   - size: The size of the position detection pattern. Defaults to 1.0.
+     *   - color: The color of the position detection pattern. Defaults to black.
+     */
     public init(
         style: EFStyleParamsPositionStyle = .round,
         size: CGFloat = 1,
@@ -83,11 +153,19 @@ public class EFStyleFunctionParamsPosition {
     }
 }
 
+/// Data module styling parameters for function QR codes.
 public class EFStyleFunctionParamsData {
-    
+    /// The mathematical function used to generate data modules.
     let function: EFStyleFunctionParamsDataFunction
+    /// The style of the data modules.
     let style: EFStyleFunctionParamsDataStyle
-    
+    /**
+     * Creates data module styling parameters.
+     *
+     * - Parameters:
+     *   - function: The mathematical function for data module generation. Defaults to fade function.
+     *   - style: The style of the data modules. Defaults to .round.
+     */
     public init(
         function: EFStyleFunctionParamsDataFunction = EFStyleFunctionParamsDataFunction.fade(),
         style: EFStyleFunctionParamsDataStyle = .round
@@ -97,22 +175,54 @@ public class EFStyleFunctionParamsData {
     }
 }
 
+/// Mathematical functions for data module generation.
 public enum EFStyleFunctionParamsDataFunction {
+    /// Default color for function-based data modules (black).
     public static let defaultColor: CGColor = CGColor.createWith(rgb: 0x000000)!
-    
+    /// Fade function that creates a gradient effect based on distance from center.
     case fade(dataColor: CGColor = EFStyleFunctionParamsDataFunction.defaultColor)
+    /// Circle function that creates circular patterns with different colors.
     case circle(dataColor: CGColor = EFStyleFunctionParamsDataFunction.defaultColor, circleColor: CGColor = EFStyleFunctionParamsDataFunction.defaultColor)
 }
 
+/// Data module style options for function QR codes.
 public enum EFStyleFunctionParamsDataStyle: CaseIterable {
     case rectangle
     case round
 }
 
+/**
+ * Function-based QR code implementation.
+ *
+ * This class implements the function-based QR code rendering, creating QR codes
+ * with mathematical functions that determine the appearance of data modules.
+ *
+ * ## Features
+ *
+ * - Mathematical function-based data module generation
+ * - Dynamic patterns using fade and circle functions
+ * - Position detection pattern styling
+ * - Icon and backdrop support
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let params = EFStyleFunctionParams(
+ *     position: position,
+ *     data: dataParams
+ * )
+ * 
+ * let style = EFQRCodeStyleFunction(params: params)
+ * ```
+ */
 public class EFQRCodeStyleFunction: EFQRCodeStyleBase {
-    
+    /// The function styling parameters.
     let params: EFStyleFunctionParams
-    
+    /**
+     * Creates a function-based QR code with the specified parameters.
+     *
+     * - Parameter params: The function styling parameters.
+     */
     public init(params: EFStyleFunctionParams) {
         self.params = params
         super.init()
