@@ -32,7 +32,51 @@ import CoreImage.CIFilterBuiltins
 import UIKit
 #endif
 
+/**
+ * Extensions for CIImage to support QR code recognition and image processing.
+ *
+ * This extension provides utility methods for CIImage that enable QR code detection
+ * and conversion to other image formats used throughout the EFQRCode library.
+ *
+ * ## Features
+ *
+ * - QR code recognition from images
+ * - Conversion to CGImage for Core Graphics operations
+ * - Conversion to UIImage for UIKit-based platforms
+ * - High-performance image processing with Core Image
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let ciImage = CIImage(image: qrCodeImage)
+ * 
+ * // Recognize QR codes
+ * let qrCodes = ciImage.recognizeQRCode()
+ * 
+ * // Convert to CGImage
+ * if let cgImage = ciImage.cgImage() {
+ *     // Use with Core Graphics
+ * }
+ * 
+ * // Convert to UIImage (iOS/tvOS/watchOS only)
+ * let uiImage = ciImage.uiImage()
+ * ```
+ *
+ * ## Platform Support
+ *
+ * - **QR Code Recognition**: Available on all platforms with Core Image
+ * - **CGImage Conversion**: Available on all platforms with Core Image
+ * - **UIImage Conversion**: Only available on iOS, tvOS, and watchOS
+ */
 extension CIImage {
+    /**
+     * Converts the CIImage to a CGImage.
+     *
+     * This method attempts to get the CGImage directly from the CIImage if available.
+     * If that fails, it creates a new CGImage using a CIContext.
+     *
+     * - Returns: A CGImage representation of the CIImage, or nil if conversion fails.
+     */
     func cgImage() -> CGImage? {
         if #available(iOS 10, macOS 10.12, tvOS 10, watchOS 2, *) {
             if let cgImage = self.cgImage {
@@ -43,12 +87,46 @@ extension CIImage {
     }
 
     #if canImport(UIKit)
+    /**
+     * Converts the CIImage to a UIImage.
+     *
+     * This method creates a UIImage from the CIImage for use in UIKit-based applications.
+     *
+     * - Returns: A UIImage representation of the CIImage.
+     */
     func uiImage() -> UIImage {
         return UIImage(ciImage: self)
     }
     #endif
     
-    /// Get QRCode from image
+    /**
+     * Recognizes QR codes in the CIImage.
+     *
+     * This method uses Core Image's QR code detector to find and decode QR codes
+     * within the image. It returns an array of strings containing the decoded content
+     * from all detected QR codes.
+     *
+     * - Parameter options: Optional detection options for the QR code detector.
+     *   Common options include `CIDetectorAccuracy` for controlling detection accuracy.
+     * - Returns: An array of strings containing the recognized QR code contents.
+     *   If no QR codes are found, the array will be empty.
+     *
+     * ## Example
+     *
+     * ```swift
+     * let ciImage = CIImage(image: qrCodeImage)
+ * 
+     * // High accuracy detection
+     * let highAccuracyResults = ciImage.recognizeQRCode(
+     *     options: [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+     * )
+     * 
+     * // Low accuracy detection (faster but less accurate)
+     * let lowAccuracyResults = ciImage.recognizeQRCode(
+     *     options: [CIDetectorAccuracy: CIDetectorAccuracyLow]
+     * )
+     * ```
+     */
     func recognizeQRCode(options: [String : Any]? = nil) -> [String] {
         var result = [String]()
         let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: options)

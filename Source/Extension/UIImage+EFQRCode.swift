@@ -32,13 +32,64 @@ import UIKit
 import CoreImage
 #endif
 
+/**
+ * Extensions for UIImage to support QR code generation and processing on iOS/tvOS/watchOS.
+ *
+ * This extension provides utility methods for UIImage that enable conversion
+ * to other image formats used throughout the EFQRCode library.
+ *
+ * ## Features
+ *
+ * - Conversion to CIImage for Core Image processing
+ * - Conversion to CGImage for Core Graphics operations
+ * - Cross-platform compatibility with AppKit-based systems
+ *
+ * ## Usage
+ *
+ * ```swift
+ * let uiImage = UIImage(named: "QRCode")
+ * 
+ * // Convert to CIImage for processing
+ * if let ciImage = uiImage.ciImage() {
+ *     // Use with Core Image filters
+ * }
+ * 
+ * // Convert to CGImage for graphics operations
+ * if let cgImage = uiImage.cgImage() {
+ *     // Use with Core Graphics
+ * }
+ * ```
+ *
+ * ## Platform Support
+ *
+ * This extension is only available on iOS, tvOS, and watchOS platforms.
+ * On macOS, use the NSImage extensions instead.
+ */
 extension UIImage {
     #if canImport(CoreImage)
+    /**
+     * Converts the UIImage to a CIImage.
+     *
+     * This method creates a CIImage from the UIImage. It first tries to use
+     * the built-in ciImage property, then falls back to creating a new CIImage
+     * from the UIImage if needed.
+     *
+     * - Returns: A CIImage representation of the UIImage, or nil if conversion fails.
+     */
     func ciImage() -> CIImage? {
         return self.ciImage ?? CIImage(image: self)
     }
     #endif
 
+    /**
+     * Converts the UIImage to a CGImage.
+     *
+     * This method attempts to get the CGImage directly from the UIImage.
+     * If that fails and Core Image is available, it falls back to converting
+     * through CIImage.
+     *
+     * - Returns: A CGImage representation of the UIImage, or nil if conversion fails.
+     */
     func cgImage() -> CGImage? {
         let rtnValue = self.cgImage
         #if canImport(CoreImage)
