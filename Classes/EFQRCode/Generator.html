@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Generator Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../../js/jquery.min.js" defer></script>
+    <script src="../../js/jazzy.js" defer></script>
+    
+    <script src="../../js/lunr.min.js" defer></script>
+    <script src="../../js/typeahead.jquery.js" defer></script>
+    <script src="../../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/Generator" class="dashAnchor"></a>
+
+    <a title="Generator Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../../index.html">
+          EFQRCode 7.0.2 Docs
+        </a>
+         (30% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/EFPrefix/EFQRCode">
+            <img class="header-icon" src="../../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fefprefix.github.io%2FEFQRCode%2Fdocsets%2FEFQRCode.xml">
+            <img class="header-icon" src="../../img/dash.png" alt="Dash"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../../index.html">EFQRCode</a>
+      <img class="carat" src="../../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../../Classes.html">Classes</a>
+      <img class="carat" src="../../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../../Classes/EFQRCode.html">EFQRCode</a>
+      <img class="carat" src="../../img/carat.png" alt=""/>
+      Generator Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCode.html">EFQRCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCode/Generator.html">– Generator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCode/Recognizer.html">– Recognizer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyle25D.html">EFQRCodeStyle25D</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes.html#/s:8EFQRCode0A9StyleBaseC">EFQRCodeStyleBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleBasic.html">EFQRCodeStyleBasic</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleBubble.html">EFQRCodeStyleBubble</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleDSJ.html">EFQRCodeStyleDSJ</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleFunction.html">EFQRCodeStyleFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleImage.html">EFQRCodeStyleImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleImageFill.html">EFQRCodeStyleImageFill</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleLine.html">EFQRCodeStyleLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleRandomRectangle.html">EFQRCodeStyleRandomRectangle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFQRCodeStyleResampleImage.html">EFQRCodeStyleResampleImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyle25DParams.html">EFStyle25DParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleBasicParams.html">EFStyleBasicParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleBasicParamsAlign.html">EFStyleBasicParamsAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleBasicParamsData.html">EFStyleBasicParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleBasicParamsPosition.html">EFStyleBasicParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleBasicParamsTiming.html">EFStyleBasicParamsTiming</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleBubbleParams.html">EFStyleBubbleParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleBubbleParamsPosition.html">EFStyleBubbleParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleDSJParams.html">EFStyleDSJParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleDSJParamsData.html">EFStyleDSJParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleDSJParamsPosition.html">EFStyleDSJParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleFunctionParams.html">EFStyleFunctionParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleFunctionParamsData.html">EFStyleFunctionParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleFunctionParamsPosition.html">EFStyleFunctionParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageFillParams.html">EFStyleImageFillParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageFillParamsImage.html">EFStyleImageFillParamsImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageParams.html">EFStyleImageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageParamsAlign.html">EFStyleImageParamsAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageParamsData.html">EFStyleImageParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageParamsImage.html">EFStyleImageParamsImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageParamsPosition.html">EFStyleImageParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleImageParamsTiming.html">EFStyleImageParamsTiming</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleLineParams.html">EFStyleLineParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleLineParamsLine.html">EFStyleLineParamsLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleLineParamsPosition.html">EFStyleLineParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleParamBackdrop.html">EFStyleParamBackdrop</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleParamBackdropImage.html">EFStyleParamBackdropImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleParamIcon.html">EFStyleParamIcon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes.html#/s:8EFQRCode13EFStyleParamsC">EFStyleParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleRandomRectangleParams.html">EFStyleRandomRectangleParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleResampleImageParams.html">EFStyleResampleImageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleResampleImageParamsAlign.html">EFStyleResampleImageParamsAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleResampleImageParamsImage.html">EFStyleResampleImageParamsImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleResampleImageParamsPosition.html">EFStyleResampleImageParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/EFStyleResampleImageParamsTiming.html">EFStyleResampleImageParamsTiming</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFCorrectionLevel.html">EFCorrectionLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFImageMode.html">EFImageMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFQRCodeError.html">EFQRCodeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFQRCodeError/ImplmentationError.html">– ImplmentationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFQRCodeStyle.html">EFQRCodeStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleBasicParamsDataStyle.html">EFStyleBasicParamsDataStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleFunctionParamsDataFunction.html">EFStyleFunctionParamsDataFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleFunctionParamsDataStyle.html">EFStyleFunctionParamsDataStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleImageParamAlignStyle.html">EFStyleImageParamAlignStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleImageParamTimingStyle.html">EFStyleImageParamTimingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleLineParamsLineDirection.html">EFStyleLineParamsLineDirection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleParamAlignStyle.html">EFStyleParamAlignStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleParamImage.html">EFStyleParamImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleParamTimingStyle.html">EFStyleParamTimingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleParamsDataStyle.html">EFStyleParamsDataStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleParamsPositionStyle.html">EFStyleParamsPositionStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleResampleImageParamAlignStyle.html">EFStyleResampleImageParamAlignStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFStyleResampleImageParamTimingStyle.html">EFStyleResampleImageParamTimingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Enums/EFVideoFormat.html">EFVideoFormat</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Extensions/EFEdgeInsets.html">EFEdgeInsets</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Typealiases.html#/EFEdgeInsets">EFEdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>Generator</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">Generator</span></code></pre>
+
+                </div>
+              </div>
+            <p>A QR code generator that creates QR codes with various styles and output formats.</p>
+
+<p>The <code>Generator</code> class is the main entry point for creating QR codes in EFQRCode.
+ It supports multiple initialization methods, various output formats, and custom styling.</p>
+
+<p>## Basic Usage</p>
+<pre class="highlight swift"><code> <span class="c1">// Create a generator with text</span>
+ <span class="k">let</span> <span class="nv">generator</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">EFQRCode</span><span class="o">.</span><span class="kt">Generator</span><span class="p">(</span><span class="s">"Hello World"</span><span class="p">)</span>
+
+ <span class="c1">// Generate an image</span>
+ <span class="k">let</span> <span class="nv">image</span> <span class="o">=</span> <span class="k">try</span> <span class="n">generator</span><span class="o">.</span><span class="nf">toImage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
+
+ <span class="c1">// Generate PNG data</span>
+ <span class="k">let</span> <span class="nv">pngData</span> <span class="o">=</span> <span class="k">try</span> <span class="n">generator</span><span class="o">.</span><span class="nf">toPNGData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
+</code></pre>
+
+<p>## Initialization</p>
+
+<p>You can initialize a generator with:</p>
+
+<ul>
+<li>String content with encoding</li>
+<li>Data content</li>
+<li>Existing QRCode object</li>
+</ul>
+
+<p>## Output Formats</p>
+
+<p>The generator supports multiple output formats:</p>
+
+<ul>
+<li><strong>Images</strong>: PNG, JPEG, SVG</li>
+<li><strong>Animated</strong>: GIF, APNG</li>
+<li><strong>Video</strong>: MOV, M4V, MP4</li>
+<li><strong>Document</strong>: PDF</li>
+</ul>
+
+<p>## Styling</p>
+
+<p>QR codes can be styled with various styles including:</p>
+
+<ul>
+<li>Basic styles</li>
+<li>Bubble styles</li>
+<li>2.5D styles</li>
+<li>Image-based styles</li>
+<li>Custom icons and watermarks</li>
+</ul>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L94-L613">Show on GitHub</a>
+              </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC6qrcode11QRCodeSwift0D0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/qrcode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC6qrcode11QRCodeSwift0D0Cvp">qrcode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The underlying QR code object containing the encoded data and structure.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">qrcode</span><span class="p">:</span> <span class="kt">QRCode</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L96">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC5styleAA0A9StyleBaseCvp"></a>
+                    <a name="//apple_ref/swift/Property/style" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC5styleAA0A9StyleBaseCvp">style</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The style implementation that defines how the QR code is rendered.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../../Classes.html#/s:8EFQRCode0A9StyleBaseC">EFQRCodeStyleBase</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC_8encoding17errorCorrectLevel5styleADSS_SS10FoundationE8EncodingVAA012EFCorrectionF0OAA0A5StyleOtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:encoding:errorCorrectLevel:style:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC_8encoding17errorCorrectLevel5styleADSS_SS10FoundationE8EncodingVAA012EFCorrectionF0OAA0A5StyleOtKcfc">init(_:<wbr>encoding:<wbr>errorCorrectLevel:<wbr>style:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a QR code generator with text content.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if the text cannot be encoded or if the data is too large.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="o">=</span> <span class="o">.</span><span class="n">utf8</span><span class="p">,</span>
+    <span class="nv">errorCorrectLevel</span><span class="p">:</span> <span class="kt"><a href="../../Enums/EFCorrectionLevel.html">EFCorrectionLevel</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">h</span><span class="p">,</span>
+    <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../../Enums/EFQRCodeStyle.html">EFQRCodeStyle</a></span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>text</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The text content to encode in the QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>encoding</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The string encoding to use for the text. Defaults to UTF-8.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorCorrectLevel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error correction level for the QR code. Defaults to high (H).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>style</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The style to apply to the QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L114-L124">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC_17errorCorrectLevel5styleAD10Foundation4DataV_AA012EFCorrectionE0OAA0A5StyleOtKcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:errorCorrectLevel:style:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC_17errorCorrectLevel5styleAD10Foundation4DataV_AA012EFCorrectionE0OAA0A5StyleOtKcfc">init(_:<wbr>errorCorrectLevel:<wbr>style:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a QR code generator with data content.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if the data is too large for QR code capacity.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span>
+    <span class="nv">errorCorrectLevel</span><span class="p">:</span> <span class="kt"><a href="../../Enums/EFCorrectionLevel.html">EFCorrectionLevel</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">h</span><span class="p">,</span>
+    <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../../Enums/EFQRCodeStyle.html">EFQRCodeStyle</a></span>
+<span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The data to encode in the QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>errorCorrectLevel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error correction level for the QR code. Defaults to high (H).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>style</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The style to apply to the QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L135-L152">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC_5styleAD11QRCodeSwift0D0C_AA0A5StyleOtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:style:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC_5styleAD11QRCodeSwift0D0C_AA0A5StyleOtcfc">init(_:<wbr>style:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a QR code generator with an existing QR code object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">qrcode</span><span class="p">:</span> <span class="kt">QRCode</span><span class="p">,</span>
+    <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../../Enums/EFQRCodeStyle.html">EFQRCodeStyle</a></span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qrcode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An existing QR code object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>style</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The style to apply to the QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L161-L166">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC_19styleImplementationAD11QRCodeSwift0E0C_AA0A9StyleBaseCtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:styleImplementation:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC_19styleImplementationAD11QRCodeSwift0E0C_AA0A9StyleBaseCtcfc">init(_:<wbr>styleImplementation:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a QR code generator with an existing QR code object and style implementation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">qrcode</span><span class="p">:</span> <span class="kt">QRCode</span><span class="p">,</span>
+    <span class="nv">styleImplementation</span><span class="p">:</span> <span class="kt"><a href="../../Classes.html#/s:8EFQRCode0A9StyleBaseC">EFQRCodeStyleBase</a></span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>qrcode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An existing QR code object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>styleImplementation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The style implementation to apply to the QR code.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L175-L181">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC10isAnimatedSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isAnimated" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC10isAnimatedSbvp">isAnimated</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates whether the QR code contains animated content.</p>
+
+<p>This property checks if the SVG content contains animation elements.
+ It&rsquo;s computed lazily and cached for performance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">isAnimated</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L204">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC5toSVGSSyKF"></a>
+                    <a name="//apple_ref/swift/Method/toSVG()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC5toSVGSSyKF">toSVG()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates SVG content for the QR code.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if SVG generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toSVG</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The SVG string representation of the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L217-L224">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC7toImage5width6insetsSo7UIImageC14CoreFoundation7CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toImage(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC7toImage5width6insetsSo7UIImageC14CoreFoundation7CGFloatV_So12UIEdgeInsetsVtKF">toImage(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates a UIImage with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if image generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toImage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the image in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the image. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A UIImage representation of the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L236-L239">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC7toImage6height6insetsSo7UIImageC14CoreFoundation7CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toImage(height:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC7toImage6height6insetsSo7UIImageC14CoreFoundation7CGFloatV_So12UIEdgeInsetsVtKF">toImage(height:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates a UIImage with the specified height.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if image generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toImage</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt">UIEdgeInsets</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired height of the image in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the image. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A UIImage representation of the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L250-L253">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/toImage(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">toImage(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates an NSImage with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if image generation fails.
+
+</div>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Method/toImage(height:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/">toImage(height:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates an NSImage with the specified height.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if image generation fails.
+
+</div>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toMovData5width6insets10Foundation0E0V04CoreH07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toMovData(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toMovData5width6insets10Foundation0E0V04CoreH07CGFloatV_So12UIEdgeInsetsVtKF">toMovData(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates MOV video data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if video generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toMovData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the video in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the video. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>MOV video data containing the animated QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L343-L346">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toM4vData5width6insets10Foundation0E0V04CoreH07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toM4vData(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toM4vData5width6insets10Foundation0E0V04CoreH07CGFloatV_So12UIEdgeInsetsVtKF">toM4vData(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates M4V video data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if video generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toM4vData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the video in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the video. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>M4V video data containing the animated QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L357-L360">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toMp4Data5width6insets10Foundation0E0V04CoreH07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toMp4Data(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toMp4Data5width6insets10Foundation0E0V04CoreH07CGFloatV_So12UIEdgeInsetsVtKF">toMp4Data(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates MP4 video data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if video generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toMp4Data</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the video in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the video. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>MP4 video data containing the animated QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L371-L374">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toGIFData5width6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toGIFData(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toGIFData5width6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF">toGIFData(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates GIF data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if GIF generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toGIFData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the GIF in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the GIF. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>GIF data containing the animated QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L387-L390">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toGIFData6height6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toGIFData(height:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toGIFData6height6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF">toGIFData(height:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates GIF data with the specified height.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if GIF generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toGIFData</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired height of the GIF in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the GIF. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>GIF data containing the animated QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L401-L404">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC10toAPNGData5width6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toAPNGData(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC10toAPNGData5width6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF">toAPNGData(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates APNG data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if APNG generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toAPNGData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the APNG in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the APNG. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>APNG data containing the animated QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L429-L432">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC10toAPNGData6height6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toAPNGData(height:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC10toAPNGData6height6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF">toAPNGData(height:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates APNG data with the specified height.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if APNG generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toAPNGData</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired height of the APNG in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the APNG. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>APNG data containing the animated QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L443-L446">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC10toJPEGData5width18compressionQuality6insets10Foundation4DataV04CoreI07CGFloatV_ANSo12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toJPEGData(width:compressionQuality:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC10toJPEGData5width18compressionQuality6insets10Foundation4DataV04CoreI07CGFloatV_ANSo12UIEdgeInsetsVtKF">toJPEGData(width:<wbr>compressionQuality:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates JPEG data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if JPEG generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toJPEGData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">compressionQuality</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the JPEG in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>compressionQuality</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The compression quality (0.0 to 1.0). Defaults to 1.0.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the JPEG. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>JPEG data containing the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L472-L475">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC10toJPEGData6height18compressionQuality6insets10Foundation4DataV04CoreI07CGFloatV_ANSo12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toJPEGData(height:compressionQuality:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC10toJPEGData6height18compressionQuality6insets10Foundation4DataV04CoreI07CGFloatV_ANSo12UIEdgeInsetsVtKF">toJPEGData(height:<wbr>compressionQuality:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates JPEG data with the specified height.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if JPEG generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toJPEGData</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">compressionQuality</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired height of the JPEG in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>compressionQuality</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The compression quality (0.0 to 1.0). Defaults to 1.0.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the JPEG. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>JPEG data containing the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L487-L490">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toPNGData5width6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toPNGData(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toPNGData5width6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF">toPNGData(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates PNG data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if PNG generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toPNGData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the PNG in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the PNG. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>PNG data containing the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L524-L527">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toPNGData6height6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toPNGData(height:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toPNGData6height6insets10Foundation4DataV04CoreG07CGFloatV_So12UIEdgeInsetsVtKF">toPNGData(height:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates PNG data with the specified height.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if PNG generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toPNGData</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired height of the PNG in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the PNG. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>PNG data containing the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L538-L541">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toPDFData5width6insets10Foundation4DataV04CoreG07CGFloatV_9SwiftDraw3SVGV6InsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toPDFData(width:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toPDFData5width6insets10Foundation4DataV04CoreG07CGFloatV_9SwiftDraw3SVGV6InsetsVtKF">toPDFData(width:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates PDF data with the specified width.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if PDF generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toPDFData</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt">SVG</span><span class="o">.</span><span class="kt">Insets</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired width of the PDF in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the PDF. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>PDF data containing the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L574-L577">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCodeAAC9GeneratorC9toPDFData6height6insets10Foundation4DataV04CoreG07CGFloatV_9SwiftDraw3SVGV6InsetsVtKF"></a>
+                    <a name="//apple_ref/swift/Method/toPDFData(height:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCodeAAC9GeneratorC9toPDFData6height6insets10Foundation4DataV04CoreG07CGFloatV_9SwiftDraw3SVGV6InsetsVtKF">toPDFData(height:<wbr>insets:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates PDF data with the specified height.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if PDF generation fails.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">toPDFData</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt">SVG</span><span class="o">.</span><span class="kt">Insets</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The desired height of the PDF in points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Edge insets to apply to the PDF. Defaults to zero.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>PDF data containing the QR code.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/EFQRCode+Generator.swift#L588-L591">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external noopener">EyreFree</a>. All rights reserved. (Last updated: 2025-08-01)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>EFImageMode Enumeration Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Enum/EFImageMode" class="dashAnchor"></a>
+
+    <a title="EFImageMode Enumeration Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          EFQRCode 7.0.2 Docs
+        </a>
+         (30% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/EFPrefix/EFQRCode">
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="dash-feed://https%3A%2F%2Fefprefix.github.io%2FEFQRCode%2Fdocsets%2FEFQRCode.xml">
+            <img class="header-icon" src="../img/dash.png" alt="Dash"/>
+            Install in Dash
+          </a>
+        </p>
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">EFQRCode</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      <a class="breadcrumb" href="../Enums.html">Enumerations</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      EFImageMode Enumeration Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCode.html">EFQRCode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCode/Generator.html">– Generator</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCode/Recognizer.html">– Recognizer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyle25D.html">EFQRCodeStyle25D</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:8EFQRCode0A9StyleBaseC">EFQRCodeStyleBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleBasic.html">EFQRCodeStyleBasic</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleBubble.html">EFQRCodeStyleBubble</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleDSJ.html">EFQRCodeStyleDSJ</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleFunction.html">EFQRCodeStyleFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleImage.html">EFQRCodeStyleImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleImageFill.html">EFQRCodeStyleImageFill</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleLine.html">EFQRCodeStyleLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleRandomRectangle.html">EFQRCodeStyleRandomRectangle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFQRCodeStyleResampleImage.html">EFQRCodeStyleResampleImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyle25DParams.html">EFStyle25DParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleBasicParams.html">EFStyleBasicParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleBasicParamsAlign.html">EFStyleBasicParamsAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleBasicParamsData.html">EFStyleBasicParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleBasicParamsPosition.html">EFStyleBasicParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleBasicParamsTiming.html">EFStyleBasicParamsTiming</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleBubbleParams.html">EFStyleBubbleParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleBubbleParamsPosition.html">EFStyleBubbleParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleDSJParams.html">EFStyleDSJParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleDSJParamsData.html">EFStyleDSJParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleDSJParamsPosition.html">EFStyleDSJParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleFunctionParams.html">EFStyleFunctionParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleFunctionParamsData.html">EFStyleFunctionParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleFunctionParamsPosition.html">EFStyleFunctionParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageFillParams.html">EFStyleImageFillParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageFillParamsImage.html">EFStyleImageFillParamsImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageParams.html">EFStyleImageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageParamsAlign.html">EFStyleImageParamsAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageParamsData.html">EFStyleImageParamsData</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageParamsImage.html">EFStyleImageParamsImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageParamsPosition.html">EFStyleImageParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleImageParamsTiming.html">EFStyleImageParamsTiming</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleLineParams.html">EFStyleLineParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleLineParamsLine.html">EFStyleLineParamsLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleLineParamsPosition.html">EFStyleLineParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleParamBackdrop.html">EFStyleParamBackdrop</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleParamBackdropImage.html">EFStyleParamBackdropImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleParamIcon.html">EFStyleParamIcon</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:8EFQRCode13EFStyleParamsC">EFStyleParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleRandomRectangleParams.html">EFStyleRandomRectangleParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleResampleImageParams.html">EFStyleResampleImageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleResampleImageParamsAlign.html">EFStyleResampleImageParamsAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleResampleImageParamsImage.html">EFStyleResampleImageParamsImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleResampleImageParamsPosition.html">EFStyleResampleImageParamsPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EFStyleResampleImageParamsTiming.html">EFStyleResampleImageParamsTiming</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFCorrectionLevel.html">EFCorrectionLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFImageMode.html">EFImageMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFQRCodeError.html">EFQRCodeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFQRCodeError/ImplmentationError.html">– ImplmentationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFQRCodeStyle.html">EFQRCodeStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleBasicParamsDataStyle.html">EFStyleBasicParamsDataStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleFunctionParamsDataFunction.html">EFStyleFunctionParamsDataFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleFunctionParamsDataStyle.html">EFStyleFunctionParamsDataStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleImageParamAlignStyle.html">EFStyleImageParamAlignStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleImageParamTimingStyle.html">EFStyleImageParamTimingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleLineParamsLineDirection.html">EFStyleLineParamsLineDirection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleParamAlignStyle.html">EFStyleParamAlignStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleParamImage.html">EFStyleParamImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleParamTimingStyle.html">EFStyleParamTimingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleParamsDataStyle.html">EFStyleParamsDataStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleParamsPositionStyle.html">EFStyleParamsPositionStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleResampleImageParamAlignStyle.html">EFStyleResampleImageParamAlignStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFStyleResampleImageParamTimingStyle.html">EFStyleResampleImageParamTimingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/EFVideoFormat.html">EFVideoFormat</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/EFEdgeInsets.html">EFEdgeInsets</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/EFEdgeInsets">EFEdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:8EFQRCode12EFEdgeInsetsa">EFEdgeInsets</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>EFImageMode</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EFImageMode</span> <span class="p">:</span> <span class="kt">CaseIterable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Options to specify how watermark position and size for QR code.</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L31-L121">Show on GitHub</a>
+              </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode11EFImageModeO11scaleToFillyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/scaleToFill" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode11EFImageModeO11scaleToFillyA2CmF">scaleToFill</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The option to scale the watermark to fit the size of QR code by changing the aspect ratio of the watermark if necessary.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">scaleToFill</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L33">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode11EFImageModeO14scaleAspectFityA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/scaleAspectFit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode11EFImageModeO14scaleAspectFityA2CmF">scaleAspectFit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The option to scale the watermark to fit the size of the QR code by maintaining the aspect ratio. Any remaining area of the QR code uses the background color.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">scaleAspectFit</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L35">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode11EFImageModeO15scaleAspectFillyA2CmF"></a>
+                    <a name="//apple_ref/swift/Element/scaleAspectFill" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode11EFImageModeO15scaleAspectFillyA2CmF">scaleAspectFill</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The option to scale the watermark to fill the size of the QR code. Some portion of the watermark may be clipped to fill the QR code.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">scaleAspectFill</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L37">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Utilities"></a>
+                <a name="//apple_ref/swift/Section/Utilities" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Utilities"></a>
+                  <h3 class="section-name"><span>Utilities</span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode11EFImageModeO14rectForContent6ofSize010inCanvasOfH0So6CGRectVSo6CGSizeV_AJtF"></a>
+                    <a name="//apple_ref/swift/Method/rectForContent(ofSize:inCanvasOfSize:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode11EFImageModeO14rectForContent6ofSize010inCanvasOfH0So6CGRectVSo6CGSizeV_AJtF">rectForContent(ofSize:<wbr>inCanvasOfSize:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculates and returns the area in canvas where the image is going to be in this mode.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rectForContent</span><span class="p">(</span><span class="n">ofSize</span> <span class="nv">imageSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">,</span>
+                           <span class="n">inCanvasOfSize</span> <span class="nv">canvasSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGRect</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>imageSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>size of the watermark image to place in the canvas.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>canvasSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>size of the canvas to place the image in.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the area where the image is going to be according to the watermark mode.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L46-L71">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8EFQRCode11EFImageModeO15imageForContent7ofImage15inCanvasOfRatioSo10CGImageRefaAH_So6CGSizeVtKF"></a>
+                    <a name="//apple_ref/swift/Method/imageForContent(ofImage:inCanvasOfRatio:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8EFQRCode11EFImageModeO15imageForContent7ofImage15inCanvasOfRatioSo10CGImageRefaAH_So6CGSizeVtKF">imageForContent(ofImage:<wbr>inCanvasOfRatio:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">imageForContent</span><span class="p">(</span><span class="n">ofImage</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">CGImage</span><span class="p">,</span> <span class="n">inCanvasOfRatio</span> <span class="nv">canvasRatio</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">CGImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L73-L120">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2025 <a class="link" href="https://github.com/EFPrefix/EFQRCode" target="_blank" rel="external noopener">EyreFree</a>. All rights reserved. (Last updated: 2025-08-01)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>
