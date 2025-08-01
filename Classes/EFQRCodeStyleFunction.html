@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,31 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Function-based QR code implementation.</p>
+
+<p>This class implements the function-based QR code rendering, creating QR codes
+ with mathematical functions that determine the appearance of data modules.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Mathematical function-based data module generation</li>
+<li>Dynamic patterns using fade and circle functions</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleFunctionParams</span><span class="p">(</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">dataParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleFunction</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L112-L316">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L218-L426">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +351,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a function-based QR code with the specified parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -341,8 +362,27 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The function styling parameters.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L116-L119">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L226-L229">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

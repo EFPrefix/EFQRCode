@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,36 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>2.5D QR code implementation.</p>
+
+<p>This class implements the 2.5D QR code rendering, creating QR codes with
+ a three-dimensional appearance using shading and depth effects. The 2.5D style
+ simulates depth by rendering each module with multiple faces using different colors.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Three-dimensional appearance with depth simulation</li>
+<li>Multi-color shading for realistic 3D effect</li>
+<li>Customizable height for different module types</li>
+<li>Icon and backdrop support</li>
+<li>Sophisticated visual appearance</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyle25DParams</span><span class="p">(</span>
+     <span class="nv">dataHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">positionHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">topColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">leftColor</span><span class="p">:</span> <span class="o">.</span><span class="n">darkGray</span><span class="p">,</span>
+     <span class="nv">rightColor</span><span class="p">:</span> <span class="o">.</span><span class="n">lightGray</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle25D</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L83-L236">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L192-L354">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +356,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a 2.5D QR code with the specified parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -341,8 +367,27 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The 2.5D styling parameters.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L94-L97">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L212-L215">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

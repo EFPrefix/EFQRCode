@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,32 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Line-style QR code implementation.</p>
+
+<p>This class implements the line-style QR code rendering, creating QR codes
+ where data modules are represented as lines instead of solid blocks.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Line-based data module representation</li>
+<li>Multiple line direction options</li>
+<li>Customizable line thickness</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleLineParams</span><span class="p">(</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">line</span><span class="p">:</span> <span class="n">lineParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleLine</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L114-L495">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L228-L613">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +352,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a line-style QR code with the specified parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -341,8 +363,27 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The line styling parameters.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L118-L121">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L236-L239">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

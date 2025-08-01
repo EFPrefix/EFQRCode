@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,32 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Bubble-style QR code implementation.</p>
+
+<p>This class implements the bubble-style QR code rendering, creating QR codes
+ with rounded, bubble-like data modules that have a modern and friendly appearance.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Rounded data modules with bubble appearance</li>
+<li>Customizable colors for different elements</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleBubbleParams</span><span class="p">(</span>
+     <span class="nv">dataColor</span><span class="p">:</span> <span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+     <span class="nv">dataCenterColor</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleBubble</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L92-L288">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L188-L388">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +352,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a bubble-style QR code with the specified parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -341,8 +363,27 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The bubble styling parameters.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L96-L99">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L196-L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

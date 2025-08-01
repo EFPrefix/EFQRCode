@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,19 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Image configuration for module filling in image-based QR codes.</p>
+
+<p>This class defines how an image is used to fill QR code modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">imageParams</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsImage</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">myImage</span><span class="p">,</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span>
+ <span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L144-L176">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L357-L423">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +339,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates image configuration for module filling.</p>
 
                       </div>
                       <div class="declaration">
@@ -346,8 +355,63 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image to use.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The scaling mode. Defaults to .scaleAspectFill.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The opacity of the image. Defaults to 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>allowTransparent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to allow transparent pixels. Defaults to false.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L151-L161">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L388-L398">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

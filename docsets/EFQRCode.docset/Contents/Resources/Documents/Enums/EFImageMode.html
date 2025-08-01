@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,40 @@
 
                 </div>
               </div>
-            <p>Options to specify how watermark position and size for QR code.</p>
+            <p>Image scaling modes for QR code watermark and icon positioning.</p>
+
+<p>This enum defines how images (watermarks, icons) are scaled and positioned
+ within QR codes. Each mode provides different behavior for handling aspect ratios
+ and image fitting.</p>
+
+<p>## Scaling Modes</p>
+
+<ul>
+<li><strong>scaleToFill</strong>: Stretches the image to fill the entire area, potentially distorting it</li>
+<li><strong>scaleAspectFit</strong>: Scales the image to fit within the area while maintaining aspect ratio</li>
+<li><strong>scaleAspectFill</strong>: Scales the image to fill the area while maintaining aspect ratio, potentially cropping</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">icon</span> <span class="o">=</span> <span class="kt">EFStyleParamIcon</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="o">.</span><span class="nf">static</span><span class="p">(</span><span class="n">myImage</span><span class="p">),</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span><span class="p">,</span>  <span class="c1">// Use aspect fill mode</span>
+     <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">borderColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">percentage</span><span class="p">:</span> <span class="mf">0.2</span>
+ <span class="p">)</span>
+</code></pre>
+
+<p>## Visual Comparison</p>
+
+<p>| Mode | Behavior | Aspect Ratio | Cropping | Distortion |
+ |&mdash;&mdash;|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;|
+ | scaleToFill | Stretches to fill | Changed | No | Yes |
+ | scaleAspectFit | Fits within bounds | Maintained | No | No |
+ | scaleAspectFill | Fills bounds | Maintained | Yes | No |</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L31-L121">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L63-L171">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +360,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The option to scale the watermark to fit the size of QR code by changing the aspect ratio of the watermark if necessary.</p>
+                        <p>Scales the image to fill the entire area by changing the aspect ratio if necessary.</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +372,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L33">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +390,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The option to scale the watermark to fit the size of the QR code by maintaining the aspect ratio. Any remaining area of the QR code uses the background color.</p>
+                        <p>Scales the image to fit within the area while maintaining the aspect ratio.</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +402,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L67">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +420,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The option to scale the watermark to fill the size of the QR code. Some portion of the watermark may be clipped to fill the QR code.</p>
+                        <p>Scales the image to fill the area while maintaining the aspect ratio.</p>
 
                       </div>
                       <div class="declaration">
@@ -402,7 +432,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L37">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L69">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -433,7 +463,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Calculates and returns the area in canvas where the image is going to be in this mode.</p>
+                        <p>Calculates the rectangle where the image will be positioned in the canvas.</p>
+
+<p>This method determines the exact position and size of the image within the canvas
+ based on the scaling mode and the relative sizes of the image and canvas.</p>
 
                       </div>
                       <div class="declaration">
@@ -457,7 +490,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>size of the watermark image to place in the canvas.</p>
+                                  <p>The size of the image to be positioned.</p>
                                 </div>
                               </td>
                             </tr>
@@ -469,7 +502,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>size of the canvas to place the image in.</p>
+                                  <p>The size of the canvas where the image will be placed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -478,10 +511,10 @@
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>the area where the image is going to be according to the watermark mode.</p>
+                        <p>A CGRect defining the area where the image will be positioned.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L46-L71">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L84-L109">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -499,7 +532,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Processes an image according to the scaling mode and target ratio.</p>
+
+<p>This method applies the scaling mode to transform the input image to match
+ the desired canvas ratio, potentially resizing or cropping the image.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../Enums/EFQRCodeError.html">EFQRCodeError</a></code> if image processing fails.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -510,8 +551,43 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The CGImage to be processed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>canvasRatio</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The target aspect ratio for the canvas.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A processed CGImage that matches the scaling mode and target ratio.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L73-L120">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Type/EFImageMode.swift#L123-L170">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

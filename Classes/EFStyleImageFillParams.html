@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,50 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Parameters for image fill QR code styling.</p>
+
+<p>This class defines the styling parameters for image fill QR codes, which use
+ images as background with QR code modules as masks. This creates QR codes
+ where the image shows through the QR code pattern.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Image background with QR code mask</li>
+<li>Customizable background and mask colors</li>
+<li>Icon and backdrop support</li>
+<li>Image transparency control</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">imageParams</span> <span class="o">=</span> <span class="kt">EFStyleImageFillParamsImage</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">myImage</span><span class="p">,</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span><span class="p">,</span>
+     <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleImageFillParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">imageParams</span><span class="p">,</span>
+     <span class="nv">backgroundColor</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span><span class="p">,</span>
+     <span class="nv">maskColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">imageFill</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Image appears as background</li>
+<li>QR code modules create mask over image</li>
+<li>Maintains QR code structure and scannability</li>
+<li>Creates visually appealing QR codes with image content</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L32-L70">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L73-L134">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +370,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default backdrop configuration for image fill QR codes.</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +382,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L34">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L75">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +400,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default background color (white).</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +412,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +430,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default mask color (semi-transparent black).</p>
 
                       </div>
                       <div class="declaration">
@@ -402,7 +442,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L79">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,7 +460,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates image fill QR code styling parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -437,8 +477,75 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The icon to display in the center of the QR code. Defaults to nil.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backdrop</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The backdrop configuration. Defaults to default backdrop.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image configuration for background filling. Defaults to nil.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backgroundColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The background color. Defaults to white.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maskColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The mask color applied over the image. Defaults to semi-transparent black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L42-L53">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L96-L107">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

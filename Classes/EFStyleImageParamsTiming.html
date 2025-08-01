@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,22 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Timing pattern styling parameters for image-based QR codes.</p>
+
+<p>This class defines the appearance of timing patterns in image-based QR codes,
+ including their style, size, and colors for dark and light modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">timing</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsTiming</span><span class="p">(</span>
+     <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">rectangle</span><span class="p">,</span>
+     <span class="nv">size</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">colorDark</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">colorLight</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span>
+ <span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L121-L142">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L289-L341">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +342,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Default color for dark timing pattern modules (black).</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +354,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L123">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L294">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +372,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Default color for light timing pattern modules (white).</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +384,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L124">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L299">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +402,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates timing pattern styling parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -406,8 +418,63 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>style</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The style of the timing pattern. Defaults to .rectangle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the timing pattern. Defaults to 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>colorDark</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color for dark timing pattern modules. Defaults to default color dark.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>colorLight</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color for light timing pattern modules. Defaults to default color light.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L131-L141">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L330-L340">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,48 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Parameters for 2.5D QR code styling.</p>
+
+<p>This class defines the styling parameters for 2.5D QR codes, which create
+ a three-dimensional appearance using shading and depth effects. The 2.5D style
+ simulates depth by using different colors for the top, left, and right faces
+ of each module.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Three-dimensional appearance with depth simulation</li>
+<li>Customizable height for data and position modules</li>
+<li>Multi-color shading (top, left, right faces)</li>
+<li>Icon and backdrop support</li>
+<li>Realistic 3D visual effect</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyle25DParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">dataHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">positionHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">topColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">leftColor</span><span class="p">:</span> <span class="o">.</span><span class="n">darkGray</span><span class="p">,</span>
+     <span class="nv">rightColor</span><span class="p">:</span> <span class="o">.</span><span class="n">lightGray</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">style25D</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Modules appear to have depth and volume</li>
+<li>Different colors create shading effects</li>
+<li>Height parameters control the 3D appearance</li>
+<li>Creates a modern, sophisticated look</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L32-L81">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L71-L161">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +368,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default backdrop configuration for 2.5D QR codes.</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +380,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L34">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +398,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default color for the top face of modules (black).</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +410,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +428,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default color for the left face of modules (semi-transparent black).</p>
 
                       </div>
                       <div class="declaration">
@@ -402,7 +440,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L80">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,7 +458,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default color for the right face of modules (semi-transparent black).</p>
 
                       </div>
                       <div class="declaration">
@@ -432,7 +470,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L37">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L83">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -450,7 +488,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates 2.5D QR code styling parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -469,8 +507,99 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The icon to display in the center of the QR code. Defaults to nil.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backdrop</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The backdrop configuration. Defaults to default backdrop.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataHeight</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The height of data modules for 3D effect. Defaults to 1.0.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>positionHeight</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The height of position detection patterns for 3D effect. Defaults to 1.0.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>topColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color of the top face of modules. Defaults to black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>leftColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color of the left face of modules. Defaults to semi-transparent black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rightColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color of the right face of modules. Defaults to semi-transparent black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L45-L60">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L112-L127">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

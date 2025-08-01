@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,32 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Image fill QR code implementation.</p>
+
+<p>This class implements the image fill QR code rendering, creating QR codes
+ where images are used as background with QR code modules as masks.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Image background with QR code mask overlay</li>
+<li>Customizable background and mask colors</li>
+<li>Image transparency control</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleImageFillParams</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">imageParams</span><span class="p">,</span>
+     <span class="nv">backgroundColor</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span><span class="p">,</span>
+     <span class="nv">maskColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleImageFill</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L101-L185">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L208-L296">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +352,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates an image fill QR code with the specified parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -341,8 +363,27 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image fill styling parameters.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L105-L108">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L216-L219">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

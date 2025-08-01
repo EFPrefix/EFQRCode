@@ -23,7 +23,7 @@
         <a class="header-link" href="index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -329,7 +329,7 @@
 <li>Animated QR codes</li>
 <li>Custom styling with icons and watermarks</li>
 <li>Error correction levels</li>
-<li>Cross-platform support (iOS, macOS, tvOS, watchOS)</li>
+<li>Cross-platform support (iOS, macOS, tvOS, watchOS, visionOS)</li>
 </ul>
 
 <p>## Basic Usage</p>
@@ -417,7 +417,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L55-L87">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L55-L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -461,7 +461,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L209-L342">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L138-L244">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -479,7 +479,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Backdrop configuration for QR codes.</p>
 
                         <a href="Classes/EFStyleParamBackdrop.html" class="slightly-smaller">See more</a>
                       </div>
@@ -492,7 +492,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L390-L446">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L296-L365">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -510,7 +510,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Backdrop image configuration for QR codes.</p>
 
                         <a href="Classes/EFStyleParamBackdropImage.html" class="slightly-smaller">See more</a>
                       </div>
@@ -523,7 +523,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L448-L468">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L368-L398">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -541,7 +541,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Base class for QR code style implementations.</p>
+
+<p>This class provides the foundation for all QR code style implementations,
+ defining the interface that all styles must implement.</p>
 
                       </div>
                       <div class="declaration">
@@ -553,7 +556,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L470-L509">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle.swift#L406-L483">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -571,7 +574,45 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for 2.5D QR code styling.</p>
+
+<p>This class defines the styling parameters for 2.5D QR codes, which create
+ a three-dimensional appearance using shading and depth effects. The 2.5D style
+ simulates depth by using different colors for the top, left, and right faces
+ of each module.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Three-dimensional appearance with depth simulation</li>
+<li>Customizable height for data and position modules</li>
+<li>Multi-color shading (top, left, right faces)</li>
+<li>Icon and backdrop support</li>
+<li>Realistic 3D visual effect</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyle25DParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">dataHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">positionHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">topColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">leftColor</span><span class="p">:</span> <span class="o">.</span><span class="n">darkGray</span><span class="p">,</span>
+     <span class="nv">rightColor</span><span class="p">:</span> <span class="o">.</span><span class="n">lightGray</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">style25D</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Modules appear to have depth and volume</li>
+<li>Different colors create shading effects</li>
+<li>Height parameters control the 3D appearance</li>
+<li>Creates a modern, sophisticated look</li>
+</ul>
 
                         <a href="Classes/EFStyle25DParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -584,7 +625,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L32-L81">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L71-L161">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -602,7 +643,33 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>2.5D QR code implementation.</p>
+
+<p>This class implements the 2.5D QR code rendering, creating QR codes with
+ a three-dimensional appearance using shading and depth effects. The 2.5D style
+ simulates depth by rendering each module with multiple faces using different colors.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Three-dimensional appearance with depth simulation</li>
+<li>Multi-color shading for realistic 3D effect</li>
+<li>Customizable height for different module types</li>
+<li>Icon and backdrop support</li>
+<li>Sophisticated visual appearance</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyle25DParams</span><span class="p">(</span>
+     <span class="nv">dataHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">positionHeight</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">topColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">leftColor</span><span class="p">:</span> <span class="o">.</span><span class="n">darkGray</span><span class="p">,</span>
+     <span class="nv">rightColor</span><span class="p">:</span> <span class="o">.</span><span class="n">lightGray</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle25D</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFQRCodeStyle25D.html" class="slightly-smaller">See more</a>
                       </div>
@@ -615,7 +682,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L83-L236">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyle25D.swift#L192-L354">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -633,7 +700,35 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for basic QR code styling.</p>
+
+<p>This class defines the styling parameters for basic QR codes, including
+ alignment patterns, timing patterns, data modules, and position detection patterns.
+ It provides a comprehensive set of customization options for creating
+ traditional QR codes with custom colors and styles.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Alignment pattern customization</li>
+<li>Timing pattern styling</li>
+<li>Data module appearance</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleBasicParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+     <span class="nv">align</span><span class="p">:</span> <span class="n">align</span><span class="p">,</span>
+     <span class="nv">timing</span><span class="p">:</span> <span class="n">timing</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">basic</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleBasicParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -646,7 +741,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L32-L77">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L63-L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -664,7 +759,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Alignment pattern styling parameters for basic QR codes.</p>
 
                         <a href="Classes/EFStyleBasicParamsAlign.html" class="slightly-smaller">See more</a>
                       </div>
@@ -677,7 +772,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L79-L96">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L139-L165">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -695,7 +790,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Timing pattern styling parameters for basic QR codes.</p>
+
+<p>This class defines the appearance of timing patterns in QR codes,
+ which are the alternating dark and light modules that help decoders
+ locate the data modules.</p>
 
                         <a href="Classes/EFStyleBasicParamsTiming.html" class="slightly-smaller">See more</a>
                       </div>
@@ -708,7 +807,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L98-L115">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L174-L200">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -726,7 +825,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Data module styling parameters for basic QR codes.</p>
+
+<p>This class defines the appearance of data modules in QR codes,
+ which encode the actual information content of the QR code.</p>
 
                         <a href="Classes/EFStyleBasicParamsData.html" class="slightly-smaller">See more</a>
                       </div>
@@ -739,7 +841,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L117-L134">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L208-L234">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -757,7 +859,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Position detection pattern styling parameters for basic QR codes.</p>
+
+<p>This class defines the appearance of position detection patterns (finder patterns)
+ in QR codes, which are the large square patterns in three corners that help
+ decoders locate and orient the QR code.</p>
 
                         <a href="Classes/EFStyleBasicParamsPosition.html" class="slightly-smaller">See more</a>
                       </div>
@@ -770,7 +876,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L136-L153">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L243-L269">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -788,7 +894,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Basic QR code style implementation.</p>
+
+<p>This class implements the rendering logic for traditional QR codes with customizable
+ alignment, timing, data, and position patterns, as well as icon and backdrop support.</p>
 
                         <a href="Classes/EFQRCodeStyleBasic.html" class="slightly-smaller">See more</a>
                       </div>
@@ -801,7 +910,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L162-L351">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBasic.swift#L294-L488">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -819,7 +928,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for bubble-style QR code styling.</p>
+
+<p>This class defines the styling parameters for bubble-style QR codes, which feature
+ rounded, bubble-like data modules with a distinctive appearance. The bubble style
+ creates QR codes with a modern, friendly appearance that stands out from traditional
+ square-based QR codes.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Bubble-shaped data modules</li>
+<li>Customizable data colors</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+<li>Modern, friendly appearance</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleBubbleParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">dataColor</span><span class="p">:</span> <span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+     <span class="nv">dataCenterColor</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">bubble</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Data modules appear as rounded bubbles</li>
+<li>Position detection patterns can be styled independently</li>
+<li>Supports custom colors for different elements</li>
+<li>Creates a modern, approachable appearance</li>
+</ul>
 
                         <a href="Classes/EFStyleBubbleParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -832,7 +977,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L32-L71">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L69-L132">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -850,7 +995,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Position detection pattern styling parameters for bubble QR codes.</p>
 
                         <a href="Classes/EFStyleBubbleParamsPosition.html" class="slightly-smaller">See more</a>
                       </div>
@@ -863,7 +1008,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L73-L90">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L135-L161">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -881,7 +1026,29 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Bubble-style QR code implementation.</p>
+
+<p>This class implements the bubble-style QR code rendering, creating QR codes
+ with rounded, bubble-like data modules that have a modern and friendly appearance.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Rounded data modules with bubble appearance</li>
+<li>Customizable colors for different elements</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleBubbleParams</span><span class="p">(</span>
+     <span class="nv">dataColor</span><span class="p">:</span> <span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+     <span class="nv">dataCenterColor</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleBubble</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFQRCodeStyleBubble.html" class="slightly-smaller">See more</a>
                       </div>
@@ -894,7 +1061,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L92-L288">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleBubble.swift#L188-L388">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -912,7 +1079,38 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for DSJ-style QR code styling.</p>
+
+<p>This class defines the styling parameters for DSJ-style QR codes, which use
+ distinctive position and data module patterns inspired by the &ldquo;DSJ&rdquo; visual style.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Custom DSJ-style position detection patterns</li>
+<li>Customizable data module appearance</li>
+<li>Icon and backdrop support</li>
+<li>Unique, visually striking QR codes</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">dataParams</span> <span class="o">=</span> <span class="kt">EFStyleDSJParamsData</span><span class="p">(</span>
+     <span class="nv">lineSize</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+     <span class="nv">xSize</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+     <span class="nv">horizontalLineColor</span><span class="p">:</span> <span class="o">.</span><span class="n">yellow</span><span class="p">,</span>
+     <span class="nv">verticalLineColor</span><span class="p">:</span> <span class="o">.</span><span class="n">red</span><span class="p">,</span>
+     <span class="nv">xColor</span><span class="p">:</span> <span class="o">.</span><span class="n">blue</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleDSJParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">dataParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">dsj</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleDSJParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -925,7 +1123,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L32-L65">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L66-L119">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -943,7 +1141,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Position detection pattern styling parameters for DSJ QR codes.</p>
 
                         <a href="Classes/EFStyleDSJParamsPosition.html" class="slightly-smaller">See more</a>
                       </div>
@@ -956,7 +1154,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L67-L84">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L122-L148">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -974,7 +1172,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Data module styling parameters for DSJ QR codes.</p>
 
                         <a href="Classes/EFStyleDSJParamsData.html" class="slightly-smaller">See more</a>
                       </div>
@@ -987,7 +1185,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L86-L111">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L151-L191">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1005,7 +1203,28 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>DSJ-style QR code implementation.</p>
+
+<p>This class implements the DSJ-style QR code rendering, creating QR codes
+ with distinctive position and data module patterns inspired by the &ldquo;DSJ&rdquo; visual style.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Custom DSJ-style position detection patterns</li>
+<li>Line and X-shaped data modules</li>
+<li>Multi-color styling for different elements</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleDSJParams</span><span class="p">(</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">dataParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleDSJ</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFQRCodeStyleDSJ.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1018,7 +1237,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L113-L350">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L217-L458">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1036,7 +1255,46 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for function-based QR code styling.</p>
+
+<p>This class defines the styling parameters for function-based QR codes, which use
+ mathematical functions to determine the appearance of data modules. This creates
+ QR codes with dynamic, algorithmically generated patterns.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Function-based data module generation</li>
+<li>Mathematical pattern algorithms</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+<li>Dynamic, algorithmic appearance</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">dataParams</span> <span class="o">=</span> <span class="kt">EFStyleFunctionParamsData</span><span class="p">(</span>
+     <span class="nv">function</span><span class="p">:</span> <span class="o">.</span><span class="nf">fade</span><span class="p">(),</span>
+     <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">round</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleFunctionParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">dataParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">function</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Data modules are generated using mathematical functions</li>
+<li>Patterns can be fade, wave, or other algorithmic effects</li>
+<li>Creates dynamic, visually interesting QR codes</li>
+<li>Maintains QR code structure and scannability</li>
+</ul>
 
                         <a href="Classes/EFStyleFunctionParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1049,7 +1307,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L32-L65">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L72-L125">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1067,7 +1325,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Position detection pattern styling parameters for function QR codes.</p>
 
                         <a href="Classes/EFStyleFunctionParamsPosition.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1080,7 +1338,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L67-L84">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L128-L154">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1098,7 +1356,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Data module styling parameters for function QR codes.</p>
 
                         <a href="Classes/EFStyleFunctionParamsData.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1111,7 +1369,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L86-L98">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L157-L176">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1129,7 +1387,28 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Function-based QR code implementation.</p>
+
+<p>This class implements the function-based QR code rendering, creating QR codes
+ with mathematical functions that determine the appearance of data modules.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Mathematical function-based data module generation</li>
+<li>Dynamic patterns using fade and circle functions</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleFunctionParams</span><span class="p">(</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">dataParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleFunction</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFQRCodeStyleFunction.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1142,7 +1421,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L112-L316">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleFunction.swift#L218-L426">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1160,7 +1439,50 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for image-based QR code styling.</p>
+
+<p>This class defines the styling parameters for image-based QR codes, which use
+ actual images to fill the QR code modules instead of solid colors. This creates
+ QR codes that incorporate visual content while maintaining scannability.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Image-based module filling</li>
+<li>Alignment pattern customization</li>
+<li>Timing pattern styling</li>
+<li>Position detection pattern styling</li>
+<li>Data module appearance control</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">imageParams</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsImage</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">myImage</span><span class="p">,</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleImageParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">align</span><span class="p">:</span> <span class="n">align</span><span class="p">,</span>
+     <span class="nv">timing</span><span class="p">:</span> <span class="n">timing</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">imageParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">image</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>QR code modules are filled with actual image content</li>
+<li>Maintains QR code structure and scannability</li>
+<li>Supports different image scaling modes</li>
+<li>Creates visually appealing, branded QR codes</li>
+</ul>
 
                         <a href="Classes/EFStyleImageParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1173,7 +1495,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L32-L82">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L76-L157">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1191,7 +1513,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Alignment pattern styling parameters for image-based QR codes.</p>
+
+<p>This class defines the appearance of alignment patterns in image-based QR codes,
+ including their style, size, and colors for dark and light modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">align</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsAlign</span><span class="p">(</span>
+     <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">rectangle</span><span class="p">,</span>
+     <span class="nv">size</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">colorDark</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">colorLight</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span>
+ <span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleImageParamsAlign.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1204,7 +1538,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L91-L112">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L191-L243">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1222,7 +1556,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Timing pattern styling parameters for image-based QR codes.</p>
+
+<p>This class defines the appearance of timing patterns in image-based QR codes,
+ including their style, size, and colors for dark and light modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">timing</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsTiming</span><span class="p">(</span>
+     <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">rectangle</span><span class="p">,</span>
+     <span class="nv">size</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">colorDark</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">colorLight</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span>
+ <span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleImageParamsTiming.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1235,7 +1581,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L121-L142">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L289-L341">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1253,7 +1599,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Image configuration for module filling in image-based QR codes.</p>
+
+<p>This class defines how an image is used to fill QR code modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">imageParams</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsImage</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">myImage</span><span class="p">,</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span>
+ <span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleImageParamsImage.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1266,7 +1621,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L144-L176">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L357-L423">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1284,7 +1639,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Position detection pattern styling parameters for image-based QR codes.</p>
+
+<p>This class defines the appearance of position detection patterns in image-based QR codes,
+ including their style, size, and colors for dark and light modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">position</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsPosition</span><span class="p">(</span>
+     <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">rectangle</span><span class="p">,</span>
+     <span class="nv">size</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">colorDark</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">colorLight</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span>
+ <span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleImageParamsPosition.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1297,7 +1664,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L178-L199">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L442-L494">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1315,7 +1682,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Data module styling parameters for image-based QR codes.</p>
+
+<p>This class defines the appearance of data modules in image-based QR codes,
+ including their style, scale, and colors for dark and light modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsData</span><span class="p">(</span>
+     <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">rectangle</span><span class="p">,</span>
+     <span class="nv">scale</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">colorDark</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">colorLight</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span>
+ <span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleImageParamsData.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1328,7 +1707,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L201-L222">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L513-L565">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1346,7 +1725,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Base class for image-based QR code styling.</p>
+
+<p>This class provides the foundation for styling QR codes using images.
+ It handles common tasks like writing QR code, icon, and backdrop.</p>
 
                         <a href="Classes/EFQRCodeStyleImage.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1359,7 +1741,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L224-L534">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L573-L936">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1377,7 +1759,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for image fill QR code styling.</p>
+
+<p>This class defines the styling parameters for image fill QR codes, which use
+ images as background with QR code modules as masks. This creates QR codes
+ where the image shows through the QR code pattern.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Image background with QR code mask</li>
+<li>Customizable background and mask colors</li>
+<li>Icon and backdrop support</li>
+<li>Image transparency control</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">imageParams</span> <span class="o">=</span> <span class="kt">EFStyleImageFillParamsImage</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">myImage</span><span class="p">,</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span><span class="p">,</span>
+     <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleImageFillParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">imageParams</span><span class="p">,</span>
+     <span class="nv">backgroundColor</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span><span class="p">,</span>
+     <span class="nv">maskColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">imageFill</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Image appears as background</li>
+<li>QR code modules create mask over image</li>
+<li>Maintains QR code structure and scannability</li>
+<li>Creates visually appealing QR codes with image content</li>
+</ul>
 
                         <a href="Classes/EFStyleImageFillParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1390,7 +1812,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L32-L70">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L73-L134">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1408,7 +1830,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Image configuration for image fill QR codes.</p>
 
                         <a href="Classes/EFStyleImageFillParamsImage.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1421,7 +1843,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L72-L99">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L137-L181">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1439,7 +1861,29 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Image fill QR code implementation.</p>
+
+<p>This class implements the image fill QR code rendering, creating QR codes
+ where images are used as background with QR code modules as masks.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Image background with QR code mask overlay</li>
+<li>Customizable background and mask colors</li>
+<li>Image transparency control</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleImageFillParams</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">imageParams</span><span class="p">,</span>
+     <span class="nv">backgroundColor</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span><span class="p">,</span>
+     <span class="nv">maskColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleImageFill</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFQRCodeStyleImageFill.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1452,7 +1896,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L101-L185">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImageFill.swift#L208-L296">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1470,7 +1914,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for line-style QR code styling.</p>
+
+<p>This class defines the styling parameters for line-style QR codes, which use
+ lines to represent data modules instead of solid blocks. This creates QR codes
+ with a unique, minimalist appearance that maintains scannability.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Line-based data module representation</li>
+<li>Customizable line direction and thickness</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+<li>Minimalist, modern appearance</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">lineParams</span> <span class="o">=</span> <span class="kt">EFStyleLineParamsLine</span><span class="p">(</span>
+     <span class="nv">direction</span><span class="p">:</span> <span class="o">.</span><span class="n">x</span><span class="p">,</span>
+     <span class="nv">thickness</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+     <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleLineParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">line</span><span class="p">:</span> <span class="n">lineParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">line</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Data modules are represented as lines</li>
+<li>Lines can be oriented horizontally or vertically</li>
+<li>Thickness controls the visual weight of lines</li>
+<li>Creates a clean, minimalist appearance</li>
+</ul>
 
                         <a href="Classes/EFStyleLineParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1483,7 +1967,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L32-L65">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L73-L126">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1501,7 +1985,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Position detection pattern styling parameters for line QR codes.</p>
 
                         <a href="Classes/EFStyleLineParamsPosition.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1514,7 +1998,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L67-L84">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L129-L155">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1532,7 +2016,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Line styling parameters for line QR codes.</p>
 
                         <a href="Classes/EFStyleLineParamsLine.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1545,7 +2029,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L86-L102">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L158-L183">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1563,7 +2047,29 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Line-style QR code implementation.</p>
+
+<p>This class implements the line-style QR code rendering, creating QR codes
+ where data modules are represented as lines instead of solid blocks.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Line-based data module representation</li>
+<li>Multiple line direction options</li>
+<li>Customizable line thickness</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleLineParams</span><span class="p">(</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">line</span><span class="p">:</span> <span class="n">lineParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleLine</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFQRCodeStyleLine.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1576,7 +2082,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L114-L495">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L228-L613">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1594,7 +2100,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for random rectangle QR code styling.</p>
+
+<p>This class defines the styling parameters for random rectangle QR codes, which
+ create QR codes with randomly sized and colored rectangles for each dark module.
+ This creates QR codes with a unique, artistic appearance that maintains scannability.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Random rectangle generation for each dark module</li>
+<li>Variable rectangle sizes and colors</li>
+<li>Artistic, non-uniform appearance</li>
+<li>Icon and backdrop support</li>
+<li>Unique visual style</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleRandomRectangleParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="n">green</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">randomRectangle</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Each dark module is represented by randomly sized rectangles</li>
+<li>Colors vary around the base color with random offsets</li>
+<li>Creates an artistic, non-uniform appearance</li>
+<li>Maintains QR code structure and scannability</li>
+</ul>
 
                         <a href="Classes/EFStyleRandomRectangleParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1607,7 +2146,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L32-L59">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L66-L109">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1625,7 +2164,29 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Random rectangle QR code implementation.</p>
+
+<p>This class implements the random rectangle QR code rendering, creating QR codes
+ with randomly sized and colored rectangles for each dark module. This creates
+ QR codes with a unique, artistic appearance.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Random rectangle generation for dark modules</li>
+<li>Variable sizes and colors based on base color</li>
+<li>Artistic, non-uniform appearance</li>
+<li>Icon and backdrop support</li>
+<li>Unique visual style</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleRandomRectangleParams</span><span class="p">(</span>
+     <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="n">green</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleRandomRectangle</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFQRCodeStyleRandomRectangle.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1638,7 +2199,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L61-L156">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L136-L281">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1656,7 +2217,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Parameters for resample image QR code styling.</p>
+
+<p>This class defines the styling parameters for QR codes that use a resampled image
+ as the basis for module coloring. The QR code&rsquo;s modules are colored by sampling
+ from a source image, creating a visually blended effect between the QR code and the image.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Image-based module coloring via resampling</li>
+<li>Customizable alignment, timing, and position patterns</li>
+<li>Data module color fallback</li>
+<li>Icon and backdrop support</li>
+<li>Visually blended, artistic QR codes</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">imageParams</span> <span class="o">=</span> <span class="kt">EFStyleResampleImageParamsImage</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">myImage</span><span class="p">,</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleResampleImageParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">imageParams</span><span class="p">,</span>
+     <span class="nv">align</span><span class="p">:</span> <span class="n">align</span><span class="p">,</span>
+     <span class="nv">timing</span><span class="p">:</span> <span class="n">timing</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">dataColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">resampleImage</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
 
                         <a href="Classes/EFStyleResampleImageParams.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1669,7 +2263,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L32-L82">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L68-L149">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1687,7 +2281,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Alignment pattern styling parameters for resample image QR codes.</p>
 
                         <a href="Classes/EFStyleResampleImageParamsAlign.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1700,7 +2294,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L91-L111">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L160-L191">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1718,7 +2312,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Timing pattern styling parameters for resample image QR codes.</p>
 
                         <a href="Classes/EFStyleResampleImageParamsTiming.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1731,7 +2325,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L120-L140">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L202-L233">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1749,7 +2343,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Position detection pattern styling parameters for resample image QR codes.</p>
 
                         <a href="Classes/EFStyleResampleImageParamsPosition.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1762,7 +2356,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L142-L159">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L236-L262">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1780,7 +2374,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Image configuration for resampling in resample image QR codes.</p>
 
                         <a href="Classes/EFStyleResampleImageParamsImage.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1793,7 +2387,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L161-L192">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L265-L317">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1811,7 +2405,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>QR code style implementation for resample image effect.</p>
+
+<p>This class implements the rendering logic for QR codes that use a resampled image
+ to color the modules, supporting advanced artistic effects.</p>
 
                         <a href="Classes/EFQRCodeStyleResampleImage.html" class="slightly-smaller">See more</a>
                       </div>
@@ -1824,7 +2421,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L194-L529">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L325-L664">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

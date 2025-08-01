@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,32 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Random rectangle QR code implementation.</p>
+
+<p>This class implements the random rectangle QR code rendering, creating QR codes
+ with randomly sized and colored rectangles for each dark module. This creates
+ QR codes with a unique, artistic appearance.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Random rectangle generation for dark modules</li>
+<li>Variable sizes and colors based on base color</li>
+<li>Artistic, non-uniform appearance</li>
+<li>Icon and backdrop support</li>
+<li>Unique visual style</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleRandomRectangleParams</span><span class="p">(</span>
+     <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="n">green</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyleRandomRectangle</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L61-L156">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L136-L281">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +352,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a random rectangle QR code with the specified parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -341,8 +363,27 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The random rectangle styling parameters.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L65-L68">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleRandomRectangle.swift#L144-L147">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

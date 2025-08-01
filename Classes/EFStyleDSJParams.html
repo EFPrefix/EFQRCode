@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,41 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Parameters for DSJ-style QR code styling.</p>
+
+<p>This class defines the styling parameters for DSJ-style QR codes, which use
+ distinctive position and data module patterns inspired by the &ldquo;DSJ&rdquo; visual style.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Custom DSJ-style position detection patterns</li>
+<li>Customizable data module appearance</li>
+<li>Icon and backdrop support</li>
+<li>Unique, visually striking QR codes</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">dataParams</span> <span class="o">=</span> <span class="kt">EFStyleDSJParamsData</span><span class="p">(</span>
+     <span class="nv">lineSize</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+     <span class="nv">xSize</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+     <span class="nv">horizontalLineColor</span><span class="p">:</span> <span class="o">.</span><span class="n">yellow</span><span class="p">,</span>
+     <span class="nv">verticalLineColor</span><span class="p">:</span> <span class="o">.</span><span class="n">red</span><span class="p">,</span>
+     <span class="nv">xColor</span><span class="p">:</span> <span class="o">.</span><span class="n">blue</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleDSJParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">data</span><span class="p">:</span> <span class="n">dataParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">dsj</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L32-L65">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L66-L119">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +361,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default backdrop configuration for DSJ QR codes.</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +373,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L34">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L68">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +391,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default position detection pattern configuration.</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +403,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +421,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default data module configuration.</p>
 
                       </div>
                       <div class="declaration">
@@ -402,7 +433,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,7 +451,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates DSJ-style QR code styling parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -436,8 +467,63 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The icon to display in the center of the QR code. Defaults to nil.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backdrop</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The backdrop configuration. Defaults to default backdrop.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position detection pattern configuration. Defaults to default position.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The data module configuration. Defaults to default data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L41-L50">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleDSJ.swift#L86-L95">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,50 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Parameters for line-style QR code styling.</p>
+
+<p>This class defines the styling parameters for line-style QR codes, which use
+ lines to represent data modules instead of solid blocks. This creates QR codes
+ with a unique, minimalist appearance that maintains scannability.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Line-based data module representation</li>
+<li>Customizable line direction and thickness</li>
+<li>Position detection pattern styling</li>
+<li>Icon and backdrop support</li>
+<li>Minimalist, modern appearance</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">lineParams</span> <span class="o">=</span> <span class="kt">EFStyleLineParamsLine</span><span class="p">(</span>
+     <span class="nv">direction</span><span class="p">:</span> <span class="o">.</span><span class="n">x</span><span class="p">,</span>
+     <span class="nv">thickness</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+     <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleLineParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">line</span><span class="p">:</span> <span class="n">lineParams</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">line</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
+
+<p>## Visual Characteristics</p>
+
+<ul>
+<li>Data modules are represented as lines</li>
+<li>Lines can be oriented horizontally or vertically</li>
+<li>Thickness controls the visual weight of lines</li>
+<li>Creates a clean, minimalist appearance</li>
+</ul>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L32-L65">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L73-L126">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +370,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default backdrop configuration for line QR codes.</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +382,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L34">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L75">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +400,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default position detection pattern configuration.</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +412,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L77">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +430,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default line configuration.</p>
 
                       </div>
                       <div class="declaration">
@@ -402,7 +442,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L79">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,7 +460,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates line-style QR code styling parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -436,8 +476,63 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The icon to display in the center of the QR code. Defaults to nil.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backdrop</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The backdrop configuration. Defaults to default backdrop.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position detection pattern configuration. Defaults to default position.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>line</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The line configuration. Defaults to default line.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L41-L50">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleLine.swift#L93-L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

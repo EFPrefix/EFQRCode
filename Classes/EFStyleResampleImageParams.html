@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,43 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Parameters for resample image QR code styling.</p>
+
+<p>This class defines the styling parameters for QR codes that use a resampled image
+ as the basis for module coloring. The QR code&rsquo;s modules are colored by sampling
+ from a source image, creating a visually blended effect between the QR code and the image.</p>
+
+<p>## Features</p>
+
+<ul>
+<li>Image-based module coloring via resampling</li>
+<li>Customizable alignment, timing, and position patterns</li>
+<li>Data module color fallback</li>
+<li>Icon and backdrop support</li>
+<li>Visually blended, artistic QR codes</li>
+</ul>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">imageParams</span> <span class="o">=</span> <span class="kt">EFStyleResampleImageParamsImage</span><span class="p">(</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">myImage</span><span class="p">,</span>
+     <span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">scaleAspectFill</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">params</span> <span class="o">=</span> <span class="kt">EFStyleResampleImageParams</span><span class="p">(</span>
+     <span class="nv">icon</span><span class="p">:</span> <span class="n">icon</span><span class="p">,</span>
+     <span class="nv">backdrop</span><span class="p">:</span> <span class="n">backdrop</span><span class="p">,</span>
+     <span class="nv">image</span><span class="p">:</span> <span class="n">imageParams</span><span class="p">,</span>
+     <span class="nv">align</span><span class="p">:</span> <span class="n">align</span><span class="p">,</span>
+     <span class="nv">timing</span><span class="p">:</span> <span class="n">timing</span><span class="p">,</span>
+     <span class="nv">position</span><span class="p">:</span> <span class="n">position</span><span class="p">,</span>
+     <span class="nv">dataColor</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span>
+ <span class="p">)</span>
+
+ <span class="k">let</span> <span class="nv">style</span> <span class="o">=</span> <span class="kt">EFQRCodeStyle</span><span class="o">.</span><span class="nf">resampleImage</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L32-L82">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L68-L149">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +363,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default backdrop configuration for resample image QR codes.</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +375,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L34">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +393,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default alignment pattern configuration.</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +405,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L72">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +423,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default timing pattern configuration.</p>
 
                       </div>
                       <div class="declaration">
@@ -402,7 +435,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -420,7 +453,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default position detection pattern configuration.</p>
 
                       </div>
                       <div class="declaration">
@@ -432,7 +465,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L37">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -450,7 +483,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default color for data modules (black).</p>
 
                       </div>
                       <div class="declaration">
@@ -462,7 +495,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L38">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -480,7 +513,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates resample image QR code styling parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -499,8 +532,99 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>icon</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The icon to display in the center of the QR code. Defaults to nil.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backdrop</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The backdrop configuration. Defaults to default backdrop.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>image</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The image configuration for resampling. Defaults to nil.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>align</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alignment pattern configuration. Defaults to default align.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timing</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The timing pattern configuration. Defaults to default timing.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position detection pattern configuration. Defaults to default position.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The fallback color for data modules. Defaults to black.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L46-L61">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleResampleImage.swift#L101-L116">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

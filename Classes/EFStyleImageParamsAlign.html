@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           EFQRCode 7.0.2 Docs
         </a>
-         (30% documented)
+         (96% documented)
       </p>
     
       <div class="header-col--secondary">
@@ -305,10 +305,22 @@
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Alignment pattern styling parameters for image-based QR codes.</p>
+
+<p>This class defines the appearance of alignment patterns in image-based QR codes,
+ including their style, size, and colors for dark and light modules.</p>
+
+<p>## Usage</p>
+<pre class="highlight swift"><code> <span class="k">let</span> <span class="nv">align</span> <span class="o">=</span> <span class="kt">EFStyleImageParamsAlign</span><span class="p">(</span>
+     <span class="nv">style</span><span class="p">:</span> <span class="o">.</span><span class="n">rectangle</span><span class="p">,</span>
+     <span class="nv">size</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="nv">colorDark</span><span class="p">:</span> <span class="o">.</span><span class="n">black</span><span class="p">,</span>
+     <span class="nv">colorLight</span><span class="p">:</span> <span class="o">.</span><span class="n">white</span>
+ <span class="p">)</span>
+</code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L91-L112">Show on GitHub</a>
+                <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L191-L243">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -330,7 +342,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Default color for dark alignment pattern modules (black).</p>
 
                       </div>
                       <div class="declaration">
@@ -342,7 +354,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L93">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L196">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -360,7 +372,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Default color for light alignment pattern modules (white).</p>
 
                       </div>
                       <div class="declaration">
@@ -372,7 +384,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L94">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L201">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +402,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates alignment pattern styling parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -406,8 +418,63 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>style</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The style of the alignment pattern. Defaults to .rectangle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the alignment pattern. Defaults to 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>colorDark</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color for dark alignment pattern modules. Defaults to default color dark.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>colorLight</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color for light alignment pattern modules. Defaults to default color light.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L101-L111">Show on GitHub</a>
+                        <a href="https://github.com/EFPrefix/EFQRCode/blob/main/Source/Styles/EFQRCodeStyleImage.swift#L232-L242">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
