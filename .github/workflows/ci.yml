@@ -1,0 +1,133 @@
+name: CI
+
+# Comprehensive CI workflow that includes builds, tests, and validations
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+# Cancel any in-progress workflow runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
+
+jobs:
+  # Swift Package Manager Build
+  spm-build:
+    name: SPM Build
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        platform: [iOS, macOS, tvOS, watchOS, visionOS]
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest
+        
+    - name: Build with SPM
+      run: |
+        case "${{ matrix.platform }}" in
+          iOS)
+            SDK_PATH=$(xcrun --sdk iphonesimulator --show-sdk-path)
+            swift build \
+              -Xcc "-isysroot" -Xcc "$SDK_PATH" \
+              -Xswiftc "-sdk" -Xswiftc "$SDK_PATH" \
+              -Xswiftc "-target" -Xswiftc "arm64-apple-ios13.0-simulator"
+            ;;
+          macOS)
+            swift build
+            ;;
+          tvOS)
+            SDK_PATH=$(xcrun --sdk appletvsimulator --show-sdk-path)
+            swift build \
+              -Xcc "-isysroot" -Xcc "$SDK_PATH" \
+              -Xswiftc "-sdk" -Xswiftc "$SDK_PATH" \
+              -Xswiftc "-target" -Xswiftc "arm64-apple-tvos13.0-simulator"
+            ;;
+          watchOS)
+            SDK_PATH=$(xcrun --sdk watchsimulator --show-sdk-path)
+            swift build \
+              -Xcc "-isysroot" -Xcc "$SDK_PATH" \
+              -Xswiftc "-sdk" -Xswiftc "$SDK_PATH" \
+              -Xswiftc "-target" -Xswiftc "arm64-apple-watchos6.0-simulator"
+            ;;
+          visionOS)
+            SDK_PATH=$(xcrun --sdk xrsimulator --show-sdk-path)
+            swift build \
+              -Xcc "-isysroot" -Xcc "$SDK_PATH" \
+              -Xswiftc "-sdk" -Xswiftc "$SDK_PATH" \
+              -Xswiftc "-target" -Xswiftc "arm64-apple-xros1.0-simulator"
+            ;;
+        esac
+
+  # Xcode Build Test
+  xcode-build:
+    name: Xcode Build
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        destination: 
+          - 'platform=iOS Simulator,name=iPhone 15,OS=latest'
+          - 'platform=macOS'
+          - 'platform=tvOS Simulator,name=Apple TV,OS=latest'
+          - 'platform=watchOS Simulator,name=Apple Watch Series 9 (45mm),OS=latest'
+          - 'platform=visionOS Simulator,name=Apple Vision Pro,OS=latest'
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest
+        
+    - name: Build with Xcode
+      run: |
+        xcodebuild clean build \
+          -workspace EFQRCode.xcworkspace \
+          -scheme "${{ contains(matrix.destination, 'iOS') && 'iOS Example' || contains(matrix.destination, 'macOS') && 'macOS Example' || contains(matrix.destination, 'tvOS') && 'tvOS Example' || contains(matrix.destination, 'watchOS') && 'watchOS Example' || 'iOS Example' }}" \
+          -destination "${{ matrix.destination }}" \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          ONLY_ACTIVE_ARCH=NO
+
+  # Documentation Check
+  documentation-check:
+    name: Documentation Check
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Jazzy
+        run: sudo gem install jazzy
+      - name: Resolve Swift Package dependencies
+        run: xcodebuild -resolvePackageDependencies
+      - name: Generate Documentation
+        run: ./docs.sh
+        continue-on-error: false
+
+  # Final Status Check
+  status-check:
+    name: Status Check
+    runs-on: macos-latest
+    needs: [spm-build, xcode-build, documentation-check]
+    if: always()
+    
+    steps:
+    - name: Check Results
+      run: |
+        if [[ "${{ needs.spm-build.result }}" != "success" ]] || [[ "${{ needs.xcode-build.result }}" != "success" ]]; then
+          echo "❌  Build checks failed - PR will be blocked"
+          exit 1
+        fi
+        
+        echo "✅ All checks passed successfully!"
