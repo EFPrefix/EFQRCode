@@ -45,19 +45,10 @@ jobs:
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO
           
-    - name: Setup Python for coverage processing
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-        
-    - name: Install xccov-to-sonarqube-generic
-      run: |
-        pip install xccov-to-sonarqube-generic
-        
     - name: Generate Coverage Report
       run: |
         # Find the xcresult bundle
-        XCRESULT_PATH=$(find ./DerivedData-${{ matrix.platform.name }}/Logs/Test -name '*.xcresult' | head -1)
+        XCRESULT_PATH=$(find ./DerivedData-${{ matrix.platform.name }}/Logs/Test -name "*.xcresult" | head -1)
         
         if [ -z "$XCRESULT_PATH" ]; then
           echo "No .xcresult file found"
@@ -66,39 +57,17 @@ jobs:
         fi
         
         echo "Found xcresult at: $XCRESULT_PATH"
-        
-        # Create coverage directory
-        mkdir -p coverage_reports
-        
-        # Generate JSON coverage report
-        xcrun xccov view --report --json "$XCRESULT_PATH" > ./coverage_reports/raw_coverage.json
-        
-        # Convert to generic coverage format for codecov
-        xccov-to-sonarqube-generic \
-          --input ./coverage_reports/raw_coverage.json \
-          --output ./coverage_reports/coverage.xml \
-          --project-root .
-        
-        # Also create a simplified format
-        xcrun xccov view --report "$XCRESULT_PATH" > ./coverage_reports/coverage.txt
-        
-        # Show what we generated
-        echo "Coverage files generated:"
-        ls -la ./coverage_reports/
-        echo "Coverage XML preview:"
-        head -30 ./coverage_reports/coverage.xml || true
+        xcrun xccov view --report --format cobertura "$XCRESULT_PATH" > coverage-${{ matrix.platform.name }}.xml
         
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./coverage_reports
+        files: ./coverage-${{ matrix.platform.name }}.xml
         flags: ${{ matrix.platform.name }}
         name: codecov-${{ matrix.platform.name }}
-        fail_ci_if_error: false
         verbose: true
-        root_dir: ./
-        working-directory: ./
+        plugin: xcode
 
   # Status Check
   status-check:
