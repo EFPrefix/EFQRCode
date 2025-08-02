@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.0.3](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.3) (2025-08-03)
+
+#### Fix
+
+- Fix Package.swift
+
+---
+
 ## [7.0.2](https://github.com/EFPrefix/EFQRCode/releases/tag/7.0.2) (2025-06-01)
 
 #### Add
