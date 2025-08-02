@@ -516,6 +516,23 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         return pointList
     }
     
+    /**
+     * Generates SVG markup for image-resampled QR code modules.
+     *
+     * This method creates the resample image effect by sampling colors from the source image
+     * and applying them to the QR code modules. It processes the image pixels and maps them
+     * to QR code module positions with proper contrast adjustments.
+     *
+     * - Parameters:
+     *   - params: The resample image styling parameters.
+     *   - qrcode: The QR code model containing module structure.
+     *   - image: The image parameters for resampling, or nil if no image is available.
+     *   - newWidth: The target width for the resampled image in pixels.
+     *   - newHeight: The target height for the resampled image in pixels.
+     *   - color: The fallback hex color string for modules when image sampling fails.
+     * - Returns: An SVG string containing the image-resampled QR code modules.
+     * - Throws: `EFQRCodeError` if image processing or color conversion fails.
+     */
     func writeResImage(params: EFStyleResampleImageParams, qrcode: QRCode, image: EFStyleResampleImageParamsImage?, newWidth: Int, newHeight: Int, color: String) throws -> String {
         guard let image = image else { return "" }
         
@@ -578,6 +595,17 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
         + part2
     }
     
+    /**
+     * Generates custom SVG markup for non-data modules in the resample image QR code.
+     *
+     * This method creates SVG elements for alignment patterns, timing patterns, and
+     * position detection patterns that are not part of the main data resampling.
+     * These elements use traditional QR code styling rather than image sampling.
+     *
+     * - Parameter qrcode: The QR code model containing module structure and type information.
+     * - Returns: An SVG string containing the custom-styled QR code control patterns.
+     * - Throws: `EFQRCodeError` if color conversion fails.
+     */
     func customSVG(qrcode: QRCode) throws -> String {
         let alignType: EFStyleResampleImageParamAlignStyle = params.align.style
         let alignColor: String = try params.align.color.hexString()
@@ -663,17 +691,51 @@ public class EFQRCodeStyleResampleImage: EFQRCodeStyleBase {
     }
 }
 
+/**
+ * Extensions for CGImage to support resample image QR code generation.
+ *
+ * This extension provides utility methods for processing images used in
+ * resample image QR code styles, including color analysis and pixel sampling.
+ */
 extension CGImage {
     
-    // red, green, blue: [0, 255]
-    // alpha: [0, 1]
-    // return: [0, 255]
+    /**
+     * Calculates the grayscale value for RGBA color components with gamma correction.
+     *
+     * This method converts RGB color values to grayscale using standard luminance
+     * coefficients and applies alpha blending for proper color representation.
+     *
+     * - Parameters:
+     *   - red: The red component value (0-255).
+     *   - green: The green component value (0-255).
+     *   - blue: The blue component value (0-255).
+     *   - alpha: The alpha component value (0-1).
+     * - Returns: The calculated grayscale value (0-255).
+     */
     func gamma(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> CGFloat {
         let gray: CGFloat = 0.2126 * red + 0.7152 * green + 0.0722 * blue
         let weightedGray: CGFloat = gray * alpha + (1 - alpha) * 255.0
         return weightedGray
     }
     
+    /**
+     * Generates QR code modules by sampling grayscale values from the image.
+     *
+     * This method processes the image to create QR code modules based on pixel brightness,
+     * applying contrast and exposure adjustments. It handles different QR code module types
+     * (data, alignment, timing) and creates appropriate SVG elements for each.
+     *
+     * - Parameters:
+     *   - params: The resample image styling parameters.
+     *   - qrcode: The QR code model containing module structure and type information.
+     *   - newWidth: The target width for image resampling.
+     *   - newHeight: The target height for image resampling.
+     *   - contrast: The contrast adjustment value. Defaults to 0.
+     *   - exposure: The exposure adjustment value. Defaults to 0.
+     *   - color: The fallback color string for modules when image sampling fails.
+     * - Returns: An array of SVG strings representing the QR code modules.
+     * - Throws: `EFQRCodeError` if color conversion or image processing fails.
+     */
     func getGrayPointList(params: EFStyleResampleImageParams, qrcode: QRCode, newWidth: Int, newHeight: Int, contrast: CGFloat = 0, exposure: CGFloat = 0, color: String) throws -> [String] {
         // filter trans area
         let nCount: Int = qrcode.model.moduleCount

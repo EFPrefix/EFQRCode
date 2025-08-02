@@ -196,6 +196,16 @@ public class EFStyleParamIcon {
         )
     }
     
+    /**
+     * Generates SVG elements for rendering the icon in the QR code.
+     *
+     * This method creates the necessary SVG markup to display the icon at the center
+     * of the QR code with proper masking, scaling, and border styling.
+     *
+     * - Parameter qrcode: The QR code model containing module structure and dimensions.
+     * - Returns: An array of SVG strings representing the icon elements.
+     * - Throws: `EFQRCodeError` if color conversion or image processing fails.
+     */
     func write(qrcode: QRCode) throws -> [String] {
         struct Anchor {
             static var uniqueMark: Int = 0
@@ -327,6 +337,15 @@ public class EFStyleParamBackdrop {
         self.quietzone = quietzone
     }
     
+    /**
+     * Calculates the viewBox dimensions for the QR code with quiet zone considerations.
+     *
+     * This method determines the coordinate system and dimensions for the SVG viewBox,
+     * taking into account any specified quiet zone (border space) around the QR code.
+     *
+     * - Parameter moduleCount: The number of modules (squares) along one side of the QR code.
+     * - Returns: A CGRect defining the viewBox coordinates and dimensions.
+     */
     func viewBox(moduleCount: Int) -> CGRect {
         if let quietzone = quietzone {
             return CGRect(
@@ -339,6 +358,19 @@ public class EFStyleParamBackdrop {
         return CGRect(x: -1, y: -1, width: moduleCount.cgFloat + 2, height: moduleCount.cgFloat + 2)
     }
     
+    /**
+     * Generates the opening and closing SVG markup for the QR code backdrop.
+     *
+     * This method creates the SVG container structure with background styling,
+     * clipping paths, and coordinate transformations. It returns a tuple containing
+     * the opening SVG elements and the closing elements.
+     *
+     * - Parameters:
+     *   - qrcode: The QR code model containing structure information.
+     *   - viewBoxRect: The viewBox rectangle defining the coordinate system.
+     * - Returns: A tuple containing (opening SVG markup, closing SVG markup).
+     * - Throws: `EFQRCodeError` if color conversion or image processing fails.
+     */
     func generateSVG(qrcode: QRCode, viewBoxRect: CGRect) throws -> (String, String) {
         let bgColor: String = try color.hexString()
         let bgAlpha: CGFloat = max(0, try color.alpha())
@@ -390,6 +422,16 @@ public class EFStyleParamBackdropImage {
         self.mode = mode
     }
     
+    /**
+     * Generates SVG markup for the backdrop image.
+     *
+     * This method processes the backdrop image according to the specified scaling mode
+     * and generates the corresponding SVG image element with proper sizing and encoding.
+     *
+     * - Parameter size: The target size for the backdrop image in the SVG coordinate system.
+     * - Returns: An SVG image element string with base64-encoded image data.
+     * - Throws: `EFQRCodeError` if image processing or encoding fails.
+     */
     func write(size: CGSize) throws -> String {
         let imageCliped: CGImage = try self.mode.imageForContent(ofImage: image, inCanvasOfRatio: size)
         let pngBase64EncodedString: String = try imageCliped.pngBase64EncodedString()
