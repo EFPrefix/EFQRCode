@@ -21,9 +21,9 @@ jobs:
     strategy:
       matrix:
         platform:
-          - { name: "iOS", scheme: "iOS Example", destination: "platform=iOS Simulator,name=iPhone 15,OS=latest" }
-          - { name: "macOS", scheme: "macOS Example", destination: "platform=macOS" }
-          - { name: "tvOS", scheme: "tvOS Example", destination: "platform=tvOS Simulator,name=Apple TV,OS=latest" }
+          - { name: "iOS", scheme: "EFQRCode iOS", destination: "platform=iOS Simulator,name=iPhone 15,OS=latest" }
+          - { name: "macOS", scheme: "EFQRCode macOS", destination: "platform=macOS" }
+          - { name: "tvOS", scheme: "EFQRCode tvOS", destination: "platform=tvOS Simulator,name=Apple TV,OS=latest" }
     
     steps:
     - name: Checkout Repository

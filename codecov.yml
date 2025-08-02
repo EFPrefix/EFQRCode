@@ -3,3 +3,6 @@ ignore:
   - Tests
   - Examples
   - Package.swift
+  - Package@swift-5.3.swift
+  - Package@swift-5.9.swift
+  - .github
