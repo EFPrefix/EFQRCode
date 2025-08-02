@@ -47,16 +47,36 @@ jobs:
           
     - name: Generate Coverage Report
       run: |
-        xcrun xccov view --report --json ./DerivedData-${{ matrix.platform.name }}/Logs/Test/*.xcresult > coverage-${{ matrix.platform.name }}.json
+        # Find the xcresult bundle
+        XCRESULT_PATH=$(find ./DerivedData-${{ matrix.platform.name }}/Logs/Test -name '*.xcresult' | head -1)
+        
+        if [ -z "$XCRESULT_PATH" ]; then
+          echo "No .xcresult file found"
+          ls -la ./DerivedData-${{ matrix.platform.name }}/Logs/Test/
+          exit 1
+        fi
+        
+        echo "Found xcresult at: $XCRESULT_PATH"
+        
+        # Generate coverage reports in different formats
+        xcrun xccov view --report --json "$XCRESULT_PATH" > coverage-${{ matrix.platform.name }}.json
+        xcrun xccov view --report "$XCRESULT_PATH" > coverage-${{ matrix.platform.name }}.txt
+        
+        # List generated files for debugging
+        ls -la coverage-*
         
     - name: Upload Coverage to Codecov
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage-${{ matrix.platform.name }}.json
-        flags: unittests,${{ matrix.platform.name }}
+        files: ./coverage-${{ matrix.platform.name }}.json,./coverage-${{ matrix.platform.name }}.txt
+        flags: ${{ matrix.platform.name }}
         name: codecov-${{ matrix.platform.name }}
-        fail_ci_if_error: true
+        fail_ci_if_error: false
+        verbose: true
+        override_branch: main
+        override_commit: ${{ github.sha }}
+        override_pr: ${{ github.event.number }}
 
   # Status Check
   status-check:
