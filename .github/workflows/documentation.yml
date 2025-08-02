@@ -1,0 +1,55 @@
+name: Documentation
+
+# Only run on pull requests to check documentation changes
+on:
+  pull_request:
+    branches: [ main, master, develop ]
+
+# Cancel any in-progress workflow runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
+
+jobs:
+  # Documentation Check
+  documentation-check:
+    name: Documentation Check
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest
+          
+      - name: Install Jazzy
+        run: sudo gem install jazzy
+        
+      - name: Resolve Swift Package dependencies
+        run: xcodebuild -resolvePackageDependencies
+        
+      - name: Generate Documentation
+        run: ./docs.sh
+        continue-on-error: false
+
+  # Status Check
+  status-check:
+    name: Documentation Status Check
+    runs-on: macos-latest
+    needs: [documentation-check]
+    if: always()
+    
+    steps:
+    - name: Check Results
+      run: |
+        if [[ "${{ needs.documentation-check.result }}" != "success" ]]; then
+          echo "❌ Documentation generation failed"
+          exit 1
+        fi
+        
+        echo "✅ Documentation check passed successfully!"
