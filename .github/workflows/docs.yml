@@ -6,6 +6,11 @@ on:
       - main
       - docs
 
+# Cancel any in-progress workflow runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   jazzy:
     runs-on: macos-latest
