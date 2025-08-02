@@ -1,5 +1,0 @@
-ignore:
-  - Carthage
-  - Tests
-  - Examples
-  - Package.swift
