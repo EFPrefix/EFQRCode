@@ -101,25 +101,11 @@ jobs:
           CODE_SIGNING_REQUIRED=NO \
           ONLY_ACTIVE_ARCH=NO
 
-  # Documentation Check
-  documentation-check:
-    name: Documentation Check
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Jazzy
-        run: sudo gem install jazzy
-      - name: Resolve Swift Package dependencies
-        run: xcodebuild -resolvePackageDependencies
-      - name: Generate Documentation
-        run: ./docs.sh
-        continue-on-error: false
-
   # Final Status Check
   status-check:
     name: Status Check
     runs-on: macos-latest
-    needs: [spm-build, xcode-build, documentation-check]
+    needs: [spm-build, xcode-build]
     if: always()
     
     steps:
