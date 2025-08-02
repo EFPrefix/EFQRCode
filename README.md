@@ -2,19 +2,19 @@
 
 <p align="center">
     <a href="https://github.com/Carthage/Carthage/">
-        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat">
+        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square">
     </a>
     <a href="https://swift.org/package-manager/">
-        <img src="https://img.shields.io/badge/SPM-ready-orange.svg">
+        <img src="https://img.shields.io/badge/SPM-ready-orange.svg?style=flat-square">
     </a>
     <a href="http://cocoapods.org/pods/EFQRCode">
-        <img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat">
+        <img src="https://img.shields.io/cocoapods/v/EFQRCode.svg?style=flat-square">
     </a>
     <a href="https://swiftpackageindex.com/EFPrefix/EFQRCode">
-        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dplatforms" alt="Compatible with all Platforms">
+        <img src="https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FEFPrefix%2FEFQRCode%2Fbadge%3Ftype%3Dplatforms">
     </a>
     <a href="https://raw.githubusercontent.com/EFPrefix/EFQRCode/main/LICENSE">
-        <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat">
+        <img src="https://img.shields.io/cocoapods/l/EFQRCode.svg?style=flat-square">
     </a>
 </p>
 
