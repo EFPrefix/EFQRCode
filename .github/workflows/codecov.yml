@@ -1,0 +1,76 @@
+name: Code Coverage
+
+# Only run on pushes to main branch
+on:
+  push:
+    branches: [ main ]
+
+# Cancel any in-progress workflow runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
+
+jobs:
+  # Test Coverage
+  test-coverage:
+    name: Test Coverage
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        platform:
+          - { name: "iOS", scheme: "iOS Example", destination: "platform=iOS Simulator,name=iPhone 15,OS=latest" }
+          - { name: "macOS", scheme: "macOS Example", destination: "platform=macOS" }
+          - { name: "tvOS", scheme: "tvOS Example", destination: "platform=tvOS Simulator,name=Apple TV,OS=latest" }
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest
+        
+    - name: Run Tests with Coverage
+      run: |
+        xcodebuild test \
+          -workspace EFQRCode.xcworkspace \
+          -scheme "${{ matrix.platform.scheme }}" \
+          -destination "${{ matrix.platform.destination }}" \
+          -enableCodeCoverage YES \
+          -derivedDataPath ./DerivedData-${{ matrix.platform.name }} \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
+          
+    - name: Generate Coverage Report
+      run: |
+        xcrun xccov view --report --json ./DerivedData-${{ matrix.platform.name }}/Logs/Test/*.xcresult > coverage-${{ matrix.platform.name }}.json
+        
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage-${{ matrix.platform.name }}.json
+        flags: unittests,${{ matrix.platform.name }}
+        name: codecov-${{ matrix.platform.name }}
+        fail_ci_if_error: true
+
+  # Status Check
+  status-check:
+    name: Coverage Status Check
+    runs-on: macos-latest
+    needs: [test-coverage]
+    if: always()
+    
+    steps:
+    - name: Check Results
+      run: |
+        if [[ "${{ needs.test-coverage.result }}" != "success" ]]; then
+          echo "❌ Code coverage collection failed"
+          exit 1
+        fi
+        
+        echo "✅ Code coverage successfully uploaded to Codecov!"
