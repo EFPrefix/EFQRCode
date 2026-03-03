@@ -61,8 +61,7 @@ iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+ / visionOS 1.0+
 
 ### CocoaPods
 
-EFQRCode is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+EFQRCode is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'EFQRCode', '~> 7.0.3'
